@@ -1,0 +1,274 @@
+
+v2.0.6
+1、更新2020/12/12版openbsd的iwm、iwx等驱动
+2、更新2020/12/10版openbsd的ieee80211
+3、优化适配二代无线网卡
+4、优化睡眠唤醒
+5、优化中断
+
+
+v2.0.5
+1、修复支持WPA2企业级认证后导致下载流量监控异常
+2、优化认证相关代码
+3、优化wifi列表的代码
+4、开启批量扫描，提高开启wifi后自动连接的速度
+5、更新2020/11/12版openbsd的iwn驱动
+6、修复Mojave编译失败问题
+7、增加if_bwfm、if_bwi、if_rtwn驱动
+8、AppleIntelWiFi改名为AirPortOpenBSD
+    现已迁驱动包括：ipw、iwi、iwm、iwn、iwx、wpi、if_bwfm、if_bwi、if_rtwn等
+9、修复开放认证失败
+10、修复WPA2企业级在BigSur中认证失败
+11、修复TKIP加密协议发送数据包失败，解决断网或一直连不上网络等问题
+12、更新2020/11/19版的openbsd的ieee80211
+13、修复在BigSur中不同WIFI的OPEN与WEP两种认证方式两两之间切换网络后连不上的问题
+    （还存在问题：网络切换后IP可能不会变更，需要在高级设置里手动点击“DHCP续租”更新IP）
+
+
+v2.0.4.beta
+1、适配二代无线网卡（无效）
+2、支持WPA2企业级认证，
+    目前已支持OPEN、WEP、WPA-PSK、WPA2-PSK、WPA2-Enterprise认证连接，应该可以连接校园网
+
+
+v2.0.3
+1、代码优化
+2、优化变量内存释放
+3、信号和噪音改为负值
+4、优化window切mac内核恐慌
+5、更新2020/10/22版openbsd的iwx驱动
+
+
+v2.0.2
+1、优化wifi扫描机制
+2、修复wifi信号全满问题
+3、修复睡眠唤醒慢问题
+
+v2.0.1
+1、修复内核恐慌，提高驱动稳定性
+2、修复速率、信号、噪音等显示
+3、更新2020/10/11版openbsd的驱动
+4、新增if_ipw驱动
+5、修复openbsd最新的net80211代码导致某些路由器断开重新连接获取不了ip
+6、修复10.14oc加载失败
+
+
+v2.0.0
+1、支持原生WIFI客户端
+2、支持认证超时密码重新输入
+3、支持open/wep/wpa/wpa2方式连接
+4、系统信息wifi信息正确展示
+5、其他优化
+6、删除旧的wifi账号密码填写方式
+
+已知问题，切换wifi可能会内核恐慌
+
+v1.3.5
+1、优化IOEthernet版变量内存释放，支持卸载驱动
+
+v1.3.4
+1、优化扫描wifi列表
+2、优化从信标帧中获取已连接的wifi的国家/地区代码
+3、优化扫描获取wifi列表可能导致内核恐慌问题
+4、正常识别扫描到的wifi信息，可在系统信息中查看，如安全性，国家/地区代码等
+
+v1.3.3
+1、优化扫描获取wifi列表可能导致内核恐慌问题
+2、更新2020/08/02版openbsd的iwx驱动
+3、支持硬件id为0x02f0,子id为0x0070、0x0074、0x0078、0x007c、0x0310、0x2074、0x4070的Wi-Fi 6 AX201
+
+
+v1.3.2
+1、修复catalina部分机器加载内核恐慌
+2、修复mojave内核恐慌
+3、修复热启驱动加载失败bug
+
+v1.3.1
+1、适配以太网
+2、Info.plist增加多wifi配置
+3、增加开机加载
+4、修复mojave内核恐慌
+
+开机加载方法：
+把驱动放在：IO80211Family.kext/Contents/PlugIns/AppleIntelWiFi.kext
+然后把IO80211Family.kext驱动入入oc驱动目录下，改config配置
+
+v1.3.0
+1、适配mojave
+2、更新2020/07/13版openbsd的iwx驱动
+
+v1.2.9
+1、dma内存分配与释放专项整治
+
+
+v1.2.8
+1、完善网速显示，网络不会断开，监控工具可显示下载速度
+2、优化内存释放
+3、修复内存释放导致内核恐慌问题
+
+
+v1.2.7
+1、优化睡眠唤醒重连
+2、优化电源状态
+3、更新2020/06/22版openbsd的iwx驱动
+4、优化dma内存分配与释放
+5、调整代码结构
+
+v1.2.6
+1、更新2020/06/11版openbsd的iwx驱动
+2、更新2020/06/11版openbsd的iwm驱动
+3、更新2020/06/11版openbsd的iwn驱动
+4、代码优化
+5、移除下载网速显示
+
+v1.2.5
+1、增加nvram账号密码方式，关闭wifi再打开即可切换:
+sudo nvram WPA/WPA2=true
+sudo nvram NWID=FAST_88FED0
+sudo nvram NWID=KIMAX
+sudo nvram WPAKEY=126abc\!@ABC
+开放式：
+sudo nvram WPA/WPA2=false
+sudo nvram NWID=Starbucks
+说明：NWID不可为空，为空则使用info.plist配置
+2、修复v1.2.4的网络可能会断开重连的bug（重连概率降低）
+
+
+v1.2.4
+1、更新2020/05/26版openbsd的iwx驱动
+2、更新2020/06/02版openbsd的iwm驱动
+3、更新2020/06/03版openbsd的iwn驱动
+4、更新2020/06/03版openbsd的wpi驱动
+5、更新2020/06/01版的openbsd的ieee80211
+6、优化网速显示，监控工具可显示下载速度
+
+已知bug：
+网络可能会断开重连（使用测速工具更容易复现），应该是优化网速显示出了些问题，
+实在解决不了，下一版把此改动去掉
+
+
+v1.2.3
+1、优化内存分配，更容易适配其他驱动
+2、新增iwi驱动
+
+v1.2.2
+1、支持硬件id为0x2723的Wi-Fi 6 AX200
+2、更新2020/05/15版的openbsd的ieee80211
+3、更新2020/05/18版openbsd的iwm驱动
+4、优化kernel_task，cpu占用率降低
+
+
+v1.2.1
+1、更新2020/05/05版的openbsd的ieee80211
+2、更新2020/04/29版openbsd的iwm驱动
+3、更新2020/05/05版openbsd的iwn驱动
+4、优化mbuf相关涵数调用
+
+v1.1.7
+1、更换wifi账号密码填写方式，支持具有空格的SSID
+2、优化只有认证通过后才更新网络状态
+
+
+2020-05-03
+1、修复io80211信号等信息的读取有时候变为0的问题
+2、修复iwn、wpi一些bug
+3、删除部分头文件
+4、优化内存分配与释放
+5、解决连接开放模式wifi自动断开bug，如星巴克的wifi
+6、解决部分由于m_free而导致的内核恐慌问题
+
+ps:
+驱动加载但扫描不了wifi，请打开控制台，搜索AppleInterWiFi,
+查看是否有日志：fw chunk addr 0x404000 len 712 failed to load
+如果有此日志，
+首先，请去bios把无线网卡禁用，重启电脑后再进入bios把它启用
+然后，重启进mac，重新加载驱动。
+
+
+2020-04-25
+
+更新内容：
+1、更换最新版的openbsd的ieee80211
+2、更换最新版openbsd的iwm驱动，网络稳定性提高，主要表现为视频通话质量提升
+3、代码调整 ，增加支持1000～6000等系列网卡（因没此系列的网卡，没调试过），
+4、支持无加密方式
+5、更新io80211信号等信息的读取
+6、更新wifi密码填写方式
+
+Wi-Fi 6系列
+ #define    PCI_PRODUCT_INTEL_WL_22500_1    0x2723        /* Wi-Fi 6 AX200 */
+
+ 9000系列
+ #define    PCI_PRODUCT_INTEL_WL_9260_1    0x2526        /* Dual Band Wireless-AC 9260 */
+ #define    PCI_PRODUCT_INTEL_WL_9560_1    0x9df0        /* Dual Band Wireless AC 9560 */
+ #define    PCI_PRODUCT_INTEL_WL_9560_2    0xa370        /* Dual Band Wireless AC 9560 */
+
+ 8000系列：
+ #define    PCI_PRODUCT_INTEL_WL_8260_1    0x24f3        /* Dual Band Wireless AC 8260 */
+ #define    PCI_PRODUCT_INTEL_WL_8260_2    0x24f4        /* Dual Band Wireless AC 8260 */
+ #define    PCI_PRODUCT_INTEL_WL_8265_1    0x24fd        /* Dual Band Wireless-AC 8265 */
+
+7000系列：
+#define    PCI_PRODUCT_INTEL_WL_3165_1    0x3165        /* Dual Band Wireless AC 3165 */
+#define    PCI_PRODUCT_INTEL_WL_3165_2    0x3166        /* Dual Band Wireless AC 3165 */
+#define    PCI_PRODUCT_INTEL_WL_7260_1    0x08b1        /* Dual Band Wireless AC 7260 */
+#define    PCI_PRODUCT_INTEL_WL_7260_2    0x08b2        /* Dual Band Wireless AC 7260 */
+#define    PCI_PRODUCT_INTEL_WL_7265_1    0x095a        /* Dual Band Wireless AC 7265 */
+#define    PCI_PRODUCT_INTEL_WL_7265_2    0x095b        /* Dual Band Wireless AC 7265 */
+
+
+其他系列：
+#define    PCI_PRODUCT_INTEL_WL_3160_1    0x08b3        /* Dual Band Wireless AC 3160 */
+#define    PCI_PRODUCT_INTEL_WL_3160_2    0x08b4        /* Dual Band Wireless AC 3160 */
+#define    PCI_PRODUCT_INTEL_WL_3168_1    0x24fb        /* Dual Band Wireless-AC 3168 */
+
+
+
+可能支持系列：
+#define    PCI_PRODUCT_INTEL_PRO_WL_2200BG    0x4220        /* PRO/Wireless 2200BG */
+#define    PCI_PRODUCT_INTEL_PRO_WL_2225BG    0x4221        /* PRO/Wireless 2225BG */
+#define    PCI_PRODUCT_INTEL_PRO_WL_2915ABG_1    0x4223        /* PRO/Wireless 2915ABG */
+#define    PCI_PRODUCT_INTEL_PRO_WL_2915ABG_2    0x4224        /* PRO/Wireless 2915ABG */
+
+#define    PCI_PRODUCT_INTEL_WL_4965_1    0x4229        /* Wireless WiFi Link 4965 */
+#define    PCI_PRODUCT_INTEL_WL_4965_2    0x4230        /* Wireless WiFi Link 4965 */
+#define    PCI_PRODUCT_INTEL_WL_5100_1    0x4232        /* WiFi Link 5100 */
+#define    PCI_PRODUCT_INTEL_WL_5100_2    0x4237        /* WiFi Link 5100 */
+#define    PCI_PRODUCT_INTEL_WL_5150_1    0x423c        /* WiFi Link 5150 */
+#define    PCI_PRODUCT_INTEL_WL_5150_2    0x423d        /* WiFi Link 5150 */
+#define    PCI_PRODUCT_INTEL_WL_5300_1    0x4235        /* WiFi Link 5300 */
+#define    PCI_PRODUCT_INTEL_WL_5300_2    0x4236        /* WiFi Link 5300 */
+#define    PCI_PRODUCT_INTEL_WL_5350_1    0x423a        /* WiFi Link 5350 */
+#define    PCI_PRODUCT_INTEL_WL_5350_2    0x423b        /* WiFi Link 5350 */
+#define    PCI_PRODUCT_INTEL_WL_1000_1    0x0083        /* WiFi Link 1000 */
+#define    PCI_PRODUCT_INTEL_WL_1000_2    0x0084        /* WiFi Link 1000 */
+#define    PCI_PRODUCT_INTEL_WL_6300_1    0x422b        /* Centrino Ultimate-N 6300 */
+#define    PCI_PRODUCT_INTEL_WL_6300_2    0x4238        /* Centrino Ultimate-N 6300 */
+#define    PCI_PRODUCT_INTEL_WL_6200_1    0x422c        /* Centrino Advanced-N 6200 */
+#define    PCI_PRODUCT_INTEL_WL_6200_2    0x4239        /* Centrino Advanced-N 6200 */
+#define    PCI_PRODUCT_INTEL_WL_6050_1    0x0087        /* Centrino Advanced-N 6250 */
+#define    PCI_PRODUCT_INTEL_WL_6050_2    0x0089        /* Centrino Advanced-N 6250 */
+#define    PCI_PRODUCT_INTEL_WL_6005_1    0x0082        /* Centrino Advanced-N 6205 */
+#define    PCI_PRODUCT_INTEL_WL_6005_2    0x0085        /* Centrino Advanced-N 6205 */
+#define    PCI_PRODUCT_INTEL_WL_6030_1    0x0090        /* Centrino Advanced-N 6030 */
+#define    PCI_PRODUCT_INTEL_WL_6030_2    0x0091        /* Centrino Advanced-N 6030 */
+#define    PCI_PRODUCT_INTEL_WL_1030_1    0x008a        /* WiFi Link 1030 */
+#define    PCI_PRODUCT_INTEL_WL_1030_2    0x008b        /* WiFi Link 1030 */
+#define    PCI_PRODUCT_INTEL_WL_100_1    0x08ae        /* Centrino Wireless-N 100 */
+#define    PCI_PRODUCT_INTEL_WL_100_2    0x08af        /* Centrino Wireless-N 100 */
+#define    PCI_PRODUCT_INTEL_WL_130_1    0x0896        /* Centrino Wireless-N 130 */
+#define    PCI_PRODUCT_INTEL_WL_130_2    0x0897        /* Centrino Wireless-N 130 */
+#define    PCI_PRODUCT_INTEL_WL_6235_1    0x088e        /* Centrino Advanced-N 6235 */
+#define    PCI_PRODUCT_INTEL_WL_6235_2    0x088f        /* Centrino Advanced-N 6235 */
+#define    PCI_PRODUCT_INTEL_WL_2230_1    0x0887        /* Centrino Wireless-N 2230 */
+#define    PCI_PRODUCT_INTEL_WL_2230_2    0x0888        /* Centrino Wireless-N 2230 */
+#define    PCI_PRODUCT_INTEL_WL_2200_1    0x0890        /* Centrino Wireless-N 2200 */
+#define    PCI_PRODUCT_INTEL_WL_2200_2    0x0891        /* Centrino Wireless-N 2200 */
+#define    PCI_PRODUCT_INTEL_WL_135_1    0x0892        /* Centrino Wireless-N 135 */
+#define    PCI_PRODUCT_INTEL_WL_135_2    0x0893        /* Centrino Wireless-N 135 */
+#define    PCI_PRODUCT_INTEL_WL_105_1    0x0894        /* Centrino Wireless-N 105 */
+#define    PCI_PRODUCT_INTEL_WL_105_2    0x0895        /* Centrino Wireless-N 105 */
+
+#define    PCI_PRODUCT_INTEL_PRO_WL_3945ABG_1    0x4222        /* PRO/Wireless 3945ABG */
+#define    PCI_PRODUCT_INTEL_PRO_WL_3945ABG_2    0x4227        /* PRO/Wireless 3945ABG */
+

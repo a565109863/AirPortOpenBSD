@@ -1,0 +1,60 @@
+//
+//  malloc.h
+//  AirPortOpenBSD
+//
+//  Created by Mac-PC on 2020/3/19.
+//  Copyright © 2020 Zhong-Mac. All rights reserved.
+//
+
+#ifndef malloc_h
+#define malloc_h
+
+#include <sys/_kernel.h>
+
+static void* malloc(vm_size_t len, int type, int how) {
+    void* addr = IOMalloc(len);
+    if (addr == NULL) {
+        return NULL;
+    }
+    bzero(addr, len);
+    return addr;
+}
+
+static void* mallocarray(vm_size_t n, vm_size_t len, int type, int how) {
+    return malloc(n * len, type, how);
+}
+
+static void free(void* addr, int type, vm_size_t len)
+{
+    if (addr == NULL) {
+        return;
+    }
+    if (len == 0) {
+        IOFree(addr, sizeof(addr));
+    }else {
+        IOFree(addr, len);
+    }
+    addr = NULL;
+}
+
+#define km_alloc(s, kv, kp, kd) malloc(s, M_DEVBUF, M_WAIT)
+#define km_free(v, s, kv, kp) free(v, M_WAIT, s)
+
+static int m_copyin(const char *uaddr, void *kaddr, size_t len)
+{
+    memcpy(kaddr, (void *)uaddr, len);
+    return 0;
+}
+
+static int m_copyout(const void *kaddr, char *uaddr, size_t len)
+{
+    memcpy((void *)uaddr, kaddr, len);
+    return 0;
+}
+
+#undef copyin
+#undef copyout
+#define copyin(u, k, l) m_copyin((const char *)u, k, l)
+#define copyout(k, u, l) m_copyout(k, (char *)u, l)
+
+#endif /* malloc_h */
