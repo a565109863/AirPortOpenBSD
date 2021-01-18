@@ -1,4 +1,4 @@
-/*    $OpenBSD: if_iwxreg.h,v 1.17 2020/08/01 16:14:05 stsp Exp $    */
+/*    $OpenBSD: if_iwxreg.h,v 1.18 2021/01/17 14:24:00 jcs Exp $    */
 
 /*-
  * Based on BSD-licensed source modules in the Linux iwlwifi driver,

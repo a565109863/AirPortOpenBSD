@@ -7,6 +7,7 @@
 //
 
 #include "bus.h"
+#include "AirPortOpenBSD.hpp"
 
 int bus_dmamap_create(bus_dma_tag_t t, bus_size_t size, int nsegments, bus_size_t maxsegsz, bus_size_t boundary, int flags, bus_dmamap_t *map)
 {
@@ -191,6 +192,18 @@ int _bus_dmamap_load(bus_dma_tag_t t, bus_dmamap_t map, void *buf, bus_size_t bu
         printf("genIOVMSegments() failed.\n");
         err = 1;
         goto fail4;
+    }
+    
+    if (offset != buflen) {
+        DebugLog("--%s: line = %d, offset = %llu, buflen = %d", __FUNCTION__, __LINE__, offset , buflen);
+        DebugLog("--%s: line = %d, offset = %llu, buflen = %d", __FUNCTION__, __LINE__, offset , buflen);
+        DebugLog("--%s: line = %d, offset = %llu, buflen = %d", __FUNCTION__, __LINE__, offset , buflen);
+        DebugLog("--%s: line = %d, offset = %llu, buflen = %d", __FUNCTION__, __LINE__, offset , buflen);
+        DebugLog("--%s: line = %d, offset = %llu, buflen = %d", __FUNCTION__, __LINE__, offset , buflen);
+        DebugLog("--%s: line = %d, offset = %llu, buflen = %d", __FUNCTION__, __LINE__, offset , buflen);
+        DebugLog("--%s: line = %d, offset = %llu, buflen = %d", __FUNCTION__, __LINE__, offset , buflen);
+        DebugLog("--%s: line = %d, offset = %llu, buflen = %d", __FUNCTION__, __LINE__, offset , buflen);
+        DebugLog("--%s: line = %d, offset = %llu, buflen = %d", __FUNCTION__, __LINE__, offset , buflen);
     }
     
     map->dm_nsegs = 1;

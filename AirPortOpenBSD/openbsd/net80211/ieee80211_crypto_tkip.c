@@ -192,6 +192,7 @@ ieee80211_tkip_encrypt(struct ieee80211com *ic, mbuf_t m0,
     mbuf_t n0, m, n;
     u_int32_t crc;
     int left, moff, noff, len, hdrlen;
+    mbuf_t m_next;
 
     MGET(n0, M_DONTWAIT, mbuf_type(m0));
     if (n0 == NULL)
@@ -251,7 +252,6 @@ ieee80211_tkip_encrypt(struct ieee80211com *ic, mbuf_t m0,
         }
         if (noff == mbuf_len(n)) {
             /* n is full and there's more data to copy */
-            mbuf_t m_next;
             MGET(m_next, M_DONTWAIT, mbuf_type(n));
             if (m_next == NULL)
                 goto nospace;
@@ -280,7 +280,6 @@ ieee80211_tkip_encrypt(struct ieee80211com *ic, mbuf_t m0,
 
     /* reserve trailing space for TKIP MIC and WEP ICV */
     if (m_trailingspace(n) < IEEE80211_TKIP_TAILLEN) {
-        mbuf_t m_next;
         MGET(m_next, M_DONTWAIT, mbuf_type(n));
         if (m_next == NULL)
             goto nospace;
@@ -367,6 +366,7 @@ ieee80211_tkip_decrypt(struct ieee80211com *ic, mbuf_t m0,
     u_int8_t *mic0;
     mbuf_t n0, m, n;
     int hdrlen, left, moff, noff, len;
+    mbuf_t m_next;
 
     wh = mtod(m0, struct ieee80211_frame *);
     hdrlen = ieee80211_get_hdrlen(wh);
@@ -436,7 +436,6 @@ ieee80211_tkip_decrypt(struct ieee80211com *ic, mbuf_t m0,
         }
         if (noff == mbuf_len(n)) {
             /* n is full and there's more data to copy */
-            mbuf_t m_next;
             MGET(m_next, M_DONTWAIT, mbuf_type(n));
             if (m_next == NULL)
                 goto nospace;
