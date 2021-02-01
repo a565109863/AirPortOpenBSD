@@ -29,6 +29,7 @@ extern int logStr_i;
 #define IWM_DEBUG           1
 //#define IEEE80211_STA_ONLY    1
 
+#define INET6 1
 #define NBPFILTER 1
 
 #define BPF_DIRECTION_IN    1

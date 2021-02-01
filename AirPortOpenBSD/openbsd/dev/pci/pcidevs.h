@@ -2,7 +2,7 @@
  * THIS FILE AUTOMATICALLY GENERATED.  DO NOT EDIT.
  *
  * generated from:
- *    OpenBSD: pcidevs,v 1.1932 2020/08/23 19:24:22 kettenis Exp
+ *    OpenBSD: pcidevs,v 1.1954 2021/01/31 10:51:53 patrick Exp
  */
 /*    $NetBSD: pcidevs,v 1.30 1997/06/24 06:20:24 thorpej Exp $    */
 
@@ -297,6 +297,7 @@
 #define    PCI_VENDOR_ATHEROS    0x168c        /* Atheros */
 #define    PCI_VENDOR_GLOBALSUN    0x16ab        /* Global Sun */
 #define    PCI_VENDOR_SAFENET    0x16ae        /* SafeNet */
+#define    PCI_VENDOR_SYNOPSYS    0x16c3        /* Synopsys */
 #define    PCI_VENDOR_MICREL    0x16c6        /* Micrel */
 #define    PCI_VENDOR_USR2    0x16ec        /* US Robotics */
 #define    PCI_VENDOR_NETOCTAVE    0x170b        /* Netoctave */
@@ -756,6 +757,7 @@
 #define    PCI_PRODUCT_AMD_17_PCIE_5    0x1471        /* 17h PCIE */
 #define    PCI_PRODUCT_AMD_17_3X_RC    0x1480        /* 17h/3xh Root Complex */
 #define    PCI_PRODUCT_AMD_17_3X_CCP    0x1486        /* 17h/3xh Crypto */
+#define    PCI_PRODUCT_AMD_17_3X_HDA    0x1487        /* 17h/3xh HD Audio */
 #define    PCI_PRODUCT_AMD_14_HB    0x1510        /* 14h Host */
 #define    PCI_PRODUCT_AMD_14_PCIE_1    0x1512        /* 14h PCIE */
 #define    PCI_PRODUCT_AMD_14_PCIE_2    0x1513        /* 14h PCIE */
@@ -1158,6 +1160,9 @@
 #define    PCI_PRODUCT_ATI_RAVEN_VEGA_HDA    0x15de        /* Radeon Vega HD Audio */
 #define    PCI_PRODUCT_ATI_RENOIR    0x1636        /* Renoir */
 #define    PCI_PRODUCT_ATI_RENOIR_HDA    0x1637        /* Renoir HD Audio */
+#define    PCI_PRODUCT_ATI_CEZANNE    0x1638        /* Cezanne */
+#define    PCI_PRODUCT_ATI_VANGOGH    0x163f        /* Van Gogh */
+#define    PCI_PRODUCT_ATI_LUCIENNE    0x164c        /* Lucienne */
 #define    PCI_PRODUCT_ATI_RADEON_HD6500D_HDA    0x1714        /* Radeon HD 6500D HD Audio */
 #define    PCI_PRODUCT_ATI_RADEON_M241P    0x3150        /* Mobility Radeon X600 */
 #define    PCI_PRODUCT_ATI_FIREMV_2400_1    0x3151        /* FireMV 2400 */
@@ -1900,6 +1905,38 @@
 #define    PCI_PRODUCT_ATI_RADEON_RX1650_XT_2    0x72b1        /* Radeon RX1650 XT Sec */
 #define    PCI_PRODUCT_ATI_FIJI_1    0x7300        /* Fiji */
 #define    PCI_PRODUCT_ATI_FIJI_2    0x730f        /* Fiji */
+#define    PCI_PRODUCT_ATI_NAVI10_1    0x7310        /* Navi 10 */
+#define    PCI_PRODUCT_ATI_NAVI10_2    0x7312        /* Radeon Pro W5700 */
+#define    PCI_PRODUCT_ATI_NAVI10_3    0x7318        /* Navi 10 */
+#define    PCI_PRODUCT_ATI_NAVI10_4    0x7319        /* Navi 10 */
+#define    PCI_PRODUCT_ATI_NAVI10_5    0x731a        /* Navi 10 */
+#define    PCI_PRODUCT_ATI_NAVI10_6    0x731b        /* Navi 10 */
+#define    PCI_PRODUCT_ATI_NAVI10_7    0x731e        /* Navi 10 */
+#define    PCI_PRODUCT_ATI_NAVI10_8    0x731f        /* Navi 10 */
+#define    PCI_PRODUCT_ATI_NAVI14_1    0x7340        /* Navi 14 */
+#define    PCI_PRODUCT_ATI_NAVI14_2    0x7341        /* Radeon Pro W5500 */
+#define    PCI_PRODUCT_ATI_NAVI14_3    0x7347        /* Radeon Pro W5500M */
+#define    PCI_PRODUCT_ATI_NAVI14_4    0x734f        /* Navi 14 */
+#define    PCI_PRODUCT_ATI_NAVI12_1    0x7360        /* Navi 12 */
+#define    PCI_PRODUCT_ATI_NAVI12_2    0x7362        /* Navi 12 */
+#define    PCI_PRODUCT_ATI_ARCTURUS_1    0x7388        /* Arcturus */
+#define    PCI_PRODUCT_ATI_ARCTURUS_2    0x738c        /* Arcturus */
+#define    PCI_PRODUCT_ATI_ARCTURUS_3    0x738e        /* Arcturus */
+#define    PCI_PRODUCT_ATI_ARCTURUS_4    0x7390        /* Arcturus */
+#define    PCI_PRODUCT_ATI_SIENNA_CICHLID_1    0x73a0        /* Navi 21 */
+#define    PCI_PRODUCT_ATI_SIENNA_CICHLID_2    0x73a2        /* Navi 21 */
+#define    PCI_PRODUCT_ATI_SIENNA_CICHLID_3    0x73a3        /* Navi 21 */
+#define    PCI_PRODUCT_ATI_SIENNA_CICHLID_4    0x73ab        /* Navi 21 */
+#define    PCI_PRODUCT_ATI_SIENNA_CICHLID_5    0x73ae        /* Navi 21 */
+#define    PCI_PRODUCT_ATI_SIENNA_CICHLID_6    0x73bf        /* Navi 21 */
+#define    PCI_PRODUCT_ATI_NAVY_FLOUNDER_1    0x73c0        /* Navi 22 */
+#define    PCI_PRODUCT_ATI_NAVY_FLOUNDER_2    0x73c1        /* Navi 22 */
+#define    PCI_PRODUCT_ATI_NAVY_FLOUNDER_3    0x73c3        /* Navi 22 */
+#define    PCI_PRODUCT_ATI_NAVY_FLOUNDER_4    0x73df        /* Navi 22 */
+#define    PCI_PRODUCT_ATI_DIMGREY_CAVEFISH_1    0x73e0        /* Navi 23 */
+#define    PCI_PRODUCT_ATI_DIMGREY_CAVEFISH_2    0x73e1        /* Navi 23 */
+#define    PCI_PRODUCT_ATI_DIMGREY_CAVEFISH_3    0x73e2        /* Navi 23 */
+#define    PCI_PRODUCT_ATI_DIMGREY_CAVEFISH_4    0x73ff        /* Navi 23 */
 #define    PCI_PRODUCT_ATI_RADEON_9000IGP    0x7834        /* Radeon 9000/9100 IGP */
 #define    PCI_PRODUCT_ATI_RADEON_RS350IGP    0x7835        /* Radeon RS350IGP */
 #define    PCI_PRODUCT_ATI_RS690_HB    0x7910        /* RS690 Host */
@@ -2416,6 +2453,7 @@
 #define    PCI_PRODUCT_BROADCOM_BCM4401    0x4401        /* BCM4401 */
 #define    PCI_PRODUCT_BROADCOM_BCM4401B0    0x4402        /* BCM4401B0 */
 #define    PCI_PRODUCT_BROADCOM_BCM4371    0x440d        /* BCM4371 */
+#define    PCI_PRODUCT_BROADCOM_BCM4378    0x4425        /* BCM4378 */
 #define    PCI_PRODUCT_BROADCOM_BCM4313    0x4727        /* BCM4313 */
 #define    PCI_PRODUCT_BROADCOM_5801    0x5801        /* 5801 */
 #define    PCI_PRODUCT_BROADCOM_5802    0x5802        /* 5802 */
@@ -2945,6 +2983,7 @@
 #define    PCI_PRODUCT_FUJITSU_PW008GE5    0x11a1        /* PW008GE5 */
 #define    PCI_PRODUCT_FUJITSU_PW008GE4    0x11a2        /* PW008GE4 */
 #define    PCI_PRODUCT_FUJITSU_PP250_450_LAN    0x11cc        /* PRIMEPOWER250/450 LAN */
+#define    PCI_PRODUCT_FUJITSU_SPARC64X    0x16b7        /* SPARC64 X PCIe */
 
 /* Fusion-io products */
 #define    PCI_PRODUCT_FUSIONIO_IODRIVE_1_2    0x1003        /* ioDrive v1.2 */
@@ -3212,23 +3251,59 @@
 #define    PCI_PRODUCT_INTEL_CORE3G_D_GT2    0x0162        /* HD Graphics 4000 */
 #define    PCI_PRODUCT_INTEL_CORE3G_M_GT2    0x0166        /* HD Graphics 4000 */
 #define    PCI_PRODUCT_INTEL_CORE3G_S_GT2    0x016a        /* HD Graphics P4000 */
-
-#define    PCI_PRODUCT_INTEL_WL_22500_1    0x2723        /* Wi-Fi 6 AX200 */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_LPC_1    0x0284        /* 400 Series LPC */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_LPC_2    0x0285        /* 400 Series LPC */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_P2SB    0x02a0        /* 400 Series P2SB */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_PMC    0x02a1        /* 400 Series PMC */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_SMB    0x02a3        /* 400 Series SMBus */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_SPI_FLASH    0x02a4        /* 400 Series SPI */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_TH    0x02a6        /* 400 Series TH */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_UART_1    0x02a8        /* 400 Series UART */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_UART_2    0x02a9        /* 400 Series UART */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_SPI_1    0x02aa        /* 400 Series SPI */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_SPI_2    0x02ab        /* 400 Series SPI */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_PCIE_9    0x02b0        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_PCIE_10    0x02b1        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_PCIE_11    0x02b2        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_PCIE_12    0x02b3        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_PCIE_13    0x02b4        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_PCIE_14    0x02b5        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_PCIE_15    0x02b6        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_PCIE_16    0x02b7        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_PCIE_1    0x02b8        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_PCIE_2    0x02b9        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_PCIE_3    0x02ba        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_PCIE_4    0x02bb        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_PCIE_5    0x02bc        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_PCIE_6    0x02bd        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_PCIE_7    0x02be        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_PCIE_8    0x02bf        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_EMMC    0x02c4        /* 400 Series eMMC */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_I2C_1    0x02c5        /* 400 Series I2C */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_I2C_2    0x02c6        /* 400 Series I2C */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_UART_3    0x02c7        /* 400 Series UART */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_HDA    0x02c8        /* 400 Series HD Audio */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_AHCI    0x02d3        /* 400 Series AHCI */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_RAID_1    0x02d5        /* 400 Series RAID */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_RAID_2    0x02d7        /* 400 Series RAID */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_MEI_1    0x02e0        /* 400 Series MEI */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_MEI_2    0x02e1        /* 400 Series MEI */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_IDER    0x02e2        /* 400 Series IDE-R */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_KT    0x02e3        /* 400 Series KT */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_MEI_3    0x02e4        /* 400 Series MEI */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_MEI_4    0x02e5        /* 400 Series MEI */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_I2C_3    0x02e8        /* 400 Series I2C */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_I2C_4    0x02e9        /* 400 Series I2C */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_I2C_5    0x02ea        /* 400 Series I2C */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_I2C_6    0x02eb        /* 400 Series I2C */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_XHCI    0x02ed        /* 400 Series xHCI */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_XDCI    0x02ee        /* 400 Series xDCI */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_SRAM    0x02ef        /* 400 Series Shared SRAM */
 #define    PCI_PRODUCT_INTEL_WL_22500_2    0x02f0        /* Wi-Fi 6 AX201 */
-#define    PCI_PRODUCT_INTEL_WL_22500_3    0xa0f0        /* Wi-Fi 6 AX201 */
-#define    PCI_PRODUCT_INTEL_WL_AX201_1    0x34F0        /* Wi-Fi 6 AX201 */
-#define    PCI_PRODUCT_INTEL_WL_AX201_2    0x43F0        /* Wi-Fi 6 AX201 */
-#define    PCI_PRODUCT_INTEL_WL_AX201_3    0x4DF0        /* Wi-Fi 6 AX201 */
-#define    PCI_PRODUCT_INTEL_WL_AC9462_2    0x3DF0        /* Wi-Fi 6 AC9462 */
-#define    PCI_PRODUCT_INTEL_WL_AX1650S_2    0x06F0        /* Wi-Fi 6 AX1650S */
-#define    PCI_PRODUCT_INTEL_WL_AX22000_1    0x2720        /* Wi-Fi 6 AX22000 */
-
-#define    PCI_PRODUCT_INTEL_WL_AX211_1    0x2725        /* Wi-Fi 6 AX211 */
-#define    PCI_PRODUCT_INTEL_WL_AX211_2    0x2726        /* Wi-Fi 6 AX211 */
-#define    PCI_PRODUCT_INTEL_WL_AX211_3    0x7A70        /* Wi-Fi 6 AX211 */
-#define    PCI_PRODUCT_INTEL_WL_AX211_4    0x7AF0        /* Wi-Fi 6 AX211 */
-
-
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_SDXC    0x02f5        /* 400 Series SDXC */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_THERM    0x02f9        /* 400 Series Thermal */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_SPI_3    0x02fb        /* 400 Series SPI */
+#define    PCI_PRODUCT_INTEL_400SERIES_LP_ISH    0x02fc        /* 400 Series ISH */
 #define    PCI_PRODUCT_INTEL_80303    0x0309        /* 80303 IOP */
 #define    PCI_PRODUCT_INTEL_80312    0x030d        /* 80312 I/O Companion */
 #define    PCI_PRODUCT_INTEL_IOXAPIC_A    0x0326        /* IOxAPIC */
@@ -3269,6 +3344,65 @@
 #define    PCI_PRODUCT_INTEL_PCMC    0x04a3        /* 82434LX/NX */
 #define    PCI_PRODUCT_INTEL_GDT_RAID1    0x0600        /* GDT RAID */
 #define    PCI_PRODUCT_INTEL_GDT_RAID2    0x061f        /* GDT RAID */
+#define    PCI_PRODUCT_INTEL_H470_LPC    0x0684        /* H470 LPC */
+#define    PCI_PRODUCT_INTEL_Z490_LPC    0x0685        /* Z490 LPC */
+#define    PCI_PRODUCT_INTEL_Q470_LPC    0x0687        /* Q470 LPC */
+#define    PCI_PRODUCT_INTEL_QM480_LPC    0x068c        /* QM480 LPC */
+#define    PCI_PRODUCT_INTEL_HM470_LPC    0x068d        /* HM470 LPC */
+#define    PCI_PRODUCT_INTEL_WM490_LPC    0x068e        /* WM490 LPC */
+#define    PCI_PRODUCT_INTEL_W480_LPC    0x0697        /* W480 LPC */
+#define    PCI_PRODUCT_INTEL_400SERIES_P2SB    0x06a0        /* 400 Series P2SB */
+#define    PCI_PRODUCT_INTEL_400SERIES_PMC    0x06a1        /* 400 Series PMC */
+#define    PCI_PRODUCT_INTEL_400SERIES_SMB    0x06a3        /* 400 Series SMBus */
+#define    PCI_PRODUCT_INTEL_400SERIES_SPI_FLASH    0x06a4        /* 400 Series SPI */
+#define    PCI_PRODUCT_INTEL_400SERIES_TH    0x06a6        /* 400 Series TH */
+#define    PCI_PRODUCT_INTEL_400SERIES_UART_1    0x06a8        /* 400 Series UART */
+#define    PCI_PRODUCT_INTEL_400SERIES_UART_2    0x06a9        /* 400 Series UART */
+#define    PCI_PRODUCT_INTEL_400SERIES_GSPI_1    0x06aa        /* 400 Series GSPI */
+#define    PCI_PRODUCT_INTEL_400SERIES_GSPI_2    0x06ab        /* 400 Series GSPI */
+#define    PCI_PRODUCT_INTEL_400SERIES_PCIE_9    0x06b0        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_PCIE_10    0x06b1        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_PCIE_11    0x06b2        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_PCIE_12    0x06b3        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_PCIE_13    0x06b4        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_PCIE_14    0x06b5        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_PCIE_15    0x06b6        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_PCIE_16    0x06b7        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_PCIE_1    0x06b8        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_PCIE_2    0x06b9        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_PCIE_3    0x06ba        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_PCIE_4    0x06bb        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_PCIE_5    0x06bc        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_PCIE_6    0x06bd        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_PCIE_7    0x06be        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_PCIE_8    0x06bf        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_PCIE_17    0x06c0        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_PCIE_18    0x06c1        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_PCIE_19    0x06c2        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_PCIE_20    0x06c3        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_UART_3    0x06c7        /* 400 Series UART */
+#define    PCI_PRODUCT_INTEL_400SERIES_CAVS    0x06c8        /* 400 Series cAVS */
+#define    PCI_PRODUCT_INTEL_400SERIES_AHCI_1    0x06d2        /* 400 Series AHCI */
+#define    PCI_PRODUCT_INTEL_400SERIES_AHCI_2    0x06d3        /* 400 Series AHCI */
+#define    PCI_PRODUCT_INTEL_400SERIES_RAID_1    0x06d5        /* 400 Series RAID */
+#define    PCI_PRODUCT_INTEL_400SERIES_RAID_2    0x06d7        /* 400 Series RAID */
+#define    PCI_PRODUCT_INTEL_400SERIES_AHCI_3    0x06de        /* 400 Series AHCI */
+#define    PCI_PRODUCT_INTEL_400SERIES_HECI_1    0x06e0        /* 400 Series HECI */
+#define    PCI_PRODUCT_INTEL_400SERIES_HECI_2    0x06e1        /* 400 Series HECI */
+#define    PCI_PRODUCT_INTEL_400SERIES_IDER    0x06e2        /* 400 Series IDE-R */
+#define    PCI_PRODUCT_INTEL_400SERIES_KT    0x06e3        /* 400 Series KT */
+#define    PCI_PRODUCT_INTEL_400SERIES_HECI_3    0x06e4        /* 400 Series HECI */
+#define    PCI_PRODUCT_INTEL_400SERIES_HECI_4    0x06e5        /* 400 Series HECI */
+#define    PCI_PRODUCT_INTEL_400SERIES_I2C_1    0x06e8        /* 400 Series I2C */
+#define    PCI_PRODUCT_INTEL_400SERIES_I2C_2    0x06e9        /* 400 Series I2C */
+#define    PCI_PRODUCT_INTEL_400SERIES_I2C_3    0x06ea        /* 400 Series I2C */
+#define    PCI_PRODUCT_INTEL_400SERIES_I2C_4    0x06eb        /* 400 Series I2C */
+#define    PCI_PRODUCT_INTEL_400SERIES_XHCI    0x06ed        /* 400 Series xHCI */
+#define    PCI_PRODUCT_INTEL_400SERIES_SRAM    0x06ef        /* 400 Series Shared SRAM */
+#define    PCI_PRODUCT_INTEL_400SERIES_SDXC    0x06f5        /* 400 Series SDXC */
+#define    PCI_PRODUCT_INTEL_400SERIES_THERM    0x06f9        /* 400 Series Thermal */
+#define    PCI_PRODUCT_INTEL_400SERIES_GSPI_3    0x06fb        /* 400 Series GSPI */
+#define    PCI_PRODUCT_INTEL_400SERIES_ISH    0x06fc        /* 400 Series ISH */
 #define    PCI_PRODUCT_INTEL_WL_6150_1    0x0885        /* Centrino Wireless-N 6150 */
 #define    PCI_PRODUCT_INTEL_WL_6150_2    0x0886        /* Centrino Wireless-N 6150 */
 #define    PCI_PRODUCT_INTEL_WL_2230_1    0x0887        /* Centrino Wireless-N 2230 */
@@ -3387,6 +3521,7 @@
 #define    PCI_PRODUCT_INTEL_I219_V10    0x0d4f        /* I219-V */
 #define    PCI_PRODUCT_INTEL_I219_LM12    0x0d53        /* I219-LM */
 #define    PCI_PRODUCT_INTEL_I219_V12    0x0d55        /* I219-V */
+#define    PCI_PRODUCT_INTEL_I225_IT    0x0d9f        /* I225-IT */
 #define    PCI_PRODUCT_INTEL_E5V2_HB    0x0e00        /* E5 v2 Host */
 #define    PCI_PRODUCT_INTEL_E5V2_PCIE_1    0x0e01        /* E5 v2 PCIE */
 #define    PCI_PRODUCT_INTEL_E5V2_PCIE_2    0x0e02        /* E5 v2 PCIE */
@@ -3675,6 +3810,11 @@
 #define    PCI_PRODUCT_INTEL_82380AB    0x123c        /* 82380AB Mobile ISA */
 #define    PCI_PRODUCT_INTEL_82380FB    0x124b        /* 82380FB Mobile */
 #define    PCI_PRODUCT_INTEL_82439HX    0x1250        /* 82439HX */
+#define    PCI_PRODUCT_INTEL_I226_LM    0x125b        /* I226-LM */
+#define    PCI_PRODUCT_INTEL_I226_V    0x125c        /* I226-V */
+#define    PCI_PRODUCT_INTEL_I226_IT    0x125d        /* I226-IT */
+#define    PCI_PRODUCT_INTEL_I221_V    0x125e        /* I221-V */
+#define    PCI_PRODUCT_INTEL_I226_BLANK_NVM    0x125f        /* I226 */
 #define    PCI_PRODUCT_INTEL_82806AA    0x1360        /* 82806AA */
 #define    PCI_PRODUCT_INTEL_82870P2_PPB    0x1460        /* 82870P2 PCIX-PCIX */
 #define    PCI_PRODUCT_INTEL_82870P2_IOXAPIC    0x1461        /* 82870P2 IOxAPIC */
@@ -3787,11 +3927,17 @@
 #define    PCI_PRODUCT_INTEL_I219_LM5    0x15e3        /* I219-LM */
 #define    PCI_PRODUCT_INTEL_X550EM_A_1G_T    0x15e4        /* X553 SGMII */
 #define    PCI_PRODUCT_INTEL_X550EM_A_1G_T_L    0x15e5        /* X553 SGMII */
+#define    PCI_PRODUCT_INTEL_I225_LM    0x15f2        /* I225-LM */
+#define    PCI_PRODUCT_INTEL_I225_V    0x15f3        /* I225-V */
 #define    PCI_PRODUCT_INTEL_I219_LM15    0x15f4        /* I219-LM */
+#define    PCI_PRODUCT_INTEL_I219_V15    0x15f5        /* I219-V */
+#define    PCI_PRODUCT_INTEL_I220_V    0x15f7        /* I220-V */
+#define    PCI_PRODUCT_INTEL_I225_I    0x15f8        /* I225-I */
 #define    PCI_PRODUCT_INTEL_I219_LM14    0x15f9        /* I219-LM */
 #define    PCI_PRODUCT_INTEL_I219_V14    0x15fa        /* I219-V */
 #define    PCI_PRODUCT_INTEL_I219_LM13    0x15fb        /* I219-LM */
 #define    PCI_PRODUCT_INTEL_I219_V13    0x15fc        /* I219-V */
+#define    PCI_PRODUCT_INTEL_I225_BLANK_NVM    0x15fd        /* I225 */
 #define    PCI_PRODUCT_INTEL_CORE5G_H_PCIE_X16    0x1601        /* Core 5G PCIE */
 #define    PCI_PRODUCT_INTEL_CORE5G_M_GT1_1    0x1602        /* HD Graphics */
 #define    PCI_PRODUCT_INTEL_CORE5G_THERM    0x1603        /* Core 5G Thermal */
@@ -3872,6 +4018,10 @@
 #define    PCI_PRODUCT_INTEL_C3000_SMB_2    0x19df        /* C3000 SMBus */
 #define    PCI_PRODUCT_INTEL_C3000_SPI    0x19e0        /* C3000 SPI */
 #define    PCI_PRODUCT_INTEL_C3000_QAT    0x19e2        /* C3000 QAT */
+#define    PCI_PRODUCT_INTEL_I219_LM17    0x1a1c        /* I219-LM */
+#define    PCI_PRODUCT_INTEL_I219_V17    0x1a1d        /* I219-V */
+#define    PCI_PRODUCT_INTEL_I219_LM16    0x1a1e        /* I219-LM */
+#define    PCI_PRODUCT_INTEL_I219_V16    0x1a1f        /* I219-V */
 #define    PCI_PRODUCT_INTEL_82840_HB    0x1a21        /* 82840 Host */
 #define    PCI_PRODUCT_INTEL_82840_AGP    0x1a23        /* 82840 AGP */
 #define    PCI_PRODUCT_INTEL_82840_PCI    0x1a24        /* 82840 PCI */
@@ -4619,6 +4769,8 @@
 #define    PCI_PRODUCT_INTEL_E5V3_SAD_2    0x2ffd        /* E5 v3 SAD */
 #define    PCI_PRODUCT_INTEL_E5V3_SAD_3    0x2ffe        /* E5 v3 SAD */
 #define    PCI_PRODUCT_INTEL_RCU32    0x3092        /* RCU32 I2O RAID */
+#define    PCI_PRODUCT_INTEL_I225_K    0x3100        /* I225-K */
+#define    PCI_PRODUCT_INTEL_I225_K2    0x3101        /* I225-K2 */
 #define    PCI_PRODUCT_INTEL_3124    0x3124        /* 3124 SATA */
 #define    PCI_PRODUCT_INTEL_GLK_UHD_605    0x3184        /* UHD Graphics 605 */
 #define    PCI_PRODUCT_INTEL_GLK_UHD_600    0x3185        /* UHD Graphics 600 */
@@ -4693,6 +4845,55 @@
 #define    PCI_PRODUCT_INTEL_82X58_QD_7    0x3433        /* X58 QuickData */
 #define    PCI_PRODUCT_INTEL_82X58_THROTTLE    0x3438        /* X58 Throttle */
 #define    PCI_PRODUCT_INTEL_82X58_TXT    0x343f        /* X58 TXT */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_ESPI_U    0x3482        /* 495 Series eSPI */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_ESPI_Y    0x3487        /* 495 Series eSPI */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_P2SB    0x34a0        /* 495 Series P2SB */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_PMC    0x34a1        /* 495 Series PMC */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_SMB    0x34a3        /* 495 Series SMBus */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_SPI_FLASH    0x34a4        /* 495 Series SPI */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_TH    0x34a6        /* 495 Series TH */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_UART_1    0x34a8        /* 495 Series UART */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_UART_2    0x34a9        /* 495 Series UART */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_GSPI_1    0x34aa        /* 495 Series GSPI */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_GSPI_2    0x34ab        /* 495 Series GSPI */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_PCIE_9    0x34b0        /* 495 Series PCIE */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_PCIE_10    0x34b1        /* 495 Series PCIE */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_PCIE_11    0x34b2        /* 495 Series PCIE */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_PCIE_12    0x34b3        /* 495 Series PCIE */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_PCIE_13    0x34b4        /* 495 Series PCIE */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_PCIE_14    0x34b5        /* 495 Series PCIE */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_PCIE_15    0x34b6        /* 495 Series PCIE */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_PCIE_16    0x34b7        /* 495 Series PCIE */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_PCIE_1    0x34b8        /* 495 Series PCIE */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_PCIE_2    0x34b9        /* 495 Series PCIE */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_PCIE_3    0x34ba        /* 495 Series PCIE */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_PCIE_4    0x34bb        /* 495 Series PCIE */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_PCIE_5    0x34bc        /* 495 Series PCIE */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_PCIE_6    0x34bd        /* 495 Series PCIE */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_PCIE_7    0x34be        /* 495 Series PCIE */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_PCIE_8    0x34bf        /* 495 Series PCIE */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_EMMC    0x34c4        /* 495 Series eMMC */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_I2C_5    0x34c5        /* 495 Series I2C */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_I2C_6    0x34c6        /* 495 Series I2C */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_UART_3    0x34c7        /* 495 Series UART */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_HDA    0x34c8        /* 495 Series HD Audio */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_AHCI    0x34d3        /* 495 Series AHCI */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_RAID_1    0x34d5        /* 495 Series RAID */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_RAID_2    0x34d7        /* 495 Series RAID */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_HECI_1    0x34e0        /* 495 Series HECI */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_HECI_2    0x34e1        /* 495 Series HECI */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_IDER    0x34e2        /* 495 Series IDE-R */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_KT    0x34e3        /* 495 Series KT */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_I2C_1    0x34e8        /* 495 Series I2C */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_I2C_2    0x34e9        /* 495 Series I2C */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_I2C_3    0x34ea        /* 495 Series I2C */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_I2C_4    0x34eb        /* 495 Series I2C */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_XHCI    0x34ed        /* 495 Series xHCI */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_XDCI    0x34ee        /* 495 Series xDCI */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_SRAM    0x34ef        /* 495 Series Shared SRAM */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_SDXC    0x34f8        /* 495 Series SDXC */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_GSPI_3    0x34fb        /* 495 Series GSPI */
+#define    PCI_PRODUCT_INTEL_495SERIES_LP_ISH    0x34fc        /* 495 Series ISH */
 #define    PCI_PRODUCT_INTEL_6321ESB_PCIE_5    0x3500        /* 6321ESB PCIE */
 #define    PCI_PRODUCT_INTEL_6321ESB_IOXAPIC    0x3504        /* 6321ESB IOxAPIC */
 #define    PCI_PRODUCT_INTEL_6321ESB_PCIX    0x350c        /* 6321ESB PCIE-PCIX */
@@ -5022,6 +5223,11 @@
 #define    PCI_PRODUCT_INTEL_EP80579_LAN_6    0x5049        /* EP80579 LAN */
 #define    PCI_PRODUCT_INTEL_80960RD    0x5200        /* i960 RD */
 #define    PCI_PRODUCT_INTEL_PRO_100_SERVER    0x5201        /* PRO 100 Server */
+#define    PCI_PRODUCT_INTEL_I225_LMVP    0x5502        /* I225-LMvP */
+#define    PCI_PRODUCT_INTEL_I219_LM18    0x550a        /* I219-LM */
+#define    PCI_PRODUCT_INTEL_I219_V18    0x550b        /* I219-V */
+#define    PCI_PRODUCT_INTEL_I219_LM19    0x550c        /* I219-LM */
+#define    PCI_PRODUCT_INTEL_I219_V19    0x550d        /* I219-V */
 #define    PCI_PRODUCT_INTEL_QEMU_NVME    0x5845        /* QEMU NVM Express Controller */
 #define    PCI_PRODUCT_INTEL_CORE7G_S_GT1    0x5902        /* HD Graphics 610 */
 #define    PCI_PRODUCT_INTEL_CORE7G_U_HB    0x5904        /* Core 7G Host */
@@ -5271,6 +5477,21 @@
 #define    PCI_PRODUCT_INTEL_EG20T_1588    0x8819        /* EG20T 1588 */
 #define    PCI_PRODUCT_INTEL_82802AC    0x89ac        /* 82802AC Firmware Hub 8Mbit */
 #define    PCI_PRODUCT_INTEL_82802AB    0x89ad        /* 82802AB Firmware Hub 4Mbit */
+#define    PCI_PRODUCT_INTEL_ICL_GT2_1    0x8a50        /* HD Graphics */
+#define    PCI_PRODUCT_INTEL_ICL_GT2_2    0x8a51        /* Iris Plus Graphics */
+#define    PCI_PRODUCT_INTEL_ICL_GT2_3    0x8a52        /* Iris Plus Graphics */
+#define    PCI_PRODUCT_INTEL_ICL_GT2_4    0x8a53        /* Iris Plus Graphics */
+#define    PCI_PRODUCT_INTEL_ICL_GT15_1    0x8a54        /* Iris Plus Graphics */
+#define    PCI_PRODUCT_INTEL_ICL_GT1_1    0x8a56        /* UHD Graphics */
+#define    PCI_PRODUCT_INTEL_ICL_GT15_2    0x8a57        /* HD Graphics */
+#define    PCI_PRODUCT_INTEL_ICL_GT1_2    0x8a58        /* UHD Graphics */
+#define    PCI_PRODUCT_INTEL_ICL_GT15_3    0x8a59        /* HD Graphics */
+#define    PCI_PRODUCT_INTEL_ICL_GT15_4    0x8a5a        /* Iris Plus Graphics */
+#define    PCI_PRODUCT_INTEL_ICL_GT1_3    0x8a5b        /* HD Graphics */
+#define    PCI_PRODUCT_INTEL_ICL_GT15_5    0x8a5c        /* Iris Plus Graphics */
+#define    PCI_PRODUCT_INTEL_ICL_GT1_4    0x8a5d        /* HD Graphics */
+#define    PCI_PRODUCT_INTEL_ICL_GT1_5    0x8a70        /* HD Graphics */
+#define    PCI_PRODUCT_INTEL_ICL_GT_05_1    0x8a71        /* HD Graphics */
 #define    PCI_PRODUCT_INTEL_8SERIES_SATA_1    0x8c00        /* 8 Series SATA */
 #define    PCI_PRODUCT_INTEL_8SERIES_SATA_2    0x8c01        /* 8 Series SATA */
 #define    PCI_PRODUCT_INTEL_8SERIES_AHCI_1    0x8c02        /* 8 Series AHCI */
@@ -5351,7 +5572,8 @@
 #define    PCI_PRODUCT_INTEL_C610_PCIE_6    0x8d1a        /* C610 PCIE */
 #define    PCI_PRODUCT_INTEL_C610_PCIE_7    0x8d1c        /* C610 PCIE */
 #define    PCI_PRODUCT_INTEL_C610_PCIE_8    0x8d1e        /* C610 PCIE */
-#define    PCI_PRODUCT_INTEL_C610_HDA    0x8d20        /* C610 HD Audio */
+#define    PCI_PRODUCT_INTEL_C610_HDA_1    0x8d20        /* C610 HD Audio */
+#define    PCI_PRODUCT_INTEL_C610_HDA_2    0x8d21        /* C610 HD Audio */
 #define    PCI_PRODUCT_INTEL_C610_SMB    0x8d22        /* C610 SMBus */
 #define    PCI_PRODUCT_INTEL_C610_THERM    0x8d24        /* C610 Thermal */
 #define    PCI_PRODUCT_INTEL_C610_EHCI_1    0x8d26        /* C610 USB */
@@ -5368,18 +5590,69 @@
 #define    PCI_PRODUCT_INTEL_C610_MS_SMB_1    0x8d7d        /* C610 MS SMBus */
 #define    PCI_PRODUCT_INTEL_C610_MS_SMB_2    0x8d7e        /* C610 MS SMBus */
 #define    PCI_PRODUCT_INTEL_C610_MS_SMB_3    0x8d7f        /* C610 MS SMBus */
+#define    PCI_PRODUCT_INTEL_TGL_UP4_2C_HB    0x9a02        /* Core 11G Host */
+#define    PCI_PRODUCT_INTEL_TGL_DTT    0x9a03        /* Core 11G DTT */
+#define    PCI_PRODUCT_INTEL_TGL_UP3_2C_HB    0x9a04        /* Core 11G Host */
+#define    PCI_PRODUCT_INTEL_TGL_PCIE_1    0x9a09        /* Core 11G PCIE */
+#define    PCI_PRODUCT_INTEL_TGL_VMD    0x9a0b        /* Core 11G VMD */
+#define    PCI_PRODUCT_INTEL_TGL_SRAM    0x9a0d        /* Core 11G SRAM */
+#define    PCI_PRODUCT_INTEL_TGL_GNA    0x9a11        /* Core 11G GNA */
+#define    PCI_PRODUCT_INTEL_TGL_UP4_4C_HB    0x9a12        /* Core 11G Host */
+#define    PCI_PRODUCT_INTEL_TGL_XHCI    0x9a13        /* Core 11G xHCI */
+#define    PCI_PRODUCT_INTEL_TGL_UP3_4C_HB    0x9a14        /* Core 11G Host */
+#define    PCI_PRODUCT_INTEL_TGL_XDCI    0x9a15        /* Core 11G xDCI */
+#define    PCI_PRODUCT_INTEL_TGL_IPU    0x9a19        /* Core 11G IPU */
+#define    PCI_PRODUCT_INTEL_TGL_TBT_DMA0    0x9a1b        /* Core 11G TBT */
+#define    PCI_PRODUCT_INTEL_TGL_TBT_DMA1    0x9a1d        /* Core 11G TBT */
+#define    PCI_PRODUCT_INTEL_TGL_PCIE_2    0x9a23        /* Core 11G PCIE */
+#define    PCI_PRODUCT_INTEL_TGL_PCIE_3    0x9a25        /* Core 11G PCIE */
+#define    PCI_PRODUCT_INTEL_TGL_PCIE_4    0x9a27        /* Core 11G PCIE */
+#define    PCI_PRODUCT_INTEL_TGL_PCIE_5    0x9a29        /* Core 11G PCIE */
+#define    PCI_PRODUCT_INTEL_TGL_NPK    0x9a33        /* Core 11G NPK */
 #define    PCI_PRODUCT_INTEL_I2OPCIB    0x9620        /* I2O RAID */
 #define    PCI_PRODUCT_INTEL_RCU21    0x9621        /* RCU21 I2O RAID */
 #define    PCI_PRODUCT_INTEL_RCUXX    0x9622        /* RCUxx I2O RAID */
 #define    PCI_PRODUCT_INTEL_RCU31    0x9641        /* RCU31 I2O RAID */
 #define    PCI_PRODUCT_INTEL_RCU31L    0x96a1        /* RCU31L I2O RAID */
-#define    PCI_PRODUCT_INTEL_CML_GT1_6    0x9ba5        /* UHD Graphics 610 */
-#define    PCI_PRODUCT_INTEL_CML_GT1_7    0x9ba8        /* UHD Graphics 610 */
-#define    PCI_PRODUCT_INTEL_CML_GT2_6    0x9bc5        /* UHD Graphics 630 */
-#define    PCI_PRODUCT_INTEL_CML_GT2_7    0x9bc8        /* UHD Graphics 630 */
-#define    PCI_PRODUCT_INTEL_CML_GT2_10    0x9bc6        /* UHD Graphics P630 */
-#define    PCI_PRODUCT_INTEL_CML_GT2_11    0x9be6        /* UHD Graphics P630 */
-#define    PCI_PRODUCT_INTEL_CML_GT2_12    0x9bf6        /* UHD Graphics P630 */
+#define    PCI_PRODUCT_INTEL_TGL_GT2_1    0x9a40        /* Xe Graphics */
+#define    PCI_PRODUCT_INTEL_TGL_GT2_2    0x9a49        /* Xe Graphics */
+#define    PCI_PRODUCT_INTEL_TGL_GT2_3    0x9a59        /* Graphics */
+#define    PCI_PRODUCT_INTEL_TGL_GT1_1    0x9a60        /* UHD Graphics */
+#define    PCI_PRODUCT_INTEL_TGL_GT1_2    0x9a68        /* UHD Graphics */
+#define    PCI_PRODUCT_INTEL_TGL_GT1_3    0x9a70        /* UHD Graphics */
+#define    PCI_PRODUCT_INTEL_TGL_GT2_4    0x9a78        /* UHD Graphics */
+#define    PCI_PRODUCT_INTEL_TGL_GT2_5    0x9ac0        /* UHD Graphics */
+#define    PCI_PRODUCT_INTEL_TGL_GT2_6    0x9ac9        /* UHD Graphics */
+#define    PCI_PRODUCT_INTEL_TGL_GT2_7    0x9ad9        /* UHD Graphics */
+#define    PCI_PRODUCT_INTEL_TGL_GT2_8    0x9af8        /* UHD Graphics */
+#define    PCI_PRODUCT_INTEL_CML_U_GT1_1    0x9b21        /* UHD Graphics */
+#define    PCI_PRODUCT_INTEL_CML_S_HB_1    0x9b33        /* Core 10G Host */
+#define    PCI_PRODUCT_INTEL_CML_U_GT2_1    0x9b41        /* UHD Graphics */
+#define    PCI_PRODUCT_INTEL_CML_S_HB_2    0x9b43        /* Core 10G Host */
+#define    PCI_PRODUCT_INTEL_CML_H_HB_1    0x9b44        /* Core 10G Host */
+#define    PCI_PRODUCT_INTEL_CML_U_HB_1    0x9b51        /* Core 10G Host */
+#define    PCI_PRODUCT_INTEL_CML_S_HB_3    0x9b53        /* Core 10G Host */
+#define    PCI_PRODUCT_INTEL_CML_H_HB_2    0x9b54        /* Core 10G Host */
+#define    PCI_PRODUCT_INTEL_CML_U_HB_2    0x9b61        /* Core 10G Host */
+#define    PCI_PRODUCT_INTEL_CML_S_HB_4    0x9b63        /* Core 10G Host */
+#define    PCI_PRODUCT_INTEL_CML_H_HB_3    0x9b64        /* Core 10G Host */
+#define    PCI_PRODUCT_INTEL_CML_U_HB_3    0x9b71        /* Core 10G Host */
+#define    PCI_PRODUCT_INTEL_CML_S_HB_5    0x9b73        /* Core 10G Host */
+#define    PCI_PRODUCT_INTEL_CML_GT1_4    0x9ba2        /* UHD Graphics */
+#define    PCI_PRODUCT_INTEL_CML_GT1_3    0x9ba4        /* UHD Graphics */
+#define    PCI_PRODUCT_INTEL_CML_GT1_1    0x9ba5        /* UHD Graphics 610 */
+#define    PCI_PRODUCT_INTEL_CML_GT1_2    0x9ba8        /* UHD Graphics 610 */
+#define    PCI_PRODUCT_INTEL_CML_U_GT1_2    0x9baa        /* UHD Graphics */
+#define    PCI_PRODUCT_INTEL_CML_U_GT1_3    0x9bac        /* UHD Graphics */
+#define    PCI_PRODUCT_INTEL_CML_GT2_4    0x9bc2        /* UHD Graphics */
+#define    PCI_PRODUCT_INTEL_CML_GT2_3    0x9bc4        /* UHD Graphics */
+#define    PCI_PRODUCT_INTEL_CML_GT2_1    0x9bc5        /* UHD Graphics 630 */
+#define    PCI_PRODUCT_INTEL_CML_GT2_2    0x9bc8        /* UHD Graphics 630 */
+#define    PCI_PRODUCT_INTEL_CML_GT2_5    0x9bc6        /* UHD Graphics P630 */
+#define    PCI_PRODUCT_INTEL_CML_U_GT2_2    0x9bca        /* UHD Graphics */
+#define    PCI_PRODUCT_INTEL_CML_U_GT2_3    0x9bcc        /* UHD Graphics */
+#define    PCI_PRODUCT_INTEL_CML_GT2_6    0x9be6        /* UHD Graphics P630 */
+#define    PCI_PRODUCT_INTEL_CML_GT2_7    0x9bf6        /* UHD Graphics P630 */
 #define    PCI_PRODUCT_INTEL_8SERIES_LP_SATA_1    0x9c00        /* 8 Series SATA */
 #define    PCI_PRODUCT_INTEL_8SERIES_LP_SATA_2    0x9c01        /* 8 Series SATA */
 #define    PCI_PRODUCT_INTEL_8SERIES_LP_AHCI    0x9c03        /* 8 Series AHCI */
@@ -5534,6 +5807,55 @@
 #define    PCI_PRODUCT_INTEL_PINEVIEW_M_DMI    0xa010        /* Pineview DMI */
 #define    PCI_PRODUCT_INTEL_PINEVIEW_M_IGC_1    0xa011        /* Pineview Video */
 #define    PCI_PRODUCT_INTEL_PINEVIEW_M_IGC_2    0xa012        /* Pineview Video */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_ESPI_UP3    0xa082        /* 500 Series eSPI */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_ESPI_UP4    0xa087        /* 500 Series eSPI */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_P2SB    0xa0a0        /* 500 Series P2SB */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_PMC    0xa0a1        /* 500 Series PMC */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_SMB    0xa0a3        /* 500 Series SMBus */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_SPI_FLASH    0xa0a4        /* 500 Series SPI */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_TH    0xa0a6        /* 500 Series TH */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_UART_1    0xa0a8        /* 500 Series UART */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_UART_2    0xa0a9        /* 500 Series UART */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_GSPI_1    0xa0aa        /* 500 Series GSPI */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_GSPI_2    0xa0ab        /* 500 Series GSPI */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_PCIE_9    0xa0b0        /* 500 Series PCIE */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_PCIE_10    0xa0b1        /* 500 Series PCIE */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_PCIE_11    0xa0b2        /* 500 Series PCIE */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_PCIE_12    0xa0b3        /* 500 Series PCIE */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_PCIE_1    0xa0b8        /* 500 Series PCIE */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_PCIE_2    0xa0b9        /* 500 Series PCIE */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_PCIE_3    0xa0ba        /* 500 Series PCIE */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_PCIE_4    0xa0bb        /* 500 Series PCIE */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_PCIE_5    0xa0bc        /* 500 Series PCIE */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_PCIE_6    0xa0bd        /* 500 Series PCIE */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_PCIE_7    0xa0be        /* 500 Series PCIE */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_PCIE_8    0xa0bf        /* 500 Series PCIE */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_I2C_1    0xa0c5        /* 500 Series I2C */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_I2C_2    0xa0c6        /* 500 Series I2C */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_UART_3    0xa0c7        /* 500 Series UART */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_HDA    0xa0c8        /* 500 Series HD Audio */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_THC_1    0xa0d0        /* 500 Series THC */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_THC_2    0xa0d1        /* 500 Series THC */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_AHCI    0xa0d3        /* 500 Series AHCI */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_RAID    0xa0d7        /* 500 Series RAID */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_UART_4    0xa0da        /* 500 Series UART */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_HECI_1    0xa0e0        /* 500 Series HECI */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_HECI_2    0xa0e1        /* 500 Series HECI */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_IDER    0xa0e2        /* 500 Series IDE-R */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_KT    0xa0e3        /* 500 Series KT */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_HECI_3    0xa0e4        /* 500 Series HECI */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_HECI_4    0xa0e5        /* 500 Series HECI */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_I2C_3    0xa0e8        /* 500 Series I2C */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_I2C_4    0xa0e9        /* 500 Series I2C */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_I2C_5    0xa0ea        /* 500 Series I2C */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_I2C_6    0xa0eb        /* 500 Series I2C */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_XHCI    0xa0ed        /* 500 Series xHCI */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_XDCI    0xa0ee        /* 500 Series xDCI */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_SRAM    0xa0ef        /* 500 Series Shared SRAM */
+#define    PCI_PRODUCT_INTEL_WL_22500_3    0xa0f0        /* Wi-Fi 6 AX201 */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_GSPI_3    0xa0fb        /* 500 Series GSPI */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_ISH    0xa0fc        /* 500 Series ISH */
+#define    PCI_PRODUCT_INTEL_500SERIES_LP_GSPI_4    0xa0fd        /* 500 Series GSPI */
 #define    PCI_PRODUCT_INTEL_100SERIES_AHCI_1    0xa102        /* 100 Series AHCI */
 #define    PCI_PRODUCT_INTEL_100SERIES_AHCI_2    0xa103        /* 100 Series AHCI */
 #define    PCI_PRODUCT_INTEL_100SERIES_RAID_1    0xa105        /* 100 Series RAID */
@@ -5580,12 +5902,14 @@
 #define    PCI_PRODUCT_INTEL_CM238_LPC    0xa154        /* CM238 LPC */
 #define    PCI_PRODUCT_INTEL_100SERIES_I2C0    0xa160        /* 100 Series I2C */
 #define    PCI_PRODUCT_INTEL_100SERIES_I2C1    0xa161        /* 100 Series I2C */
+#define    PCI_PRODUCT_INTEL_100SERIES_I2C2    0xa162        /* 100 Series I2C */
+#define    PCI_PRODUCT_INTEL_100SERIES_I2C3    0xa163        /* 100 Series I2C */
 #define    PCI_PRODUCT_INTEL_100SERIES_PCIE_17    0xa167        /* 100 Series PCIE */
 #define    PCI_PRODUCT_INTEL_100SERIES_PCIE_18    0xa168        /* 100 Series PCIE */
 #define    PCI_PRODUCT_INTEL_100SERIES_PCIE_19    0xa169        /* 100 Series PCIE */
 #define    PCI_PRODUCT_INTEL_100SERIES_PCIE_20    0xa16a        /* 100 Series PCIE */
 #define    PCI_PRODUCT_INTEL_100SERIES_HDA    0xa170        /* 100 Series HD Audio */
-#define    PCI_PRODUCT_INTEL_CM238_HDA    0xa171        /* CM238 HD Audio Controller */
+#define    PCI_PRODUCT_INTEL_100SERIES_H_HDA    0xa171        /* 100 Series HD Audio */
 #define    PCI_PRODUCT_INTEL_C620_AHCI_1    0xa182        /* C620 AHCI */
 #define    PCI_PRODUCT_INTEL_C620_PCIE_1    0xa190        /* C620 PCIE */
 #define    PCI_PRODUCT_INTEL_C620_PCIE_2    0xa194        /* C620 PCIE */
@@ -5600,6 +5924,8 @@
 #define    PCI_PRODUCT_INTEL_C621_LPC    0xa1c1        /* C621 LPC */
 #define    PCI_PRODUCT_INTEL_C620_AHCI_2    0xa1d2        /* C620 AHCI */
 #define    PCI_PRODUCT_INTEL_C620_MROM0    0xa1ec        /* C620 MROM */
+#define    PCI_PRODUCT_INTEL_C620_HDA_1    0xa1f0        /* C620 HD Audio */
+#define    PCI_PRODUCT_INTEL_C620_HDA_2    0xa270        /* C620 HD Audio */
 #define    PCI_PRODUCT_INTEL_200SERIES_AHCI_1    0xa282        /* 200 Series AHCI */
 #define    PCI_PRODUCT_INTEL_200SERIES_RAID_1    0xa286        /* 200 Series RAID */
 #define    PCI_PRODUCT_INTEL_200SERIES_PCIE_1    0xa290        /* 200 Series PCIE */
@@ -5618,14 +5944,23 @@
 #define    PCI_PRODUCT_INTEL_200SERIES_PCIE_14    0xa29d        /* 200 Series PCIE */
 #define    PCI_PRODUCT_INTEL_200SERIES_PCIE_15    0xa29e        /* 200 Series PCIE */
 #define    PCI_PRODUCT_INTEL_200SERIES_PCIE_16    0xa29f        /* 200 Series PCIE */
+#define    PCI_PRODUCT_INTEL_200SERIES_P2SB    0xa2a0        /* 200 Series P2SB */
 #define    PCI_PRODUCT_INTEL_200SERIES_PMC    0xa2a1        /* 200 Series PMC */
 #define    PCI_PRODUCT_INTEL_200SERIES_SMB    0xa2a3        /* 200 Series SMBus */
+#define    PCI_PRODUCT_INTEL_200SERIES_SPI    0xa2a4        /* 200 Series SPI */
+#define    PCI_PRODUCT_INTEL_200SERIES_TH    0xa2a6        /* 200 Series TH */
+#define    PCI_PRODUCT_INTEL_200SERIES_UART_1    0xa2a7        /* 200 Series UART */
+#define    PCI_PRODUCT_INTEL_200SERIES_UART_2    0xa2a8        /* 200 Series UART */
+#define    PCI_PRODUCT_INTEL_200SERIES_GSPI_1    0xa2a9        /* 200 Series GSPI */
+#define    PCI_PRODUCT_INTEL_200SERIES_GSPI_2    0xa2aa        /* 200 Series GSPI */
 #define    PCI_PRODUCT_INTEL_200SERIES_XHCI    0xa2af        /* 200 Series xHCI */
 #define    PCI_PRODUCT_INTEL_200SERIES_THERM    0xa2b1        /* 200 Series Thermal */
+#define    PCI_PRODUCT_INTEL_200SERIES_ISH    0xa2b5        /* 200 Series ISH */
 #define    PCI_PRODUCT_INTEL_200SERIES_MEI_1    0xa2ba        /* 200 Series MEI */
 #define    PCI_PRODUCT_INTEL_200SERIES_MEI_2    0xa2bb        /* 200 Series MEI */
 #define    PCI_PRODUCT_INTEL_200SERIES_IDER    0xa2bc        /* 200 Series IDER */
 #define    PCI_PRODUCT_INTEL_200SERIES_KT    0xa2bd        /* 200 Series KT */
+#define    PCI_PRODUCT_INTEL_200SERIES_MEI_3    0xa2be        /* 200 Series MEI */
 #define    PCI_PRODUCT_INTEL_H270_LPC    0xa2c4        /* H270 LPC */
 #define    PCI_PRODUCT_INTEL_Z270_LPC    0xa2c5        /* Z270 LPC */
 #define    PCI_PRODUCT_INTEL_Q270_LPC    0xa2c6        /* Q270 LPC */
@@ -5633,6 +5968,11 @@
 #define    PCI_PRODUCT_INTEL_B250_LPC    0xa2c8        /* B250 LPC */
 #define    PCI_PRODUCT_INTEL_Z370_LPC    0xa2c9        /* Z370 LPC */
 #define    PCI_PRODUCT_INTEL_X299_LPC    0xa2d2        /* X299 LPC */
+#define    PCI_PRODUCT_INTEL_200SERIES_I2C_1    0xa2e0        /* 200 Series I2C */
+#define    PCI_PRODUCT_INTEL_200SERIES_I2C_2    0xa2e1        /* 200 Series I2C */
+#define    PCI_PRODUCT_INTEL_200SERIES_I2C_3    0xa2e2        /* 200 Series I2C */
+#define    PCI_PRODUCT_INTEL_200SERIES_I2C_4    0xa2e3        /* 200 Series I2C */
+#define    PCI_PRODUCT_INTEL_200SERIES_UART_3    0xa2e6        /* 200 Series UART */
 #define    PCI_PRODUCT_INTEL_200SERIES_PCIE_17    0xa2e7        /* 200 Series PCIE */
 #define    PCI_PRODUCT_INTEL_200SERIES_PCIE_18    0xa2e8        /* 200 Series PCIE */
 #define    PCI_PRODUCT_INTEL_200SERIES_PCIE_19    0xa2e9        /* 200 Series PCIE */
@@ -5652,8 +5992,15 @@
 #define    PCI_PRODUCT_INTEL_QM370_LPC    0xa30c        /* QM370 LPC */
 #define    PCI_PRODUCT_INTEL_HM370_LPC    0xa30d        /* HM370 LPC */
 #define    PCI_PRODUCT_INTEL_CM246_LPC    0xa30e        /* CM246 LPC */
+#define    PCI_PRODUCT_INTEL_300SERIES_P2SB    0xa320        /* 300 Series P2SB */
+#define    PCI_PRODUCT_INTEL_300SERIES_PMC    0xa321        /* 300 Series PMC */
 #define    PCI_PRODUCT_INTEL_300SERIES_SMB    0xa323        /* 300 Series SMBus */
 #define    PCI_PRODUCT_INTEL_300SERIES_SPI    0xa324        /* 300 Series SPI */
+#define    PCI_PRODUCT_INTEL_300SERIES_TH    0xa326        /* 300 Series TH */
+#define    PCI_PRODUCT_INTEL_300SERIES_UART_1    0xa328        /* 300 Series UART */
+#define    PCI_PRODUCT_INTEL_300SERIES_UART_2    0xa329        /* 300 Series UART */
+#define    PCI_PRODUCT_INTEL_300SERIES_GSPI_1    0xa32a        /* 300 Series GSPI */
+#define    PCI_PRODUCT_INTEL_300SERIES_GSPI_2    0xa32b        /* 300 Series GSPI */
 #define    PCI_PRODUCT_INTEL_300SERIES_PCIE_21    0xa32c        /* 300 Series PCIE */
 #define    PCI_PRODUCT_INTEL_300SERIES_PCIE_22    0xa32d        /* 300 Series PCIE */
 #define    PCI_PRODUCT_INTEL_300SERIES_PCIE_23    0xa32e        /* 300 Series PCIE */
@@ -5678,6 +6025,7 @@
 #define    PCI_PRODUCT_INTEL_300SERIES_PCIE_18    0xa341        /* 300 Series PCIE */
 #define    PCI_PRODUCT_INTEL_300SERIES_PCIE_19    0xa342        /* 300 Series PCIE */
 #define    PCI_PRODUCT_INTEL_300SERIES_PCIE_20    0xa343        /* 300 Series PCIE */
+#define    PCI_PRODUCT_INTEL_300SERIES_UART_3    0xa347        /* 300 Series UART */
 #define    PCI_PRODUCT_INTEL_300SERIES_CAVS    0xa348        /* 300 Series cAVS */
 #define    PCI_PRODUCT_INTEL_300SERIES_AHCI_1    0xa352        /* 300 Series AHCI */
 #define    PCI_PRODUCT_INTEL_300SERIES_AHCI_2    0xa353        /* 300 Series AHCI */
@@ -5690,7 +6038,12 @@
 #define    PCI_PRODUCT_INTEL_300SERIES_KT    0xa363        /* 300 Series KT */
 #define    PCI_PRODUCT_INTEL_300SERIES_HECI_3    0xa364        /* 300 Series HECI */
 #define    PCI_PRODUCT_INTEL_300SERIES_HECI_4    0xa365        /* 300 Series HECI */
+#define    PCI_PRODUCT_INTEL_300SERIES_I2C_1    0xa368        /* 300 Series I2C */
+#define    PCI_PRODUCT_INTEL_300SERIES_I2C_2    0xa369        /* 300 Series I2C */
+#define    PCI_PRODUCT_INTEL_300SERIES_I2C_3    0xa36a        /* 300 Series I2C */
+#define    PCI_PRODUCT_INTEL_300SERIES_I2C_4    0xa36b        /* 300 Series I2C */
 #define    PCI_PRODUCT_INTEL_300SERIES_XHCI    0xa36d        /* 300 Series xHCI */
+#define    PCI_PRODUCT_INTEL_300SERIES_XDCI    0xa36e        /* 300 Series xDCI */
 #define    PCI_PRODUCT_INTEL_300SERIES_SSRAM    0xa36f        /* 300 Series Shared SRAM */
 
 #define    PCI_PRODUCT_INTEL_WL_7260_1    0x08b1        /* Dual Band Wireless AC 7260 */
@@ -5724,7 +6077,77 @@
 #define    PCI_PRODUCT_INTEL_WL_9461_3    0x0260        /* Dual Band Wireless AC 9461 */
 #define    PCI_PRODUCT_INTEL_WL_9461_4    0x0264        /* Dual Band Wireless AC 9461 */
 
+#define    PCI_PRODUCT_INTEL_WL_22500_1    0x2723        /* Wi-Fi 6 AX200 */
+#define    PCI_PRODUCT_INTEL_WL_22500_2    0x02f0        /* Wi-Fi 6 AX201 */
+#define    PCI_PRODUCT_INTEL_WL_22500_3    0xa0f0        /* Wi-Fi 6 AX201 */
+#define    PCI_PRODUCT_INTEL_WL_AX201_1    0x34F0        /* Wi-Fi 6 AX201 */
+#define    PCI_PRODUCT_INTEL_WL_AX201_2    0x43F0        /* Wi-Fi 6 AX201 */
+#define    PCI_PRODUCT_INTEL_WL_AX201_3    0x4DF0        /* Wi-Fi 6 AX201 */
+#define    PCI_PRODUCT_INTEL_WL_AC9462_2    0x3DF0        /* Wi-Fi 6 AC9462 */
+#define    PCI_PRODUCT_INTEL_WL_AX1650S_2    0x06F0        /* Wi-Fi 6 AX1650S */
+#define    PCI_PRODUCT_INTEL_WL_AX22000_1    0x2720        /* Wi-Fi 6 AX22000 */
+
+#define    PCI_PRODUCT_INTEL_WL_AX211_1    0x2725        /* Wi-Fi 6 AX211 */
+#define    PCI_PRODUCT_INTEL_WL_AX211_2    0x2726        /* Wi-Fi 6 AX211 */
+#define    PCI_PRODUCT_INTEL_WL_AX211_3    0x7A70        /* Wi-Fi 6 AX211 */
+#define    PCI_PRODUCT_INTEL_WL_AX211_4    0x7AF0        /* Wi-Fi 6 AX211 */
+
+
 #define    PCI_PRODUCT_INTEL_300SERIES_THERM    0xa379        /* 300 Series Thermal */
+#define    PCI_PRODUCT_INTEL_300SERIES_GSPI_3    0xa37b        /* 300 Series GSPI */
+#define    PCI_PRODUCT_INTEL_300SERIES_ISH    0xa37c        /* 300 Series ISH */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_AHCI    0xa382        /* 400 Series AHCI */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_RAID_1    0xa384        /* 400 Series RAID */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_RAID_2    0xa386        /* 400 Series RAID */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_OPTANE    0xa38e        /* 400 Series Optane */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_PCIE_1    0xa390        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_PCIE_2    0xa391        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_PCIE_3    0xa392        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_PCIE_4    0xa393        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_PCIE_5    0xa394        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_PCIE_6    0xa395        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_PCIE_7    0xa396        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_PCIE_8    0xa397        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_PCIE_9    0xa398        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_PCIE_10    0xa399        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_PCIE_11    0xa39a        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_PCIE_12    0xa39b        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_PCIE_13    0xa39c        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_PCIE_14    0xa39d        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_PCIE_15    0xa39e        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_PCIE_16    0xa39f        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_P2SB    0xa3a0        /* 400 Series P2SB */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_PMC    0xa3a1        /* 400 Series PMC */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_SMB    0xa3a3        /* 400 Series SMBus */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_SPI_FLASH    0xa3a4        /* 400 Series SPI */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_TH    0xa3a6        /* 400 Series TH */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_UART_1    0xa3a7        /* 400 Series UART */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_UART_2    0xa3a8        /* 400 Series UART */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_SPI_1    0xa3a9        /* 400 Series SPI */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_SPI_2    0xa3aa        /* 400 Series SPI */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_XHCI    0xa3af        /* 400 Series xHCI */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_XDCI    0xa3b0        /* 400 Series xDCI */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_THERM    0xa3b1        /* 400 Series Thermal */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_ISH    0xa3b5        /* 400 Series ISH */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_HECI_1    0xa3ba        /* 400 Series HECI */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_HECI_2    0xa3bb        /* 400 Series HECI */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_IDER    0xa3bc        /* 400 Series IDE-R */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_KT    0xa3bd        /* 400 Series KT */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_HECI_3    0xa3be        /* 400 Series HECI */
+#define    PCI_PRODUCT_INTEL_B460_LPC    0xa3c8        /* B460 LPC */
+#define    PCI_PRODUCT_INTEL_H410_LPC    0xa3da        /* H410 LPC */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_I2C_1    0xa3e0        /* 400 Series I2C */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_I2C_2    0xa3e1        /* 400 Series I2C */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_I2C_3    0xa3e2        /* 400 Series I2C */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_I2C_4    0xa3e3        /* 400 Series I2C */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_UART_3    0xa3e6        /* 400 Series UART */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_PCIE_17    0xa3e7        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_PCIE_18    0xa3e8        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_PCIE_19    0xa3e9        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_PCIE_20    0xa3ea        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_PCIE_21    0xa3eb        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_PCIE_22    0xa3ec        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_400SERIES_V_PCIE_23    0xa3ed        /* 400 Series PCIE */
 #define    PCI_PRODUCT_INTEL_21152    0xb152        /* S21152BB */
 #define    PCI_PRODUCT_INTEL_21154    0xb154        /* 21154AE/BE */
 #define    PCI_PRODUCT_INTEL_CORE_DMI_0    0xd130        /* Core DMI */
@@ -5745,6 +6168,7 @@
 #define    PCI_PRODUCT_INTEL_CORE_MISC    0xd158        /* Core Misc */
 #define    PCI_PRODUCT_INTEL_NVME_2    0xf1a5        /* NVMe */
 #define    PCI_PRODUCT_INTEL_NVME_3    0xf1a6        /* NVMe */
+#define    PCI_PRODUCT_INTEL_NVME_4    0xf1a8        /* NVMe */
 
 /* Intergraph products */
 #define    PCI_PRODUCT_INTERGRAPH_4D50T    0x00e4        /* Powerstorm 4D50T */
@@ -5834,6 +6258,9 @@
 #define    PCI_PRODUCT_LEADTEK_WINFAST    0x6606        /* Leadtek WinFast TV 2000 */
 #define    PCI_PRODUCT_LEADTEK_WINFAST_XP    0x6609        /* Leadtek WinFast TV 2000 XP */
 
+/* Lenovo products */
+#define    PCI_PRODUCT_LENOVO_NVME    0x0003        /* NVMe */
+
 /* Level 1 (Intel) */
 #define    PCI_PRODUCT_LEVEL1_LXT1001    0x0001        /* LXT1001 */
 
@@ -5919,6 +6346,7 @@
 #define    PCI_PRODUCT_MARTINMARIETTA_I740    0x00d1        /* i740 PCI */
 
 /* Marvell products */
+#define    PCI_PRODUCT_MARVELL_ARMADA_3700    0x0100        /* ARMADA 3700 PCIE */
 #define    PCI_PRODUCT_MARVELL_ARMADA_CP110_RC    0x0110        /* ARMADA 7K/8K Root Complex */
 #define    PCI_PRODUCT_MARVELL_88W8300_1    0x1fa6        /* Libertas 88W8300 */
 #define    PCI_PRODUCT_MARVELL_88W8310    0x1fa7        /* Libertas 88W8310 */
@@ -6999,6 +7427,7 @@
 #define    PCI_PRODUCT_PLX_PEX_8648    0x8648        /* PEX 8648 */
 #define    PCI_PRODUCT_PLX_PEX_8617    0x8717        /* PEX 8617 */
 #define    PCI_PRODUCT_PLX_PEX_8724    0x8724        /* PEX 8724 */
+#define    PCI_PRODUCT_PLX_PEX_8732    0x8732        /* PEX 8732 */
 #define    PCI_PRODUCT_PLX_PEX_8733    0x8733        /* PEX 8733 */
 #define    PCI_PRODUCT_PLX_PEX_8734    0x8734        /* PEX 8734 */
 #define    PCI_PRODUCT_PLX_PEX_8780    0x8780        /* PEX 8780 */
@@ -7197,6 +7626,8 @@
 #define    PCI_PRODUCT_RDC_R6061_EHCI    0x6061        /* R6061 USB2 */
 
 /* Realtek products */
+#define    PCI_PRODUCT_REALTEK_E2500V2    0x2502        /* E2500 */
+#define    PCI_PRODUCT_REALTEK_E2600    0x2600        /* E2600 */
 #define    PCI_PRODUCT_REALTEK_E3000    0x3000        /* Killer E3000 */
 #define    PCI_PRODUCT_REALTEK_RTS5208    0x5208        /* RTS5208 Card Reader */
 #define    PCI_PRODUCT_REALTEK_RTS5209    0x5209        /* RTS5209 Card Reader */
@@ -7215,9 +7646,14 @@
 #define    PCI_PRODUCT_REALTEK_RT8101E    0x8136        /* 8101E */
 #define    PCI_PRODUCT_REALTEK_RT8138    0x8138        /* 8138 */
 #define    PCI_PRODUCT_REALTEK_RT8139    0x8139        /* 8139 */
+#define    PCI_PRODUCT_REALTEK_RT8168_2    0x8161        /* 8168 */
 #define    PCI_PRODUCT_REALTEK_RT8169SC    0x8167        /* 8169SC */
 #define    PCI_PRODUCT_REALTEK_RT8168    0x8168        /* 8168 */
 #define    PCI_PRODUCT_REALTEK_RT8169    0x8169        /* 8169 */
+#define    PCI_PRODUCT_REALTEK_REALMANAGE_SERIAL_1    0x816a        /* RealManage Serial */
+#define    PCI_PRODUCT_REALTEK_REALMANAGE_SERIAL_2    0x816b        /* RealManage Serial */
+#define    PCI_PRODUCT_REALTEK_REALMANAGE_IPMI    0x816c        /* RealManage IPMI */
+#define    PCI_PRODUCT_REALTEK_REALMANAGE_EHCI    0x816d        /* RealManage USB */
 #define    PCI_PRODUCT_REALTEK_RTL8192SE    0x8172        /* 8192SE */
 #define    PCI_PRODUCT_REALTEK_RTL8188CE    0x8176        /* 8188CE */
 #define    PCI_PRODUCT_REALTEK_RTL8192CE    0x8178        /* RTL8192CE */
@@ -7360,7 +7796,10 @@
 /* SanDisk (Western Digital) */
 #define    PCI_PRODUCT_SANDISK_WDSXXXG1X0C    0x5001        /* WD Black NVMe */
 #define    PCI_PRODUCT_SANDISK_WDSXXXG2X0C    0x5002        /* WD Black NVMe */
+#define    PCI_PRODUCT_SANDISK_PCSN520_1    0x5003        /* PC SN520 */
+#define    PCI_PRODUCT_SANDISK_PCSN520_2    0x5004        /* PC SN520 */
 #define    PCI_PRODUCT_SANDISK_WDSXXXG3X0C    0x5006        /* WD Black NVMe */
+#define    PCI_PRODUCT_SANDISK_PCSN530    0x5008        /* PC SN530 */
 
 /* Sangoma products */
 #define    PCI_PRODUCT_SANGOMA_A10X    0x0300        /* A10x */
@@ -7755,6 +8194,9 @@
 #define    PCI_PRODUCT_SYMPHONY_82C105    0x0105        /* 82C105 */
 #define    PCI_PRODUCT_SYMPHONY_82C565    0x0565        /* 82C565 ISA */
 #define    PCI_PRODUCT_SYMPHONY2_82C101    0x0001        /* 82C101 */
+
+/* Synopsys products */
+#define    PCI_PRODUCT_SYNOPSYS_DW_PCIE    0xabcd        /* DesignWare PCIE */
 
 /* SK hynix products */
 #define    PCI_PRODUCT_SKHYNIX_SSD    0x1327        /* BC501 NVMe */

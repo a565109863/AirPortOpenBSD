@@ -2814,7 +2814,7 @@
 				);
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = "BigSur v2.0.6";
+				MARKETING_VERSION = "BigSur v2.0.7";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -2838,7 +2838,7 @@
 				);
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = "BigSur v2.0.6";
+				MARKETING_VERSION = "BigSur v2.0.7";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -2862,7 +2862,7 @@
 				);
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = "Catalina v2.0.6";
+				MARKETING_VERSION = "Catalina v2.0.7";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -2883,7 +2883,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "CATALINA=1";
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = "Catalina v2.0.6";
+				MARKETING_VERSION = "Catalina v2.0.7";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -2907,7 +2907,7 @@
 				);
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = "Mojave v2.0.6";
+				MARKETING_VERSION = "Mojave v2.0.7";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -2928,7 +2928,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "MOJAVE=1";
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = "Mojave v2.0.6";
+				MARKETING_VERSION = "Mojave v2.0.7";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -2952,7 +2952,7 @@
 				);
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = "HighSierra v2.0.6";
+				MARKETING_VERSION = "HighSierra v2.0.7";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -2973,7 +2973,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "HIGH_SIERRA=1";
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = "HighSierra v2.0.6";
+				MARKETING_VERSION = "HighSierra v2.0.7";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3022,7 +3022,7 @@
 				);
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = "Ethernet v2.0.6";
+				MARKETING_VERSION = "Ethernet v2.0.7";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3043,7 +3043,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "Ethernet=1";
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = "Ethernet v2.0.6";
+				MARKETING_VERSION = "Ethernet v2.0.7";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
