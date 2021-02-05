@@ -155,8 +155,6 @@ bool AirPortOpenBSD::start(IOService* provider) {
     _ifp->fWorkloop = fWorkloop;
     _ifp->fCommandGate = fCommandGate;
     _ifp->if_link_state = LINK_STATE_DOWN;
-    _ifp->if_power_state = APPLE_POWER_ON;
-//    powerState = APPLE_POWER_ON;
     
     this->scanResults = OSArray::withCapacity(512); // by default, but it autoexpands
     
@@ -403,11 +401,11 @@ IOReturn AirPortOpenBSD::setPowerState(unsigned long powerStateOrdinal, IOServic
 {
     IOReturn result = IOPMAckImplied;
     
-    if (powerStateOrdinal == powerState) {
+    if (powerState == powerStateOrdinal) {
         goto done;
     }
 
-    fCommandGate->runAction(setPowerStateAction, &powerStateOrdinal);
+    this->fCommandGate->runAction(setPowerStateAction, &powerStateOrdinal);
 
 done:
     return result;
@@ -452,11 +450,7 @@ IOReturn AirPortOpenBSD::enable(IONetworkInterface *netif) {
     
     setLinkStatus((kIONetworkLinkValid | kIONetworkLinkActive), mediumTable[MEDIUM_TYPE_AUTO], IF_Mbps(_ifp->if_baudrate), NULL);
     
-    powerState = APPLE_POWER_OFF;
-    
-#ifdef Ethernet
-    this->changePowerState(netif, APPLE_POWER_ON);
-#endif
+    this->changePowerState(_ifp->iface, APPLE_POWER_ON);
     
     result = kIOReturnSuccess;
     
@@ -521,10 +515,6 @@ IOReturn AirPortOpenBSD::changePowerState(IOInterface *interface, int powerState
 {
     IOReturn ret = kIOReturnSuccess;
     
-    if (powerState == powerStateOrdinal) {
-        return ret;
-    }
-    
     switch (powerStateOrdinal) {
         case APPLE_POWER_ON:
             DPRINTF(("Setting power on\n"));
@@ -538,6 +528,7 @@ IOReturn AirPortOpenBSD::changePowerState(IOInterface *interface, int powerState
                 this->ca->ca_activate((struct device *)if_softc, DVACT_WAKEUP);
             }
             
+            this->fWatchdogTimer->cancelTimeout();
             this->fWatchdogTimer->setTimeoutMS(kTimeoutMS);
 
 #ifdef Ethernet
@@ -552,6 +543,8 @@ IOReturn AirPortOpenBSD::changePowerState(IOInterface *interface, int powerState
             this->fWatchdogTimer->cancelTimeout();
             
             this->ca->ca_activate((struct device *)if_softc, DVACT_QUIESCE);
+            this->scanFreeResults();
+            
             ret = kIOReturnSuccess;
             break;
         default:
@@ -596,7 +589,7 @@ void AirPortOpenBSD::setLinkState(int linkState)
         setLinkStatus(kIONetworkLinkValid);
         _ifp->iface->stopOutputThread();
         _ifp->iface->flushOutputQueue();
-        reason = APPLE80211_REASON_ASSOC_LEAVING;
+        reason = APPLE80211_REASON_UNSPECIFIED;
     }
     
 #ifndef Ethernet
@@ -630,6 +623,10 @@ IOReturn AirPortOpenBSD::tsleepHandler(OSObject* owner, void* arg0 = 0, void* ar
 
 void AirPortOpenBSD::if_watchdog(IOTimerEventSource *timer)
 {
-    _ifp->if_watchdog(_ifp);
-    fWatchdogTimer->setTimeoutMS(kTimeoutMS);
+    if (_ifp->if_watchdog) {
+        if (_ifp->if_timer > 0 && --_ifp->if_timer == 0)
+                (*_ifp->if_watchdog)(_ifp);
+        
+        this->fWatchdogTimer->setTimeoutMS(kTimeoutMS);
+    }
 }

@@ -247,7 +247,7 @@ enum apple80211_channel_flag
     APPLE80211_C_FLAG_ACTIVE    = 0x80,        // active scanning supported
     APPLE80211_C_FLAG_DFS        = 0x100,    // DFS required
     APPLE80211_C_FLAG_EXT_ABV    = 0x200,    // If 40 Mhz, extension channel above.
-    APPLE80211_C_FLAG_X = 0x400,
+    APPLE80211_C_FLAG_X         = 0x400,
     // If this flag is not set, then the
     // extension channel is below.
 };

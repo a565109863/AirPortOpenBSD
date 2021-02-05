@@ -120,14 +120,14 @@ struct ieee80211_nodereq* AirPortOpenBSD::findScanResult(apple80211_assoc_data* 
     if (!ad) return NULL;
 
 //    scanFreeResults();
-    scanComplete();
+//    scanComplete();
     
     if (scanResults->getCount() == 0) return NULL;
     
     bool emptyBSSID = (strncmp((char*)&ad->ad_bssid, (char *)empty_macaddr, APPLE80211_ADDR_LEN) == 0);
     
     for (int i = 0; i < scanResults->getCount(); i++) {
-        OSObject* scanObj = scanResults->getObject(scanIndex++);
+        OSObject* scanObj = scanResults->getObject(i++);
         if (scanObj == NULL) {
             continue;
         }
@@ -224,7 +224,7 @@ void AirPortOpenBSD::scanComplete()
 void AirPortOpenBSD::scanFreeResults()
 {
     scanResults->flushCollection();
-    scanIndex = 0;
+    this->scanIndex = 0;
     return;
 }
 
