@@ -11,31 +11,19 @@
 
 #include <sys/_kernel.h>
 
-static void* malloc(vm_size_t len, int type, int how) {
-    void* addr = IOMalloc(len);
-    if (addr == NULL) {
-        return NULL;
-    }
-    bzero(addr, len);
-    return addr;
-}
+struct malloc_ptr {
+    LIST_ENTRY(malloc_ptr)    list;
+    size_t              size;
+    void                *ptr;
+};
+
+void* malloc(vm_size_t len, int type, int how);
 
 static void* mallocarray(vm_size_t n, vm_size_t len, int type, int how) {
     return malloc(n * len, type, how);
 }
 
-static void free(void* addr, int type, vm_size_t len)
-{
-    if (addr == NULL) {
-        return;
-    }
-    if (len == 0) {
-        IOFree(addr, sizeof(addr));
-    }else {
-        IOFree(addr, len);
-    }
-    addr = NULL;
-}
+void free(void* addr, int type, vm_size_t len);
 
 #define km_alloc(s, kv, kp, kd) malloc(s, M_DEVBUF, M_WAIT)
 #define km_free(v, s, kv, kp) free(v, M_WAIT, s)

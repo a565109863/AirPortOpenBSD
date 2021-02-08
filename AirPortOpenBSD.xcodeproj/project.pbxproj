@@ -917,6 +917,11 @@
 		18F7F0BB2582735100360E74 /* iwx_QuQnj_b0_jf_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18F7F0B32582735100360E74 /* iwx_QuQnj_b0_jf_b0_48.c */; };
 		18F7F0BC2582735100360E74 /* iwx_QuQnj_b0_jf_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18F7F0B32582735100360E74 /* iwx_QuQnj_b0_jf_b0_48.c */; };
 		18F7F0BD2582735100360E74 /* iwx_QuQnj_b0_jf_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18F7F0B32582735100360E74 /* iwx_QuQnj_b0_jf_b0_48.c */; };
+		3714750125D187FC0052FDC0 /* _malloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3714750025D187FC0052FDC0 /* _malloc.c */; };
+		3714750225D187FC0052FDC0 /* _malloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3714750025D187FC0052FDC0 /* _malloc.c */; };
+		3714750325D187FC0052FDC0 /* _malloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3714750025D187FC0052FDC0 /* _malloc.c */; };
+		3714750425D187FC0052FDC0 /* _malloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3714750025D187FC0052FDC0 /* _malloc.c */; };
+		3714750525D187FC0052FDC0 /* _malloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3714750025D187FC0052FDC0 /* _malloc.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1122,6 +1127,7 @@
 		18F7F0B22582735000360E74 /* iwx_QuQnj_b0_hr_b0_48.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_QuQnj_b0_hr_b0_48.c; sourceTree = "<group>"; };
 		18F7F0B32582735100360E74 /* iwx_QuQnj_b0_jf_b0_48.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_QuQnj_b0_jf_b0_48.c; sourceTree = "<group>"; };
 		18FDC67B255F2126002AA72F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		3714750025D187FC0052FDC0 /* _malloc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = _malloc.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1312,6 +1318,7 @@
 				18713B4C255F14E700EF3D49 /* __types.h */,
 				18713B50255F14E700EF3D49 /* _kernel.h */,
 				18713B44255F14E700EF3D49 /* _malloc.h */,
+				3714750025D187FC0052FDC0 /* _malloc.c */,
 				18713B43255F14E700EF3D49 /* _mbuf.h */,
 				18713B47255F14E700EF3D49 /* _null.h */,
 				18713B3F255F14E700EF3D49 /* device.h */,
@@ -2192,6 +2199,7 @@
 				18713E6E255F1BE100EF3D49 /* sha2.c in Sources */,
 				18713E6F255F1BE100EF3D49 /* michael.c in Sources */,
 				18713E70255F1BE100EF3D49 /* sha1.c in Sources */,
+				3714750225D187FC0052FDC0 /* _malloc.c in Sources */,
 				18713E71255F1BE100EF3D49 /* cmac.c in Sources */,
 				18713E72255F1BE100EF3D49 /* md5.c in Sources */,
 				18713E73255F1BE100EF3D49 /* arc4.c in Sources */,
@@ -2302,6 +2310,7 @@
 				18713EC7255F1BE900EF3D49 /* sha2.c in Sources */,
 				18713EC8255F1BE900EF3D49 /* michael.c in Sources */,
 				18713EC9255F1BE900EF3D49 /* sha1.c in Sources */,
+				3714750325D187FC0052FDC0 /* _malloc.c in Sources */,
 				18713ECA255F1BE900EF3D49 /* cmac.c in Sources */,
 				18713ECB255F1BE900EF3D49 /* md5.c in Sources */,
 				18713ECC255F1BE900EF3D49 /* arc4.c in Sources */,
@@ -2412,6 +2421,7 @@
 				18713F6B255F1C0200EF3D49 /* sha2.c in Sources */,
 				18713F6C255F1C0200EF3D49 /* michael.c in Sources */,
 				18713F6D255F1C0200EF3D49 /* sha1.c in Sources */,
+				3714750425D187FC0052FDC0 /* _malloc.c in Sources */,
 				18713F6E255F1C0200EF3D49 /* cmac.c in Sources */,
 				18713F6F255F1C0200EF3D49 /* md5.c in Sources */,
 				18713F70255F1C0200EF3D49 /* arc4.c in Sources */,
@@ -2522,6 +2532,7 @@
 				1871400F255F1C1800EF3D49 /* sha2.c in Sources */,
 				18714010255F1C1800EF3D49 /* michael.c in Sources */,
 				18714011255F1C1800EF3D49 /* sha1.c in Sources */,
+				3714750525D187FC0052FDC0 /* _malloc.c in Sources */,
 				18714012255F1C1800EF3D49 /* cmac.c in Sources */,
 				18714013255F1C1800EF3D49 /* md5.c in Sources */,
 				18714014255F1C1800EF3D49 /* arc4.c in Sources */,
@@ -2632,6 +2643,7 @@
 				18713DCA255F1BC700EF3D49 /* sha2.c in Sources */,
 				18713DCB255F1BC700EF3D49 /* michael.c in Sources */,
 				18713DCC255F1BC700EF3D49 /* sha1.c in Sources */,
+				3714750125D187FC0052FDC0 /* _malloc.c in Sources */,
 				18713DCD255F1BC700EF3D49 /* cmac.c in Sources */,
 				18713DCE255F1BC700EF3D49 /* md5.c in Sources */,
 				18713DCF255F1BC700EF3D49 /* arc4.c in Sources */,

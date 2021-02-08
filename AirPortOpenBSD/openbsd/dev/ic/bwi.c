@@ -7482,7 +7482,7 @@ bwi_node_alloc(struct ieee80211com *ic)
 {
 	struct bwi_node *bn;
 
-	bn = (struct bwi_node *)malloc(sizeof(*bn), M_DEVBUF, M_NOWAIT | M_ZERO);
+	bn = (typeof bn)malloc(sizeof(*bn), M_DEVBUF, M_NOWAIT | M_ZERO);
 	if (bn == NULL)
 		return (NULL);
 

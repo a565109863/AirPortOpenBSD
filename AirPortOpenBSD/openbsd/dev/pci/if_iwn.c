@@ -1705,9 +1705,7 @@ iwn_read_eeprom_enhinfo(struct iwn_softc *sc)
 struct ieee80211_node *
 iwn_node_alloc(struct ieee80211com *ic)
 {
-    void *ni = malloc(sizeof (struct iwn_node), M_DEVBUF, M_NOWAIT | M_ZERO);
-    ((struct iwn_node *)ni)->ni.ni_size = sizeof (struct iwn_node);
-    return (struct ieee80211_node *)ni;
+    return (struct ieee80211_node *)malloc(sizeof (struct iwn_node), M_DEVBUF, M_NOWAIT | M_ZERO);
 }
 
 void

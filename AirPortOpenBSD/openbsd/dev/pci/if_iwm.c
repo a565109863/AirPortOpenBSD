@@ -6915,9 +6915,7 @@ iwm_run_stop(struct iwm_softc *sc)
 struct ieee80211_node *
 iwm_node_alloc(struct ieee80211com *ic)
 {
-    void *ni = malloc(sizeof (struct iwm_node), M_DEVBUF, M_NOWAIT | M_ZERO);
-    ((struct iwm_node *)ni)->in_ni.ni_size = sizeof (struct iwm_node);
-    return (struct ieee80211_node *)ni;
+    return (struct ieee80211_node *)malloc(sizeof (struct iwm_node), M_DEVBUF, M_NOWAIT | M_ZERO);
 }
 
 int

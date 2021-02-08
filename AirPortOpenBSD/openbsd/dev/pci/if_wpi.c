@@ -981,9 +981,7 @@ wpi_read_eeprom_group(struct wpi_softc *sc, int n)
 struct ieee80211_node *
 wpi_node_alloc(struct ieee80211com *ic)
 {
-    void *ni = malloc(sizeof (struct wpi_node), M_DEVBUF, M_NOWAIT | M_ZERO);
-    ((struct wpi_node *)ni)->ni.ni_size = sizeof (struct wpi_node);
-    return (struct ieee80211_node *)ni;
+    return (struct ieee80211_node *)malloc(sizeof (struct wpi_node), M_DEVBUF, M_NOWAIT | M_ZERO);
 }
 
 void

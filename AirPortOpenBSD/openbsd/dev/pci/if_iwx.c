@@ -5974,9 +5974,7 @@ iwx_run_stop(struct iwx_softc *sc)
 struct ieee80211_node *
 iwx_node_alloc(struct ieee80211com *ic)
 {
-    void *ni = malloc(sizeof (struct iwx_node), M_DEVBUF, M_NOWAIT | M_ZERO);
-    ((struct iwx_node *)ni)->in_ni.ni_size = sizeof (struct iwx_node);
-    return (struct ieee80211_node *)ni;
+    return (struct ieee80211_node *)malloc(sizeof (struct iwx_node), M_DEVBUF, M_NOWAIT | M_ZERO);
 }
 
 int

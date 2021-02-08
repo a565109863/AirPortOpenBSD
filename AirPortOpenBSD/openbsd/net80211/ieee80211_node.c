@@ -1615,7 +1615,7 @@ void
 ieee80211_node_free(struct ieee80211com *ic, struct ieee80211_node *ni)
 {
     ieee80211_node_cleanup(ic, ni);
-    free(ni, M_DEVBUF, ni->ni_size);
+    free(ni, M_DEVBUF, 0);
 }
 
 void

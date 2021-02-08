@@ -404,7 +404,6 @@ struct ieee80211_node {
                     struct ieee80211_node *);
     void *            ni_unref_arg;
     size_t             ni_unref_arg_size;
-    size_t             ni_size;
 };
 
 RBT_HEAD(ieee80211_tree, ieee80211_node);
