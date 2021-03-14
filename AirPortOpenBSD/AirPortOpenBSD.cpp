@@ -399,6 +399,9 @@ IOReturn AirPortOpenBSD::registerWithPolicyMaker(IOService* policyMaker)
 
 IOReturn AirPortOpenBSD::setPowerState(unsigned long powerStateOrdinal, IOService *policyMaker)
 {
+    
+//    DebugLog("---%s: line = %d powerStateOrdinal = %d", __FUNCTION__, __LINE__, powerStateOrdinal);
+    
     IOReturn result = IOPMAckImplied;
     
     if (powerState == powerStateOrdinal) {
@@ -449,6 +452,8 @@ IOReturn AirPortOpenBSD::enable(IONetworkInterface *netif) {
 //    fPciDevice->open(this);
     
     setLinkStatus((kIONetworkLinkValid | kIONetworkLinkActive), mediumTable[MEDIUM_TYPE_AUTO], IF_Mbps(_ifp->if_baudrate), NULL);
+    
+//    DebugLog("---%s: line = %d APPLE_POWER_ON = %d", __FUNCTION__, __LINE__, APPLE_POWER_ON);
     
     this->changePowerState(_ifp->iface, APPLE_POWER_ON);
     

@@ -862,6 +862,16 @@
 		1871407D255F1C2300EF3D49 /* if_iwmreg.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B8B255F14E800EF3D49 /* if_iwmreg.h */; };
 		1871407E255F1C2300EF3D49 /* pcireg.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B8C255F14E800EF3D49 /* pcireg.h */; };
 		1871407F255F1C2300EF3D49 /* vlan.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1A255F14E700EF3D49 /* vlan.h */; };
+		18BB83E125FE3C49001220DF /* ieee80211_ra.c in Sources */ = {isa = PBXBuildFile; fileRef = 18BB83DF25FE3C49001220DF /* ieee80211_ra.c */; };
+		18BB83E225FE3C49001220DF /* ieee80211_ra.c in Sources */ = {isa = PBXBuildFile; fileRef = 18BB83DF25FE3C49001220DF /* ieee80211_ra.c */; };
+		18BB83E325FE3C49001220DF /* ieee80211_ra.c in Sources */ = {isa = PBXBuildFile; fileRef = 18BB83DF25FE3C49001220DF /* ieee80211_ra.c */; };
+		18BB83E425FE3C49001220DF /* ieee80211_ra.c in Sources */ = {isa = PBXBuildFile; fileRef = 18BB83DF25FE3C49001220DF /* ieee80211_ra.c */; };
+		18BB83E525FE3C49001220DF /* ieee80211_ra.c in Sources */ = {isa = PBXBuildFile; fileRef = 18BB83DF25FE3C49001220DF /* ieee80211_ra.c */; };
+		18BB83E625FE3C49001220DF /* ieee80211_ra.h in Headers */ = {isa = PBXBuildFile; fileRef = 18BB83E025FE3C49001220DF /* ieee80211_ra.h */; };
+		18BB83E725FE3C49001220DF /* ieee80211_ra.h in Headers */ = {isa = PBXBuildFile; fileRef = 18BB83E025FE3C49001220DF /* ieee80211_ra.h */; };
+		18BB83E825FE3C49001220DF /* ieee80211_ra.h in Headers */ = {isa = PBXBuildFile; fileRef = 18BB83E025FE3C49001220DF /* ieee80211_ra.h */; };
+		18BB83E925FE3C49001220DF /* ieee80211_ra.h in Headers */ = {isa = PBXBuildFile; fileRef = 18BB83E025FE3C49001220DF /* ieee80211_ra.h */; };
+		18BB83EA25FE3C49001220DF /* ieee80211_ra.h in Headers */ = {isa = PBXBuildFile; fileRef = 18BB83E025FE3C49001220DF /* ieee80211_ra.h */; };
 		18C95A86256285CC0047231F /* rtwn.c in Sources */ = {isa = PBXBuildFile; fileRef = 18C95A83256285CC0047231F /* rtwn.c */; };
 		18C95A87256285CC0047231F /* rtwn.c in Sources */ = {isa = PBXBuildFile; fileRef = 18C95A83256285CC0047231F /* rtwn.c */; };
 		18C95A88256285CC0047231F /* rtwn.c in Sources */ = {isa = PBXBuildFile; fileRef = 18C95A83256285CC0047231F /* rtwn.c */; };
@@ -1115,6 +1125,8 @@
 		18713CE3255F157300EF3D49 /* AirPortOpenBSD.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirPortOpenBSD.kext; sourceTree = BUILT_PRODUCTS_DIR; };
 		18713D0E255F166400EF3D49 /* AirPortOpenBSD.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirPortOpenBSD.kext; sourceTree = BUILT_PRODUCTS_DIR; };
 		187C01C52560545400910BD7 /* firmware */ = {isa = PBXFileReference; lastKnownFileType = folder; path = firmware; sourceTree = "<group>"; };
+		18BB83DF25FE3C49001220DF /* ieee80211_ra.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ieee80211_ra.c; sourceTree = "<group>"; };
+		18BB83E025FE3C49001220DF /* ieee80211_ra.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ieee80211_ra.h; sourceTree = "<group>"; };
 		18C95A83256285CC0047231F /* rtwn.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rtwn.c; sourceTree = "<group>"; };
 		18C95A84256285CC0047231F /* rtwnvar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rtwnvar.h; sourceTree = "<group>"; };
 		18C95A85256285CC0047231F /* r92creg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = r92creg.h; sourceTree = "<group>"; };
@@ -1376,6 +1388,8 @@
 				18713B6B255F14E800EF3D49 /* ieee80211_priv.h */,
 				18713B58255F14E700EF3D49 /* ieee80211_proto.c */,
 				18713B68255F14E800EF3D49 /* ieee80211_proto.h */,
+				18BB83DF25FE3C49001220DF /* ieee80211_ra.c */,
+				18BB83E025FE3C49001220DF /* ieee80211_ra.h */,
 				18713B66255F14E800EF3D49 /* ieee80211_radiotap.h */,
 				18713B71255F14E800EF3D49 /* ieee80211_regdomain.c */,
 				18713B5F255F14E700EF3D49 /* ieee80211_regdomain.h */,
@@ -1555,6 +1569,7 @@
 				18713E19255F1BD900EF3D49 /* mutex.h in Headers */,
 				18713E1A255F1BD900EF3D49 /* timeout.h in Headers */,
 				18713E1B255F1BD900EF3D49 /* _kernel.h in Headers */,
+				18BB83E725FE3C49001220DF /* ieee80211_ra.h in Headers */,
 				18713E1C255F1BD900EF3D49 /* libkern.h in Headers */,
 				18713E1D255F1BD900EF3D49 /* bus.h in Headers */,
 				18713E1E255F1BD900EF3D49 /* intr.h in Headers */,
@@ -1641,6 +1656,7 @@
 				18713F16255F1BF700EF3D49 /* mutex.h in Headers */,
 				18713F17255F1BF700EF3D49 /* timeout.h in Headers */,
 				18713F18255F1BF700EF3D49 /* _kernel.h in Headers */,
+				18BB83E825FE3C49001220DF /* ieee80211_ra.h in Headers */,
 				18713F19255F1BF700EF3D49 /* libkern.h in Headers */,
 				18713F1A255F1BF700EF3D49 /* bus.h in Headers */,
 				18713F1B255F1BF700EF3D49 /* intr.h in Headers */,
@@ -1727,6 +1743,7 @@
 				18713FBA255F1C0F00EF3D49 /* mutex.h in Headers */,
 				18713FBB255F1C0F00EF3D49 /* timeout.h in Headers */,
 				18713FBC255F1C0F00EF3D49 /* _kernel.h in Headers */,
+				18BB83E925FE3C49001220DF /* ieee80211_ra.h in Headers */,
 				18713FBD255F1C0F00EF3D49 /* libkern.h in Headers */,
 				18713FBE255F1C0F00EF3D49 /* bus.h in Headers */,
 				18713FBF255F1C0F00EF3D49 /* intr.h in Headers */,
@@ -1813,6 +1830,7 @@
 				1871405E255F1C2300EF3D49 /* mutex.h in Headers */,
 				1871405F255F1C2300EF3D49 /* timeout.h in Headers */,
 				18714060255F1C2300EF3D49 /* _kernel.h in Headers */,
+				18BB83EA25FE3C49001220DF /* ieee80211_ra.h in Headers */,
 				18714061255F1C2300EF3D49 /* libkern.h in Headers */,
 				18714062255F1C2300EF3D49 /* bus.h in Headers */,
 				18714063255F1C2300EF3D49 /* intr.h in Headers */,
@@ -1899,6 +1917,7 @@
 				18713D75255F1BBC00EF3D49 /* mutex.h in Headers */,
 				18713D76255F1BBC00EF3D49 /* timeout.h in Headers */,
 				18713D77255F1BBC00EF3D49 /* _kernel.h in Headers */,
+				18BB83E625FE3C49001220DF /* ieee80211_ra.h in Headers */,
 				18713D78255F1BBC00EF3D49 /* libkern.h in Headers */,
 				18713D79255F1BBC00EF3D49 /* bus.h in Headers */,
 				18713D7A255F1BBC00EF3D49 /* intr.h in Headers */,
@@ -2164,6 +2183,7 @@
 				18713E51255F1BE100EF3D49 /* iwm_7265D_29.c in Sources */,
 				18713E52255F1BE100EF3D49 /* iwm_8000C_34.c in Sources */,
 				18713E53255F1BE100EF3D49 /* iwm_8265_34.c in Sources */,
+				18BB83E225FE3C49001220DF /* ieee80211_ra.c in Sources */,
 				18713E54255F1BE100EF3D49 /* iwm_9000_34.c in Sources */,
 				18713E55255F1BE100EF3D49 /* iwm_9260_34.c in Sources */,
 				18713E56255F1BE100EF3D49 /* iwn_100.c in Sources */,
@@ -2275,6 +2295,7 @@
 				18713EAA255F1BE900EF3D49 /* iwm_7265D_29.c in Sources */,
 				18713EAB255F1BE900EF3D49 /* iwm_8000C_34.c in Sources */,
 				18713EAC255F1BE900EF3D49 /* iwm_8265_34.c in Sources */,
+				18BB83E325FE3C49001220DF /* ieee80211_ra.c in Sources */,
 				18713EAD255F1BE900EF3D49 /* iwm_9000_34.c in Sources */,
 				18713EAE255F1BE900EF3D49 /* iwm_9260_34.c in Sources */,
 				18713EAF255F1BE900EF3D49 /* iwn_100.c in Sources */,
@@ -2386,6 +2407,7 @@
 				18713F4E255F1C0200EF3D49 /* iwm_7265D_29.c in Sources */,
 				18713F4F255F1C0200EF3D49 /* iwm_8000C_34.c in Sources */,
 				18713F50255F1C0200EF3D49 /* iwm_8265_34.c in Sources */,
+				18BB83E425FE3C49001220DF /* ieee80211_ra.c in Sources */,
 				18713F51255F1C0200EF3D49 /* iwm_9000_34.c in Sources */,
 				18713F52255F1C0200EF3D49 /* iwm_9260_34.c in Sources */,
 				18713F53255F1C0200EF3D49 /* iwn_100.c in Sources */,
@@ -2497,6 +2519,7 @@
 				18713FF2255F1C1800EF3D49 /* iwm_7265D_29.c in Sources */,
 				18713FF3255F1C1800EF3D49 /* iwm_8000C_34.c in Sources */,
 				18713FF4255F1C1800EF3D49 /* iwm_8265_34.c in Sources */,
+				18BB83E525FE3C49001220DF /* ieee80211_ra.c in Sources */,
 				18713FF5255F1C1800EF3D49 /* iwm_9000_34.c in Sources */,
 				18713FF6255F1C1800EF3D49 /* iwm_9260_34.c in Sources */,
 				18713FF7255F1C1800EF3D49 /* iwn_100.c in Sources */,
@@ -2608,6 +2631,7 @@
 				18713DAD255F1BC700EF3D49 /* iwm_7265D_29.c in Sources */,
 				18713DAE255F1BC700EF3D49 /* iwm_8000C_34.c in Sources */,
 				18713DAF255F1BC700EF3D49 /* iwm_8265_34.c in Sources */,
+				18BB83E125FE3C49001220DF /* ieee80211_ra.c in Sources */,
 				18713DB0255F1BC700EF3D49 /* iwm_9000_34.c in Sources */,
 				18713DB1255F1BC700EF3D49 /* iwm_9260_34.c in Sources */,
 				18713DB2255F1BC700EF3D49 /* iwn_100.c in Sources */,
