@@ -1,4 +1,4 @@
-/*    $OpenBSD: if_iwx.c,v 1.49 2021/01/17 14:24:00 jcs Exp $    */
+/*    $OpenBSD: if_iwx.c,v 1.50 2021/03/17 15:59:27 stsp Exp $    */
 
 /*
  * Copyright (c) 2014, 2016 genua gmbh <info@genua.de>
@@ -7715,10 +7715,10 @@ static const struct pci_matchid iwx_devices[] = {
     { PCI_VENDOR_INTEL, PCI_PRODUCT_INTEL_WL_22500_1 },
     { PCI_VENDOR_INTEL, PCI_PRODUCT_INTEL_WL_22500_2 },
     { PCI_VENDOR_INTEL, PCI_PRODUCT_INTEL_WL_22500_3 },
+    { PCI_VENDOR_INTEL, PCI_PRODUCT_INTEL_WL_22500_4 },
     { PCI_VENDOR_INTEL, PCI_PRODUCT_INTEL_WL_AC9462_2 },
     { PCI_VENDOR_INTEL, PCI_PRODUCT_INTEL_WL_AX201_1 },
     { PCI_VENDOR_INTEL, PCI_PRODUCT_INTEL_WL_AX201_2 },
-    { PCI_VENDOR_INTEL, PCI_PRODUCT_INTEL_WL_AX201_3 },
     { PCI_VENDOR_INTEL, PCI_PRODUCT_INTEL_WL_AX1650S_2 },
     { PCI_VENDOR_INTEL, PCI_PRODUCT_INTEL_WL_AX22000_1 },
     /* Wi-Fi 6 AX211 */
@@ -7812,10 +7812,10 @@ iwx_match(struct device *parent, iwx_match_t match __unused, void *aux)
         return 1; /* match any device */
     case PCI_PRODUCT_INTEL_WL_22500_2: /* AX201 */
     case PCI_PRODUCT_INTEL_WL_22500_3: /* AX201 */
+    case PCI_PRODUCT_INTEL_WL_22500_4: /* AX201 */
     case PCI_PRODUCT_INTEL_WL_AX1650S_2:
     case PCI_PRODUCT_INTEL_WL_AX201_1:
     case PCI_PRODUCT_INTEL_WL_AX201_2:
-    case PCI_PRODUCT_INTEL_WL_AX201_3:
     case PCI_PRODUCT_INTEL_WL_AC9462_2:
     case PCI_PRODUCT_INTEL_WL_AX211_1:
     case PCI_PRODUCT_INTEL_WL_AX211_2:

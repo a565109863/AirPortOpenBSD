@@ -5,6 +5,7 @@ v2.0.7
 3、优化唤醒不自动连接wifi
 4、优化内存分配与释放
 5、更新2021/03/12版openbsd的iwm、iwn、ipw、bwfm等驱动
+6、更新2021/03/25版openbsd的iwx,ieee80211等驱动
 
 
 v2.0.6

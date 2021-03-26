@@ -1,4 +1,4 @@
-/*    $OpenBSD: if_iwn.c,v 1.245 2021/03/12 16:27:27 stsp Exp $    */
+/*    $OpenBSD: if_iwn.c,v 1.247 2021/03/22 09:52:49 stsp Exp $    */
 
 /*-
  * Copyright (c) 2007-2010 Damien Bergamini <damien.bergamini@free.fr>
@@ -2387,6 +2387,9 @@ iwn_rx_compressed_ba(struct iwn_softc *sc, struct iwn_rx_desc *desc,
      */
     ssn = le16toh(cba->ssn);
 
+    if (SEQ_LT(ssn, ba->ba_winstart))
+        return;
+
     /* Skip rate control if our Tx rate is fixed. */
     if (ic->ic_fixed_mcs == -1)
         iwn_ampdu_rate_control(sc, ni, txq, ba->ba_winstart, ssn);
@@ -2396,12 +2399,10 @@ iwn_rx_compressed_ba(struct iwn_softc *sc, struct iwn_rx_desc *desc,
      * in firmware's BA window. Firmware is not going to retransmit any
      * frames before its BA window so mark them all as done.
      */
-    if (SEQ_LT(ba->ba_winstart, ssn)) {
-        ieee80211_output_ba_move_window(ic, ni, cba->tid, ssn);
-        iwn_ampdu_txq_advance(sc, txq, qid,
-            IWN_AGG_SSN_TO_TXQ_IDX(ssn));
-        iwn_clear_oactive(sc, txq);
-    }
+    ieee80211_output_ba_move_window(ic, ni, cba->tid, ssn);
+    iwn_ampdu_txq_advance(sc, txq, qid,
+        IWN_AGG_SSN_TO_TXQ_IDX(ssn));
+    iwn_clear_oactive(sc, txq);
 }
 
 /*
@@ -2611,6 +2612,8 @@ iwn_ampdu_tx_done(struct iwn_softc *sc, struct iwn_tx_ring *txq,
     ba = &ni->ni_tx_ba[tid];
     if (ba->ba_state != IEEE80211_BA_AGREED)
         return;
+    if (SEQ_LT(ssn, ba->ba_winstart))
+        return;
 
     /* This was a final single-frame Tx attempt for frame SSN-1. */
     seq = (ssn - 1) & 0xfff;
@@ -2639,29 +2642,14 @@ iwn_ampdu_tx_done(struct iwn_softc *sc, struct iwn_tx_ring *txq,
 
     if (txfail)
         ieee80211_tx_compressed_bar(ic, ni, tid, ssn);
-    else if (!SEQ_LT(seq, ba->ba_winstart)) {
-        /*
-         * Move window forward if SEQ lies beyond end of window,
-         * otherwise we can't record the ACK for this frame.
-         * Non-acked frames which left holes in the bitmap near
-         * the beginning of the window must be discarded.
-         */
-        uint16_t s = seq;
-        while (SEQ_LT(ba->ba_winend, s)) {
-            ieee80211_output_ba_move_window(ic, ni, tid, s);
-            iwn_ampdu_txq_advance(sc, txq, desc->qid,
-                IWN_AGG_SSN_TO_TXQ_IDX(s));
-            s = (s + 1) % 0xfff;
-        }
-        /* SEQ should now be within window; set corresponding bit. */
-        ieee80211_output_ba_record_ack(ic, ni, tid, seq);
-    }
 
-    /* Move window forward up to the first hole in the bitmap. */
-    ieee80211_output_ba_move_window_to_first_unacked(ic, ni, tid, ssn);
-    iwn_ampdu_txq_advance(sc, txq, desc->qid,
-        IWN_AGG_SSN_TO_TXQ_IDX(ba->ba_winstart));
-
+    /*
+     * SSN corresponds to the first (perhaps not yet transmitted) frame
+     * in firmware's BA window. Firmware is not going to retransmit any
+     * frames before its BA window so mark them all as done.
+     */
+    ieee80211_output_ba_move_window(ic, ni, tid, ssn);
+    iwn_ampdu_txq_advance(sc, txq, desc->qid, IWN_AGG_SSN_TO_TXQ_IDX(ssn));
     iwn_clear_oactive(sc, txq);
 }
 
@@ -3509,7 +3497,10 @@ iwn_tx(struct iwn_softc *sc, mbuf_t m, struct ieee80211_node *ni)
         }
     }
 
-    if (IEEE80211_IS_MULTICAST(wh->i_addr1) ||
+    if (type == IEEE80211_FC0_TYPE_CTL &&
+        subtype == IEEE80211_FC0_SUBTYPE_BAR)
+        tx->id = wn->id;
+    else if (IEEE80211_IS_MULTICAST(wh->i_addr1) ||
         type != IEEE80211_FC0_TYPE_DATA)
         tx->id = sc->broadcast_id;
     else
