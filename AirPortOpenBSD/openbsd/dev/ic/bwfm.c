@@ -1,4 +1,4 @@
-/* $OpenBSD: bwfm.c,v 1.81 2021/02/24 10:13:08 patrick Exp $ */
+/* $OpenBSD: bwfm.c,v 1.84 2021/04/22 22:14:30 patrick Exp $ */
 /*
  * Copyright (c) 2010-2016 Broadcom Corporation
  * Copyright (c) 2016,2017 Patrick Wildt <patrick@blueri.se>
@@ -27,6 +27,11 @@
 #include <sys/queue.h>
 #include <sys/socket.h>
 #include <sys/sockio.h>
+
+#if defined(__HAVE_FDT)
+#include <machine/fdt.h>
+#include <dev/ofw/openfirm.h>
+#endif
 
 #if NBPFILTER > 0
 #include <net/bpf.h>
@@ -69,6 +74,7 @@ void     bwfm_process_clm_blob(struct bwfm_softc *);
 
 int     bwfm_chip_attach(struct bwfm_softc *);
 int     bwfm_chip_detach(struct bwfm_softc *, int);
+struct bwfm_core *bwfm_chip_get_core_idx(struct bwfm_softc *, int, int);
 struct bwfm_core *bwfm_chip_get_core(struct bwfm_softc *, int);
 struct bwfm_core *bwfm_chip_get_pmu(struct bwfm_softc *);
 int     bwfm_chip_ai_isup(struct bwfm_softc *, struct bwfm_core *);
@@ -346,7 +352,7 @@ bwfm_detach(struct bwfm_softc *sc, int flags)
 void
 bwfm_start(struct ifnet *ifp)
 {
-    struct bwfm_softc *sc = (struct bwfm_softc *)ifp->if_softc;
+    struct bwfm_softc *sc = (typeof sc)ifp->if_softc;
     mbuf_t m;
 
     if (!(ifp->if_flags & IFF_RUNNING))
@@ -384,7 +390,7 @@ bwfm_start(struct ifnet *ifp)
 void
 bwfm_init(struct ifnet *ifp)
 {
-    struct bwfm_softc *sc = (struct bwfm_softc *)ifp->if_softc;
+    struct bwfm_softc *sc = (typeof sc)ifp->if_softc;
     struct ieee80211com *ic = &sc->sc_ic;
     uint8_t evmask[BWFM_EVENT_MASK_LEN];
     struct bwfm_join_pref_params join_pref[2];
@@ -517,7 +523,7 @@ bwfm_init(struct ifnet *ifp)
 void
 bwfm_stop(struct ifnet *ifp)
 {
-    struct bwfm_softc *sc = (struct bwfm_softc *)ifp->if_softc;
+    struct bwfm_softc *sc = (typeof sc)ifp->if_softc;
     struct ieee80211com *ic = &sc->sc_ic;
     struct bwfm_join_params join;
 
@@ -552,7 +558,7 @@ bwfm_iff(struct bwfm_softc *sc)
     int i = 0;
 
     mcastlen = sizeof(uint32_t) + ac->ac_multicnt * ETHER_ADDR_LEN;
-    mcast = (char *)malloc(mcastlen, M_TEMP, M_WAITOK);
+    mcast = (typeof mcast)malloc(mcastlen, M_TEMP, M_WAITOK);
     htolem32((uint32_t *)mcast, ac->ac_multicnt);
 
     ifp->if_flags &= ~IFF_ALLMULTI;
@@ -580,7 +586,7 @@ bwfm_iff(struct bwfm_softc *sc)
 void
 bwfm_watchdog(struct ifnet *ifp)
 {
-    struct bwfm_softc *sc = (struct bwfm_softc *)ifp->if_softc;
+    struct bwfm_softc *sc = (typeof sc)ifp->if_softc;
 
     ifp->if_timer = 0;
 
@@ -642,7 +648,7 @@ bwfm_rate2htmcs(uint32_t txrate)
 void
 bwfm_update_node(void *arg, struct ieee80211_node *ni)
 {
-    struct bwfm_softc *sc = (struct bwfm_softc *)arg;
+    struct bwfm_softc *sc = (typeof sc)arg;
     struct ieee80211com *ic = &sc->sc_ic;
     struct bwfm_sta_info sta;
     uint32_t flags;
@@ -744,7 +750,7 @@ bwfm_update_nodes(struct bwfm_softc *sc)
 int
 bwfm_ioctl(struct ifnet *ifp, u_long cmd, caddr_t data)
 {
-    struct bwfm_softc *sc = (struct bwfm_softc *)ifp->if_softc;
+    struct bwfm_softc *sc = (typeof sc)ifp->if_softc;
     struct ieee80211com *ic = &sc->sc_ic;
     struct ifreq *ifr;
     int s, error = 0;
@@ -927,16 +933,22 @@ bwfm_chip_attach(struct bwfm_softc *sc)
 }
 
 struct bwfm_core *
-bwfm_chip_get_core(struct bwfm_softc *sc, int id)
+bwfm_chip_get_core_idx(struct bwfm_softc *sc, int id, int idx)
 {
     struct bwfm_core *core;
 
     LIST_FOREACH(core, &sc->sc_chip.ch_list, co_link) {
-        if (core->co_id == id)
+        if (core->co_id == id && idx-- == 0)
             return core;
     }
 
     return NULL;
+}
+
+struct bwfm_core *
+bwfm_chip_get_core(struct bwfm_softc *sc, int id)
+{
+    return bwfm_chip_get_core_idx(sc, id, 0);
 }
 
 struct bwfm_core *
@@ -1017,9 +1029,15 @@ void
 bwfm_chip_ai_reset(struct bwfm_softc *sc, struct bwfm_core *core,
     uint32_t prereset, uint32_t reset, uint32_t postreset)
 {
+    struct bwfm_core *core2 = NULL;
     int i;
 
+    if (core->co_id == BWFM_AGENT_CORE_80211)
+        core2 = bwfm_chip_get_core_idx(sc, BWFM_AGENT_CORE_80211, 1);
+
     bwfm_chip_ai_disable(sc, core, prereset, reset);
+    if (core2)
+        bwfm_chip_ai_disable(sc, core2, prereset, reset);
 
     for (i = 50; i > 0; i--) {
         if ((sc->sc_buscore_ops->bc_read(sc,
@@ -1032,12 +1050,32 @@ bwfm_chip_ai_reset(struct bwfm_softc *sc, struct bwfm_core *core,
     }
     if (i == 0)
         printf("%s: timeout on core reset\n", DEVNAME(sc));
+    if (core2) {
+        for (i = 50; i > 0; i--) {
+            if ((sc->sc_buscore_ops->bc_read(sc,
+                core2->co_wrapbase + BWFM_AGENT_RESET_CTL) &
+                BWFM_AGENT_RESET_CTL_RESET) == 0)
+                break;
+            sc->sc_buscore_ops->bc_write(sc,
+                core2->co_wrapbase + BWFM_AGENT_RESET_CTL, 0);
+            delay(60);
+        }
+        if (i == 0)
+            printf("%s: timeout on core reset\n", DEVNAME(sc));
+    }
 
     sc->sc_buscore_ops->bc_write(sc,
         core->co_wrapbase + BWFM_AGENT_IOCTL,
         postreset | BWFM_AGENT_IOCTL_CLK);
     sc->sc_buscore_ops->bc_read(sc,
         core->co_wrapbase + BWFM_AGENT_IOCTL);
+    if (core2) {
+        sc->sc_buscore_ops->bc_write(sc,
+            core2->co_wrapbase + BWFM_AGENT_IOCTL,
+            postreset | BWFM_AGENT_IOCTL_CLK);
+        sc->sc_buscore_ops->bc_read(sc,
+            core2->co_wrapbase + BWFM_AGENT_IOCTL);
+    }
 }
 
 void
@@ -1085,7 +1123,7 @@ bwfm_chip_dmp_erom_scan(struct bwfm_softc *sc)
         if (bwfm_chip_dmp_get_regaddr(sc, &erom, &base, &wrap))
             continue;
 
-        core = (struct bwfm_core *)malloc(sizeof(*core), M_DEVBUF, M_WAITOK);
+        core = (typeof core)malloc(sizeof(*core), M_DEVBUF, M_WAITOK);
         core->co_id = id;
         core->co_base = base;
         core->co_wrapbase = wrap;
@@ -1510,7 +1548,7 @@ bwfm_proto_bcdc_query_dcmd(struct bwfm_softc *sc, int ifidx,
     if (*len > sizeof(dcmd->buf))
         return ret;
 
-    dcmd = (struct bwfm_proto_bcdc_dcmd *)malloc(size, M_TEMP, M_WAITOK | M_ZERO);
+    dcmd = (typeof dcmd)malloc(size, M_TEMP, M_WAITOK | M_ZERO);
     dcmd->hdr.cmd = htole32(cmd);
     dcmd->hdr.len = htole32(*len);
     dcmd->hdr.flags |= BWFM_BCDC_DCMD_GET;
@@ -1550,7 +1588,7 @@ bwfm_proto_bcdc_set_dcmd(struct bwfm_softc *sc, int ifidx,
     if (len > sizeof(dcmd->buf))
         return ret;
 
-    dcmd = (struct bwfm_proto_bcdc_dcmd *)malloc(size, M_TEMP, M_WAITOK | M_ZERO);
+    dcmd = (typeof dcmd)malloc(size, M_TEMP, M_WAITOK | M_ZERO);
     dcmd->hdr.cmd = htole32(cmd);
     dcmd->hdr.len = htole32(len);
     dcmd->hdr.flags |= BWFM_BCDC_DCMD_SET;
@@ -1578,7 +1616,7 @@ bwfm_proto_bcdc_txctl(struct bwfm_softc *sc, int reqid, char *buf, size_t *len)
     struct bwfm_proto_bcdc_ctl *ctl, *tmp;
     int timeout = 0;
 
-    ctl = (struct bwfm_proto_bcdc_ctl *)malloc(sizeof(*ctl), M_TEMP, M_WAITOK|M_ZERO);
+    ctl = (typeof ctl)malloc(sizeof(*ctl), M_TEMP, M_WAITOK|M_ZERO);
     ctl->reqid = reqid;
     ctl->buf = buf;
     ctl->len = *len;
@@ -1700,7 +1738,7 @@ bwfm_fwvar_var_get_data(struct bwfm_softc *sc, char *name, void *data, size_t le
     char *buf;
     int ret;
 
-    buf = (char *)malloc(strlen(name) + 1 + len, M_TEMP, M_WAITOK);
+    buf = (typeof buf)malloc(strlen(name) + 1 + len, M_TEMP, M_WAITOK);
     memcpy(buf, name, strlen(name) + 1);
     memcpy(buf + strlen(name) + 1, data, len);
     ret = bwfm_fwvar_cmd_get_data(sc, BWFM_C_GET_VAR,
@@ -1716,7 +1754,7 @@ bwfm_fwvar_var_set_data(struct bwfm_softc *sc, char *name, void *data, size_t le
     char *buf;
     int ret;
 
-    buf = (char *)malloc(strlen(name) + 1 + len, M_TEMP, M_WAITOK);
+    buf = (typeof buf)malloc(strlen(name) + 1 + len, M_TEMP, M_WAITOK);
     memcpy(buf, name, strlen(name) + 1);
     memcpy(buf + strlen(name) + 1, data, len);
     ret = bwfm_fwvar_cmd_set_data(sc, BWFM_C_SET_VAR,
@@ -1922,7 +1960,7 @@ bwfm_connect(struct bwfm_softc *sc)
     bwfm_fwvar_var_set_int(sc, "mfp", BWFM_MFP_NONE);
 
     if (ic->ic_des_esslen && ic->ic_des_esslen < BWFM_MAX_SSID_LEN) {
-        params = (struct bwfm_ext_join_params *)malloc(sizeof(*params), M_TEMP, M_WAITOK | M_ZERO);
+        params = (typeof params)malloc(sizeof(*params), M_TEMP, M_WAITOK | M_ZERO);
         memcpy(params->ssid.ssid, ic->ic_des_essid, ic->ic_des_esslen);
         params->ssid.len = htole32(ic->ic_des_esslen);
         memcpy(params->assoc.bssid, ic->ic_bss->ni_bssid,
@@ -2033,7 +2071,7 @@ bwfm_scan(struct bwfm_softc *sc)
     ssid_size = sizeof(struct bwfm_ssid) * nssid;
     params_size = sizeof(*params) + chan_size + ssid_size;
 
-    params = (struct bwfm_escan_params *)malloc(params_size, M_TEMP, M_WAITOK | M_ZERO);
+    params = (typeof params)malloc(params_size, M_TEMP, M_WAITOK | M_ZERO);
     ssid = (struct bwfm_ssid *)
         (((uint8_t *)params) + sizeof(*params) + chan_size);
 
@@ -2081,7 +2119,7 @@ bwfm_scan_abort(struct bwfm_softc *sc)
     size_t params_size;
 
     params_size = sizeof(*params) + sizeof(uint16_t);
-    params = (struct bwfm_escan_params *)malloc(params_size, M_TEMP, M_WAITOK | M_ZERO);
+    params = (typeof params)malloc(params_size, M_TEMP, M_WAITOK | M_ZERO);
     memset(params->scan_params.bssid, 0xff,
         sizeof(params->scan_params.bssid));
     params->scan_params.bss_type = 2;
@@ -2353,7 +2391,7 @@ bwfm_rx_event_cb(struct bwfm_softc *sc, mbuf_t m)
 {
     struct ieee80211com *ic = &sc->sc_ic;
     struct ifnet *ifp = &ic->ic_if;
-    struct bwfm_event *e = mtod(m, struct bwfm_event *);
+    struct bwfm_event *e = mtod(m, typeof e);
     size_t len = mbuf_len(m);
 
     if (ntohl(e->msg.event_type) >= BWFM_E_LAST) {
@@ -2393,7 +2431,7 @@ bwfm_rx_event_cb(struct bwfm_softc *sc, mbuf_t m)
             return;
         }
         reslen = len;
-        res = (struct bwfm_escan_results *)malloc(len, M_TEMP, M_WAITOK);
+        res = (typeof res)malloc(len, M_TEMP, M_WAITOK);
         memcpy(res, (void *)&e[1], len);
         if (len < letoh32(res->buflen)) {
             DPRINTF(("%s: results too small\n", DEVNAME(sc)));
@@ -2412,7 +2450,7 @@ bwfm_rx_event_cb(struct bwfm_softc *sc, mbuf_t m)
         for (i = 0; i < letoh16(res->bss_count); i++) {
             bwfm_scan_node(sc, &res->bss_info[i], len);
             len -= sizeof(*bss) + letoh32(bss->length);
-            bss = (struct bwfm_bss_info *)((char *)bss) + letoh32(bss->length);
+            bss = (typeof bss)((char *)bss) + letoh32(bss->length);
             if (len <= 0)
                 break;
         }
@@ -2548,7 +2586,7 @@ bwfm_scan_node(struct bwfm_softc *sc, struct bwfm_bss_info *bss, size_t len)
 void
 bwfm_task(void *arg)
 {
-    struct bwfm_softc *sc = (struct bwfm_softc *)arg;
+    struct bwfm_softc *sc = (typeof sc)arg;
     struct bwfm_host_cmd_ring *ring = &sc->sc_cmdq;
     struct bwfm_host_cmd *cmd;
     mbuf_t m;
@@ -2613,7 +2651,7 @@ int
 bwfm_set_key(struct ieee80211com *ic, struct ieee80211_node *ni,
     struct ieee80211_key *k)
 {
-    struct bwfm_softc *sc = (struct bwfm_softc *)ic->ic_softc;
+    struct bwfm_softc *sc = (typeof sc)ic->ic_softc;
     struct bwfm_cmd_key cmd;
 
     cmd.ni = ni;
@@ -2626,7 +2664,7 @@ bwfm_set_key(struct ieee80211com *ic, struct ieee80211_node *ni,
 void
 bwfm_set_key_cb(struct bwfm_softc *sc, void *arg)
 {
-    struct bwfm_cmd_key *cmd = (struct bwfm_cmd_key *)arg;
+    struct bwfm_cmd_key *cmd = (typeof cmd)arg;
     struct ieee80211_key *k = cmd->k;
     struct ieee80211_node *ni = cmd->ni;
     struct ieee80211com *ic = &sc->sc_ic;
@@ -2693,7 +2731,7 @@ void
 bwfm_delete_key(struct ieee80211com *ic, struct ieee80211_node *ni,
     struct ieee80211_key *k)
 {
-    struct bwfm_softc *sc = (struct bwfm_softc *)ic->ic_softc;
+    struct bwfm_softc *sc = (typeof sc)ic->ic_softc;
     struct bwfm_cmd_key cmd;
 
     cmd.ni = ni;
@@ -2704,7 +2742,7 @@ bwfm_delete_key(struct ieee80211com *ic, struct ieee80211_node *ni,
 void
 bwfm_delete_key_cb(struct bwfm_softc *sc, void *arg)
 {
-    struct bwfm_cmd_key *cmd = (struct bwfm_cmd_key *)arg;
+    struct bwfm_cmd_key *cmd = (typeof cmd)arg;
     struct ieee80211_key *k = cmd->k;
     struct bwfm_wsec_key key;
 
@@ -2717,7 +2755,7 @@ bwfm_delete_key_cb(struct bwfm_softc *sc, void *arg)
 int
 bwfm_newstate(struct ieee80211com *ic, enum ieee80211_state nstate, int arg)
 {
-    struct bwfm_softc *sc = (struct bwfm_softc *)ic->ic_softc;
+    struct bwfm_softc *sc = (typeof sc)ic->ic_softc;
     struct ifnet *ifp = &ic->ic_if;
     int s;
 
@@ -2842,7 +2880,7 @@ bwfm_process_clm_blob(struct bwfm_softc *sc)
 
     off = 0;
     remain = sc->sc_clmsize;
-    data = (struct bwfm_dload_data *)malloc(sizeof(*data) + BWFM_DLOAD_MAX_LEN, M_TEMP, M_WAITOK);
+    data = (typeof data)malloc(sizeof(*data) + BWFM_DLOAD_MAX_LEN, M_TEMP, M_WAITOK);
 
     while (remain) {
         len = min(remain, BWFM_DLOAD_MAX_LEN);
@@ -2872,4 +2910,119 @@ out:
     free(sc->sc_clm, M_DEVBUF, sc->sc_clmsize);
     sc->sc_clm = NULL;
     sc->sc_clmsize = 0;
+}
+
+#if defined(__HAVE_FDT)
+const char *
+bwfm_sysname(void)
+{
+    static char sysfw[128];
+    int len;
+    char *p;
+
+    len = OF_getprop(OF_peer(0), "compatible", sysfw, sizeof(sysfw));
+    if (len > 0 && len < sizeof(sysfw)) {
+        sysfw[len] = '\0';
+        if ((p = strchr(sysfw, '/')) != NULL)
+            *p = '\0';
+        return sysfw;
+    }
+    return NULL;
+}
+#else
+const char *
+bwfm_sysname(void)
+{
+    return NULL;
+}
+#endif
+
+int
+bwfm_loadfirmware(struct bwfm_softc *sc, const char *chip, const char *bus,
+    u_char **ucode, size_t *size, u_char **nvram, size_t *nvsize, size_t *nvlen)
+{
+    const char *sysname = NULL;
+    char name[128];
+    int r;
+
+    *ucode = *nvram = NULL;
+    *size = *nvsize = *nvlen = 0;
+
+    sysname = bwfm_sysname();
+
+    if (sysname != NULL) {
+        r = snprintf(name, sizeof(name), "brcmfmac%s%s.%s.bin", chip,
+            bus, sysname);
+        if ((r > 0 && r < sizeof(name)) &&
+            loadfirmware(name, ucode, size) != 0)
+            *size = 0;
+    }
+    if (*size == 0) {
+        snprintf(name, sizeof(name), "brcmfmac%s%s.bin", chip, bus);
+        if (loadfirmware(name, ucode, size) != 0) {
+            snprintf(name, sizeof(name), "brcmfmac%s%s%s%s.bin", chip, bus,
+                sysname ? "." : "", sysname ? sysname : "");
+            printf("%s: failed loadfirmware of file %s\n",
+                DEVNAME(sc), name);
+            return 1;
+        }
+    }
+
+    /* .txt needs to be processed first */
+    if (sysname != NULL) {
+        r = snprintf(name, sizeof(name), "brcmfmac%s%s.%s.txt", chip,
+            bus, sysname);
+        if ((r > 0 && r < sizeof(name)) &&
+            loadfirmware(name, nvram, nvsize) == 0) {
+            if (bwfm_nvram_convert(*nvram, *nvsize, nvlen) != 0) {
+                printf("%s: failed to process file %s\n",
+                    DEVNAME(sc), name);
+                free(*ucode, M_DEVBUF, *size);
+                free(*nvram, M_DEVBUF, *nvsize);
+                return 1;
+            }
+        }
+    }
+
+    if (*nvlen == 0) {
+        snprintf(name, sizeof(name), "brcmfmac%s%s.txt", chip, bus);
+        if (loadfirmware(name, nvram, nvsize) == 0) {
+            if (bwfm_nvram_convert(*nvram, *nvsize, nvlen) != 0) {
+                printf("%s: failed to process file %s\n",
+                    DEVNAME(sc), name);
+                free(*ucode, M_DEVBUF, *size);
+                free(*nvram, M_DEVBUF, *nvsize);
+                return 1;
+            }
+        }
+    }
+
+    /* .nvram is the pre-processed version */
+    if (*nvlen == 0) {
+        snprintf(name, sizeof(name), "brcmfmac%s%s.nvram", chip, bus);
+        if (loadfirmware(name, nvram, nvsize) == 0)
+            *nvlen = *nvsize;
+    }
+
+    if (*nvlen == 0 && strcmp(bus, "-sdio") == 0) {
+        snprintf(name, sizeof(name), "brcmfmac%s%s%s%s.txt", chip, bus,
+            sysname ? "." : "", sysname ? sysname : "");
+        printf("%s: failed loadfirmware of file %s\n",
+            DEVNAME(sc), name);
+        free(*ucode, M_DEVBUF, *size);
+        return 1;
+    }
+
+    if (sysname != NULL) {
+        r = snprintf(name, sizeof(name), "brcmfmac%s%s.%s.clm_blob",
+            chip, bus, sysname);
+        if (r > 0 && r < sizeof(name))
+            loadfirmware(name, &sc->sc_clm, &sc->sc_clmsize);
+    }
+    if (sc->sc_clmsize == 0) {
+        snprintf(name, sizeof(name), "brcmfmac%s%s.clm_blob", chip, bus);
+        loadfirmware(name, &sc->sc_clm, &sc->sc_clmsize);
+    }
+
+    return 0;
 }

@@ -1,4 +1,4 @@
-/*    $OpenBSD: ieee80211_node.c,v 1.183 2021/03/10 10:21:48 jsg Exp $    */
+/*    $OpenBSD: ieee80211_node.c,v 1.184 2021/04/15 18:05:05 stsp Exp $    */
 /*    $NetBSD: ieee80211_node.c,v 1.14 2004/05/09 09:18:47 dyoung Exp $    */
 
 /*-
@@ -96,7 +96,7 @@ void ieee80211_clean_inactive_nodes(struct ieee80211com *, int);
 void
 ieee80211_inact_timeout(void *arg)
 {
-    struct ieee80211com *ic = (struct ieee80211com *)arg;
+    struct ieee80211com *ic = (typeof ic)arg;
     struct ieee80211_node *ni, *next_ni;
     int s;
 
@@ -117,7 +117,7 @@ ieee80211_inact_timeout(void *arg)
 void
 ieee80211_node_cache_timeout(void *arg)
 {
-    struct ieee80211com *ic = (struct ieee80211com *)arg;
+    struct ieee80211com *ic = (typeof ic)arg;
 
     ieee80211_clean_nodes(ic, 1);
     timeout_add_sec(&ic->ic_node_cache_timeout, IEEE80211_CACHE_WAIT);
@@ -380,7 +380,7 @@ ieee80211_add_ess(struct ieee80211com *ic, struct ieee80211_join *join)
         if (ness > IEEE80211_CACHE_SIZE)
             return (ERANGE);
         _new = 1;
-        ess = (struct ieee80211_ess *)malloc(sizeof(*ess), M_DEVBUF, M_NOWAIT|M_ZERO);
+        ess = (typeof ess)malloc(sizeof(*ess), M_DEVBUF, M_NOWAIT|M_ZERO);
         if (ess == NULL)
             return (ENOMEM);
         memcpy(ess->essid, join->i_nwid, join->i_len);
@@ -687,7 +687,7 @@ ieee80211_deselect_ess(struct ieee80211com *ic)
 void
 ieee80211_node_attach(struct ifnet *ifp)
 {
-    struct ieee80211com *ic = (struct ieee80211com *)ifp;
+    struct ieee80211com *ic = (typeof ic)ifp;
 #ifndef IEEE80211_STA_ONLY
     int size;
 #endif
@@ -707,7 +707,7 @@ ieee80211_node_attach(struct ifnet *ifp)
         ic->ic_max_aid = IEEE80211_AID_MAX;
 #ifndef IEEE80211_STA_ONLY
     size = howmany(ic->ic_max_aid, 32) * sizeof(u_int32_t);
-    ic->ic_aid_bitmap = (u_int32_t *)malloc(size, M_DEVBUF, M_NOWAIT | M_ZERO);
+    ic->ic_aid_bitmap = (typeof ic->ic_aid_bitmap)malloc(size, M_DEVBUF, M_NOWAIT | M_ZERO);
     if (ic->ic_aid_bitmap == NULL) {
         /* XXX no way to recover */
         printf("%s: no memory for AID bitmap!\n", __func__);
@@ -715,7 +715,7 @@ ieee80211_node_attach(struct ifnet *ifp)
     }
     if (ic->ic_caps & (IEEE80211_C_HOSTAP | IEEE80211_C_IBSS)) {
         ic->ic_tim_len = howmany(ic->ic_max_aid, 8);
-        ic->ic_tim_bitmap = (u_int8_t *)malloc(ic->ic_tim_len, M_DEVBUF,
+        ic->ic_tim_bitmap = (typeof ic->ic_tim_bitmap)malloc(ic->ic_tim_len, M_DEVBUF,
             M_NOWAIT | M_ZERO);
         if (ic->ic_tim_bitmap == NULL) {
             printf("%s: no memory for TIM bitmap!\n", __func__);
@@ -748,7 +748,7 @@ ieee80211_alloc_node_helper(struct ieee80211com *ic)
 void
 ieee80211_node_lateattach(struct ifnet *ifp)
 {
-    struct ieee80211com *ic = (struct ieee80211com *)ifp;
+    struct ieee80211com *ic = (typeof ic)ifp;
     struct ieee80211_node *ni;
 
     ni = ieee80211_alloc_node_helper(ic);
@@ -765,7 +765,7 @@ ieee80211_node_lateattach(struct ifnet *ifp)
 void
 ieee80211_node_detach(struct ifnet *ifp)
 {
-    struct ieee80211com *ic = (struct ieee80211com *)ifp;
+    struct ieee80211com *ic = (typeof ic)ifp;
 
     if (ic->ic_bss != NULL) {
         (*ic->ic_node_free)(ic, ic->ic_bss);
@@ -795,7 +795,7 @@ ieee80211_node_detach(struct ifnet *ifp)
 void
 ieee80211_reset_scan(struct ifnet *ifp)
 {
-    struct ieee80211com *ic = (struct ieee80211com *)ifp;
+    struct ieee80211com *ic = (typeof ic)ifp;
 
     memcpy(ic->ic_chan_scan, ic->ic_chan_active,
         sizeof(ic->ic_chan_active));
@@ -823,7 +823,7 @@ ieee80211_node_raise_inact(void *arg, struct ieee80211_node *ni)
 void
 ieee80211_begin_scan(struct ifnet *ifp)
 {
-    struct ieee80211com *ic = (struct ieee80211com *)ifp;
+    struct ieee80211com *ic = (typeof ic)ifp;
 
     /*
      * In all but hostap mode scanning starts off in
@@ -871,7 +871,7 @@ ieee80211_begin_scan(struct ifnet *ifp)
 void
 ieee80211_next_scan(struct ifnet *ifp)
 {
-    struct ieee80211com *ic = (struct ieee80211com *)ifp;
+    struct ieee80211com *ic = (typeof ic)ifp;
     struct ieee80211_channel *chan;
 
     chan = ic->ic_bss->ni_chan;
@@ -904,6 +904,7 @@ ieee80211_next_scan(struct ifnet *ifp)
 void
 ieee80211_create_ibss(struct ieee80211com* ic, struct ieee80211_channel *chan)
 {
+    enum ieee80211_phymode mode;
     struct ieee80211_node *ni;
     struct ifnet *ifp = &ic->ic_if;
 
@@ -912,7 +913,25 @@ ieee80211_create_ibss(struct ieee80211com* ic, struct ieee80211_channel *chan)
         printf("%s: creating ibss\n", ifp->if_xname);
     ic->ic_flags |= IEEE80211_F_SIBSS;
     ni->ni_chan = chan;
-    ni->ni_rates = ic->ic_sup_rates[ieee80211_chan2mode(ic, ni->ni_chan)];
+    if ((ic->ic_flags & IEEE80211_F_VHTON) && IEEE80211_IS_CHAN_5GHZ(chan))
+        mode = IEEE80211_MODE_11AC;
+    else if (ic->ic_flags & IEEE80211_F_HTON)
+        mode = IEEE80211_MODE_11N;
+    else
+        mode = ieee80211_chan2mode(ic, ni->ni_chan);
+    ieee80211_setmode(ic, mode);
+    /* Pick an appropriate mode for supported legacy rates. */
+    if (ic->ic_curmode == IEEE80211_MODE_11AC) {
+        mode = IEEE80211_MODE_11A;
+    } else if (ic->ic_curmode == IEEE80211_MODE_11N) {
+        if (IEEE80211_IS_CHAN_5GHZ(chan))
+            mode = IEEE80211_MODE_11A;
+        else
+            mode = IEEE80211_MODE_11G;
+    } else {
+        mode = (enum ieee80211_phymode)ic->ic_curmode;
+    }
+    ni->ni_rates = ic->ic_sup_rates[mode];
     ni->ni_txrate = 0;
     IEEE80211_ADDR_COPY(ni->ni_macaddr, ic->ic_myaddr);
     IEEE80211_ADDR_COPY(ni->ni_bssid, ic->ic_myaddr);
@@ -1102,32 +1121,32 @@ ieee80211_match_bss(struct ieee80211com *ic, struct ieee80211_node *ni,
             fail |= IEEE80211_NODE_ASSOCFAIL_WPA_PROTO;
     }
 
-//    if (ic->ic_if.if_flags & IFF_DEBUG) {
-//        printf("%s: %c %s%c", ic->ic_if.if_xname, fail ? '-' : '+',
-//            ether_sprintf(ni->ni_bssid),
-//            fail & IEEE80211_NODE_ASSOCFAIL_BSSID ? '!' : ' ');
-//        printf(" %3d%c", ieee80211_chan2ieee(ic, ni->ni_chan),
-//            fail & IEEE80211_NODE_ASSOCFAIL_CHAN ? '!' : ' ');
-//        printf(" %+4d", ni->ni_rssi);
-//        printf(" %2dM%c", (rate & IEEE80211_RATE_VAL) / 2,
-//            fail & IEEE80211_NODE_ASSOCFAIL_BASIC_RATE ? '!' : ' ');
-//        printf(" %4s%c",
-//            (ni->ni_capinfo & IEEE80211_CAPINFO_ESS) ? "ess" :
-//            (ni->ni_capinfo & IEEE80211_CAPINFO_IBSS) ? "ibss" :
-//            "????",
-//            fail & IEEE80211_NODE_ASSOCFAIL_IBSS ? '!' : ' ');
-//        printf(" %7s%c ",
-//            (ni->ni_capinfo & IEEE80211_CAPINFO_PRIVACY) ?
-//            "privacy" : "no",
-//            fail & IEEE80211_NODE_ASSOCFAIL_PRIVACY ? '!' : ' ');
-//        printf(" %3s%c ",
-//            (ic->ic_flags & IEEE80211_F_RSNON) ?
-//            "rsn" : "no",
-//            fail & IEEE80211_NODE_ASSOCFAIL_WPA_PROTO ? '!' : ' ');
-//        ieee80211_print_essid(ni->ni_essid, ni->ni_esslen);
-//        printf("%s\n",
-//            fail & IEEE80211_NODE_ASSOCFAIL_ESSID ? "!" : "");
-//    }
+    if (ic->ic_if.if_flags & IFF_DEBUG) {
+        printf("%s: %c %s%c", ic->ic_if.if_xname, fail ? '-' : '+',
+            ether_sprintf(ni->ni_bssid),
+            fail & IEEE80211_NODE_ASSOCFAIL_BSSID ? '!' : ' ');
+        printf(" %3d%c", ieee80211_chan2ieee(ic, ni->ni_chan),
+            fail & IEEE80211_NODE_ASSOCFAIL_CHAN ? '!' : ' ');
+        printf(" %+4d", ni->ni_rssi);
+        printf(" %2dM%c", (rate & IEEE80211_RATE_VAL) / 2,
+            fail & IEEE80211_NODE_ASSOCFAIL_BASIC_RATE ? '!' : ' ');
+        printf(" %4s%c",
+            (ni->ni_capinfo & IEEE80211_CAPINFO_ESS) ? "ess" :
+            (ni->ni_capinfo & IEEE80211_CAPINFO_IBSS) ? "ibss" :
+            "????",
+            fail & IEEE80211_NODE_ASSOCFAIL_IBSS ? '!' : ' ');
+        printf(" %7s%c ",
+            (ni->ni_capinfo & IEEE80211_CAPINFO_PRIVACY) ?
+            "privacy" : "no",
+            fail & IEEE80211_NODE_ASSOCFAIL_PRIVACY ? '!' : ' ');
+        printf(" %3s%c ",
+            (ic->ic_flags & IEEE80211_F_RSNON) ?
+            "rsn" : "no",
+            fail & IEEE80211_NODE_ASSOCFAIL_WPA_PROTO ? '!' : ' ');
+        ieee80211_print_essid(ni->ni_essid, ni->ni_esslen);
+        printf("%s\n",
+            fail & IEEE80211_NODE_ASSOCFAIL_ESSID ? "!" : "");
+    }
 
     /* We don't care about unrelated networks during background scans. */
     if (bgscan) {
@@ -1151,7 +1170,7 @@ void
 ieee80211_node_switch_bss(struct ieee80211com *ic, struct ieee80211_node *ni)
 {
     struct ifnet *ifp = &ic->ic_if;
-    struct ieee80211_node_switch_bss_arg *sba = (struct ieee80211_node_switch_bss_arg *)ni->ni_unref_arg;
+    struct ieee80211_node_switch_bss_arg *sba = (typeof sba)ni->ni_unref_arg;
     struct ieee80211_node *curbs, *selbs;
 
     splassert(IPL_NET);
@@ -1336,7 +1355,7 @@ ieee80211_node_choose_bss(struct ieee80211com *ic, int bgscan,
 void
 ieee80211_end_scan(struct ifnet *ifp)
 {
-    struct ieee80211com *ic = (struct ieee80211com *)ifp;
+    struct ieee80211com *ic = (typeof ic)ifp;
     struct ieee80211_node *ni, *selbs = NULL, *curbs = NULL;
     int bgscan = ((ic->ic_flags & IEEE80211_F_BGSCAN) &&
         ic->ic_opmode == IEEE80211_M_STA &&
@@ -1460,7 +1479,7 @@ ieee80211_end_scan(struct ifnet *ifp)
             return;
         }
     
-        arg = (struct ieee80211_node_switch_bss_arg *)malloc(sizeof(*arg), M_DEVBUF, M_NOWAIT | M_ZERO);
+        arg = (typeof arg)malloc(sizeof(*arg), M_DEVBUF, M_NOWAIT | M_ZERO);
         if (arg == NULL) {
             ic->ic_flags &= ~IEEE80211_F_BGSCAN;
             return;
@@ -1551,7 +1570,7 @@ ieee80211_choose_rsnparams(struct ieee80211com *ic)
         ni->ni_rsnciphers = IEEE80211_CIPHER_CCMP;
     else
         ni->ni_rsnciphers = IEEE80211_CIPHER_TKIP;
-    ni->ni_rsncipher = (enum ieee80211_cipher)ni->ni_rsnciphers;
+    ni->ni_rsncipher = (typeof ni->ni_rsncipher)ni->ni_rsnciphers;
 
     /* use MFP if we both support it */
     if ((ic->ic_caps & IEEE80211_C_MFP) &&
@@ -2407,28 +2426,28 @@ ieee80211_node_addba_request(struct ieee80211_node *ni, int tid)
 void
 ieee80211_node_addba_request_ac_be_to(void *arg)
 {
-    struct ieee80211_node *ni = (struct ieee80211_node *)arg;
+    struct ieee80211_node *ni = (typeof ni)arg;
     ieee80211_node_addba_request(ni, EDCA_AC_BE);
 }
 
 void
 ieee80211_node_addba_request_ac_bk_to(void *arg)
 {
-    struct ieee80211_node *ni = (struct ieee80211_node *)arg;
+    struct ieee80211_node *ni = (typeof ni)arg;
     ieee80211_node_addba_request(ni, EDCA_AC_BK);
 }
 
 void
 ieee80211_node_addba_request_ac_vi_to(void *arg)
 {
-    struct ieee80211_node *ni = (struct ieee80211_node *)arg;
+    struct ieee80211_node *ni = (typeof ni)arg;
     ieee80211_node_addba_request(ni, EDCA_AC_VI);
 }
 
 void
 ieee80211_node_addba_request_ac_vo_to(void *arg)
 {
-    struct ieee80211_node *ni = (struct ieee80211_node *)arg;
+    struct ieee80211_node *ni = (typeof ni)arg;
     ieee80211_node_addba_request(ni, EDCA_AC_VO);
 }
 
@@ -2512,7 +2531,7 @@ ieee80211_node_join_rsn(struct ieee80211com *ic, struct ieee80211_node *ni)
     ni->ni_flags &= ~IEEE80211_NODE_RSN_NEW_PTK;
     ni->ni_replaycnt = -1;    /* XXX */
     ni->ni_rsn_retries = 0;
-    ni->ni_rsncipher = (enum ieee80211_cipher)ni->ni_rsnciphers;
+    ni->ni_rsncipher = (typeof ni->ni_rsncipher)ni->ni_rsnciphers;
 
     ni->ni_rsn_state = RSNA_AUTHENTICATION_2;
 
@@ -2535,7 +2554,7 @@ ieee80211_node_join_rsn(struct ieee80211com *ic, struct ieee80211_node *ni)
 void
 ieee80211_count_longslotsta(void *arg, struct ieee80211_node *ni)
 {
-    int *longslotsta = (int *)arg;
+    int *longslotsta = (typeof longslotsta)arg;
 
     if (ni->ni_associd == 0 || ni->ni_state == IEEE80211_STA_COLLECT)
         return;
@@ -2547,7 +2566,7 @@ ieee80211_count_longslotsta(void *arg, struct ieee80211_node *ni)
 void
 ieee80211_count_nonerpsta(void *arg, struct ieee80211_node *ni)
 {
-    int *nonerpsta = (int *)arg;
+    int *nonerpsta = (typeof nonerpsta)arg;
 
     if (ni->ni_associd == 0 || ni->ni_state == IEEE80211_STA_COLLECT)
         return;
@@ -2559,7 +2578,7 @@ ieee80211_count_nonerpsta(void *arg, struct ieee80211_node *ni)
 void
 ieee80211_count_pssta(void *arg, struct ieee80211_node *ni)
 {
-    int *pssta = (int *)arg;
+    int *pssta = (typeof pssta)arg;
 
     if (ni->ni_associd == 0 || ni->ni_state == IEEE80211_STA_COLLECT)
         return;
@@ -2571,7 +2590,7 @@ ieee80211_count_pssta(void *arg, struct ieee80211_node *ni)
 void
 ieee80211_count_rekeysta(void *arg, struct ieee80211_node *ni)
 {
-    int *rekeysta = (int *)arg;
+    int *rekeysta = (typeof rekeysta)arg;
 
     if (ni->ni_associd == 0 || ni->ni_state == IEEE80211_STA_COLLECT)
         return;

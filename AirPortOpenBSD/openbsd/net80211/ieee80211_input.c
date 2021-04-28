@@ -1,4 +1,4 @@
-/*    $OpenBSD: ieee80211_input.c,v 1.229 2021/03/10 10:21:48 jsg Exp $    */
+/*    $OpenBSD: ieee80211_input.c,v 1.233 2021/04/25 15:32:21 stsp Exp $    */
 
 /*-
  * Copyright (c) 2001 Atsushi Onoe
@@ -59,7 +59,8 @@
 #include <net80211/ieee80211_priv.h>
 
 mbuf_t ieee80211_input_hwdecrypt(struct ieee80211com *,
-        struct ieee80211_node *, mbuf_t);
+        struct ieee80211_node *, mbuf_t,
+        struct ieee80211_rxinfo *rxi);
 mbuf_t ieee80211_defrag(struct ieee80211com *, mbuf_t, int);
 void    ieee80211_defrag_timeout(void *);
 void    ieee80211_input_ba(struct ieee80211com *, mbuf_t,
@@ -154,7 +155,7 @@ ieee80211_get_hdrlen(const struct ieee80211_frame *wh)
 /* Post-processing for drivers which perform decryption in hardware. */
 mbuf_t
 ieee80211_input_hwdecrypt(struct ieee80211com *ic, struct ieee80211_node *ni,
-    mbuf_t m)
+    mbuf_t m, struct ieee80211_rxinfo *rxi)
 {
     struct ieee80211_key *k;
     struct ieee80211_frame *wh;
@@ -189,7 +190,12 @@ ieee80211_input_hwdecrypt(struct ieee80211com *ic, struct ieee80211_node *ni,
         }
         if (ieee80211_ccmp_get_pn(&pn, &prsc, m, k) != 0)
             return NULL;
-        if (pn <= *prsc) {
+        if (rxi->rxi_flags & IEEE80211_RXI_HWDEC_SAME_PN) {
+            if (pn < *prsc) {
+                ic->ic_stats.is_ccmp_replays++;
+                return NULL;
+            }
+        } else if (pn <= *prsc) {
             ic->ic_stats.is_ccmp_replays++;
             return NULL;
         }
@@ -214,8 +220,12 @@ ieee80211_input_hwdecrypt(struct ieee80211com *ic, struct ieee80211_node *ni,
         }
         if (ieee80211_tkip_get_tsc(&pn, &prsc, m, k) != 0)
             return NULL;
-
-        if (pn <= *prsc) {
+        if (rxi->rxi_flags & IEEE80211_RXI_HWDEC_SAME_PN) {
+            if (pn < *prsc) {
+                ic->ic_stats.is_tkip_replays++;
+                return NULL;
+            }
+        } else if (pn <= *prsc) {
             ic->ic_stats.is_tkip_replays++;
             return NULL;
         }
@@ -257,7 +267,7 @@ void
 ieee80211_inputm(struct ifnet *ifp, mbuf_t m, struct ieee80211_node *ni,
     struct ieee80211_rxinfo *rxi, struct mbuf_list *ml)
 {
-    struct ieee80211com *ic = (struct ieee80211com *)ifp;
+    struct ieee80211com *ic = (typeof ic)ifp;
     struct ieee80211_frame *wh;
     u_int16_t *orxseq, nrxseq, qos;
     u_int8_t dir, type, subtype, tid;
@@ -382,7 +392,13 @@ ieee80211_inputm(struct ifnet *ifp, mbuf_t m, struct ieee80211_node *ni,
             orxseq = &ni->ni_qos_rxseqs[tid];
         else
             orxseq = &ni->ni_rxseq;
-        if ((wh->i_fc[1] & IEEE80211_FC1_RETRY) &&
+        if (rxi->rxi_flags & IEEE80211_RXI_SAME_SEQ) {
+            if (nrxseq != *orxseq) {
+                /* duplicate, silently discarded */
+                ic->ic_stats.is_rx_dup++;
+                goto out;
+            }
+        } else if ((wh->i_fc[1] & IEEE80211_FC1_RETRY) &&
             nrxseq == *orxseq) {
             /* duplicate, silently discarded */
             ic->ic_stats.is_rx_dup++;
@@ -558,7 +574,7 @@ ieee80211_inputm(struct ifnet *ifp, mbuf_t m, struct ieee80211_node *ni,
                     goto err;
                 }
             } else {
-                m = ieee80211_input_hwdecrypt(ic, ni, m);
+                m = ieee80211_input_hwdecrypt(ic, ni, m, rxi);
                 if (m == NULL)
                     goto err;
             }
@@ -766,7 +782,7 @@ ieee80211_defrag(struct ieee80211com *ic, mbuf_t m, int hdrlen)
 void
 ieee80211_defrag_timeout(void *arg)
 {
-    struct ieee80211_defrag *df = (struct ieee80211_defrag *)arg;
+    struct ieee80211_defrag *df = (typeof df)arg;
     int s = splnet();
 
     /* discard all received fragments */
@@ -882,7 +898,7 @@ ieee80211_input_ba_seq(struct ieee80211com *ic, struct ieee80211_node *ni,
             seq = letoh16(*(u_int16_t *)wh->i_seq) >>
                 IEEE80211_SEQ_SEQ_SHIFT;
             if (!SEQ_LT(seq, max_seq))
-                return;
+                break;
             ieee80211_inputm(ifp, ba->ba_buf[ba->ba_head].m,
                 ni, &ba->ba_buf[ba->ba_head].rxi, ml);
             ba->ba_buf[ba->ba_head].m = NULL;
@@ -903,6 +919,10 @@ ieee80211_input_ba_flush(struct ieee80211com *ic, struct ieee80211_node *ni,
 
 {
     struct ifnet *ifp = &ic->ic_if;
+
+    /* Do not re-arm the gap timeout if we made no progress. */
+    if (ba->ba_buf[ba->ba_head].m == NULL)
+        return;
 
     /* pass reordered MPDUs up to the next MAC process */
     while (ba->ba_buf[ba->ba_head].m != NULL) {
@@ -949,7 +969,7 @@ ieee80211_input_ba_gap_skip(struct ieee80211_rx_ba *ba)
 void
 ieee80211_input_ba_gap_timeout(void *arg)
 {
-    struct ieee80211_rx_ba *ba = (struct ieee80211_rx_ba *)arg;
+    struct ieee80211_rx_ba *ba = (typeof ba)arg;
     struct ieee80211_node *ni = ba->ba_ni;
     struct ieee80211com *ic = ni->ni_ic;
     int s, skipped;
@@ -1000,6 +1020,7 @@ ieee80211_ba_move_window(struct ieee80211com *ic, struct ieee80211_node *ni,
     }
     /* move window forward */
     ba->ba_winstart = ssn;
+    ba->ba_winend = (ba->ba_winstart + ba->ba_winsize - 1) & 0xfff;
 
     ieee80211_input_ba_flush(ic, ni, ba, ml);
 }
@@ -1040,7 +1061,7 @@ ieee80211_enqueue_data(struct ieee80211com *ic, mbuf_t m,
             if (m1 == NULL)
                 ifp->if_oerrors++;
             else
-                mbuf_setflags(m1, mbuf_flags(m1) | MBUF_MCAST);
+                mbuf_setflags(m1, mbuf_flags(m1) | M_MCAST);
         } else if (!mcast) {
             ni1 = ieee80211_find_node(ic, eh->ether_dhost);
             if (ni1 != NULL &&
@@ -1478,7 +1499,7 @@ ieee80211_save_ie(const u_int8_t *frm, u_int8_t **ie)
     if (*ie == NULL || olen != len) {
         if (*ie != NULL)
             free(*ie, M_DEVBUF, olen);
-        *ie = (u_int8_t*)malloc(len, M_DEVBUF, M_NOWAIT);
+        *ie = (typeof *ie)malloc(len, M_DEVBUF, M_NOWAIT);
         if (*ie == NULL)
             return ENOMEM;
     }
@@ -1495,7 +1516,7 @@ ieee80211_save_ie(const u_int8_t *frm, uint32_t len, u_int8_t **ie, uint32_t *ie
     if (*ie == NULL || olen != len) {
         if (*ie != NULL && olen > 0)
            free(*ie, M_DEVBUF, olen);
-        *ie = (u_int8_t*)malloc(len, M_DEVBUF, M_NOWAIT);
+        *ie = (typeof *ie)malloc(len, M_DEVBUF, M_NOWAIT);
         if (*ie == NULL)
             return ENOMEM;
     }
@@ -1768,8 +1789,8 @@ ieee80211_recv_probe_resp(struct ieee80211com *ic, mbuf_t m,
         }
         if (htop && (ic->ic_bss->ni_flags & IEEE80211_NODE_HT)) {
             enum ieee80211_htprot htprot_last, htprot;
-            htprot_last =
-                (enum ieee80211_htprot)((ic->ic_bss->ni_htop1 & IEEE80211_HTOP1_PROT_MASK)
+            htprot_last = (enum ieee80211_htprot)
+                ((ic->ic_bss->ni_htop1 & IEEE80211_HTOP1_PROT_MASK)
                 >> IEEE80211_HTOP1_PROT_SHIFT);
             htprot = (enum ieee80211_htprot)((ni->ni_htop1 & IEEE80211_HTOP1_PROT_MASK) >>
                 IEEE80211_HTOP1_PROT_SHIFT);
@@ -2070,7 +2091,7 @@ ieee80211_recv_auth(struct ieee80211com *ic, mbuf_t m,
             /* XXX hack to workaround calling convention */
             IEEE80211_SEND_MGMT(ic, ni,
                 IEEE80211_FC0_SUBTYPE_AUTH,
-                IEEE80211_STATUS_ALG << 16 | ((seq + 1) & 0xffff));
+                IEEE80211_STATUS_ALG << 16 | ((seq + 1) & 0xfff));
         }
 #endif
         return;
@@ -2788,14 +2809,11 @@ ieee80211_recv_addba_req(struct ieee80211com *ic, mbuf_t m,
     ba->ba_params = (params & IEEE80211_ADDBA_BA_POLICY);
     ba->ba_params |= ((ba->ba_winsize << IEEE80211_ADDBA_BUFSZ_SHIFT) |
         (tid << IEEE80211_ADDBA_TID_SHIFT));
-#if 0
-    /* iwm(4) 9k and iwx(4) need more work before AMSDU can be enabled. */
     ba->ba_params |= IEEE80211_ADDBA_AMSDU;
-#endif
     ba->ba_winstart = ssn;
     ba->ba_winend = (ba->ba_winstart + ba->ba_winsize - 1) & 0xfff;
     /* allocate and setup our reordering buffer */
-    ba->ba_buf = (typeof(ba->ba_buf))malloc(IEEE80211_BA_MAX_WINSZ * sizeof(*ba->ba_buf),
+    ba->ba_buf = (typeof ba->ba_buf)malloc(IEEE80211_BA_MAX_WINSZ * sizeof(*ba->ba_buf),
         M_DEVBUF, M_NOWAIT | M_ZERO);
     if (ba->ba_buf == NULL)
         goto refuse;

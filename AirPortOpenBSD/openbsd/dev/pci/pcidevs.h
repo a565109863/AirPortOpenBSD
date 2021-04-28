@@ -6081,6 +6081,7 @@
 #define    PCI_PRODUCT_INTEL_WL_22500_2    0x02f0        /* Wi-Fi 6 AX201 */
 #define    PCI_PRODUCT_INTEL_WL_22500_3    0xa0f0        /* Wi-Fi 6 AX201 */
 #define    PCI_PRODUCT_INTEL_WL_22500_4    0x34f0        /* Wi-Fi 6 AX201 */
+#define    PCI_PRODUCT_INTEL_WL_22500_5    0x06f0        /* Wi-Fi 6 AX201 */
 #define    PCI_PRODUCT_INTEL_WL_AX201_1    0x43F0        /* Wi-Fi 6 AX201 */
 #define    PCI_PRODUCT_INTEL_WL_AX201_2    0x4DF0        /* Wi-Fi 6 AX201 */
 #define    PCI_PRODUCT_INTEL_WL_AC9462_2    0x3DF0        /* Wi-Fi 6 AC9462 */

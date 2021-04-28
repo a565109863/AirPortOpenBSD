@@ -2,6 +2,8 @@
 
 **基于OpenBSD项目的Mac操作系统Wi-Fi适配器内核扩展**
 
+## 由于网络原因，仓库已迁到gitee.com
+- [AirPortOpenBSD](https://gitee.com/a565109863/AirPortOpenBSD)
 
 ## 文档说明
 

@@ -1,4 +1,4 @@
-/*    $OpenBSD: ieee80211_node.h,v 1.87 2020/07/21 08:38:59 stsp Exp $    */
+/*    $OpenBSD: ieee80211_node.h,v 1.88 2021/04/25 15:32:21 stsp Exp $    */
 /*    $NetBSD: ieee80211_node.h,v 1.9 2004/04/30 22:57:32 dyoung Exp $    */
 
 /*-
@@ -182,6 +182,8 @@ struct ieee80211_rxinfo {
 };
 #define IEEE80211_RXI_HWDEC        0x00000001
 #define IEEE80211_RXI_AMPDU_DONE    0x00000002
+#define IEEE80211_RXI_HWDEC_SAME_PN    0x00000004
+#define IEEE80211_RXI_SAME_SEQ        0x00000008
 
 /* Block Acknowledgement Record */
 struct ieee80211_tx_ba {
@@ -425,7 +427,7 @@ ieee80211_node_incref(struct ieee80211_node *ni)
     int        s;
 
     s = splnet();
-    OSIncrementAtomic(&ni->ni_refcnt);
+    ni->ni_refcnt++;
     splx(s);
 }
 
@@ -436,8 +438,7 @@ ieee80211_node_decref(struct ieee80211_node *ni)
     int         s;
 
     s = splnet();
-    OSDecrementAtomic(&ni->ni_refcnt);
-    refcnt = ni->ni_refcnt;
+    refcnt = --ni->ni_refcnt;
     splx(s);
     return refcnt;
 }

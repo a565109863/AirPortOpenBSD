@@ -39,6 +39,7 @@
 #define MLEN                mbuf_get_mlen()
 #define MHLEN               mbuf_get_mhlen()
 #define M_EXT               MBUF_EXT
+#define M_MCAST             MBUF_MCAST
 
 #define m_adj               mbuf_adj
 #define m_align             mbuf_align_32

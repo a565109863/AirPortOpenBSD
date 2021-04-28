@@ -591,6 +591,8 @@ IOReturn AirPortOpenBSD::setPOWER(IOInterface *interface,
     if (pd->num_radios > 0) {
         _ifp->if_power_state = pd->power_state[0];
     }
+    
+    ret = this->changePowerState(interface, _ifp->if_power_state);
 
     return ret;
 }

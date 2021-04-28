@@ -129,6 +129,13 @@ static time_t getuptime()
     return (f / 1000000);
 }
 
+static inline void
+USEC_TO_TIMEVAL(uint64_t us, struct timeval *tv)
+{
+    tv->tv_sec = us / 1000000;
+    tv->tv_usec = us % 1000000;
+}
+
 /*
  * ppsratecheck(): packets (or events) per second limitation.
  */

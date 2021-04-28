@@ -1,4 +1,4 @@
-/*    $OpenBSD: if_iwi.c,v 1.144 2020/07/10 13:22:20 patrick Exp $    */
+/*    $OpenBSD: if_iwi.c,v 1.145 2021/04/15 18:32:19 stsp Exp $    */
 
 /*-
  * Copyright (c) 2004-2008
@@ -157,7 +157,7 @@ iwi_attach(struct device *parent, struct device *self, void *aux)
     struct iwi_softc *sc = (struct iwi_softc *)self;
     struct ieee80211com *ic = &sc->sc_ic;
     struct ifnet *ifp = &ic->ic_if;
-    struct pci_attach_args *pa = (struct pci_attach_args *)aux;
+    struct pci_attach_args *pa = (typeof pa)aux;
     const char *intrstr;
     bus_space_tag_t memt;
     bus_space_handle_t memh;
@@ -362,7 +362,7 @@ iwi_wakeup(struct iwi_softc *sc)
 void
 iwi_init_task(void *arg1)
 {
-    struct iwi_softc *sc = (struct iwi_softc *)arg1;
+    struct iwi_softc *sc = (typeof sc)arg1;
     struct ifnet *ifp = &sc->sc_ic.ic_if;
     int s;
 
@@ -655,7 +655,7 @@ iwi_media_change(struct ifnet *ifp)
 void
 iwi_media_status(struct ifnet *ifp, struct ifmediareq *imr)
 {
-    struct iwi_softc *sc = (struct iwi_softc *)ifp->if_softc;
+    struct iwi_softc *sc = (typeof sc)ifp->if_softc;
     struct ieee80211com *ic = &sc->sc_ic;
     uint32_t val;
     int rate;
@@ -724,9 +724,13 @@ iwi_find_txnode(struct iwi_softc *sc, const uint8_t *macaddr)
 int
 iwi_newstate(struct ieee80211com *ic, enum ieee80211_state nstate, int arg)
 {
-    struct iwi_softc *sc = (struct iwi_softc *)ic->ic_softc;
+    struct iwi_softc *sc = (typeof sc)ic->ic_softc;
+    struct ifnet *ifp = &ic->ic_if;
     enum ieee80211_state ostate;
     uint32_t tmp;
+
+    if (LINK_STATE_IS_UP(ifp->if_link_state))
+        ieee80211_set_link_state(ic, LINK_STATE_DOWN);
 
     ostate = ic->ic_state;
 
@@ -736,7 +740,10 @@ iwi_newstate(struct ieee80211com *ic, enum ieee80211_state nstate, int arg)
         break;
 
     case IEEE80211_S_AUTH:
-        iwi_auth_and_assoc(sc);
+        if (iwi_auth_and_assoc(sc)) {
+            ieee80211_begin_scan(&ic->ic_if);
+            return 0;
+        }
         break;
 
     case IEEE80211_S_RUN:
@@ -752,6 +759,14 @@ iwi_newstate(struct ieee80211com *ic, enum ieee80211_state nstate, int arg)
         /* assoc led on */
         tmp = MEM_READ_4(sc, IWI_MEM_EVENT_CTL) & IWI_LED_MASK;
         MEM_WRITE_4(sc, IWI_MEM_EVENT_CTL, tmp | IWI_LED_ASSOC);
+
+        if (!(ic->ic_flags & IEEE80211_F_RSNON)) {
+            /*
+             * NB: When RSN is enabled, we defer setting
+             * the link up until the port is valid.
+             */
+            ieee80211_set_link_state(ic, LINK_STATE_UP);
+        }
         break;
 
     case IEEE80211_S_INIT:
@@ -1141,7 +1156,7 @@ iwi_tx_intr(struct iwi_softc *sc, struct iwi_tx_ring *txq)
 int
 iwi_intr(void *arg)
 {
-    struct iwi_softc *sc = (struct iwi_softc *)arg;
+    struct iwi_softc *sc = (typeof sc)arg;
     struct ifnet *ifp = &sc->sc_ic.ic_if;
     uint32_t r;
 
@@ -1241,7 +1256,7 @@ iwi_send_mgmt(struct ieee80211com *ic, struct ieee80211_node *ni, int type,
 int
 iwi_tx_start(struct ifnet *ifp, mbuf_t m0, struct ieee80211_node *ni)
 {
-    struct iwi_softc *sc = (struct iwi_softc *)ifp->if_softc;
+    struct iwi_softc *sc = (typeof sc)ifp->if_softc;
     struct ieee80211com *ic = &sc->sc_ic;
     struct ieee80211_frame *wh;
     struct ieee80211_key *k;
@@ -1369,7 +1384,7 @@ iwi_tx_start(struct ifnet *ifp, mbuf_t m0, struct ieee80211_node *ni)
 void
 iwi_start(struct ifnet *ifp)
 {
-    struct iwi_softc *sc = (struct iwi_softc *)ifp->if_softc;
+    struct iwi_softc *sc = (typeof sc)ifp->if_softc;
     struct ieee80211com *ic = &sc->sc_ic;
     mbuf_t m0;
     struct ieee80211_node *ni;
@@ -1417,7 +1432,7 @@ iwi_start(struct ifnet *ifp)
 void
 iwi_watchdog(struct ifnet *ifp)
 {
-    struct iwi_softc *sc = (struct iwi_softc *)ifp->if_softc;
+    struct iwi_softc *sc = (typeof sc)ifp->if_softc;
 
     ifp->if_timer = 0;
 
@@ -1437,7 +1452,7 @@ iwi_watchdog(struct ifnet *ifp)
 int
 iwi_ioctl(struct ifnet *ifp, u_long cmd, caddr_t data)
 {
-    struct iwi_softc *sc = (struct iwi_softc *)ifp->if_softc;
+    struct iwi_softc *sc = (typeof sc)ifp->if_softc;
     int s, error = 0;
 
     error = rw_enter(&sc->sc_rwlock, RW_WRITE | RW_INTR);
@@ -1678,7 +1693,7 @@ iwi_load_firmware(struct iwi_softc *sc, const char *data, int size)
      * using information stored in command blocks.
      */
     src = map->dm_segs[0].ds_addr;
-    p = (u_char *)virtaddr;
+    p = (typeof p)virtaddr;
     end = p + size;
     CSR_WRITE_4(sc, IWI_CSR_AUTOINC_ADDR, 0x27000);
 
@@ -1901,7 +1916,7 @@ iwi_update_edca(struct ieee80211com *ic)
 {
 #define IWI_EXP2(v)    htole16((1 << (v)) - 1)
 #define IWI_TXOP(v)    IEEE80211_TXOP_TO_US(v)
-    struct iwi_softc *sc = (struct iwi_softc *)ic->ic_softc;
+    struct iwi_softc *sc = (typeof sc)ic->ic_softc;
     struct iwi_qos_cmd cmd;
     struct iwi_qos_params *qos;
     struct ieee80211_edca_ac_params *edca = ic->ic_edca_ac;
@@ -2144,7 +2159,7 @@ iwi_auth_and_assoc(struct iwi_softc *sc)
 int
 iwi_init(struct ifnet *ifp)
 {
-    struct iwi_softc *sc = (struct iwi_softc *)ifp->if_softc;
+    struct iwi_softc *sc = (typeof sc)ifp->if_softc;
     struct ieee80211com *ic = &sc->sc_ic;
     struct iwi_firmware_hdr *hdr;
     const char *name, *fw;
@@ -2278,7 +2293,7 @@ fail1:    iwi_stop(ifp, 0);
 void
 iwi_stop(struct ifnet *ifp, int disable)
 {
-    struct iwi_softc *sc = (struct iwi_softc *)ifp->if_softc;
+    struct iwi_softc *sc = (typeof sc)ifp->if_softc;
     struct ieee80211com *ic = &sc->sc_ic;
     int ac;
 

@@ -520,6 +520,12 @@ IOReturn AirPortOpenBSD::changePowerState(IOInterface *interface, int powerState
 {
     IOReturn ret = kIOReturnSuccess;
     
+    if (powerState == powerStateOrdinal) {
+        return ret;
+    }
+    
+    powerState = powerStateOrdinal;
+    
     switch (powerStateOrdinal) {
         case APPLE_POWER_ON:
             DPRINTF(("Setting power on\n"));
@@ -556,8 +562,6 @@ IOReturn AirPortOpenBSD::changePowerState(IOInterface *interface, int powerState
             ret = kIOReturnError;
             break;
     };
-
-    powerState = powerStateOrdinal;
     
     return ret;
 }

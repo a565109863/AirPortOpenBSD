@@ -1,4 +1,4 @@
-/*    $OpenBSD: ieee80211_proto.c,v 1.99 2020/11/19 20:03:33 krw Exp $    */
+/*    $OpenBSD: ieee80211_proto.c,v 1.102 2021/04/25 15:32:21 stsp Exp $    */
 /*    $NetBSD: ieee80211_proto.c,v 1.8 2004/04/30 23:58:20 dyoung Exp $    */
 
 /*-
@@ -83,7 +83,7 @@ int ieee80211_newstate(struct ieee80211com *, enum ieee80211_state, int);
 void
 ieee80211_proto_attach(struct ifnet *ifp)
 {
-    struct ieee80211com *ic = (struct ieee80211com *)ifp;
+    struct ieee80211com *ic = (typeof ic)ifp;
 
     mq_init(&ic->ic_mgtq, IFQ_MAXLEN, IPL_NET);
     mq_init(&ic->ic_pwrsaveq, IFQ_MAXLEN, IPL_NET);
@@ -107,7 +107,7 @@ ieee80211_proto_attach(struct ifnet *ifp)
 void
 ieee80211_proto_detach(struct ifnet *ifp)
 {
-    struct ieee80211com *ic = (struct ieee80211com *)ifp;
+    struct ieee80211com *ic = (typeof ic)ifp;
 
     mq_purge(&ic->ic_mgtq);
     mq_purge(&ic->ic_pwrsaveq);
@@ -412,7 +412,7 @@ ieee80211_keyrun(struct ieee80211com *ic, u_int8_t *macaddr)
 static void
 ieee80211_node_gtk_rekey(void *arg, struct ieee80211_node *ni)
 {
-    struct ieee80211com *ic = (struct ieee80211com *)arg;
+    struct ieee80211com *ic = (typeof ic)arg;
 
     if (ni->ni_state != IEEE80211_STA_ASSOC ||
         ni->ni_rsn_gstate != RSNA_IDLE)
@@ -508,7 +508,7 @@ ieee80211_setkeysdone(struct ieee80211com *ic)
 void
 ieee80211_gtk_rekey_timeout(void *arg)
 {
-    struct ieee80211com *ic = (struct ieee80211com *)arg;
+    struct ieee80211com *ic = (typeof ic)arg;
     int s;
 
     s = splnet();
@@ -522,7 +522,7 @@ ieee80211_gtk_rekey_timeout(void *arg)
 void
 ieee80211_sa_query_timeout(void *arg)
 {
-    struct ieee80211_node *ni = (struct ieee80211_node *)arg;
+    struct ieee80211_node *ni = (typeof ni)arg;
     struct ieee80211com *ic = ni->ni_ic;
     int s;
 
@@ -619,7 +619,7 @@ ieee80211_ht_negotiate(struct ieee80211com *ic, struct ieee80211_node *ni)
 void
 ieee80211_tx_ba_timeout(void *arg)
 {
-    struct ieee80211_tx_ba *ba = (struct ieee80211_tx_ba *)arg;
+    struct ieee80211_tx_ba *ba = (typeof ba)arg;
     struct ieee80211_node *ni = ba->ba_ni;
     struct ieee80211com *ic = ni->ni_ic;
     u_int8_t tid;
@@ -652,7 +652,7 @@ ieee80211_tx_ba_timeout(void *arg)
 void
 ieee80211_rx_ba_timeout(void *arg)
 {
-    struct ieee80211_rx_ba *ba = (struct ieee80211_rx_ba *)arg;
+    struct ieee80211_rx_ba *ba = (typeof ba)arg;
     struct ieee80211_node *ni = ba->ba_ni;
     struct ieee80211com *ic = ni->ni_ic;
     u_int8_t tid;
@@ -695,10 +695,7 @@ ieee80211_addba_request(struct ieee80211com *ic, struct ieee80211_node *ni,
     ba->ba_params =
         (ba->ba_winsize << IEEE80211_ADDBA_BUFSZ_SHIFT) |
         (tid << IEEE80211_ADDBA_TID_SHIFT);
-#if 0
-    /* iwm(4) 9k and iwx(4) need more work before AMSDU can be enabled. */
     ba->ba_params |= IEEE80211_ADDBA_AMSDU;
-#endif
     if ((ic->ic_htcaps & IEEE80211_HTCAP_DELAYEDBA) == 0)
         /* immediate BA */
         ba->ba_params |= IEEE80211_ADDBA_BA_POLICY;
