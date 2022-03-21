@@ -14,7 +14,9 @@ typedef unsigned int ifnet_ctl_cmd_t;
 #include "iwlwifi.h"
 #include "firmware/firmware.h"
 
-#include "help_ifconfig.h"
+extern struct ifnet *_ifp;
+
+#include "ifconfig.h"
 
 
 enum {
@@ -202,7 +204,7 @@ private:
     
 public:
     
-    int chanspec2applechannel(int flags);
+    int chanspec2applechannel(int ic_flags);
     struct ieee80211_nodereq* findScanResult(apple80211_assoc_data* ad);
     IOReturn scanConvertResult(struct ieee80211_nodereq *nr, struct apple80211_scan_result* oneResult);
     

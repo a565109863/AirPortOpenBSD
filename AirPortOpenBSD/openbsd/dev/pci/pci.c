@@ -188,7 +188,7 @@ int pci_intr_vec_count(struct pci_attach_args *pa, int vec)
     pa->dev.ih_count = 0;
     for (int i = 0; i < PCI_MSIX_QUEUES; i++) {
         int interruptType;
-        IOReturn ret = pa->dev.dev->fPciDevice->getInterruptType(i, &interruptType);
+        IOReturn ret = pa->pa_tag->getInterruptType(i, &interruptType);
         if (ret != kIOReturnSuccess)
             break;
         
@@ -196,7 +196,7 @@ int pci_intr_vec_count(struct pci_attach_args *pa, int vec)
         {
             pci_intr_handle *ihp = new pci_intr_handle();
             ihp->ih = i;
-            ihp->dev = pa->dev.dev->fPciDevice;  // pci device reference
+            ihp->dev = pa->pa_tag;  // pci device reference
             ihp->workloop = pa->dev.dev->fWorkloop;
             pa->dev.ih[pa->dev.ih_count++] = ihp;
             if (vec == 1)

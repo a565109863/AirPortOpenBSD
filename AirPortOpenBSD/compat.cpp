@@ -52,6 +52,7 @@ int ticks = INT_MAX - (15 * 60 * 1000);
 int loadfirmware(const char *name, u_char **bufp, size_t *buflen)
 {
     snprintf(_ifp->fwname, sizeof(_ifp->fwname), "%s", name);
+    snprintf(_ifp->fwver, sizeof(_ifp->fwver), "%s", name);
     
     struct device *dev = (struct device *)_ifp->if_softc;
     return dev->dev->loadfirmware(name, bufp, buflen);

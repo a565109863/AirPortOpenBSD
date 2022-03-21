@@ -72,7 +72,7 @@ struct bwi_pci_softc {
 	bus_size_t		 psc_mapsize;
 };
 
-struct cfattach bwi_pci_ca = {
+const struct cfattach bwi_pci_ca = {
 	sizeof(struct bwi_pci_softc), bwi_pci_match, bwi_pci_attach,
 	bwi_pci_detach, bwi_pci_activate
 };

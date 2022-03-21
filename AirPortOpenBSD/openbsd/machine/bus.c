@@ -52,8 +52,11 @@ void bus_dmamap_destroy(bus_dma_tag_t t, bus_dmamap_t map)
     }
     
     free(map, M_DEVBUF, sizeof(struct bus_dmamap));
-    map = NULL;
-    t->map = NULL;
+    if (t->map)
+        free(t->map, M_DEVBUF, sizeof(struct bus_dmamap));
+
+//    map = NULL;
+//    t->map = NULL;
 }
 
 int  bus_dmamem_alloc(bus_dma_tag_t t, bus_size_t size, bus_size_t alignment,
@@ -97,10 +100,10 @@ void bus_dmamem_free(bus_dma_tag_t t, bus_dma_segment_t *segs, int nsegs)
     t->map->bufDes->release();
     t->map->bufDes = NULL;
     
-    segs->ds_addr = NULL;
-    segs->ds_len = 0;
-    
-    bzero((void *)segs, sizeof(bus_dma_segment_t));
+//    segs->ds_addr = NULL;
+//    segs->ds_len = 0;
+//
+//    bzero((void *)segs, sizeof(bus_dma_segment_t));
 }
 
 int bus_dmamem_map(bus_dma_tag_t t, bus_dma_segment_t *segs, int nsegs,

@@ -23,6 +23,18 @@ static void* mallocarray(vm_size_t n, vm_size_t len, int type, int how) {
     return malloc(n * len, type, how);
 }
 
+static inline void *
+kcalloc(size_t n, size_t size, int flags)
+{
+//    if (n != 0 && SIZE_MAX / n < size)
+//        return NULL;
+    return malloc(n * size, M_DEVBUF, flags | M_ZERO);
+}
+
+#define calloc(n, size) kcalloc(n, size, M_ZERO)
+
+void *recallocarray(void *ptr, size_t oldnmemb, size_t newnmemb, size_t size);
+
 void free(void* addr, int type, vm_size_t len);
 
 #define km_alloc(s, kv, kp, kd) malloc(s, M_DEVBUF, M_WAIT)

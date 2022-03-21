@@ -20,6 +20,7 @@
 #include <netinet/_if.h>
 #include <netinet/_bpf.h>
 
+#define        ETHERTYPE_EAPOL ETHERTYPE_PAE
 
 /*
  * Values for if_link_state.
@@ -50,7 +51,7 @@
 
 
 struct refcnt {
-    unsigned int refs;
+    unsigned int r_refs;
 };
 
 struct srp {
@@ -265,6 +266,14 @@ ifq_restart(struct mbuf_queue *ifq)
 
 
 #define    ETHER_IS_MULTICAST(addr) (*(addr) & 0x01) /* is address mcast/bcast? */
+#define    ETHER_IS_BROADCAST(addr) \
+    (((addr)[0] & (addr)[1] & (addr)[2] & \
+      (addr)[3] & (addr)[4] & (addr)[5]) == 0xff)
+#define    ETHER_IS_ANYADDR(addr)        \
+    (((addr)[0] | (addr)[1] | (addr)[2] | \
+      (addr)[3] | (addr)[4] | (addr)[5]) == 0x00)
+#define    ETHER_IS_EQ(a1, a2)    (memcmp((a1), (a2), ETHER_ADDR_LEN) == 0)
+
 
 
 /* default interface priorities */

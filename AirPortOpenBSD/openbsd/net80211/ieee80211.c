@@ -1,4 +1,4 @@
-/*    $OpenBSD: ieee80211.c,v 1.84 2020/06/08 09:09:58 stsp Exp $    */
+/*    $OpenBSD: ieee80211.c,v 1.88 2022/03/19 10:25:09 stsp Exp $    */
 /*    $NetBSD: ieee80211.c,v 1.19 2004/06/06 05:45:29 dyoung Exp $    */
 
 /*-
@@ -72,7 +72,7 @@ void ieee80211_configure_ampdu_tx(struct ieee80211com *, int);
 void
 ieee80211_begin_bgscan(struct ifnet *ifp)
 {
-    struct ieee80211com *ic = (struct ieee80211com *)ifp;
+    struct ieee80211com *ic = (typeof ic)ifp;
 
     if ((ic->ic_flags & IEEE80211_F_BGSCAN) ||
         ic->ic_state != IEEE80211_S_RUN || ic->ic_mgt_timer != 0)
@@ -102,7 +102,7 @@ ieee80211_begin_bgscan(struct ifnet *ifp)
 void
 ieee80211_bgscan_timeout(void *arg)
 {
-    struct ifnet *ifp = (struct ifnet *)arg;
+    struct ifnet *ifp = (typeof ifp)arg;
 
     ieee80211_begin_bgscan(ifp);
 }
@@ -110,7 +110,7 @@ ieee80211_bgscan_timeout(void *arg)
 void
 ieee80211_channel_init(struct ifnet *ifp)
 {
-    struct ieee80211com *ic = (struct ieee80211com *)ifp;
+    struct ieee80211com *ic = (typeof ic)ifp;
     struct ieee80211_channel *c;
     int i;
 
@@ -160,7 +160,7 @@ ieee80211_channel_init(struct ifnet *ifp)
 void
 ieee80211_ifattach(struct ifnet *ifp)
 {
-    struct ieee80211com *ic = (struct ieee80211com *)ifp;
+    struct ieee80211com *ic = (typeof ic)ifp;
 
     memcpy(((struct arpcom *)ifp)->ac_enaddr, ic->ic_myaddr,
         ETHER_ADDR_LEN);
@@ -194,6 +194,7 @@ ieee80211_ifattach(struct ifnet *ifp)
 //    if_addgroup(ifp, "wlan");
     ifp->if_priority = IF_WIRELESS_DEFAULT_PRIORITY;
 
+    task_set(&ic->ic_rtm_80211info_task, ieee80211_rtm_80211info_task, ic);
     ieee80211_set_link_state(ic, LINK_STATE_DOWN);
 
     timeout_set(&ic->ic_bgscan_timeout, ieee80211_bgscan_timeout, ifp);
@@ -202,8 +203,9 @@ ieee80211_ifattach(struct ifnet *ifp)
 void
 ieee80211_ifdetach(struct ifnet *ifp)
 {
-    struct ieee80211com *ic = (struct ieee80211com *)ifp;
+    struct ieee80211com *ic = (typeof ic)ifp;
 
+    task_del(systq, &ic->ic_rtm_80211info_task);
     timeout_del(&ic->ic_bgscan_timeout);
 
     /*
@@ -259,7 +261,6 @@ ieee80211_chan2ieee(struct ieee80211com *ic, const struct ieee80211_channel *c)
         return IEEE80211_CHAN_ANY;
 
     panic("%s: bogus channel pointer", ifp->if_xname);
-    return NULL;
 }
 
 /*
@@ -316,7 +317,7 @@ ieee80211_media_init(struct ifnet *ifp,
 #define    ADD(_ic, _s, _o) \
     ifmedia_add(&(_ic)->ic_media, \
         IFM_MAKEWORD(IFM_IEEE80211, (_s), (_o), 0), 0, NULL)
-    struct ieee80211com *ic = (struct ieee80211com *)ifp;
+    struct ieee80211com *ic = (typeof ic)ifp;
     struct ifmediareq imr;
     int i, j, mode, rate, maxrate, r;
     uint64_t mword, mopt;
@@ -472,11 +473,10 @@ ieee80211_media_init(struct ifnet *ifp,
                 ADD(ic, IFM_IEEE80211_VHT_MCS0 + i,
                     mopt | IFM_IEEE80211_MONITOR);
         }
-#if 0
         ic->ic_flags |= IEEE80211_F_VHTON; /* enable 11ac by default */
+        ic->ic_flags |= IEEE80211_F_HTON; /* 11ac implies 11n */
         if (ic->ic_caps & IEEE80211_C_QOS)
             ic->ic_flags |= IEEE80211_F_QOS;
-#endif
     }
 
     ieee80211_media_status(ifp, &imr);
@@ -508,7 +508,7 @@ ieee80211_findrate(struct ieee80211com *ic, enum ieee80211_phymode mode,
 int
 ieee80211_media_change(struct ifnet *ifp)
 {
-    struct ieee80211com *ic = (struct ieee80211com *)ifp;
+    struct ieee80211com *ic = (typeof ic)ifp;
     struct ifmedia_entry *ime;
     enum ieee80211_opmode newopmode;
     enum ieee80211_phymode newphymode;
@@ -593,7 +593,7 @@ ieee80211_media_change(struct ifnet *ifp)
                 i = ieee80211_findrate(ic, (enum ieee80211_phymode)j, newrate);
                 if (i != -1) {
                     /* lock mode too */
-                    newphymode = (enum ieee80211_phymode)j;
+                    newphymode = (typeof newphymode)j;
                     break;
                 }
             }
@@ -663,6 +663,7 @@ ieee80211_media_change(struct ifnet *ifp)
         (newphymode == IEEE80211_MODE_AUTO ||
         newphymode == IEEE80211_MODE_11AC)) {
         ic->ic_flags |= IEEE80211_F_VHTON;
+        ic->ic_flags |= IEEE80211_F_HTON;
         ieee80211_configure_ampdu_tx(ic, 1);
     } else if ((ic->ic_modecaps & (1 << IEEE80211_MODE_11N)) &&
         (newphymode == IEEE80211_MODE_AUTO ||
@@ -720,7 +721,7 @@ ieee80211_media_change(struct ifnet *ifp)
 void
 ieee80211_media_status(struct ifnet *ifp, struct ifmediareq *imr)
 {
-    struct ieee80211com *ic = (struct ieee80211com *)ifp;
+    struct ieee80211com *ic = (typeof ic)ifp;
     const struct ieee80211_node *ni = NULL;
 
     imr->ifm_status = IFM_AVALID;
@@ -789,7 +790,7 @@ ieee80211_media_status(struct ifnet *ifp, struct ifmediareq *imr)
 void
 ieee80211_watchdog(struct ifnet *ifp)
 {
-    struct ieee80211com *ic = (struct ieee80211com *)ifp;
+    struct ieee80211com *ic = (typeof ic)ifp;
 
     if (ic->ic_mgt_timer && --ic->ic_mgt_timer == 0) {
         if (ic->ic_opmode == IEEE80211_M_STA &&
@@ -826,66 +827,118 @@ const struct ieee80211_rateset ieee80211_std_rateset_11g =
 
 const struct ieee80211_ht_rateset ieee80211_std_ratesets_11n[] = {
     /* MCS 0-7, 20MHz channel, no SGI */
-    { 8, { 13, 26, 39, 52, 78, 104, 117, 130 }, 0x000000ff, 0, 7, 0},
+    { 8, { 13, 26, 39, 52, 78, 104, 117, 130 },
+        0x000000ff, 0, 7, 0, 0},
 
     /* MCS 0-7, 20MHz channel, SGI */
-    { 8, { 14, 29, 43, 58, 87, 116, 130, 144 }, 0x000000ff, 0, 7, 1 },
+    { 8, { 14, 29, 43, 58, 87, 116, 130, 144 },
+        0x000000ff, 0, 7, 0, 1 },
 
     /* MCS 8-15, 20MHz channel, no SGI */
-    { 8, { 26, 52, 78, 104, 156, 208, 234, 260 }, 0x0000ff00, 8, 15, 0 },
+    { 8, { 26, 52, 78, 104, 156, 208, 234, 260 },
+        0x0000ff00, 8, 15, 0, 0 },
 
     /* MCS 8-15, 20MHz channel, SGI */
-    { 8, { 29, 58, 87, 116, 173, 231, 261, 289 }, 0x0000ff00, 8, 15, 1 },
+    { 8, { 29, 58, 87, 116, 173, 231, 261, 289 },
+        0x0000ff00, 8, 15, 0, 1 },
 
     /* MCS 16-23, 20MHz channel, no SGI */
-    { 8, { 39, 78, 117, 156, 234, 312, 351, 390 }, 0x00ff0000, 16, 23, 0 },
+    { 8, { 39, 78, 117, 156, 234, 312, 351, 390 },
+        0x00ff0000, 16, 23, 0, 0 },
 
     /* MCS 16-23, 20MHz channel, SGI */
-    { 8, { 43, 87, 130, 173, 260, 347, 390, 433 }, 0x00ff0000, 16, 23, 1 },
+    { 8, { 43, 87, 130, 173, 260, 347, 390, 433 },
+        0x00ff0000, 16, 23, 0, 1 },
 
     /* MCS 24-31, 20MHz channel, no SGI */
-    { 8, { 52, 104, 156, 208, 312, 416, 468, 520 }, 0xff000000, 24, 31, 0 },
+    { 8, { 52, 104, 156, 208, 312, 416, 468, 520 },
+        0xff000000, 24, 31, 0, 0 },
 
     /* MCS 24-31, 20MHz channel, SGI */
-    { 8, { 58, 116, 173, 231, 347, 462, 520, 578 }, 0xff000000, 24, 31, 1 },
+    { 8, { 58, 116, 173, 231, 347, 462, 520, 578 },
+        0xff000000, 24, 31, 0, 1 },
+
+    /* MCS 0-7, 40MHz channel, no SGI */
+    { 8, { 27, 54, 81, 108, 162, 216, 243, 270 },
+        0x000000ff, 0, 7, 1, 0 },
+
+    /* MCS 0-7, 40MHz channel, SGI */
+    { 8, { 30, 60, 90, 120, 180, 240, 270, 300 },
+        0x000000ff, 0, 7, 1, 1 },
+
+    /* MCS 8-15, 40MHz channel, no SGI */
+    { 8, { 54, 108, 192, 216, 324, 432, 486, 540 },
+        0x0000ff00, 8, 15, 1, 0 },
+
+    /* MCS 8-15, 40MHz channel, SGI */
+    { 8, { 60, 120, 180, 240, 360, 480, 540, 600 },
+        0x0000ff00, 8, 15, 1, 1 },
+
+    /* MCS 16-23, 40MHz channel, no SGI */
+    { 8, { 81, 162, 243, 324, 486, 648, 729, 810 },
+        0x00ff0000, 16, 23, 1, 0 },
+
+    /* MCS 16-23, 40MHz channel, SGI */
+    { 8, { 90, 180, 270, 360, 540, 720, 810, 900 },
+        0x00ff0000, 16, 23, 1, 1 },
+
+    /* MCS 24-31, 40MHz channel, no SGI */
+    { 8, { 108, 216, 324, 432, 324, 864, 972, 1080 },
+        0xff000000, 24, 31, 1, 0 },
+
+    /* MCS 24-31, 40MHz channel, SGI */
+    { 8, { 120, 240, 360, 480, 520, 960, 1080, 1200 },
+        0xff000000, 24, 31, 1, 1 },
 };
 
 const struct ieee80211_vht_rateset ieee80211_std_ratesets_11ac[] = {
     /* MCS 0-8 (MCS 9 N/A), 1 SS, 20MHz channel, no SGI */
-    { 9, { 13, 26, 39, 52, 78, 104, 117, 130, 156 }, 1, 0 },
+    { 0, 9, { 13, 26, 39, 52, 78, 104, 117, 130, 156 },
+        1, 0, 0, 0 },
 
     /* MCS 0-8 (MCS 9 N/A), 1 SS, 20MHz channel, SGI */
-    { 9, { 14, 29, 43, 58, 87, 116, 130, 144, 174 }, 1, 1 },
+    { 1, 9, { 14, 29, 43, 58, 87, 116, 130, 144, 174 },
+        1, 0, 0, 1 },
 
     /* MCS 0-8 (MCS 9 N/A), 2 SS, 20MHz channel, no SGI */
-    { 9, { 26, 52, 78, 104, 156, 208, 234, 260, 312 }, 2, 0 },
+    { 2, 9, { 26, 52, 78, 104, 156, 208, 234, 260, 312 },
+        2, 0, 0, 0 },
 
     /* MCS 0-8 (MCS 9 N/A), 2 SS, 20MHz channel, SGI */
-    { 9, { 29, 58, 87, 116, 173, 231, 261, 289, 347 }, 2, 1 },
+    { 3, 9, { 29, 58, 87, 116, 173, 231, 261, 289, 347 },
+        2, 0, 0, 1 },
 
     /* MCS 0-9, 1 SS, 40MHz channel, no SGI */
-    { 10, { 27, 54, 81, 108, 162, 216, 243, 270, 324, 360 }, 1, 0 },
+    { 4, 10, { 27, 54, 81, 108, 162, 216, 243, 270, 324, 360 },
+        1, 1, 0, 0 },
 
     /* MCS 0-9, 1 SS, 40MHz channel, SGI */
-    { 10, { 30, 60, 90, 120, 180, 240, 270, 300, 360, 400 }, 1, 1 },
+    { 5, 10, { 30, 60, 90, 120, 180, 240, 270, 300, 360, 400 },
+        1, 1, 0, 1 },
 
     /* MCS 0-9, 2 SS, 40MHz channel, no SGI */
-    { 10, { 54, 108, 162, 216, 324, 432, 486, 540, 648, 720 }, 2, 0 },
+    { 6, 10, { 54, 108, 162, 216, 324, 432, 486, 540, 648, 720 },
+        2, 1, 0, 0 },
 
     /* MCS 0-9, 2 SS, 40MHz channel, SGI */
-    { 10, { 60, 120, 180, 240, 360, 480, 540, 600, 720, 800 }, 2, 1 },
+    { 7, 10, { 60, 120, 180, 240, 360, 480, 540, 600, 720, 800 },
+        2, 1, 0, 1 },
 
     /* MCS 0-9, 1 SS, 80MHz channel, no SGI */
-    { 10, { 59, 117, 176, 234, 351, 468, 527, 585, 702, 780 }, 1, 0 },
+    { 8, 10, { 59, 117, 176, 234, 351, 468, 527, 585, 702, 780 },
+        1, 0, 1, 0 },
 
     /* MCS 0-9, 1 SS, 80MHz channel, SGI */
-    { 10, { 65, 130, 195, 260, 390, 520, 585, 650, 780, 867 }, 1, 1 },
+    { 9, 10, { 65, 130, 195, 260, 390, 520, 585, 650, 780, 867 },
+        1, 0, 1, 1 },
 
     /* MCS 0-9, 2 SS, 80MHz channel, no SGI */
-    { 10, { 117, 234, 351, 468, 702, 936, 1053, 1404, 1560 }, 2, 0 },
+    { 10, 10, { 117, 234, 351, 468, 702, 936, 1053, 1404, 1560 },
+        2, 0, 1, 0 },
 
     /* MCS 0-9, 2 SS, 80MHz channel, SGI */
-    { 10, { 130, 260, 390, 520, 780, 1040, 1170, 1300, 1560, 1734 }, 2, 1 },
+    { 11, 10, { 130, 260, 390, 520, 780, 1040, 1170, 1300, 1560, 1734 },
+        2, 0, 1, 1 },
 };
 
 /*
@@ -1066,7 +1119,7 @@ ieee80211_setmode(struct ieee80211com *ic, enum ieee80211_phymode mode)
 enum ieee80211_phymode
 ieee80211_next_mode(struct ifnet *ifp)
 {
-    struct ieee80211com *ic = (struct ieee80211com *)ifp;
+    struct ieee80211com *ic = (typeof ic)ifp;
     uint16_t mode;
 
     /*

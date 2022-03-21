@@ -1,4 +1,12 @@
 
+v2.0.9
+1、移除itlwm
+2、代码优化，提高稳定性
+3、更新iwx、iwm、ieee80211等，iwx、iwm支持AC模式
+
+v2.0.8
+1、迁移itlwm，支持AC模式
+
 v2.0.7
 1、更新2021/01/17版openbsd的iwx等驱动
 2、优化wifi列表
@@ -8,6 +16,13 @@ v2.0.7
 6、更新2021/03/25版openbsd的iwx、ieee80211等驱动
 7、更新2021/04/25版openbsd的iwm、iwx、ieee80211等驱动
 8、修复关闭wifi
+9、更新2021/05/05版openbsd的驱动
+10、更新2021/05/06版openbsd的驱动
+11、更新2021/05/10版openbsd的驱动
+12、更新openbsd的驱动ing
+13、更新iwm最新固件
+14、修复ampdu问题
+15、更新iwx最新固件
 
 
 v2.0.6

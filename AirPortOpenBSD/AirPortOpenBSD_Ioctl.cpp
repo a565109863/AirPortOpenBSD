@@ -318,7 +318,7 @@ IOReturn AirPortOpenBSD::setSCAN_REQ_MULTIPLE(IOInterface *interface, struct app
 IOReturn AirPortOpenBSD::getSCAN_RESULT(IOInterface *interface, struct apple80211_scan_result **sr)
 {
     if (scanResults->getCount() == 0) {
-        this->scanIndex = 0;
+        this->scanFreeResults();
         this->scanFlag = false;
         return 0x0C;
     }
@@ -338,8 +338,8 @@ IOReturn AirPortOpenBSD::getSCAN_RESULT(IOInterface *interface, struct apple8021
         *sr = oneResult;
         return kIOReturnSuccess;
     }
-    this->scanIndex = 0;
     
+    this->scanFreeResults();
     this->scanFlag = false;
     
     return 0x05;
@@ -423,13 +423,12 @@ IOReturn AirPortOpenBSD::getPHY_MODE(IOInterface *interface,
     u_int32_t ic_modecaps= ic->ic_modecaps;
     u_int32_t phy_mode  = APPLE80211_MODE_UNKNOWN;
     
-    if (ic_modecaps & 1<<IEEE80211_MODE_AUTO)       phy_mode |= APPLE80211_MODE_AUTO;
-    if (ic_modecaps & 1<<IEEE80211_MODE_11A)        phy_mode |= APPLE80211_MODE_11A;
-    if (ic_modecaps & 1<<IEEE80211_MODE_11B)        phy_mode |= APPLE80211_MODE_11B;
-    if (ic_modecaps & 1<<IEEE80211_MODE_11G)        phy_mode |= APPLE80211_MODE_11G;
-    if (ic_modecaps & 1<<IEEE80211_MODE_11N)        phy_mode |= APPLE80211_MODE_11N;
-    if (ic_modecaps & 1<<IEEE80211_MODE_11AC)       phy_mode |= APPLE80211_MODE_11AC;
-    
+    if (ic_modecaps & (1<<IEEE80211_MODE_AUTO))       phy_mode |= APPLE80211_MODE_AUTO;
+    if (ic_modecaps & (1<<IEEE80211_MODE_11A))        phy_mode |= APPLE80211_MODE_11A;
+    if (ic_modecaps & (1<<IEEE80211_MODE_11B))        phy_mode |= APPLE80211_MODE_11B;
+    if (ic_modecaps & (1<<IEEE80211_MODE_11G))        phy_mode |= APPLE80211_MODE_11G;
+    if (ic_modecaps & (1<<IEEE80211_MODE_11N))        phy_mode |= APPLE80211_MODE_11N;
+    if (ic_modecaps & (1<<IEEE80211_MODE_11AC))       phy_mode |= APPLE80211_MODE_11AC;
     
     u_int32_t ic_curmode= ic->ic_curmode;
     u_int32_t active_phy_mode  = APPLE80211_MODE_UNKNOWN;
@@ -1053,7 +1052,13 @@ IOReturn AirPortOpenBSD::getROAM_THRESH(IOInterface* interface, struct apple8021
 IOReturn AirPortOpenBSD::setSCANCACHE_CLEAR(IOInterface *interface, struct device *dev)
 {
 //    DebugLog("--%s: line = %d", __FUNCTION__, __LINE__);
-    scanFreeResults();
+//    scanFreeResults();
+    struct ieee80211com *ic = (struct ieee80211com *)_ifp;
+    //if doing background or active scan, don't free nodes.
+    if ((ic->ic_flags & IEEE80211_F_BGSCAN) || (ic->ic_flags & IEEE80211_F_ASCAN)) {
+        return kIOReturnSuccess;
+    }
+    ieee80211_free_allnodes(ic, 0);
     return kIOReturnSuccess;
 }
 

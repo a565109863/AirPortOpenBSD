@@ -25,15 +25,15 @@ static struct cfdriverlist cdlist = {
 };
 
 
-extern struct cfattach iwm_ca;
-extern struct cfattach iwx_ca;
-extern struct cfattach iwn_ca;
-extern struct cfattach iwi_ca;
-extern struct cfattach wpi_ca;
-extern struct cfattach ipw_ca;
-extern struct cfattach bwfm_pci_ca;
-extern struct cfattach bwi_pci_ca;
-extern struct cfattach rtwn_pci_ca;
+extern const struct cfattach iwm_ca;
+extern const struct cfattach iwx_ca;
+extern const struct cfattach iwn_ca;
+extern const struct cfattach iwi_ca;
+extern const struct cfattach wpi_ca;
+extern const struct cfattach ipw_ca;
+extern const struct cfattach bwfm_pci_ca;
+extern const struct cfattach bwi_pci_ca;
+extern const struct cfattach rtwn_pci_ca;
 
 static struct cfattachlist calist = {
     {iwx_ca, iwm_ca, iwn_ca, wpi_ca, iwi_ca, ipw_ca, rtwn_pci_ca, bwfm_pci_ca, bwi_pci_ca},

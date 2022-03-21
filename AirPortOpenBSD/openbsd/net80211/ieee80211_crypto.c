@@ -1,4 +1,4 @@
-/*    $OpenBSD: ieee80211_crypto.c,v 1.77 2020/12/10 12:53:03 stsp Exp $    */
+/*    $OpenBSD: ieee80211_crypto.c,v 1.78 2021/05/11 08:46:31 stsp Exp $    */
 
 /*-
  * Copyright (c) 2008 Damien Bergamini <damien.bergamini@free.fr>
@@ -56,7 +56,7 @@ void    ieee80211_derive_pmkid(enum ieee80211_akm, const u_int8_t *,
 void
 ieee80211_crypto_attach(struct ifnet *ifp)
 {
-    struct ieee80211com *ic = (struct ieee80211com *)ifp;
+    struct ieee80211com *ic = (typeof ic)ifp;
 
     TAILQ_INIT(&ic->ic_pmksa);
     if (ic->ic_caps & IEEE80211_C_RSN) {
@@ -77,7 +77,7 @@ ieee80211_crypto_attach(struct ifnet *ifp)
 void
 ieee80211_crypto_detach(struct ifnet *ifp)
 {
-    struct ieee80211com *ic = (struct ieee80211com *)ifp;
+    struct ieee80211com *ic = (typeof ic)ifp;
     struct ieee80211_pmk *pmk;
 
     /* purge the PMKSA cache */
@@ -258,7 +258,8 @@ ieee80211_encrypt(struct ieee80211com *ic, mbuf_t m0,
     struct ieee80211_key *k)
 {
     if ((k->k_flags & IEEE80211_KEY_SWCRYPTO) == 0)
-        panic("%s: key unset for sw crypto: %d", __func__, k->k_id);
+        panic("%s: key unset for sw crypto: id=%d cipher=%d flags=0x%x",
+            __func__, k->k_id, k->k_cipher, k->k_flags);
 
     switch (k->k_cipher) {
     case IEEE80211_CIPHER_WEP40:

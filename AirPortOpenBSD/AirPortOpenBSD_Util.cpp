@@ -82,15 +82,26 @@ void AirPortOpenBSD::if_input(struct ifnet* ifp, struct mbuf_list *ml)
         this->flushInputQueue2();
 }
 
-int AirPortOpenBSD::chanspec2applechannel(int flags)
+int AirPortOpenBSD::chanspec2applechannel(int ic_flags)
 {
+    struct ieee80211_channel ni_chan = {0, ic_flags};
+    
     int ret = 0;
-    if (flags & IEEE80211_CHAN_2GHZ)    ret |= APPLE80211_C_FLAG_2GHZ;
-    if (flags & IEEE80211_CHAN_5GHZ)    ret |= APPLE80211_C_FLAG_5GHZ;
-    if (!(flags & IEEE80211_CHAN_PASSIVE))    ret |= APPLE80211_C_FLAG_ACTIVE;
-    if (flags & IEEE80211_CHAN_OFDM)    ret |= APPLE80211_C_FLAG_20MHZ; // XXX ??
-    if (flags & IEEE80211_CHAN_CCK)        ret |= APPLE80211_C_FLAG_10MHZ; // XXX ??
-    if (flags & IEEE80211_CHAN_VHT)        ret |= APPLE80211_C_FLAG_5GHZ; // XXX ??
+    
+    if (IEEE80211_IS_CHAN_2GHZ(&ni_chan)) {
+        ret |= APPLE80211_C_FLAG_2GHZ;
+    }
+    
+    if (IEEE80211_IS_CHAN_5GHZ(&ni_chan)) {
+        ret |= APPLE80211_C_FLAG_5GHZ;
+    }
+    
+    if (!(ic_flags & IEEE80211_CHAN_PASSIVE))
+        ret |= APPLE80211_C_FLAG_ACTIVE;
+    
+    if (ic_flags & IEEE80211_CHAN_40MHZ)
+        ret |= APPLE80211_C_FLAG_40MHZ;
+    
     // 0x400 0x204 0x2  0x4 0x1 0x8 0x10 0x100
     return ret;//0x400 |0x204| 0x2|  0x4| 0x1| 0x8| 0x10| 0x100 | 0x20 | 0x40 | 0x80;
 }
@@ -169,7 +180,7 @@ IOReturn AirPortOpenBSD::scanConvertResult(struct ieee80211_nodereq *nr, struct 
     bcopy(nr->nr_bssid, oneResult->asr_bssid.octet, IEEE80211_ADDR_LEN);
     oneResult->asr_nrates = nr->nr_nrates;
     for (int r = 0; r < oneResult->asr_nrates; r++)
-        oneResult->asr_rates[r] = nr->nr_rates[r];
+        oneResult->asr_rates[r] = (nr->nr_rates[r] & IEEE80211_RATE_VAL) / 2;
     oneResult->asr_ssid_len = nr->nr_nwid_len;
     bcopy(nr->nr_nwid, oneResult->asr_ssid, oneResult->asr_ssid_len);
 
@@ -195,14 +206,18 @@ void AirPortOpenBSD::scanComplete()
     na->na_size = 512 * sizeof(struct ieee80211_nodereq);
     strlcpy(na->na_ifname, "AirPortOpenBSD", strlen("AirPortOpenBSD"));
 
-    if (_ifp->if_ioctl(_ifp, SIOCG80211ALLNODES, (caddr_t)na) != 0) {
+    if (ioctl(0, SIOCG80211ALLNODES, na) != 0) {
         return;
     }
+
+    struct ieee80211com *ic = (struct ieee80211com *)_ifp;
+    if (na->na_nodes && ic->ic_state > IEEE80211_S_SCAN)
+        qsort(nr, na->na_nodes, sizeof(*nr), rssicmp);
 
     for (i = 0; i < na->na_nodes; i++) {
         struct ieee80211_nodereq *na_node = na->na_node + i;
 
-        if (strcmp((char *)na_node->nr_nwid, "") == 0)
+        if (strncmp((char *)na_node->nr_nwid, "", sizeof(na_node->nr_nwid)) == 0)
         {
             continue;
         }

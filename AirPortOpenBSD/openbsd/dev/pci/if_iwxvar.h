@@ -1,4 +1,4 @@
-/*    $OpenBSD: if_iwxvar.h,v 1.14 2021/04/25 15:32:21 stsp Exp $    */
+/*    $OpenBSD: if_iwxvar.h,v 1.31 2022/03/19 14:50:01 stsp Exp $    */
 
 /*
  * Copyright (c) 2014 genua mbh <info@genua.de>
@@ -123,11 +123,7 @@ struct iwx_tx_radiotap_header {
      (1 << IEEE80211_RADIOTAP_RATE) |                \
      (1 << IEEE80211_RADIOTAP_CHANNEL))
 
-#define IWX_UCODE_SECT_MAX 42
-#define IWX_FWDMASEGSZ (192*1024)
-#define IWX_FWDMASEGSZ_8000 (320*1024)
-/* sanity check value */
-#define IWX_FWMAXSIZE (2*1024*1024)
+#define IWX_UCODE_SECT_MAX 49
 
 /*
  * fw_status is used to determine if we've already parsed the firmware file
@@ -174,6 +170,9 @@ struct iwx_fw_info {
     struct iwx_fw_dbg_mem_seg_tlv *dbg_mem_tlv;
     size_t n_mem_tlv;
 };
+
+#define iwx_fw_sects iwx_fw_info::iwx_fw_sects
+#define iwx_fw_onesect iwx_fw_info::iwx_fw_sects::iwx_fw_onesect
 
 struct iwx_nvm_data {
     int n_hw_addrs;
@@ -233,6 +232,8 @@ struct iwx_tx_data {
     bus_addr_t    cmd_paddr;
     mbuf_t          m;
     struct iwx_node *in;
+    int flags;
+#define IWX_TXDATA_FLAG_CMD_IS_NARROW    0x01
 };
 
 struct iwx_tx_ring {
@@ -246,6 +247,7 @@ struct iwx_tx_ring {
     int            queued;
     int            cur;
     int            tail;
+    int            tid;
 };
 
 #define IWX_RX_MQ_RING_COUNT    512
@@ -278,6 +280,7 @@ struct iwx_rx_ring {
 #define IWX_FLAG_HW_ERR        0x80    /* hardware error occurred */
 #define IWX_FLAG_SHUTDOWN    0x100    /* shutting down; new tasks forbidden */
 #define IWX_FLAG_BGSCAN        0x200    /* background scan in progress */
+#define IWX_FLAG_TXFLUSH    0x400    /* Tx queue flushing in progress */
 
 struct iwx_ucode_status {
     uint32_t uc_lmac_error_event_table[2];
@@ -320,6 +323,8 @@ struct iwx_phy_ctxt {
     uint16_t color;
     uint32_t ref;
     struct ieee80211_channel *channel;
+    uint8_t sco; /* 40 MHz secondary channel offset */
+    uint8_t vht_chan_width;
 };
 
 struct iwx_bf_data {
@@ -438,11 +443,23 @@ struct iwx_rxq_dup_data {
     uint8_t last_sub_frame[IWX_MAX_TID_COUNT + 1];
 };
 
+struct iwx_setkey_task_arg {
+    int sta_id;
+    struct ieee80211_node *ni;
+    struct ieee80211_key *k;
+};
+
+struct iwx_ba_task_data {
+    uint32_t        start_tidmask;
+    uint32_t        stop_tidmask;
+};
+
 struct iwx_softc {
     struct device sc_dev;
     struct ieee80211com sc_ic;
     int (*sc_newstate)(struct ieee80211com *, enum ieee80211_state, int);
     int sc_newstate_pending;
+    int attached;
 
     struct task        init_task; /* NB: not reference-counted */
     struct refcnt        task_refs;
@@ -452,14 +469,28 @@ struct iwx_softc {
 
     /* Task for firmware BlockAck setup/teardown and its arguments. */
     struct task        ba_task;
-    uint32_t        ba_start_tidmask;
-    uint32_t        ba_stop_tidmask;
-    uint16_t        ba_ssn[IWX_MAX_TID_COUNT];
-    uint16_t        ba_winsize[IWX_MAX_TID_COUNT];
-    int            ba_timeout_val[IWX_MAX_TID_COUNT];
+    struct iwx_ba_task_data    ba_rx;
+    struct iwx_ba_task_data    ba_tx;
 
-    /* Task for HT protection updates. */
-    struct task        htprot_task;
+    /* Task for setting encryption keys and its arguments. */
+    struct task        setkey_task;
+    /*
+     * At present we need to process at most two keys at once:
+     * Our pairwise key and a group key.
+     * When hostap mode is implemented this array needs to grow or
+     * it might become a bottleneck for associations that occur at
+     * roughly the same time.
+     */
+    struct iwx_setkey_task_arg setkey_arg[2];
+    int setkey_cur;
+    int setkey_tail;
+    int setkey_nkeys;
+
+    /* Task for ERP/HT prot/slot-time/EDCA updates. */
+    struct task        mac_ctxt_task;
+
+    /* Task for HT 20/40 MHz channel width updates. */
+    struct task        phy_ctxt_task;
 
     bus_space_tag_t sc_st;
     bus_space_handle_t sc_sh;
@@ -470,14 +501,13 @@ struct iwx_softc {
     const void *sc_ih;
     int sc_msix;
 
-    /* TX scheduler rings. */
-    struct iwx_dma_info        sched_dma;
-    uint32_t            sched_base;
-
     /* TX/RX rings. */
-    struct iwx_tx_ring txq[IWX_MAX_QUEUES];
+    struct iwx_tx_ring txq[IWX_NUM_TX_QUEUES];
     struct iwx_rx_ring rxq;
     int qfullmsk;
+    int qenablemsk;
+    int first_data_qid;
+    int aggqid[IEEE80211_NUM_TID];
 
     int sc_sf_state;
 
@@ -495,8 +525,6 @@ struct iwx_softc {
 #define IWX_DEVICE_FAMILY_22000    1
 #define IWX_DEVICE_FAMILY_22560    2
 
-    struct iwx_dma_info fw_dma;
-
     struct iwx_dma_info ctxt_info_dma;
     struct iwx_self_init_dram init_dram;
 
@@ -513,7 +541,7 @@ struct iwx_softc {
     int sc_capa_n_scan_channels;
     uint8_t sc_ucode_api[howmany(IWX_NUM_UCODE_TLV_API, NBBY)];
     uint8_t sc_enabled_capa[howmany(IWX_NUM_UCODE_TLV_CAPA, NBBY)];
-#define IWX_MAX_FW_CMD_VERSIONS    64
+#define IWX_MAX_FW_CMD_VERSIONS    704
     struct iwx_fw_cmd_version cmd_versions[IWX_MAX_FW_CMD_VERSIONS];
     int n_cmd_versions;
 
@@ -532,7 +560,6 @@ struct iwx_softc {
     int sc_cap_off; /* PCIe caps */
 
     const char *sc_fwname;
-    bus_size_t sc_fwdmasegsz;
     struct iwx_fw_info sc_fw;
     struct iwx_dma_info fw_mon;
     int sc_fw_phy_config;
@@ -541,8 +568,12 @@ struct iwx_softc {
     struct iwx_nvm_data sc_nvm;
     struct iwx_bf_data sc_bf;
 
-    int sc_tx_timer;
+    int sc_tx_timer[IWX_NUM_TX_QUEUES];
     int sc_rx_ba_sessions;
+
+    struct task bgscan_done_task;
+    struct ieee80211_node_switch_bss_arg *bgscan_unref_arg;
+    size_t    bgscan_unref_arg_size;
 
     int sc_scan_last_antenna;
 
@@ -603,11 +634,16 @@ struct iwx_softc {
 struct iwx_node {
     struct ieee80211_node in_ni;
     struct iwx_phy_ctxt *in_phyctxt;
+    uint8_t in_macaddr[ETHER_ADDR_LEN];
 
     uint16_t in_id;
     uint16_t in_color;
 
     struct iwx_rxq_dup_data dup_data;
+
+    int in_flags;
+#define IWX_NODE_FLAG_HAVE_PAIRWISE_KEY    0x01
+#define IWX_NODE_FLAG_HAVE_GROUP_KEY    0x02
 };
 #define IWX_STATION_ID 0
 #define IWX_AUX_STA_ID 1

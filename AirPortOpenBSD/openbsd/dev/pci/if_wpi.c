@@ -159,7 +159,7 @@ struct cfdriver wpi_cd = {
     NULL, "wpi", DV_IFNET
 };
 
-struct cfattach wpi_ca = {
+const struct cfattach wpi_ca = {
     sizeof (struct wpi_softc), wpi_match, wpi_attach, wpi_detach,
     wpi_activate
 };

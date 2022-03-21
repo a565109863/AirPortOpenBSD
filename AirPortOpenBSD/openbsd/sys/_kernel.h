@@ -71,11 +71,12 @@ printf X;            \
 } while(0)
 
 
-#define err(x, arg...)  printf(arg)
-#define errx(x, arg...) printf(arg)
-#define warnx(x)        printf(x)
-#define warn(x)         printf(x)
-#define putchar(x)      printf("%c", x)
+#define err(x, arg...)      kprintf(arg)
+#define errx(x, arg...)     kprintf(arg)
+#define warnx(arg...)       kprintf(arg)
+#define warn(arg...)        kprintf(arg)
+#define putchar(x)          kprintf("%c", x)
+#define fputs(x, y)         kprintf(x)
 
 #define suser(x) 0
 

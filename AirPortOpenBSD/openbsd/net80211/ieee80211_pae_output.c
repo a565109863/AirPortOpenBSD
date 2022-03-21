@@ -73,7 +73,7 @@ ieee80211_send_eapol_key(struct ieee80211com *ic, mbuf_t m,
         return ENOMEM;
     /* no need to m_pullup here (ok by construction) */
     eh = mtod(m, struct ether_header *);
-    eh->ether_type = htons(ETHERTYPE_PAE);
+    eh->ether_type = htons(ETHERTYPE_EAPOL);
     IEEE80211_ADDR_COPY(eh->ether_shost, ic->ic_myaddr);
     IEEE80211_ADDR_COPY(eh->ether_dhost, ni->ni_macaddr);
 

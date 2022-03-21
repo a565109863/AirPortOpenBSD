@@ -27,6 +27,9 @@ bool AirPortOpenBSD::init(OSDictionary* parameters) {
     }
     
     fwLoadLock = IOLockAlloc();
+    
+    powerState = APPLE_POWER_OFF;
+    
     return true;
 }
 
@@ -393,7 +396,6 @@ static IOPMPowerState powerStateArray[APPLE_POWER_COUNT] =
 // Power Management
 IOReturn AirPortOpenBSD::registerWithPolicyMaker(IOService* policyMaker)
 {
-    powerState = APPLE_POWER_ON;
     return policyMaker->registerPowerDriver(this, powerStateArray, APPLE_POWER_COUNT);
 }
 
@@ -404,10 +406,6 @@ IOReturn AirPortOpenBSD::setPowerState(unsigned long powerStateOrdinal, IOServic
     
     IOReturn result = IOPMAckImplied;
     
-    if (powerState == powerStateOrdinal) {
-        goto done;
-    }
-
     this->fCommandGate->runAction(setPowerStateAction, &powerStateOrdinal);
 
 done:
@@ -445,17 +443,12 @@ IOReturn AirPortOpenBSD::enable(IONetworkInterface *netif) {
     
     kprintf("enable() ===>\n");
     
-//    if (!fPciDevice || fPciDevice->isOpen()) {
-//        IOLog("AirPortOpenBSD: Unable to open PCI device.\n");
-//        goto done;
-//    }
-//    fPciDevice->open(this);
-    
     setLinkStatus((kIONetworkLinkValid | kIONetworkLinkActive), mediumTable[MEDIUM_TYPE_AUTO], IF_Mbps(_ifp->if_baudrate), NULL);
     
-//    DebugLog("---%s: line = %d APPLE_POWER_ON = %d", __FUNCTION__, __LINE__, APPLE_POWER_ON);
-    
-    this->changePowerState(_ifp->iface, APPLE_POWER_ON);
+    if (powerState == APPLE_POWER_OFF) {
+        unsigned long powerStateOrdinal = APPLE_POWER_ON;
+        this->fCommandGate->runAction(setPowerStateAction, &powerStateOrdinal);
+    }
     
     result = kIOReturnSuccess;
     
@@ -469,9 +462,6 @@ IOReturn AirPortOpenBSD::disable(IONetworkInterface *netif) {
     IOReturn result = kIOReturnSuccess;
     
     kprintf("disable() ===>\n");
-    
-//    if (fPciDevice && fPciDevice->isOpen())
-//        fPciDevice->close(this);
     
     kprintf("disable() <===\n");
     return result;
@@ -524,14 +514,16 @@ IOReturn AirPortOpenBSD::changePowerState(IOInterface *interface, int powerState
         return ret;
     }
     
+    struct ieee80211com *ic = (struct ieee80211com *)_ifp;
+    
     powerState = powerStateOrdinal;
     
     switch (powerStateOrdinal) {
         case APPLE_POWER_ON:
             DPRINTF(("Setting power on\n"));
             
-            if (firstUp) {
-                firstUp = false;
+            if (this->firstUp) {
+                this->firstUp = false;
                 
                 const char *configArr[] = {"up", "debug"};
                 ifconfig(configArr, nitems(configArr));
@@ -555,6 +547,8 @@ IOReturn AirPortOpenBSD::changePowerState(IOInterface *interface, int powerState
             
             this->ca->ca_activate((struct device *)if_softc, DVACT_QUIESCE);
             this->scanFreeResults();
+            
+            ieee80211_free_allnodes(ic, 1);
             
             ret = kIOReturnSuccess;
             break;
@@ -592,13 +586,19 @@ void AirPortOpenBSD::setLinkState(int linkState)
     DebugLog("---%s: line = %d ifp->if_link_state = %d", __FUNCTION__, __LINE__, linkState);
     int reason = 0;
     if (linkState == LINK_STATE_UP) {
-        setLinkStatus(kIONetworkLinkValid | kIONetworkLinkActive);
+        setLinkStatus(kIONetworkLinkValid | kIONetworkLinkActive, this->getCurrentMedium());
         _ifp->iface->startOutputThread();
     }else {
         setLinkStatus(kIONetworkLinkValid);
         _ifp->iface->stopOutputThread();
         _ifp->iface->flushOutputQueue();
         reason = APPLE80211_REASON_UNSPECIFIED;
+        
+        this->configArr[0] = "-nwid";
+        this->configArr[1] = "";
+        this->configArrCount = 2;
+        ifconfig(this->configArr, this->configArrCount);
+        
     }
     
 #ifndef Ethernet

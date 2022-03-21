@@ -236,20 +236,21 @@ enum apple80211_int_mit {
 
 enum apple80211_channel_flag
 {
-    APPLE80211_C_FLAG_NONE        = 0x0,        // no flags
-    APPLE80211_C_FLAG_10MHZ        = 0x1,        // 10 MHz wide
-    APPLE80211_C_FLAG_20MHZ        = 0x2,        // 20 MHz wide
-    APPLE80211_C_FLAG_40MHZ        = 0x4,        // 40 MHz wide
-    APPLE80211_C_FLAG_2GHZ        = 0x8,        // 2.4 GHz
-    APPLE80211_C_FLAG_5GHZ        = 0x10,        // 5 GHz
-    APPLE80211_C_FLAG_IBSS        = 0x20,        // IBSS supported
-    APPLE80211_C_FLAG_HOST_AP    = 0x40,        // HOST AP mode supported
-    APPLE80211_C_FLAG_ACTIVE    = 0x80,        // active scanning supported
-    APPLE80211_C_FLAG_DFS        = 0x100,    // DFS required
-    APPLE80211_C_FLAG_EXT_ABV    = 0x200,    // If 40 Mhz, extension channel above.
-    APPLE80211_C_FLAG_X         = 0x400,
+    APPLE80211_C_FLAG_NONE         = 0x0,   // no flags
+    APPLE80211_C_FLAG_10MHZ        = 0x1,   // 10 MHz wide
+    APPLE80211_C_FLAG_20MHZ        = 0x2,   // 20 MHz wide
+    APPLE80211_C_FLAG_40MHZ        = 0x4,   // 40 MHz wide
+    APPLE80211_C_FLAG_2GHZ         = 0x8,   // 2.4 GHz
+    APPLE80211_C_FLAG_5GHZ         = 0x10,  // 5 GHz
+    APPLE80211_C_FLAG_IBSS         = 0x20,  // IBSS supported
+    APPLE80211_C_FLAG_HOST_AP      = 0x40,  // HOST AP mode supported
+    APPLE80211_C_FLAG_ACTIVE       = 0x80,  // active scanning supported
+    APPLE80211_C_FLAG_DFS          = 0x100, // DFS required
+    APPLE80211_C_FLAG_EXT_ABV      = 0x200, // If 40 Mhz, extension channel above.
     // If this flag is not set, then the
     // extension channel is below.
+    APPLE80211_C_FLAG_80MHZ        = 0x400,  // name made up - set if channelWidth == 80 && 5ghz && AC
+    APPLE80211_C_FLAG_160MHZ       = 0x800,  // zxystd: Apple Broadcom not use it, but we can use!
 };
 
 enum apple80211_rate_flag

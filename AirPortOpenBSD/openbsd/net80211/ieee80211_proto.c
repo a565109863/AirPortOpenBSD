@@ -1,4 +1,4 @@
-/*    $OpenBSD: ieee80211_proto.c,v 1.102 2021/04/25 15:32:21 stsp Exp $    */
+/*    $OpenBSD: ieee80211_proto.c,v 1.108 2022/03/14 15:07:24 stsp Exp $    */
 /*    $NetBSD: ieee80211_proto.c,v 1.8 2004/04/30 23:58:20 dyoung Exp $    */
 
 /*-
@@ -75,6 +75,7 @@ const char * const ieee80211_phymode_name[] = {
     "11b",        /* IEEE80211_MODE_11B */
     "11g",        /* IEEE80211_MODE_11G */
     "11n",        /* IEEE80211_MODE_11N */
+    "11ac",        /* IEEE80211_MODE_11AC */
 };
 
 void ieee80211_set_beacon_miss_threshold(struct ieee80211com *);
@@ -471,12 +472,6 @@ ieee80211_setkeysdone(struct ieee80211com *ic)
 {
     u_int8_t kid;
 
-    /*
-     * Discard frames buffered for power-saving which were encrypted with
-     * the old group key. Clients are no longer able to decrypt them.
-     */
-    mq_purge(&ic->ic_bss->ni_savedq);
-
     /* install GTK */
     kid = (ic->ic_def_txkey == 1) ? 2 : 1;
     switch ((*ic->ic_set_key)(ic, ic->ic_bss, &ic->ic_nw_keys[kid])) {
@@ -613,7 +608,64 @@ ieee80211_ht_negotiate(struct ieee80211com *ic, struct ieee80211_node *ni)
 
     ni->ni_flags |= IEEE80211_NODE_HT;
 
-    /* Flags IEEE8021_NODE_HT_SGI20/40 are set by drivers if supported. */
+    if (ieee80211_node_supports_ht_sgi20(ni) &&
+        (ic->ic_htcaps & IEEE80211_HTCAP_SGI20))
+        ni->ni_flags |= IEEE80211_NODE_HT_SGI20;
+    if (ieee80211_node_supports_ht_sgi40(ni) &&
+        (ic->ic_htcaps & IEEE80211_HTCAP_SGI40))
+        ni->ni_flags |= IEEE80211_NODE_HT_SGI40;
+}
+
+void
+ieee80211_vht_negotiate(struct ieee80211com *ic, struct ieee80211_node *ni)
+{
+    int n;
+
+    ni->ni_flags &= ~(IEEE80211_NODE_VHT | IEEE80211_NODE_VHT_SGI80 |
+        IEEE80211_NODE_VHT_SGI160);
+
+    /* Check if we support VHT. */
+    if ((ic->ic_modecaps & (1 << IEEE80211_MODE_11AC)) == 0)
+        return;
+
+    /* Check if VHT support has been explicitly disabled. */
+    if ((ic->ic_flags & IEEE80211_F_VHTON) == 0)
+        return;
+
+    /*
+     * Check if the peer supports VHT.
+     * MCS 0-7 for a single spatial stream are mandatory.
+     */
+    if (!ieee80211_node_supports_vht(ni)) {
+        ic->ic_stats.is_vht_nego_no_mandatory_mcs++;
+        return;
+    }
+
+    if (ic->ic_opmode == IEEE80211_M_STA) {
+        /* We must support the AP's basic MCS set. */
+        for (n = 1; n <= IEEE80211_VHT_NUM_SS; n++) {
+            uint16_t basic_mcs = (ni->ni_vht_basic_mcs &
+                IEEE80211_VHT_MCS_FOR_SS_MASK(n)) >>
+                IEEE80211_VHT_MCS_FOR_SS_SHIFT(n);
+            uint16_t rx_mcs = (ic->ic_vht_rxmcs &
+                IEEE80211_VHT_MCS_FOR_SS_MASK(n)) >>
+                IEEE80211_VHT_MCS_FOR_SS_SHIFT(n);
+            if (basic_mcs != IEEE80211_VHT_MCS_SS_NOT_SUPP &&
+                basic_mcs > rx_mcs) {
+                ic->ic_stats.is_vht_nego_no_basic_mcs++;
+                return;
+            }
+        }
+    }
+
+    ni->ni_flags |= IEEE80211_NODE_VHT;
+
+    if ((ni->ni_vhtcaps & IEEE80211_VHTCAP_SGI80) &&
+        (ic->ic_vhtcaps & IEEE80211_VHTCAP_SGI80))
+        ni->ni_flags |= IEEE80211_NODE_VHT_SGI80;
+    if ((ni->ni_vhtcaps & IEEE80211_VHTCAP_SGI160) &&
+        (ic->ic_vhtcaps & IEEE80211_VHTCAP_SGI160))
+        ni->ni_flags |= IEEE80211_NODE_VHT_SGI160;
 }
 
 void
@@ -700,6 +752,18 @@ ieee80211_addba_request(struct ieee80211com *ic, struct ieee80211_node *ni,
         /* immediate BA */
         ba->ba_params |= IEEE80211_ADDBA_BA_POLICY;
 
+    if ((ic->ic_caps & IEEE80211_C_ADDBA_OFFLOAD) &&
+        ic->ic_ampdu_tx_start != NULL) {
+        int err = ic->ic_ampdu_tx_start(ic, ni, tid);
+        if (err && err != EBUSY) {
+            /* driver failed to setup, rollback */
+            ieee80211_addba_resp_refuse(ic, ni, tid,
+                IEEE80211_STATUS_UNSPECIFIED);
+        } else if (err == 0)
+            ieee80211_addba_resp_accept(ic, ni, tid);
+        return err; /* The device will send an ADDBA frame. */
+    }
+
     timeout_add_sec(&ba->ba_to, 1);    /* dot11ADDBAResponseTimeout */
     IEEE80211_SEND_ACTION(ic, ni, IEEE80211_CATEG_BA,
         IEEE80211_ACTION_ADDBA_REQ, tid);
@@ -722,14 +786,9 @@ ieee80211_delba_request(struct ieee80211com *ic, struct ieee80211_node *ni,
     }
     if (dir) {
         /* MLME-DELBA.confirm(Originator) */
-        struct ieee80211_tx_ba *ba = &ni->ni_tx_ba[tid];
-
         if (ic->ic_ampdu_tx_stop != NULL)
             ic->ic_ampdu_tx_stop(ic, ni, tid);
-
-        ba->ba_state = IEEE80211_BA_INIT;
-        /* stop Block Ack inactivity timer */
-        timeout_del(&ba->ba_to);
+        ieee80211_node_tx_ba_clear(ni, tid);
     } else {
         /* MLME-DELBA.confirm(Recipient) */
         struct ieee80211_rx_ba *ba = &ni->ni_rx_ba[tid];
@@ -948,6 +1007,13 @@ ieee80211_stop_ampdu_tx(struct ieee80211com *ic, struct ieee80211_node *ni,
         struct ieee80211_tx_ba *ba = &ni->ni_tx_ba[tid];
         if (ba->ba_state != IEEE80211_BA_AGREED)
             continue;
+
+        if (ic->ic_caps & IEEE80211_C_ADDBA_OFFLOAD) {
+            if (ic->ic_ampdu_tx_stop != NULL)
+                ic->ic_ampdu_tx_stop(ic, ni, tid);
+            continue; /* Don't change ba->ba_state! */
+        }
+
         ieee80211_delba_request(ic, ni,
             mgt == -1 ? 0 : IEEE80211_REASON_AUTH_LEAVE, 1, tid);
     }
@@ -1246,7 +1312,7 @@ justcleanup:
                 else
                     printf(" start %u%sMb",
                         rate / 2, (rate & 1) ? ".5" : "");
-                printf(" %s preamble %s slot time%s%s\n",
+                printf(" %s preamble %s slot time%s%s%s\n",
                     (ic->ic_flags & IEEE80211_F_SHPREAMBLE) ?
                     "short" : "long",
                     (ic->ic_flags & IEEE80211_F_SHSLOT) ?
@@ -1254,7 +1320,9 @@ justcleanup:
                     (ic->ic_flags & IEEE80211_F_USEPROT) ?
                     " protection enabled" : "",
                     (ni->ni_flags & IEEE80211_NODE_HT) ?
-                    " HT enabled" : "");
+                    " HT enabled" : "",
+                    (ni->ni_flags & IEEE80211_NODE_VHT) ?
+                    " VHT enabled" : "");
             }
             if (!(ic->ic_flags & IEEE80211_F_RSNON)) {
                 /*
@@ -1272,6 +1340,31 @@ justcleanup:
         break;
     }
     return 0;
+}
+
+void
+ieee80211_rtm_80211info_task(void *arg)
+{
+    struct ieee80211com *ic = (typeof ic)arg;
+    struct ifnet *ifp = &ic->ic_if;
+//    struct if_ieee80211_data ifie;
+    int s = splnet();
+
+    if (LINK_STATE_IS_UP(ifp->if_link_state)) {
+//        memset(&ifie, 0, sizeof(ifie));
+//        ifie.ifie_nwid_len = ic->ic_bss->ni_esslen;
+//        memcpy(ifie.ifie_nwid, ic->ic_bss->ni_essid,
+//            sizeof(ifie.ifie_nwid));
+//        memcpy(ifie.ifie_addr, ic->ic_bss->ni_bssid,
+//            sizeof(ifie.ifie_addr));
+//        ifie.ifie_channel = ieee80211_chan2ieee(ic,
+//            ic->ic_bss->ni_chan);
+//        ifie.ifie_flags = ic->ic_flags;
+//        ifie.ifie_xflags = ic->ic_xflags;
+//        rtm_80211info(&ic->ic_if, &ifie);
+    }
+
+    splx(s);
 }
 
 void
@@ -1294,20 +1387,8 @@ ieee80211_set_link_state(struct ieee80211com *ic, int nstate)
     }
     if (nstate != ifp->if_link_state) {
         ifp->if_link_state = nstate;
-//        if (LINK_STATE_IS_UP(nstate)) {
-//            struct if_ieee80211_data ifie;
-//            memset(&ifie, 0, sizeof(ifie));
-//            ifie.ifie_nwid_len = ic->ic_bss->ni_esslen;
-//            memcpy(ifie.ifie_nwid, ic->ic_bss->ni_essid,
-//                sizeof(ifie.ifie_nwid));
-//            memcpy(ifie.ifie_addr, ic->ic_bss->ni_bssid,
-//                sizeof(ifie.ifie_addr));
-//            ifie.ifie_channel = ieee80211_chan2ieee(ic,
-//                ic->ic_bss->ni_chan);
-//            ifie.ifie_flags = ic->ic_flags;
-//            ifie.ifie_xflags = ic->ic_xflags;
-//            rtm_80211info(&ic->ic_if, &ifie);
-//        }
+        if (LINK_STATE_IS_UP(nstate))
+            task_add(systq, &ic->ic_rtm_80211info_task);
         if_link_state_change(ifp);
     }
 }

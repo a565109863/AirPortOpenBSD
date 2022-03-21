@@ -129,7 +129,7 @@ int ipw_debug = 0;
 #define DPRINTFN(n, x)
 #endif
 
-struct cfattach ipw_ca = {
+const struct cfattach ipw_ca = {
 	sizeof (struct ipw_softc), ipw_match, ipw_attach, NULL,
 	ipw_activate
 };

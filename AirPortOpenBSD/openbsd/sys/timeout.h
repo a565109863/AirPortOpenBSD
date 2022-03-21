@@ -32,12 +32,6 @@
 #include <sys/libkern.h>
 #include <netinet/_if_ether.h>
 
-enum{
-    MSECS,
-    SECS,
-    USECS
-};
-
 class IOTimeout : public OSObject {
     OSDeclareDefaultStructors(IOTimeout)
     
@@ -48,6 +42,7 @@ public:
     char *fn_name;
     void (*fn)(void*);
     void* arg;
+    bool isPending;
 };
 
 struct timeout {
@@ -60,9 +55,8 @@ void timeout_add_msec(struct timeout *t,int msecs);
 void timeout_add_sec(struct timeout *t, int secs);
 void timeout_add_usec(struct timeout *t,int usecs);
 void timeout_del(struct timeout *t);
+int timeout_pending(struct timeout* t);
 
 #define timeout_initialized(to) 1 //((to)->to_flags & TIMEOUT_INITIALIZED)
-
-#define timeout_pending(t) ((t) && ((t)->vt) && (t)->vt->timer && ((t)->vt->timer->onThread()) && (!(t)->vt->timer->checkForWork()))
 
 #endif    /* _SYS_TIMEOUT_H_ */

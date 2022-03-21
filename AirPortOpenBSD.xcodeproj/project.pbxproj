@@ -101,7 +101,7 @@
 		18713D57255F1BBC00EF3D49 /* compat.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B21255F14E700EF3D49 /* compat.h */; };
 		18713D58255F1BBC00EF3D49 /* firmware.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BD4255F14E900EF3D49 /* firmware.h */; };
 		18713D59255F1BBC00EF3D49 /* firmwarevar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BDD255F14E900EF3D49 /* firmwarevar.h */; };
-		18713D5A255F1BBC00EF3D49 /* help_ifconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B22255F14E700EF3D49 /* help_ifconfig.h */; };
+		18713D5A255F1BBC00EF3D49 /* ifconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B22255F14E700EF3D49 /* ifconfig.h */; };
 		18713D5B255F1BBC00EF3D49 /* iwlwifi.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1C255F14E700EF3D49 /* iwlwifi.h */; };
 		18713D5C255F1BBC00EF3D49 /* key_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B29255F14E700EF3D49 /* key_wrap.h */; };
 		18713D5D255F1BBC00EF3D49 /* md5.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B2A255F14E700EF3D49 /* md5.h */; };
@@ -144,7 +144,6 @@
 		18713D82255F1BBC00EF3D49 /* ieee80211.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B6A255F14E800EF3D49 /* ieee80211.h */; };
 		18713D83255F1BBC00EF3D49 /* ieee80211_priv.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B6B255F14E800EF3D49 /* ieee80211_priv.h */; };
 		18713D84255F1BBC00EF3D49 /* ieee80211_ioctl.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B6C255F14E800EF3D49 /* ieee80211_ioctl.h */; };
-		18713D85255F1BBC00EF3D49 /* ieee80211_mira.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B70255F14E800EF3D49 /* ieee80211_mira.h */; };
 		18713D86255F1BBC00EF3D49 /* ieee80211_var.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B74255F14E800EF3D49 /* ieee80211_var.h */; };
 		18713D87255F1BBC00EF3D49 /* if_ipwvar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B77255F14E800EF3D49 /* if_ipwvar.h */; };
 		18713D88255F1BBC00EF3D49 /* if_iwivar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B78255F14E800EF3D49 /* if_iwivar.h */; };
@@ -178,12 +177,7 @@
 		18713DA9255F1BC700EF3D49 /* iwm_3160_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BCF255F14E900EF3D49 /* iwm_3160_17.c */; };
 		18713DAA255F1BC700EF3D49 /* iwm_3168_29.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD9255F14E900EF3D49 /* iwm_3168_29.c */; };
 		18713DAB255F1BC700EF3D49 /* iwm_7260_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD5255F14E900EF3D49 /* iwm_7260_17.c */; };
-		18713DAC255F1BC700EF3D49 /* iwm_7265_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC9255F14E900EF3D49 /* iwm_7265_17.c */; };
 		18713DAD255F1BC700EF3D49 /* iwm_7265D_29.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC2255F14E900EF3D49 /* iwm_7265D_29.c */; };
-		18713DAE255F1BC700EF3D49 /* iwm_8000C_34.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD0255F14E900EF3D49 /* iwm_8000C_34.c */; };
-		18713DAF255F1BC700EF3D49 /* iwm_8265_34.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC3255F14E900EF3D49 /* iwm_8265_34.c */; };
-		18713DB0255F1BC700EF3D49 /* iwm_9000_34.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD6255F14E900EF3D49 /* iwm_9000_34.c */; };
-		18713DB1255F1BC700EF3D49 /* iwm_9260_34.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BDA255F14E900EF3D49 /* iwm_9260_34.c */; };
 		18713DB2255F1BC700EF3D49 /* iwn_100.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BCA255F14E900EF3D49 /* iwn_100.c */; };
 		18713DB3255F1BC700EF3D49 /* iwn_105.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD3255F14E900EF3D49 /* iwn_105.c */; };
 		18713DB4255F1BC700EF3D49 /* iwn_135.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC5255F14E900EF3D49 /* iwn_135.c */; };
@@ -200,12 +194,10 @@
 		18713DBF255F1BC700EF3D49 /* iwx_cc_a0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC8255F14E900EF3D49 /* iwx_cc_a0_48.c */; };
 		18713DC0255F1BC700EF3D49 /* iwx_Qu_b0_hr_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BBF255F14E900EF3D49 /* iwx_Qu_b0_hr_b0_48.c */; };
 		18713DC1255F1BC700EF3D49 /* iwx_Qu_b0_jf_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD2255F14E900EF3D49 /* iwx_Qu_b0_jf_b0_48.c */; };
-		18713DC2255F1BC700EF3D49 /* iwx_Qu_c0_hr_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BCE255F14E900EF3D49 /* iwx_Qu_c0_hr_b0_48.c */; };
 		18713DC3255F1BC700EF3D49 /* iwx_Qu_c0_jf_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BBD255F14E900EF3D49 /* iwx_Qu_c0_jf_b0_48.c */; };
-		18713DC4255F1BC700EF3D49 /* iwx_QuZ_a0_hr_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BBA255F14E900EF3D49 /* iwx_QuZ_a0_hr_b0_48.c */; };
 		18713DC5255F1BC700EF3D49 /* iwx_QuZ_a0_jf_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BCC255F14E900EF3D49 /* iwx_QuZ_a0_jf_b0_48.c */; };
 		18713DC6255F1BC700EF3D49 /* wpi_3945abg.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD1255F14E900EF3D49 /* wpi_3945abg.c */; };
-		18713DC7255F1BC700EF3D49 /* help_ifconfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1E255F14E700EF3D49 /* help_ifconfig.cpp */; };
+		18713DC7255F1BC700EF3D49 /* ifconfig.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1E255F14E700EF3D49 /* ifconfig.c */; };
 		18713DC8255F1BC700EF3D49 /* aes.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B25255F14E700EF3D49 /* aes.c */; };
 		18713DC9255F1BC700EF3D49 /* hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B26255F14E700EF3D49 /* hmac.c */; };
 		18713DCA255F1BC700EF3D49 /* sha2.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B27255F14E700EF3D49 /* sha2.c */; };
@@ -227,7 +219,6 @@
 		18713DDA255F1BC700EF3D49 /* ieee80211.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B5B255F14E700EF3D49 /* ieee80211.c */; };
 		18713DDB255F1BC700EF3D49 /* ieee80211_rssadapt.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B5C255F14E700EF3D49 /* ieee80211_rssadapt.c */; };
 		18713DDC255F1BC700EF3D49 /* ieee80211_input.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B5D255F14E700EF3D49 /* ieee80211_input.c */; };
-		18713DDD255F1BC700EF3D49 /* ieee80211_mira.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B60255F14E700EF3D49 /* ieee80211_mira.c */; };
 		18713DDE255F1BC700EF3D49 /* ieee80211_crypto_bip.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B62255F14E800EF3D49 /* ieee80211_crypto_bip.c */; };
 		18713DDF255F1BC700EF3D49 /* ieee80211_crypto_tkip.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B63255F14E800EF3D49 /* ieee80211_crypto_tkip.c */; };
 		18713DE0255F1BC700EF3D49 /* ieee80211_crypto_ccmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B64255F14E800EF3D49 /* ieee80211_crypto_ccmp.c */; };
@@ -255,7 +246,7 @@
 		18713DFB255F1BD900EF3D49 /* compat.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B21255F14E700EF3D49 /* compat.h */; };
 		18713DFC255F1BD900EF3D49 /* firmware.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BD4255F14E900EF3D49 /* firmware.h */; };
 		18713DFD255F1BD900EF3D49 /* firmwarevar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BDD255F14E900EF3D49 /* firmwarevar.h */; };
-		18713DFE255F1BD900EF3D49 /* help_ifconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B22255F14E700EF3D49 /* help_ifconfig.h */; };
+		18713DFE255F1BD900EF3D49 /* ifconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B22255F14E700EF3D49 /* ifconfig.h */; };
 		18713DFF255F1BD900EF3D49 /* iwlwifi.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1C255F14E700EF3D49 /* iwlwifi.h */; };
 		18713E00255F1BD900EF3D49 /* key_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B29255F14E700EF3D49 /* key_wrap.h */; };
 		18713E01255F1BD900EF3D49 /* md5.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B2A255F14E700EF3D49 /* md5.h */; };
@@ -298,7 +289,6 @@
 		18713E26255F1BD900EF3D49 /* ieee80211.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B6A255F14E800EF3D49 /* ieee80211.h */; };
 		18713E27255F1BD900EF3D49 /* ieee80211_priv.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B6B255F14E800EF3D49 /* ieee80211_priv.h */; };
 		18713E28255F1BD900EF3D49 /* ieee80211_ioctl.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B6C255F14E800EF3D49 /* ieee80211_ioctl.h */; };
-		18713E29255F1BD900EF3D49 /* ieee80211_mira.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B70255F14E800EF3D49 /* ieee80211_mira.h */; };
 		18713E2A255F1BD900EF3D49 /* ieee80211_var.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B74255F14E800EF3D49 /* ieee80211_var.h */; };
 		18713E2B255F1BD900EF3D49 /* if_ipwvar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B77255F14E800EF3D49 /* if_ipwvar.h */; };
 		18713E2C255F1BD900EF3D49 /* if_iwivar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B78255F14E800EF3D49 /* if_iwivar.h */; };
@@ -332,12 +322,7 @@
 		18713E4D255F1BE100EF3D49 /* iwm_3160_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BCF255F14E900EF3D49 /* iwm_3160_17.c */; };
 		18713E4E255F1BE100EF3D49 /* iwm_3168_29.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD9255F14E900EF3D49 /* iwm_3168_29.c */; };
 		18713E4F255F1BE100EF3D49 /* iwm_7260_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD5255F14E900EF3D49 /* iwm_7260_17.c */; };
-		18713E50255F1BE100EF3D49 /* iwm_7265_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC9255F14E900EF3D49 /* iwm_7265_17.c */; };
 		18713E51255F1BE100EF3D49 /* iwm_7265D_29.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC2255F14E900EF3D49 /* iwm_7265D_29.c */; };
-		18713E52255F1BE100EF3D49 /* iwm_8000C_34.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD0255F14E900EF3D49 /* iwm_8000C_34.c */; };
-		18713E53255F1BE100EF3D49 /* iwm_8265_34.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC3255F14E900EF3D49 /* iwm_8265_34.c */; };
-		18713E54255F1BE100EF3D49 /* iwm_9000_34.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD6255F14E900EF3D49 /* iwm_9000_34.c */; };
-		18713E55255F1BE100EF3D49 /* iwm_9260_34.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BDA255F14E900EF3D49 /* iwm_9260_34.c */; };
 		18713E56255F1BE100EF3D49 /* iwn_100.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BCA255F14E900EF3D49 /* iwn_100.c */; };
 		18713E57255F1BE100EF3D49 /* iwn_105.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD3255F14E900EF3D49 /* iwn_105.c */; };
 		18713E58255F1BE100EF3D49 /* iwn_135.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC5255F14E900EF3D49 /* iwn_135.c */; };
@@ -354,12 +339,10 @@
 		18713E63255F1BE100EF3D49 /* iwx_cc_a0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC8255F14E900EF3D49 /* iwx_cc_a0_48.c */; };
 		18713E64255F1BE100EF3D49 /* iwx_Qu_b0_hr_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BBF255F14E900EF3D49 /* iwx_Qu_b0_hr_b0_48.c */; };
 		18713E65255F1BE100EF3D49 /* iwx_Qu_b0_jf_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD2255F14E900EF3D49 /* iwx_Qu_b0_jf_b0_48.c */; };
-		18713E66255F1BE100EF3D49 /* iwx_Qu_c0_hr_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BCE255F14E900EF3D49 /* iwx_Qu_c0_hr_b0_48.c */; };
 		18713E67255F1BE100EF3D49 /* iwx_Qu_c0_jf_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BBD255F14E900EF3D49 /* iwx_Qu_c0_jf_b0_48.c */; };
-		18713E68255F1BE100EF3D49 /* iwx_QuZ_a0_hr_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BBA255F14E900EF3D49 /* iwx_QuZ_a0_hr_b0_48.c */; };
 		18713E69255F1BE100EF3D49 /* iwx_QuZ_a0_jf_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BCC255F14E900EF3D49 /* iwx_QuZ_a0_jf_b0_48.c */; };
 		18713E6A255F1BE100EF3D49 /* wpi_3945abg.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD1255F14E900EF3D49 /* wpi_3945abg.c */; };
-		18713E6B255F1BE100EF3D49 /* help_ifconfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1E255F14E700EF3D49 /* help_ifconfig.cpp */; };
+		18713E6B255F1BE100EF3D49 /* ifconfig.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1E255F14E700EF3D49 /* ifconfig.c */; };
 		18713E6C255F1BE100EF3D49 /* aes.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B25255F14E700EF3D49 /* aes.c */; };
 		18713E6D255F1BE100EF3D49 /* hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B26255F14E700EF3D49 /* hmac.c */; };
 		18713E6E255F1BE100EF3D49 /* sha2.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B27255F14E700EF3D49 /* sha2.c */; };
@@ -381,7 +364,6 @@
 		18713E7E255F1BE100EF3D49 /* ieee80211.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B5B255F14E700EF3D49 /* ieee80211.c */; };
 		18713E7F255F1BE100EF3D49 /* ieee80211_rssadapt.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B5C255F14E700EF3D49 /* ieee80211_rssadapt.c */; };
 		18713E80255F1BE100EF3D49 /* ieee80211_input.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B5D255F14E700EF3D49 /* ieee80211_input.c */; };
-		18713E81255F1BE100EF3D49 /* ieee80211_mira.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B60255F14E700EF3D49 /* ieee80211_mira.c */; };
 		18713E82255F1BE100EF3D49 /* ieee80211_crypto_bip.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B62255F14E800EF3D49 /* ieee80211_crypto_bip.c */; };
 		18713E83255F1BE100EF3D49 /* ieee80211_crypto_tkip.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B63255F14E800EF3D49 /* ieee80211_crypto_tkip.c */; };
 		18713E84255F1BE100EF3D49 /* ieee80211_crypto_ccmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B64255F14E800EF3D49 /* ieee80211_crypto_ccmp.c */; };
@@ -416,12 +398,7 @@
 		18713EA6255F1BE900EF3D49 /* iwm_3160_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BCF255F14E900EF3D49 /* iwm_3160_17.c */; };
 		18713EA7255F1BE900EF3D49 /* iwm_3168_29.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD9255F14E900EF3D49 /* iwm_3168_29.c */; };
 		18713EA8255F1BE900EF3D49 /* iwm_7260_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD5255F14E900EF3D49 /* iwm_7260_17.c */; };
-		18713EA9255F1BE900EF3D49 /* iwm_7265_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC9255F14E900EF3D49 /* iwm_7265_17.c */; };
 		18713EAA255F1BE900EF3D49 /* iwm_7265D_29.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC2255F14E900EF3D49 /* iwm_7265D_29.c */; };
-		18713EAB255F1BE900EF3D49 /* iwm_8000C_34.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD0255F14E900EF3D49 /* iwm_8000C_34.c */; };
-		18713EAC255F1BE900EF3D49 /* iwm_8265_34.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC3255F14E900EF3D49 /* iwm_8265_34.c */; };
-		18713EAD255F1BE900EF3D49 /* iwm_9000_34.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD6255F14E900EF3D49 /* iwm_9000_34.c */; };
-		18713EAE255F1BE900EF3D49 /* iwm_9260_34.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BDA255F14E900EF3D49 /* iwm_9260_34.c */; };
 		18713EAF255F1BE900EF3D49 /* iwn_100.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BCA255F14E900EF3D49 /* iwn_100.c */; };
 		18713EB0255F1BE900EF3D49 /* iwn_105.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD3255F14E900EF3D49 /* iwn_105.c */; };
 		18713EB1255F1BE900EF3D49 /* iwn_135.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC5255F14E900EF3D49 /* iwn_135.c */; };
@@ -438,12 +415,10 @@
 		18713EBC255F1BE900EF3D49 /* iwx_cc_a0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC8255F14E900EF3D49 /* iwx_cc_a0_48.c */; };
 		18713EBD255F1BE900EF3D49 /* iwx_Qu_b0_hr_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BBF255F14E900EF3D49 /* iwx_Qu_b0_hr_b0_48.c */; };
 		18713EBE255F1BE900EF3D49 /* iwx_Qu_b0_jf_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD2255F14E900EF3D49 /* iwx_Qu_b0_jf_b0_48.c */; };
-		18713EBF255F1BE900EF3D49 /* iwx_Qu_c0_hr_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BCE255F14E900EF3D49 /* iwx_Qu_c0_hr_b0_48.c */; };
 		18713EC0255F1BE900EF3D49 /* iwx_Qu_c0_jf_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BBD255F14E900EF3D49 /* iwx_Qu_c0_jf_b0_48.c */; };
-		18713EC1255F1BE900EF3D49 /* iwx_QuZ_a0_hr_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BBA255F14E900EF3D49 /* iwx_QuZ_a0_hr_b0_48.c */; };
 		18713EC2255F1BE900EF3D49 /* iwx_QuZ_a0_jf_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BCC255F14E900EF3D49 /* iwx_QuZ_a0_jf_b0_48.c */; };
 		18713EC3255F1BE900EF3D49 /* wpi_3945abg.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD1255F14E900EF3D49 /* wpi_3945abg.c */; };
-		18713EC4255F1BE900EF3D49 /* help_ifconfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1E255F14E700EF3D49 /* help_ifconfig.cpp */; };
+		18713EC4255F1BE900EF3D49 /* ifconfig.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1E255F14E700EF3D49 /* ifconfig.c */; };
 		18713EC5255F1BE900EF3D49 /* aes.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B25255F14E700EF3D49 /* aes.c */; };
 		18713EC6255F1BE900EF3D49 /* hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B26255F14E700EF3D49 /* hmac.c */; };
 		18713EC7255F1BE900EF3D49 /* sha2.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B27255F14E700EF3D49 /* sha2.c */; };
@@ -465,7 +440,6 @@
 		18713ED7255F1BE900EF3D49 /* ieee80211.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B5B255F14E700EF3D49 /* ieee80211.c */; };
 		18713ED8255F1BE900EF3D49 /* ieee80211_rssadapt.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B5C255F14E700EF3D49 /* ieee80211_rssadapt.c */; };
 		18713ED9255F1BE900EF3D49 /* ieee80211_input.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B5D255F14E700EF3D49 /* ieee80211_input.c */; };
-		18713EDA255F1BE900EF3D49 /* ieee80211_mira.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B60255F14E700EF3D49 /* ieee80211_mira.c */; };
 		18713EDB255F1BE900EF3D49 /* ieee80211_crypto_bip.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B62255F14E800EF3D49 /* ieee80211_crypto_bip.c */; };
 		18713EDC255F1BE900EF3D49 /* ieee80211_crypto_tkip.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B63255F14E800EF3D49 /* ieee80211_crypto_tkip.c */; };
 		18713EDD255F1BE900EF3D49 /* ieee80211_crypto_ccmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B64255F14E800EF3D49 /* ieee80211_crypto_ccmp.c */; };
@@ -493,7 +467,7 @@
 		18713EF8255F1BF600EF3D49 /* compat.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B21255F14E700EF3D49 /* compat.h */; };
 		18713EF9255F1BF600EF3D49 /* firmware.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BD4255F14E900EF3D49 /* firmware.h */; };
 		18713EFA255F1BF600EF3D49 /* firmwarevar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BDD255F14E900EF3D49 /* firmwarevar.h */; };
-		18713EFB255F1BF600EF3D49 /* help_ifconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B22255F14E700EF3D49 /* help_ifconfig.h */; };
+		18713EFB255F1BF600EF3D49 /* ifconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B22255F14E700EF3D49 /* ifconfig.h */; };
 		18713EFC255F1BF600EF3D49 /* iwlwifi.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1C255F14E700EF3D49 /* iwlwifi.h */; };
 		18713EFD255F1BF600EF3D49 /* key_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B29255F14E700EF3D49 /* key_wrap.h */; };
 		18713EFE255F1BF600EF3D49 /* md5.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B2A255F14E700EF3D49 /* md5.h */; };
@@ -536,7 +510,6 @@
 		18713F23255F1BF700EF3D49 /* ieee80211.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B6A255F14E800EF3D49 /* ieee80211.h */; };
 		18713F24255F1BF700EF3D49 /* ieee80211_priv.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B6B255F14E800EF3D49 /* ieee80211_priv.h */; };
 		18713F25255F1BF700EF3D49 /* ieee80211_ioctl.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B6C255F14E800EF3D49 /* ieee80211_ioctl.h */; };
-		18713F26255F1BF700EF3D49 /* ieee80211_mira.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B70255F14E800EF3D49 /* ieee80211_mira.h */; };
 		18713F27255F1BF700EF3D49 /* ieee80211_var.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B74255F14E800EF3D49 /* ieee80211_var.h */; };
 		18713F28255F1BF700EF3D49 /* if_ipwvar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B77255F14E800EF3D49 /* if_ipwvar.h */; };
 		18713F29255F1BF700EF3D49 /* if_iwivar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B78255F14E800EF3D49 /* if_iwivar.h */; };
@@ -570,12 +543,7 @@
 		18713F4A255F1C0200EF3D49 /* iwm_3160_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BCF255F14E900EF3D49 /* iwm_3160_17.c */; };
 		18713F4B255F1C0200EF3D49 /* iwm_3168_29.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD9255F14E900EF3D49 /* iwm_3168_29.c */; };
 		18713F4C255F1C0200EF3D49 /* iwm_7260_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD5255F14E900EF3D49 /* iwm_7260_17.c */; };
-		18713F4D255F1C0200EF3D49 /* iwm_7265_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC9255F14E900EF3D49 /* iwm_7265_17.c */; };
 		18713F4E255F1C0200EF3D49 /* iwm_7265D_29.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC2255F14E900EF3D49 /* iwm_7265D_29.c */; };
-		18713F4F255F1C0200EF3D49 /* iwm_8000C_34.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD0255F14E900EF3D49 /* iwm_8000C_34.c */; };
-		18713F50255F1C0200EF3D49 /* iwm_8265_34.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC3255F14E900EF3D49 /* iwm_8265_34.c */; };
-		18713F51255F1C0200EF3D49 /* iwm_9000_34.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD6255F14E900EF3D49 /* iwm_9000_34.c */; };
-		18713F52255F1C0200EF3D49 /* iwm_9260_34.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BDA255F14E900EF3D49 /* iwm_9260_34.c */; };
 		18713F53255F1C0200EF3D49 /* iwn_100.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BCA255F14E900EF3D49 /* iwn_100.c */; };
 		18713F54255F1C0200EF3D49 /* iwn_105.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD3255F14E900EF3D49 /* iwn_105.c */; };
 		18713F55255F1C0200EF3D49 /* iwn_135.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC5255F14E900EF3D49 /* iwn_135.c */; };
@@ -592,12 +560,10 @@
 		18713F60255F1C0200EF3D49 /* iwx_cc_a0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC8255F14E900EF3D49 /* iwx_cc_a0_48.c */; };
 		18713F61255F1C0200EF3D49 /* iwx_Qu_b0_hr_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BBF255F14E900EF3D49 /* iwx_Qu_b0_hr_b0_48.c */; };
 		18713F62255F1C0200EF3D49 /* iwx_Qu_b0_jf_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD2255F14E900EF3D49 /* iwx_Qu_b0_jf_b0_48.c */; };
-		18713F63255F1C0200EF3D49 /* iwx_Qu_c0_hr_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BCE255F14E900EF3D49 /* iwx_Qu_c0_hr_b0_48.c */; };
 		18713F64255F1C0200EF3D49 /* iwx_Qu_c0_jf_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BBD255F14E900EF3D49 /* iwx_Qu_c0_jf_b0_48.c */; };
-		18713F65255F1C0200EF3D49 /* iwx_QuZ_a0_hr_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BBA255F14E900EF3D49 /* iwx_QuZ_a0_hr_b0_48.c */; };
 		18713F66255F1C0200EF3D49 /* iwx_QuZ_a0_jf_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BCC255F14E900EF3D49 /* iwx_QuZ_a0_jf_b0_48.c */; };
 		18713F67255F1C0200EF3D49 /* wpi_3945abg.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD1255F14E900EF3D49 /* wpi_3945abg.c */; };
-		18713F68255F1C0200EF3D49 /* help_ifconfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1E255F14E700EF3D49 /* help_ifconfig.cpp */; };
+		18713F68255F1C0200EF3D49 /* ifconfig.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1E255F14E700EF3D49 /* ifconfig.c */; };
 		18713F69255F1C0200EF3D49 /* aes.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B25255F14E700EF3D49 /* aes.c */; };
 		18713F6A255F1C0200EF3D49 /* hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B26255F14E700EF3D49 /* hmac.c */; };
 		18713F6B255F1C0200EF3D49 /* sha2.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B27255F14E700EF3D49 /* sha2.c */; };
@@ -619,7 +585,6 @@
 		18713F7B255F1C0200EF3D49 /* ieee80211.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B5B255F14E700EF3D49 /* ieee80211.c */; };
 		18713F7C255F1C0200EF3D49 /* ieee80211_rssadapt.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B5C255F14E700EF3D49 /* ieee80211_rssadapt.c */; };
 		18713F7D255F1C0200EF3D49 /* ieee80211_input.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B5D255F14E700EF3D49 /* ieee80211_input.c */; };
-		18713F7E255F1C0200EF3D49 /* ieee80211_mira.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B60255F14E700EF3D49 /* ieee80211_mira.c */; };
 		18713F7F255F1C0200EF3D49 /* ieee80211_crypto_bip.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B62255F14E800EF3D49 /* ieee80211_crypto_bip.c */; };
 		18713F80255F1C0200EF3D49 /* ieee80211_crypto_tkip.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B63255F14E800EF3D49 /* ieee80211_crypto_tkip.c */; };
 		18713F81255F1C0200EF3D49 /* ieee80211_crypto_ccmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B64255F14E800EF3D49 /* ieee80211_crypto_ccmp.c */; };
@@ -647,7 +612,7 @@
 		18713F9C255F1C0F00EF3D49 /* compat.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B21255F14E700EF3D49 /* compat.h */; };
 		18713F9D255F1C0F00EF3D49 /* firmware.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BD4255F14E900EF3D49 /* firmware.h */; };
 		18713F9E255F1C0F00EF3D49 /* firmwarevar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BDD255F14E900EF3D49 /* firmwarevar.h */; };
-		18713F9F255F1C0F00EF3D49 /* help_ifconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B22255F14E700EF3D49 /* help_ifconfig.h */; };
+		18713F9F255F1C0F00EF3D49 /* ifconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B22255F14E700EF3D49 /* ifconfig.h */; };
 		18713FA0255F1C0F00EF3D49 /* iwlwifi.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1C255F14E700EF3D49 /* iwlwifi.h */; };
 		18713FA1255F1C0F00EF3D49 /* key_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B29255F14E700EF3D49 /* key_wrap.h */; };
 		18713FA2255F1C0F00EF3D49 /* md5.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B2A255F14E700EF3D49 /* md5.h */; };
@@ -690,7 +655,6 @@
 		18713FC7255F1C0F00EF3D49 /* ieee80211.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B6A255F14E800EF3D49 /* ieee80211.h */; };
 		18713FC8255F1C0F00EF3D49 /* ieee80211_priv.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B6B255F14E800EF3D49 /* ieee80211_priv.h */; };
 		18713FC9255F1C0F00EF3D49 /* ieee80211_ioctl.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B6C255F14E800EF3D49 /* ieee80211_ioctl.h */; };
-		18713FCA255F1C0F00EF3D49 /* ieee80211_mira.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B70255F14E800EF3D49 /* ieee80211_mira.h */; };
 		18713FCB255F1C0F00EF3D49 /* ieee80211_var.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B74255F14E800EF3D49 /* ieee80211_var.h */; };
 		18713FCC255F1C0F00EF3D49 /* if_ipwvar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B77255F14E800EF3D49 /* if_ipwvar.h */; };
 		18713FCD255F1C0F00EF3D49 /* if_iwivar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B78255F14E800EF3D49 /* if_iwivar.h */; };
@@ -724,12 +688,7 @@
 		18713FEE255F1C1800EF3D49 /* iwm_3160_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BCF255F14E900EF3D49 /* iwm_3160_17.c */; };
 		18713FEF255F1C1800EF3D49 /* iwm_3168_29.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD9255F14E900EF3D49 /* iwm_3168_29.c */; };
 		18713FF0255F1C1800EF3D49 /* iwm_7260_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD5255F14E900EF3D49 /* iwm_7260_17.c */; };
-		18713FF1255F1C1800EF3D49 /* iwm_7265_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC9255F14E900EF3D49 /* iwm_7265_17.c */; };
 		18713FF2255F1C1800EF3D49 /* iwm_7265D_29.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC2255F14E900EF3D49 /* iwm_7265D_29.c */; };
-		18713FF3255F1C1800EF3D49 /* iwm_8000C_34.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD0255F14E900EF3D49 /* iwm_8000C_34.c */; };
-		18713FF4255F1C1800EF3D49 /* iwm_8265_34.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC3255F14E900EF3D49 /* iwm_8265_34.c */; };
-		18713FF5255F1C1800EF3D49 /* iwm_9000_34.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD6255F14E900EF3D49 /* iwm_9000_34.c */; };
-		18713FF6255F1C1800EF3D49 /* iwm_9260_34.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BDA255F14E900EF3D49 /* iwm_9260_34.c */; };
 		18713FF7255F1C1800EF3D49 /* iwn_100.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BCA255F14E900EF3D49 /* iwn_100.c */; };
 		18713FF8255F1C1800EF3D49 /* iwn_105.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD3255F14E900EF3D49 /* iwn_105.c */; };
 		18713FF9255F1C1800EF3D49 /* iwn_135.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC5255F14E900EF3D49 /* iwn_135.c */; };
@@ -746,12 +705,10 @@
 		18714004255F1C1800EF3D49 /* iwx_cc_a0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC8255F14E900EF3D49 /* iwx_cc_a0_48.c */; };
 		18714005255F1C1800EF3D49 /* iwx_Qu_b0_hr_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BBF255F14E900EF3D49 /* iwx_Qu_b0_hr_b0_48.c */; };
 		18714006255F1C1800EF3D49 /* iwx_Qu_b0_jf_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD2255F14E900EF3D49 /* iwx_Qu_b0_jf_b0_48.c */; };
-		18714007255F1C1800EF3D49 /* iwx_Qu_c0_hr_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BCE255F14E900EF3D49 /* iwx_Qu_c0_hr_b0_48.c */; };
 		18714008255F1C1800EF3D49 /* iwx_Qu_c0_jf_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BBD255F14E900EF3D49 /* iwx_Qu_c0_jf_b0_48.c */; };
-		18714009255F1C1800EF3D49 /* iwx_QuZ_a0_hr_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BBA255F14E900EF3D49 /* iwx_QuZ_a0_hr_b0_48.c */; };
 		1871400A255F1C1800EF3D49 /* iwx_QuZ_a0_jf_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BCC255F14E900EF3D49 /* iwx_QuZ_a0_jf_b0_48.c */; };
 		1871400B255F1C1800EF3D49 /* wpi_3945abg.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD1255F14E900EF3D49 /* wpi_3945abg.c */; };
-		1871400C255F1C1800EF3D49 /* help_ifconfig.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1E255F14E700EF3D49 /* help_ifconfig.cpp */; };
+		1871400C255F1C1800EF3D49 /* ifconfig.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1E255F14E700EF3D49 /* ifconfig.c */; };
 		1871400D255F1C1800EF3D49 /* aes.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B25255F14E700EF3D49 /* aes.c */; };
 		1871400E255F1C1800EF3D49 /* hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B26255F14E700EF3D49 /* hmac.c */; };
 		1871400F255F1C1800EF3D49 /* sha2.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B27255F14E700EF3D49 /* sha2.c */; };
@@ -773,7 +730,6 @@
 		1871401F255F1C1800EF3D49 /* ieee80211.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B5B255F14E700EF3D49 /* ieee80211.c */; };
 		18714020255F1C1800EF3D49 /* ieee80211_rssadapt.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B5C255F14E700EF3D49 /* ieee80211_rssadapt.c */; };
 		18714021255F1C1800EF3D49 /* ieee80211_input.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B5D255F14E700EF3D49 /* ieee80211_input.c */; };
-		18714022255F1C1800EF3D49 /* ieee80211_mira.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B60255F14E700EF3D49 /* ieee80211_mira.c */; };
 		18714023255F1C1800EF3D49 /* ieee80211_crypto_bip.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B62255F14E800EF3D49 /* ieee80211_crypto_bip.c */; };
 		18714024255F1C1800EF3D49 /* ieee80211_crypto_tkip.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B63255F14E800EF3D49 /* ieee80211_crypto_tkip.c */; };
 		18714025255F1C1800EF3D49 /* ieee80211_crypto_ccmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B64255F14E800EF3D49 /* ieee80211_crypto_ccmp.c */; };
@@ -801,7 +757,7 @@
 		18714040255F1C2300EF3D49 /* compat.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B21255F14E700EF3D49 /* compat.h */; };
 		18714041255F1C2300EF3D49 /* firmware.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BD4255F14E900EF3D49 /* firmware.h */; };
 		18714042255F1C2300EF3D49 /* firmwarevar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BDD255F14E900EF3D49 /* firmwarevar.h */; };
-		18714043255F1C2300EF3D49 /* help_ifconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B22255F14E700EF3D49 /* help_ifconfig.h */; };
+		18714043255F1C2300EF3D49 /* ifconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B22255F14E700EF3D49 /* ifconfig.h */; };
 		18714044255F1C2300EF3D49 /* iwlwifi.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1C255F14E700EF3D49 /* iwlwifi.h */; };
 		18714045255F1C2300EF3D49 /* key_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B29255F14E700EF3D49 /* key_wrap.h */; };
 		18714046255F1C2300EF3D49 /* md5.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B2A255F14E700EF3D49 /* md5.h */; };
@@ -844,7 +800,6 @@
 		1871406B255F1C2300EF3D49 /* ieee80211.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B6A255F14E800EF3D49 /* ieee80211.h */; };
 		1871406C255F1C2300EF3D49 /* ieee80211_priv.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B6B255F14E800EF3D49 /* ieee80211_priv.h */; };
 		1871406D255F1C2300EF3D49 /* ieee80211_ioctl.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B6C255F14E800EF3D49 /* ieee80211_ioctl.h */; };
-		1871406E255F1C2300EF3D49 /* ieee80211_mira.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B70255F14E800EF3D49 /* ieee80211_mira.h */; };
 		1871406F255F1C2300EF3D49 /* ieee80211_var.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B74255F14E800EF3D49 /* ieee80211_var.h */; };
 		18714070255F1C2300EF3D49 /* if_ipwvar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B77255F14E800EF3D49 /* if_ipwvar.h */; };
 		18714071255F1C2300EF3D49 /* if_iwivar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B78255F14E800EF3D49 /* if_iwivar.h */; };
@@ -932,6 +887,290 @@
 		3714750325D187FC0052FDC0 /* _malloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3714750025D187FC0052FDC0 /* _malloc.c */; };
 		3714750425D187FC0052FDC0 /* _malloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3714750025D187FC0052FDC0 /* _malloc.c */; };
 		3714750525D187FC0052FDC0 /* _malloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3714750025D187FC0052FDC0 /* _malloc.c */; };
+		3FF4040426675E3A0062B1D9 /* iwm_8000C_36.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF403FD26675E3A0062B1D9 /* iwm_8000C_36.c */; };
+		3FF4040526675E3A0062B1D9 /* iwm_8000C_36.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF403FD26675E3A0062B1D9 /* iwm_8000C_36.c */; };
+		3FF4040626675E3A0062B1D9 /* iwm_8000C_36.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF403FD26675E3A0062B1D9 /* iwm_8000C_36.c */; };
+		3FF4040726675E3A0062B1D9 /* iwm_8000C_36.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF403FD26675E3A0062B1D9 /* iwm_8000C_36.c */; };
+		3FF4040826675E3A0062B1D9 /* iwm_8000C_36.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF403FD26675E3A0062B1D9 /* iwm_8000C_36.c */; };
+		3FF4040926675E3A0062B1D9 /* iwx_cc_a0_63.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF403FE26675E3A0062B1D9 /* iwx_cc_a0_63.c */; };
+		3FF4040A26675E3A0062B1D9 /* iwx_cc_a0_63.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF403FE26675E3A0062B1D9 /* iwx_cc_a0_63.c */; };
+		3FF4040B26675E3A0062B1D9 /* iwx_cc_a0_63.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF403FE26675E3A0062B1D9 /* iwx_cc_a0_63.c */; };
+		3FF4040C26675E3A0062B1D9 /* iwx_cc_a0_63.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF403FE26675E3A0062B1D9 /* iwx_cc_a0_63.c */; };
+		3FF4040D26675E3A0062B1D9 /* iwx_cc_a0_63.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF403FE26675E3A0062B1D9 /* iwx_cc_a0_63.c */; };
+		3FF4041326675E3A0062B1D9 /* iwm_9260_46.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4040026675E3A0062B1D9 /* iwm_9260_46.c */; };
+		3FF4041426675E3A0062B1D9 /* iwm_9260_46.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4040026675E3A0062B1D9 /* iwm_9260_46.c */; };
+		3FF4041526675E3A0062B1D9 /* iwm_9260_46.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4040026675E3A0062B1D9 /* iwm_9260_46.c */; };
+		3FF4041626675E3A0062B1D9 /* iwm_9260_46.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4040026675E3A0062B1D9 /* iwm_9260_46.c */; };
+		3FF4041726675E3A0062B1D9 /* iwm_9260_46.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4040026675E3A0062B1D9 /* iwm_9260_46.c */; };
+		3FF4041826675E3A0062B1D9 /* iwm_9000_46.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4040126675E3A0062B1D9 /* iwm_9000_46.c */; };
+		3FF4041926675E3A0062B1D9 /* iwm_9000_46.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4040126675E3A0062B1D9 /* iwm_9000_46.c */; };
+		3FF4041A26675E3A0062B1D9 /* iwm_9000_46.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4040126675E3A0062B1D9 /* iwm_9000_46.c */; };
+		3FF4041B26675E3A0062B1D9 /* iwm_9000_46.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4040126675E3A0062B1D9 /* iwm_9000_46.c */; };
+		3FF4041C26675E3A0062B1D9 /* iwm_9000_46.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4040126675E3A0062B1D9 /* iwm_9000_46.c */; };
+		3FF4041D26675E3A0062B1D9 /* iwx_Qu_c0_hr_b0_63.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4040226675E3A0062B1D9 /* iwx_Qu_c0_hr_b0_63.c */; };
+		3FF4041E26675E3A0062B1D9 /* iwx_Qu_c0_hr_b0_63.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4040226675E3A0062B1D9 /* iwx_Qu_c0_hr_b0_63.c */; };
+		3FF4041F26675E3A0062B1D9 /* iwx_Qu_c0_hr_b0_63.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4040226675E3A0062B1D9 /* iwx_Qu_c0_hr_b0_63.c */; };
+		3FF4042026675E3A0062B1D9 /* iwx_Qu_c0_hr_b0_63.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4040226675E3A0062B1D9 /* iwx_Qu_c0_hr_b0_63.c */; };
+		3FF4042126675E3A0062B1D9 /* iwx_Qu_c0_hr_b0_63.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4040226675E3A0062B1D9 /* iwx_Qu_c0_hr_b0_63.c */; };
+		3FF4042226675E3A0062B1D9 /* iwm_8265_36.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4040326675E3A0062B1D9 /* iwm_8265_36.c */; };
+		3FF4042326675E3A0062B1D9 /* iwm_8265_36.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4040326675E3A0062B1D9 /* iwm_8265_36.c */; };
+		3FF4042426675E3A0062B1D9 /* iwm_8265_36.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4040326675E3A0062B1D9 /* iwm_8265_36.c */; };
+		3FF4042526675E3A0062B1D9 /* iwm_8265_36.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4040326675E3A0062B1D9 /* iwm_8265_36.c */; };
+		3FF4042626675E3A0062B1D9 /* iwm_8265_36.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4040326675E3A0062B1D9 /* iwm_8265_36.c */; };
+		7F600927275E03190009ECFB /* iwx_QuZ_a0_hr_b0_67.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F600926275E03190009ECFB /* iwx_QuZ_a0_hr_b0_67.c */; };
+		7F600928275E03190009ECFB /* iwx_QuZ_a0_hr_b0_67.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F600926275E03190009ECFB /* iwx_QuZ_a0_hr_b0_67.c */; };
+		7F600929275E03190009ECFB /* iwx_QuZ_a0_hr_b0_67.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F600926275E03190009ECFB /* iwx_QuZ_a0_hr_b0_67.c */; };
+		7F60092A275E03190009ECFB /* iwx_QuZ_a0_hr_b0_67.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F600926275E03190009ECFB /* iwx_QuZ_a0_hr_b0_67.c */; };
+		7F60092B275E03190009ECFB /* iwx_QuZ_a0_hr_b0_67.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F600926275E03190009ECFB /* iwx_QuZ_a0_hr_b0_67.c */; };
+		7F8AB18727E8475F0045D670 /* ieee80211_ra_vht.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F8AB18527E8475F0045D670 /* ieee80211_ra_vht.h */; };
+		7F8AB18827E8475F0045D670 /* ieee80211_ra_vht.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F8AB18527E8475F0045D670 /* ieee80211_ra_vht.h */; };
+		7F8AB18927E8475F0045D670 /* ieee80211_ra_vht.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F8AB18527E8475F0045D670 /* ieee80211_ra_vht.h */; };
+		7F8AB18A27E8475F0045D670 /* ieee80211_ra_vht.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F8AB18527E8475F0045D670 /* ieee80211_ra_vht.h */; };
+		7F8AB18B27E8475F0045D670 /* ieee80211_ra_vht.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F8AB18527E8475F0045D670 /* ieee80211_ra_vht.h */; };
+		7F8AB18C27E8475F0045D670 /* ieee80211_ra_vht.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F8AB18527E8475F0045D670 /* ieee80211_ra_vht.h */; };
+		7F8AB18D27E8475F0045D670 /* ieee80211_ra_vht.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F8AB18627E8475F0045D670 /* ieee80211_ra_vht.c */; };
+		7F8AB18E27E8475F0045D670 /* ieee80211_ra_vht.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F8AB18627E8475F0045D670 /* ieee80211_ra_vht.c */; };
+		7F8AB18F27E8475F0045D670 /* ieee80211_ra_vht.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F8AB18627E8475F0045D670 /* ieee80211_ra_vht.c */; };
+		7F8AB19027E8475F0045D670 /* ieee80211_ra_vht.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F8AB18627E8475F0045D670 /* ieee80211_ra_vht.c */; };
+		7F8AB19127E8475F0045D670 /* ieee80211_ra_vht.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F8AB18627E8475F0045D670 /* ieee80211_ra_vht.c */; };
+		7F8AB19227E8475F0045D670 /* ieee80211_ra_vht.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F8AB18627E8475F0045D670 /* ieee80211_ra_vht.c */; };
+		7FBA000827E077F20075D188 /* AirPortOpenBSD.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 18713AFD255F148200EF3D49 /* AirPortOpenBSD.hpp */; };
+		7FBA000927E077F20075D188 /* IONetworkController.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BB5255F14E800EF3D49 /* IONetworkController.h */; };
+		7FBA000A27E077F20075D188 /* IONetworkInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BB4255F14E800EF3D49 /* IONetworkInterface.h */; };
+		7FBA001327E077F20075D188 /* apple80211.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BDF255F14EC00EF3D49 /* apple80211.h */; };
+		7FBA001427E077F20075D188 /* bpfilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1D255F14E700EF3D49 /* bpfilter.h */; };
+		7FBA001527E077F20075D188 /* bridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B0E255F14E600EF3D49 /* bridge.h */; };
+		7FBA001627E077F20075D188 /* compat.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B21255F14E700EF3D49 /* compat.h */; };
+		7FBA001727E077F20075D188 /* firmware.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BD4255F14E900EF3D49 /* firmware.h */; };
+		7FBA001827E077F20075D188 /* firmwarevar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BDD255F14E900EF3D49 /* firmwarevar.h */; };
+		7FBA001927E077F20075D188 /* iwlwifi.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1C255F14E700EF3D49 /* iwlwifi.h */; };
+		7FBA001A27E077F20075D188 /* aes.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B30255F14E700EF3D49 /* aes.h */; };
+		7FBA001B27E077F20075D188 /* arc4.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B2B255F14E700EF3D49 /* arc4.h */; };
+		7FBA001C27E077F20075D188 /* cmac.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B36255F14E700EF3D49 /* cmac.h */; };
+		7FBA001D27E077F20075D188 /* hmac.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B2F255F14E700EF3D49 /* hmac.h */; };
+		7FBA001E27E077F20075D188 /* key_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B29255F14E700EF3D49 /* key_wrap.h */; };
+		7FBA001F27E077F20075D188 /* md5.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B2A255F14E700EF3D49 /* md5.h */; };
+		7FBA002027E077F20075D188 /* michael.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B31255F14E700EF3D49 /* michael.h */; };
+		7FBA002127E077F20075D188 /* sha1.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B32255F14E700EF3D49 /* sha1.h */; };
+		7FBA002227E077F20075D188 /* sha2.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B2E255F14E700EF3D49 /* sha2.h */; };
+		7FBA002327E077F20075D188 /* bwfmreg.h in Headers */ = {isa = PBXBuildFile; fileRef = 183CD6A125605A89005F866F /* bwfmreg.h */; };
+		7FBA002427E077F20075D188 /* bwfmvar.h in Headers */ = {isa = PBXBuildFile; fileRef = 183CD69E25605A89005F866F /* bwfmvar.h */; };
+		7FBA002527E077F20075D188 /* bwireg.h in Headers */ = {isa = PBXBuildFile; fileRef = 183CD69D25605A89005F866F /* bwireg.h */; };
+		7FBA002627E077F20075D188 /* bwivar.h in Headers */ = {isa = PBXBuildFile; fileRef = 183CD69F25605A89005F866F /* bwivar.h */; };
+		7FBA002727E077F20075D188 /* r92creg.h in Headers */ = {isa = PBXBuildFile; fileRef = 18C95A85256285CC0047231F /* r92creg.h */; };
+		7FBA002827E077F20075D188 /* rtwnvar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18C95A84256285CC0047231F /* rtwnvar.h */; };
+		7FBA002927E077F20075D188 /* if_bwfm_pci.h in Headers */ = {isa = PBXBuildFile; fileRef = 183CD6CD25605A98005F866F /* if_bwfm_pci.h */; };
+		7FBA002A27E077F20075D188 /* if_ipwreg.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B81255F14E800EF3D49 /* if_ipwreg.h */; };
+		7FBA002B27E077F20075D188 /* if_ipwvar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B77255F14E800EF3D49 /* if_ipwvar.h */; };
+		7FBA002C27E077F20075D188 /* if_iwireg.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B82255F14E800EF3D49 /* if_iwireg.h */; };
+		7FBA002D27E077F20075D188 /* if_iwivar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B78255F14E800EF3D49 /* if_iwivar.h */; };
+		7FBA002E27E077F20075D188 /* if_iwmreg.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B8B255F14E800EF3D49 /* if_iwmreg.h */; };
+		7FBA002F27E077F20075D188 /* if_iwmvar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B88255F14E800EF3D49 /* if_iwmvar.h */; };
+		7FBA003027E077F20075D188 /* if_iwnreg.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B7E255F14E800EF3D49 /* if_iwnreg.h */; };
+		7FBA003127E077F20075D188 /* if_iwnvar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B84255F14E800EF3D49 /* if_iwnvar.h */; };
+		7FBA003227E077F20075D188 /* if_iwxreg.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B8A255F14E800EF3D49 /* if_iwxreg.h */; };
+		7FBA003327E077F20075D188 /* if_iwxvar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B87255F14E800EF3D49 /* if_iwxvar.h */; };
+		7FBA003427E077F20075D188 /* if_wpireg.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B85255F14E800EF3D49 /* if_wpireg.h */; };
+		7FBA003527E077F20075D188 /* if_wpivar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B7A255F14E800EF3D49 /* if_wpivar.h */; };
+		7FBA003627E077F20075D188 /* pcidevs.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B7C255F14E800EF3D49 /* pcidevs.h */; };
+		7FBA003727E077F20075D188 /* pcireg.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B8C255F14E800EF3D49 /* pcireg.h */; };
+		7FBA003827E077F20075D188 /* pcivar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B89255F14E800EF3D49 /* pcivar.h */; };
+		7FBA003927E077F20075D188 /* ifconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B22255F14E700EF3D49 /* ifconfig.h */; };
+		7FBA003A27E077F20075D188 /* qsort.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FF2C20B274CD7E900DCECFD /* qsort.h */; };
+		7FBA003B27E077F20075D188 /* heapsort.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FF2C21C274CD9D000DCECFD /* heapsort.h */; };
+		7FBA003C27E077F20075D188 /* bus.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B54255F14E700EF3D49 /* bus.h */; };
+		7FBA003D27E077F20075D188 /* intr.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B55255F14E700EF3D49 /* intr.h */; };
+		7FBA003E27E077F20075D188 /* ieee80211_amrr.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B59255F14E700EF3D49 /* ieee80211_amrr.h */; };
+		7FBA003F27E077F20075D188 /* ieee80211_crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B61255F14E700EF3D49 /* ieee80211_crypto.h */; };
+		7FBA004027E077F20075D188 /* ieee80211_ioctl.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B6C255F14E800EF3D49 /* ieee80211_ioctl.h */; };
+		7FBA004127E077F20075D188 /* ieee80211_node.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B5E255F14E700EF3D49 /* ieee80211_node.h */; };
+		7FBA004227E077F20075D188 /* ieee80211_priv.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B6B255F14E800EF3D49 /* ieee80211_priv.h */; };
+		7FBA004327E077F20075D188 /* ieee80211_proto.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B68255F14E800EF3D49 /* ieee80211_proto.h */; };
+		7FBA004427E077F20075D188 /* ieee80211_ra.h in Headers */ = {isa = PBXBuildFile; fileRef = 18BB83E025FE3C49001220DF /* ieee80211_ra.h */; };
+		7FBA004527E077F20075D188 /* ieee80211_radiotap.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B66255F14E800EF3D49 /* ieee80211_radiotap.h */; };
+		7FBA004627E077F20075D188 /* ieee80211_regdomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B5F255F14E700EF3D49 /* ieee80211_regdomain.h */; };
+		7FBA004727E077F20075D188 /* ieee80211_rssadapt.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B69255F14E800EF3D49 /* ieee80211_rssadapt.h */; };
+		7FBA004827E077F20075D188 /* ieee80211_var.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B74255F14E800EF3D49 /* ieee80211_var.h */; };
+		7FBA004927E077F20075D188 /* ieee80211.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B6A255F14E800EF3D49 /* ieee80211.h */; };
+		7FBA004A27E077F20075D188 /* _bpf.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B38255F14E700EF3D49 /* _bpf.h */; };
+		7FBA004B27E077F20075D188 /* _if_ether.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B39255F14E700EF3D49 /* _if_ether.h */; };
+		7FBA004C27E077F20075D188 /* _if.h in Headers */ = {isa = PBXBuildFile; fileRef = 183CD6E225605B0E005F866F /* _if.h */; };
+		7FBA004D27E077F20075D188 /* if_media.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B3A255F14E700EF3D49 /* if_media.h */; };
+		7FBA004E27E077F20075D188 /* __types.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B4C255F14E700EF3D49 /* __types.h */; };
+		7FBA004F27E077F20075D188 /* _kernel.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B50255F14E700EF3D49 /* _kernel.h */; };
+		7FBA005027E077F20075D188 /* _malloc.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B44255F14E700EF3D49 /* _malloc.h */; };
+		7FBA005127E077F20075D188 /* _mbuf.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B43255F14E700EF3D49 /* _mbuf.h */; };
+		7FBA005227E077F20075D188 /* _null.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B47255F14E700EF3D49 /* _null.h */; };
+		7FBA005327E077F20075D188 /* device.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B3F255F14E700EF3D49 /* device.h */; };
+		7FBA005427E077F20075D188 /* endian.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B41255F14E700EF3D49 /* endian.h */; };
+		7FBA005527E077F20075D188 /* fls.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B3D255F14E700EF3D49 /* fls.h */; };
+		7FBA005627E077F20075D188 /* kern_compat.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B4A255F14E700EF3D49 /* kern_compat.h */; };
+		7FBA005727E077F20075D188 /* libkern.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B51255F14E700EF3D49 /* libkern.h */; };
+		7FBA005827E077F20075D188 /* mutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B4E255F14E700EF3D49 /* mutex.h */; };
+		7FBA005927E077F20075D188 /* refcnt.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B4D255F14E700EF3D49 /* refcnt.h */; };
+		7FBA005A27E077F20075D188 /* rwlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B45255F14E700EF3D49 /* rwlock.h */; };
+		7FBA005B27E077F20075D188 /* task.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B3E255F14E700EF3D49 /* task.h */; };
+		7FBA005C27E077F20075D188 /* timeout.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B4F255F14E700EF3D49 /* timeout.h */; };
+		7FBA005D27E077F20075D188 /* timingsafe_bcmp.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B40255F14E700EF3D49 /* timingsafe_bcmp.h */; };
+		7FBA005E27E077F20075D188 /* tree.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B46255F14E700EF3D49 /* tree.h */; };
+		7FBA005F27E077F20075D188 /* uvm_extern.h in Headers */ = {isa = PBXBuildFile; fileRef = 183CD6F325605C66005F866F /* uvm_extern.h */; };
+		7FBA006027E077F20075D188 /* vlan.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1A255F14E700EF3D49 /* vlan.h */; };
+		7FBA006727E077FE0075D188 /* AirPortOpenBSD_80211.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B19255F14E700EF3D49 /* AirPortOpenBSD_80211.cpp */; };
+		7FBA006827E077FE0075D188 /* AirPortOpenBSD_Ethernet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1B255F14E700EF3D49 /* AirPortOpenBSD_Ethernet.cpp */; };
+		7FBA006927E077FE0075D188 /* AirPortOpenBSD_Ioctl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1F255F14E700EF3D49 /* AirPortOpenBSD_Ioctl.cpp */; };
+		7FBA006A27E077FE0075D188 /* AirPortOpenBSD_Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B20255F14E700EF3D49 /* AirPortOpenBSD_Util.cpp */; };
+		7FBA006B27E077FE0075D188 /* AirPortOpenBSD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713AFF255F148200EF3D49 /* AirPortOpenBSD.cpp */; };
+		7FBA006C27E077FE0075D188 /* compat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B0D255F14E600EF3D49 /* compat.cpp */; };
+		7FBA006D27E077FE0075D188 /* brcmfmac4358_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E68277B209B000349A8 /* brcmfmac4358_pcie_bin.c */; };
+		7FBA006E27E077FE0075D188 /* brcmfmac4366b_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E67277B209B000349A8 /* brcmfmac4366b_pcie_bin.c */; };
+		7FBA006F27E077FE0075D188 /* brcmfmac4366c_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E65277B209B000349A8 /* brcmfmac4366c_pcie_bin.c */; };
+		7FBA007027E077FE0075D188 /* brcmfmac43570_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E66277B209B000349A8 /* brcmfmac43570_pcie_bin.c */; };
+		7FBA007127E077FE0075D188 /* brcmfmac43602_pcie_ap_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E69277B209B000349A8 /* brcmfmac43602_pcie_ap_bin.c */; };
+		7FBA007227E077FE0075D188 /* brcmfmac4350_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CD70025606021005F866F /* brcmfmac4350_pcie_bin.c */; };
+		7FBA007327E077FE0075D188 /* brcmfmac4350c2_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CD70325606021005F866F /* brcmfmac4350c2_pcie_bin.c */; };
+		7FBA007427E077FE0075D188 /* brcmfmac4356_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CD70225606021005F866F /* brcmfmac4356_pcie_bin.c */; };
+		7FBA007527E077FE0075D188 /* brcmfmac4371_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CD70125606021005F866F /* brcmfmac4371_pcie_bin.c */; };
+		7FBA007627E077FE0075D188 /* brcmfmac43602_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CD6FE25606021005F866F /* brcmfmac43602_pcie_bin.c */; };
+		7FBA007727E077FE0075D188 /* bwi_airforce.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CD6FF25606021005F866F /* bwi_airforce.c */; };
+		7FBA007827E077FE0075D188 /* firmware.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC1255F14E900EF3D49 /* firmware.c */; };
+		7FBA007927E077FE0075D188 /* ipw_bss.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD8255F14E900EF3D49 /* ipw_bss.c */; };
+		7FBA007A27E077FE0075D188 /* ipw_ibss.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BB8255F14E900EF3D49 /* ipw_ibss.c */; };
+		7FBA007B27E077FE0075D188 /* ipw_monitor.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BB9255F14E900EF3D49 /* ipw_monitor.c */; };
+		7FBA007C27E077FE0075D188 /* iwi_bss.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC6255F14E900EF3D49 /* iwi_bss.c */; };
+		7FBA007D27E077FE0075D188 /* iwi_ibss.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD7255F14E900EF3D49 /* iwi_ibss.c */; };
+		7FBA007E27E077FE0075D188 /* iwi_monitor.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC4255F14E900EF3D49 /* iwi_monitor.c */; };
+		7FBA007F27E077FE0075D188 /* iwm_3160_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BCF255F14E900EF3D49 /* iwm_3160_17.c */; };
+		7FBA008027E077FE0075D188 /* iwm_3168_29.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD9255F14E900EF3D49 /* iwm_3168_29.c */; };
+		7FBA008127E077FE0075D188 /* iwm_7260_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD5255F14E900EF3D49 /* iwm_7260_17.c */; };
+		7FBA008227E077FE0075D188 /* iwm_7265D_29.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC2255F14E900EF3D49 /* iwm_7265D_29.c */; };
+		7FBA008327E077FE0075D188 /* iwm_8000C_36.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF403FD26675E3A0062B1D9 /* iwm_8000C_36.c */; };
+		7FBA008427E077FE0075D188 /* iwm_8265_36.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4040326675E3A0062B1D9 /* iwm_8265_36.c */; };
+		7FBA008527E077FE0075D188 /* iwm_9000_46.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4040126675E3A0062B1D9 /* iwm_9000_46.c */; };
+		7FBA008627E077FE0075D188 /* iwm_9260_46.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4040026675E3A0062B1D9 /* iwm_9260_46.c */; };
+		7FBA008727E077FE0075D188 /* iwn_100.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BCA255F14E900EF3D49 /* iwn_100.c */; };
+		7FBA008827E077FE0075D188 /* iwn_105.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD3255F14E900EF3D49 /* iwn_105.c */; };
+		7FBA008927E077FE0075D188 /* iwn_135.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC5255F14E900EF3D49 /* iwn_135.c */; };
+		7FBA008A27E077FE0075D188 /* iwn_1000.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BCD255F14E900EF3D49 /* iwn_1000.c */; };
+		7FBA008B27E077FE0075D188 /* iwn_2000.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC7255F14E900EF3D49 /* iwn_2000.c */; };
+		7FBA008C27E077FE0075D188 /* iwn_2030.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BCB255F14E900EF3D49 /* iwn_2030.c */; };
+		7FBA008D27E077FE0075D188 /* iwn_4965.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BDC255F14E900EF3D49 /* iwn_4965.c */; };
+		7FBA008E27E077FE0075D188 /* iwn_5000.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BBB255F14E900EF3D49 /* iwn_5000.c */; };
+		7FBA008F27E077FE0075D188 /* iwn_5150.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC0255F14E900EF3D49 /* iwn_5150.c */; };
+		7FBA009027E077FE0075D188 /* iwn_6000.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BDE255F14E900EF3D49 /* iwn_6000.c */; };
+		7FBA009127E077FE0075D188 /* iwn_6005.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BBE255F14E900EF3D49 /* iwn_6005.c */; };
+		7FBA009227E077FE0075D188 /* iwn_6030.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BBC255F14E900EF3D49 /* iwn_6030.c */; };
+		7FBA009327E077FE0075D188 /* iwn_6050.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BDB255F14E900EF3D49 /* iwn_6050.c */; };
+		7FBA009427E077FE0075D188 /* iwx_cc_a0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BC8255F14E900EF3D49 /* iwx_cc_a0_48.c */; };
+		7FBA009527E077FE0075D188 /* iwx_cc_a0_63.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF403FE26675E3A0062B1D9 /* iwx_cc_a0_63.c */; };
+		7FBA009627E077FE0075D188 /* iwx_Qu_b0_hr_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BBF255F14E900EF3D49 /* iwx_Qu_b0_hr_b0_48.c */; };
+		7FBA009727E077FE0075D188 /* iwx_Qu_b0_jf_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD2255F14E900EF3D49 /* iwx_Qu_b0_jf_b0_48.c */; };
+		7FBA009827E077FE0075D188 /* iwx_Qu_c0_hr_b0_63.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4040226675E3A0062B1D9 /* iwx_Qu_c0_hr_b0_63.c */; };
+		7FBA009927E077FE0075D188 /* iwx_Qu_c0_jf_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BBD255F14E900EF3D49 /* iwx_Qu_c0_jf_b0_48.c */; };
+		7FBA009A27E077FE0075D188 /* iwx_QuQnj_b0_hr_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18F7F0B22582735000360E74 /* iwx_QuQnj_b0_hr_b0_48.c */; };
+		7FBA009B27E077FE0075D188 /* iwx_QuQnj_b0_jf_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18F7F0B32582735100360E74 /* iwx_QuQnj_b0_jf_b0_48.c */; };
+		7FBA009C27E077FE0075D188 /* iwx_QuZ_a0_hr_b0_67.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F600926275E03190009ECFB /* iwx_QuZ_a0_hr_b0_67.c */; };
+		7FBA009D27E077FE0075D188 /* iwx_QuZ_a0_jf_b0_48.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BCC255F14E900EF3D49 /* iwx_QuZ_a0_jf_b0_48.c */; };
+		7FBA009E27E077FE0075D188 /* rtwn_rtl8188efw.c in Sources */ = {isa = PBXBuildFile; fileRef = 18C95AEE25628E3C0047231F /* rtwn_rtl8188efw.c */; };
+		7FBA009F27E077FE0075D188 /* rtwn_rtl8192cfwU_B.c in Sources */ = {isa = PBXBuildFile; fileRef = 18C95AEF25628E3C0047231F /* rtwn_rtl8192cfwU_B.c */; };
+		7FBA00A027E077FE0075D188 /* rtwn_rtl8192cfwU.c in Sources */ = {isa = PBXBuildFile; fileRef = 18C95AEB25628E3C0047231F /* rtwn_rtl8192cfwU.c */; };
+		7FBA00A127E077FE0075D188 /* rtwn_rtl8723fw_B.c in Sources */ = {isa = PBXBuildFile; fileRef = 18C95AEC25628E3C0047231F /* rtwn_rtl8723fw_B.c */; };
+		7FBA00A227E077FE0075D188 /* rtwn_rtl8723fw.c in Sources */ = {isa = PBXBuildFile; fileRef = 18C95AED25628E3C0047231F /* rtwn_rtl8723fw.c */; };
+		7FBA00A327E077FE0075D188 /* wpi_3945abg.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713BD1255F14E900EF3D49 /* wpi_3945abg.c */; };
+		7FBA00A427E077FE0075D188 /* aes.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B25255F14E700EF3D49 /* aes.c */; };
+		7FBA00A527E077FE0075D188 /* arc4.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B34255F14E700EF3D49 /* arc4.c */; };
+		7FBA00A627E077FE0075D188 /* cmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B2D255F14E700EF3D49 /* cmac.c */; };
+		7FBA00A727E077FE0075D188 /* hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B26255F14E700EF3D49 /* hmac.c */; };
+		7FBA00A827E077FE0075D188 /* key_wrap.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B35255F14E700EF3D49 /* key_wrap.c */; };
+		7FBA00A927E077FE0075D188 /* md5.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B33255F14E700EF3D49 /* md5.c */; };
+		7FBA00AA27E077FE0075D188 /* michael.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B28255F14E700EF3D49 /* michael.c */; };
+		7FBA00AB27E077FE0075D188 /* sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B2C255F14E700EF3D49 /* sha1.c */; };
+		7FBA00AC27E077FE0075D188 /* sha2.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B27255F14E700EF3D49 /* sha2.c */; };
+		7FBA00AD27E077FE0075D188 /* bwfm.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CD6A025605A89005F866F /* bwfm.c */; };
+		7FBA00AE27E077FE0075D188 /* bwi.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CD6A225605A89005F866F /* bwi.c */; };
+		7FBA00AF27E077FE0075D188 /* rtwn.c in Sources */ = {isa = PBXBuildFile; fileRef = 18C95A83256285CC0047231F /* rtwn.c */; };
+		7FBA00B027E077FE0075D188 /* if_bwfm_pci.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CD6CB25605A98005F866F /* if_bwfm_pci.c */; };
+		7FBA00B127E077FE0075D188 /* if_bwi_pci.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CD6CC25605A98005F866F /* if_bwi_pci.c */; };
+		7FBA00B227E077FE0075D188 /* if_ipw.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B83255F14E800EF3D49 /* if_ipw.c */; };
+		7FBA00B327E077FE0075D188 /* if_iwi.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B7B255F14E800EF3D49 /* if_iwi.c */; };
+		7FBA00B427E077FE0075D188 /* if_iwm.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B7D255F14E800EF3D49 /* if_iwm.c */; };
+		7FBA00B527E077FE0075D188 /* if_iwn.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B86255F14E800EF3D49 /* if_iwn.c */; };
+		7FBA00B627E077FE0075D188 /* if_iwx.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B80255F14E800EF3D49 /* if_iwx.c */; };
+		7FBA00B727E077FE0075D188 /* if_rtwn.c in Sources */ = {isa = PBXBuildFile; fileRef = 18C95A9F256285DC0047231F /* if_rtwn.c */; };
+		7FBA00B827E077FE0075D188 /* if_wpi.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B79255F14E800EF3D49 /* if_wpi.c */; };
+		7FBA00B927E077FE0075D188 /* pci.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B7F255F14E800EF3D49 /* pci.c */; };
+		7FBA00BA27E077FE0075D188 /* ifconfig.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1E255F14E700EF3D49 /* ifconfig.c */; };
+		7FBA00BB27E077FE0075D188 /* qsort.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FF2C20C274CD7E900DCECFD /* qsort.c */; };
+		7FBA00BC27E077FE0075D188 /* heapsort.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FF2C21D274CD9D000DCECFD /* heapsort.c */; };
+		7FBA00BD27E077FE0075D188 /* bus.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B56255F14E700EF3D49 /* bus.c */; };
+		7FBA00BE27E077FE0075D188 /* ieee80211_amrr.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B67255F14E800EF3D49 /* ieee80211_amrr.c */; };
+		7FBA00BF27E077FE0075D188 /* ieee80211_crypto_bip.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B62255F14E800EF3D49 /* ieee80211_crypto_bip.c */; };
+		7FBA00C027E077FE0075D188 /* ieee80211_crypto_ccmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B64255F14E800EF3D49 /* ieee80211_crypto_ccmp.c */; };
+		7FBA00C127E077FE0075D188 /* ieee80211_crypto_tkip.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B63255F14E800EF3D49 /* ieee80211_crypto_tkip.c */; };
+		7FBA00C227E077FE0075D188 /* ieee80211_crypto_wep.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B6D255F14E800EF3D49 /* ieee80211_crypto_wep.c */; };
+		7FBA00C327E077FE0075D188 /* ieee80211_crypto.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B6F255F14E800EF3D49 /* ieee80211_crypto.c */; };
+		7FBA00C427E077FE0075D188 /* ieee80211_input.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B5D255F14E700EF3D49 /* ieee80211_input.c */; };
+		7FBA00C527E077FE0075D188 /* ieee80211_ioctl.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B5A255F14E700EF3D49 /* ieee80211_ioctl.c */; };
+		7FBA00C627E077FE0075D188 /* ieee80211_node.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B72255F14E800EF3D49 /* ieee80211_node.c */; };
+		7FBA00C727E077FE0075D188 /* ieee80211_output.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B6E255F14E800EF3D49 /* ieee80211_output.c */; };
+		7FBA00C827E077FE0075D188 /* ieee80211_pae_input.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B65255F14E800EF3D49 /* ieee80211_pae_input.c */; };
+		7FBA00C927E077FE0075D188 /* ieee80211_pae_output.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B73255F14E800EF3D49 /* ieee80211_pae_output.c */; };
+		7FBA00CA27E077FE0075D188 /* ieee80211_proto.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B58255F14E700EF3D49 /* ieee80211_proto.c */; };
+		7FBA00CB27E077FE0075D188 /* ieee80211_ra.c in Sources */ = {isa = PBXBuildFile; fileRef = 18BB83DF25FE3C49001220DF /* ieee80211_ra.c */; };
+		7FBA00CC27E077FE0075D188 /* ieee80211_regdomain.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B71255F14E800EF3D49 /* ieee80211_regdomain.c */; };
+		7FBA00CD27E077FE0075D188 /* ieee80211_rssadapt.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B5C255F14E700EF3D49 /* ieee80211_rssadapt.c */; };
+		7FBA00CE27E077FE0075D188 /* ieee80211.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B5B255F14E700EF3D49 /* ieee80211.c */; };
+		7FBA00CF27E077FE0075D188 /* _bpf.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B3B255F14E700EF3D49 /* _bpf.c */; };
+		7FBA00D027E077FE0075D188 /* _malloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3714750025D187FC0052FDC0 /* _malloc.c */; };
+		7FBA00D127E077FE0075D188 /* fls.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B49255F14E700EF3D49 /* fls.c */; };
+		7FBA00D227E077FE0075D188 /* task.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B48255F14E700EF3D49 /* task.c */; };
+		7FBA00D327E077FE0075D188 /* timeout.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B42255F14E700EF3D49 /* timeout.c */; };
+		7FBA00D427E077FE0075D188 /* timingsafe_bcmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B4B255F14E700EF3D49 /* timingsafe_bcmp.c */; };
+		7FBA00D527E077FE0075D188 /* tree.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B52255F14E700EF3D49 /* tree.c */; };
+		7FED6E6A277B209B000349A8 /* brcmfmac4366c_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E65277B209B000349A8 /* brcmfmac4366c_pcie_bin.c */; };
+		7FED6E6B277B209B000349A8 /* brcmfmac4366c_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E65277B209B000349A8 /* brcmfmac4366c_pcie_bin.c */; };
+		7FED6E6C277B209B000349A8 /* brcmfmac4366c_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E65277B209B000349A8 /* brcmfmac4366c_pcie_bin.c */; };
+		7FED6E6D277B209B000349A8 /* brcmfmac4366c_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E65277B209B000349A8 /* brcmfmac4366c_pcie_bin.c */; };
+		7FED6E6E277B209B000349A8 /* brcmfmac4366c_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E65277B209B000349A8 /* brcmfmac4366c_pcie_bin.c */; };
+		7FED6E6F277B209B000349A8 /* brcmfmac43570_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E66277B209B000349A8 /* brcmfmac43570_pcie_bin.c */; };
+		7FED6E70277B209B000349A8 /* brcmfmac43570_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E66277B209B000349A8 /* brcmfmac43570_pcie_bin.c */; };
+		7FED6E71277B209B000349A8 /* brcmfmac43570_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E66277B209B000349A8 /* brcmfmac43570_pcie_bin.c */; };
+		7FED6E72277B209B000349A8 /* brcmfmac43570_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E66277B209B000349A8 /* brcmfmac43570_pcie_bin.c */; };
+		7FED6E73277B209B000349A8 /* brcmfmac43570_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E66277B209B000349A8 /* brcmfmac43570_pcie_bin.c */; };
+		7FED6E74277B209B000349A8 /* brcmfmac4366b_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E67277B209B000349A8 /* brcmfmac4366b_pcie_bin.c */; };
+		7FED6E75277B209B000349A8 /* brcmfmac4366b_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E67277B209B000349A8 /* brcmfmac4366b_pcie_bin.c */; };
+		7FED6E76277B209B000349A8 /* brcmfmac4366b_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E67277B209B000349A8 /* brcmfmac4366b_pcie_bin.c */; };
+		7FED6E77277B209B000349A8 /* brcmfmac4366b_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E67277B209B000349A8 /* brcmfmac4366b_pcie_bin.c */; };
+		7FED6E78277B209B000349A8 /* brcmfmac4366b_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E67277B209B000349A8 /* brcmfmac4366b_pcie_bin.c */; };
+		7FED6E79277B209B000349A8 /* brcmfmac4358_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E68277B209B000349A8 /* brcmfmac4358_pcie_bin.c */; };
+		7FED6E7A277B209B000349A8 /* brcmfmac4358_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E68277B209B000349A8 /* brcmfmac4358_pcie_bin.c */; };
+		7FED6E7B277B209B000349A8 /* brcmfmac4358_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E68277B209B000349A8 /* brcmfmac4358_pcie_bin.c */; };
+		7FED6E7C277B209C000349A8 /* brcmfmac4358_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E68277B209B000349A8 /* brcmfmac4358_pcie_bin.c */; };
+		7FED6E7D277B209C000349A8 /* brcmfmac4358_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E68277B209B000349A8 /* brcmfmac4358_pcie_bin.c */; };
+		7FED6E7E277B209C000349A8 /* brcmfmac43602_pcie_ap_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E69277B209B000349A8 /* brcmfmac43602_pcie_ap_bin.c */; };
+		7FED6E7F277B209C000349A8 /* brcmfmac43602_pcie_ap_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E69277B209B000349A8 /* brcmfmac43602_pcie_ap_bin.c */; };
+		7FED6E80277B209C000349A8 /* brcmfmac43602_pcie_ap_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E69277B209B000349A8 /* brcmfmac43602_pcie_ap_bin.c */; };
+		7FED6E81277B209C000349A8 /* brcmfmac43602_pcie_ap_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E69277B209B000349A8 /* brcmfmac43602_pcie_ap_bin.c */; };
+		7FED6E82277B209C000349A8 /* brcmfmac43602_pcie_ap_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E69277B209B000349A8 /* brcmfmac43602_pcie_ap_bin.c */; };
+		7FF2C20D274CD7E900DCECFD /* qsort.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FF2C20B274CD7E900DCECFD /* qsort.h */; };
+		7FF2C20E274CD7E900DCECFD /* qsort.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FF2C20B274CD7E900DCECFD /* qsort.h */; };
+		7FF2C20F274CD7E900DCECFD /* qsort.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FF2C20B274CD7E900DCECFD /* qsort.h */; };
+		7FF2C210274CD7E900DCECFD /* qsort.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FF2C20B274CD7E900DCECFD /* qsort.h */; };
+		7FF2C211274CD7E900DCECFD /* qsort.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FF2C20B274CD7E900DCECFD /* qsort.h */; };
+		7FF2C212274CD7E900DCECFD /* qsort.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FF2C20C274CD7E900DCECFD /* qsort.c */; };
+		7FF2C213274CD7E900DCECFD /* qsort.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FF2C20C274CD7E900DCECFD /* qsort.c */; };
+		7FF2C214274CD7E900DCECFD /* qsort.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FF2C20C274CD7E900DCECFD /* qsort.c */; };
+		7FF2C215274CD7E900DCECFD /* qsort.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FF2C20C274CD7E900DCECFD /* qsort.c */; };
+		7FF2C216274CD7E900DCECFD /* qsort.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FF2C20C274CD7E900DCECFD /* qsort.c */; };
+		7FF2C21E274CD9D000DCECFD /* heapsort.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FF2C21C274CD9D000DCECFD /* heapsort.h */; };
+		7FF2C21F274CD9D000DCECFD /* heapsort.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FF2C21C274CD9D000DCECFD /* heapsort.h */; };
+		7FF2C220274CD9D000DCECFD /* heapsort.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FF2C21C274CD9D000DCECFD /* heapsort.h */; };
+		7FF2C221274CD9D000DCECFD /* heapsort.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FF2C21C274CD9D000DCECFD /* heapsort.h */; };
+		7FF2C222274CD9D000DCECFD /* heapsort.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FF2C21C274CD9D000DCECFD /* heapsort.h */; };
+		7FF2C223274CD9D000DCECFD /* heapsort.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FF2C21D274CD9D000DCECFD /* heapsort.c */; };
+		7FF2C224274CD9D000DCECFD /* heapsort.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FF2C21D274CD9D000DCECFD /* heapsort.c */; };
+		7FF2C225274CD9D000DCECFD /* heapsort.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FF2C21D274CD9D000DCECFD /* heapsort.c */; };
+		7FF2C226274CD9D000DCECFD /* heapsort.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FF2C21D274CD9D000DCECFD /* heapsort.c */; };
+		7FF2C227274CD9D000DCECFD /* heapsort.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FF2C21D274CD9D000DCECFD /* heapsort.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -972,11 +1211,11 @@
 		18713B1B255F14E700EF3D49 /* AirPortOpenBSD_Ethernet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirPortOpenBSD_Ethernet.cpp; sourceTree = "<group>"; };
 		18713B1C255F14E700EF3D49 /* iwlwifi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iwlwifi.h; sourceTree = "<group>"; };
 		18713B1D255F14E700EF3D49 /* bpfilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bpfilter.h; sourceTree = "<group>"; };
-		18713B1E255F14E700EF3D49 /* help_ifconfig.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = help_ifconfig.cpp; sourceTree = "<group>"; };
+		18713B1E255F14E700EF3D49 /* ifconfig.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ifconfig.c; sourceTree = "<group>"; };
 		18713B1F255F14E700EF3D49 /* AirPortOpenBSD_Ioctl.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirPortOpenBSD_Ioctl.cpp; sourceTree = "<group>"; };
 		18713B20255F14E700EF3D49 /* AirPortOpenBSD_Util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirPortOpenBSD_Util.cpp; sourceTree = "<group>"; };
 		18713B21255F14E700EF3D49 /* compat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compat.h; sourceTree = "<group>"; };
-		18713B22255F14E700EF3D49 /* help_ifconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = help_ifconfig.h; sourceTree = "<group>"; };
+		18713B22255F14E700EF3D49 /* ifconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ifconfig.h; sourceTree = "<group>"; };
 		18713B25255F14E700EF3D49 /* aes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aes.c; sourceTree = "<group>"; };
 		18713B26255F14E700EF3D49 /* hmac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hmac.c; sourceTree = "<group>"; };
 		18713B27255F14E700EF3D49 /* sha2.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sha2.c; sourceTree = "<group>"; };
@@ -1032,7 +1271,6 @@
 		18713B5D255F14E700EF3D49 /* ieee80211_input.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ieee80211_input.c; sourceTree = "<group>"; };
 		18713B5E255F14E700EF3D49 /* ieee80211_node.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ieee80211_node.h; sourceTree = "<group>"; };
 		18713B5F255F14E700EF3D49 /* ieee80211_regdomain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ieee80211_regdomain.h; sourceTree = "<group>"; };
-		18713B60255F14E700EF3D49 /* ieee80211_mira.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ieee80211_mira.c; sourceTree = "<group>"; };
 		18713B61255F14E700EF3D49 /* ieee80211_crypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ieee80211_crypto.h; sourceTree = "<group>"; };
 		18713B62255F14E800EF3D49 /* ieee80211_crypto_bip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ieee80211_crypto_bip.c; sourceTree = "<group>"; };
 		18713B63255F14E800EF3D49 /* ieee80211_crypto_tkip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ieee80211_crypto_tkip.c; sourceTree = "<group>"; };
@@ -1048,7 +1286,6 @@
 		18713B6D255F14E800EF3D49 /* ieee80211_crypto_wep.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ieee80211_crypto_wep.c; sourceTree = "<group>"; };
 		18713B6E255F14E800EF3D49 /* ieee80211_output.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ieee80211_output.c; sourceTree = "<group>"; };
 		18713B6F255F14E800EF3D49 /* ieee80211_crypto.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ieee80211_crypto.c; sourceTree = "<group>"; };
-		18713B70255F14E800EF3D49 /* ieee80211_mira.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ieee80211_mira.h; sourceTree = "<group>"; };
 		18713B71255F14E800EF3D49 /* ieee80211_regdomain.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ieee80211_regdomain.c; sourceTree = "<group>"; };
 		18713B72255F14E800EF3D49 /* ieee80211_node.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ieee80211_node.c; sourceTree = "<group>"; };
 		18713B73255F14E800EF3D49 /* ieee80211_pae_output.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ieee80211_pae_output.c; sourceTree = "<group>"; };
@@ -1080,7 +1317,6 @@
 		18713BB6255F14E800EF3D49 /* InfoIOEthernet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InfoIOEthernet.plist; sourceTree = "<group>"; };
 		18713BB8255F14E900EF3D49 /* ipw_ibss.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ipw_ibss.c; sourceTree = "<group>"; };
 		18713BB9255F14E900EF3D49 /* ipw_monitor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ipw_monitor.c; sourceTree = "<group>"; };
-		18713BBA255F14E900EF3D49 /* iwx_QuZ_a0_hr_b0_48.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_QuZ_a0_hr_b0_48.c; sourceTree = "<group>"; };
 		18713BBB255F14E900EF3D49 /* iwn_5000.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwn_5000.c; sourceTree = "<group>"; };
 		18713BBC255F14E900EF3D49 /* iwn_6030.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwn_6030.c; sourceTree = "<group>"; };
 		18713BBD255F14E900EF3D49 /* iwx_Qu_c0_jf_b0_48.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_Qu_c0_jf_b0_48.c; sourceTree = "<group>"; };
@@ -1089,30 +1325,24 @@
 		18713BC0255F14E900EF3D49 /* iwn_5150.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwn_5150.c; sourceTree = "<group>"; };
 		18713BC1255F14E900EF3D49 /* firmware.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = firmware.c; sourceTree = "<group>"; };
 		18713BC2255F14E900EF3D49 /* iwm_7265D_29.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwm_7265D_29.c; sourceTree = "<group>"; };
-		18713BC3255F14E900EF3D49 /* iwm_8265_34.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwm_8265_34.c; sourceTree = "<group>"; };
 		18713BC4255F14E900EF3D49 /* iwi_monitor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwi_monitor.c; sourceTree = "<group>"; };
 		18713BC5255F14E900EF3D49 /* iwn_135.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwn_135.c; sourceTree = "<group>"; };
 		18713BC6255F14E900EF3D49 /* iwi_bss.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwi_bss.c; sourceTree = "<group>"; };
 		18713BC7255F14E900EF3D49 /* iwn_2000.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwn_2000.c; sourceTree = "<group>"; };
 		18713BC8255F14E900EF3D49 /* iwx_cc_a0_48.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_cc_a0_48.c; sourceTree = "<group>"; };
-		18713BC9255F14E900EF3D49 /* iwm_7265_17.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwm_7265_17.c; sourceTree = "<group>"; };
 		18713BCA255F14E900EF3D49 /* iwn_100.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwn_100.c; sourceTree = "<group>"; };
 		18713BCB255F14E900EF3D49 /* iwn_2030.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwn_2030.c; sourceTree = "<group>"; };
 		18713BCC255F14E900EF3D49 /* iwx_QuZ_a0_jf_b0_48.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_QuZ_a0_jf_b0_48.c; sourceTree = "<group>"; };
 		18713BCD255F14E900EF3D49 /* iwn_1000.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwn_1000.c; sourceTree = "<group>"; };
-		18713BCE255F14E900EF3D49 /* iwx_Qu_c0_hr_b0_48.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_Qu_c0_hr_b0_48.c; sourceTree = "<group>"; };
 		18713BCF255F14E900EF3D49 /* iwm_3160_17.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwm_3160_17.c; sourceTree = "<group>"; };
-		18713BD0255F14E900EF3D49 /* iwm_8000C_34.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwm_8000C_34.c; sourceTree = "<group>"; };
 		18713BD1255F14E900EF3D49 /* wpi_3945abg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wpi_3945abg.c; sourceTree = "<group>"; };
 		18713BD2255F14E900EF3D49 /* iwx_Qu_b0_jf_b0_48.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_Qu_b0_jf_b0_48.c; sourceTree = "<group>"; };
 		18713BD3255F14E900EF3D49 /* iwn_105.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwn_105.c; sourceTree = "<group>"; };
 		18713BD4255F14E900EF3D49 /* firmware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = firmware.h; sourceTree = "<group>"; };
 		18713BD5255F14E900EF3D49 /* iwm_7260_17.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwm_7260_17.c; sourceTree = "<group>"; };
-		18713BD6255F14E900EF3D49 /* iwm_9000_34.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwm_9000_34.c; sourceTree = "<group>"; };
 		18713BD7255F14E900EF3D49 /* iwi_ibss.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwi_ibss.c; sourceTree = "<group>"; };
 		18713BD8255F14E900EF3D49 /* ipw_bss.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ipw_bss.c; sourceTree = "<group>"; };
 		18713BD9255F14E900EF3D49 /* iwm_3168_29.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwm_3168_29.c; sourceTree = "<group>"; };
-		18713BDA255F14E900EF3D49 /* iwm_9260_34.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwm_9260_34.c; sourceTree = "<group>"; };
 		18713BDB255F14E900EF3D49 /* iwn_6050.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwn_6050.c; sourceTree = "<group>"; };
 		18713BDC255F14E900EF3D49 /* iwn_4965.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwn_4965.c; sourceTree = "<group>"; };
 		18713BDD255F14E900EF3D49 /* firmwarevar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = firmwarevar.h; sourceTree = "<group>"; };
@@ -1140,6 +1370,25 @@
 		18F7F0B32582735100360E74 /* iwx_QuQnj_b0_jf_b0_48.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_QuQnj_b0_jf_b0_48.c; sourceTree = "<group>"; };
 		18FDC67B255F2126002AA72F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3714750025D187FC0052FDC0 /* _malloc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = _malloc.c; sourceTree = "<group>"; };
+		3FF403FD26675E3A0062B1D9 /* iwm_8000C_36.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwm_8000C_36.c; sourceTree = "<group>"; };
+		3FF403FE26675E3A0062B1D9 /* iwx_cc_a0_63.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_cc_a0_63.c; sourceTree = "<group>"; };
+		3FF4040026675E3A0062B1D9 /* iwm_9260_46.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwm_9260_46.c; sourceTree = "<group>"; };
+		3FF4040126675E3A0062B1D9 /* iwm_9000_46.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwm_9000_46.c; sourceTree = "<group>"; };
+		3FF4040226675E3A0062B1D9 /* iwx_Qu_c0_hr_b0_63.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_Qu_c0_hr_b0_63.c; sourceTree = "<group>"; };
+		3FF4040326675E3A0062B1D9 /* iwm_8265_36.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwm_8265_36.c; sourceTree = "<group>"; };
+		7F600926275E03190009ECFB /* iwx_QuZ_a0_hr_b0_67.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_QuZ_a0_hr_b0_67.c; sourceTree = "<group>"; };
+		7F8AB18527E8475F0045D670 /* ieee80211_ra_vht.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ieee80211_ra_vht.h; sourceTree = "<group>"; };
+		7F8AB18627E8475F0045D670 /* ieee80211_ra_vht.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ieee80211_ra_vht.c; sourceTree = "<group>"; };
+		7FBAFFF227E077790075D188 /* AirPortOpenBSD.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirPortOpenBSD.kext; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FED6E65277B209B000349A8 /* brcmfmac4366c_pcie_bin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = brcmfmac4366c_pcie_bin.c; sourceTree = "<group>"; };
+		7FED6E66277B209B000349A8 /* brcmfmac43570_pcie_bin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = brcmfmac43570_pcie_bin.c; sourceTree = "<group>"; };
+		7FED6E67277B209B000349A8 /* brcmfmac4366b_pcie_bin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = brcmfmac4366b_pcie_bin.c; sourceTree = "<group>"; };
+		7FED6E68277B209B000349A8 /* brcmfmac4358_pcie_bin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = brcmfmac4358_pcie_bin.c; sourceTree = "<group>"; };
+		7FED6E69277B209B000349A8 /* brcmfmac43602_pcie_ap_bin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = brcmfmac43602_pcie_ap_bin.c; sourceTree = "<group>"; };
+		7FF2C20B274CD7E900DCECFD /* qsort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = qsort.h; sourceTree = "<group>"; };
+		7FF2C20C274CD7E900DCECFD /* qsort.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = qsort.c; sourceTree = "<group>"; };
+		7FF2C21C274CD9D000DCECFD /* heapsort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = heapsort.h; sourceTree = "<group>"; };
+		7FF2C21D274CD9D000DCECFD /* heapsort.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = heapsort.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1172,6 +1421,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		18713D0B255F166400EF3D49 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7FBAFFEF27E077790075D188 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1225,6 +1481,7 @@
 				18713CD0255F156700EF3D49 /* AirPortOpenBSD.kext */,
 				18713CE3255F157300EF3D49 /* AirPortOpenBSD.kext */,
 				18713D0E255F166400EF3D49 /* AirPortOpenBSD.kext */,
+				7FBAFFF227E077790075D188 /* AirPortOpenBSD.kext */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1246,8 +1503,6 @@
 				18713B0D255F14E600EF3D49 /* compat.cpp */,
 				18713B21255F14E700EF3D49 /* compat.h */,
 				18713BB7255F14E900EF3D49 /* firmware */,
-				18713B1E255F14E700EF3D49 /* help_ifconfig.cpp */,
-				18713B22255F14E700EF3D49 /* help_ifconfig.h */,
 				18713B01255F148200EF3D49 /* Info.plist */,
 				18713BB6255F14E800EF3D49 /* InfoIOEthernet.plist */,
 				18713B1C255F14E700EF3D49 /* iwlwifi.h */,
@@ -1276,13 +1531,14 @@
 		18713B23255F14E700EF3D49 /* openbsd */ = {
 			isa = PBXGroup;
 			children = (
-				183CD6F225605C48005F866F /* uvm */,
 				18713B24255F14E700EF3D49 /* crypto */,
 				18713B75255F14E800EF3D49 /* dev */,
+				7F200E79274D29F600461766 /* lib */,
 				18713B53255F14E700EF3D49 /* machine */,
 				18713B57255F14E700EF3D49 /* net80211 */,
 				18713B37255F14E700EF3D49 /* netinet */,
 				18713B3C255F14E700EF3D49 /* sys */,
+				183CD6F225605C48005F866F /* uvm */,
 			);
 			path = openbsd;
 			sourceTree = "<group>";
@@ -1378,8 +1634,6 @@
 				18713B5D255F14E700EF3D49 /* ieee80211_input.c */,
 				18713B5A255F14E700EF3D49 /* ieee80211_ioctl.c */,
 				18713B6C255F14E800EF3D49 /* ieee80211_ioctl.h */,
-				18713B60255F14E700EF3D49 /* ieee80211_mira.c */,
-				18713B70255F14E800EF3D49 /* ieee80211_mira.h */,
 				18713B72255F14E800EF3D49 /* ieee80211_node.c */,
 				18713B5E255F14E700EF3D49 /* ieee80211_node.h */,
 				18713B6E255F14E800EF3D49 /* ieee80211_output.c */,
@@ -1388,6 +1642,8 @@
 				18713B6B255F14E800EF3D49 /* ieee80211_priv.h */,
 				18713B58255F14E700EF3D49 /* ieee80211_proto.c */,
 				18713B68255F14E800EF3D49 /* ieee80211_proto.h */,
+				7F8AB18627E8475F0045D670 /* ieee80211_ra_vht.c */,
+				7F8AB18527E8475F0045D670 /* ieee80211_ra_vht.h */,
 				18BB83DF25FE3C49001220DF /* ieee80211_ra.c */,
 				18BB83E025FE3C49001220DF /* ieee80211_ra.h */,
 				18713B66255F14E800EF3D49 /* ieee80211_radiotap.h */,
@@ -1464,6 +1720,11 @@
 		18713BB7255F14E900EF3D49 /* firmware */ = {
 			isa = PBXGroup;
 			children = (
+				7FED6E68277B209B000349A8 /* brcmfmac4358_pcie_bin.c */,
+				7FED6E67277B209B000349A8 /* brcmfmac4366b_pcie_bin.c */,
+				7FED6E65277B209B000349A8 /* brcmfmac4366c_pcie_bin.c */,
+				7FED6E66277B209B000349A8 /* brcmfmac43570_pcie_bin.c */,
+				7FED6E69277B209B000349A8 /* brcmfmac43602_pcie_ap_bin.c */,
 				183CD70025606021005F866F /* brcmfmac4350_pcie_bin.c */,
 				183CD70325606021005F866F /* brcmfmac4350c2_pcie_bin.c */,
 				183CD70225606021005F866F /* brcmfmac4356_pcie_bin.c */,
@@ -1482,12 +1743,11 @@
 				18713BCF255F14E900EF3D49 /* iwm_3160_17.c */,
 				18713BD9255F14E900EF3D49 /* iwm_3168_29.c */,
 				18713BD5255F14E900EF3D49 /* iwm_7260_17.c */,
-				18713BC9255F14E900EF3D49 /* iwm_7265_17.c */,
 				18713BC2255F14E900EF3D49 /* iwm_7265D_29.c */,
-				18713BD0255F14E900EF3D49 /* iwm_8000C_34.c */,
-				18713BC3255F14E900EF3D49 /* iwm_8265_34.c */,
-				18713BD6255F14E900EF3D49 /* iwm_9000_34.c */,
-				18713BDA255F14E900EF3D49 /* iwm_9260_34.c */,
+				3FF403FD26675E3A0062B1D9 /* iwm_8000C_36.c */,
+				3FF4040326675E3A0062B1D9 /* iwm_8265_36.c */,
+				3FF4040126675E3A0062B1D9 /* iwm_9000_46.c */,
+				3FF4040026675E3A0062B1D9 /* iwm_9260_46.c */,
 				18713BCA255F14E900EF3D49 /* iwn_100.c */,
 				18713BD3255F14E900EF3D49 /* iwn_105.c */,
 				18713BC5255F14E900EF3D49 /* iwn_135.c */,
@@ -1502,13 +1762,14 @@
 				18713BBC255F14E900EF3D49 /* iwn_6030.c */,
 				18713BDB255F14E900EF3D49 /* iwn_6050.c */,
 				18713BC8255F14E900EF3D49 /* iwx_cc_a0_48.c */,
+				3FF403FE26675E3A0062B1D9 /* iwx_cc_a0_63.c */,
 				18713BBF255F14E900EF3D49 /* iwx_Qu_b0_hr_b0_48.c */,
 				18713BD2255F14E900EF3D49 /* iwx_Qu_b0_jf_b0_48.c */,
-				18713BCE255F14E900EF3D49 /* iwx_Qu_c0_hr_b0_48.c */,
+				3FF4040226675E3A0062B1D9 /* iwx_Qu_c0_hr_b0_63.c */,
 				18713BBD255F14E900EF3D49 /* iwx_Qu_c0_jf_b0_48.c */,
 				18F7F0B22582735000360E74 /* iwx_QuQnj_b0_hr_b0_48.c */,
 				18F7F0B32582735100360E74 /* iwx_QuQnj_b0_jf_b0_48.c */,
-				18713BBA255F14E900EF3D49 /* iwx_QuZ_a0_hr_b0_48.c */,
+				7F600926275E03190009ECFB /* iwx_QuZ_a0_hr_b0_67.c */,
 				18713BCC255F14E900EF3D49 /* iwx_QuZ_a0_jf_b0_48.c */,
 				18C95AEE25628E3C0047231F /* rtwn_rtl8188efw.c */,
 				18C95AEF25628E3C0047231F /* rtwn_rtl8192cfwU_B.c */,
@@ -1518,6 +1779,19 @@
 				18713BD1255F14E900EF3D49 /* wpi_3945abg.c */,
 			);
 			path = firmware;
+			sourceTree = "<group>";
+		};
+		7F200E79274D29F600461766 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				18713B1E255F14E700EF3D49 /* ifconfig.c */,
+				18713B22255F14E700EF3D49 /* ifconfig.h */,
+				7FF2C20B274CD7E900DCECFD /* qsort.h */,
+				7FF2C20C274CD7E900DCECFD /* qsort.c */,
+				7FF2C21C274CD9D000DCECFD /* heapsort.h */,
+				7FF2C21D274CD9D000DCECFD /* heapsort.c */,
+			);
+			path = lib;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1536,7 +1810,7 @@
 				18713DFB255F1BD900EF3D49 /* compat.h in Headers */,
 				18713DFC255F1BD900EF3D49 /* firmware.h in Headers */,
 				18713DFD255F1BD900EF3D49 /* firmwarevar.h in Headers */,
-				18713DFE255F1BD900EF3D49 /* help_ifconfig.h in Headers */,
+				18713DFE255F1BD900EF3D49 /* ifconfig.h in Headers */,
 				18713DFF255F1BD900EF3D49 /* iwlwifi.h in Headers */,
 				18713E00255F1BD900EF3D49 /* key_wrap.h in Headers */,
 				18713E01255F1BD900EF3D49 /* md5.h in Headers */,
@@ -1562,6 +1836,7 @@
 				18713E12255F1BD900EF3D49 /* _malloc.h in Headers */,
 				18713E13255F1BD900EF3D49 /* rwlock.h in Headers */,
 				18713E14255F1BD900EF3D49 /* tree.h in Headers */,
+				7F8AB18827E8475F0045D670 /* ieee80211_ra_vht.h in Headers */,
 				18713E15255F1BD900EF3D49 /* _null.h in Headers */,
 				18713E16255F1BD900EF3D49 /* kern_compat.h in Headers */,
 				18713E17255F1BD900EF3D49 /* __types.h in Headers */,
@@ -1587,7 +1862,6 @@
 				18C95A91256285CC0047231F /* r92creg.h in Headers */,
 				18713E27255F1BD900EF3D49 /* ieee80211_priv.h in Headers */,
 				18713E28255F1BD900EF3D49 /* ieee80211_ioctl.h in Headers */,
-				18713E29255F1BD900EF3D49 /* ieee80211_mira.h in Headers */,
 				18713E2A255F1BD900EF3D49 /* ieee80211_var.h in Headers */,
 				18713E2B255F1BD900EF3D49 /* if_ipwvar.h in Headers */,
 				18713E2C255F1BD900EF3D49 /* if_iwivar.h in Headers */,
@@ -1598,6 +1872,8 @@
 				18713E30255F1BD900EF3D49 /* if_ipwreg.h in Headers */,
 				18713E31255F1BD900EF3D49 /* if_iwireg.h in Headers */,
 				18713E32255F1BD900EF3D49 /* if_iwnvar.h in Headers */,
+				7FF2C21F274CD9D000DCECFD /* heapsort.h in Headers */,
+				7FF2C20E274CD7E900DCECFD /* qsort.h in Headers */,
 				18713E33255F1BD900EF3D49 /* if_wpireg.h in Headers */,
 				18713E34255F1BD900EF3D49 /* if_iwxvar.h in Headers */,
 				18713E35255F1BD900EF3D49 /* if_iwmvar.h in Headers */,
@@ -1623,7 +1899,7 @@
 				18713EF8255F1BF600EF3D49 /* compat.h in Headers */,
 				18713EF9255F1BF600EF3D49 /* firmware.h in Headers */,
 				18713EFA255F1BF600EF3D49 /* firmwarevar.h in Headers */,
-				18713EFB255F1BF600EF3D49 /* help_ifconfig.h in Headers */,
+				18713EFB255F1BF600EF3D49 /* ifconfig.h in Headers */,
 				18713EFC255F1BF600EF3D49 /* iwlwifi.h in Headers */,
 				18713EFD255F1BF600EF3D49 /* key_wrap.h in Headers */,
 				18713EFE255F1BF600EF3D49 /* md5.h in Headers */,
@@ -1649,6 +1925,7 @@
 				18713F0F255F1BF600EF3D49 /* _malloc.h in Headers */,
 				18713F10255F1BF600EF3D49 /* rwlock.h in Headers */,
 				18713F11255F1BF700EF3D49 /* tree.h in Headers */,
+				7F8AB18927E8475F0045D670 /* ieee80211_ra_vht.h in Headers */,
 				18713F12255F1BF700EF3D49 /* _null.h in Headers */,
 				18713F13255F1BF700EF3D49 /* kern_compat.h in Headers */,
 				18713F14255F1BF700EF3D49 /* __types.h in Headers */,
@@ -1674,7 +1951,6 @@
 				18C95A92256285CC0047231F /* r92creg.h in Headers */,
 				18713F24255F1BF700EF3D49 /* ieee80211_priv.h in Headers */,
 				18713F25255F1BF700EF3D49 /* ieee80211_ioctl.h in Headers */,
-				18713F26255F1BF700EF3D49 /* ieee80211_mira.h in Headers */,
 				18713F27255F1BF700EF3D49 /* ieee80211_var.h in Headers */,
 				18713F28255F1BF700EF3D49 /* if_ipwvar.h in Headers */,
 				18713F29255F1BF700EF3D49 /* if_iwivar.h in Headers */,
@@ -1685,6 +1961,8 @@
 				18713F2D255F1BF700EF3D49 /* if_ipwreg.h in Headers */,
 				18713F2E255F1BF700EF3D49 /* if_iwireg.h in Headers */,
 				18713F2F255F1BF700EF3D49 /* if_iwnvar.h in Headers */,
+				7FF2C220274CD9D000DCECFD /* heapsort.h in Headers */,
+				7FF2C20F274CD7E900DCECFD /* qsort.h in Headers */,
 				18713F30255F1BF700EF3D49 /* if_wpireg.h in Headers */,
 				18713F31255F1BF700EF3D49 /* if_iwxvar.h in Headers */,
 				18713F32255F1BF700EF3D49 /* if_iwmvar.h in Headers */,
@@ -1710,7 +1988,7 @@
 				18713F9C255F1C0F00EF3D49 /* compat.h in Headers */,
 				18713F9D255F1C0F00EF3D49 /* firmware.h in Headers */,
 				18713F9E255F1C0F00EF3D49 /* firmwarevar.h in Headers */,
-				18713F9F255F1C0F00EF3D49 /* help_ifconfig.h in Headers */,
+				18713F9F255F1C0F00EF3D49 /* ifconfig.h in Headers */,
 				18713FA0255F1C0F00EF3D49 /* iwlwifi.h in Headers */,
 				18713FA1255F1C0F00EF3D49 /* key_wrap.h in Headers */,
 				18713FA2255F1C0F00EF3D49 /* md5.h in Headers */,
@@ -1736,6 +2014,7 @@
 				18713FB3255F1C0F00EF3D49 /* _malloc.h in Headers */,
 				18713FB4255F1C0F00EF3D49 /* rwlock.h in Headers */,
 				18713FB5255F1C0F00EF3D49 /* tree.h in Headers */,
+				7F8AB18A27E8475F0045D670 /* ieee80211_ra_vht.h in Headers */,
 				18713FB6255F1C0F00EF3D49 /* _null.h in Headers */,
 				18713FB7255F1C0F00EF3D49 /* kern_compat.h in Headers */,
 				18713FB8255F1C0F00EF3D49 /* __types.h in Headers */,
@@ -1761,7 +2040,6 @@
 				18C95A93256285CC0047231F /* r92creg.h in Headers */,
 				18713FC8255F1C0F00EF3D49 /* ieee80211_priv.h in Headers */,
 				18713FC9255F1C0F00EF3D49 /* ieee80211_ioctl.h in Headers */,
-				18713FCA255F1C0F00EF3D49 /* ieee80211_mira.h in Headers */,
 				18713FCB255F1C0F00EF3D49 /* ieee80211_var.h in Headers */,
 				18713FCC255F1C0F00EF3D49 /* if_ipwvar.h in Headers */,
 				18713FCD255F1C0F00EF3D49 /* if_iwivar.h in Headers */,
@@ -1772,6 +2050,8 @@
 				18713FD1255F1C0F00EF3D49 /* if_ipwreg.h in Headers */,
 				18713FD2255F1C0F00EF3D49 /* if_iwireg.h in Headers */,
 				18713FD3255F1C0F00EF3D49 /* if_iwnvar.h in Headers */,
+				7FF2C221274CD9D000DCECFD /* heapsort.h in Headers */,
+				7FF2C210274CD7E900DCECFD /* qsort.h in Headers */,
 				18713FD4255F1C0F00EF3D49 /* if_wpireg.h in Headers */,
 				18713FD5255F1C0F00EF3D49 /* if_iwxvar.h in Headers */,
 				18713FD6255F1C0F00EF3D49 /* if_iwmvar.h in Headers */,
@@ -1797,7 +2077,7 @@
 				18714040255F1C2300EF3D49 /* compat.h in Headers */,
 				18714041255F1C2300EF3D49 /* firmware.h in Headers */,
 				18714042255F1C2300EF3D49 /* firmwarevar.h in Headers */,
-				18714043255F1C2300EF3D49 /* help_ifconfig.h in Headers */,
+				18714043255F1C2300EF3D49 /* ifconfig.h in Headers */,
 				18714044255F1C2300EF3D49 /* iwlwifi.h in Headers */,
 				18714045255F1C2300EF3D49 /* key_wrap.h in Headers */,
 				18714046255F1C2300EF3D49 /* md5.h in Headers */,
@@ -1823,6 +2103,7 @@
 				18714057255F1C2300EF3D49 /* _malloc.h in Headers */,
 				18714058255F1C2300EF3D49 /* rwlock.h in Headers */,
 				18714059255F1C2300EF3D49 /* tree.h in Headers */,
+				7F8AB18B27E8475F0045D670 /* ieee80211_ra_vht.h in Headers */,
 				1871405A255F1C2300EF3D49 /* _null.h in Headers */,
 				1871405B255F1C2300EF3D49 /* kern_compat.h in Headers */,
 				1871405C255F1C2300EF3D49 /* __types.h in Headers */,
@@ -1848,7 +2129,6 @@
 				18C95A94256285CC0047231F /* r92creg.h in Headers */,
 				1871406C255F1C2300EF3D49 /* ieee80211_priv.h in Headers */,
 				1871406D255F1C2300EF3D49 /* ieee80211_ioctl.h in Headers */,
-				1871406E255F1C2300EF3D49 /* ieee80211_mira.h in Headers */,
 				1871406F255F1C2300EF3D49 /* ieee80211_var.h in Headers */,
 				18714070255F1C2300EF3D49 /* if_ipwvar.h in Headers */,
 				18714071255F1C2300EF3D49 /* if_iwivar.h in Headers */,
@@ -1859,6 +2139,8 @@
 				18714075255F1C2300EF3D49 /* if_ipwreg.h in Headers */,
 				18714076255F1C2300EF3D49 /* if_iwireg.h in Headers */,
 				18714077255F1C2300EF3D49 /* if_iwnvar.h in Headers */,
+				7FF2C222274CD9D000DCECFD /* heapsort.h in Headers */,
+				7FF2C211274CD7E900DCECFD /* qsort.h in Headers */,
 				18714078255F1C2300EF3D49 /* if_wpireg.h in Headers */,
 				18714079255F1C2300EF3D49 /* if_iwxvar.h in Headers */,
 				1871407A255F1C2300EF3D49 /* if_iwmvar.h in Headers */,
@@ -1884,7 +2166,7 @@
 				18713D57255F1BBC00EF3D49 /* compat.h in Headers */,
 				18713D58255F1BBC00EF3D49 /* firmware.h in Headers */,
 				18713D59255F1BBC00EF3D49 /* firmwarevar.h in Headers */,
-				18713D5A255F1BBC00EF3D49 /* help_ifconfig.h in Headers */,
+				18713D5A255F1BBC00EF3D49 /* ifconfig.h in Headers */,
 				18713D5B255F1BBC00EF3D49 /* iwlwifi.h in Headers */,
 				18713D5C255F1BBC00EF3D49 /* key_wrap.h in Headers */,
 				18713D5D255F1BBC00EF3D49 /* md5.h in Headers */,
@@ -1910,6 +2192,7 @@
 				18713D6E255F1BBC00EF3D49 /* _malloc.h in Headers */,
 				18713D6F255F1BBC00EF3D49 /* rwlock.h in Headers */,
 				18713D70255F1BBC00EF3D49 /* tree.h in Headers */,
+				7F8AB18727E8475F0045D670 /* ieee80211_ra_vht.h in Headers */,
 				18713D71255F1BBC00EF3D49 /* _null.h in Headers */,
 				18713D72255F1BBC00EF3D49 /* kern_compat.h in Headers */,
 				18713D73255F1BBC00EF3D49 /* __types.h in Headers */,
@@ -1935,7 +2218,6 @@
 				18C95A90256285CC0047231F /* r92creg.h in Headers */,
 				18713D83255F1BBC00EF3D49 /* ieee80211_priv.h in Headers */,
 				18713D84255F1BBC00EF3D49 /* ieee80211_ioctl.h in Headers */,
-				18713D85255F1BBC00EF3D49 /* ieee80211_mira.h in Headers */,
 				18713D86255F1BBC00EF3D49 /* ieee80211_var.h in Headers */,
 				18713D87255F1BBC00EF3D49 /* if_ipwvar.h in Headers */,
 				18713D88255F1BBC00EF3D49 /* if_iwivar.h in Headers */,
@@ -1946,6 +2228,8 @@
 				18713D8C255F1BBC00EF3D49 /* if_ipwreg.h in Headers */,
 				18713D8D255F1BBC00EF3D49 /* if_iwireg.h in Headers */,
 				18713D8E255F1BBC00EF3D49 /* if_iwnvar.h in Headers */,
+				7FF2C21E274CD9D000DCECFD /* heapsort.h in Headers */,
+				7FF2C20D274CD7E900DCECFD /* qsort.h in Headers */,
 				18713D8F255F1BBC00EF3D49 /* if_wpireg.h in Headers */,
 				18713D90255F1BBC00EF3D49 /* if_iwxvar.h in Headers */,
 				18713D91255F1BBC00EF3D49 /* if_iwmvar.h in Headers */,
@@ -1955,6 +2239,95 @@
 				18713D94255F1BBC00EF3D49 /* if_iwmreg.h in Headers */,
 				18713D95255F1BBC00EF3D49 /* pcireg.h in Headers */,
 				18713D96255F1BBC00EF3D49 /* vlan.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7FBAFFED27E077790075D188 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7FBA000827E077F20075D188 /* AirPortOpenBSD.hpp in Headers */,
+				7FBA000927E077F20075D188 /* IONetworkController.h in Headers */,
+				7FBA000A27E077F20075D188 /* IONetworkInterface.h in Headers */,
+				7FBA001327E077F20075D188 /* apple80211.h in Headers */,
+				7FBA001427E077F20075D188 /* bpfilter.h in Headers */,
+				7FBA001527E077F20075D188 /* bridge.h in Headers */,
+				7FBA001627E077F20075D188 /* compat.h in Headers */,
+				7FBA001727E077F20075D188 /* firmware.h in Headers */,
+				7FBA001827E077F20075D188 /* firmwarevar.h in Headers */,
+				7FBA001927E077F20075D188 /* iwlwifi.h in Headers */,
+				7FBA001A27E077F20075D188 /* aes.h in Headers */,
+				7FBA001B27E077F20075D188 /* arc4.h in Headers */,
+				7FBA001C27E077F20075D188 /* cmac.h in Headers */,
+				7FBA001D27E077F20075D188 /* hmac.h in Headers */,
+				7FBA001E27E077F20075D188 /* key_wrap.h in Headers */,
+				7FBA001F27E077F20075D188 /* md5.h in Headers */,
+				7FBA002027E077F20075D188 /* michael.h in Headers */,
+				7FBA002127E077F20075D188 /* sha1.h in Headers */,
+				7FBA002227E077F20075D188 /* sha2.h in Headers */,
+				7FBA002327E077F20075D188 /* bwfmreg.h in Headers */,
+				7FBA002427E077F20075D188 /* bwfmvar.h in Headers */,
+				7FBA002527E077F20075D188 /* bwireg.h in Headers */,
+				7FBA002627E077F20075D188 /* bwivar.h in Headers */,
+				7FBA002727E077F20075D188 /* r92creg.h in Headers */,
+				7FBA002827E077F20075D188 /* rtwnvar.h in Headers */,
+				7FBA002927E077F20075D188 /* if_bwfm_pci.h in Headers */,
+				7FBA002A27E077F20075D188 /* if_ipwreg.h in Headers */,
+				7FBA002B27E077F20075D188 /* if_ipwvar.h in Headers */,
+				7FBA002C27E077F20075D188 /* if_iwireg.h in Headers */,
+				7FBA002D27E077F20075D188 /* if_iwivar.h in Headers */,
+				7FBA002E27E077F20075D188 /* if_iwmreg.h in Headers */,
+				7FBA002F27E077F20075D188 /* if_iwmvar.h in Headers */,
+				7FBA003027E077F20075D188 /* if_iwnreg.h in Headers */,
+				7FBA003127E077F20075D188 /* if_iwnvar.h in Headers */,
+				7FBA003227E077F20075D188 /* if_iwxreg.h in Headers */,
+				7F8AB18C27E8475F0045D670 /* ieee80211_ra_vht.h in Headers */,
+				7FBA003327E077F20075D188 /* if_iwxvar.h in Headers */,
+				7FBA003427E077F20075D188 /* if_wpireg.h in Headers */,
+				7FBA003527E077F20075D188 /* if_wpivar.h in Headers */,
+				7FBA003627E077F20075D188 /* pcidevs.h in Headers */,
+				7FBA003727E077F20075D188 /* pcireg.h in Headers */,
+				7FBA003827E077F20075D188 /* pcivar.h in Headers */,
+				7FBA003927E077F20075D188 /* ifconfig.h in Headers */,
+				7FBA003A27E077F20075D188 /* qsort.h in Headers */,
+				7FBA003B27E077F20075D188 /* heapsort.h in Headers */,
+				7FBA003C27E077F20075D188 /* bus.h in Headers */,
+				7FBA003D27E077F20075D188 /* intr.h in Headers */,
+				7FBA003E27E077F20075D188 /* ieee80211_amrr.h in Headers */,
+				7FBA003F27E077F20075D188 /* ieee80211_crypto.h in Headers */,
+				7FBA004027E077F20075D188 /* ieee80211_ioctl.h in Headers */,
+				7FBA004127E077F20075D188 /* ieee80211_node.h in Headers */,
+				7FBA004227E077F20075D188 /* ieee80211_priv.h in Headers */,
+				7FBA004327E077F20075D188 /* ieee80211_proto.h in Headers */,
+				7FBA004427E077F20075D188 /* ieee80211_ra.h in Headers */,
+				7FBA004527E077F20075D188 /* ieee80211_radiotap.h in Headers */,
+				7FBA004627E077F20075D188 /* ieee80211_regdomain.h in Headers */,
+				7FBA004727E077F20075D188 /* ieee80211_rssadapt.h in Headers */,
+				7FBA004827E077F20075D188 /* ieee80211_var.h in Headers */,
+				7FBA004927E077F20075D188 /* ieee80211.h in Headers */,
+				7FBA004A27E077F20075D188 /* _bpf.h in Headers */,
+				7FBA004B27E077F20075D188 /* _if_ether.h in Headers */,
+				7FBA004C27E077F20075D188 /* _if.h in Headers */,
+				7FBA004D27E077F20075D188 /* if_media.h in Headers */,
+				7FBA004E27E077F20075D188 /* __types.h in Headers */,
+				7FBA004F27E077F20075D188 /* _kernel.h in Headers */,
+				7FBA005027E077F20075D188 /* _malloc.h in Headers */,
+				7FBA005127E077F20075D188 /* _mbuf.h in Headers */,
+				7FBA005227E077F20075D188 /* _null.h in Headers */,
+				7FBA005327E077F20075D188 /* device.h in Headers */,
+				7FBA005427E077F20075D188 /* endian.h in Headers */,
+				7FBA005527E077F20075D188 /* fls.h in Headers */,
+				7FBA005627E077F20075D188 /* kern_compat.h in Headers */,
+				7FBA005727E077F20075D188 /* libkern.h in Headers */,
+				7FBA005827E077F20075D188 /* mutex.h in Headers */,
+				7FBA005927E077F20075D188 /* refcnt.h in Headers */,
+				7FBA005A27E077F20075D188 /* rwlock.h in Headers */,
+				7FBA005B27E077F20075D188 /* task.h in Headers */,
+				7FBA005C27E077F20075D188 /* timeout.h in Headers */,
+				7FBA005D27E077F20075D188 /* timingsafe_bcmp.h in Headers */,
+				7FBA005E27E077F20075D188 /* tree.h in Headers */,
+				7FBA005F27E077F20075D188 /* uvm_extern.h in Headers */,
+				7FBA006027E077F20075D188 /* vlan.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2067,6 +2440,24 @@
 			productReference = 18713D0E255F166400EF3D49 /* AirPortOpenBSD.kext */;
 			productType = "com.apple.product-type.kernel-extension";
 		};
+		7FBAFFF127E077790075D188 /* AirPortOpenBSD_Monterey */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7FBAFFFB27E077790075D188 /* Build configuration list for PBXNativeTarget "AirPortOpenBSD_Monterey" */;
+			buildPhases = (
+				7FBAFFED27E077790075D188 /* Headers */,
+				7FBAFFEE27E077790075D188 /* Sources */,
+				7FBAFFEF27E077790075D188 /* Frameworks */,
+				7FBAFFF027E077790075D188 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AirPortOpenBSD_Monterey;
+			productName = AirPortOpenBSD_Monterey;
+			productReference = 7FBAFFF227E077790075D188 /* AirPortOpenBSD.kext */;
+			productType = "com.apple.product-type.kernel-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -2093,6 +2484,9 @@
 					18713D0D255F166400EF3D49 = {
 						CreatedOnToolsVersion = 12.2;
 					};
+					7FBAFFF127E077790075D188 = {
+						CreatedOnToolsVersion = 12.4;
+					};
 				};
 			};
 			buildConfigurationList = 18713AF4255F148200EF3D49 /* Build configuration list for PBXProject "AirPortOpenBSD" */;
@@ -2113,6 +2507,7 @@
 				18713CBD255F155700EF3D49 /* AirPortOpenBSD_Catalina */,
 				18713CCF255F156700EF3D49 /* AirPortOpenBSD_Mojave */,
 				18713CE2255F157300EF3D49 /* AirPortOpenBSD_HighSierra */,
+				7FBAFFF127E077790075D188 /* AirPortOpenBSD_Monterey */,
 				18713CF2255F158E00EF3D49 /* fw2bin */,
 			);
 		};
@@ -2154,6 +2549,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7FBAFFF027E077790075D188 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -2162,12 +2564,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				18713E40255F1BE100EF3D49 /* AirPortOpenBSD_80211.cpp in Sources */,
+				7FED6E7A277B209B000349A8 /* brcmfmac4358_pcie_bin.c in Sources */,
 				18713E41255F1BE100EF3D49 /* AirPortOpenBSD_Ethernet.cpp in Sources */,
+				7FED6E75277B209B000349A8 /* brcmfmac4366b_pcie_bin.c in Sources */,
 				18713E42255F1BE100EF3D49 /* AirPortOpenBSD_Ioctl.cpp in Sources */,
 				18713E43255F1BE100EF3D49 /* AirPortOpenBSD_Util.cpp in Sources */,
 				18713E44255F1BE100EF3D49 /* AirPortOpenBSD.cpp in Sources */,
 				18C95A87256285CC0047231F /* rtwn.c in Sources */,
 				18713E45255F1BE100EF3D49 /* compat.cpp in Sources */,
+				7FED6E70277B209B000349A8 /* brcmfmac43570_pcie_bin.c in Sources */,
+				3FF4042326675E3A0062B1D9 /* iwm_8265_36.c in Sources */,
 				18713E46255F1BE100EF3D49 /* firmware.c in Sources */,
 				18713E47255F1BE100EF3D49 /* ipw_bss.c in Sources */,
 				18713E48255F1BE100EF3D49 /* ipw_ibss.c in Sources */,
@@ -2179,13 +2585,9 @@
 				18713E4D255F1BE100EF3D49 /* iwm_3160_17.c in Sources */,
 				18713E4E255F1BE100EF3D49 /* iwm_3168_29.c in Sources */,
 				18713E4F255F1BE100EF3D49 /* iwm_7260_17.c in Sources */,
-				18713E50255F1BE100EF3D49 /* iwm_7265_17.c in Sources */,
 				18713E51255F1BE100EF3D49 /* iwm_7265D_29.c in Sources */,
-				18713E52255F1BE100EF3D49 /* iwm_8000C_34.c in Sources */,
-				18713E53255F1BE100EF3D49 /* iwm_8265_34.c in Sources */,
+				3FF4041E26675E3A0062B1D9 /* iwx_Qu_c0_hr_b0_63.c in Sources */,
 				18BB83E225FE3C49001220DF /* ieee80211_ra.c in Sources */,
-				18713E54255F1BE100EF3D49 /* iwm_9000_34.c in Sources */,
-				18713E55255F1BE100EF3D49 /* iwm_9260_34.c in Sources */,
 				18713E56255F1BE100EF3D49 /* iwn_100.c in Sources */,
 				18713E57255F1BE100EF3D49 /* iwn_105.c in Sources */,
 				18C95AF125628E3D0047231F /* rtwn_rtl8192cfwU.c in Sources */,
@@ -2196,23 +2598,25 @@
 				18713E5C255F1BE100EF3D49 /* iwn_4965.c in Sources */,
 				18713E5D255F1BE100EF3D49 /* iwn_5000.c in Sources */,
 				183CD6BD25605A89005F866F /* bwi.c in Sources */,
+				3FF4041426675E3A0062B1D9 /* iwm_9260_46.c in Sources */,
 				18713E5E255F1BE100EF3D49 /* iwn_5150.c in Sources */,
 				18713E5F255F1BE100EF3D49 /* iwn_6000.c in Sources */,
 				18C95AFB25628E3D0047231F /* rtwn_rtl8723fw.c in Sources */,
 				18713E60255F1BE100EF3D49 /* iwn_6005.c in Sources */,
+				7FF2C224274CD9D000DCECFD /* heapsort.c in Sources */,
 				18713E61255F1BE100EF3D49 /* iwn_6030.c in Sources */,
 				18713E62255F1BE100EF3D49 /* iwn_6050.c in Sources */,
 				18713E63255F1BE100EF3D49 /* iwx_cc_a0_48.c in Sources */,
 				18C95AF625628E3D0047231F /* rtwn_rtl8723fw_B.c in Sources */,
 				18713E64255F1BE100EF3D49 /* iwx_Qu_b0_hr_b0_48.c in Sources */,
 				18713E65255F1BE100EF3D49 /* iwx_Qu_b0_jf_b0_48.c in Sources */,
-				18713E66255F1BE100EF3D49 /* iwx_Qu_c0_hr_b0_48.c in Sources */,
 				183CD6CF25605A98005F866F /* if_bwfm_pci.c in Sources */,
 				18713E67255F1BE100EF3D49 /* iwx_Qu_c0_jf_b0_48.c in Sources */,
-				18713E68255F1BE100EF3D49 /* iwx_QuZ_a0_hr_b0_48.c in Sources */,
+				7FED6E7F277B209C000349A8 /* brcmfmac43602_pcie_ap_bin.c in Sources */,
+				7FF2C213274CD7E900DCECFD /* qsort.c in Sources */,
 				18713E69255F1BE100EF3D49 /* iwx_QuZ_a0_jf_b0_48.c in Sources */,
 				18713E6A255F1BE100EF3D49 /* wpi_3945abg.c in Sources */,
-				18713E6B255F1BE100EF3D49 /* help_ifconfig.cpp in Sources */,
+				18713E6B255F1BE100EF3D49 /* ifconfig.c in Sources */,
 				18713E6C255F1BE100EF3D49 /* aes.c in Sources */,
 				18713E6D255F1BE100EF3D49 /* hmac.c in Sources */,
 				183CD70F25606022005F866F /* brcmfmac4350_pcie_bin.c in Sources */,
@@ -2221,7 +2625,9 @@
 				18713E70255F1BE100EF3D49 /* sha1.c in Sources */,
 				3714750225D187FC0052FDC0 /* _malloc.c in Sources */,
 				18713E71255F1BE100EF3D49 /* cmac.c in Sources */,
+				7F600928275E03190009ECFB /* iwx_QuZ_a0_hr_b0_67.c in Sources */,
 				18713E72255F1BE100EF3D49 /* md5.c in Sources */,
+				3FF4040A26675E3A0062B1D9 /* iwx_cc_a0_63.c in Sources */,
 				18713E73255F1BE100EF3D49 /* arc4.c in Sources */,
 				18713E74255F1BE100EF3D49 /* key_wrap.c in Sources */,
 				18F7F0BA2582735100360E74 /* iwx_QuQnj_b0_jf_b0_48.c in Sources */,
@@ -2230,6 +2636,8 @@
 				183CD70A25606022005F866F /* bwi_airforce.c in Sources */,
 				18713E76255F1BE100EF3D49 /* timeout.c in Sources */,
 				18713E77255F1BE100EF3D49 /* task.c in Sources */,
+				7FED6E6B277B209B000349A8 /* brcmfmac4366c_pcie_bin.c in Sources */,
+				7F8AB18E27E8475F0045D670 /* ieee80211_ra_vht.c in Sources */,
 				18713E78255F1BE100EF3D49 /* fls.c in Sources */,
 				183CD71E25606022005F866F /* brcmfmac4350c2_pcie_bin.c in Sources */,
 				18713E79255F1BE100EF3D49 /* timingsafe_bcmp.c in Sources */,
@@ -2241,12 +2649,12 @@
 				18713E7E255F1BE100EF3D49 /* ieee80211.c in Sources */,
 				18713E7F255F1BE100EF3D49 /* ieee80211_rssadapt.c in Sources */,
 				18713E80255F1BE100EF3D49 /* ieee80211_input.c in Sources */,
-				18713E81255F1BE100EF3D49 /* ieee80211_mira.c in Sources */,
 				18713E82255F1BE100EF3D49 /* ieee80211_crypto_bip.c in Sources */,
 				18713E83255F1BE100EF3D49 /* ieee80211_crypto_tkip.c in Sources */,
 				18713E84255F1BE100EF3D49 /* ieee80211_crypto_ccmp.c in Sources */,
 				18713E85255F1BE100EF3D49 /* ieee80211_pae_input.c in Sources */,
 				18F7F0B52582735100360E74 /* iwx_QuQnj_b0_hr_b0_48.c in Sources */,
+				3FF4041926675E3A0062B1D9 /* iwm_9000_46.c in Sources */,
 				18713E86255F1BE100EF3D49 /* ieee80211_amrr.c in Sources */,
 				18713E87255F1BE100EF3D49 /* ieee80211_crypto_wep.c in Sources */,
 				18713E88255F1BE100EF3D49 /* ieee80211_output.c in Sources */,
@@ -2257,6 +2665,7 @@
 				183CD6B325605A89005F866F /* bwfm.c in Sources */,
 				18713E8B255F1BE100EF3D49 /* ieee80211_node.c in Sources */,
 				18713E8C255F1BE100EF3D49 /* ieee80211_pae_output.c in Sources */,
+				3FF4040526675E3A0062B1D9 /* iwm_8000C_36.c in Sources */,
 				183CD6D425605A98005F866F /* if_bwi_pci.c in Sources */,
 				18713E8D255F1BE100EF3D49 /* if_wpi.c in Sources */,
 				18713E8E255F1BE100EF3D49 /* if_iwi.c in Sources */,
@@ -2274,12 +2683,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				18713E99255F1BE900EF3D49 /* AirPortOpenBSD_80211.cpp in Sources */,
+				7FED6E7B277B209B000349A8 /* brcmfmac4358_pcie_bin.c in Sources */,
 				18713E9A255F1BE900EF3D49 /* AirPortOpenBSD_Ethernet.cpp in Sources */,
+				7FED6E76277B209B000349A8 /* brcmfmac4366b_pcie_bin.c in Sources */,
 				18713E9B255F1BE900EF3D49 /* AirPortOpenBSD_Ioctl.cpp in Sources */,
 				18713E9C255F1BE900EF3D49 /* AirPortOpenBSD_Util.cpp in Sources */,
 				18713E9D255F1BE900EF3D49 /* AirPortOpenBSD.cpp in Sources */,
 				18C95A88256285CC0047231F /* rtwn.c in Sources */,
 				18713E9E255F1BE900EF3D49 /* compat.cpp in Sources */,
+				7FED6E71277B209B000349A8 /* brcmfmac43570_pcie_bin.c in Sources */,
+				3FF4042426675E3A0062B1D9 /* iwm_8265_36.c in Sources */,
 				18713E9F255F1BE900EF3D49 /* firmware.c in Sources */,
 				18713EA0255F1BE900EF3D49 /* ipw_bss.c in Sources */,
 				18713EA1255F1BE900EF3D49 /* ipw_ibss.c in Sources */,
@@ -2291,13 +2704,9 @@
 				18713EA6255F1BE900EF3D49 /* iwm_3160_17.c in Sources */,
 				18713EA7255F1BE900EF3D49 /* iwm_3168_29.c in Sources */,
 				18713EA8255F1BE900EF3D49 /* iwm_7260_17.c in Sources */,
-				18713EA9255F1BE900EF3D49 /* iwm_7265_17.c in Sources */,
 				18713EAA255F1BE900EF3D49 /* iwm_7265D_29.c in Sources */,
-				18713EAB255F1BE900EF3D49 /* iwm_8000C_34.c in Sources */,
-				18713EAC255F1BE900EF3D49 /* iwm_8265_34.c in Sources */,
+				3FF4041F26675E3A0062B1D9 /* iwx_Qu_c0_hr_b0_63.c in Sources */,
 				18BB83E325FE3C49001220DF /* ieee80211_ra.c in Sources */,
-				18713EAD255F1BE900EF3D49 /* iwm_9000_34.c in Sources */,
-				18713EAE255F1BE900EF3D49 /* iwm_9260_34.c in Sources */,
 				18713EAF255F1BE900EF3D49 /* iwn_100.c in Sources */,
 				18713EB0255F1BE900EF3D49 /* iwn_105.c in Sources */,
 				18C95AF225628E3D0047231F /* rtwn_rtl8192cfwU.c in Sources */,
@@ -2308,23 +2717,25 @@
 				18713EB5255F1BE900EF3D49 /* iwn_4965.c in Sources */,
 				18713EB6255F1BE900EF3D49 /* iwn_5000.c in Sources */,
 				183CD6BE25605A89005F866F /* bwi.c in Sources */,
+				3FF4041526675E3A0062B1D9 /* iwm_9260_46.c in Sources */,
 				18713EB7255F1BE900EF3D49 /* iwn_5150.c in Sources */,
 				18713EB8255F1BE900EF3D49 /* iwn_6000.c in Sources */,
 				18C95AFC25628E3D0047231F /* rtwn_rtl8723fw.c in Sources */,
 				18713EB9255F1BE900EF3D49 /* iwn_6005.c in Sources */,
+				7FF2C225274CD9D000DCECFD /* heapsort.c in Sources */,
 				18713EBA255F1BE900EF3D49 /* iwn_6030.c in Sources */,
 				18713EBB255F1BE900EF3D49 /* iwn_6050.c in Sources */,
 				18713EBC255F1BE900EF3D49 /* iwx_cc_a0_48.c in Sources */,
 				18C95AF725628E3D0047231F /* rtwn_rtl8723fw_B.c in Sources */,
 				18713EBD255F1BE900EF3D49 /* iwx_Qu_b0_hr_b0_48.c in Sources */,
 				18713EBE255F1BE900EF3D49 /* iwx_Qu_b0_jf_b0_48.c in Sources */,
-				18713EBF255F1BE900EF3D49 /* iwx_Qu_c0_hr_b0_48.c in Sources */,
 				183CD6D025605A98005F866F /* if_bwfm_pci.c in Sources */,
 				18713EC0255F1BE900EF3D49 /* iwx_Qu_c0_jf_b0_48.c in Sources */,
-				18713EC1255F1BE900EF3D49 /* iwx_QuZ_a0_hr_b0_48.c in Sources */,
+				7FED6E80277B209C000349A8 /* brcmfmac43602_pcie_ap_bin.c in Sources */,
+				7FF2C214274CD7E900DCECFD /* qsort.c in Sources */,
 				18713EC2255F1BE900EF3D49 /* iwx_QuZ_a0_jf_b0_48.c in Sources */,
 				18713EC3255F1BE900EF3D49 /* wpi_3945abg.c in Sources */,
-				18713EC4255F1BE900EF3D49 /* help_ifconfig.cpp in Sources */,
+				18713EC4255F1BE900EF3D49 /* ifconfig.c in Sources */,
 				18713EC5255F1BE900EF3D49 /* aes.c in Sources */,
 				18713EC6255F1BE900EF3D49 /* hmac.c in Sources */,
 				183CD71025606022005F866F /* brcmfmac4350_pcie_bin.c in Sources */,
@@ -2333,7 +2744,9 @@
 				18713EC9255F1BE900EF3D49 /* sha1.c in Sources */,
 				3714750325D187FC0052FDC0 /* _malloc.c in Sources */,
 				18713ECA255F1BE900EF3D49 /* cmac.c in Sources */,
+				7F600929275E03190009ECFB /* iwx_QuZ_a0_hr_b0_67.c in Sources */,
 				18713ECB255F1BE900EF3D49 /* md5.c in Sources */,
+				3FF4040B26675E3A0062B1D9 /* iwx_cc_a0_63.c in Sources */,
 				18713ECC255F1BE900EF3D49 /* arc4.c in Sources */,
 				18713ECD255F1BE900EF3D49 /* key_wrap.c in Sources */,
 				18F7F0BB2582735100360E74 /* iwx_QuQnj_b0_jf_b0_48.c in Sources */,
@@ -2342,6 +2755,8 @@
 				183CD70B25606022005F866F /* bwi_airforce.c in Sources */,
 				18713ECF255F1BE900EF3D49 /* timeout.c in Sources */,
 				18713ED0255F1BE900EF3D49 /* task.c in Sources */,
+				7FED6E6C277B209B000349A8 /* brcmfmac4366c_pcie_bin.c in Sources */,
+				7F8AB18F27E8475F0045D670 /* ieee80211_ra_vht.c in Sources */,
 				18713ED1255F1BE900EF3D49 /* fls.c in Sources */,
 				183CD71F25606022005F866F /* brcmfmac4350c2_pcie_bin.c in Sources */,
 				18713ED2255F1BE900EF3D49 /* timingsafe_bcmp.c in Sources */,
@@ -2353,12 +2768,12 @@
 				18713ED7255F1BE900EF3D49 /* ieee80211.c in Sources */,
 				18713ED8255F1BE900EF3D49 /* ieee80211_rssadapt.c in Sources */,
 				18713ED9255F1BE900EF3D49 /* ieee80211_input.c in Sources */,
-				18713EDA255F1BE900EF3D49 /* ieee80211_mira.c in Sources */,
 				18713EDB255F1BE900EF3D49 /* ieee80211_crypto_bip.c in Sources */,
 				18713EDC255F1BE900EF3D49 /* ieee80211_crypto_tkip.c in Sources */,
 				18713EDD255F1BE900EF3D49 /* ieee80211_crypto_ccmp.c in Sources */,
 				18713EDE255F1BE900EF3D49 /* ieee80211_pae_input.c in Sources */,
 				18F7F0B62582735100360E74 /* iwx_QuQnj_b0_hr_b0_48.c in Sources */,
+				3FF4041A26675E3A0062B1D9 /* iwm_9000_46.c in Sources */,
 				18713EDF255F1BE900EF3D49 /* ieee80211_amrr.c in Sources */,
 				18713EE0255F1BE900EF3D49 /* ieee80211_crypto_wep.c in Sources */,
 				18713EE1255F1BE900EF3D49 /* ieee80211_output.c in Sources */,
@@ -2369,6 +2784,7 @@
 				183CD6B425605A89005F866F /* bwfm.c in Sources */,
 				18713EE4255F1BE900EF3D49 /* ieee80211_node.c in Sources */,
 				18713EE5255F1BE900EF3D49 /* ieee80211_pae_output.c in Sources */,
+				3FF4040626675E3A0062B1D9 /* iwm_8000C_36.c in Sources */,
 				183CD6D525605A98005F866F /* if_bwi_pci.c in Sources */,
 				18713EE6255F1BE900EF3D49 /* if_wpi.c in Sources */,
 				18713EE7255F1BE900EF3D49 /* if_iwi.c in Sources */,
@@ -2386,12 +2802,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				18713F3D255F1C0200EF3D49 /* AirPortOpenBSD_80211.cpp in Sources */,
+				7FED6E7C277B209C000349A8 /* brcmfmac4358_pcie_bin.c in Sources */,
 				18713F3E255F1C0200EF3D49 /* AirPortOpenBSD_Ethernet.cpp in Sources */,
+				7FED6E77277B209B000349A8 /* brcmfmac4366b_pcie_bin.c in Sources */,
 				18713F3F255F1C0200EF3D49 /* AirPortOpenBSD_Ioctl.cpp in Sources */,
 				18713F40255F1C0200EF3D49 /* AirPortOpenBSD_Util.cpp in Sources */,
 				18713F41255F1C0200EF3D49 /* AirPortOpenBSD.cpp in Sources */,
 				18C95A89256285CC0047231F /* rtwn.c in Sources */,
 				18713F42255F1C0200EF3D49 /* compat.cpp in Sources */,
+				7FED6E72277B209B000349A8 /* brcmfmac43570_pcie_bin.c in Sources */,
+				3FF4042526675E3A0062B1D9 /* iwm_8265_36.c in Sources */,
 				18713F43255F1C0200EF3D49 /* firmware.c in Sources */,
 				18713F44255F1C0200EF3D49 /* ipw_bss.c in Sources */,
 				18713F45255F1C0200EF3D49 /* ipw_ibss.c in Sources */,
@@ -2403,13 +2823,9 @@
 				18713F4A255F1C0200EF3D49 /* iwm_3160_17.c in Sources */,
 				18713F4B255F1C0200EF3D49 /* iwm_3168_29.c in Sources */,
 				18713F4C255F1C0200EF3D49 /* iwm_7260_17.c in Sources */,
-				18713F4D255F1C0200EF3D49 /* iwm_7265_17.c in Sources */,
 				18713F4E255F1C0200EF3D49 /* iwm_7265D_29.c in Sources */,
-				18713F4F255F1C0200EF3D49 /* iwm_8000C_34.c in Sources */,
-				18713F50255F1C0200EF3D49 /* iwm_8265_34.c in Sources */,
+				3FF4042026675E3A0062B1D9 /* iwx_Qu_c0_hr_b0_63.c in Sources */,
 				18BB83E425FE3C49001220DF /* ieee80211_ra.c in Sources */,
-				18713F51255F1C0200EF3D49 /* iwm_9000_34.c in Sources */,
-				18713F52255F1C0200EF3D49 /* iwm_9260_34.c in Sources */,
 				18713F53255F1C0200EF3D49 /* iwn_100.c in Sources */,
 				18713F54255F1C0200EF3D49 /* iwn_105.c in Sources */,
 				18C95AF325628E3D0047231F /* rtwn_rtl8192cfwU.c in Sources */,
@@ -2420,23 +2836,25 @@
 				18713F59255F1C0200EF3D49 /* iwn_4965.c in Sources */,
 				18713F5A255F1C0200EF3D49 /* iwn_5000.c in Sources */,
 				183CD6BF25605A89005F866F /* bwi.c in Sources */,
+				3FF4041626675E3A0062B1D9 /* iwm_9260_46.c in Sources */,
 				18713F5B255F1C0200EF3D49 /* iwn_5150.c in Sources */,
 				18713F5C255F1C0200EF3D49 /* iwn_6000.c in Sources */,
 				18C95AFD25628E3D0047231F /* rtwn_rtl8723fw.c in Sources */,
 				18713F5D255F1C0200EF3D49 /* iwn_6005.c in Sources */,
+				7FF2C226274CD9D000DCECFD /* heapsort.c in Sources */,
 				18713F5E255F1C0200EF3D49 /* iwn_6030.c in Sources */,
 				18713F5F255F1C0200EF3D49 /* iwn_6050.c in Sources */,
 				18713F60255F1C0200EF3D49 /* iwx_cc_a0_48.c in Sources */,
 				18C95AF825628E3D0047231F /* rtwn_rtl8723fw_B.c in Sources */,
 				18713F61255F1C0200EF3D49 /* iwx_Qu_b0_hr_b0_48.c in Sources */,
 				18713F62255F1C0200EF3D49 /* iwx_Qu_b0_jf_b0_48.c in Sources */,
-				18713F63255F1C0200EF3D49 /* iwx_Qu_c0_hr_b0_48.c in Sources */,
 				183CD6D125605A98005F866F /* if_bwfm_pci.c in Sources */,
 				18713F64255F1C0200EF3D49 /* iwx_Qu_c0_jf_b0_48.c in Sources */,
-				18713F65255F1C0200EF3D49 /* iwx_QuZ_a0_hr_b0_48.c in Sources */,
+				7FED6E81277B209C000349A8 /* brcmfmac43602_pcie_ap_bin.c in Sources */,
+				7FF2C215274CD7E900DCECFD /* qsort.c in Sources */,
 				18713F66255F1C0200EF3D49 /* iwx_QuZ_a0_jf_b0_48.c in Sources */,
 				18713F67255F1C0200EF3D49 /* wpi_3945abg.c in Sources */,
-				18713F68255F1C0200EF3D49 /* help_ifconfig.cpp in Sources */,
+				18713F68255F1C0200EF3D49 /* ifconfig.c in Sources */,
 				18713F69255F1C0200EF3D49 /* aes.c in Sources */,
 				18713F6A255F1C0200EF3D49 /* hmac.c in Sources */,
 				183CD71125606022005F866F /* brcmfmac4350_pcie_bin.c in Sources */,
@@ -2445,7 +2863,9 @@
 				18713F6D255F1C0200EF3D49 /* sha1.c in Sources */,
 				3714750425D187FC0052FDC0 /* _malloc.c in Sources */,
 				18713F6E255F1C0200EF3D49 /* cmac.c in Sources */,
+				7F60092A275E03190009ECFB /* iwx_QuZ_a0_hr_b0_67.c in Sources */,
 				18713F6F255F1C0200EF3D49 /* md5.c in Sources */,
+				3FF4040C26675E3A0062B1D9 /* iwx_cc_a0_63.c in Sources */,
 				18713F70255F1C0200EF3D49 /* arc4.c in Sources */,
 				18713F71255F1C0200EF3D49 /* key_wrap.c in Sources */,
 				18F7F0BC2582735100360E74 /* iwx_QuQnj_b0_jf_b0_48.c in Sources */,
@@ -2454,6 +2874,8 @@
 				183CD70C25606022005F866F /* bwi_airforce.c in Sources */,
 				18713F73255F1C0200EF3D49 /* timeout.c in Sources */,
 				18713F74255F1C0200EF3D49 /* task.c in Sources */,
+				7FED6E6D277B209B000349A8 /* brcmfmac4366c_pcie_bin.c in Sources */,
+				7F8AB19027E8475F0045D670 /* ieee80211_ra_vht.c in Sources */,
 				18713F75255F1C0200EF3D49 /* fls.c in Sources */,
 				183CD72025606022005F866F /* brcmfmac4350c2_pcie_bin.c in Sources */,
 				18713F76255F1C0200EF3D49 /* timingsafe_bcmp.c in Sources */,
@@ -2465,12 +2887,12 @@
 				18713F7B255F1C0200EF3D49 /* ieee80211.c in Sources */,
 				18713F7C255F1C0200EF3D49 /* ieee80211_rssadapt.c in Sources */,
 				18713F7D255F1C0200EF3D49 /* ieee80211_input.c in Sources */,
-				18713F7E255F1C0200EF3D49 /* ieee80211_mira.c in Sources */,
 				18713F7F255F1C0200EF3D49 /* ieee80211_crypto_bip.c in Sources */,
 				18713F80255F1C0200EF3D49 /* ieee80211_crypto_tkip.c in Sources */,
 				18713F81255F1C0200EF3D49 /* ieee80211_crypto_ccmp.c in Sources */,
 				18713F82255F1C0200EF3D49 /* ieee80211_pae_input.c in Sources */,
 				18F7F0B72582735100360E74 /* iwx_QuQnj_b0_hr_b0_48.c in Sources */,
+				3FF4041B26675E3A0062B1D9 /* iwm_9000_46.c in Sources */,
 				18713F83255F1C0200EF3D49 /* ieee80211_amrr.c in Sources */,
 				18713F84255F1C0200EF3D49 /* ieee80211_crypto_wep.c in Sources */,
 				18713F85255F1C0200EF3D49 /* ieee80211_output.c in Sources */,
@@ -2481,6 +2903,7 @@
 				183CD6B525605A89005F866F /* bwfm.c in Sources */,
 				18713F88255F1C0200EF3D49 /* ieee80211_node.c in Sources */,
 				18713F89255F1C0200EF3D49 /* ieee80211_pae_output.c in Sources */,
+				3FF4040726675E3A0062B1D9 /* iwm_8000C_36.c in Sources */,
 				183CD6D625605A98005F866F /* if_bwi_pci.c in Sources */,
 				18713F8A255F1C0200EF3D49 /* if_wpi.c in Sources */,
 				18713F8B255F1C0200EF3D49 /* if_iwi.c in Sources */,
@@ -2498,12 +2921,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				18713FE1255F1C1800EF3D49 /* AirPortOpenBSD_80211.cpp in Sources */,
+				7FED6E7D277B209C000349A8 /* brcmfmac4358_pcie_bin.c in Sources */,
 				18713FE2255F1C1800EF3D49 /* AirPortOpenBSD_Ethernet.cpp in Sources */,
+				7FED6E78277B209B000349A8 /* brcmfmac4366b_pcie_bin.c in Sources */,
 				18713FE3255F1C1800EF3D49 /* AirPortOpenBSD_Ioctl.cpp in Sources */,
 				18713FE4255F1C1800EF3D49 /* AirPortOpenBSD_Util.cpp in Sources */,
 				18713FE5255F1C1800EF3D49 /* AirPortOpenBSD.cpp in Sources */,
 				18C95A8A256285CC0047231F /* rtwn.c in Sources */,
 				18713FE6255F1C1800EF3D49 /* compat.cpp in Sources */,
+				7FED6E73277B209B000349A8 /* brcmfmac43570_pcie_bin.c in Sources */,
+				3FF4042626675E3A0062B1D9 /* iwm_8265_36.c in Sources */,
 				18713FE7255F1C1800EF3D49 /* firmware.c in Sources */,
 				18713FE8255F1C1800EF3D49 /* ipw_bss.c in Sources */,
 				18713FE9255F1C1800EF3D49 /* ipw_ibss.c in Sources */,
@@ -2515,13 +2942,9 @@
 				18713FEE255F1C1800EF3D49 /* iwm_3160_17.c in Sources */,
 				18713FEF255F1C1800EF3D49 /* iwm_3168_29.c in Sources */,
 				18713FF0255F1C1800EF3D49 /* iwm_7260_17.c in Sources */,
-				18713FF1255F1C1800EF3D49 /* iwm_7265_17.c in Sources */,
 				18713FF2255F1C1800EF3D49 /* iwm_7265D_29.c in Sources */,
-				18713FF3255F1C1800EF3D49 /* iwm_8000C_34.c in Sources */,
-				18713FF4255F1C1800EF3D49 /* iwm_8265_34.c in Sources */,
+				3FF4042126675E3A0062B1D9 /* iwx_Qu_c0_hr_b0_63.c in Sources */,
 				18BB83E525FE3C49001220DF /* ieee80211_ra.c in Sources */,
-				18713FF5255F1C1800EF3D49 /* iwm_9000_34.c in Sources */,
-				18713FF6255F1C1800EF3D49 /* iwm_9260_34.c in Sources */,
 				18713FF7255F1C1800EF3D49 /* iwn_100.c in Sources */,
 				18713FF8255F1C1800EF3D49 /* iwn_105.c in Sources */,
 				18C95AF425628E3D0047231F /* rtwn_rtl8192cfwU.c in Sources */,
@@ -2532,23 +2955,25 @@
 				18713FFD255F1C1800EF3D49 /* iwn_4965.c in Sources */,
 				18713FFE255F1C1800EF3D49 /* iwn_5000.c in Sources */,
 				183CD6C025605A89005F866F /* bwi.c in Sources */,
+				3FF4041726675E3A0062B1D9 /* iwm_9260_46.c in Sources */,
 				18713FFF255F1C1800EF3D49 /* iwn_5150.c in Sources */,
 				18714000255F1C1800EF3D49 /* iwn_6000.c in Sources */,
 				18C95AFE25628E3D0047231F /* rtwn_rtl8723fw.c in Sources */,
 				18714001255F1C1800EF3D49 /* iwn_6005.c in Sources */,
+				7FF2C227274CD9D000DCECFD /* heapsort.c in Sources */,
 				18714002255F1C1800EF3D49 /* iwn_6030.c in Sources */,
 				18714003255F1C1800EF3D49 /* iwn_6050.c in Sources */,
 				18714004255F1C1800EF3D49 /* iwx_cc_a0_48.c in Sources */,
 				18C95AF925628E3D0047231F /* rtwn_rtl8723fw_B.c in Sources */,
 				18714005255F1C1800EF3D49 /* iwx_Qu_b0_hr_b0_48.c in Sources */,
 				18714006255F1C1800EF3D49 /* iwx_Qu_b0_jf_b0_48.c in Sources */,
-				18714007255F1C1800EF3D49 /* iwx_Qu_c0_hr_b0_48.c in Sources */,
 				183CD6D225605A98005F866F /* if_bwfm_pci.c in Sources */,
 				18714008255F1C1800EF3D49 /* iwx_Qu_c0_jf_b0_48.c in Sources */,
-				18714009255F1C1800EF3D49 /* iwx_QuZ_a0_hr_b0_48.c in Sources */,
+				7FED6E82277B209C000349A8 /* brcmfmac43602_pcie_ap_bin.c in Sources */,
+				7FF2C216274CD7E900DCECFD /* qsort.c in Sources */,
 				1871400A255F1C1800EF3D49 /* iwx_QuZ_a0_jf_b0_48.c in Sources */,
 				1871400B255F1C1800EF3D49 /* wpi_3945abg.c in Sources */,
-				1871400C255F1C1800EF3D49 /* help_ifconfig.cpp in Sources */,
+				1871400C255F1C1800EF3D49 /* ifconfig.c in Sources */,
 				1871400D255F1C1800EF3D49 /* aes.c in Sources */,
 				1871400E255F1C1800EF3D49 /* hmac.c in Sources */,
 				183CD71225606022005F866F /* brcmfmac4350_pcie_bin.c in Sources */,
@@ -2557,7 +2982,9 @@
 				18714011255F1C1800EF3D49 /* sha1.c in Sources */,
 				3714750525D187FC0052FDC0 /* _malloc.c in Sources */,
 				18714012255F1C1800EF3D49 /* cmac.c in Sources */,
+				7F60092B275E03190009ECFB /* iwx_QuZ_a0_hr_b0_67.c in Sources */,
 				18714013255F1C1800EF3D49 /* md5.c in Sources */,
+				3FF4040D26675E3A0062B1D9 /* iwx_cc_a0_63.c in Sources */,
 				18714014255F1C1800EF3D49 /* arc4.c in Sources */,
 				18714015255F1C1800EF3D49 /* key_wrap.c in Sources */,
 				18F7F0BD2582735100360E74 /* iwx_QuQnj_b0_jf_b0_48.c in Sources */,
@@ -2566,6 +2993,8 @@
 				183CD70D25606022005F866F /* bwi_airforce.c in Sources */,
 				18714017255F1C1800EF3D49 /* timeout.c in Sources */,
 				18714018255F1C1800EF3D49 /* task.c in Sources */,
+				7FED6E6E277B209B000349A8 /* brcmfmac4366c_pcie_bin.c in Sources */,
+				7F8AB19127E8475F0045D670 /* ieee80211_ra_vht.c in Sources */,
 				18714019255F1C1800EF3D49 /* fls.c in Sources */,
 				183CD72125606022005F866F /* brcmfmac4350c2_pcie_bin.c in Sources */,
 				1871401A255F1C1800EF3D49 /* timingsafe_bcmp.c in Sources */,
@@ -2577,12 +3006,12 @@
 				1871401F255F1C1800EF3D49 /* ieee80211.c in Sources */,
 				18714020255F1C1800EF3D49 /* ieee80211_rssadapt.c in Sources */,
 				18714021255F1C1800EF3D49 /* ieee80211_input.c in Sources */,
-				18714022255F1C1800EF3D49 /* ieee80211_mira.c in Sources */,
 				18714023255F1C1800EF3D49 /* ieee80211_crypto_bip.c in Sources */,
 				18714024255F1C1800EF3D49 /* ieee80211_crypto_tkip.c in Sources */,
 				18714025255F1C1800EF3D49 /* ieee80211_crypto_ccmp.c in Sources */,
 				18714026255F1C1800EF3D49 /* ieee80211_pae_input.c in Sources */,
 				18F7F0B82582735100360E74 /* iwx_QuQnj_b0_hr_b0_48.c in Sources */,
+				3FF4041C26675E3A0062B1D9 /* iwm_9000_46.c in Sources */,
 				18714027255F1C1800EF3D49 /* ieee80211_amrr.c in Sources */,
 				18714028255F1C1800EF3D49 /* ieee80211_crypto_wep.c in Sources */,
 				18714029255F1C1800EF3D49 /* ieee80211_output.c in Sources */,
@@ -2593,6 +3022,7 @@
 				183CD6B625605A89005F866F /* bwfm.c in Sources */,
 				1871402C255F1C1800EF3D49 /* ieee80211_node.c in Sources */,
 				1871402D255F1C1800EF3D49 /* ieee80211_pae_output.c in Sources */,
+				3FF4040826675E3A0062B1D9 /* iwm_8000C_36.c in Sources */,
 				183CD6D725605A98005F866F /* if_bwi_pci.c in Sources */,
 				1871402E255F1C1800EF3D49 /* if_wpi.c in Sources */,
 				1871402F255F1C1800EF3D49 /* if_iwi.c in Sources */,
@@ -2610,12 +3040,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				18713D9C255F1BC700EF3D49 /* AirPortOpenBSD_80211.cpp in Sources */,
+				7FED6E79277B209B000349A8 /* brcmfmac4358_pcie_bin.c in Sources */,
 				18713D9D255F1BC700EF3D49 /* AirPortOpenBSD_Ethernet.cpp in Sources */,
+				7FED6E74277B209B000349A8 /* brcmfmac4366b_pcie_bin.c in Sources */,
 				18713D9E255F1BC700EF3D49 /* AirPortOpenBSD_Ioctl.cpp in Sources */,
 				18713D9F255F1BC700EF3D49 /* AirPortOpenBSD_Util.cpp in Sources */,
 				18713DA0255F1BC700EF3D49 /* AirPortOpenBSD.cpp in Sources */,
 				18C95A86256285CC0047231F /* rtwn.c in Sources */,
 				18713DA1255F1BC700EF3D49 /* compat.cpp in Sources */,
+				7FED6E6F277B209B000349A8 /* brcmfmac43570_pcie_bin.c in Sources */,
+				3FF4042226675E3A0062B1D9 /* iwm_8265_36.c in Sources */,
 				18713DA2255F1BC700EF3D49 /* firmware.c in Sources */,
 				18713DA3255F1BC700EF3D49 /* ipw_bss.c in Sources */,
 				18713DA4255F1BC700EF3D49 /* ipw_ibss.c in Sources */,
@@ -2627,13 +3061,9 @@
 				18713DA9255F1BC700EF3D49 /* iwm_3160_17.c in Sources */,
 				18713DAA255F1BC700EF3D49 /* iwm_3168_29.c in Sources */,
 				18713DAB255F1BC700EF3D49 /* iwm_7260_17.c in Sources */,
-				18713DAC255F1BC700EF3D49 /* iwm_7265_17.c in Sources */,
 				18713DAD255F1BC700EF3D49 /* iwm_7265D_29.c in Sources */,
-				18713DAE255F1BC700EF3D49 /* iwm_8000C_34.c in Sources */,
-				18713DAF255F1BC700EF3D49 /* iwm_8265_34.c in Sources */,
+				3FF4041D26675E3A0062B1D9 /* iwx_Qu_c0_hr_b0_63.c in Sources */,
 				18BB83E125FE3C49001220DF /* ieee80211_ra.c in Sources */,
-				18713DB0255F1BC700EF3D49 /* iwm_9000_34.c in Sources */,
-				18713DB1255F1BC700EF3D49 /* iwm_9260_34.c in Sources */,
 				18713DB2255F1BC700EF3D49 /* iwn_100.c in Sources */,
 				18713DB3255F1BC700EF3D49 /* iwn_105.c in Sources */,
 				18C95AF025628E3D0047231F /* rtwn_rtl8192cfwU.c in Sources */,
@@ -2644,23 +3074,25 @@
 				18713DB8255F1BC700EF3D49 /* iwn_4965.c in Sources */,
 				18713DB9255F1BC700EF3D49 /* iwn_5000.c in Sources */,
 				183CD6BC25605A89005F866F /* bwi.c in Sources */,
+				3FF4041326675E3A0062B1D9 /* iwm_9260_46.c in Sources */,
 				18713DBA255F1BC700EF3D49 /* iwn_5150.c in Sources */,
 				18713DBB255F1BC700EF3D49 /* iwn_6000.c in Sources */,
 				18C95AFA25628E3D0047231F /* rtwn_rtl8723fw.c in Sources */,
 				18713DBC255F1BC700EF3D49 /* iwn_6005.c in Sources */,
+				7FF2C223274CD9D000DCECFD /* heapsort.c in Sources */,
 				18713DBD255F1BC700EF3D49 /* iwn_6030.c in Sources */,
 				18713DBE255F1BC700EF3D49 /* iwn_6050.c in Sources */,
 				18713DBF255F1BC700EF3D49 /* iwx_cc_a0_48.c in Sources */,
 				18C95AF525628E3D0047231F /* rtwn_rtl8723fw_B.c in Sources */,
 				18713DC0255F1BC700EF3D49 /* iwx_Qu_b0_hr_b0_48.c in Sources */,
 				18713DC1255F1BC700EF3D49 /* iwx_Qu_b0_jf_b0_48.c in Sources */,
-				18713DC2255F1BC700EF3D49 /* iwx_Qu_c0_hr_b0_48.c in Sources */,
 				183CD6CE25605A98005F866F /* if_bwfm_pci.c in Sources */,
 				18713DC3255F1BC700EF3D49 /* iwx_Qu_c0_jf_b0_48.c in Sources */,
-				18713DC4255F1BC700EF3D49 /* iwx_QuZ_a0_hr_b0_48.c in Sources */,
+				7FED6E7E277B209C000349A8 /* brcmfmac43602_pcie_ap_bin.c in Sources */,
+				7FF2C212274CD7E900DCECFD /* qsort.c in Sources */,
 				18713DC5255F1BC700EF3D49 /* iwx_QuZ_a0_jf_b0_48.c in Sources */,
 				18713DC6255F1BC700EF3D49 /* wpi_3945abg.c in Sources */,
-				18713DC7255F1BC700EF3D49 /* help_ifconfig.cpp in Sources */,
+				18713DC7255F1BC700EF3D49 /* ifconfig.c in Sources */,
 				18713DC8255F1BC700EF3D49 /* aes.c in Sources */,
 				18713DC9255F1BC700EF3D49 /* hmac.c in Sources */,
 				183CD70E25606022005F866F /* brcmfmac4350_pcie_bin.c in Sources */,
@@ -2669,7 +3101,9 @@
 				18713DCC255F1BC700EF3D49 /* sha1.c in Sources */,
 				3714750125D187FC0052FDC0 /* _malloc.c in Sources */,
 				18713DCD255F1BC700EF3D49 /* cmac.c in Sources */,
+				7F600927275E03190009ECFB /* iwx_QuZ_a0_hr_b0_67.c in Sources */,
 				18713DCE255F1BC700EF3D49 /* md5.c in Sources */,
+				3FF4040926675E3A0062B1D9 /* iwx_cc_a0_63.c in Sources */,
 				18713DCF255F1BC700EF3D49 /* arc4.c in Sources */,
 				18713DD0255F1BC700EF3D49 /* key_wrap.c in Sources */,
 				18F7F0B92582735100360E74 /* iwx_QuQnj_b0_jf_b0_48.c in Sources */,
@@ -2678,6 +3112,8 @@
 				183CD70925606022005F866F /* bwi_airforce.c in Sources */,
 				18713DD2255F1BC700EF3D49 /* timeout.c in Sources */,
 				18713DD3255F1BC700EF3D49 /* task.c in Sources */,
+				7FED6E6A277B209B000349A8 /* brcmfmac4366c_pcie_bin.c in Sources */,
+				7F8AB18D27E8475F0045D670 /* ieee80211_ra_vht.c in Sources */,
 				18713DD4255F1BC700EF3D49 /* fls.c in Sources */,
 				183CD71D25606022005F866F /* brcmfmac4350c2_pcie_bin.c in Sources */,
 				18713DD5255F1BC700EF3D49 /* timingsafe_bcmp.c in Sources */,
@@ -2689,12 +3125,12 @@
 				18713DDA255F1BC700EF3D49 /* ieee80211.c in Sources */,
 				18713DDB255F1BC700EF3D49 /* ieee80211_rssadapt.c in Sources */,
 				18713DDC255F1BC700EF3D49 /* ieee80211_input.c in Sources */,
-				18713DDD255F1BC700EF3D49 /* ieee80211_mira.c in Sources */,
 				18713DDE255F1BC700EF3D49 /* ieee80211_crypto_bip.c in Sources */,
 				18713DDF255F1BC700EF3D49 /* ieee80211_crypto_tkip.c in Sources */,
 				18713DE0255F1BC700EF3D49 /* ieee80211_crypto_ccmp.c in Sources */,
 				18713DE1255F1BC700EF3D49 /* ieee80211_pae_input.c in Sources */,
 				18F7F0B42582735100360E74 /* iwx_QuQnj_b0_hr_b0_48.c in Sources */,
+				3FF4041826675E3A0062B1D9 /* iwm_9000_46.c in Sources */,
 				18713DE2255F1BC700EF3D49 /* ieee80211_amrr.c in Sources */,
 				18713DE3255F1BC700EF3D49 /* ieee80211_crypto_wep.c in Sources */,
 				18713DE4255F1BC700EF3D49 /* ieee80211_output.c in Sources */,
@@ -2705,6 +3141,7 @@
 				183CD6B225605A89005F866F /* bwfm.c in Sources */,
 				18713DE7255F1BC700EF3D49 /* ieee80211_node.c in Sources */,
 				18713DE8255F1BC700EF3D49 /* ieee80211_pae_output.c in Sources */,
+				3FF4040426675E3A0062B1D9 /* iwm_8000C_36.c in Sources */,
 				183CD6D325605A98005F866F /* if_bwi_pci.c in Sources */,
 				18713DE9255F1BC700EF3D49 /* if_wpi.c in Sources */,
 				18713DEA255F1BC700EF3D49 /* if_iwi.c in Sources */,
@@ -2714,6 +3151,125 @@
 				18C95AFF25628E3D0047231F /* rtwn_rtl8188efw.c in Sources */,
 				18713DEE255F1BC700EF3D49 /* if_ipw.c in Sources */,
 				18713DEF255F1BC700EF3D49 /* if_iwn.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7FBAFFEE27E077790075D188 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7FBA006727E077FE0075D188 /* AirPortOpenBSD_80211.cpp in Sources */,
+				7FBA006827E077FE0075D188 /* AirPortOpenBSD_Ethernet.cpp in Sources */,
+				7FBA006927E077FE0075D188 /* AirPortOpenBSD_Ioctl.cpp in Sources */,
+				7FBA006A27E077FE0075D188 /* AirPortOpenBSD_Util.cpp in Sources */,
+				7FBA006B27E077FE0075D188 /* AirPortOpenBSD.cpp in Sources */,
+				7FBA006C27E077FE0075D188 /* compat.cpp in Sources */,
+				7FBA006D27E077FE0075D188 /* brcmfmac4358_pcie_bin.c in Sources */,
+				7FBA006E27E077FE0075D188 /* brcmfmac4366b_pcie_bin.c in Sources */,
+				7FBA006F27E077FE0075D188 /* brcmfmac4366c_pcie_bin.c in Sources */,
+				7FBA007027E077FE0075D188 /* brcmfmac43570_pcie_bin.c in Sources */,
+				7FBA007127E077FE0075D188 /* brcmfmac43602_pcie_ap_bin.c in Sources */,
+				7FBA007227E077FE0075D188 /* brcmfmac4350_pcie_bin.c in Sources */,
+				7FBA007327E077FE0075D188 /* brcmfmac4350c2_pcie_bin.c in Sources */,
+				7FBA007427E077FE0075D188 /* brcmfmac4356_pcie_bin.c in Sources */,
+				7FBA007527E077FE0075D188 /* brcmfmac4371_pcie_bin.c in Sources */,
+				7FBA007627E077FE0075D188 /* brcmfmac43602_pcie_bin.c in Sources */,
+				7FBA007727E077FE0075D188 /* bwi_airforce.c in Sources */,
+				7FBA007827E077FE0075D188 /* firmware.c in Sources */,
+				7FBA007927E077FE0075D188 /* ipw_bss.c in Sources */,
+				7FBA007A27E077FE0075D188 /* ipw_ibss.c in Sources */,
+				7FBA007B27E077FE0075D188 /* ipw_monitor.c in Sources */,
+				7FBA007C27E077FE0075D188 /* iwi_bss.c in Sources */,
+				7FBA007D27E077FE0075D188 /* iwi_ibss.c in Sources */,
+				7FBA007E27E077FE0075D188 /* iwi_monitor.c in Sources */,
+				7FBA007F27E077FE0075D188 /* iwm_3160_17.c in Sources */,
+				7FBA008027E077FE0075D188 /* iwm_3168_29.c in Sources */,
+				7FBA008127E077FE0075D188 /* iwm_7260_17.c in Sources */,
+				7FBA008227E077FE0075D188 /* iwm_7265D_29.c in Sources */,
+				7FBA008327E077FE0075D188 /* iwm_8000C_36.c in Sources */,
+				7FBA008427E077FE0075D188 /* iwm_8265_36.c in Sources */,
+				7FBA008527E077FE0075D188 /* iwm_9000_46.c in Sources */,
+				7FBA008627E077FE0075D188 /* iwm_9260_46.c in Sources */,
+				7FBA008727E077FE0075D188 /* iwn_100.c in Sources */,
+				7FBA008827E077FE0075D188 /* iwn_105.c in Sources */,
+				7FBA008927E077FE0075D188 /* iwn_135.c in Sources */,
+				7FBA008A27E077FE0075D188 /* iwn_1000.c in Sources */,
+				7FBA008B27E077FE0075D188 /* iwn_2000.c in Sources */,
+				7FBA008C27E077FE0075D188 /* iwn_2030.c in Sources */,
+				7FBA008D27E077FE0075D188 /* iwn_4965.c in Sources */,
+				7FBA008E27E077FE0075D188 /* iwn_5000.c in Sources */,
+				7FBA008F27E077FE0075D188 /* iwn_5150.c in Sources */,
+				7FBA009027E077FE0075D188 /* iwn_6000.c in Sources */,
+				7FBA009127E077FE0075D188 /* iwn_6005.c in Sources */,
+				7FBA009227E077FE0075D188 /* iwn_6030.c in Sources */,
+				7FBA009327E077FE0075D188 /* iwn_6050.c in Sources */,
+				7FBA009427E077FE0075D188 /* iwx_cc_a0_48.c in Sources */,
+				7FBA009527E077FE0075D188 /* iwx_cc_a0_63.c in Sources */,
+				7FBA009627E077FE0075D188 /* iwx_Qu_b0_hr_b0_48.c in Sources */,
+				7FBA009727E077FE0075D188 /* iwx_Qu_b0_jf_b0_48.c in Sources */,
+				7FBA009827E077FE0075D188 /* iwx_Qu_c0_hr_b0_63.c in Sources */,
+				7FBA009927E077FE0075D188 /* iwx_Qu_c0_jf_b0_48.c in Sources */,
+				7FBA009A27E077FE0075D188 /* iwx_QuQnj_b0_hr_b0_48.c in Sources */,
+				7FBA009B27E077FE0075D188 /* iwx_QuQnj_b0_jf_b0_48.c in Sources */,
+				7FBA009C27E077FE0075D188 /* iwx_QuZ_a0_hr_b0_67.c in Sources */,
+				7FBA009D27E077FE0075D188 /* iwx_QuZ_a0_jf_b0_48.c in Sources */,
+				7FBA009E27E077FE0075D188 /* rtwn_rtl8188efw.c in Sources */,
+				7FBA009F27E077FE0075D188 /* rtwn_rtl8192cfwU_B.c in Sources */,
+				7FBA00A027E077FE0075D188 /* rtwn_rtl8192cfwU.c in Sources */,
+				7FBA00A127E077FE0075D188 /* rtwn_rtl8723fw_B.c in Sources */,
+				7FBA00A227E077FE0075D188 /* rtwn_rtl8723fw.c in Sources */,
+				7FBA00A327E077FE0075D188 /* wpi_3945abg.c in Sources */,
+				7FBA00A427E077FE0075D188 /* aes.c in Sources */,
+				7FBA00A527E077FE0075D188 /* arc4.c in Sources */,
+				7FBA00A627E077FE0075D188 /* cmac.c in Sources */,
+				7FBA00A727E077FE0075D188 /* hmac.c in Sources */,
+				7FBA00A827E077FE0075D188 /* key_wrap.c in Sources */,
+				7FBA00A927E077FE0075D188 /* md5.c in Sources */,
+				7FBA00AA27E077FE0075D188 /* michael.c in Sources */,
+				7FBA00AB27E077FE0075D188 /* sha1.c in Sources */,
+				7FBA00AC27E077FE0075D188 /* sha2.c in Sources */,
+				7FBA00AD27E077FE0075D188 /* bwfm.c in Sources */,
+				7FBA00AE27E077FE0075D188 /* bwi.c in Sources */,
+				7FBA00AF27E077FE0075D188 /* rtwn.c in Sources */,
+				7FBA00B027E077FE0075D188 /* if_bwfm_pci.c in Sources */,
+				7F8AB19227E8475F0045D670 /* ieee80211_ra_vht.c in Sources */,
+				7FBA00B127E077FE0075D188 /* if_bwi_pci.c in Sources */,
+				7FBA00B227E077FE0075D188 /* if_ipw.c in Sources */,
+				7FBA00B327E077FE0075D188 /* if_iwi.c in Sources */,
+				7FBA00B427E077FE0075D188 /* if_iwm.c in Sources */,
+				7FBA00B527E077FE0075D188 /* if_iwn.c in Sources */,
+				7FBA00B627E077FE0075D188 /* if_iwx.c in Sources */,
+				7FBA00B727E077FE0075D188 /* if_rtwn.c in Sources */,
+				7FBA00B827E077FE0075D188 /* if_wpi.c in Sources */,
+				7FBA00B927E077FE0075D188 /* pci.c in Sources */,
+				7FBA00BA27E077FE0075D188 /* ifconfig.c in Sources */,
+				7FBA00BB27E077FE0075D188 /* qsort.c in Sources */,
+				7FBA00BC27E077FE0075D188 /* heapsort.c in Sources */,
+				7FBA00BD27E077FE0075D188 /* bus.c in Sources */,
+				7FBA00BE27E077FE0075D188 /* ieee80211_amrr.c in Sources */,
+				7FBA00BF27E077FE0075D188 /* ieee80211_crypto_bip.c in Sources */,
+				7FBA00C027E077FE0075D188 /* ieee80211_crypto_ccmp.c in Sources */,
+				7FBA00C127E077FE0075D188 /* ieee80211_crypto_tkip.c in Sources */,
+				7FBA00C227E077FE0075D188 /* ieee80211_crypto_wep.c in Sources */,
+				7FBA00C327E077FE0075D188 /* ieee80211_crypto.c in Sources */,
+				7FBA00C427E077FE0075D188 /* ieee80211_input.c in Sources */,
+				7FBA00C527E077FE0075D188 /* ieee80211_ioctl.c in Sources */,
+				7FBA00C627E077FE0075D188 /* ieee80211_node.c in Sources */,
+				7FBA00C727E077FE0075D188 /* ieee80211_output.c in Sources */,
+				7FBA00C827E077FE0075D188 /* ieee80211_pae_input.c in Sources */,
+				7FBA00C927E077FE0075D188 /* ieee80211_pae_output.c in Sources */,
+				7FBA00CA27E077FE0075D188 /* ieee80211_proto.c in Sources */,
+				7FBA00CB27E077FE0075D188 /* ieee80211_ra.c in Sources */,
+				7FBA00CC27E077FE0075D188 /* ieee80211_regdomain.c in Sources */,
+				7FBA00CD27E077FE0075D188 /* ieee80211_rssadapt.c in Sources */,
+				7FBA00CE27E077FE0075D188 /* ieee80211.c in Sources */,
+				7FBA00CF27E077FE0075D188 /* _bpf.c in Sources */,
+				7FBA00D027E077FE0075D188 /* _malloc.c in Sources */,
+				7FBA00D127E077FE0075D188 /* fls.c in Sources */,
+				7FBA00D227E077FE0075D188 /* task.c in Sources */,
+				7FBA00D327E077FE0075D188 /* timeout.c in Sources */,
+				7FBA00D427E077FE0075D188 /* timingsafe_bcmp.c in Sources */,
+				7FBA00D527E077FE0075D188 /* tree.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2849,8 +3405,8 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = "BigSur v2.0.7";
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = "BigSur v2.0.9";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -2873,8 +3429,8 @@
 					"CATALINA=1",
 				);
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = "BigSur v2.0.7";
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = "BigSur v2.0.9";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -2898,7 +3454,7 @@
 				);
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = "Catalina v2.0.7";
+				MARKETING_VERSION = "Catalina v2.0.9";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -2919,7 +3475,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "CATALINA=1";
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = "Catalina v2.0.7";
+				MARKETING_VERSION = "Catalina v2.0.9";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -2943,7 +3499,7 @@
 				);
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = "Mojave v2.0.7";
+				MARKETING_VERSION = "Mojave v2.0.9";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -2964,7 +3520,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "MOJAVE=1";
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = "Mojave v2.0.7";
+				MARKETING_VERSION = "Mojave v2.0.9";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -2988,7 +3544,7 @@
 				);
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = "HighSierra v2.0.7";
+				MARKETING_VERSION = "HighSierra v2.0.9";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3009,7 +3565,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "HIGH_SIERRA=1";
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = "HighSierra v2.0.7";
+				MARKETING_VERSION = "HighSierra v2.0.9";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3058,7 +3614,7 @@
 				);
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = "Ethernet v2.0.7";
+				MARKETING_VERSION = "Ethernet v2.0.9";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3079,7 +3635,54 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "Ethernet=1";
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = "Ethernet v2.0.7";
+				MARKETING_VERSION = "Ethernet v2.0.9";
+				MODULE_NAME = com.zhong.AirPortOpenBSD;
+				MODULE_VERSION = 1.0.0d1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
+				PRODUCT_NAME = AirPortOpenBSD;
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				WRAPPER_EXTENSION = kext;
+			};
+			name = Release;
+		};
+		7FBAFFF927E077790075D188 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)/$(PRODUCT_NAME)_Beta_Monterey";
+				CURRENT_PROJECT_VERSION = 1.0.0d1;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"MONTEREY=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 12;
+				MARKETING_VERSION = "Monterey v2.0.9";
+				MODULE_NAME = com.zhong.AirPortOpenBSD;
+				MODULE_VERSION = 1.0.0d1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
+				PRODUCT_NAME = AirPortOpenBSD;
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				WRAPPER_EXTENSION = kext;
+			};
+			name = Debug;
+		};
+		7FBAFFFA27E077790075D188 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)/Monterey";
+				CURRENT_PROJECT_VERSION = 1.0.0d1;
+				GCC_PREPROCESSOR_DEFINITIONS = "MONTEREY=1";
+				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
+				MACOSX_DEPLOYMENT_TARGET = 12;
+				MARKETING_VERSION = "Monterey v2.0.9";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3151,6 +3754,15 @@
 			buildConfigurations = (
 				18713D16255F166500EF3D49 /* Debug */,
 				18713D17255F166500EF3D49 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7FBAFFFB27E077790075D188 /* Build configuration list for PBXNativeTarget "AirPortOpenBSD_Monterey" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7FBAFFF927E077790075D188 /* Debug */,
+				7FBAFFFA27E077790075D188 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

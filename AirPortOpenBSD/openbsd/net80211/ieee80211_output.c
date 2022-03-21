@@ -1,4 +1,4 @@
-/*    $OpenBSD: ieee80211_output.c,v 1.133 2021/03/10 10:21:48 jsg Exp $    */
+/*    $OpenBSD: ieee80211_output.c,v 1.137 2022/03/14 15:07:24 stsp Exp $    */
 /*    $NetBSD: ieee80211_output.c,v 1.13 2004/05/31 11:02:55 dyoung Exp $    */
 
 /*-
@@ -125,7 +125,7 @@ ieee80211_output(struct ifnet *ifp, mbuf_t m, struct sockaddr *dst,
 
     /* Try to get the DLT from a mbuf tag */
 //    if ((mtag = m_tag_find(m, PACKET_TAG_DLT, NULL)) != NULL) {
-//        struct ieee80211com *ic = (void *)ifp;
+//        struct ieee80211com *ic = (typeof ic)ifp;
 //        u_int dlt = *(u_int *)(mtag + 1);
 //
 //        /* Fallback to ethernet for non-802.11 linktypes */
@@ -155,6 +155,18 @@ ieee80211_output(struct ifnet *ifp, mbuf_t m, struct sockaddr *dst,
     return (error);
 }
 
+const char *
+ieee80211_action_name(struct ieee80211_frame *wh)
+{
+    const u_int8_t *frm = (const uint8_t *)&wh[1];
+    const char *categ_ba_name[3] = { "addba_req", "addba_resp", "delba" };
+
+    if (frm[0] == IEEE80211_CATEG_BA && frm[1] < nitems(categ_ba_name))
+        return categ_ba_name[frm[1]];
+
+    return "action";
+}
+
 /*
  * Send a management frame to the specified node.  The node pointer
  * must have a reference as the pointer will be passed to the driver
@@ -166,7 +178,7 @@ int
 ieee80211_mgmt_output(struct ifnet *ifp, struct ieee80211_node *ni,
     mbuf_t m, int type)
 {
-    struct ieee80211com *ic = (struct ieee80211com *)ifp;
+    struct ieee80211com *ic = (typeof ic)ifp;
     struct ieee80211_frame *wh;
 
     if (ni == NULL)
@@ -225,15 +237,21 @@ ieee80211_mgmt_output(struct ifnet *ifp, struct ieee80211_node *ni,
             ieee80211_debug > 1 ||
 #endif
             (type & IEEE80211_FC0_SUBTYPE_MASK) !=
-            IEEE80211_FC0_SUBTYPE_PROBE_RESP)
+            IEEE80211_FC0_SUBTYPE_PROBE_RESP) {
+            const char *subtype_name;
+            if ((type & IEEE80211_FC0_SUBTYPE_MASK) ==
+                IEEE80211_FC0_SUBTYPE_ACTION)
+                subtype_name = ieee80211_action_name(wh);
+            else
+                subtype_name = ieee80211_mgt_subtype_name[
+                    (type & IEEE80211_FC0_SUBTYPE_MASK) >>
+                    IEEE80211_FC0_SUBTYPE_SHIFT];
             printf("%s: sending %s to %s on channel %u mode %s\n",
-                ifp->if_xname,
-                ieee80211_mgt_subtype_name[
-                (type & IEEE80211_FC0_SUBTYPE_MASK)
-                >> IEEE80211_FC0_SUBTYPE_SHIFT],
+                ifp->if_xname, subtype_name,
                 ether_sprintf(ni->ni_macaddr),
                 ieee80211_chan2ieee(ic, ni->ni_chan),
                 ieee80211_phymode_name[ic->ic_curmode]);
+        }
     }
 
 #ifndef IEEE80211_STA_ONLY
@@ -303,6 +321,12 @@ const struct ieee80211_edca_ac_params
         [EDCA_AC_VI] = { 3,  4, 2,  94 },
         [EDCA_AC_VO] = { 2,  3, 2,  47 }
     },
+    [IEEE80211_MODE_11AC] = {
+        [EDCA_AC_BK] = { 4, 10, 7,   0 },
+        [EDCA_AC_BE] = { 4, 10, 3,   0 },
+        [EDCA_AC_VI] = { 3,  4, 2,  94 },
+        [EDCA_AC_VO] = { 2,  3, 2,  47 }
+    },
 };
 
 #ifndef IEEE80211_STA_ONLY
@@ -327,6 +351,12 @@ const struct ieee80211_edca_ac_params
         [EDCA_AC_VO] = { 2,  3, 1,  47 }
     },
     [IEEE80211_MODE_11N] = {
+        [EDCA_AC_BK] = { 4, 10, 7,   0 },
+        [EDCA_AC_BE] = { 4,  6, 3,   0 },
+        [EDCA_AC_VI] = { 3,  4, 1,  94 },
+        [EDCA_AC_VO] = { 2,  3, 1,  47 }
+    },
+    [IEEE80211_MODE_11AC] = {
         [EDCA_AC_BK] = { 4, 10, 7,   0 },
         [EDCA_AC_BE] = { 4,  6, 3,   0 },
         [EDCA_AC_VI] = { 3,  4, 1,  94 },
@@ -493,7 +523,7 @@ ieee80211_tx_compressed_bar(struct ieee80211com *ic, struct ieee80211_node *ni,
 mbuf_t
 ieee80211_encap(struct ifnet *ifp, mbuf_t m, struct ieee80211_node **pni)
 {
-    struct ieee80211com *ic = (struct ieee80211com *)ifp;
+    struct ieee80211com *ic = (typeof ic)ifp;
     struct ether_header eh;
     struct ieee80211_frame *wh;
     struct ieee80211_node *ni = NULL;
@@ -558,9 +588,17 @@ ieee80211_encap(struct ifnet *ifp, mbuf_t m, struct ieee80211_node **pni)
         goto bad;
     }
 
+#ifndef IEEE80211_STA_ONLY
+    if (ic->ic_opmode == IEEE80211_M_HOSTAP && ni != ic->ic_bss &&
+        ni->ni_state != IEEE80211_STA_ASSOC) {
+        ic->ic_stats.is_tx_nonode++;
+        goto bad;
+    }
+#endif
+
     if ((ic->ic_flags & IEEE80211_F_RSNON) &&
         !ni->ni_port_valid &&
-        eh.ether_type != htons(ETHERTYPE_PAE)) {
+        eh.ether_type != htons(ETHERTYPE_EAPOL)) {
         DPRINTF(("port not valid: %s\n",
             ether_sprintf(eh.ether_dhost)));
         ic->ic_stats.is_tx_noauth++;
@@ -576,7 +614,7 @@ ieee80211_encap(struct ifnet *ifp, mbuf_t m, struct ieee80211_node **pni)
     if ((ic->ic_flags & IEEE80211_F_QOS) &&
         (ni->ni_flags & IEEE80211_NODE_QOS) &&
         /* do not QoS-encapsulate EAPOL frames */
-        eh.ether_type != htons(ETHERTYPE_PAE)) {
+        eh.ether_type != htons(ETHERTYPE_EAPOL)) {
         struct ieee80211_tx_ba *ba;
         tid = ieee80211_classify(ic, m);
         ba = &ni->ni_tx_ba[tid];
@@ -1153,6 +1191,22 @@ ieee80211_add_htop(u_int8_t *frm, struct ieee80211com *ic)
 }
 #endif    /* !IEEE80211_STA_ONLY */
 
+/*
+ * Add a VHT Capabilities element to a frame (see 802.11ac-2013 8.4.2.160.2).
+ */
+u_int8_t *
+ieee80211_add_vhtcaps(u_int8_t *frm, struct ieee80211com *ic)
+{
+    *frm++ = IEEE80211_ELEMID_VHTCAPS;
+    *frm++ = 12;
+    LE_WRITE_4(frm, ic->ic_vhtcaps); frm += 4;
+    LE_WRITE_2(frm, ic->ic_vht_rxmcs); frm += 2;
+    LE_WRITE_2(frm, ic->ic_vht_rx_max_lgi_mbit_s); frm += 2;
+    LE_WRITE_2(frm, ic->ic_vht_txmcs); frm += 2;
+    LE_WRITE_2(frm, ic->ic_vht_tx_max_lgi_mbit_s); frm += 2;
+    return frm;
+}
+
 #ifndef IEEE80211_STA_ONLY
 /*
  * Add a Timeout Interval element to a frame (see 7.3.2.49).
@@ -1210,7 +1264,8 @@ ieee80211_get_probe_req(struct ieee80211com *ic, struct ieee80211_node *ni)
         2 + min(rs->rs_nrates, IEEE80211_RATE_SIZE) +
         ((rs->rs_nrates > IEEE80211_RATE_SIZE) ?
         2 + rs->rs_nrates - IEEE80211_RATE_SIZE : 0) +
-        ((ic->ic_flags & IEEE80211_F_HTON) ? 28 + 9 : 0));
+        ((ic->ic_flags & IEEE80211_F_HTON) ? 28 + 9 : 0) +
+        ((ic->ic_flags & IEEE80211_F_VHTON) ? 14 : 0));
     if (m == NULL)
         return NULL;
 
@@ -1223,6 +1278,8 @@ ieee80211_get_probe_req(struct ieee80211com *ic, struct ieee80211_node *ni)
         frm = ieee80211_add_htcaps(frm, ic);
         frm = ieee80211_add_wme_info(frm, ic);
     }
+    if (ic->ic_flags & IEEE80211_F_VHTON)
+        frm = ieee80211_add_htcaps(frm, ic);
 
     size_t len = frm - mtod(m, u_int8_t *);
     mbuf_pkthdr_setlen(m, len);
@@ -1396,7 +1453,8 @@ ieee80211_get_assoc_req(struct ieee80211com *ic, struct ieee80211_node *ni,
         (((ic->ic_flags & IEEE80211_F_RSNON) &&
           (ni->ni_rsnprotos & IEEE80211_PROTO_WPA)) ?
         2 + IEEE80211_WPAIE_MAXLEN : 0) +
-        ((ic->ic_flags & IEEE80211_F_HTON) ? 28 + 9 : 0));
+        ((ic->ic_flags & IEEE80211_F_HTON) ? 28 + 9 : 0) +
+        ((ic->ic_flags & IEEE80211_F_VHTON) ? 14 : 0));
     if (m == NULL)
         return NULL;
 
@@ -1431,6 +1489,8 @@ ieee80211_get_assoc_req(struct ieee80211com *ic, struct ieee80211_node *ni,
         frm = ieee80211_add_htcaps(frm, ic);
         frm = ieee80211_add_wme_info(frm, ic);
     }
+    if (ic->ic_flags & IEEE80211_F_VHTON)
+        frm = ieee80211_add_vhtcaps(frm, ic);
 
     size_t len = frm - mtod(m, u_int8_t *);
     mbuf_pkthdr_setlen(m, len);

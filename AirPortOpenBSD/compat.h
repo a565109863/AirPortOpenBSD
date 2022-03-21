@@ -13,7 +13,6 @@
 
 #include <net80211/ieee80211_var.h>
 #include <net80211/ieee80211_amrr.h>
-#include <net80211/ieee80211_mira.h>
 #include <net80211/ieee80211_radiotap.h>
 
 struct rx_radiotap_header {

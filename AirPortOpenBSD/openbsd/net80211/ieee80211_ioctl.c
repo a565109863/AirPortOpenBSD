@@ -1,4 +1,4 @@
-/*    $OpenBSD: ieee80211_ioctl.c,v 1.80 2020/11/19 20:03:33 krw Exp $    */
+/*    $OpenBSD: ieee80211_ioctl.c,v 1.81 2022/03/07 08:13:13 stsp Exp $    */
 /*    $NetBSD: ieee80211_ioctl.c,v 1.15 2004/05/06 02:58:16 dyoung Exp $    */
 
 /*-
@@ -209,7 +209,7 @@ ieee80211_disable_rsn(struct ieee80211com *ic)
     explicit_bzero(ic->ic_psk, sizeof(ic->ic_psk));
     ic->ic_rsnprotos = 0;
     ic->ic_rsnakms = 0;
-    ic->ic_rsngroupcipher = (enum ieee80211_cipher)0;
+    ic->ic_rsngroupcipher = (typeof ic->ic_rsngroupcipher)0;
     ic->ic_rsnciphers = 0;
 }
 
@@ -308,7 +308,7 @@ ieee80211_ioctl_setwpaparms(struct ieee80211com *ic,
         ic->ic_flags &= ~IEEE80211_F_RSNON;
         ic->ic_rsnprotos = 0;
         ic->ic_rsnakms = 0;
-        ic->ic_rsngroupcipher = (enum ieee80211_cipher)0;
+        ic->ic_rsngroupcipher = (typeof ic->ic_rsngroupcipher)0;
         ic->ic_rsnciphers = 0;
         return ENETRESET;
     }
@@ -455,7 +455,7 @@ ieee80211_ess_getwpaparms(struct ieee80211_ess *ess,
 int
 ieee80211_ioctl(struct ifnet *ifp, u_long cmd, caddr_t data)
 {
-    struct ieee80211com *ic = (struct ieee80211com *)ifp;
+    struct ieee80211com *ic = (typeof ic)ifp;
     struct ifreq *ifr = (struct ifreq *)data;
     int i, error = 0;
     size_t len;
@@ -477,6 +477,8 @@ ieee80211_ioctl(struct ifnet *ifp, u_long cmd, caddr_t data)
     struct ieee80211_nodereq *nr, nrbuf;
     struct ieee80211_nodereq_all *na;
     struct ieee80211_node *ni;
+    struct ieee80211_chaninfo chaninfo;
+    struct ieee80211_chanreq_all *allchans;
     u_int32_t flags;
 
     switch (cmd) {
@@ -799,9 +801,22 @@ ieee80211_ioctl(struct ifnet *ifp, u_long cmd, caddr_t data)
         chanreq->i_channel = ieee80211_chan2ieee(ic, chan);
         break;
     case SIOCG80211ALLCHANS:
-        error = copyout(ic->ic_channels,
-            ((struct ieee80211_chanreq_all *)data)->i_chans,
-            sizeof(ic->ic_channels));
+        allchans = (struct ieee80211_chanreq_all *)data;
+        for (i = 0; i <= IEEE80211_CHAN_MAX; i++) {
+            chan = &ic->ic_channels[i];
+            chaninfo.ic_freq = chan->ic_freq;
+            chaninfo.ic_flags = 0;
+            if (chan->ic_flags & IEEE80211_CHAN_2GHZ)
+                chaninfo.ic_flags |= IEEE80211_CHANINFO_2GHZ;
+            if (chan->ic_flags & IEEE80211_CHAN_5GHZ)
+                chaninfo.ic_flags |= IEEE80211_CHANINFO_5GHZ;
+            if (chan->ic_flags & IEEE80211_CHAN_PASSIVE)
+                chaninfo.ic_flags |= IEEE80211_CHANINFO_PASSIVE;
+            error = copyout(&chaninfo, &allchans->i_chans[i],
+                sizeof(chaninfo));
+            if (error)
+                break;
+        }
         break;
 #if 0
     case SIOCG80211ZSTATS:
@@ -961,14 +976,14 @@ ieee80211_ioctl(struct ifnet *ifp, u_long cmd, caddr_t data)
         ic->ic_userflags = flags;
         error = ENETRESET;
         break;
-//    case SIOCADDMULTI:
-//    case SIOCDELMULTI:
+    case SIOCADDMULTI:
+    case SIOCDELMULTI:
 //        error = (cmd == SIOCADDMULTI) ?
 //            ether_addmulti(ifr, &ic->ic_ac) :
 //            ether_delmulti(ifr, &ic->ic_ac);
 //        if (error == ENETRESET)
 //            error = 0;
-//        break;
+        break;
     default:
 //        error = ether_ioctl(ifp, &ic->ic_ac, cmd, data);
         break;

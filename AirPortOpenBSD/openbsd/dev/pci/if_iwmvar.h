@@ -1,4 +1,4 @@
-/*    $OpenBSD: if_iwmvar.h,v 1.59 2021/04/25 15:32:21 stsp Exp $    */
+/*    $OpenBSD: if_iwmvar.h,v 1.77 2022/03/19 14:50:01 stsp Exp $    */
 
 /*
  * Copyright (c) 2014 genua mbh <info@genua.de>
@@ -175,6 +175,9 @@ struct iwm_fw_info {
     } fw_sects[IWM_UCODE_TYPE_MAX];
 };
 
+#define iwm_fw_sects iwm_fw_info::iwm_fw_sects
+#define iwm_fw_onesect iwm_fw_info::iwm_fw_sects::iwm_fw_onesect
+
 struct iwm_nvm_data {
     int n_hw_addrs;
     uint8_t hw_addr[ETHER_ADDR_LEN];
@@ -190,6 +193,7 @@ struct iwm_nvm_data {
     int sku_cap_band_24GHz_enable;
     int sku_cap_band_52GHz_enable;
     int sku_cap_11n_enable;
+    int sku_cap_11ac_enable;
     int sku_cap_amt_enable;
     int sku_cap_ipan_enable;
     int sku_cap_mimo_disable;
@@ -250,6 +254,9 @@ struct iwm_fw_paging {
 #define IWM_TX_RING_LOMARK    192
 #define IWM_TX_RING_HIMARK    224
 
+/* For aggregation queues, index must be aligned to frame sequence number. */
+#define IWM_AGG_SSN_TO_TXQ_IDX(x)    ((x) & (IWM_TX_RING_COUNT - 1))
+
 struct iwm_tx_data {
     bus_dmamap_t    map;
     bus_addr_t    cmd_paddr;
@@ -258,6 +265,11 @@ struct iwm_tx_data {
     struct iwm_node *in;
     int txmcs;
     int txrate;
+
+    /* A-MPDU subframes */
+    int ampdu_txmcs;
+    int ampdu_txnss;
+    int ampdu_nframes;
 };
 
 struct iwm_tx_ring {
@@ -303,6 +315,7 @@ struct iwm_rx_ring {
 #define IWM_FLAG_HW_ERR        0x80    /* hardware error occurred */
 #define IWM_FLAG_SHUTDOWN    0x100    /* shutting down; new tasks forbidden */
 #define IWM_FLAG_BGSCAN        0x200    /* background scan in progress */
+#define IWM_FLAG_TXFLUSH    0x400    /* Tx queue flushing in progress */
 
 struct iwm_ucode_status {
     uint32_t uc_error_event_table;
@@ -352,6 +365,8 @@ struct iwm_phy_ctxt {
     uint16_t color;
     uint32_t ref;
     struct ieee80211_channel *channel;
+    uint8_t sco; /* 40 MHz secondary channel offset */
+    uint8_t vht_chan_width;
 };
 
 struct iwm_bf_data {
@@ -454,11 +469,17 @@ struct iwm_rxq_dup_data {
     uint8_t last_sub_frame[IWM_MAX_TID_COUNT + 1];
 };
 
+struct iwm_ba_task_data {
+    uint32_t        start_tidmask;
+    uint32_t        stop_tidmask;
+};
+
 struct iwm_softc {
     struct device sc_dev;
     struct ieee80211com sc_ic;
     int (*sc_newstate)(struct ieee80211com *, enum ieee80211_state, int);
     int sc_newstate_pending;
+    int attached;
 
     struct ieee80211_amrr sc_amrr;
     struct timeout sc_calib_to;
@@ -472,14 +493,14 @@ struct iwm_softc {
 
     /* Task for firmware BlockAck setup/teardown and its arguments. */
     struct task        ba_task;
-    uint32_t        ba_start_tidmask;
-    uint32_t        ba_stop_tidmask;
-    uint16_t        ba_ssn[IWM_MAX_TID_COUNT];
-    uint16_t        ba_winsize[IWM_MAX_TID_COUNT];
-    int            ba_timeout_val[IWM_MAX_TID_COUNT];
+    struct iwm_ba_task_data    ba_rx;
+    struct iwm_ba_task_data    ba_tx;
 
-    /* Task for HT protection updates. */
-    struct task        htprot_task;
+    /* Task for ERP/HT prot/slot-time/EDCA updates. */
+    struct task        mac_ctxt_task;
+
+    /* Task for HT 20/40 MHz channel width updates. */
+    struct task        phy_ctxt_task;
 
     bus_space_tag_t sc_st;
     bus_space_handle_t sc_sh;
@@ -498,6 +519,7 @@ struct iwm_softc {
     struct iwm_tx_ring txq[IWM_MAX_QUEUES];
     struct iwm_rx_ring rxq;
     int qfullmsk;
+    int qenablemsk;
     int cmdqid;
 
     int sc_sf_state;
@@ -534,7 +556,9 @@ struct iwm_softc {
     int sc_capa_n_scan_channels;
     uint8_t sc_ucode_api[howmany(IWM_NUM_UCODE_TLV_API, NBBY)];
     uint8_t sc_enabled_capa[howmany(IWM_NUM_UCODE_TLV_CAPA, NBBY)];
-    char sc_fw_mcc[3];
+#define IWM_MAX_FW_CMD_VERSIONS    64
+    struct iwm_fw_cmd_version cmd_versions[IWM_MAX_FW_CMD_VERSIONS];
+    int n_cmd_versions;
 
     int sc_intmask;
     int sc_flags;
@@ -546,12 +570,12 @@ struct iwm_softc {
 
     /*
      * So why do we need a separate stopped flag and a generation?
-     * the former protects the device from issueing commands when it's
+     * the former protects the device from issuing commands when it's
      * stopped (duh).  The latter protects against race from a very
      * fast stop/unstop cycle where threads waiting for responses do
      * not have a chance to run in between.  Notably: we want to stop
      * the device from interrupt context when it craps out, so we
-     * don't have the luxury of waiting for quiescense.
+     * don't have the luxury of waiting for quiescence.
      */
     int sc_generation;
 
@@ -563,7 +587,8 @@ struct iwm_softc {
     bus_size_t sc_fwdmasegsz;
     size_t sc_nvm_max_section_size;
     struct iwm_fw_info sc_fw;
-    int sc_fw_phy_config;
+    uint32_t sc_fw_phy_config;
+    uint32_t sc_extra_phy_config;
     struct iwm_tlv_calib_ctrl sc_default_calib[IWM_UCODE_TYPE_MAX];
 
     struct iwm_nvm_data sc_nvm;
@@ -571,8 +596,13 @@ struct iwm_softc {
 
     struct iwm_bf_data sc_bf;
 
-    int sc_tx_timer;
+    int sc_tx_timer[IWM_MAX_QUEUES];
     int sc_rx_ba_sessions;
+    int tx_ba_queue_mask;
+
+    struct task bgscan_done_task;
+    struct ieee80211_node_switch_bss_arg *bgscan_unref_arg;
+    size_t    bgscan_unref_arg_size;
 
     int sc_scan_last_antenna;
 
@@ -606,6 +636,9 @@ struct iwm_softc {
 
     int sc_mqrx_supported;
     int sc_integrated;
+    int sc_ltr_delay;
+    int sc_xtal_latency;
+    int sc_low_latency_xtal;
 
     /*
      * Paging parameters - All of the parameters should be set by the
@@ -637,15 +670,21 @@ struct iwm_softc {
 struct iwm_node {
     struct ieee80211_node in_ni;
     struct iwm_phy_ctxt *in_phyctxt;
+    uint8_t in_macaddr[ETHER_ADDR_LEN];
 
     uint16_t in_id;
     uint16_t in_color;
 
     struct ieee80211_amrr_node in_amn;
     struct ieee80211_ra_node in_rn;
+    struct ieee80211_ra_vht_node in_rn_vht;
     int lq_rate_mismatch;
 
     struct iwm_rxq_dup_data dup_data;
+
+    /* For use with the ADD_STA command. */
+    uint32_t tfd_queue_msk;
+    uint16_t tid_disable_ampdu;
 };
 #define IWM_STATION_ID 0
 #define IWM_AUX_STA_ID 1

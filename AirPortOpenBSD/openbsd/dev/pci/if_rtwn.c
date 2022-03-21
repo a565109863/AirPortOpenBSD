@@ -287,7 +287,7 @@ struct cfdriver rtwn_cd = {
     NULL, "rtwn", DV_IFNET
 };
 
-struct cfattach rtwn_pci_ca = {
+const struct cfattach rtwn_pci_ca = {
     sizeof(struct rtwn_pci_softc),
     rtwn_pci_match,
     rtwn_pci_attach,

@@ -38,6 +38,7 @@ void IOTimeout::timeout_run(OSObject* obj, IOTimerEventSource* timer)
         return;
     }
     vt->fn(vt->arg);
+    vt->isPending = false;
 }
 
 void timeout_set(struct timeout* t, void (*func)(void *), void* arg)
@@ -49,47 +50,38 @@ void timeout_set(struct timeout* t, void (*func)(void *), void* arg)
     _ifp->fWorkloop->addEventSource(t->vt->timer);
     t->vt->fn = func;
     t->vt->arg = arg;
+    t->vt->isPending = false;
 }
 
-void _timeout_add(struct timeout *t, UInt32 time, int type)
+void _timeout_add(struct timeout *t, UInt32 time)
 {
     if (t == NULL || t->vt == NULL || t->vt->timer == NULL) {
         return;
     }
     
+    t->vt->isPending = true;
     t->vt->timer->cancelTimeout();
-    switch (type) {
-        case SECS:
-            t->vt->timer->setTimeout(time);
-            break;
-        case MSECS:
-            t->vt->timer->setTimeoutMS(time);
-            break;
-        case USECS:
-        default:
-            t->vt->timer->setTimeoutUS(time);
-            break;
-    }
+    t->vt->timer->setTimeoutMS(time);
 }
 
 void timeout_add(struct timeout *t, int msecs)
 {
-    return _timeout_add(t, msecs, USECS);
+    return _timeout_add(t, msecs);
 }
 
 void timeout_add_msec(struct timeout* t, int msecs)
 {
-    return _timeout_add(t, msecs, MSECS);
+    return _timeout_add(t, msecs);
 }
 
 void timeout_add_sec(struct timeout* t, int secs)
 {
-    return _timeout_add(t, secs, SECS);
+    return _timeout_add(t, secs * 1000);
 }
 
 void timeout_add_usec(struct timeout* t, int usecs)
 {
-    return _timeout_add(t, usecs, USECS);
+    return _timeout_add(t, usecs / 1000);
 }
 
 void timeout_del(struct timeout* t)
@@ -98,4 +90,14 @@ void timeout_del(struct timeout* t)
         return;
     }
     t->vt->timer->cancelTimeout();
+    t->vt->isPending = false;
+}
+
+int timeout_pending(struct timeout* t)
+{
+    if (t == NULL || t->vt == NULL || t->vt->timer == NULL) {
+        return false;
+    }
+    
+    return t->vt->isPending;
 }

@@ -136,7 +136,7 @@ int iwi_debug = 0;
 #define DPRINTFN(n, x)
 #endif
 
-struct cfattach iwi_ca = {
+const struct cfattach iwi_ca = {
     sizeof (struct iwi_softc), iwi_match, iwi_attach, NULL,
     iwi_activate
 };
