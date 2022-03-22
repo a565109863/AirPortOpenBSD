@@ -82,9 +82,9 @@ void AirPortOpenBSD::if_input(struct ifnet* ifp, struct mbuf_list *ml)
         this->flushInputQueue2();
 }
 
-int AirPortOpenBSD::chanspec2applechannel(int ic_flags)
+int AirPortOpenBSD::chanspec2applechannel(int ic_flags, int ic_xflags)
 {
-    struct ieee80211_channel ni_chan = {0, ic_flags};
+    struct ieee80211_channel ni_chan = {0, ic_flags, ic_xflags};
     
     int ret = 0;
     
@@ -96,11 +96,20 @@ int AirPortOpenBSD::chanspec2applechannel(int ic_flags)
         ret |= APPLE80211_C_FLAG_5GHZ;
     }
     
-    if (!(ic_flags & IEEE80211_CHAN_PASSIVE))
-        ret |= APPLE80211_C_FLAG_ACTIVE;
-    
-    if (ic_flags & IEEE80211_CHAN_40MHZ)
+    if (IEEE80211_CHAN_40MHZ_ALLOWED(&ni_chan)) {
         ret |= APPLE80211_C_FLAG_40MHZ;
+    }
+    
+    if (IEEE80211_CHAN_80MHZ_ALLOWED(&ni_chan)) {
+        ret |= APPLE80211_C_FLAG_80MHZ;
+    }
+    
+    if (IEEE80211_CHAN_160MHZ_ALLOWED(&ni_chan)) {
+        ret |= APPLE80211_C_FLAG_160MHZ;
+    }
+    
+//    if (!(ic_flags & IEEE80211_CHAN_PASSIVE))
+//        ret |= APPLE80211_C_FLAG_ACTIVE;
     
     // 0x400 0x204 0x2  0x4 0x1 0x8 0x10 0x100
     return ret;//0x400 |0x204| 0x2|  0x4| 0x1| 0x8| 0x10| 0x100 | 0x20 | 0x40 | 0x80;
@@ -170,7 +179,7 @@ IOReturn AirPortOpenBSD::scanConvertResult(struct ieee80211_nodereq *nr, struct 
 
     oneResult->asr_channel.version = APPLE80211_VERSION;
     oneResult->asr_channel.channel = nr->nr_channel;
-    oneResult->asr_channel.flags = chanspec2applechannel(nr->nr_chan_flags);
+    oneResult->asr_channel.flags = chanspec2applechannel(nr->nr_chan_flags, nr->nr_chan_xflags);
 
     oneResult->asr_noise = 0;
     oneResult->asr_rssi = nr->nr_rssi - 100;

@@ -121,7 +121,7 @@ IOReturn AirPortOpenBSD::getCHANNEL(IOInterface *interface, struct apple80211_ch
     cd->version = APPLE80211_VERSION;
     cd->channel.version = APPLE80211_VERSION;
     cd->channel.channel = ieee80211_chan2ieee(ic, ic->ic_bss->ni_chan);
-    cd->channel.flags = chanspec2applechannel(ic->ic_bss->ni_chan->ic_flags);
+    cd->channel.flags = chanspec2applechannel(ic->ic_bss->ni_chan->ic_flags, ic->ic_bss->ni_chan->ic_xflags);
     return kIOReturnSuccess;
 }
 
@@ -794,7 +794,7 @@ IOReturn AirPortOpenBSD::getSUPPORTED_CHANNELS(IOInterface *interface,
     for (int i = 0; i < IEEE80211_CHAN_MAX && ad->num_channels < APPLE80211_MAX_CHANNELS; i++) {
         if (ic->ic_channels[i].ic_freq != 0) {
             ad->supported_channels[ad->num_channels].channel = ieee80211_chan2ieee(ic, &ic->ic_channels[i]);
-            ad->supported_channels[ad->num_channels].flags   = chanspec2applechannel(ic->ic_channels[i].ic_flags);
+            ad->supported_channels[ad->num_channels].flags   = chanspec2applechannel(ic->ic_channels[i].ic_flags, ic->ic_channels[i].ic_xflags);
             ad->supported_channels[ad->num_channels].version = APPLE80211_VERSION;
             ad->num_channels++;
         }

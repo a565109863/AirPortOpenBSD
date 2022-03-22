@@ -316,6 +316,7 @@ struct ieee80211_nodereq {
     /* Channel and rates */
     u_int16_t    nr_channel;            /* last channel */
     u_int16_t    nr_chan_flags;            /* channel flags */
+    u_int16_t    nr_chan_xflags;            /* channel xflags */
     u_int8_t    nr_nrates;            /* rate count */
     u_int8_t    nr_rates[IEEE80211_RATE_MAXSIZE];    /* rate set */
 

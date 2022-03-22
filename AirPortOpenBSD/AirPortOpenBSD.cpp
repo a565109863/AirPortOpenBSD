@@ -593,12 +593,6 @@ void AirPortOpenBSD::setLinkState(int linkState)
         _ifp->iface->stopOutputThread();
         _ifp->iface->flushOutputQueue();
         reason = APPLE80211_REASON_UNSPECIFIED;
-        
-        this->configArr[0] = "-nwid";
-        this->configArr[1] = "";
-        this->configArrCount = 2;
-        ifconfig(this->configArr, this->configArrCount);
-        
     }
     
 #ifndef Ethernet

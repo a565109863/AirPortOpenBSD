@@ -76,8 +76,10 @@ ieee80211_node2req(struct ieee80211com *ic, const struct ieee80211_node *ni,
 
     /* Channel and rates */
     nr->nr_channel = ieee80211_chan2ieee(ic, ni->ni_chan);
-    if (ni->ni_chan != IEEE80211_CHAN_ANYC)
+    if (ni->ni_chan != IEEE80211_CHAN_ANYC) {
         nr->nr_chan_flags = ni->ni_chan->ic_flags;
+        nr->nr_chan_xflags = ni->ni_chan->ic_xflags;
+    }
     if (ic->ic_curmode != IEEE80211_MODE_11N)
         nr->nr_chan_flags &= ~IEEE80211_CHAN_HT;
     nr->nr_nrates = ni->ni_rates.rs_nrates;

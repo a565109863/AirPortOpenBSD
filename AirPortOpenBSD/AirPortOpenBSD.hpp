@@ -204,7 +204,7 @@ private:
     
 public:
     
-    int chanspec2applechannel(int ic_flags);
+    int chanspec2applechannel(int ic_flags, int ic_xflags);
     struct ieee80211_nodereq* findScanResult(apple80211_assoc_data* ad);
     IOReturn scanConvertResult(struct ieee80211_nodereq *nr, struct apple80211_scan_result* oneResult);
     
