@@ -4,6 +4,12 @@
 
 #define __PRIVATE_SPI__
 
+#define HighSierraKernel    17
+#define MojaveKernel        18
+#define CatalinaKernel      19
+#define BigSurKernel        20
+#define MontereyKernel      21
+
 typedef unsigned int ifnet_ctl_cmd_t;
 #include "IONetworkInterface.h"
 #include "IONetworkController.h"

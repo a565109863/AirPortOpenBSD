@@ -17,7 +17,7 @@
 #include <net/bpf.h>
 
 #include "apple80211_ioctl.h"
-#ifdef CATALINA
+#if CatalinaKernel <= MacKernel
 #include "IO80211SkywalkInterface.h"
 #endif
 #include "IO80211WorkLoop.h"
@@ -59,7 +59,7 @@ enum IO80211FeatureCode
 };
 typedef enum IO80211FeatureCode IO80211FeatureCode;
 
-#ifdef CATALINA
+#if CatalinaKernel <= MacKernel
 class IOSkywalkInterface;
 #endif
 class IO80211ScanManager;
@@ -158,7 +158,7 @@ public:
         return 0;
     }
     virtual IO80211Interface* getNetworkInterface(void);
-#ifdef CATALINA
+#if CatalinaKernel <= MacKernel
     virtual IO80211SkywalkInterface* getPrimarySkywalkInterface(void);
 #endif
     virtual SInt32 apple80211_ioctl(IO80211Interface *, IO80211VirtualInterface*, ifnet_t,ulong,void *);
@@ -166,13 +166,13 @@ public:
         IOLog("Black80211: ioctl called with %lx", id);
         return 0;
     }
-#ifdef CATALINA
+#if CatalinaKernel <= MacKernel
     virtual SInt32 apple80211_ioctl(IO80211SkywalkInterface *,ulong,void *);
 #endif
     
     virtual SInt32 apple80211Request(uint, int, IO80211Interface*, void*) = 0;
     virtual SInt32 apple80211VirtualRequest(uint,int,IO80211VirtualInterface *,void *);
-#ifdef CATALINA
+#if CatalinaKernel <= MacKernel
     virtual SInt32 apple80211SkywalkRequest(uint,int,IO80211SkywalkInterface *,void *);
 #endif
     
@@ -190,43 +190,36 @@ public:
     virtual IOReturn flowIdSupported() { return 0; };
     virtual IO80211FlowQueueLegacy* requestFlowQueue(FlowIdMetadata const*);
     virtual void releaseFlowQueue(IO80211FlowQueue *);
-#ifdef CATALINA
+#if CatalinaKernel <= MacKernel
     virtual void getLogPipes(CCPipe**, CCPipe**, CCPipe**) {};
 #endif
     virtual IOReturn enablePacketTimestamping(void) { return 0; };
     virtual IOReturn disablePacketTimestamping(void) { return 0; };
     virtual UInt32 selfDiagnosticsReport(int,char const*,uint);
     virtual UInt32 getDataQueueDepth(OSObject *);
-#ifdef BIG_SUR
+#if BigSurKernel <= MacKernel
     virtual bool isAssociatedToMovingNetwork(void) { return false; }
+    virtual bool detachInterface(IOSkywalkInterface *, bool);
 #endif
     virtual mbuf_flags_t inputPacket(mbuf_t);
 
-#ifdef CATALINA
+#if CatalinaKernel <= MacKernel
     SInt32 apple80211_ioctl_get(IO80211Interface *,IO80211VirtualInterface *,IO80211SkywalkInterface *,void *);
 #endif
     
     virtual SInt32 apple80211_ioctl_get(IO80211Interface *,IO80211VirtualInterface *,ifnet_t,void *);
     
-#ifdef CATALINA
+#if CatalinaKernel <= MacKernel
     SInt32 apple80211_ioctl_get(IO80211SkywalkInterface *,void *);
-#endif
-#ifdef CATALINA
     virtual SInt32 apple80211_ioctl_set(IO80211Interface *,IO80211VirtualInterface *,IO80211SkywalkInterface *,void *);
 #endif
     
     virtual SInt32 apple80211_ioctl_set(IO80211Interface *,IO80211VirtualInterface *,ifnet_t,void *);
     
-#ifdef CATALINA
+#if CatalinaKernel <= MacKernel
     virtual SInt32 apple80211_ioctl_set(IO80211SkywalkInterface *,void*);
-#endif
-#ifdef CATALINA
     virtual bool attachInterface(IOSkywalkInterface *,IOService *);
 
-#ifdef BIG_SUR
-    virtual bool detachInterface(IOSkywalkInterface *, bool);
-#endif
-    
     virtual IOReturn enable(IO80211SkywalkInterface *);
     virtual IOReturn disable(IO80211SkywalkInterface *);
     IO80211SkywalkInterface* getInfraInterface(void);

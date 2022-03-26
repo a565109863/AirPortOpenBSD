@@ -408,6 +408,10 @@ IOReturn AirPortOpenBSD::getSTATE(IOInterface *interface,
     DebugLog("--%s: line = %d ic->ic_state = %d", __FUNCTION__, __LINE__, ic->ic_state);
     ret->version = APPLE80211_VERSION;
     ret->state = ic->ic_state;
+    
+    if (ic->ic_state == IEEE80211_S_RUN)
+        bzero(&this->assoc_data, sizeof(this->assoc_data));
+    
     return kIOReturnSuccess;
 }
 

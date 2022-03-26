@@ -40,7 +40,7 @@ struct apple80211req
     void       *req_data;                // 4 bytes
 };
 
-#ifdef CATALINA
+#if CatalinaKernel <= MacKernel
 #define SIOCSA80211 2150656456
 #define SIOCGA80211 3224398281
 #else

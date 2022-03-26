@@ -468,8 +468,12 @@ struct apple80211_scan_result {
     uint32_t                    asr_age; // 0x84
     uint16_t                    asr_unk4;      // 0x88 0x89
     uint16_t                    asr_ie_len; // 0x8a
+#if MontereyKernel > MacKernel
     uint32_t                    asr_unk5;  // 0x8b 0x8c 0x8d 0x8e 0x8f
     void                        *asr_ie_data;  // 0x90
+#else
+    uint8_t                     asr_ie_data[1024];
+#endif
 };
 
 struct apple80211_network_data

@@ -934,6 +934,12 @@
 		7F8AB19027E8475F0045D670 /* ieee80211_ra_vht.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F8AB18627E8475F0045D670 /* ieee80211_ra_vht.c */; };
 		7F8AB19127E8475F0045D670 /* ieee80211_ra_vht.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F8AB18627E8475F0045D670 /* ieee80211_ra_vht.c */; };
 		7F8AB19227E8475F0045D670 /* ieee80211_ra_vht.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F8AB18627E8475F0045D670 /* ieee80211_ra_vht.c */; };
+		7FA2CFB927EEDAF90063FDD2 /* Info_Monterey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FA2CFB827EEDAF80063FDD2 /* Info_Monterey.plist */; };
+		7FA2CFBA27EEDAF90063FDD2 /* Info_Monterey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FA2CFB827EEDAF80063FDD2 /* Info_Monterey.plist */; };
+		7FA2CFBB27EEDAF90063FDD2 /* Info_Monterey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FA2CFB827EEDAF80063FDD2 /* Info_Monterey.plist */; };
+		7FA2CFBC27EEDAF90063FDD2 /* Info_Monterey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FA2CFB827EEDAF80063FDD2 /* Info_Monterey.plist */; };
+		7FA2CFBD27EEDAF90063FDD2 /* Info_Monterey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FA2CFB827EEDAF80063FDD2 /* Info_Monterey.plist */; };
+		7FA2CFBE27EEDAF90063FDD2 /* Info_Monterey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FA2CFB827EEDAF80063FDD2 /* Info_Monterey.plist */; };
 		7FBA000827E077F20075D188 /* AirPortOpenBSD.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 18713AFD255F148200EF3D49 /* AirPortOpenBSD.hpp */; };
 		7FBA000927E077F20075D188 /* IONetworkController.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BB5255F14E800EF3D49 /* IONetworkController.h */; };
 		7FBA000A27E077F20075D188 /* IONetworkInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BB4255F14E800EF3D49 /* IONetworkInterface.h */; };
@@ -1126,6 +1132,12 @@
 		7FBA00D327E077FE0075D188 /* timeout.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B42255F14E700EF3D49 /* timeout.c */; };
 		7FBA00D427E077FE0075D188 /* timingsafe_bcmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B4B255F14E700EF3D49 /* timingsafe_bcmp.c */; };
 		7FBA00D527E077FE0075D188 /* tree.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B52255F14E700EF3D49 /* tree.c */; };
+		7FC16ED127EEE33900A1A5CA /* Info_IOEthernet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FC16ED027EEE33900A1A5CA /* Info_IOEthernet.plist */; };
+		7FC16ED227EEE33900A1A5CA /* Info_IOEthernet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FC16ED027EEE33900A1A5CA /* Info_IOEthernet.plist */; };
+		7FC16ED327EEE33900A1A5CA /* Info_IOEthernet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FC16ED027EEE33900A1A5CA /* Info_IOEthernet.plist */; };
+		7FC16ED427EEE33900A1A5CA /* Info_IOEthernet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FC16ED027EEE33900A1A5CA /* Info_IOEthernet.plist */; };
+		7FC16ED527EEE33900A1A5CA /* Info_IOEthernet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FC16ED027EEE33900A1A5CA /* Info_IOEthernet.plist */; };
+		7FC16ED627EEE33900A1A5CA /* Info_IOEthernet.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FC16ED027EEE33900A1A5CA /* Info_IOEthernet.plist */; };
 		7FED6E6A277B209B000349A8 /* brcmfmac4366c_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E65277B209B000349A8 /* brcmfmac4366c_pcie_bin.c */; };
 		7FED6E6B277B209B000349A8 /* brcmfmac4366c_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E65277B209B000349A8 /* brcmfmac4366c_pcie_bin.c */; };
 		7FED6E6C277B209B000349A8 /* brcmfmac4366c_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FED6E65277B209B000349A8 /* brcmfmac4366c_pcie_bin.c */; };
@@ -1314,7 +1326,6 @@
 		18713B8C255F14E800EF3D49 /* pcireg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pcireg.h; sourceTree = "<group>"; };
 		18713BB4255F14E800EF3D49 /* IONetworkInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IONetworkInterface.h; sourceTree = "<group>"; };
 		18713BB5255F14E800EF3D49 /* IONetworkController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IONetworkController.h; sourceTree = "<group>"; };
-		18713BB6255F14E800EF3D49 /* InfoIOEthernet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InfoIOEthernet.plist; sourceTree = "<group>"; };
 		18713BB8255F14E900EF3D49 /* ipw_ibss.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ipw_ibss.c; sourceTree = "<group>"; };
 		18713BB9255F14E900EF3D49 /* ipw_monitor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ipw_monitor.c; sourceTree = "<group>"; };
 		18713BBB255F14E900EF3D49 /* iwn_5000.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwn_5000.c; sourceTree = "<group>"; };
@@ -1379,7 +1390,9 @@
 		7F600926275E03190009ECFB /* iwx_QuZ_a0_hr_b0_67.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_QuZ_a0_hr_b0_67.c; sourceTree = "<group>"; };
 		7F8AB18527E8475F0045D670 /* ieee80211_ra_vht.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ieee80211_ra_vht.h; sourceTree = "<group>"; };
 		7F8AB18627E8475F0045D670 /* ieee80211_ra_vht.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ieee80211_ra_vht.c; sourceTree = "<group>"; };
+		7FA2CFB827EEDAF80063FDD2 /* Info_Monterey.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info_Monterey.plist; sourceTree = "<group>"; };
 		7FBAFFF227E077790075D188 /* AirPortOpenBSD.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirPortOpenBSD.kext; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FC16ED027EEE33900A1A5CA /* Info_IOEthernet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info_IOEthernet.plist; sourceTree = "<group>"; };
 		7FED6E65277B209B000349A8 /* brcmfmac4366c_pcie_bin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = brcmfmac4366c_pcie_bin.c; sourceTree = "<group>"; };
 		7FED6E66277B209B000349A8 /* brcmfmac43570_pcie_bin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = brcmfmac43570_pcie_bin.c; sourceTree = "<group>"; };
 		7FED6E67277B209B000349A8 /* brcmfmac4366b_pcie_bin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = brcmfmac4366b_pcie_bin.c; sourceTree = "<group>"; };
@@ -1504,7 +1517,8 @@
 				18713B21255F14E700EF3D49 /* compat.h */,
 				18713BB7255F14E900EF3D49 /* firmware */,
 				18713B01255F148200EF3D49 /* Info.plist */,
-				18713BB6255F14E800EF3D49 /* InfoIOEthernet.plist */,
+				7FA2CFB827EEDAF80063FDD2 /* Info_Monterey.plist */,
+				7FC16ED027EEE33900A1A5CA /* Info_IOEthernet.plist */,
 				18713B1C255F14E700EF3D49 /* iwlwifi.h */,
 				18713B23255F14E700EF3D49 /* openbsd */,
 				18713B8D255F14E800EF3D49 /* sources */,
@@ -2498,16 +2512,16 @@
 				Base,
 			);
 			mainGroup = 18713AF0255F148200EF3D49;
-			productRefGroup = 18713AFB255F148200EF3D49 /* Products */;
+			productRefGroup = 18713AF0255F148200EF3D49;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				18713D0D255F166400EF3D49 /* AirPortOpenBSD_Ethernet */,
+				7FBAFFF127E077790075D188 /* AirPortOpenBSD_Monterey */,
 				18713CAC255F154500EF3D49 /* AirPortOpenBSD_BigSur */,
 				18713CBD255F155700EF3D49 /* AirPortOpenBSD_Catalina */,
 				18713CCF255F156700EF3D49 /* AirPortOpenBSD_Mojave */,
 				18713CE2255F157300EF3D49 /* AirPortOpenBSD_HighSierra */,
-				7FBAFFF127E077790075D188 /* AirPortOpenBSD_Monterey */,
 				18713CF2255F158E00EF3D49 /* fw2bin */,
 			);
 		};
@@ -2518,6 +2532,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FA2CFBA27EEDAF90063FDD2 /* Info_Monterey.plist in Resources */,
+				7FC16ED227EEE33900A1A5CA /* Info_IOEthernet.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2525,6 +2541,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FA2CFBB27EEDAF90063FDD2 /* Info_Monterey.plist in Resources */,
+				7FC16ED327EEE33900A1A5CA /* Info_IOEthernet.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2532,6 +2550,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FA2CFBC27EEDAF90063FDD2 /* Info_Monterey.plist in Resources */,
+				7FC16ED427EEE33900A1A5CA /* Info_IOEthernet.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2539,6 +2559,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FA2CFBD27EEDAF90063FDD2 /* Info_Monterey.plist in Resources */,
+				7FC16ED527EEE33900A1A5CA /* Info_IOEthernet.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2546,6 +2568,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FA2CFB927EEDAF90063FDD2 /* Info_Monterey.plist in Resources */,
+				7FC16ED127EEE33900A1A5CA /* Info_IOEthernet.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2553,6 +2577,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FA2CFBE27EEDAF90063FDD2 /* Info_Monterey.plist in Resources */,
+				7FC16ED627EEE33900A1A5CA /* Info_IOEthernet.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3280,6 +3306,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = x86_64;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
@@ -3341,6 +3368,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = x86_64;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
@@ -3400,13 +3428,12 @@
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)/$(PRODUCT_NAME)_Beta_BigSur";
 				CURRENT_PROJECT_VERSION = 1.0.0d1;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"BIG_SUR=1",
-					"CATALINA=1",
+					"MacKernel=20",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = "BigSur v2.0.9";
+				MARKETING_VERSION = "BigSur v2.1.0";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3424,13 +3451,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)/BigSur";
 				CURRENT_PROJECT_VERSION = 1.0.0d1;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"BIG_SUR=1",
-					"CATALINA=1",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "MacKernel=20";
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = "BigSur v2.0.9";
+				MARKETING_VERSION = "BigSur v2.1.0";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3449,12 +3473,12 @@
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)/$(PRODUCT_NAME)_Beta_Catalina";
 				CURRENT_PROJECT_VERSION = 1.0.0d1;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"CATALINA=1",
+					"MacKernel=19",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = "Catalina v2.0.9";
+				MARKETING_VERSION = "Catalina v2.1.0";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3472,10 +3496,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)/Catalina";
 				CURRENT_PROJECT_VERSION = 1.0.0d1;
-				GCC_PREPROCESSOR_DEFINITIONS = "CATALINA=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "MacKernel=19";
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = "Catalina v2.0.9";
+				MARKETING_VERSION = "Catalina v2.1.0";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3494,12 +3518,12 @@
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)/$(PRODUCT_NAME)_Beta_Mojave";
 				CURRENT_PROJECT_VERSION = 1.0.0d1;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"MOJAVE=1",
+					"MacKernel=18",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = "Mojave v2.0.9";
+				MARKETING_VERSION = "Mojave v2.1.0";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3517,10 +3541,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)/Mojave";
 				CURRENT_PROJECT_VERSION = 1.0.0d1;
-				GCC_PREPROCESSOR_DEFINITIONS = "MOJAVE=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "MacKernel=18";
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = "Mojave v2.0.9";
+				MARKETING_VERSION = "Mojave v2.1.0";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3539,12 +3563,12 @@
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)/$(PRODUCT_NAME)_Beta_HighSierra";
 				CURRENT_PROJECT_VERSION = 1.0.0d1;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"HIGH_SIERRA=1",
+					"MacKernel=17",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = "HighSierra v2.0.9";
+				MARKETING_VERSION = "HighSierra v2.1.0";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3562,10 +3586,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)/HighSierra";
 				CURRENT_PROJECT_VERSION = 1.0.0d1;
-				GCC_PREPROCESSOR_DEFINITIONS = "HIGH_SIERRA=1";
+				GCC_PREPROCESSOR_DEFINITIONS = "MacKernel=17";
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = "HighSierra v2.0.9";
+				MARKETING_VERSION = "HighSierra v2.1.0";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3612,9 +3636,9 @@
 					"Ethernet=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
+				INFOPLIST_FILE = AirPortOpenBSD/Info_IOEthernet.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = "Ethernet v2.0.9";
+				MARKETING_VERSION = "Ethernet v2.1.0";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3633,9 +3657,9 @@
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)/Ethernet";
 				CURRENT_PROJECT_VERSION = 1.0.0d1;
 				GCC_PREPROCESSOR_DEFINITIONS = "Ethernet=1";
-				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
+				INFOPLIST_FILE = AirPortOpenBSD/Info_IOEthernet.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				MARKETING_VERSION = "Ethernet v2.0.9";
+				MARKETING_VERSION = "Ethernet v2.1.0";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3655,12 +3679,12 @@
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)/$(PRODUCT_NAME)_Beta_Monterey";
 				CURRENT_PROJECT_VERSION = 1.0.0d1;
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"MONTEREY=1",
+					"MacKernel=21",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
+				INFOPLIST_FILE = AirPortOpenBSD/Info_Monterey.plist;
 				MACOSX_DEPLOYMENT_TARGET = 12;
-				MARKETING_VERSION = "Monterey v2.0.9";
+				MARKETING_VERSION = "Monterey v2.1.0";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3679,10 +3703,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)/Monterey";
 				CURRENT_PROJECT_VERSION = 1.0.0d1;
-				GCC_PREPROCESSOR_DEFINITIONS = "MONTEREY=1";
-				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
+				GCC_PREPROCESSOR_DEFINITIONS = "MacKernel=21";
+				INFOPLIST_FILE = AirPortOpenBSD/Info_Monterey.plist;
 				MACOSX_DEPLOYMENT_TARGET = 12;
-				MARKETING_VERSION = "Monterey v2.0.9";
+				MARKETING_VERSION = "Monterey v2.1.0";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;

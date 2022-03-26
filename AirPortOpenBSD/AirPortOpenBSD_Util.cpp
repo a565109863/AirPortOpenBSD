@@ -96,16 +96,14 @@ int AirPortOpenBSD::chanspec2applechannel(int ic_flags, int ic_xflags)
         ret |= APPLE80211_C_FLAG_5GHZ;
     }
     
-    if (IEEE80211_CHAN_40MHZ_ALLOWED(&ni_chan)) {
-        ret |= APPLE80211_C_FLAG_40MHZ;
-    }
-    
-    if (IEEE80211_CHAN_80MHZ_ALLOWED(&ni_chan)) {
-        ret |= APPLE80211_C_FLAG_80MHZ;
-    }
-    
     if (IEEE80211_CHAN_160MHZ_ALLOWED(&ni_chan)) {
         ret |= APPLE80211_C_FLAG_160MHZ;
+    } else if (IEEE80211_CHAN_80MHZ_ALLOWED(&ni_chan)) {
+        ret |= APPLE80211_C_FLAG_80MHZ;
+    } else if (IEEE80211_CHAN_40MHZ_ALLOWED(&ni_chan)) {
+        ret |= APPLE80211_C_FLAG_40MHZ;
+    } else {
+        ret |= APPLE80211_C_FLAG_20MHZ;
     }
     
 //    if (!(ic_flags & IEEE80211_CHAN_PASSIVE))
@@ -197,9 +195,13 @@ IOReturn AirPortOpenBSD::scanConvertResult(struct ieee80211_nodereq *nr, struct 
     oneResult->asr_ie_len = 0;
     if (nr->nr_ie != NULL && nr->nr_ie_len > 0) {
         oneResult->asr_ie_len = nr->nr_ie_len;
+#if MontereyKernel > MacKernel
         oneResult->asr_ie_data = nr->nr_ie;
 //        oneResult->asr_ie_data = IOMalloc(oneResult->asr_ie_len);
 //        bcopy(nr->nr_ie, oneResult->asr_ie_data, oneResult->asr_ie_len);
+#else
+        memcpy(oneResult->asr_ie_data, nr->nr_ie, min(oneResult->asr_ie_len, sizeof(oneResult->asr_ie_data)));
+#endif
     }
 
     return 0;
@@ -207,20 +209,24 @@ IOReturn AirPortOpenBSD::scanConvertResult(struct ieee80211_nodereq *nr, struct 
 
 void AirPortOpenBSD::scanComplete()
 {
+    struct ieee80211_nodereq_all *na = (typeof na)IOMalloc(sizeof(*na));
+    struct ieee80211_nodereq *nr = (typeof nr)IOMalloc(512 * sizeof(*nr));
     int i;
-    struct ieee80211_nodereq_all *na = (struct ieee80211_nodereq_all *)IOMalloc(sizeof(struct ieee80211_nodereq_all));
-    struct ieee80211_nodereq *nr = (struct ieee80211_nodereq *)IOMalloc(512 * sizeof(struct ieee80211_nodereq));
 
+    bzero(na, sizeof(*na));
+    bzero(nr, 512 * sizeof(*nr));
     na->na_node = nr;
-    na->na_size = 512 * sizeof(struct ieee80211_nodereq);
+    na->na_size = 512 * sizeof(*nr);
     strlcpy(na->na_ifname, "AirPortOpenBSD", strlen("AirPortOpenBSD"));
 
     if (ioctl(0, SIOCG80211ALLNODES, na) != 0) {
+        warn("SIOCG80211ALLNODES");
         return;
     }
 
-    struct ieee80211com *ic = (struct ieee80211com *)_ifp;
-    if (na->na_nodes && ic->ic_state > IEEE80211_S_SCAN)
+    if (!na->na_nodes)
+        printf("\t\tnone\n");
+    else
         qsort(nr, na->na_nodes, sizeof(*nr), rssicmp);
 
     for (i = 0; i < na->na_nodes; i++) {
@@ -240,9 +246,13 @@ void AirPortOpenBSD::scanComplete()
 
         RELEASE(scanresult);
     }
-    
-    IOFree(na, sizeof(struct ieee80211_nodereq_all));
-    IOFree(nr, 512 * sizeof(struct ieee80211_nodereq));
+
+    if (scanResults->getCount() == 0) {
+        this->ca->ca_activate((struct device *)if_softc, DVACT_WAKEUP);
+    }
+
+    IOFree(na, sizeof(*na));
+    IOFree(nr, 512 * sizeof(*nr));
 }
 
 void AirPortOpenBSD::scanFreeResults()

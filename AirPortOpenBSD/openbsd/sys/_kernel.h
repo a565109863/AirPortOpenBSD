@@ -37,7 +37,7 @@ extern int logStr_i;
 
 #ifdef DEBUG
 
-    #ifndef BIG_SUR
+    #if BigSurKernel <= MacKernel
         #define DebugLog(x, args...) \
         if(1) { \
             thread_t new_thread = current_thread(); \
