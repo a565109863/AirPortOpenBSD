@@ -2,7 +2,7 @@
  * THIS FILE AUTOMATICALLY GENERATED.  DO NOT EDIT.
  *
  * generated from:
- *    OpenBSD: pcidevs,v 1.1988 2022/03/11 08:28:40 jsg Exp
+ *    OpenBSD: pcidevs,v 1.1990 2022/04/16 16:12:56 stsp Exp
  */
 /*    $NetBSD: pcidevs,v 1.30 1997/06/24 06:20:24 thorpej Exp $    */
 
@@ -3496,16 +3496,6 @@
 #define    PCI_PRODUCT_INTEL_400SERIES_XHCI    0x06ed        /* 400 Series xHCI */
 #define    PCI_PRODUCT_INTEL_400SERIES_SRAM    0x06ef        /* 400 Series Shared SRAM */
 #define    PCI_PRODUCT_INTEL_WL_22500_5    0x06f0        /* Wi-Fi 6 AX201 */
-
-#define    PCI_PRODUCT_INTEL_WL_AC9462_2    0x3DF0        /* Wi-Fi 6 AC9462 */
-#define    PCI_PRODUCT_INTEL_WL_AX201_1    0x43F0        /* Wi-Fi 6 AX201 */
-#define    PCI_PRODUCT_INTEL_WL_AX201_2    0x4DF0        /* Wi-Fi 6 AX201 */
-#define    PCI_PRODUCT_INTEL_WL_AX22000_1    0x2720        /* Wi-Fi 6 AX22000 */
-#define    PCI_PRODUCT_INTEL_WL_AX211_1    0x2725        /* Wi-Fi 6 AX211 */
-#define    PCI_PRODUCT_INTEL_WL_AX211_2    0x2726        /* Wi-Fi 6 AX211 */
-#define    PCI_PRODUCT_INTEL_WL_AX211_3    0x7A70        /* Wi-Fi 6 AX211 */
-#define    PCI_PRODUCT_INTEL_WL_AX211_4    0x7AF0        /* Wi-Fi 6 AX211 */
-
 #define    PCI_PRODUCT_INTEL_400SERIES_SDXC    0x06f5        /* 400 Series SDXC */
 #define    PCI_PRODUCT_INTEL_400SERIES_THERM    0x06f9        /* 400 Series Thermal */
 #define    PCI_PRODUCT_INTEL_400SERIES_GSPI_3    0x06fb        /* 400 Series GSPI */
@@ -4636,6 +4626,8 @@
 #define    PCI_PRODUCT_INTEL_6321ESB_SMB    0x269b        /* 6321ESB SMBus */
 #define    PCI_PRODUCT_INTEL_6321ESB_IDE    0x269e        /* 6321ESB IDE */
 #define    PCI_PRODUCT_INTEL_WL_22500_1    0x2723        /* Wi-Fi 6 AX200 */
+#define    PCI_PRODUCT_INTEL_WL_22500_9    0x2725        /* Wi-Fi 6 AX210 */
+#define    PCI_PRODUCT_INTEL_WL_22500_10    0x2726        /* Wi-Fi 6 AX211 */
 #define    PCI_PRODUCT_INTEL_82945G_HB    0x2770        /* 82945G Host */
 #define    PCI_PRODUCT_INTEL_82945G_PCIE    0x2771        /* 82945G PCIE */
 #define    PCI_PRODUCT_INTEL_82945G_IGD_1    0x2772        /* 82945G Video */
@@ -5334,6 +5326,7 @@
 #define    PCI_PRODUCT_INTEL_E5_SAD_1    0x3cf4        /* E5 SAD */
 #define    PCI_PRODUCT_INTEL_E5_BROADCAST    0x3cf5        /* E5 Broadcast */
 #define    PCI_PRODUCT_INTEL_E5_SAD_2    0x3cf6        /* E5 SAD */
+#define    PCI_PRODUCT_INTEL_WL_22500_7    0x3df0        /* Wi-Fi 6 AX201 */
 #define    PCI_PRODUCT_INTEL_CORE8G_S_D_HB_2C    0x3e0f        /* Core 8G Host */
 #define    PCI_PRODUCT_INTEL_CORE8G_H_HB_4C    0x3e10        /* Core 8G Host */
 #define    PCI_PRODUCT_INTEL_CORE8G_S_W_HB_4C    0x3e18        /* Core 8G Host */
@@ -5491,6 +5484,7 @@
 #define    PCI_PRODUCT_INTEL_500SERIES_XHCI    0x43ed        /* 500 Series xHCI */
 #define    PCI_PRODUCT_INTEL_500SERIES_XDCI    0x43ee        /* 500 Series xDCI */
 #define    PCI_PRODUCT_INTEL_500SERIES_SRAM    0x43ef        /* 500 Series Shared SRAM */
+#define    PCI_PRODUCT_INTEL_WL_22500_6    0x43f0        /* Wi-Fi 6 AX201 */
 #define    PCI_PRODUCT_INTEL_500SERIES_GSPI_2    0x43fb        /* 500 Series GSPI */
 #define    PCI_PRODUCT_INTEL_500SERIES_ISH    0x43fc        /* 500 Series ISH */
 #define    PCI_PRODUCT_INTEL_500SERIES_GSPI_3    0x43fd        /* 500 Series GSPI */
@@ -5582,6 +5576,7 @@
 #define    PCI_PRODUCT_INTEL_JSL_XHCI    0x4ded        /* Jasper Lake xHCI */
 #define    PCI_PRODUCT_INTEL_JSL_XDCI    0x4dee        /* Jasper Lake xDCI */
 #define    PCI_PRODUCT_INTEL_JSL_SRAM    0x4def        /* Jasper Lake Shared SRAM */
+#define    PCI_PRODUCT_INTEL_WL_22500_8    0x4df0        /* Wi-Fi 6 AX201 */
 #define    PCI_PRODUCT_INTEL_JSL_SDXC    0x4df8        /* Jasper Lake SDXC */
 #define    PCI_PRODUCT_INTEL_JSL_LPSS_SPI_2    0x4dfb        /* Jasper Lake SPI */
 #define    PCI_PRODUCT_INTEL_JSL_DPTF    0x4e03        /* Jasper Lake DPTF */
@@ -5626,6 +5621,7 @@
 #define    PCI_PRODUCT_INTEL_EP80579_LAN_5    0x5045        /* EP80579 LAN */
 #define    PCI_PRODUCT_INTEL_EP80579_LAN_3    0x5048        /* EP80579 LAN */
 #define    PCI_PRODUCT_INTEL_EP80579_LAN_6    0x5049        /* EP80579 LAN */
+#define    PCI_PRODUCT_INTEL_WL_22500_11    0x51f0        /* Wi-Fi 6 AX211 */
 #define    PCI_PRODUCT_INTEL_80960RD    0x5200        /* i960 RD */
 #define    PCI_PRODUCT_INTEL_PRO_100_SERVER    0x5201        /* PRO 100 Server */
 #define    PCI_PRODUCT_INTEL_I225_LMVP    0x5502        /* I225-LMvP */
@@ -5833,6 +5829,7 @@
 #define    PCI_PRODUCT_INTEL_82443GX    0x71a2        /* 82443GX */
 #define    PCI_PRODUCT_INTEL_82372FB_IDE    0x7601        /* 82372FB IDE */
 #define    PCI_PRODUCT_INTEL_82740    0x7800        /* 82740 AGP */
+#define    PCI_PRODUCT_INTEL_WL_22500_12    0x7a70        /* Wi-Fi 6 AX211 */
 #define    PCI_PRODUCT_INTEL_Z690_ESPI    0x7a84        /* Z690 eSPI */
 #define    PCI_PRODUCT_INTEL_600SERIES_P2SB    0x7aa0        /* P2SB */
 #define    PCI_PRODUCT_INTEL_600SERIES_PMC    0x7aa1        /* PMC */
@@ -5887,12 +5884,15 @@
 #define    PCI_PRODUCT_INTEL_600SERIES_KT    0x7aeb        /* KT */
 #define    PCI_PRODUCT_INTEL_600SERIES_HECI_3    0x7aec        /* HECI */
 #define    PCI_PRODUCT_INTEL_600SERIES_HECI_4    0x7aed        /* HECI */
+#define    PCI_PRODUCT_INTEL_WL_22500_13    0x7af0        /* Wi-Fi 6 AX211 */
 #define    PCI_PRODUCT_INTEL_600SERIES_ISH    0x7af8        /* ISH */
 #define    PCI_PRODUCT_INTEL_600SERIES_GSPI_3    0x7af9        /* GSPI */
 #define    PCI_PRODUCT_INTEL_600SERIES_GSPI_2    0x7afb        /* GSPI */
 #define    PCI_PRODUCT_INTEL_600SERIES_I2C_4    0x7afc        /* I2C */
 #define    PCI_PRODUCT_INTEL_600SERIES_I2C_5    0x7afd        /* I2C */
 #define    PCI_PRODUCT_INTEL_600SERIES_UART_2    0x7afe        /* UART */
+#define    PCI_PRODUCT_INTEL_WL_22500_14    0x7e40        /* Wi-Fi 6 AX210 */
+#define    PCI_PRODUCT_INTEL_WL_22500_15    0x7f70        /* Wi-Fi 6 AX211 */
 #define    PCI_PRODUCT_INTEL_US15W_HB    0x8100        /* US15W Host */
 #define    PCI_PRODUCT_INTEL_US15L_HB    0x8101        /* US15L/UL11L Host */
 #define    PCI_PRODUCT_INTEL_US15W_IGD    0x8108        /* US15W Video */
@@ -6899,6 +6899,7 @@
 #define    PCI_PRODUCT_MATROX_MARV_G200_SD    0xff04        /* MGA Marvel G200 SD */
 
 /* MediaTek products */
+#define    PCI_PRODUCT_MEDIATEK_MT7921K    0x0608        /* MT7921K */
 #define    PCI_PRODUCT_MEDIATEK_MT7921    0x7961        /* MT7921 */
 
 /* Meinberg Funkuhren */

@@ -25,8 +25,6 @@
 extern struct ifnet *_ifp;
 extern int logStr_i;
 
-#define IEEE80211_DEBUG     1
-#define IWM_DEBUG           1
 //#define IEEE80211_STA_ONLY    1
 
 #define INET6 1
@@ -34,6 +32,10 @@ extern int logStr_i;
 
 #define BPF_DIRECTION_IN    1
 #define BPF_DIRECTION_OUT   (1<<1)
+
+#define IEEE80211_DEBUG     0
+#define IWM_DEBUG           0
+#undef DEBUG
 
 #ifdef DEBUG
 

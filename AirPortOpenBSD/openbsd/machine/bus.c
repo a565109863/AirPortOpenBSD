@@ -55,8 +55,8 @@ void bus_dmamap_destroy(bus_dma_tag_t t, bus_dmamap_t map)
     if (t->map)
         free(t->map, M_DEVBUF, sizeof(struct bus_dmamap));
 
-//    map = NULL;
-//    t->map = NULL;
+    map = NULL;
+    t->map = NULL;
 }
 
 int  bus_dmamem_alloc(bus_dma_tag_t t, bus_size_t size, bus_size_t alignment,
@@ -145,6 +145,10 @@ void bus_dmamem_unmap(bus_dma_tag_t t, void *kvap,  bus_size_t size)
     }
     
     if (t->map->bufDes == NULL) {
+        return;
+    }
+    
+    if (kvap == NULL) {
         return;
     }
     

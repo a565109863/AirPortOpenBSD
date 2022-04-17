@@ -16,7 +16,6 @@ void AirPortOpenBSD::autoASSOC(OSObject *owner, ...)
 
         OSData* asd = OSDynamicCast(OSData, dev->dev->assoc_data_Arr->getObject(dev->dev->assoc_data_index));
 
-        DebugLog("--%s: line = %d", __FUNCTION__, __LINE__);
         if (!asd) return kIOReturnSuccess;
         struct apple80211_assoc_data *ad = (apple80211_assoc_data*) asd->getBytesNoCopy();
 
@@ -39,8 +38,7 @@ void AirPortOpenBSD::autoASSOC(OSObject *owner, ...)
     //            controller->times = 0;
     //            controller->assoc_data_index = (controller->assoc_data_index + 1) % controller->assoc_data_Arr->getCount();
     //        }
-            DebugLog("%s: line = %d controller->times = %d", __FUNCTION__, __LINE__, dev->dev->times);
-            
+
 //            controller->scanEventSource->setAction(&AirPortOpenBSD::autoASSOC);
 //            controller->scanEventSource->setTimeoutUS(1000000);
         }

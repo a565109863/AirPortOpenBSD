@@ -6,7 +6,7 @@
 #  Created by Zhong-Mac on 2020/7/18.
 #  Copyright © 2020 Zhong-Mac. All rights reserved.
 
-target_path="${PROJECT_DIR}/AirPortOpenBSD/firmware/"
+target_path="${PROJECT_DIR}/AirPortOpenBSD/openbsd/firmware/"
 fw_files=$(find "${PROJECT_DIR}/AirPortOpenBSD/sources/firmware" ! -name ".*" -maxdepth 1 -type f | tr " " "\?")
 
 for fw in ${fw_files}; do
@@ -17,7 +17,7 @@ for fw in ${fw_files}; do
     target_file="${target_path}${fw_var_name}.c"
     rm -rf $target_file
     echo "//\n//  ${fw_var_name}.c\n//  AirPortOpenBSD\n\n//  Created by Zhong-Mac on 2020/7/18.\n//  Copyright © 2020 Zhong-Mac. All rights reserved." >$target_file
-    echo "\n#include \"firmware.h\"">>$target_file
+    echo "\n#include <sys/firmware.h>">>$target_file
     
     echo "">>$target_file
     echo "const unsigned char ${fw_var_name}[] = {">>$target_file
@@ -59,8 +59,7 @@ rm -rf $target_file
 
 echo "">>$target_file
 echo "//\n//  firmware.c\n//  AirPortOpenBSD\n\n//  Created by Zhong-Mac on 2020/7/18.\n//  Copyright © 2020 Zhong-Mac. All rights reserved." >$target_file
-echo "\n#include \"firmware.h\"">>$target_file
-
+echo "\n#include <sys/firmware.h>">>$target_file
 
 echo "">>$target_file
 echo "const struct firmware firmwares[] = {">>$target_file

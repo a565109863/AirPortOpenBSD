@@ -7,7 +7,7 @@
 
 #include <sys/_malloc.h>
 
-LIST_HEAD(,malloc_ptr) ptr_list = LIST_HEAD_INITIALIZER(ptr_list);
+TAILQ_HEAD(,malloc_ptr) ptr_list = TAILQ_HEAD_INITIALIZER(ptr_list);
 
 void* malloc(vm_size_t len, int type, int how) {
     struct malloc_ptr *ptr = (struct malloc_ptr *)IOMalloc(sizeof(*ptr));
@@ -19,7 +19,7 @@ void* malloc(vm_size_t len, int type, int how) {
     ptr->size = len;
     bzero(ptr->ptr, ptr->size);
     
-    LIST_INSERT_HEAD(&ptr_list, ptr, list);
+    TAILQ_INSERT_TAIL(&ptr_list, ptr, list);
     
     return ptr->ptr;
 }
@@ -31,9 +31,9 @@ void free(void* addr, int type, vm_size_t len)
     }
     
     struct malloc_ptr *ptr, *tmp;
-    LIST_FOREACH_SAFE(ptr, &ptr_list, list, tmp) {
+    TAILQ_FOREACH_SAFE(ptr, &ptr_list, list, tmp) {
         if (ptr->ptr == addr) {
-            LIST_REMOVE(ptr, list);
+            TAILQ_REMOVE(&ptr_list, ptr, list);
             IOFree(ptr->ptr, ptr->size);
             IOFree(ptr, sizeof(*ptr));
             return;

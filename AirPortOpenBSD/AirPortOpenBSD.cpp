@@ -401,9 +401,6 @@ IOReturn AirPortOpenBSD::registerWithPolicyMaker(IOService* policyMaker)
 
 IOReturn AirPortOpenBSD::setPowerState(unsigned long powerStateOrdinal, IOService *policyMaker)
 {
-    
-//    DebugLog("---%s: line = %d powerStateOrdinal = %d", __FUNCTION__, __LINE__, powerStateOrdinal);
-    
     IOReturn result = IOPMAckImplied;
     
     this->fCommandGate->runAction(setPowerStateAction, &powerStateOrdinal);
@@ -544,6 +541,11 @@ IOReturn AirPortOpenBSD::changePowerState(IOInterface *interface, int powerState
         case APPLE_POWER_OFF:
             DPRINTF(("Setting power off\n"));
             this->fWatchdogTimer->cancelTimeout();
+            
+            this->configArr[0] = "-nwid";
+            this->configArr[1] = (const char *)this->assoc_data.ad_ssid;
+            this->configArrCount = 2;
+            ifconfig(this->configArr, this->configArrCount);
             
             this->ca->ca_activate((struct device *)if_softc, DVACT_QUIESCE);
             this->scanFreeResults();

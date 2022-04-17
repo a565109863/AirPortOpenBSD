@@ -405,7 +405,6 @@ IOReturn AirPortOpenBSD::getSTATE(IOInterface *interface,
 {
 
     struct ieee80211com *ic = (struct ieee80211com *)_ifp;
-    DebugLog("--%s: line = %d ic->ic_state = %d", __FUNCTION__, __LINE__, ic->ic_state);
     ret->version = APPLE80211_VERSION;
     ret->state = ic->ic_state;
     
@@ -475,16 +474,22 @@ IOReturn AirPortOpenBSD::getOP_MODE(IOInterface *interface,
     switch (ic->ic_opmode) {
         case IEEE80211_M_STA:
             op_mode = APPLE80211_M_STA;
+            break;
         case IEEE80211_M_IBSS:
             op_mode =  APPLE80211_M_IBSS;
+            break;
         case IEEE80211_M_AHDEMO:
             op_mode =  APPLE80211_M_AHDEMO;
+            break;
         case IEEE80211_M_HOSTAP:
             op_mode =  APPLE80211_M_HOSTAP;
+            break;
         case IEEE80211_M_MONITOR:
             op_mode =  APPLE80211_M_MONITOR;
+            break;
         default:
             op_mode =  APPLE80211_M_NONE;
+            break;
     }
     
     od->version = APPLE80211_VERSION;
@@ -608,13 +613,6 @@ IOReturn AirPortOpenBSD::setPOWER(IOInterface *interface,
 IOReturn AirPortOpenBSD::setASSOCIATE(IOInterface *interface, struct apple80211_assoc_data *ad)
 {
     
-    DebugLog("--%s: line = %d ssid = %s, bssid = %s", __FUNCTION__, __LINE__, ad->ad_ssid,
-    ether_sprintf(ad->ad_bssid.octet));
-    
-    DebugLog("--%s: line = %d, ad_mode = %d, ad_rsn_ie_len = %d", __FUNCTION__, __LINE__, ad->ad_mode, ad->ad_rsn_ie_len);
-    
-    DebugLog("--%s: line = %d ad_auth_lower = %d, ad_auth_upper = %d, key_cipher_type = %d", __FUNCTION__, __LINE__, ad->ad_auth_lower, ad->ad_auth_upper, ad->ad_key.key_cipher_type);
-    
     if (ad->ad_mode != 1) {
         if (!(ad->ad_ssid_len == this->assoc_data.ad_ssid_len && memcmp(ad->ad_ssid, this->assoc_data.ad_ssid, ad->ad_ssid_len) == 0 && ad->ad_key.key_len == this->assoc_data.ad_key.key_len && memcmp(ad->ad_key.key, this->assoc_data.ad_key.key, ad->ad_key.key_len) == 0)) {
             this->assoc_data = *ad;
@@ -695,7 +693,6 @@ IOReturn AirPortOpenBSD::setASSOCIATE(IOInterface *interface, struct apple80211_
 
                             break;
                         default:
-                            DebugLog("--%s: line = %d ad_auth_upper = %d", __FUNCTION__, __LINE__, ad->ad_auth_upper);
                             break;
                     }
                     
@@ -727,7 +724,6 @@ IOReturn AirPortOpenBSD::setASSOCIATE(IOInterface *interface, struct apple80211_
             
             ifconfig(this->configArr, this->configArrCount);
             
-            DebugLog("--%s: line = %d ad_auth_lower = %d, ad_auth_upper = %d, key_cipher_type = %d", __FUNCTION__, __LINE__, ad->ad_auth_lower, ad->ad_auth_upper, ad->ad_key.key_cipher_type);
         }
     
         try_times = 7;
@@ -765,8 +761,6 @@ IOReturn AirPortOpenBSD::getASSOCIATE_RESULT(IOInterface* interface, struct appl
 IOReturn AirPortOpenBSD::setDISASSOCIATE(IOInterface* interface)
 {
     if (this->disassoc_times) {
-        DebugLog("--%s: line = %d", __FUNCTION__, __LINE__);
-        
         this->configArr[0] = "-nwid";
         this->configArr[1] = (const char *)this->assoc_data.ad_ssid;
         this->configArrCount = 2;
@@ -823,7 +817,6 @@ IOReturn AirPortOpenBSD::getLOCALE(IOInterface *interface, struct apple80211_loc
 
 IOReturn AirPortOpenBSD::getDEAUTH(IOInterface *interface, struct apple80211_deauth_data *dd)
 {
-    DebugLog("--%s: line = %d", __FUNCTION__, __LINE__);
     dd->version = APPLE80211_VERSION;
     dd->deauth_reason = APPLE80211_REASON_UNSPECIFIED;
     return kIOReturnSuccess;
@@ -957,8 +950,6 @@ IOReturn AirPortOpenBSD::getASSOCIATION_STATUS(IOInterface* interface, struct ap
         this->disassoc_times = true;
     }
 
-    DebugLog("--%s: line = %d asd.status = %d", __FUNCTION__, __LINE__, ret->status);
-
     ret->version = APPLE80211_VERSION;
 
     return kIOReturnSuccess;
@@ -984,7 +975,6 @@ IOReturn AirPortOpenBSD::getCOUNTRY_CODE(IOInterface *interface, struct apple802
 
 IOReturn AirPortOpenBSD::setCOUNTRY_CODE(IOInterface *interface, struct apple80211_country_code_data *ccd)
 {
-    DebugLog("--%s: line = %d, COUNTRY_CODE = %s", __FUNCTION__, __LINE__, ccd->cc);
     this->ccd = *ccd;
     return kIOReturnSuccess;
 }
@@ -1055,7 +1045,6 @@ IOReturn AirPortOpenBSD::getROAM_THRESH(IOInterface* interface, struct apple8021
 
 IOReturn AirPortOpenBSD::setSCANCACHE_CLEAR(IOInterface *interface, struct device *dev)
 {
-//    DebugLog("--%s: line = %d", __FUNCTION__, __LINE__);
 //    scanFreeResults();
     struct ieee80211com *ic = (struct ieee80211com *)_ifp;
     //if doing background or active scan, don't free nodes.

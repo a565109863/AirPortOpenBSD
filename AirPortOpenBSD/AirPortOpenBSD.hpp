@@ -18,7 +18,7 @@ typedef unsigned int ifnet_ctl_cmd_t;
 
 #include "compat.h"
 #include "iwlwifi.h"
-#include "firmware/firmware.h"
+#include <sys/firmware.h>
 
 extern struct ifnet *_ifp;
 

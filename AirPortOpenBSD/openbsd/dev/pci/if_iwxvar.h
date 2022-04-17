@@ -1,4 +1,4 @@
-/*    $OpenBSD: if_iwxvar.h,v 1.31 2022/03/19 14:50:01 stsp Exp $    */
+/*    $OpenBSD: if_iwxvar.h,v 1.32 2022/04/16 16:21:50 stsp Exp $    */
 
 /*
  * Copyright (c) 2014 genua mbh <info@genua.de>
@@ -454,6 +454,101 @@ struct iwx_ba_task_data {
     uint32_t        stop_tidmask;
 };
 
+
+/*
+ * Device configuration parameters which cannot be detected based on
+ * PCI vendor/product ID alone.
+ */
+struct iwx_device_cfg {
+    const char *fw_name;
+    int         tx_with_siso_diversity;
+    int         uhb_supported;
+};
+
+/* Firmware listed here must be available in fw_update(8). */
+#define IWX_CC_A_FW            "iwx-cc-a0-67"
+#define IWX_QU_B_HR_B_FW    "iwx-Qu-b0-hr-b0-63"
+#define IWX_QU_B_JF_B_FW    "iwx-Qu-b0-jf-b0-63"
+#define IWX_QU_C_HR_B_FW    "iwx-Qu-c0-hr-b0-63"
+#define IWX_QU_C_JF_B_FW    "iwx-Qu-c0-jf-b0-63"
+#define IWX_QUZ_A_HR_B_FW    "iwx-QuZ-a0-hr-b0-67"
+#define IWX_QUZ_A_JF_B_FW    "iwx-QuZ-a0-jf-b0-63"
+
+const struct iwx_device_cfg iwx_9560_quz_a0_jf_b0_cfg = {
+    .fw_name = IWX_QUZ_A_JF_B_FW,
+};
+
+const struct iwx_device_cfg iwx_9560_qu_c0_jf_b0_cfg = {
+    .fw_name = IWX_QU_C_JF_B_FW,
+};
+
+const struct iwx_device_cfg iwx_qu_b0_hr1_b0 = {
+    .fw_name = IWX_QU_B_HR_B_FW,
+    .tx_with_siso_diversity = true,
+};
+
+const struct iwx_device_cfg iwx_qu_b0_hr_b0 = {
+    .fw_name = IWX_QU_B_HR_B_FW,
+};
+
+const struct iwx_device_cfg iwx_ax201_cfg_qu_hr = {
+    .fw_name = IWX_QU_B_HR_B_FW,
+};
+
+const struct iwx_device_cfg iwx_qu_c0_hr1_b0 = {
+    .fw_name = IWX_QU_C_HR_B_FW,
+    .tx_with_siso_diversity = true,
+};
+
+const struct iwx_device_cfg iwx_qu_c0_hr_b0 = {
+    .fw_name = IWX_QU_C_HR_B_FW,
+};
+
+const struct iwx_device_cfg iwx_ax201_cfg_qu_c0_hr_b0 = {
+    .fw_name = IWX_QU_C_HR_B_FW,
+};
+
+const struct iwx_device_cfg iwx_quz_a0_hr1_b0 = {
+    .fw_name = IWX_QUZ_A_HR_B_FW,
+};
+
+const struct iwx_device_cfg iwx_ax201_cfg_quz_hr = {
+    .fw_name = IWX_QUZ_A_HR_B_FW,
+};
+
+const struct iwx_device_cfg iwx_cfg_quz_a0_hr_b0 = {
+    .fw_name = IWX_QUZ_A_HR_B_FW,
+};
+
+#define IWX_CFG_ANY (~0)
+
+#define IWX_CFG_MAC_TYPE_QU        0x33
+#define IWX_CFG_MAC_TYPE_QUZ        0x35
+#define IWX_CFG_MAC_TYPE_QNJ        0x36
+#define IWX_CFG_MAC_TYPE_SO        0x37
+#define IWX_CFG_MAC_TYPE_SNJ        0x42
+#define IWX_CFG_MAC_TYPE_SOF        0x43
+
+#define IWX_CFG_RF_TYPE_JF2        0x105
+#define IWX_CFG_RF_TYPE_JF1        0x108
+#define IWX_CFG_RF_TYPE_HR2        0x10a
+#define IWX_CFG_RF_TYPE_HR1        0x10c
+
+#define IWX_CFG_RF_ID_JF        0x3
+#define IWX_CFG_RF_ID_JF1        0x6
+#define IWX_CFG_RF_ID_JF1_DIV        0xa
+
+#define IWX_CFG_NO_160            0x1
+#define IWX_CFG_160            0x0
+
+#define IWX_CFG_CORES_BT        0x0
+
+#define IWX_CFG_NO_CDB            0x0
+
+#define IWX_SUBDEVICE_RF_ID(subdevice)    ((uint16_t)((subdevice) & 0x00f0) >> 4)
+#define IWX_SUBDEVICE_NO_160(subdevice)    ((uint16_t)((subdevice) & 0x0200) >> 9)
+#define IWX_SUBDEVICE_CORES(subdevice)    ((uint16_t)((subdevice) & 0x1c00) >> 10)
+
 struct iwx_softc {
     struct device sc_dev;
     struct ieee80211com sc_ic;
@@ -496,6 +591,7 @@ struct iwx_softc {
     bus_space_handle_t sc_sh;
     bus_size_t sc_sz;
     bus_dma_tag_t sc_dmat;
+    pci_product_id_t sc_pid;
     pci_chipset_tag_t sc_pct;
     pcitag_t sc_pcitag;
     const void *sc_ih;
@@ -519,11 +615,12 @@ struct iwx_softc {
 #define IWX_SILICON_A_STEP    0
 #define IWX_SILICON_B_STEP    1
 #define IWX_SILICON_C_STEP    2
-#define IWX_SILICON_D_STEP    3
+#define IWX_SILICON_Z_STEP    0xf
     int sc_hw_id;
+    int sc_hw_rf_id;
     int sc_device_family;
 #define IWX_DEVICE_FAMILY_22000    1
-#define IWX_DEVICE_FAMILY_22560    2
+#define IWX_DEVICE_FAMILY_AX210    2
 
     struct iwx_dma_info ctxt_info_dma;
     struct iwx_self_init_dram init_dram;
@@ -652,51 +749,3 @@ struct iwx_node {
 #define IWX_ICT_SIZE        4096
 #define IWX_ICT_COUNT        (IWX_ICT_SIZE / sizeof (uint32_t))
 #define IWX_ICT_PADDR_SHIFT    12
-
-
-struct iwx_dev_info {
-    uint16_t device;
-    uint16_t subdevice;
-    uint16_t mac_type;
-    uint16_t rf_type;
-    uint8_t mac_step;
-    uint8_t rf_id;
-    uint8_t no_160;
-    uint8_t cores;
-    const char *fw_name;
-    int siso_diversity;
-};
-
-#define IWX_DEV_ANY (~0)
-
-#define IWX_DEV_MAC_TYPE_PU        0x31
-#define IWX_DEV_MAC_TYPE_PNJ        0x32
-#define IWX_DEV_MAC_TYPE_TH        0x32
-#define IWX_DEV_MAC_TYPE_QU        0x33
-#define IWX_DEV_MAC_TYPE_QUZ        0x35
-#define IWX_DEV_MAC_TYPE_QNJ        0x36
-
-#define IWX_DEV_RF_TYPE_TH        0x105
-#define IWX_DEV_RF_TYPE_TH1        0x108
-#define IWX_DEV_RF_TYPE_JF2        0x105
-#define IWX_DEV_RF_TYPE_JF1        0x108
-#define IWX_DEV_RF_TYPE_HR2        0x10A
-#define IWX_DEV_RF_TYPE_HR1        0x10C
-
-#define IWX_DEV_RF_ID_TH        0x1
-#define IWX_DEV_RF_ID_TH1        0x1
-#define IWX_DEV_RF_ID_JF        0x3
-#define IWX_DEV_RF_ID_JF1        0x6
-#define IWX_DEV_RF_ID_JF1_DIV        0xA
-#define IWX_DEV_RF_ID_HR        0x7
-#define IWX_DEV_RF_ID_HR1        0x4
-
-#define IWX_DEV_NO_160            0x0
-#define IWX_DEV_160            0x1
-
-#define IWX_DEV_CORES_BT        0x0
-#define IWX_DEV_CORES_BT_GNSS        0x5
-
-#define IWX_SUBDEVICE_RF_ID(subdevice)    ((uint16_t)((subdevice) & 0x00F0) >> 4)
-#define IWX_SUBDEVICE_NO_160(subdevice)    ((uint16_t)((subdevice) & 0x0100) >> 9)
-#define IWX_SUBDEVICE_CORES(subdevice)    ((uint16_t)((subdevice) & 0x1C00) >> 10)

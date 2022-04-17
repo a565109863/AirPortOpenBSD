@@ -12,7 +12,7 @@
 #include <sys/_kernel.h>
 
 struct malloc_ptr {
-    LIST_ENTRY(malloc_ptr)    list;
+    TAILQ_ENTRY(malloc_ptr)    list;
     size_t              size;
     void                *ptr;
 };

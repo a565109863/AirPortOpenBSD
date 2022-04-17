@@ -54,6 +54,14 @@ typedef uint32_t            pcireg_t;
 typedef int paddr_t;
 typedef unsigned long        vsize_t;
 
+
+#define __letoh16(x)    OSSwapLittleToHostInt16(x)
+#define __letoh32(x)    OSSwapLittleToHostInt32(x)
+#define __letoh64(x)    OSSwapLittleToHostInt64(x)
+#define __htole16(x)    OSSwapHostToLittleInt16(x)
+#define __htole32(x)    OSSwapHostToLittleInt32(x)
+#define __htole64(x)    OSSwapHostToLittleInt64(x)
+
 /* POSIX names */
 #define be16toh(x)    OSSwapBigToHostInt16(x)
 #define be32toh(x)    OSSwapBigToHostInt32(x)
@@ -62,12 +70,12 @@ typedef unsigned long        vsize_t;
 #define htobe32(x)    OSSwapHostToBigInt32(x)
 #define htobe64(x)    OSSwapHostToBigInt64(x)
 
-#define letoh16(x)    OSSwapLittleToHostInt16(x)
-#define letoh32(x)    OSSwapLittleToHostInt32(x)
-#define letoh64(x)    OSSwapLittleToHostInt64(x)
-#define htole16(x)    OSSwapHostToLittleInt16(x)
-#define htole32(x)    OSSwapHostToLittleInt32(x)
-#define htole64(x)    OSSwapHostToLittleInt64(x)
+#define letoh16(x)    __letoh16(x)
+#define letoh32(x)    __letoh32(x)
+#define letoh64(x)    __letoh64(x)
+#define htole16(x)    __htole16(x)
+#define htole32(x)    __htole32(x)
+#define htole64(x)    __htole64(x)
 
 #define swap16(x)    OSSwapInt16(x)
 #define swap32(x)    OSSwapInt32(x)
@@ -83,24 +91,20 @@ typedef unsigned long        vsize_t;
 #define betoh64(x)    be64toh(x)
 
 
-#define __htole16(x)    ((__uint16_t)(x))
-#define __htole32(x)    ((__uint32_t)(x))
-#define __htole64(x)    ((__uint64_t)(x))
-
 #define __htolem16(_x, _v)    (*(__uint16_t *)(_x) = __htole16(_v))
 #define __htolem32(_x, _v)    (*(__uint32_t *)(_x) = __htole32(_v))
 #define __htolem64(_x, _v)    (*(__uint64_t *)(_x) = __htole64(_v))
 
 /* to/from memory conversions */
-#define bemtoh16    __bemtoh16
-#define bemtoh32    __bemtoh32
-#define bemtoh64    __bemtoh64
-#define htobem16    __htobem16
-#define htobem32    __htobem32
-#define htobem64    __htobem64
-#define lemtoh16    __lemtoh16
-#define lemtoh32    __lemtoh32
-#define lemtoh64    __lemtoh64
+//#define bemtoh16    __bemtoh16
+//#define bemtoh32    __bemtoh32
+//#define bemtoh64    __bemtoh64
+//#define htobem16    __htobem16
+//#define htobem32    __htobem32
+//#define htobem64    __htobem64
+//#define lemtoh16    __lemtoh16
+//#define lemtoh32    __lemtoh32
+//#define lemtoh64    __lemtoh64
 #define htolem16    __htolem16
 #define htolem32    __htolem32
 #define htolem64    __htolem64
