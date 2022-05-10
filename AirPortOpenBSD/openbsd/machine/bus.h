@@ -78,21 +78,14 @@ typedef bus_dma_tag*               bus_dma_tag_t;
 
 OS_INLINE
 uint8_t
-_OSReadInt8(
-             const volatile void               * base,
-             uintptr_t                     byteOffset
-             )
+_OSReadInt8(const volatile void* base, uintptr_t byteOffset)
 {
     return *(volatile uint8_t *)((uintptr_t)base + byteOffset);
 }
 
 OS_INLINE
 void
-_OSWriteInt8(
-              volatile void               * base,
-              uintptr_t                     byteOffset,
-              uint8_t                      data
-              )
+_OSWriteInt8(volatile void* base, uintptr_t byteOffset, uint8_t data)
 {
     *(volatile uint8_t *)((uintptr_t)base + byteOffset) = data;
 }

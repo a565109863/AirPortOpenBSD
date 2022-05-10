@@ -21,6 +21,9 @@ extern const unsigned int iwi_bss_size;
 extern const unsigned char iwn_5150[];
 extern const unsigned int iwn_5150_size;
 
+extern const unsigned char iwx_so_a0_gf4_a0_67[];
+extern const unsigned int iwx_so_a0_gf4_a0_67_size;
+
 extern const unsigned char iwm_3160_17[];
 extern const unsigned int iwm_3160_17_size;
 
@@ -30,8 +33,17 @@ extern const unsigned int brcmfmac4356_pcie_bin_size;
 extern const unsigned char iwn_6005[];
 extern const unsigned int iwn_6005_size;
 
+extern const unsigned char iwx_so_a0_gf_a0_67[];
+extern const unsigned int iwx_so_a0_gf_a0_67_size;
+
+extern const unsigned char iwx_so_a0_jf_b0_64[];
+extern const unsigned int iwx_so_a0_jf_b0_64_size;
+
 extern const unsigned char iwn_4965[];
 extern const unsigned int iwn_4965_size;
+
+extern const unsigned char iwx_ty_a0_gf_a0_67[];
+extern const unsigned int iwx_ty_a0_gf_a0_67_size;
 
 extern const unsigned char rtwn_rtl8723fw[];
 extern const unsigned int rtwn_rtl8723fw_size;
@@ -99,8 +111,14 @@ extern const unsigned int rtwn_rtl8723fw_B_size;
 extern const unsigned char iwm_9260_46[];
 extern const unsigned int iwm_9260_46_size;
 
+extern const unsigned char iwx_so_a0_gf_a0_pnvm[];
+extern const unsigned int iwx_so_a0_gf_a0_pnvm_size;
+
 extern const unsigned char iwm_3168_29[];
 extern const unsigned int iwm_3168_29_size;
+
+extern const unsigned char iwx_ty_a0_gf_a0_pnvm[];
+extern const unsigned int iwx_ty_a0_gf_a0_pnvm_size;
 
 extern const unsigned char brcmfmac43602_pcie_bin[];
 extern const unsigned int brcmfmac43602_pcie_bin_size;
@@ -152,6 +170,9 @@ extern const unsigned int brcmfmac4358_pcie_bin_size;
 
 extern const unsigned char iwm_7260_17[];
 extern const unsigned int iwm_7260_17_size;
+
+extern const unsigned char iwx_so_a0_gf4_a0_pnvm[];
+extern const unsigned int iwx_so_a0_gf4_a0_pnvm_size;
 
 extern const unsigned char rtwn_rtl8192cfwU[];
 extern const unsigned int rtwn_rtl8192cfwU_size;

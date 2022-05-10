@@ -2,7 +2,7 @@
  * THIS FILE AUTOMATICALLY GENERATED.  DO NOT EDIT.
  *
  * generated from:
- *    OpenBSD: pcidevs,v 1.1990 2022/04/16 16:12:56 stsp Exp
+ *    OpenBSD: pcidevs,v 1.1994 2022/05/09 12:27:40 stsp Exp
  */
 /*    $NetBSD: pcidevs,v 1.30 1997/06/24 06:20:24 thorpej Exp $    */
 
@@ -823,6 +823,7 @@
 #define    PCI_PRODUCT_AMD_17_1X_XHCI_2    0x15e1        /* 17h/1xh xHCI */
 #define    PCI_PRODUCT_AMD_17_1X_ACP    0x15e2        /* 17h/1xh I2S Audio */
 #define    PCI_PRODUCT_AMD_17_1X_HDA    0x15e3        /* 17h/1xh HD Audio */
+#define    PCI_PRODUCT_AMD_17_1X_SFH    0x15e6        /* 17h/1xh SFH */
 #define    PCI_PRODUCT_AMD_17_1X_DF_0    0x15e8        /* 17h/1xh Data Fabric */
 #define    PCI_PRODUCT_AMD_17_1X_DF_1    0x15e9        /* 17h/1xh Data Fabric */
 #define    PCI_PRODUCT_AMD_17_1X_DF_2    0x15ea        /* 17h/1xh Data Fabric */
@@ -5509,15 +5510,13 @@
 #define    PCI_PRODUCT_INTEL_ADL_S_CL    0x467d        /* Core 12G CL */
 #define    PCI_PRODUCT_INTEL_ADL_S_VMD    0x467f        /* Core 12G VMD */
 #define    PCI_PRODUCT_INTEL_ADL_S_GT1_1    0x4680        /* Graphics */
-#define    PCI_PRODUCT_INTEL_ADL_S_GT1_2    0x4681        /* Graphics */
-#define    PCI_PRODUCT_INTEL_ADL_S_GT1_3    0x4682        /* Graphics */
-#define    PCI_PRODUCT_INTEL_ADL_S_GT0_1    0x4683        /* Graphics */
-#define    PCI_PRODUCT_INTEL_ADL_S_GT1_4    0x4688        /* Graphics */
-#define    PCI_PRODUCT_INTEL_ADL_S_GT1_5    0x4689        /* Graphics */
-#define    PCI_PRODUCT_INTEL_ADL_S_GT1_6    0x4690        /* Graphics */
-#define    PCI_PRODUCT_INTEL_ADL_S_GT1_7    0x4691        /* Graphics */
-#define    PCI_PRODUCT_INTEL_ADL_S_GT1_8    0x4692        /* Graphics */
-#define    PCI_PRODUCT_INTEL_ADL_S_GT0_2    0x4693        /* Graphics */
+#define    PCI_PRODUCT_INTEL_ADL_S_GT1_2    0x4682        /* Graphics */
+#define    PCI_PRODUCT_INTEL_ADL_S_GT1_3    0x4688        /* Graphics */
+#define    PCI_PRODUCT_INTEL_ADL_S_GT1_4    0x468a        /* Graphics */
+#define    PCI_PRODUCT_INTEL_ADL_S_GT1_5    0x4690        /* Graphics */
+#define    PCI_PRODUCT_INTEL_ADL_S_GT1_6    0x4691        /* Graphics */
+#define    PCI_PRODUCT_INTEL_ADL_S_GT1_7    0x4692        /* Graphics */
+#define    PCI_PRODUCT_INTEL_ADL_S_GT0_1    0x4693        /* Graphics */
 #define    PCI_PRODUCT_INTEL_ADL_P_GT2_4    0x46a0        /* Graphics */
 #define    PCI_PRODUCT_INTEL_ADL_P_GT2_5    0x46a1        /* Graphics */
 #define    PCI_PRODUCT_INTEL_ADL_P_GT2_6    0x46a2        /* Graphics */
@@ -5533,6 +5532,9 @@
 #define    PCI_PRODUCT_INTEL_ADL_P_GT2_16    0x46c1        /* Graphics */
 #define    PCI_PRODUCT_INTEL_ADL_P_GT2_17    0x46c2        /* Graphics */
 #define    PCI_PRODUCT_INTEL_ADL_P_GT2_18    0x46c3        /* Graphics */
+#define    PCI_PRODUCT_INTEL_ADL_N_GT_1    0x46d0        /* Graphics */
+#define    PCI_PRODUCT_INTEL_ADL_N_GT_2    0x46d1        /* Graphics */
+#define    PCI_PRODUCT_INTEL_ADL_N_GT_3    0x46d2        /* Graphics */
 #define    PCI_PRODUCT_INTEL_RKL_GT_1    0x4c80        /* UHD Graphics */
 #define    PCI_PRODUCT_INTEL_RKL_GT_2    0x4c8a        /* UHD Graphics */
 #define    PCI_PRODUCT_INTEL_RKL_GT_3    0x4c8b        /* UHD Graphics */
@@ -5622,6 +5624,7 @@
 #define    PCI_PRODUCT_INTEL_EP80579_LAN_3    0x5048        /* EP80579 LAN */
 #define    PCI_PRODUCT_INTEL_EP80579_LAN_6    0x5049        /* EP80579 LAN */
 #define    PCI_PRODUCT_INTEL_WL_22500_11    0x51f0        /* Wi-Fi 6 AX211 */
+#define    PCI_PRODUCT_INTEL_WL_22500_16    0x54f0        /* Wi-Fi 6 AX211 */
 #define    PCI_PRODUCT_INTEL_80960RD    0x5200        /* i960 RD */
 #define    PCI_PRODUCT_INTEL_PRO_100_SERVER    0x5201        /* PRO 100 Server */
 #define    PCI_PRODUCT_INTEL_I225_LMVP    0x5502        /* I225-LMvP */
@@ -6592,6 +6595,18 @@
 #define    PCI_PRODUCT_INTEL_400SERIES_V_PCIE_21    0xa3eb        /* 400 Series PCIE */
 #define    PCI_PRODUCT_INTEL_400SERIES_V_PCIE_22    0xa3ec        /* 400 Series PCIE */
 #define    PCI_PRODUCT_INTEL_400SERIES_V_PCIE_23    0xa3ed        /* 400 Series PCIE */
+#define    PCI_PRODUCT_INTEL_RPL_P_GT_1    0xa720        /* Graphics */
+#define    PCI_PRODUCT_INTEL_RPL_P_GT_2    0xa721        /* Graphics */
+#define    PCI_PRODUCT_INTEL_RPL_S_GT_1    0xa780        /* Graphics */
+#define    PCI_PRODUCT_INTEL_RPL_S_GT_2    0xa781        /* Graphics */
+#define    PCI_PRODUCT_INTEL_RPL_S_GT_3    0xa782        /* Graphics */
+#define    PCI_PRODUCT_INTEL_RPL_S_GT_4    0xa783        /* Graphics */
+#define    PCI_PRODUCT_INTEL_RPL_S_GT_5    0xa788        /* Graphics */
+#define    PCI_PRODUCT_INTEL_RPL_S_GT_6    0xa789        /* Graphics */
+#define    PCI_PRODUCT_INTEL_RPL_P_GT_3    0xa7a0        /* Graphics */
+#define    PCI_PRODUCT_INTEL_RPL_P_GT_4    0xa7a1        /* Graphics */
+#define    PCI_PRODUCT_INTEL_RPL_P_GT_5    0xa7a8        /* Graphics */
+#define    PCI_PRODUCT_INTEL_RPL_P_GT_6    0xa7a9        /* Graphics */
 #define    PCI_PRODUCT_INTEL_21152    0xb152        /* S21152BB */
 #define    PCI_PRODUCT_INTEL_21154    0xb154        /* 21154AE/BE */
 #define    PCI_PRODUCT_INTEL_CORE_DMI_0    0xd130        /* Core DMI */
@@ -8075,11 +8090,16 @@
 #define    PCI_PRODUCT_RDC_R1070_CAN    0x1070        /* R1070 CAN */
 #define    PCI_PRODUCT_RDC_R1331_MC    0x1331        /* R1331 MC */
 #define    PCI_PRODUCT_RDC_R1710_SPI    0x1710        /* R1710 SPI */
+#define    PCI_PRODUCT_RDC_M2010_VGA    0x2010        /* M2010 VGA */
+#define    PCI_PRODUCT_RDC_M2015_VGA    0x2015        /* M2015 VGA */
 #define    PCI_PRODUCT_RDC_R3010_HDA    0x3010        /* R3010 HDA */
 #define    PCI_PRODUCT_RDC_R6011_SB    0x6011        /* R6011 SB */
 #define    PCI_PRODUCT_RDC_R6021_HB    0x6021        /* R6021 Host */
+#define    PCI_PRODUCT_RDC_R6023_HB    0x6023        /* R6023 Host */
 #define    PCI_PRODUCT_RDC_R6025_HB    0x6025        /* R6025 Host */
 #define    PCI_PRODUCT_RDC_R6031_ISA    0x6031        /* R6031 ISA */
+#define    PCI_PRODUCT_RDC_R6035_ISA    0x6035        /* R6035 ISA */
+#define    PCI_PRODUCT_RDC_R6036_ISA    0x6036        /* R6036 ISA */
 #define    PCI_PRODUCT_RDC_R6040_ETHER    0x6040        /* R6040 Ethernet */
 #define    PCI_PRODUCT_RDC_R6060_OHCI    0x6060        /* R6060 USB */
 #define    PCI_PRODUCT_RDC_R6061_EHCI    0x6061        /* R6061 USB2 */

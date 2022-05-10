@@ -182,7 +182,7 @@ int _bus_dmamap_load(bus_dma_tag_t t, bus_dmamap_t map, void *buf, bus_size_t bu
         goto fail1;
     }
 
-    _dm_cookie->dmaCmd = IODMACommand::withSpecification(kIODMACommandOutputHost64, 64, 0, IODMACommand::kMapped, 0, map->alignment);
+    _dm_cookie->dmaCmd = IODMACommand::withSpecification(kIODMACommandOutputHost64, 64, buflen, IODMACommand::kMapped, 0, map->alignment);
     if (_dm_cookie->dmaCmd == NULL) {
         printf("withSpecification()\n");
         err = 1;
@@ -195,25 +195,14 @@ int _bus_dmamap_load(bus_dma_tag_t t, bus_dmamap_t map, void *buf, bus_size_t bu
         goto fail3;
     }
 
-    if (_dm_cookie->dmaCmd->genIOVMSegments(&offset, &map->dm_segs[0], &numSegs) != kIOReturnSuccess) {
-        printf("genIOVMSegments() failed.\n");
-        err = 1;
-        goto fail4;
+    map->dm_nsegs = 0;
+    while (offset < buflen) {
+        if (_dm_cookie->dmaCmd->genIOVMSegments(&offset, &map->dm_segs[map->dm_nsegs++], &numSegs) != kIOReturnSuccess) {
+            printf("genIOVMSegments() failed.\n");
+            err = 1;
+            goto fail4;
+        }
     }
-    
-    if (offset != buflen) {
-        DebugLog("--%s: line = %d, offset = %llu, buflen = %d", __FUNCTION__, __LINE__, offset , buflen);
-        DebugLog("--%s: line = %d, offset = %llu, buflen = %d", __FUNCTION__, __LINE__, offset , buflen);
-        DebugLog("--%s: line = %d, offset = %llu, buflen = %d", __FUNCTION__, __LINE__, offset , buflen);
-        DebugLog("--%s: line = %d, offset = %llu, buflen = %d", __FUNCTION__, __LINE__, offset , buflen);
-        DebugLog("--%s: line = %d, offset = %llu, buflen = %d", __FUNCTION__, __LINE__, offset , buflen);
-        DebugLog("--%s: line = %d, offset = %llu, buflen = %d", __FUNCTION__, __LINE__, offset , buflen);
-        DebugLog("--%s: line = %d, offset = %llu, buflen = %d", __FUNCTION__, __LINE__, offset , buflen);
-        DebugLog("--%s: line = %d, offset = %llu, buflen = %d", __FUNCTION__, __LINE__, offset , buflen);
-        DebugLog("--%s: line = %d, offset = %llu, buflen = %d", __FUNCTION__, __LINE__, offset , buflen);
-    }
-    
-    map->dm_nsegs = 1;
 
 done:
     return err;

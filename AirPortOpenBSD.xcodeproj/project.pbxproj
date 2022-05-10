@@ -667,6 +667,48 @@
 		3714750325D187FC0052FDC0 /* _malloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3714750025D187FC0052FDC0 /* _malloc.c */; };
 		3714750425D187FC0052FDC0 /* _malloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3714750025D187FC0052FDC0 /* _malloc.c */; };
 		3714750525D187FC0052FDC0 /* _malloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3714750025D187FC0052FDC0 /* _malloc.c */; };
+		7F40D7AF282A03A200BE973C /* iwx_so_a0_gf_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7A8282A03A100BE973C /* iwx_so_a0_gf_a0_pnvm.c */; };
+		7F40D7B0282A03A200BE973C /* iwx_so_a0_gf_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7A8282A03A100BE973C /* iwx_so_a0_gf_a0_pnvm.c */; };
+		7F40D7B1282A03A200BE973C /* iwx_so_a0_gf_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7A8282A03A100BE973C /* iwx_so_a0_gf_a0_pnvm.c */; };
+		7F40D7B2282A03A200BE973C /* iwx_so_a0_gf_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7A8282A03A100BE973C /* iwx_so_a0_gf_a0_pnvm.c */; };
+		7F40D7B3282A03A200BE973C /* iwx_so_a0_gf_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7A8282A03A100BE973C /* iwx_so_a0_gf_a0_pnvm.c */; };
+		7F40D7B4282A03A200BE973C /* iwx_so_a0_gf_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7A8282A03A100BE973C /* iwx_so_a0_gf_a0_pnvm.c */; };
+		7F40D7B5282A03A200BE973C /* iwx_so_a0_gf4_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7A9282A03A100BE973C /* iwx_so_a0_gf4_a0_pnvm.c */; };
+		7F40D7B6282A03A200BE973C /* iwx_so_a0_gf4_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7A9282A03A100BE973C /* iwx_so_a0_gf4_a0_pnvm.c */; };
+		7F40D7B7282A03A200BE973C /* iwx_so_a0_gf4_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7A9282A03A100BE973C /* iwx_so_a0_gf4_a0_pnvm.c */; };
+		7F40D7B8282A03A200BE973C /* iwx_so_a0_gf4_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7A9282A03A100BE973C /* iwx_so_a0_gf4_a0_pnvm.c */; };
+		7F40D7B9282A03A200BE973C /* iwx_so_a0_gf4_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7A9282A03A100BE973C /* iwx_so_a0_gf4_a0_pnvm.c */; };
+		7F40D7BA282A03A200BE973C /* iwx_so_a0_gf4_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7A9282A03A100BE973C /* iwx_so_a0_gf4_a0_pnvm.c */; };
+		7F40D7BB282A03A200BE973C /* iwx_so_a0_gf4_a0_67.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AA282A03A200BE973C /* iwx_so_a0_gf4_a0_67.c */; };
+		7F40D7BC282A03A200BE973C /* iwx_so_a0_gf4_a0_67.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AA282A03A200BE973C /* iwx_so_a0_gf4_a0_67.c */; };
+		7F40D7BD282A03A200BE973C /* iwx_so_a0_gf4_a0_67.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AA282A03A200BE973C /* iwx_so_a0_gf4_a0_67.c */; };
+		7F40D7BE282A03A200BE973C /* iwx_so_a0_gf4_a0_67.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AA282A03A200BE973C /* iwx_so_a0_gf4_a0_67.c */; };
+		7F40D7BF282A03A200BE973C /* iwx_so_a0_gf4_a0_67.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AA282A03A200BE973C /* iwx_so_a0_gf4_a0_67.c */; };
+		7F40D7C0282A03A200BE973C /* iwx_so_a0_gf4_a0_67.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AA282A03A200BE973C /* iwx_so_a0_gf4_a0_67.c */; };
+		7F40D7C1282A03A200BE973C /* iwx_ty_a0_gf_a0_67.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AB282A03A200BE973C /* iwx_ty_a0_gf_a0_67.c */; };
+		7F40D7C2282A03A200BE973C /* iwx_ty_a0_gf_a0_67.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AB282A03A200BE973C /* iwx_ty_a0_gf_a0_67.c */; };
+		7F40D7C3282A03A200BE973C /* iwx_ty_a0_gf_a0_67.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AB282A03A200BE973C /* iwx_ty_a0_gf_a0_67.c */; };
+		7F40D7C4282A03A200BE973C /* iwx_ty_a0_gf_a0_67.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AB282A03A200BE973C /* iwx_ty_a0_gf_a0_67.c */; };
+		7F40D7C5282A03A200BE973C /* iwx_ty_a0_gf_a0_67.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AB282A03A200BE973C /* iwx_ty_a0_gf_a0_67.c */; };
+		7F40D7C6282A03A200BE973C /* iwx_ty_a0_gf_a0_67.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AB282A03A200BE973C /* iwx_ty_a0_gf_a0_67.c */; };
+		7F40D7C7282A03A200BE973C /* iwx_so_a0_gf_a0_67.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AC282A03A200BE973C /* iwx_so_a0_gf_a0_67.c */; };
+		7F40D7C8282A03A200BE973C /* iwx_so_a0_gf_a0_67.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AC282A03A200BE973C /* iwx_so_a0_gf_a0_67.c */; };
+		7F40D7C9282A03A200BE973C /* iwx_so_a0_gf_a0_67.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AC282A03A200BE973C /* iwx_so_a0_gf_a0_67.c */; };
+		7F40D7CA282A03A200BE973C /* iwx_so_a0_gf_a0_67.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AC282A03A200BE973C /* iwx_so_a0_gf_a0_67.c */; };
+		7F40D7CB282A03A200BE973C /* iwx_so_a0_gf_a0_67.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AC282A03A200BE973C /* iwx_so_a0_gf_a0_67.c */; };
+		7F40D7CC282A03A200BE973C /* iwx_so_a0_gf_a0_67.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AC282A03A200BE973C /* iwx_so_a0_gf_a0_67.c */; };
+		7F40D7CD282A03A200BE973C /* iwx_so_a0_jf_b0_64.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AD282A03A200BE973C /* iwx_so_a0_jf_b0_64.c */; };
+		7F40D7CE282A03A200BE973C /* iwx_so_a0_jf_b0_64.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AD282A03A200BE973C /* iwx_so_a0_jf_b0_64.c */; };
+		7F40D7CF282A03A200BE973C /* iwx_so_a0_jf_b0_64.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AD282A03A200BE973C /* iwx_so_a0_jf_b0_64.c */; };
+		7F40D7D0282A03A200BE973C /* iwx_so_a0_jf_b0_64.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AD282A03A200BE973C /* iwx_so_a0_jf_b0_64.c */; };
+		7F40D7D1282A03A200BE973C /* iwx_so_a0_jf_b0_64.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AD282A03A200BE973C /* iwx_so_a0_jf_b0_64.c */; };
+		7F40D7D2282A03A200BE973C /* iwx_so_a0_jf_b0_64.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AD282A03A200BE973C /* iwx_so_a0_jf_b0_64.c */; };
+		7F40D7D3282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AE282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c */; };
+		7F40D7D4282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AE282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c */; };
+		7F40D7D5282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AE282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c */; };
+		7F40D7D6282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AE282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c */; };
+		7F40D7D7282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AE282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c */; };
+		7F40D7D8282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AE282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c */; };
 		7F8AB18727E8475F0045D670 /* ieee80211_ra_vht.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F8AB18527E8475F0045D670 /* ieee80211_ra_vht.h */; };
 		7F8AB18827E8475F0045D670 /* ieee80211_ra_vht.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F8AB18527E8475F0045D670 /* ieee80211_ra_vht.h */; };
 		7F8AB18927E8475F0045D670 /* ieee80211_ra_vht.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F8AB18527E8475F0045D670 /* ieee80211_ra_vht.h */; };
@@ -1325,6 +1367,13 @@
 		18C95A9F256285DC0047231F /* if_rtwn.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = if_rtwn.c; sourceTree = "<group>"; };
 		18FDC67B255F2126002AA72F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3714750025D187FC0052FDC0 /* _malloc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = _malloc.c; sourceTree = "<group>"; };
+		7F40D7A8282A03A100BE973C /* iwx_so_a0_gf_a0_pnvm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_so_a0_gf_a0_pnvm.c; sourceTree = "<group>"; };
+		7F40D7A9282A03A100BE973C /* iwx_so_a0_gf4_a0_pnvm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_so_a0_gf4_a0_pnvm.c; sourceTree = "<group>"; };
+		7F40D7AA282A03A200BE973C /* iwx_so_a0_gf4_a0_67.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_so_a0_gf4_a0_67.c; sourceTree = "<group>"; };
+		7F40D7AB282A03A200BE973C /* iwx_ty_a0_gf_a0_67.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_ty_a0_gf_a0_67.c; sourceTree = "<group>"; };
+		7F40D7AC282A03A200BE973C /* iwx_so_a0_gf_a0_67.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_so_a0_gf_a0_67.c; sourceTree = "<group>"; };
+		7F40D7AD282A03A200BE973C /* iwx_so_a0_jf_b0_64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_so_a0_jf_b0_64.c; sourceTree = "<group>"; };
+		7F40D7AE282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_ty_a0_gf_a0_pnvm.c; sourceTree = "<group>"; };
 		7F8AB18527E8475F0045D670 /* ieee80211_ra_vht.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ieee80211_ra_vht.h; sourceTree = "<group>"; };
 		7F8AB18627E8475F0045D670 /* ieee80211_ra_vht.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ieee80211_ra_vht.c; sourceTree = "<group>"; };
 		7FA2CFB827EEDAF80063FDD2 /* Info_Monterey.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info_Monterey.plist; sourceTree = "<group>"; };
@@ -1769,6 +1818,13 @@
 				7FFFCF33280C10B600EDD723 /* iwx_QuZ_a0_hr_b0_63.c */,
 				7FFFCF44280C10B700EDD723 /* iwx_QuZ_a0_hr_b0_67.c */,
 				7FFFCF2C280C10B600EDD723 /* iwx_QuZ_a0_jf_b0_63.c */,
+				7F40D7AC282A03A200BE973C /* iwx_so_a0_gf_a0_67.c */,
+				7F40D7A8282A03A100BE973C /* iwx_so_a0_gf_a0_pnvm.c */,
+				7F40D7AA282A03A200BE973C /* iwx_so_a0_gf4_a0_67.c */,
+				7F40D7A9282A03A100BE973C /* iwx_so_a0_gf4_a0_pnvm.c */,
+				7F40D7AD282A03A200BE973C /* iwx_so_a0_jf_b0_64.c */,
+				7F40D7AB282A03A200BE973C /* iwx_ty_a0_gf_a0_67.c */,
+				7F40D7AE282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c */,
 				7FFFCF2E280C10B600EDD723 /* rtwn_rtl8188efw.c */,
 				7FFFCF1F280C10B500EDD723 /* rtwn_rtl8192cfwU_B.c */,
 				7FFFCF27280C10B600EDD723 /* rtwn_rtl8192cfwU.c */,
@@ -2597,6 +2653,7 @@
 				183CD6CF25605A98005F866F /* if_bwfm_pci.c in Sources */,
 				7FFFD040280C10B800EDD723 /* brcmfmac4366b_pcie_bin.c in Sources */,
 				7FF2C213274CD7E900DCECFD /* qsort.c in Sources */,
+				7F40D7BD282A03A200BE973C /* iwx_so_a0_gf4_a0_67.c in Sources */,
 				7FFFCFB6280C10B700EDD723 /* iwn_135.c in Sources */,
 				7FFFCF6E280C10B700EDD723 /* brcmfmac4366c_pcie_bin.c in Sources */,
 				7FFFCF74280C10B700EDD723 /* iwn_6000.c in Sources */,
@@ -2633,14 +2690,20 @@
 				7FFFD01C280C10B800EDD723 /* brcmfmac4350_pcie_bin.c in Sources */,
 				7FFFCFEC280C10B700EDD723 /* iwx_Qu_b0_hr_b0_63.c in Sources */,
 				18713E7C255F1BE100EF3D49 /* ieee80211_proto.c in Sources */,
+				7F40D7B1282A03A200BE973C /* iwx_so_a0_gf_a0_pnvm.c in Sources */,
 				18713E7D255F1BE100EF3D49 /* ieee80211_ioctl.c in Sources */,
+				7F40D7CF282A03A200BE973C /* iwx_so_a0_jf_b0_64.c in Sources */,
 				18713E7E255F1BE100EF3D49 /* ieee80211.c in Sources */,
 				7FFFD05E280C10B800EDD723 /* brcmfmac43602_pcie_ap_bin.c in Sources */,
+				7F40D7C3282A03A200BE973C /* iwx_ty_a0_gf_a0_67.c in Sources */,
+				7F40D7D5282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c in Sources */,
 				7FFFD028280C10B800EDD723 /* iwx_Qu_b0_jf_b0_63.c in Sources */,
+				7F40D7B7282A03A200BE973C /* iwx_so_a0_gf4_a0_pnvm.c in Sources */,
 				18713E7F255F1BE100EF3D49 /* ieee80211_rssadapt.c in Sources */,
 				7FFFCF7A280C10B700EDD723 /* rtwn_rtl8192cfwU_B.c in Sources */,
 				7FFFD046280C10B800EDD723 /* iwm_3168_29.c in Sources */,
 				18713E80255F1BE100EF3D49 /* ieee80211_input.c in Sources */,
+				7F40D7C9282A03A200BE973C /* iwx_so_a0_gf_a0_67.c in Sources */,
 				18713E82255F1BE100EF3D49 /* ieee80211_crypto_bip.c in Sources */,
 				18713E83255F1BE100EF3D49 /* ieee80211_crypto_tkip.c in Sources */,
 				7FFFD02E280C10B800EDD723 /* iwi_bss.c in Sources */,
@@ -2714,6 +2777,7 @@
 				183CD6D025605A98005F866F /* if_bwfm_pci.c in Sources */,
 				7FFFD041280C10B800EDD723 /* brcmfmac4366b_pcie_bin.c in Sources */,
 				7FF2C214274CD7E900DCECFD /* qsort.c in Sources */,
+				7F40D7BE282A03A200BE973C /* iwx_so_a0_gf4_a0_67.c in Sources */,
 				7FFFCFB7280C10B700EDD723 /* iwn_135.c in Sources */,
 				7FFFCF6F280C10B700EDD723 /* brcmfmac4366c_pcie_bin.c in Sources */,
 				7FFFCF75280C10B700EDD723 /* iwn_6000.c in Sources */,
@@ -2750,14 +2814,20 @@
 				7FFFD01D280C10B800EDD723 /* brcmfmac4350_pcie_bin.c in Sources */,
 				7FFFCFED280C10B700EDD723 /* iwx_Qu_b0_hr_b0_63.c in Sources */,
 				18713ED5255F1BE900EF3D49 /* ieee80211_proto.c in Sources */,
+				7F40D7B2282A03A200BE973C /* iwx_so_a0_gf_a0_pnvm.c in Sources */,
 				18713ED6255F1BE900EF3D49 /* ieee80211_ioctl.c in Sources */,
+				7F40D7D0282A03A200BE973C /* iwx_so_a0_jf_b0_64.c in Sources */,
 				18713ED7255F1BE900EF3D49 /* ieee80211.c in Sources */,
 				7FFFD05F280C10B800EDD723 /* brcmfmac43602_pcie_ap_bin.c in Sources */,
+				7F40D7C4282A03A200BE973C /* iwx_ty_a0_gf_a0_67.c in Sources */,
+				7F40D7D6282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c in Sources */,
 				7FFFD029280C10B800EDD723 /* iwx_Qu_b0_jf_b0_63.c in Sources */,
+				7F40D7B8282A03A200BE973C /* iwx_so_a0_gf4_a0_pnvm.c in Sources */,
 				18713ED8255F1BE900EF3D49 /* ieee80211_rssadapt.c in Sources */,
 				7FFFCF7B280C10B700EDD723 /* rtwn_rtl8192cfwU_B.c in Sources */,
 				7FFFD047280C10B800EDD723 /* iwm_3168_29.c in Sources */,
 				18713ED9255F1BE900EF3D49 /* ieee80211_input.c in Sources */,
+				7F40D7CA282A03A200BE973C /* iwx_so_a0_gf_a0_67.c in Sources */,
 				18713EDB255F1BE900EF3D49 /* ieee80211_crypto_bip.c in Sources */,
 				18713EDC255F1BE900EF3D49 /* ieee80211_crypto_tkip.c in Sources */,
 				7FFFD02F280C10B800EDD723 /* iwi_bss.c in Sources */,
@@ -2831,6 +2901,7 @@
 				183CD6D125605A98005F866F /* if_bwfm_pci.c in Sources */,
 				7FFFD042280C10B800EDD723 /* brcmfmac4366b_pcie_bin.c in Sources */,
 				7FF2C215274CD7E900DCECFD /* qsort.c in Sources */,
+				7F40D7BF282A03A200BE973C /* iwx_so_a0_gf4_a0_67.c in Sources */,
 				7FFFCFB8280C10B700EDD723 /* iwn_135.c in Sources */,
 				7FFFCF70280C10B700EDD723 /* brcmfmac4366c_pcie_bin.c in Sources */,
 				7FFFCF76280C10B700EDD723 /* iwn_6000.c in Sources */,
@@ -2867,14 +2938,20 @@
 				7FFFD01E280C10B800EDD723 /* brcmfmac4350_pcie_bin.c in Sources */,
 				7FFFCFEE280C10B700EDD723 /* iwx_Qu_b0_hr_b0_63.c in Sources */,
 				18713F79255F1C0200EF3D49 /* ieee80211_proto.c in Sources */,
+				7F40D7B3282A03A200BE973C /* iwx_so_a0_gf_a0_pnvm.c in Sources */,
 				18713F7A255F1C0200EF3D49 /* ieee80211_ioctl.c in Sources */,
+				7F40D7D1282A03A200BE973C /* iwx_so_a0_jf_b0_64.c in Sources */,
 				18713F7B255F1C0200EF3D49 /* ieee80211.c in Sources */,
 				7FFFD060280C10B800EDD723 /* brcmfmac43602_pcie_ap_bin.c in Sources */,
+				7F40D7C5282A03A200BE973C /* iwx_ty_a0_gf_a0_67.c in Sources */,
+				7F40D7D7282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c in Sources */,
 				7FFFD02A280C10B800EDD723 /* iwx_Qu_b0_jf_b0_63.c in Sources */,
+				7F40D7B9282A03A200BE973C /* iwx_so_a0_gf4_a0_pnvm.c in Sources */,
 				18713F7C255F1C0200EF3D49 /* ieee80211_rssadapt.c in Sources */,
 				7FFFCF7C280C10B700EDD723 /* rtwn_rtl8192cfwU_B.c in Sources */,
 				7FFFD048280C10B800EDD723 /* iwm_3168_29.c in Sources */,
 				18713F7D255F1C0200EF3D49 /* ieee80211_input.c in Sources */,
+				7F40D7CB282A03A200BE973C /* iwx_so_a0_gf_a0_67.c in Sources */,
 				18713F7F255F1C0200EF3D49 /* ieee80211_crypto_bip.c in Sources */,
 				18713F80255F1C0200EF3D49 /* ieee80211_crypto_tkip.c in Sources */,
 				7FFFD030280C10B800EDD723 /* iwi_bss.c in Sources */,
@@ -2948,6 +3025,7 @@
 				183CD6D225605A98005F866F /* if_bwfm_pci.c in Sources */,
 				7FFFD043280C10B800EDD723 /* brcmfmac4366b_pcie_bin.c in Sources */,
 				7FF2C216274CD7E900DCECFD /* qsort.c in Sources */,
+				7F40D7C0282A03A200BE973C /* iwx_so_a0_gf4_a0_67.c in Sources */,
 				7FFFCFB9280C10B700EDD723 /* iwn_135.c in Sources */,
 				7FFFCF71280C10B700EDD723 /* brcmfmac4366c_pcie_bin.c in Sources */,
 				7FFFCF77280C10B700EDD723 /* iwn_6000.c in Sources */,
@@ -2984,14 +3062,20 @@
 				7FFFD01F280C10B800EDD723 /* brcmfmac4350_pcie_bin.c in Sources */,
 				7FFFCFEF280C10B700EDD723 /* iwx_Qu_b0_hr_b0_63.c in Sources */,
 				1871401D255F1C1800EF3D49 /* ieee80211_proto.c in Sources */,
+				7F40D7B4282A03A200BE973C /* iwx_so_a0_gf_a0_pnvm.c in Sources */,
 				1871401E255F1C1800EF3D49 /* ieee80211_ioctl.c in Sources */,
+				7F40D7D2282A03A200BE973C /* iwx_so_a0_jf_b0_64.c in Sources */,
 				1871401F255F1C1800EF3D49 /* ieee80211.c in Sources */,
 				7FFFD061280C10B800EDD723 /* brcmfmac43602_pcie_ap_bin.c in Sources */,
+				7F40D7C6282A03A200BE973C /* iwx_ty_a0_gf_a0_67.c in Sources */,
+				7F40D7D8282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c in Sources */,
 				7FFFD02B280C10B800EDD723 /* iwx_Qu_b0_jf_b0_63.c in Sources */,
+				7F40D7BA282A03A200BE973C /* iwx_so_a0_gf4_a0_pnvm.c in Sources */,
 				18714020255F1C1800EF3D49 /* ieee80211_rssadapt.c in Sources */,
 				7FFFCF7D280C10B700EDD723 /* rtwn_rtl8192cfwU_B.c in Sources */,
 				7FFFD049280C10B800EDD723 /* iwm_3168_29.c in Sources */,
 				18714021255F1C1800EF3D49 /* ieee80211_input.c in Sources */,
+				7F40D7CC282A03A200BE973C /* iwx_so_a0_gf_a0_67.c in Sources */,
 				18714023255F1C1800EF3D49 /* ieee80211_crypto_bip.c in Sources */,
 				18714024255F1C1800EF3D49 /* ieee80211_crypto_tkip.c in Sources */,
 				7FFFD031280C10B800EDD723 /* iwi_bss.c in Sources */,
@@ -3065,6 +3149,7 @@
 				183CD6CE25605A98005F866F /* if_bwfm_pci.c in Sources */,
 				7FFFD03E280C10B800EDD723 /* brcmfmac4366b_pcie_bin.c in Sources */,
 				7FF2C212274CD7E900DCECFD /* qsort.c in Sources */,
+				7F40D7BB282A03A200BE973C /* iwx_so_a0_gf4_a0_67.c in Sources */,
 				7FFFCFB4280C10B700EDD723 /* iwn_135.c in Sources */,
 				7FFFCF6C280C10B700EDD723 /* brcmfmac4366c_pcie_bin.c in Sources */,
 				7FFFCF72280C10B700EDD723 /* iwn_6000.c in Sources */,
@@ -3101,14 +3186,20 @@
 				7FFFD01A280C10B800EDD723 /* brcmfmac4350_pcie_bin.c in Sources */,
 				7FFFCFEA280C10B700EDD723 /* iwx_Qu_b0_hr_b0_63.c in Sources */,
 				18713DD8255F1BC700EF3D49 /* ieee80211_proto.c in Sources */,
+				7F40D7AF282A03A200BE973C /* iwx_so_a0_gf_a0_pnvm.c in Sources */,
 				18713DD9255F1BC700EF3D49 /* ieee80211_ioctl.c in Sources */,
+				7F40D7CD282A03A200BE973C /* iwx_so_a0_jf_b0_64.c in Sources */,
 				18713DDA255F1BC700EF3D49 /* ieee80211.c in Sources */,
 				7FFFD05C280C10B800EDD723 /* brcmfmac43602_pcie_ap_bin.c in Sources */,
+				7F40D7C1282A03A200BE973C /* iwx_ty_a0_gf_a0_67.c in Sources */,
+				7F40D7D3282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c in Sources */,
 				7FFFD026280C10B800EDD723 /* iwx_Qu_b0_jf_b0_63.c in Sources */,
+				7F40D7B5282A03A200BE973C /* iwx_so_a0_gf4_a0_pnvm.c in Sources */,
 				18713DDB255F1BC700EF3D49 /* ieee80211_rssadapt.c in Sources */,
 				7FFFCF78280C10B700EDD723 /* rtwn_rtl8192cfwU_B.c in Sources */,
 				7FFFD044280C10B800EDD723 /* iwm_3168_29.c in Sources */,
 				18713DDC255F1BC700EF3D49 /* ieee80211_input.c in Sources */,
+				7F40D7C7282A03A200BE973C /* iwx_so_a0_gf_a0_67.c in Sources */,
 				18713DDE255F1BC700EF3D49 /* ieee80211_crypto_bip.c in Sources */,
 				18713DDF255F1BC700EF3D49 /* ieee80211_crypto_tkip.c in Sources */,
 				7FFFD02C280C10B800EDD723 /* iwi_bss.c in Sources */,
@@ -3182,6 +3273,7 @@
 				7FBA00A827E077FE0075D188 /* key_wrap.c in Sources */,
 				7FFFD03F280C10B800EDD723 /* brcmfmac4366b_pcie_bin.c in Sources */,
 				7FBA00A927E077FE0075D188 /* md5.c in Sources */,
+				7F40D7BC282A03A200BE973C /* iwx_so_a0_gf4_a0_67.c in Sources */,
 				7FFFCFB5280C10B700EDD723 /* iwn_135.c in Sources */,
 				7FFFCF6D280C10B700EDD723 /* brcmfmac4366c_pcie_bin.c in Sources */,
 				7FFFCF73280C10B700EDD723 /* iwn_6000.c in Sources */,
@@ -3218,14 +3310,20 @@
 				7FFFD01B280C10B800EDD723 /* brcmfmac4350_pcie_bin.c in Sources */,
 				7FFFCFEB280C10B700EDD723 /* iwx_Qu_b0_hr_b0_63.c in Sources */,
 				7FBA00BC27E077FE0075D188 /* heapsort.c in Sources */,
+				7F40D7B0282A03A200BE973C /* iwx_so_a0_gf_a0_pnvm.c in Sources */,
 				7FBA00BD27E077FE0075D188 /* bus.c in Sources */,
+				7F40D7CE282A03A200BE973C /* iwx_so_a0_jf_b0_64.c in Sources */,
 				7FBA00BE27E077FE0075D188 /* ieee80211_amrr.c in Sources */,
 				7FFFD05D280C10B800EDD723 /* brcmfmac43602_pcie_ap_bin.c in Sources */,
+				7F40D7C2282A03A200BE973C /* iwx_ty_a0_gf_a0_67.c in Sources */,
+				7F40D7D4282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c in Sources */,
 				7FFFD027280C10B800EDD723 /* iwx_Qu_b0_jf_b0_63.c in Sources */,
+				7F40D7B6282A03A200BE973C /* iwx_so_a0_gf4_a0_pnvm.c in Sources */,
 				7FBA00BF27E077FE0075D188 /* ieee80211_crypto_bip.c in Sources */,
 				7FFFCF79280C10B700EDD723 /* rtwn_rtl8192cfwU_B.c in Sources */,
 				7FFFD045280C10B800EDD723 /* iwm_3168_29.c in Sources */,
 				7FBA00C027E077FE0075D188 /* ieee80211_crypto_ccmp.c in Sources */,
+				7F40D7C8282A03A200BE973C /* iwx_so_a0_gf_a0_67.c in Sources */,
 				7FBA00C127E077FE0075D188 /* ieee80211_crypto_tkip.c in Sources */,
 				7FBA00C227E077FE0075D188 /* ieee80211_crypto_wep.c in Sources */,
 				7FFFD02D280C10B800EDD723 /* iwi_bss.c in Sources */,

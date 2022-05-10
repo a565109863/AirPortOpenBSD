@@ -128,7 +128,7 @@ static time_t getuptime()
 {
     uint64_t m, f;
     clock_get_uptime(&m);
-    absolutetime_to_nanoseconds(m,&f);
+    absolutetime_to_nanoseconds(m, &f);
     return (f / 1000000);
 }
 
