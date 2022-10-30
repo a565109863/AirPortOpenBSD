@@ -727,6 +727,12 @@
 		7FA2CFBC27EEDAF90063FDD2 /* Info_Monterey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FA2CFB827EEDAF80063FDD2 /* Info_Monterey.plist */; };
 		7FA2CFBD27EEDAF90063FDD2 /* Info_Monterey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FA2CFB827EEDAF80063FDD2 /* Info_Monterey.plist */; };
 		7FA2CFBE27EEDAF90063FDD2 /* Info_Monterey.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FA2CFB827EEDAF80063FDD2 /* Info_Monterey.plist */; };
+		7FA5311C28BCC707002801FB /* Info_Ventura.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FA5311B28BCC707002801FB /* Info_Ventura.plist */; };
+		7FA5311D28BCC707002801FB /* Info_Ventura.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FA5311B28BCC707002801FB /* Info_Ventura.plist */; };
+		7FA5311E28BCC707002801FB /* Info_Ventura.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FA5311B28BCC707002801FB /* Info_Ventura.plist */; };
+		7FA5311F28BCC707002801FB /* Info_Ventura.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FA5311B28BCC707002801FB /* Info_Ventura.plist */; };
+		7FA5312028BCC707002801FB /* Info_Ventura.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FA5311B28BCC707002801FB /* Info_Ventura.plist */; };
+		7FA5312128BCC707002801FB /* Info_Ventura.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FA5311B28BCC707002801FB /* Info_Ventura.plist */; };
 		7FBA000827E077F20075D188 /* AirPortOpenBSD.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 18713AFD255F148200EF3D49 /* AirPortOpenBSD.hpp */; };
 		7FBA000927E077F20075D188 /* IONetworkController.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BB5255F14E800EF3D49 /* IONetworkController.h */; };
 		7FBA000A27E077F20075D188 /* IONetworkInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BB4255F14E800EF3D49 /* IONetworkInterface.h */; };
@@ -1377,6 +1383,7 @@
 		7F8AB18527E8475F0045D670 /* ieee80211_ra_vht.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ieee80211_ra_vht.h; sourceTree = "<group>"; };
 		7F8AB18627E8475F0045D670 /* ieee80211_ra_vht.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ieee80211_ra_vht.c; sourceTree = "<group>"; };
 		7FA2CFB827EEDAF80063FDD2 /* Info_Monterey.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info_Monterey.plist; sourceTree = "<group>"; };
+		7FA5311B28BCC707002801FB /* Info_Ventura.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info_Ventura.plist; sourceTree = "<group>"; };
 		7FBAFFF227E077790075D188 /* AirPortOpenBSD.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirPortOpenBSD.kext; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FC16ED027EEE33900A1A5CA /* Info_IOEthernet.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info_IOEthernet.plist; sourceTree = "<group>"; };
 		7FF2C20B274CD7E900DCECFD /* qsort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = qsort.h; sourceTree = "<group>"; };
@@ -1552,6 +1559,7 @@
 				18713B21255F14E700EF3D49 /* compat.h */,
 				18713B01255F148200EF3D49 /* Info.plist */,
 				7FA2CFB827EEDAF80063FDD2 /* Info_Monterey.plist */,
+				7FA5311B28BCC707002801FB /* Info_Ventura.plist */,
 				7FC16ED027EEE33900A1A5CA /* Info_IOEthernet.plist */,
 				18713B1C255F14E700EF3D49 /* iwlwifi.h */,
 				18713B23255F14E700EF3D49 /* openbsd */,
@@ -2574,6 +2582,7 @@
 			files = (
 				7FA2CFBA27EEDAF90063FDD2 /* Info_Monterey.plist in Resources */,
 				7FC16ED227EEE33900A1A5CA /* Info_IOEthernet.plist in Resources */,
+				7FA5311E28BCC707002801FB /* Info_Ventura.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2583,6 +2592,7 @@
 			files = (
 				7FA2CFBB27EEDAF90063FDD2 /* Info_Monterey.plist in Resources */,
 				7FC16ED327EEE33900A1A5CA /* Info_IOEthernet.plist in Resources */,
+				7FA5311F28BCC707002801FB /* Info_Ventura.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2592,6 +2602,7 @@
 			files = (
 				7FA2CFBC27EEDAF90063FDD2 /* Info_Monterey.plist in Resources */,
 				7FC16ED427EEE33900A1A5CA /* Info_IOEthernet.plist in Resources */,
+				7FA5312028BCC707002801FB /* Info_Ventura.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2601,6 +2612,7 @@
 			files = (
 				7FA2CFBD27EEDAF90063FDD2 /* Info_Monterey.plist in Resources */,
 				7FC16ED527EEE33900A1A5CA /* Info_IOEthernet.plist in Resources */,
+				7FA5312128BCC707002801FB /* Info_Ventura.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2610,6 +2622,7 @@
 			files = (
 				7FA2CFB927EEDAF90063FDD2 /* Info_Monterey.plist in Resources */,
 				7FC16ED127EEE33900A1A5CA /* Info_IOEthernet.plist in Resources */,
+				7FA5311C28BCC707002801FB /* Info_Ventura.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2619,6 +2632,7 @@
 			files = (
 				7FA2CFBE27EEDAF90063FDD2 /* Info_Monterey.plist in Resources */,
 				7FC16ED627EEE33900A1A5CA /* Info_IOEthernet.plist in Resources */,
+				7FA5311D28BCC707002801FB /* Info_Ventura.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

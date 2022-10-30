@@ -46,11 +46,11 @@ void timeout_set(struct timeout* t, void (*func)(void *), void* arg)
     if (t->vt == NULL) {
         t->vt = new IOTimeout();
     }
+    t->vt->isPending = false;
     t->vt->timer = IOTimerEventSource::timerEventSource(t->vt,(IOTimerEventSource::Action)IOTimeout::timeout_run);
     _ifp->fWorkloop->addEventSource(t->vt->timer);
     t->vt->fn = func;
     t->vt->arg = arg;
-    t->vt->isPending = false;
 }
 
 void _timeout_add(struct timeout *t, UInt32 time)
@@ -89,8 +89,8 @@ void timeout_del(struct timeout* t)
     if (t == NULL || t->vt == NULL || t->vt->timer == NULL) {
         return;
     }
-    t->vt->timer->cancelTimeout();
     t->vt->isPending = false;
+    t->vt->timer->cancelTimeout();
 }
 
 int timeout_pending(struct timeout* t)

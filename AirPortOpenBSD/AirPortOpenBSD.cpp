@@ -268,7 +268,7 @@ fail7:
         pci_intr_unmap(dev->dev->pa, &dev->ih_count);
     }
     IOFree(this->pa->pa_dmat, sizeof(bus_dma_tag_t));
-    RELEASE(scanResults);
+    RELEASE(this->scanResults);
     IOFree(if_softc, this->ca->ca_devsize);
     
     fWorkloop->removeEventSource(fTimerEventSource);

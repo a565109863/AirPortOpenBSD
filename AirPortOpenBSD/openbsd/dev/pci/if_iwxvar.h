@@ -1,4 +1,4 @@
-/*    $OpenBSD: if_iwxvar.h,v 1.33 2022/05/09 21:57:26 stsp Exp $    */
+/*    $OpenBSD: if_iwxvar.h,v 1.36 2022/05/13 05:06:56 stsp Exp $    */
 
 /*
  * Copyright (c) 2014 genua mbh <info@genua.de>
@@ -123,7 +123,7 @@ struct iwx_tx_radiotap_header {
      (1 << IEEE80211_RADIOTAP_RATE) |                \
      (1 << IEEE80211_RADIOTAP_CHANNEL))
 
-#define IWX_UCODE_SECT_MAX 52
+#define IWX_UCODE_SECT_MAX 54
 
 /*
  * fw_status is used to determine if we've already parsed the firmware file
@@ -269,7 +269,6 @@ struct iwx_rx_ring {
     struct iwx_dma_info    free_desc_dma;
     struct iwx_dma_info    stat_dma;
     struct iwx_dma_info    used_desc_dma;
-    struct iwx_dma_info    buf_dma;
     void            *desc;
     struct iwx_rb_status    *stat;
     struct iwx_rx_data    data[IWX_RX_MQ_RING_COUNT];
@@ -488,6 +487,7 @@ struct iwx_device_cfg {
 #define IWX_SO_A_GF_A_PNVM    "iwx-so-a0-gf-a0.pnvm"
 #define IWX_SO_A_GF4_A_FW    "iwx-so-a0-gf4-a0-67"
 #define IWX_SO_A_GF4_A_PNVM    "iwx-so-a0-gf4-a0.pnvm"
+#define IWX_SO_A_HR_B_FW    "iwx-so-a0-hr-b0-64"
 #define IWX_SO_A_JF_B_FW    "iwx-so-a0-jf-b0-64"
 
 const struct iwx_device_cfg iwx_9560_quz_a0_jf_b0_cfg = {
@@ -530,6 +530,10 @@ const struct iwx_device_cfg iwx_quz_a0_hr1_b0 = {
 
 const struct iwx_device_cfg iwx_ax201_cfg_quz_hr = {
     .fw_name = IWX_QUZ_A_HR_B_FW,
+};
+
+const struct iwx_device_cfg iwx_cfg_so_a0_hr_b0 = {
+    .fw_name = IWX_SO_A_HR_B_FW,
 };
 
 const struct iwx_device_cfg iwx_cfg_quz_a0_hr_b0 = {
@@ -684,6 +688,7 @@ struct iwx_softc {
 #define IWX_DEVICE_FAMILY_22000    1
 #define IWX_DEVICE_FAMILY_AX210    2
     uint32_t sc_sku_id[3];
+    uint32_t mac_addr_from_csr;
 
     struct iwx_dma_info ctxt_info_dma;
     struct iwx_self_init_dram init_dram;

@@ -1829,6 +1829,8 @@ ieee80211_recv_probe_resp(struct ieee80211com *ic, mbuf_t m,
         ni->ni_dtimcount = tim[2];
         ni->ni_dtimperiod = tim[3];
     }
+    
+    ni->ni_age_ts = airport_up_time();
 
     /*
      * When operating in station mode, check for state updates

@@ -332,6 +332,7 @@ struct ieee80211_node {
     u_int8_t        *ni_countryie;
     u_int32_t        ni_ie_len;
     u_int8_t        *ni_ie;
+    u_int64_t       ni_age_ts;
     u_int8_t        *ni_rsnie;
     struct ieee80211_key    ni_pairwise_key;
     struct ieee80211_ptk    ni_ptk;

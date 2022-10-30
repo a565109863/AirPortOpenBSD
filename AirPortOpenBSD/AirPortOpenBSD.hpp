@@ -167,7 +167,7 @@ private:
     IOReturn getHARDWARE_VERSION(IOInterface* interface, struct apple80211_version_data* hv);
     // 46 - RSN_IE
     IOReturn getRSN_IE(IOInterface* interface, struct apple80211_rsn_ie_data* rid);
-//    IOReturn setRSN_IE(IOInterface *interface, struct apple80211_rsn_ie_data *rid);
+    IOReturn setRSN_IE(IOInterface *interface, struct apple80211_rsn_ie_data *rid);
     // 48 AP_IE_LIST
     IOReturn getAP_IE_LIST(IOInterface *interface, struct apple80211_ap_ie_data *data);
     // 50 - ASSOCIATION_STATUS
@@ -192,16 +192,35 @@ private:
     IOReturn setSCAN_REQ_MULTIPLE(IOInterface *interface, struct apple80211_scan_multiple_data *sd);
     // 90 - SCANCACHE_CLEAR
     IOReturn setSCANCACHE_CLEAR(IOInterface* interface, device *);
+    // 107 - ROAM
+    IOReturn setROAM(IOInterface* interface, struct apple80211_sta_roam_data *);
 //    // 112 - FACTORY_MODE
 //    IOReturn getFACTORY_MODE(IOInterface* interface, struct apple80211_factory_mode_data* fmd);
     // 156 - LINK_CHANGED_EVENT_DATA
     IOReturn getLINK_CHANGED_EVENT_DATA(IOInterface* interface, struct apple80211_link_changed_event_data* ed);
+    // 181 - VHT_MCS_INDEX_SET
+    IOReturn getVHT_MCS_INDEX_SET(IOInterface *interface, struct apple80211_vht_mcs_index_set_data *data);
+    // 195 - MCS_VHT
+    IOReturn getMCS_VHT(IOInterface *interface, struct apple80211_mcs_vht_data *data);
+    IOReturn setMCS_VHT(IOInterface *interface, struct apple80211_mcs_vht_data *data);
     // 196 - TX_NSS
     IOReturn getTX_NSS(IOInterface *interface, struct apple80211_tx_nss_data *data);
     IOReturn setTX_NSS(IOInterface *interface, struct apple80211_tx_nss_data *data);
     // 216 - ROAM_PROFILE
     IOReturn getROAM_PROFILE(IOInterface *interface, struct apple80211_roam_profile_band_data *data);
     IOReturn setROAM_PROFILE(IOInterface *interface, struct apple80211_roam_profile_band_data *data);
+    // 221 - BTCOEX_PROFILES
+    IOReturn getBTCOEX_PROFILES(IOInterface *interface, struct apple80211_btc_profiles_data *data);
+    IOReturn setBTCOEX_PROFILES(IOInterface *interface, struct apple80211_btc_profiles_data *data);
+    // 222 - BTCOEX_CONFIG
+    IOReturn getBTCOEX_CONFIG(IOInterface *interface, struct apple80211_btc_config_data *data);
+    IOReturn setBTCOEX_CONFIG(IOInterface *interface, struct apple80211_btc_config_data *data);
+    // 235 - BTCOEX_OPTIONS
+    IOReturn getBTCOEX_OPTIONS(IOInterface *interface, struct apple80211_btc_options_data *data);
+    IOReturn setBTCOEX_OPTIONS(IOInterface *interface, struct apple80211_btc_options_data *data);
+    // 87 - BTCOEX_MODE
+    IOReturn getBTCOEX_MODE(IOInterface *interface, struct apple80211_btc_mode_data *data);
+    IOReturn setBTCOEX_MODE(IOInterface *interface, struct apple80211_btc_mode_data *data);
     // 353
     IOReturn getNSS(IOInterface *interface, struct apple80211_nss_data *data);
     
@@ -271,6 +290,12 @@ public:
 
     void* if_softc;
     bool firstUp = true;
+    
+    uint8_t *roamProfile;
+    struct apple80211_btc_profiles_data *btcProfile;
+    struct apple80211_btc_config_data btcConfig;
+    uint32_t btcMode;
+    uint32_t btcOptions;
     
 public:
     struct apple80211_rate_data rate_data;

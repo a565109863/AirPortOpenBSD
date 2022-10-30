@@ -1,4 +1,4 @@
-/*    $OpenBSD: if_iwx.c,v 1.143 2022/05/09 21:57:26 stsp Exp $    */
+/*    $OpenBSD: if_iwx.c,v 1.150 2022/08/29 17:59:12 stsp Exp $    */
 
 /*
  * Copyright (c) 2014, 2016 genua gmbh <info@genua.de>
@@ -341,8 +341,9 @@ void    iwx_sta_tx_agg_start(struct iwx_softc *, struct ieee80211_node *,
         uint8_t);
 void    iwx_ba_task(void *);
 
-int    iwx_set_mac_addr_from_csr(struct iwx_softc *, struct iwx_nvm_data *);
+void    iwx_set_mac_addr_from_csr(struct iwx_softc *, struct iwx_nvm_data *);
 int    iwx_is_valid_mac_addr(const uint8_t *);
+void    iwx_flip_hw_address(uint32_t, uint32_t, uint8_t *);
 int    iwx_nvm_get(struct iwx_softc *);
 int    iwx_load_firmware(struct iwx_softc *);
 int    iwx_start_fw(struct iwx_softc *);
@@ -1172,6 +1173,7 @@ iwx_fw_info_free(struct iwx_fw_info *fw)
 int
 iwx_read_firmware(struct iwx_softc *sc)
 {
+    struct ieee80211com *ic = &sc->sc_ic;
     struct iwx_fw_info *fw = &sc->sc_fw;
     struct iwx_tlv_ucode_header *uhdr;
     struct iwx_ucode_tlv tlv;
@@ -1197,6 +1199,9 @@ iwx_read_firmware(struct iwx_softc *sc)
             DEVNAME(sc), sc->sc_fwname, err);
         goto out;
     }
+
+    if (ic->ic_if.if_flags & IFF_DEBUG)
+        printf("%s: using firmware %s\n", DEVNAME(sc), sc->sc_fwname);
 
     sc->sc_capaflags = 0;
     sc->sc_capa_n_scan_channels = IWX_DEFAULT_SCAN_CHANNELS;
@@ -1560,6 +1565,13 @@ iwx_read_firmware(struct iwx_softc *sc)
             err = EINVAL;
             goto parse_out;
         }
+
+        /*
+         * Check for size_t overflow and ignore missing padding at
+         * end of firmware file.
+         */
+        if (roundup(tlv_len, 4) > len)
+            break;
 
         len -= roundup(tlv_len, 4);
         data += roundup(tlv_len, 4);
@@ -3648,7 +3660,7 @@ iwx_ampdu_rx_stop(struct ieee80211com *ic, struct ieee80211_node *ni,
     if (tid >= IWX_MAX_TID_COUNT || sc->ba_rx.stop_tidmask & (1 << tid))
         return;
 
-    sc->ba_rx.stop_tidmask = (1 << tid);
+    sc->ba_rx.stop_tidmask |= (1 << tid);
     iwx_add_task(sc, systq, &sc->ba_task);
 }
 
@@ -3688,31 +3700,33 @@ iwx_ampdu_tx_start(struct ieee80211com *ic, struct ieee80211_node *ni,
     return EBUSY;
 }
 
-/* Read the mac address from WFMP registers. */
-int
+void
 iwx_set_mac_addr_from_csr(struct iwx_softc *sc, struct iwx_nvm_data *data)
 {
-    const uint8_t *hw_addr;
     uint32_t mac_addr0, mac_addr1;
 
+    memset(data->hw_addr, 0, sizeof(data->hw_addr));
+
     if (!iwx_nic_lock(sc))
-        return EBUSY;
+        return;
 
-    mac_addr0 = htole32(iwx_read_prph(sc, IWX_WFMP_MAC_ADDR_0));
-    mac_addr1 = htole32(iwx_read_prph(sc, IWX_WFMP_MAC_ADDR_1));
+    mac_addr0 = htole32(IWX_READ(sc, IWX_CSR_MAC_ADDR0_STRAP(sc)));
+    mac_addr1 = htole32(IWX_READ(sc, IWX_CSR_MAC_ADDR1_STRAP(sc)));
 
-    hw_addr = (const uint8_t *)&mac_addr0;
-    data->hw_addr[0] = hw_addr[3];
-    data->hw_addr[1] = hw_addr[2];
-    data->hw_addr[2] = hw_addr[1];
-    data->hw_addr[3] = hw_addr[0];
+    iwx_flip_hw_address(mac_addr0, mac_addr1, data->hw_addr);
 
-    hw_addr = (const uint8_t *)&mac_addr1;
-    data->hw_addr[4] = hw_addr[1];
-    data->hw_addr[5] = hw_addr[0];
+    /* If OEM fused a valid address, use it instead of the one in OTP. */
+    if (iwx_is_valid_mac_addr(data->hw_addr)) {
+        iwx_nic_unlock(sc);
+        return;
+    }
+
+    mac_addr0 = htole32(IWX_READ(sc, IWX_CSR_MAC_ADDR0_OTP(sc)));
+    mac_addr1 = htole32(IWX_READ(sc, IWX_CSR_MAC_ADDR1_OTP(sc)));
+
+    iwx_flip_hw_address(mac_addr0, mac_addr1, data->hw_addr);
 
     iwx_nic_unlock(sc);
-    return 0;
 }
 
 int
@@ -3726,6 +3740,22 @@ iwx_is_valid_mac_addr(const uint8_t *addr)
         memcmp(etherbroadcastaddr, addr, sizeof(etherbroadcastaddr)) != 0 &&
         memcmp(etheranyaddr, addr, sizeof(etheranyaddr)) != 0 &&
         !ETHER_IS_MULTICAST(addr));
+}
+
+void
+iwx_flip_hw_address(uint32_t mac_addr0, uint32_t mac_addr1, uint8_t *dest)
+{
+    const uint8_t *hw_addr;
+
+    hw_addr = (const uint8_t *)&mac_addr0;
+    dest[0] = hw_addr[3];
+    dest[1] = hw_addr[2];
+    dest[2] = hw_addr[1];
+    dest[3] = hw_addr[0];
+
+    hw_addr = (const uint8_t *)&mac_addr1;
+    dest[4] = hw_addr[1];
+    dest[5] = hw_addr[0];
 }
 
 int
@@ -3963,6 +3993,8 @@ iwx_pnvm_handle_section(struct iwx_softc *sc, const uint8_t *data,
             break;
         }
 
+        if (roundup(tlv_len, 4) > len)
+            break;
         len -= roundup(tlv_len, 4);
         data += roundup(tlv_len, 4);
     }
@@ -4001,7 +4033,7 @@ iwx_pnvm_parse(struct iwx_softc *sc, const uint8_t *data, size_t len)
         tlv_len = le32toh(tlv->length);
         tlv_type = le32toh(tlv->type);
 
-        if (len < tlv_len)
+        if (len < tlv_len || roundup(tlv_len, 4) > len)
             return EINVAL;
 
         if (tlv_type == IWX_UCODE_TLV_PNVM_SKU) {
@@ -4302,6 +4334,7 @@ iwx_rx_addbuf(struct iwx_softc *sc, int size, int idx)
         fatal = 1;
     }
 
+//    m->m_len = m->m_pkthdr.len = m->m_ext.ext_size;
     mbuf_setlen(m, size);
     mbuf_pkthdr_setlen(m, size);
     err = bus_dmamap_load_mbuf(sc->sc_dmat, data->map, m,
@@ -5868,7 +5901,10 @@ iwx_tx_fill_cmd(struct iwx_softc *sc, struct iwx_node *in,
         else if (IEEE80211_CHAN_40MHZ_ALLOWED(ni->ni_chan) &&
             ieee80211_node_supports_ht_chan40(ni))
             sco = (ni->ni_htop0 & IEEE80211_HTOP0_SCO_MASK);
-        rate_flags |= IWX_RATE_MCS_HT_MSK;
+        if (ni->ni_flags & IEEE80211_NODE_VHT)
+            rate_flags |= IWX_RATE_MCS_VHT_MSK;
+        else
+            rate_flags |= IWX_RATE_MCS_HT_MSK;
         if (vht_chan_width == IEEE80211_VHTOP0_CHAN_WIDTH_80 &&
             in->in_phyctxt != NULL &&
             in->in_phyctxt->vht_chan_width == vht_chan_width) {
@@ -6034,6 +6070,7 @@ iwx_tx(struct iwx_softc *sc, mbuf_t m, struct ieee80211_node *ni)
     } else
         flags |= IWX_TX_FLAGS_ENCRYPT_DIS;
 
+//    totlen = m->m_pkthdr.len;
     totlen = mbuf_pkthdr_len(m);
 
     if (hdrlen & 3) {
@@ -8838,6 +8875,7 @@ iwx_start(struct ifnet *ifp)
         /* need to send management frames even if we're not RUNning */
         m = mq_dequeue(&ic->ic_mgtq);
         if (m) {
+//            ni = m->m_pkthdr.ph_cookie;
             ni = (typeof ni)mbuf_pkthdr_rcvif(m);
             goto sendit;
         }
@@ -9968,6 +10006,13 @@ static const struct pci_matchid iwx_devices[] = {
     { PCI_VENDOR_INTEL, PCI_PRODUCT_INTEL_WL_22500_7,},
     { PCI_VENDOR_INTEL, PCI_PRODUCT_INTEL_WL_22500_8,},
     { PCI_VENDOR_INTEL, PCI_PRODUCT_INTEL_WL_22500_9,},
+    { PCI_VENDOR_INTEL, PCI_PRODUCT_INTEL_WL_22500_10,},
+    { PCI_VENDOR_INTEL, PCI_PRODUCT_INTEL_WL_22500_11,},
+    { PCI_VENDOR_INTEL, PCI_PRODUCT_INTEL_WL_22500_12,},
+    { PCI_VENDOR_INTEL, PCI_PRODUCT_INTEL_WL_22500_13,},
+    /* _14 is an MA device, not yet supported */
+    { PCI_VENDOR_INTEL, PCI_PRODUCT_INTEL_WL_22500_15,},
+    { PCI_VENDOR_INTEL, PCI_PRODUCT_INTEL_WL_22500_16,},
 };
 
 
@@ -10243,6 +10288,40 @@ static const struct iwx_dev_info iwx_dev_info_table[] = {
               IWX_CFG_RF_TYPE_JF1, IWX_CFG_RF_ID_JF1_DIV,
               IWX_CFG_NO_160, IWX_CFG_CORES_BT, IWX_CFG_NO_CDB,
               IWX_CFG_ANY, iwx_2ax_cfg_so_jf_b0), /* 9462 */
+
+    /* So with Hr */
+    _IWX_DEV_INFO(IWX_CFG_ANY, IWX_CFG_ANY,
+              IWX_CFG_MAC_TYPE_SO, IWX_CFG_ANY,
+              IWX_CFG_RF_TYPE_HR2, IWX_CFG_ANY,
+              IWX_CFG_NO_160, IWX_CFG_ANY, IWX_CFG_NO_CDB, IWX_CFG_ANY,
+              iwx_cfg_so_a0_hr_b0), /* AX203 */
+    _IWX_DEV_INFO(IWX_CFG_ANY, IWX_CFG_ANY,
+              IWX_CFG_MAC_TYPE_SO, IWX_CFG_ANY,
+              IWX_CFG_RF_TYPE_HR1, IWX_CFG_ANY,
+              IWX_CFG_160, IWX_CFG_ANY, IWX_CFG_NO_CDB, IWX_CFG_ANY,
+              iwx_cfg_so_a0_hr_b0), /* ax101 */
+    _IWX_DEV_INFO(IWX_CFG_ANY, IWX_CFG_ANY,
+              IWX_CFG_MAC_TYPE_SO, IWX_CFG_ANY,
+              IWX_CFG_RF_TYPE_HR2, IWX_CFG_ANY,
+              IWX_CFG_160, IWX_CFG_ANY, IWX_CFG_NO_CDB, IWX_CFG_ANY,
+              iwx_cfg_so_a0_hr_b0), /* ax201 */
+
+    /* So-F with Hr */
+    _IWX_DEV_INFO(IWX_CFG_ANY, IWX_CFG_ANY,
+              IWX_CFG_MAC_TYPE_SOF, IWX_CFG_ANY,
+              IWX_CFG_RF_TYPE_HR2, IWX_CFG_ANY,
+              IWX_CFG_NO_160, IWX_CFG_ANY, IWX_CFG_NO_CDB, IWX_CFG_ANY,
+              iwx_cfg_so_a0_hr_b0), /* AX203 */
+    _IWX_DEV_INFO(IWX_CFG_ANY, IWX_CFG_ANY,
+              IWX_CFG_MAC_TYPE_SOF, IWX_CFG_ANY,
+              IWX_CFG_RF_TYPE_HR1, IWX_CFG_ANY,
+              IWX_CFG_160, IWX_CFG_ANY, IWX_CFG_NO_CDB, IWX_CFG_ANY,
+              iwx_cfg_so_a0_hr_b0), /* AX101 */
+    _IWX_DEV_INFO(IWX_CFG_ANY, IWX_CFG_ANY,
+              IWX_CFG_MAC_TYPE_SOF, IWX_CFG_ANY,
+              IWX_CFG_RF_TYPE_HR2, IWX_CFG_ANY,
+              IWX_CFG_160, IWX_CFG_ANY, IWX_CFG_NO_CDB, IWX_CFG_ANY,
+              iwx_cfg_so_a0_hr_b0), /* AX201 */
 
     /* So-F with GF */
     _IWX_DEV_INFO(IWX_CFG_ANY, IWX_CFG_ANY,
@@ -10668,6 +10747,8 @@ iwx_attach(struct device *parent, struct device *self, void *aux)
             sc->sc_low_latency_xtal = cfg->low_latency_xtal;
         }
     }
+
+    sc->mac_addr_from_csr = 0x380; /* differs on BZ hw generation */
 
     if (sc->sc_device_family >= IWX_DEVICE_FAMILY_AX210) {
         sc->sc_umac_prph_offset = 0x300000;

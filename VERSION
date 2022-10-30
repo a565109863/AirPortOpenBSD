@@ -1,6 +1,10 @@
 
 feature
 1、代码优化
+2、更新openbsd的iwx、iwm、iwn等驱动
+3、优化wifi扫描与认证
+4、增加认证兼容WPA3
+5、优化wifi列表、关闭批量扫描wifi
 
 
 v2.1.0

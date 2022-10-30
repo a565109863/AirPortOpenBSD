@@ -114,6 +114,8 @@ ieee80211_node2req(struct ieee80211com *ic, const struct ieee80211_node *ni,
     nr->nr_txrate = ni->ni_txrate;
     nr->nr_state = ni->ni_state;
     
+    nr->nr_age_ts = ni->ni_age_ts;
+    
     nr->nr_ie = NULL;
     nr->nr_ie_len = 0;
     if (ni->ni_ie != NULL && ni->ni_ie_len > 0) {

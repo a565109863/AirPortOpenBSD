@@ -38,22 +38,20 @@
 	<string>Copyright © 2019 Zhong-Mac. All rights reserved.</string>
 	<key>OSBundleLibraries</key>
 	<dict>
-		<key>com.apple.iokit.IO80211Family</key>
+		<key>com.apple.iokit.IO80211FamilyLegacy</key>
 		<string>600.0</string>
 		<key>com.apple.iokit.IONetworkingFamily</key>
-		<string>3.1</string>
+		<string>3.2</string>
 		<key>com.apple.iokit.IOPCIFamily</key>
-		<string>2.8</string>
+		<string>2.9</string>
 		<key>com.apple.kpi.bsd</key>
-		<string>13.0.0</string>
+		<string>16.7</string>
 		<key>com.apple.kpi.iokit</key>
-		<string>13.0.0</string>
+		<string>16.7</string>
 		<key>com.apple.kpi.libkern</key>
-		<string>13.0.0</string>
+		<string>16.7</string>
 		<key>com.apple.kpi.mach</key>
-		<string>13.0.0</string>
-		<key>com.apple.kpi.unsupported</key>
-		<string>13.0.0</string>
+		<string>16.7</string>
 	</dict>
 	<key>OSBundleRequired</key>
 	<string>Network-Root</string>

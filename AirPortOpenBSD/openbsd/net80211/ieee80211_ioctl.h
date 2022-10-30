@@ -358,6 +358,8 @@ struct ieee80211_nodereq {
 
     /* VHT */
     uint8_t            nr_vht_ss;
+    
+    u_int64_t       nr_age_ts;
 
     u_int32_t    nr_assoc_fail;    /* association failure reasons */
 };

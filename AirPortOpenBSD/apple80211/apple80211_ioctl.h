@@ -34,10 +34,10 @@
 struct apple80211req
 {
     char        req_if_name[IFNAMSIZ];    // 16 bytes
-    int            req_type;                // 4 bytes
-    int            req_val;                // 4 bytes
-    u_int32_t    req_len;                // 4 bytes
-    void       *req_data;                // 4 bytes
+    int         req_type;                 // 4 bytes
+    int         req_val;                  // 4 bytes
+    u_int32_t   req_len;                  // 4 bytes
+    void        *req_data;                // 4 bytes
 };
 
 #if CatalinaKernel <= MacKernel
@@ -47,6 +47,10 @@ struct apple80211req
 #define SIOCSA80211 _IOW( 'i', 200, struct apple80211req )
 #define SIOCGA80211 _IOWR( 'i', 201, struct apple80211req )
 #endif
+
+#define APPLE80211_AWDL_CAP_CCA_STATS   2
+#define APPLE80211_AWDL_CAP_SEC_PAYLOAD 0x100000000
+
 // req_type
 
 
@@ -345,8 +349,20 @@ struct apple80211req
 #define APPLE80211_IOC_SCAN_BACKOFF_REPORT 264
 #define APPLE80211_IOC_OFFLOAD_TCPKA_ENABLE 265
 #define APPLE80211_IOC_RANGING_CAPS 266
-#define APPLE80211_IOC_PER_CORE_RSSI_REPORT 267
+#define APPLE80211_IOC_SUPPRESS_SCANS 267
+#define APPLE80211_IOC_HOST_AP_MODE_HIDDEN 336
+#define APPLE80211_IOC_LQM_CONFIG 337
+#define APPLE80211_IOC_AWDL_CCA 338
+#define APPLE80211_IOC_TRAP_CRASHTRACER_MINI_DUMP 339
+#define APPLE80211_IOC_AWDL_SIDECAR_STATISTICS 340
 #define APPLE80211_IOC_AWDL_CAPABILITIES    341
+#define APPLE80211_IOC_LLW_PARAMS 344
+#define APPLE80211_IOC_HE_CAPABILITY        345
+#define APPLE80211_IOC_SOFTAP_PARAMS        347
+#define APPLE80211_IOC_SOFTAP_TRIGGER_CSA   349
+#define APPLE80211_IOC_SOFTAP_STATS         350
+#define APPLE80211_IOC_AWDL_SIDECAR_DIAGNOSTICS 351
+#define APPLE80211_IOC_SOFTAP_WIFI_NETWORK_INFO_IE  352
 #define APPLE80211_IOC_NSS  353
 
 #define APPLE80211_IOC_CARD_SPECIFIC            0xffffffff    // req_type
@@ -360,7 +376,7 @@ struct apple80211_ssid_data
 {
     u_int32_t    version;
     u_int32_t    ssid_len;
-    u_int8_t    ssid_bytes[APPLE80211_MAX_SSID_LEN];
+    u_int8_t    ssid[APPLE80211_MAX_SSID_LEN];
 };
 
 struct apple80211_channel_data
@@ -772,6 +788,12 @@ struct apple80211_mcs_index_set_data
     u_int8_t    mcs_set_map[APPLE80211_MAP_SIZE( APPLE80211_MAX_MCS_INDEX + 1 )];
 };
 
+struct apple80211_vht_mcs_index_set_data
+{
+    u_int32_t   version;
+    u_int16_t    mcs_map;
+} __attribute__((packed));
+
 struct apple80211_wow_parameter_data
 {
     u_int32_t    version;
@@ -787,6 +809,16 @@ struct apple80211_40mhz_intolerant_data
     u_int32_t    enabled;    // bit enabled or not
 };
 
+struct apple80211_mcs_vht_data
+{
+    u_int32_t   version;
+    u_int32_t   index;
+    u_int32_t   nss;
+    u_int32_t   bw;
+    u_int32_t   guard_interval;
+} __attribute__((packed));
+
+
 struct apple80211_tx_nss_data
 {
     uint32_t    version;
@@ -798,6 +830,60 @@ struct apple80211_nss_data
     uint32_t    version;
     uint8_t     nss;
 };
+
+struct apple80211_sta_roam_data {
+    uint32_t    version;
+    uint8_t     rcc_channels;
+    uint8_t     unk1;
+    uint8_t     taget_channel;
+    uint8_t     target_bssid[APPLE80211_ADDR_LEN];
+} __attribute__((packed));
+
+struct apple80211_roam_profile {
+    int8_t      flags;
+    int8_t      trigger;
+    int8_t      rssi_lower;
+    int8_t      rssi_boost_delta;
+    int8_t      rssi_boost_thresh;
+    int8_t      delta;
+    uint16_t    backoff_multiplier;
+    uint16_t    full_scan_period;
+    uint16_t    init_scan_period;
+    uint16_t    nfscan;
+    uint16_t    max_scan_period;
+} __attribute__((packed));
+
+struct apple80211_roam_profile_band_data {
+    uint32_t    version;
+    uint32_t    flags;          // 4 (0x2, 0x4)
+    uint32_t    profile_cnt;    // 8
+    struct apple80211_roam_profile profiles[4];
+} __attribute__((packed));
+
+struct apple80211_btc_profiles_data {
+    uint32_t    version;
+    uint32_t    profile_cnt;
+    uint8_t     profiles[141][4];
+} __attribute__((packed));
+
+struct apple80211_btc_config_data {
+    uint32_t version;
+    uint32_t enable_2G;
+    uint32_t profile_2g;
+    uint32_t enable_5G;
+    uint32_t profile_5G;
+} __attribute__((packed));
+
+struct apple80211_btc_mode_data {
+    uint32_t    version;
+    uint32_t    btc_mode;
+} __attribute__((packed));
+
+struct apple80211_btc_options_data {
+    uint32_t    version;
+    uint32_t    btc_options;
+} __attribute__((packed));
+
 
 #endif // _APPLE80211_IOCTL_H_
 

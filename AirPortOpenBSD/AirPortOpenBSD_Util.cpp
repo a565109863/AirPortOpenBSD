@@ -137,15 +137,11 @@ struct ieee80211_nodereq* AirPortOpenBSD::findScanResult(apple80211_assoc_data* 
     // find the scan result corresponding to the given assoc params
     if (!ad) return NULL;
 
-//    scanFreeResults();
-//    scanComplete();
-    
-    if (scanResults->getCount() == 0) return NULL;
     
     bool emptyBSSID = (strncmp((char*)&ad->ad_bssid, (char *)empty_macaddr, APPLE80211_ADDR_LEN) == 0);
-    
-    for (int i = 0; i < scanResults->getCount(); i++) {
-        OSObject* scanObj = scanResults->getObject(i++);
+    int i = 0;
+    while (i < this->scanResults->getCount()) {
+        OSObject* scanObj = this->scanResults->getObject(i++);
         if (scanObj == NULL) {
             continue;
         }
@@ -190,8 +186,8 @@ IOReturn AirPortOpenBSD::scanConvertResult(struct ieee80211_nodereq *nr, struct 
         oneResult->asr_rates[r] = (nr->nr_rates[r] & IEEE80211_RATE_VAL) / 2;
     oneResult->asr_ssid_len = nr->nr_nwid_len;
     bcopy(nr->nr_nwid, oneResult->asr_ssid, oneResult->asr_ssid_len);
-
-    oneResult->asr_age = 0;
+    
+    oneResult->asr_age = (uint32_t)(airport_up_time() - nr->nr_age_ts);;
     oneResult->asr_ie_len = 0;
     if (nr->nr_ie != NULL && nr->nr_ie_len > 0) {
         oneResult->asr_ie_len = nr->nr_ie_len;
@@ -242,12 +238,12 @@ void AirPortOpenBSD::scanComplete()
             continue;
         }
         
-        scanResults->setObject(scanresult);
+        this->scanResults->setObject(scanresult);
 
         RELEASE(scanresult);
     }
 
-    if (scanResults->getCount() == 0) {
+    if (this->scanResults->getCount() == 0) {
         this->ca->ca_activate((struct device *)if_softc, DVACT_WAKEUP);
     }
 
@@ -257,7 +253,7 @@ void AirPortOpenBSD::scanComplete()
 
 void AirPortOpenBSD::scanFreeResults()
 {
-    scanResults->flushCollection();
+    this->scanResults->flushCollection();
     this->scanIndex = 0;
     return;
 }
@@ -270,7 +266,7 @@ void AirPortOpenBSD::scanDone(OSObject *owner, ...)
     dev->dev->scanComplete();
 #ifndef Ethernet
     _ifp->iface->postMessage(APPLE80211_M_SCAN_DONE);
-    _ifp->iface->postMessage(APPLE80211_M_COUNTRY_CODE_CHANGED);
+//    _ifp->iface->postMessage(APPLE80211_M_COUNTRY_CODE_CHANGED);
 #endif
 }
 

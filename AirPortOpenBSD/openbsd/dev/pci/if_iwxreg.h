@@ -1,4 +1,4 @@
-/*    $OpenBSD: if_iwxreg.h,v 1.38 2022/05/09 21:57:26 stsp Exp $    */
+/*    $OpenBSD: if_iwxreg.h,v 1.39 2022/05/10 09:11:44 stsp Exp $    */
 
 /*-
  * Based on BSD-licensed source modules in the Linux iwlwifi driver,
@@ -1159,6 +1159,12 @@ enum msix_ivar_for_cause {
 
 #define IWX_MSIX_AUTO_CLEAR_CAUSE        (0 << 7)
 #define IWX_MSIX_NON_AUTO_CLEAR_CAUSE        (1 << 7)
+
+#define IWX_CSR_ADDR_BASE(sc)            ((sc)->mac_addr_from_csr)
+#define IWX_CSR_MAC_ADDR0_OTP(sc)        (IWX_CSR_ADDR_BASE(sc) + 0x00)
+#define IWX_CSR_MAC_ADDR1_OTP(sc)        (IWX_CSR_ADDR_BASE(sc) + 0x04)
+#define IWX_CSR_MAC_ADDR0_STRAP(sc)        (IWX_CSR_ADDR_BASE(sc) + 0x08)
+#define IWX_CSR_MAC_ADDR1_STRAP(sc)        (IWX_CSR_ADDR_BASE(sc) + 0x0c)
 
 /**
  * uCode API flags
@@ -7008,7 +7014,7 @@ struct iwx_add_sta_cmd {
  * ( REPLY_ADD_STA_KEY = 0x17 )
  * @sta_id: index of station in uCode's station table
  * @key_offset: key offset in key storage
- * @key_flags: IWX_STA_KEY_FLG_* 
+ * @key_flags: IWX_STA_KEY_FLG_*
  * @key: key material data
  * @rx_secur_seq_cnt: RX security sequence counter for the key
  */
@@ -7110,7 +7116,7 @@ struct iwx_wep_key_cmd {
     struct iwx_wep_key wep_key[0];
 } __packed; /* SEC_CURR_WEP_KEY_CMD_API_S_VER_2 */
 
-/* 
+/*
  * BT coex
  */
 
