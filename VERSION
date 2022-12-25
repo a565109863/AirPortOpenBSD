@@ -1,13 +1,17 @@
 
 feature
+
+
+v2.2.0
 1、代码优化
 2、更新openbsd的iwx、iwm、iwn等驱动
 3、优化wifi扫描与认证
 4、增加认证兼容WPA3
 5、优化wifi列表、关闭批量扫描wifi
 6、开启Apple自带EAPOL认证功能
-7、优化wifi列表
-
+7、优化wifi列表，
+8、支持Ventura
+9、Ventura开启批量扫描wifi，其他版本关闭
 
 v2.1.0
 1、代码优化，提高重新打开wifi的连接速度
