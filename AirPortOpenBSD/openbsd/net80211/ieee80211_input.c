@@ -1106,6 +1106,9 @@ ieee80211_enqueue_data(struct ieee80211com *ic, mbuf_t m,
             if (ifp->if_bpf && m1 == NULL)
                 bpf_mtap(ifp->if_bpf, m, BPF_DIRECTION_IN);
 #endif
+            if (((struct device *)ifp->if_softc)->dev->useAppleRSNSupplicant(ifp->iface)) {
+                ml_enqueue(ml, m);
+            } else
             ieee80211_eapol_key_input(ic, m, ni);
         } else {
             ml_enqueue(ml, m);
@@ -1830,7 +1833,7 @@ ieee80211_recv_probe_resp(struct ieee80211com *ic, mbuf_t m,
         ni->ni_dtimperiod = tim[3];
     }
     
-    ni->ni_age_ts = airport_up_time();
+    ni->ni_age_ts = sysuptime();
 
     /*
      * When operating in station mode, check for state updates
@@ -2208,6 +2211,7 @@ ieee80211_recv_auth(struct ieee80211com *ic, mbuf_t m,
 #endif
         return;
     }
+    ic->ic_deauth_reason = IEEE80211_REASON_UNSPECIFIED;
     ieee80211_auth_open(ic, wh, ni, rxi, seq, status);
 }
 

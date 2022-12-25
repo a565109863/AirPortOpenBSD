@@ -51,6 +51,19 @@ MSEC_TO_NSEC(uint64_t milliseconds)
     return milliseconds * 1000000ULL;
 }
 
+static char* hexdump(uint8_t *buf, size_t len)
+{
+    ssize_t str_len = len * 3 + 1;
+    char *str = (char*)IOMalloc(str_len);
+    if (!str)
+        return nullptr;
+    for (size_t i = 0; i < len; i++)
+    snprintf(str + 3 * i, (len - i) * 3, "%02x ", buf[i]);
+    str[MAX(str_len - 2, 0)] = 0;
+    return str;
+}
+
+
 void interrupt_func(OSObject *owner, IOInterruptEventSource *src, int count);
 
 int loadfirmware(const char *name, u_char **bufp, size_t *buflen);
@@ -72,6 +85,6 @@ static u_int8_t empty_macaddr[IEEE80211_ADDR_LEN] = {
 #include <dev/pci/pcivar.h>
 #include <dev/pci/pcidevs.h>
 
-#include "AirPortOpenBSD.hpp"
+#include "AirPort_OpenBSD.hpp"
 
 #endif /* compat_h */

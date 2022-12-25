@@ -83,6 +83,10 @@ ieee80211_tkip_set_key(struct ieee80211com *ic, struct ieee80211_key *k)
         ctx->rxmic = &k->k_key[24];
     } else
 #endif
+    if (((struct device *)(&ic->ic_if)->if_softc)->dev->useAppleRSNSupplicant((&ic->ic_if)->iface)) {
+        ctx->rxmic = &k->k_key[24];
+        ctx->txmic = &k->k_key[16];
+    } else
     {
         ctx->rxmic = &k->k_key[16];
         ctx->txmic = &k->k_key[24];

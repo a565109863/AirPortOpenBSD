@@ -23,6 +23,9 @@
 #include <crypto/michael.h>
 
 extern struct ifnet *_ifp;
+extern IOWorkLoop *_fWorkloop;
+extern IOCommandGate *_fCommandGate;
+
 extern int logStr_i;
 
 //#define IEEE80211_STA_ONLY    1
@@ -35,29 +38,34 @@ extern int logStr_i;
 
 #define IEEE80211_DEBUG     0
 #define IWM_DEBUG           0
-#undef DEBUG
+//#undef DEBUG
 
 #ifdef DEBUG
 
-    #if BigSurKernel <= MacKernel
-        #define DebugLog(x, args...) \
+    #if MAC_TARGET < __MAC_11_0
+        #define DebugLog(args...) \
         if(1) { \
-            thread_t new_thread = current_thread(); \
-            uint64_t new_thread_id = thread_tid(new_thread); \
-            kprintf(x " tid = %llu", args, new_thread_id); \
+            uint64_t new_thread_id = thread_tid(current_thread()); \
+            char argsStr[1024]; \
+            snprintf(argsStr, sizeof(argsStr), args); \
+            kprintf("tid = %llu, %s: line = %d %s", new_thread_id, __FUNCTION__, __LINE__, argsStr); \
         }
     #else
-        #define DebugLog(x, args...) \
+        #define DebugLog(args...) \
         if(1) { \
-            thread_t new_thread = current_thread(); \
-            uint64_t new_thread_id = thread_tid(new_thread); \
-            kprintf(x " tid = %llu", args, new_thread_id); \
-            struct device *dev = (struct device *)_ifp->if_softc; \
-            char logStr[256]; \
-            snprintf(logStr, sizeof(logStr), x " tid = %llu", args, new_thread_id); \
+            uint64_t new_thread_id = thread_tid(current_thread()); \
+            char *argsStr = (char*)IOMalloc(1024); \
+            snprintf(argsStr, 1024, args); \
+            kprintf("tid = %llu, %s: line = %d %s", new_thread_id, __FUNCTION__, __LINE__, argsStr); \
+            char *logStr = (char*)IOMalloc(2048); \
+            snprintf(logStr, 2048, "%s: line = %d tid = %llu %s", __FUNCTION__, __LINE__, new_thread_id, argsStr); \
             OSString *log = OSString::withCString(logStr); \
-            snprintf(logStr, sizeof(logStr), "DebugLog_%06d", logStr_i++); \
-            dev->dev->setProperty(logStr, log); \
+            char logKey[256]; \
+            snprintf(logKey, sizeof(logKey), "DebugLog_%06d", logStr_i++); \
+            struct device *dev = (struct device *)_ifp->if_softc; \
+            dev->dev->setProperty(logKey, log); \
+            IOFree(argsStr, 1024); \
+            IOFree(logStr, 2048); \
         }
     #endif
 
@@ -239,14 +247,24 @@ void get_hexstring( u_int8_t *buf, char *_val, int lenp)
 
 }
 
-static inline uint64_t airport_up_time()
+static inline uint64_t sysuptime()
 {
     struct timeval tv;
-    uint64_t tv_usec;
     
     microuptime(&tv);
-    tv_usec = (uint32_t)(tv.tv_usec * 0x10624DD3);
-    return (tv_usec >> 0x3F) + (tv_usec >> 0x26) + tv.tv_sec * 1000;
+    return tv.tv_sec * 1000 + tv.tv_usec / 1000;
+}
+
+
+#define DWORD UInt32
+#define QWORD UInt64
+#define HIQWORD(l)           ((DWORD)((((QWORD)(l)) >> 32) & 0xffffffff))
+
+static uint32_t sysuptime1() {
+    uint64_t    result;
+    absolutetime_to_nanoseconds(mach_absolute_time(), &result);
+    uint32_t rax = HIQWORD(0x431bde82d7b634db * result) >> 0x12;
+    return rax;
 }
 
 

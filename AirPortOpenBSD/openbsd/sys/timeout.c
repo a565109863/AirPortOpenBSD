@@ -48,7 +48,7 @@ void timeout_set(struct timeout* t, void (*func)(void *), void* arg)
     }
     t->vt->isPending = false;
     t->vt->timer = IOTimerEventSource::timerEventSource(t->vt,(IOTimerEventSource::Action)IOTimeout::timeout_run);
-    _ifp->fWorkloop->addEventSource(t->vt->timer);
+    _fWorkloop->addEventSource(t->vt->timer);
     t->vt->fn = func;
     t->vt->arg = arg;
 }

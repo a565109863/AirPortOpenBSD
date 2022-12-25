@@ -326,6 +326,8 @@ struct ieee80211com {
     u_int8_t        ic_des_essid[IEEE80211_NWID_LEN];
     struct ieee80211_channel *ic_des_chan;    /* desired channel */
     u_int8_t        ic_des_bssid[IEEE80211_ADDR_LEN];
+    u_int8_t        ic_rsnie[257];
+    u_int16_t       ic_deauth_reason;
     struct ieee80211_key    ic_nw_keys[IEEE80211_GROUP_NKID];
     int            ic_def_txkey;    /* group data key index */
 #define ic_wep_txkey    ic_def_txkey

@@ -11,7 +11,7 @@
 #include <dev/pci/pcireg.h>
 #include <dev/pci/pcivar.h>
 
-#include "AirPortOpenBSD.hpp"
+#include "AirPort_OpenBSD.hpp"
 
 #undef KASSERT
 #define KASSERT(x)        assert(x)

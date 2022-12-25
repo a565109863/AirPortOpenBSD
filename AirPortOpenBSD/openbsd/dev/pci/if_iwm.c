@@ -1,4 +1,4 @@
-/*    $OpenBSD: if_iwm.c,v 1.404 2022/08/29 17:59:12 stsp Exp $    */
+/*    $OpenBSD: if_iwm.c,v 1.405 2022/12/16 13:49:35 stsp Exp $    */
 
 /*
  * Copyright (c) 2014, 2016 genua gmbh <info@genua.de>
@@ -10365,9 +10365,6 @@ iwm_init(struct ifnet *ifp)
 
     generation = ++sc->sc_generation;
 
-    KASSERT(sc->task_refs.r_refs == 0);
-    refcnt_init(&sc->task_refs);
-
     err = iwm_preinit(sc);
     if (err)
         return err;
@@ -10381,7 +10378,7 @@ iwm_init(struct ifnet *ifp)
     err = iwm_init_hw(sc);
     if (err) {
         if (generation == sc->sc_generation)
-            iwm_stop(ifp);
+            iwm_stop_device(sc);
         return err;
     }
 
@@ -10390,6 +10387,8 @@ iwm_init(struct ifnet *ifp)
     if (sc->sc_nvm.sku_cap_11ac_enable)
         iwm_setup_vht_rates(sc);
 
+    KASSERT(sc->task_refs.r_refs == 0);
+    refcnt_init(&sc->task_refs);
     ifq_clr_oactive(&ifp->if_snd);
     ifp->if_flags |= IFF_RUNNING;
 
@@ -10450,6 +10449,10 @@ iwm_start(struct ifnet *ifp)
             goto sendit;
         }
 
+        if (((struct device *)ifp->if_softc)->dev->useAppleRSNSupplicant(ifp->iface)) {
+            if ((ic->ic_xflags & IEEE80211_F_TX_MGMT_ONLY))
+                break;
+        } else
         if (ic->ic_state != IEEE80211_S_RUN ||
             (ic->ic_xflags & IEEE80211_F_TX_MGMT_ONLY))
             break;

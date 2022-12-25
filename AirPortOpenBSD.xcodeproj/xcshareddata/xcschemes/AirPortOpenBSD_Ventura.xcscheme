@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1220"
+   LastUpgradeVersion = "1240"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "18713CAC255F154500EF3D49"
+               BlueprintIdentifier = "7FF814D4290EB9F100050008"
                BuildableName = "AirPortOpenBSD.kext"
-               BlueprintName = "AirPortOpenBSD_BigSur"
+               BlueprintName = "AirPortOpenBSD_Ventura"
                ReferencedContainer = "container:AirPortOpenBSD.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -50,9 +50,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "18713CAC255F154500EF3D49"
+            BlueprintIdentifier = "7FF814D4290EB9F100050008"
             BuildableName = "AirPortOpenBSD.kext"
-            BlueprintName = "AirPortOpenBSD_BigSur"
+            BlueprintName = "AirPortOpenBSD_Ventura"
             ReferencedContainer = "container:AirPortOpenBSD.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

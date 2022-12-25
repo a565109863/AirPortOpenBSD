@@ -7186,6 +7186,7 @@ bwi_start(struct ifnet *ifp)
         } else {
             struct ether_header *eh;
 
+            if (!((struct device *)ifp->if_softc)->dev->useAppleRSNSupplicant(ifp->iface))
             if (ic->ic_state != IEEE80211_S_RUN)
                 break;
 

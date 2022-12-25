@@ -146,9 +146,7 @@ struct ifnet {                /* and the entries */
     int if_ibytes;
     int if_hdrlen;
     
-    IOInterface *iface;
-    IOWorkLoop *fWorkloop;
-    IOCommandGate *fCommandGate;
+    AirPort_OpenBSD_Interface *iface;
     int if_capabilities;
     int if_baudrate;
     int if_link_state;
@@ -160,9 +158,13 @@ struct ifnet {                /* and the entries */
     int err = 0;
 };
 
+struct ifnet *if_get(const char* if_xname);
 
+void if_attach(struct ifnet *ifp);
+void if_detach(struct ifnet *ifp);
 void if_start(struct ifnet *ifp);
 void if_input(struct ifnet* ifp, struct mbuf_list *ml);
+void post_message(struct ifnet *ifp, int msgCode);
 
 void if_link_state_change(struct ifnet *);
 
@@ -191,19 +193,6 @@ if_enqueue_ifq(struct ifnet *ifp, mbuf_t m)
     if_start(ifp);
     
     return (0);
-}
-
-static void if_attach(struct ifnet *ifp)
-{
-    mq_init(&ifp->if_snd, IFQ_MAXLEN, IPL_NET);
-    
-    if (ifp->if_enqueue == NULL)
-        ifp->if_enqueue = if_enqueue_ifq;
-}
-
-static void if_detach(struct ifnet *ifp)
-{
-    
 }
 
 static int ifq_oactive = 0;

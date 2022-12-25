@@ -141,8 +141,7 @@ int bpf_mtap(caddr_t arg, mbuf_t m, u_int direction)
             case BPF_DIRECTION_IN:
                 dev = (struct device *)bp->bif_ifp->if_softc;
                 mbuf_dup(m, M_DONTWAIT, &m0);
-                if (dev->dev->enqueueInputPacket2(m0) == kIOReturnSuccess)
-                    dev->dev->flushInputQueue2();
+                bp->bif_ifp->iface->inputPacket(m0, 0, IONetworkInterface::kInputOptionQueuePacket);
                 break;
             default:
                 break;

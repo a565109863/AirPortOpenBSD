@@ -1,6 +1,6 @@
 /*
  *  IO80211WorkLoop.h
- *  Family
+ *  IO80211Family
  *
  *  Created by Pete on 5/31/06.
  *  Copyright 2006 Apple Computer, Inc. All rights reserved.
@@ -9,6 +9,8 @@
 
 #ifndef _IO80211WORKLOOP_H
 #define _IO80211WORKLOOP_H
+
+#include <Availability.h>
 #include <IOKit/IOWorkLoop.h>
 
 class IO80211WorkLoop : public IOWorkLoop
@@ -26,4 +28,5 @@ public:
     virtual void wakeupGate( void * event, bool oneThread ) APPLE_KEXT_OVERRIDE;
 
 };
+
 #endif

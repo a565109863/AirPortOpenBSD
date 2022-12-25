@@ -15,9 +15,9 @@
 
 #define PCI_MSIX_QUEUES    16
 
-class AirPortOpenBSD;
+class AirPort_OpenBSD;
 struct device {
-    AirPortOpenBSD* dev;
+    AirPort_OpenBSD* dev;
     pci_intr_handle *ih[PCI_MSIX_QUEUES];
     u_int           ih_count;
     char dv_xname[16];

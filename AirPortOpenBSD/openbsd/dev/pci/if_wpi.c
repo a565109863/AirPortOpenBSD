@@ -1908,6 +1908,7 @@ wpi_start(struct ifnet *ifp)
             ni = (struct ieee80211_node *)mbuf_pkthdr_rcvif(m);
             goto sendit;
         }
+        if (!((struct device *)ifp->if_softc)->dev->useAppleRSNSupplicant(ifp->iface))
         if (ic->ic_state != IEEE80211_S_RUN)
             break;
 

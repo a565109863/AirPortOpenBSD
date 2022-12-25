@@ -758,6 +758,11 @@ int errno = 0;
 
 void ifconfig(const char **argv, int argc)
 {
+    if (strlcpy(ifname, *argv, sizeof(ifname)) >= IFNAMSIZ)
+        errx(1, "interface name '%s' too long", *argv);
+//    getsock(AF_INET);
+    argc--, argv++;
+    
     while (argc > 0) {
         const struct cmd *p;
         
@@ -1146,6 +1151,8 @@ getsock(int naf)
 //        oaf = -1;
 //    else
 //        oaf = naf;
+    
+    sock = ifnet_sock(ifname);
 }
 
 int
@@ -1202,7 +1209,7 @@ printgroup(char *groupname, int ifaliases)
 //    struct ifg_req        *ifg;
     int             len, cnt = 0;
 
-//    getsock(AF_INET);
+    getsock(AF_INET);
 //    bzero(&ifgr, sizeof(ifgr));
 //    strlcpy(ifgr.ifgr_name, groupname, sizeof(ifgr.ifgr_name));
 //    if (ioctl(sock, SIOCGIFGMEMB, (caddr_t)&ifgr) == -1) {
@@ -2240,10 +2247,10 @@ setifwpaprotos(const char *val, int d)
     if (ioctl(sock, SIOCS80211WPAPARMS, (caddr_t)&wpa) == -1)
         err(1, "SIOCS80211WPAPARMS");
     
-//    struct ieee80211_txpower power = {NULL, 0, 100};
-//
-//    if (_ifp->if_ioctl(_ifp, SIOCS80211TXPOWER, (caddr_t)&power) == -1)
-//        errx(1, "SIOCS80211TXPOWER");
+    struct ieee80211_txpower power = {NULL, 0, 100};
+
+    if (_ifp->if_ioctl(_ifp, SIOCS80211TXPOWER, (caddr_t)&power) == -1)
+        errx(1, "SIOCS80211TXPOWER");
 }
 
 /* ARGSUSED */

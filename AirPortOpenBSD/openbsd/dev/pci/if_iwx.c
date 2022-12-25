@@ -8880,6 +8880,10 @@ iwx_start(struct ifnet *ifp)
             goto sendit;
         }
 
+        if (((struct device *)ifp->if_softc)->dev->useAppleRSNSupplicant(ifp->iface)) {
+            if ((ic->ic_xflags & IEEE80211_F_TX_MGMT_ONLY))
+                break;
+        } else
         if (ic->ic_state != IEEE80211_S_RUN ||
             (ic->ic_xflags & IEEE80211_F_TX_MGMT_ONLY))
             break;

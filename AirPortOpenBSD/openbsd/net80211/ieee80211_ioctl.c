@@ -488,7 +488,7 @@ ieee80211_ioctl(struct ifnet *ifp, u_long cmd, caddr_t data)
     switch (cmd) {
     case SIOCSIFMEDIA:
     case SIOCGIFMEDIA:
-//        error = ifmedia_ioctl(ifp, ifr, &ic->ic_media, cmd);
+        error = ifmedia_ioctl(ifp, ifr, &ic->ic_media, cmd);
         break;
     case SIOCS80211NWID:
         if ((error = suser(curproc)) != 0)

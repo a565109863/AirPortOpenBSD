@@ -1,8 +1,8 @@
 /* add your code here*/
 
-#include "AirPortOpenBSD.hpp"
+#include "AirPort_OpenBSD.hpp"
 
-OSDefineMetaClassAndStructors(AirPortOpenBSD, IOController);
+OSDefineMetaClassAndStructors(AirPort_OpenBSD, IOController);
 OSDefineMetaClassAndStructors(IOTimeout, OSObject)
 #define super IOController
 
@@ -16,13 +16,16 @@ int _start(struct kmod_info*, void*) {
 };
 
 struct ifnet *_ifp;
+IOWorkLoop *_fWorkloop;
+IOCommandGate *_fCommandGate;
+
 int logStr_i = 0;
 
-bool AirPortOpenBSD::init(OSDictionary* parameters) {
-    IOLog("AirPortOpenBSD: Init");
+bool AirPort_OpenBSD::init(OSDictionary* parameters) {
+    IOLog("AirPort_OpenBSD: Init");
     
     if (!super::init(parameters)) {
-        IOLog("AirPortOpenBSD: Failed to call super::init!");
+        IOLog("AirPort_OpenBSD: Failed to call super::init!");
         return false;
     }
     
@@ -33,7 +36,7 @@ bool AirPortOpenBSD::init(OSDictionary* parameters) {
     return true;
 }
 
-IOService* AirPortOpenBSD::probe(IOService* provider, SInt32 *score)
+IOService* AirPort_OpenBSD::probe(IOService* provider, SInt32 *score)
 {
     super::probe(provider, score);
     IOPCIDevice* device = OSDynamicCast(IOPCIDevice, provider);
@@ -65,10 +68,10 @@ IOService* AirPortOpenBSD::probe(IOService* provider, SInt32 *score)
     return NULL;
 }
 
-bool AirPortOpenBSD::start(IOService* provider) {
-    IOLog("AirPortOpenBSD: Start");
+bool AirPort_OpenBSD::start(IOService* provider) {
+    IOLog("AirPort_OpenBSD: Start");
     
-    struct ieee80211com *ic;
+//    struct ieee80211com *ic;
     struct device *dev;
     IOReturn ret = false;
     
@@ -85,19 +88,19 @@ bool AirPortOpenBSD::start(IOService* provider) {
 #endif
     
     if (!super::start(provider)) {
-        IOLog("AirPortOpenBSD: Failed to call super::start!");
+        IOLog("AirPort_OpenBSD: Failed to call super::start!");
         goto fail0;
     }
     
     fPciDevice = OSDynamicCast(IOPCIDevice, provider);
     if (!fPciDevice) {
-        IOLog("AirPortOpenBSD: Failed to cast provider to IOPCIDevice!");
+        IOLog("AirPort_OpenBSD: Failed to cast provider to IOPCIDevice!");
         goto fail0;
     }
     
 //
 //    if (!fPciDevice->open(this)) {
-//        IOLog("AirPortOpenBSD: Failed to open provider.\n");
+//        IOLog("AirPort_OpenBSD: Failed to open provider.\n");
 //        return false;
 //    }
     
@@ -110,41 +113,41 @@ bool AirPortOpenBSD::start(IOService* provider) {
     
     fWorkloop = OSDynamicCast(WorkLoop, getWorkLoop());
     if (!fWorkloop) {
-        IOLog("AirPortOpenBSD: Failed to get workloop!");
+        IOLog("AirPort_OpenBSD: Failed to get workloop!");
         goto fail0;
     }
     
     fCommandGate = getCommandGate();
     if (!fCommandGate) {
-        IOLog("AirPortOpenBSD: Failed to create command gate!");
+        IOLog("AirPort_OpenBSD: Failed to create command gate!");
         goto fail1;
     }
     
     if (fWorkloop->addEventSource(fCommandGate) != kIOReturnSuccess) {
-        IOLog("AirPortOpenBSD: Failed to register command gate event source!");
+        IOLog("AirPort_OpenBSD: Failed to register command gate event source!");
         goto fail2;
     }
     
-    fWatchdogTimer = IOTimerEventSource::timerEventSource(this, OSMemberFunctionCast(IOTimerEventSource::Action, this, &AirPortOpenBSD::if_watchdog));
+    fWatchdogTimer = IOTimerEventSource::timerEventSource(this, OSMemberFunctionCast(IOTimerEventSource::Action, this, &AirPort_OpenBSD::if_watchdog));
     
     if (!fWatchdogTimer) {
-        IOLog("AirPortOpenBSD: Failed to create IOTimerEventSource.\n");
+        IOLog("AirPort_OpenBSD: Failed to create IOTimerEventSource.\n");
         goto fail3;
     }
     
     if (fWorkloop->addEventSource(fWatchdogTimer) != kIOReturnSuccess) {
-        IOLog("AirPortOpenBSD: Failed to register fWatchdogTimer event source!");
+        IOLog("AirPort_OpenBSD: Failed to register fWatchdogTimer event source!");
         goto fail4;
     }
     
-    fTimerEventSource = IOTimerEventSource::timerEventSource(this);
-    if (!fTimerEventSource) {
-        IOLog("AirPortOpenBSD: Failed to create timer event source!\n");
+    fScanSource = IOTimerEventSource::timerEventSource(this, &AirPort_OpenBSD::apple80211_scan_done);
+    if (!fScanSource) {
+        IOLog("AirPort_OpenBSD: Failed to create timer event source!\n");
         goto fail5;
     }
 
-    if (fWorkloop->addEventSource(fTimerEventSource) != kIOReturnSuccess) {
-        IOLog("AirPortOpenBSD: Failed to register fTimerEventSource event source!");
+    if (fWorkloop->addEventSource(fScanSource) != kIOReturnSuccess) {
+        IOLog("AirPort_OpenBSD: Failed to register fScanSource event source!");
         goto fail6;
     }
     
@@ -155,11 +158,9 @@ bool AirPortOpenBSD::start(IOService* provider) {
     ic = (struct ieee80211com *)((char *)if_softc + sizeof(struct device));
     
     _ifp = &ic->ic_if;
-    _ifp->fWorkloop = fWorkloop;
-    _ifp->fCommandGate = fCommandGate;
+    _fWorkloop = fWorkloop;
+    _fCommandGate = fCommandGate;
     _ifp->if_link_state = LINK_STATE_DOWN;
-    
-    this->scanResults = OSArray::withCapacity(512); // by default, but it autoexpands
     
     this->pa->dev.dev = this;
     if (this->cd) {
@@ -268,12 +269,11 @@ fail7:
         pci_intr_unmap(dev->dev->pa, &dev->ih_count);
     }
     IOFree(this->pa->pa_dmat, sizeof(bus_dma_tag_t));
-    RELEASE(this->scanResults);
     IOFree(if_softc, this->ca->ca_devsize);
     
-    fWorkloop->removeEventSource(fTimerEventSource);
+    fWorkloop->removeEventSource(fScanSource);
 fail6:
-    RELEASE(fTimerEventSource);
+    RELEASE(fScanSource);
 fail5:
     fWorkloop->removeEventSource(fWatchdogTimer);
 fail4:
@@ -289,7 +289,7 @@ fail0:
     goto done;
 }
 
-bool AirPortOpenBSD::addMediumType(UInt32 type, UInt32 speed, UInt32 code, char* name) {
+bool AirPort_OpenBSD::addMediumType(UInt32 type, UInt32 speed, UInt32 code, char* name) {
     bool ret = false;
     
     IONetworkMedium* medium = IONetworkMedium::medium(type, speed, 0, code, name);
@@ -303,8 +303,8 @@ bool AirPortOpenBSD::addMediumType(UInt32 type, UInt32 speed, UInt32 code, char*
 }
 
 
-void AirPortOpenBSD::stop(IOService* provider) {
-    IOLog("AirPortOpenBSD: stop");
+void AirPort_OpenBSD::stop(IOService* provider) {
+    IOLog("AirPort_OpenBSD: stop");
     
     RELEASE(mediumDict);
     RELEASE(firmwareData);
@@ -316,101 +316,152 @@ void AirPortOpenBSD::stop(IOService* provider) {
     super::stop(provider);
 }
 
-void AirPortOpenBSD::free() {
-    IOLog("AirPortOpenBSD: Free");
+void AirPort_OpenBSD::free() {
+    IOLog("AirPort_OpenBSD: Free");
     
     IOLockFree(fwLoadLock);
     super::free();
 }
 
-IOReturn AirPortOpenBSD::getHardwareAddress(IOEthernetAddress* addr) {
+IOReturn AirPort_OpenBSD::getHardwareAddress(IOEthernetAddress* addr) {
     struct ieee80211com *ic = (struct ieee80211com *)_ifp;
     bcopy(ic->ic_myaddr, addr->bytes, kIOEthernetAddressSize);
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD::outputStart(IONetworkInterface *interface, IOOptionBits options)
+IOReturn AirPort_OpenBSD::setHardwareAddress(const IOEthernetAddress *addrP)
 {
+    if (!_ifp->iface || !addrP)
+        return kIOReturnError;
+    struct ieee80211com *ic = (struct ieee80211com *)_ifp;
+    if_setlladdr(&ic->ic_ac.ac_if, addrP->bytes);
+    if (ic->ic_state > IEEE80211_S_INIT) {
+        this->disable(_ifp->iface);
+        this->enable(_ifp->iface);
+    }
+    return kIOReturnSuccess;
+}
+
+IOReturn AirPort_OpenBSD::getHardwareAddressForInterface(IO80211Interface *netif, IOEthernetAddress *addr)
+{
+    return getHardwareAddress(addr);
+}
+
+IOReturn AirPort_OpenBSD::outputStart(IONetworkInterface *interface, IOOptionBits options)
+{
+    IOReturn ret = kIOReturnNoResources;
     mbuf_t m;
     while ((interface->dequeueOutputPackets(1, &m, NULL, NULL, NULL) == kIOReturnSuccess)) {
-        IOReturn ret = this->outputPacket(m, NULL);
+        ret = this->outputPacket(m, NULL);
         if (ret != kIOReturnSuccess) {
-            _ifp->if_oerrors++;
             return ret;
         }
     }
 
-    return kIOReturnNoResources;
+    return ret;
 }
 
-UInt32 AirPortOpenBSD::outputPacket(mbuf_t m, void* param) {
+UInt32 AirPort_OpenBSD::outputPacket(mbuf_t m, void* param) {
     
     int error;
+    struct ifnet *ifp = &this->ic->ic_if;
+    
+    if (ic->ic_state != IEEE80211_S_RUN) {
+        if (m && mbuf_type(m) != MBUF_TYPE_FREE) {
+            ifp->if_oerrors++;
+            freePacket(m);
+        }
+        return kIOReturnOutputDropped;
+    }
     
     if (m == NULL) {
+        ifp->if_oerrors++;
         return kIOReturnOutputDropped;
     }
     if (!(mbuf_flags(m) & MBUF_PKTHDR) ){
         mbuf_freem(m);
+        ifp->if_oerrors++;
         return kIOReturnOutputDropped;
     }
     if (mbuf_type(m) == MBUF_TYPE_FREE) {
+        ifp->if_oerrors++;
         return kIOReturnOutputDropped;
     }
     
-    IFQ_ENQUEUE(&_ifp->if_snd, m, error);
+    IFQ_ENQUEUE(&ifp->if_snd, m, error);
     if (error) {
+        ifp->if_oerrors++;
         return kIOReturnOutputDropped;
     }
     
-    if_start(_ifp);
+    if_start(ifp);
+    
+    ifp->if_opackets++;
     
     return kIOReturnSuccess;
 }
 
-int AirPortOpenBSD::enqueueInputPacket2(mbuf_t m)
+IO80211VirtualInterface *AirPort_OpenBSD::createVirtualInterface(ether_addr *ether, UInt role)
 {
-    if (!(mbuf_flags(m) & MBUF_PKTHDR) ){
-        mbuf_freem(m);
-        return kIOReturnError;
+    if (role - 1 > 3) {
+        return super::createVirtualInterface(ether, role);
     }
-    
-    return _ifp->iface->enqueueInputPacket(m, 0, IONetworkInterface::kInputOptionQueuePacket);
+    IO80211VirtualInterface *inf = new IO80211VirtualInterface;
+    if (inf) {
+        if (inf->init(this, ether, role, role == APPLE80211_VIF_AWDL ? "awdl" : "p2p")) {
+            IOLog("%s role=%d succeed\n", __FUNCTION__, role);
+        } else {
+            inf->release();
+            return NULL;
+        }
+    }
+    return inf;
 }
 
-void AirPortOpenBSD::flushInputQueue2()
+SInt32 AirPort_OpenBSD::enableVirtualInterface(IO80211VirtualInterface *interface)
 {
-    _ifp->iface->flushInputQueue();
+    IOLog("%s interface=%s role=%d\n", __FUNCTION__, interface->getBSDName(), interface->getInterfaceRole());
+    SInt32 ret = super::enableVirtualInterface(interface);
+    if (!ret) {
+#if MAC_TARGET >= __MAC_13_0
+        interface->setEnabledBySystem(true);
+#endif
+        interface->setLinkState(kIO80211NetworkLinkUp, 0);
+        interface->postMessage(APPLE80211_M_LINK_CHANGED);
+        return kIOReturnSuccess;
+    }
+    return ret;
 }
 
-#define APPLE_POWER_COUNT 2
-
-/* Power Management Support */
-static IOPMPowerState powerStateArray[APPLE_POWER_COUNT] =
+SInt32 AirPort_OpenBSD::disableVirtualInterface(IO80211VirtualInterface *interface)
 {
-    {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-    {1, kIOPMDeviceUsable, kIOPMPowerOn, kIOPMPowerOn, 0, 0, 0, 0, 0, 0, 0, 0}
-};
-
-
-// Power Management
-IOReturn AirPortOpenBSD::registerWithPolicyMaker(IOService* policyMaker)
-{
-    return policyMaker->registerPowerDriver(this, powerStateArray, APPLE_POWER_COUNT);
+    IOLog("%s interface=%s role=%d\n", __FUNCTION__, interface->getBSDName(), interface->getInterfaceRole());
+    SInt32 ret = super::disableVirtualInterface(interface);
+    if (!ret) {
+        interface->setLinkState(kIO80211NetworkLinkDown, 0);
+        interface->postMessage(APPLE80211_M_LINK_CHANGED);
+        return kIOReturnSuccess;
+    }
+    return ret;
 }
 
-IOReturn AirPortOpenBSD::setPowerState(unsigned long powerStateOrdinal, IOService *policyMaker)
+IONetworkInterface *AirPort_OpenBSD::createInterface()
 {
-    IOReturn result = IOPMAckImplied;
-    
-    this->fCommandGate->runAction(setPowerStateAction, &powerStateOrdinal);
-
-done:
-    return result;
+    AirPort_OpenBSD_Interface *netif = new AirPort_OpenBSD_Interface;
+//    IOInterface *netif = new IOInterface;
+    if (!netif) {
+        return NULL;
+    }
+    if (!netif->init(this)) {
+        netif->release();
+        return NULL;
+    }
+    return netif;
 }
 
-bool AirPortOpenBSD::configureInterface(IONetworkInterface * netif)
+bool AirPort_OpenBSD::configureInterface(IONetworkInterface * netif)
  {
+     struct ifnet *ifp = &this->ic->ic_if;
      IONetworkData *data;
      if (super::configureInterface(netif) == false)
          return false;
@@ -420,22 +471,21 @@ bool AirPortOpenBSD::configureInterface(IONetworkInterface * netif)
      if (!data || !(netStats = (IONetworkStats *)data->getBuffer())) {
          return false;
      }
-     netStats->collisions = 0;
-     _ifp->netStat = netStats;
-
      // Get the Ethernet statistics structure.
      data = netif->getParameter(kIOEthernetStatsKey);
      if (!data || !(etherStats = (IOEthernetStats *)data->getBuffer())) {
          return false;
      }
      
+     netStats->collisions = 0;
+     ifp->netStat = netStats;
+    
      netif->configureOutputPullModel(IFQ_MAXLEN, kIONetworkWorkLoopSynchronous);
-//     netif->configureInputPacketPolling(IFQ_MAXLEN, kIONetworkWorkLoopSynchronous);
-       
+     
      return true;
 }
 
-IOReturn AirPortOpenBSD::enable(IONetworkInterface *netif) {
+IOReturn AirPort_OpenBSD::enable(IONetworkInterface *netif) {
     IOReturn result = kIOReturnError;
     
     kprintf("enable() ===>\n");
@@ -455,7 +505,7 @@ done:
     return result;
 }
 
-IOReturn AirPortOpenBSD::disable(IONetworkInterface *netif) {
+IOReturn AirPort_OpenBSD::disable(IONetworkInterface *netif) {
     IOReturn result = kIOReturnSuccess;
     
     kprintf("disable() ===>\n");
@@ -464,133 +514,70 @@ IOReturn AirPortOpenBSD::disable(IONetworkInterface *netif) {
     return result;
 }
 
-IOReturn AirPortOpenBSD::getMaxPacketSize( UInt32* maxSize ) const {
+IOReturn AirPort_OpenBSD::getMaxPacketSize( UInt32* maxSize ) const {
     return super::getMaxPacketSize(maxSize);
 }
 
-IOReturn AirPortOpenBSD::setPromiscuousMode(IOEnetPromiscuousMode mode) {
+IOReturn AirPort_OpenBSD::setPromiscuousMode(IOEnetPromiscuousMode mode) {
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD::setMulticastMode(IOEnetMulticastMode mode) {
+IOReturn AirPort_OpenBSD::setMulticastMode(IOEnetMulticastMode mode) {
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD::setMulticastList(IOEthernetAddress* addr, UInt32 len) {
+IOReturn AirPort_OpenBSD::setMulticastList(IOEthernetAddress* addr, UInt32 len) {
     return kIOReturnSuccess;
 }
 
-const OSString* AirPortOpenBSD::newVendorString() const {
+const OSString* AirPort_OpenBSD::newVendorString() const {
     return OSString::withCString("Apple");
 }
 
-const OSString* AirPortOpenBSD::newModelString() const {
+const OSString* AirPort_OpenBSD::newModelString() const {
     return OSString::withCString(_ifp->fwname);
 }
 
-
-
-
-
-IOReturn AirPortOpenBSD::setPowerStateAction(OSObject *owner, void *arg1, void *arg2, void *arg3, void *arg4)
-{
-    AirPortOpenBSD* dev = OSDynamicCast(AirPortOpenBSD, owner);
-    if (dev == NULL)
-        return kIOReturnError;
-    unsigned long *powerStateOrdinal = (unsigned long *)arg1;
-    
-    dev->changePowerState(_ifp->iface, *powerStateOrdinal);
-    return kIOReturnSuccess;
+UInt32 AirPort_OpenBSD::getFeatures() const {
+    return 0x8;
 }
 
-IOReturn AirPortOpenBSD::changePowerState(IOInterface *interface, int powerStateOrdinal)
+
+void
+AirPort_OpenBSD::ether_ifattach(struct ifnet *ifp)
 {
-    IOReturn ret = kIOReturnSuccess;
-    
-    if (powerState == powerStateOrdinal) {
-        return ret;
+    if (ifp->iface != NULL) {
+        return;
     }
     
-    struct ieee80211com *ic = (struct ieee80211com *)_ifp;
+    this->setName(ifp->if_xname);
     
-    powerState = powerStateOrdinal;
+    if (!attachInterface((IONetworkInterface**)&ifp->iface, true)) {
+        panic("AirPort_OpenBSD: Failed to attach interface!");
+    }
     
-    switch (powerStateOrdinal) {
-        case APPLE_POWER_ON:
-            DPRINTF(("Setting power on\n"));
-            
-            if (this->firstUp) {
-                this->firstUp = false;
-                
-                const char *configArr[] = {"up", "debug"};
-                ifconfig(configArr, nitems(configArr));
-            }else {
-                this->ca->ca_activate((struct device *)if_softc, DVACT_WAKEUP);
-            }
-            
-            this->fWatchdogTimer->cancelTimeout();
-            this->fWatchdogTimer->setTimeoutMS(kTimeoutMS);
-
-#ifdef Ethernet
-            this->fTimerEventSource->setAction(&AirPortOpenBSD::autoASSOC);
-            this->fTimerEventSource->setTimeoutUS(1);
-#endif
-            
-            ret =  kIOReturnSuccess;
-            break;
-        case APPLE_POWER_OFF:
-            DPRINTF(("Setting power off\n"));
-            this->fWatchdogTimer->cancelTimeout();
-            
-            this->configArr[0] = "-nwid";
-            this->configArr[1] = (const char *)this->assoc_data.ad_ssid;
-            this->configArrCount = 2;
-            ifconfig(this->configArr, this->configArrCount);
-            
-            this->ca->ca_activate((struct device *)if_softc, DVACT_QUIESCE);
-            this->scanFreeResults();
-            
-            ieee80211_free_allnodes(ic, 1);
-            
-            ret = kIOReturnSuccess;
-            break;
-        default:
-            ret = kIOReturnError;
-            break;
-    };
-    
-    return ret;
 }
 
 void
-AirPortOpenBSD::ether_ifattach()
+AirPort_OpenBSD::ether_ifdetach(struct ifnet *ifp)
 {
-    if (_ifp->iface != NULL) {
+    if (ifp->iface == NULL) {
         return;
     }
-    if (!attachInterface((IONetworkInterface**)&_ifp->iface, true)) {
-        panic("AirPortOpenBSD: Failed to attach interface!");
-    }
+    detachInterface((IONetworkInterface*)ifp->iface, true);
+    ifp->iface = NULL;
 }
 
-void
-AirPortOpenBSD::ether_ifdetach()
+void AirPort_OpenBSD::setLinkState(int linkState)
 {
-    if (_ifp->iface == NULL) {
-        return;
-    }
-    detachInterface((IONetworkInterface*)_ifp->iface, true);
-    _ifp->iface = NULL;
-}
-
-void AirPortOpenBSD::setLinkState(int linkState)
-{
-    DebugLog("---%s: line = %d ifp->if_link_state = %d", __FUNCTION__, __LINE__, linkState);
+    DebugLog("ifp->if_link_state = %d", linkState);
     int reason = 0;
     if (linkState == LINK_STATE_UP) {
         setLinkStatus(kIONetworkLinkValid | kIONetworkLinkActive, this->getCurrentMedium());
         _ifp->iface->startOutputThread();
     }else {
+        this->scanFreeResults();
+        
         setLinkStatus(kIONetworkLinkValid);
         _ifp->iface->stopOutputThread();
         _ifp->iface->flushOutputQueue();
@@ -598,15 +585,15 @@ void AirPortOpenBSD::setLinkState(int linkState)
     }
     
 #ifndef Ethernet
-    _ifp->iface->setLinkState((IO80211LinkState)linkState, reason);
+    getNetworkInterface()->setLinkState((IO80211LinkState)linkState, reason);
     _ifp->iface->setLinkQualityMetric(100);
-    _ifp->iface->postMessage(APPLE80211_M_LINK_CHANGED);
+//    _ifp->iface->postMessage(APPLE80211_M_LINK_CHANGED);
 #endif
     
 }
 
-IOReturn AirPortOpenBSD::tsleepHandler(OSObject* owner, void* arg0 = 0, void* arg1 = 0, void* arg2 = 0, void* arg3 = 0) {
-    AirPortOpenBSD* dev = OSDynamicCast(AirPortOpenBSD, owner);
+IOReturn AirPort_OpenBSD::tsleepHandler(OSObject* owner, void* arg0 = 0, void* arg1 = 0, void* arg2 = 0, void* arg3 = 0) {
+    AirPort_OpenBSD* dev = OSDynamicCast(AirPort_OpenBSD, owner);
     if (dev == NULL)
         return kIOReturnError;
     
@@ -626,7 +613,7 @@ IOReturn AirPortOpenBSD::tsleepHandler(OSObject* owner, void* arg0 = 0, void* ar
     }
 }
 
-void AirPortOpenBSD::if_watchdog(IOTimerEventSource *timer)
+void AirPort_OpenBSD::if_watchdog(IOTimerEventSource *timer)
 {
     if (_ifp->if_watchdog) {
         if (_ifp->if_timer > 0 && --_ifp->if_timer == 0)

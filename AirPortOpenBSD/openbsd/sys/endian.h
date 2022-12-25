@@ -10,5 +10,6 @@
 #define endian_h
 
 #include <machine/bus.h>
+#include <compat.h>
 
 #endif /* endian_h */

@@ -87,11 +87,8 @@ void printb(char *, unsigned int, unsigned char *);
 
 // -----------------------------
 
-static int ioctl(int sock, u_long type, void *add)
-{
-    return _ifp->if_ioctl(_ifp, type, (caddr_t)add);
-}
-
+int ioctl(int sock, u_long type, void *add);
+int ifnet_sock(char* xname);
 
 static char *
 strdup(const char *s)

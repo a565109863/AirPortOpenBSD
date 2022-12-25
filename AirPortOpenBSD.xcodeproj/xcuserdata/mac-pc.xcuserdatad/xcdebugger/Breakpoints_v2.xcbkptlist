@@ -7,17 +7,17 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E4CA78A3-F3F6-4426-B27A-DF13EB88C8BD"
+            uuid = "FF7AAF63-86D2-4910-89BE-7193F9018A22"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AirPortOpenBSD/openbsd/lib/ifconfig.c"
+            filePath = "AirPortOpenBSD/AirPortOpenBSD_IOCTL.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "AirPortOpenBSD::setPTK(key, key_len)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

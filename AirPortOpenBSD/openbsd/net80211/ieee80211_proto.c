@@ -1248,6 +1248,10 @@ justcleanup:
                 ic->ic_state = ostate;    /* stay RUN */
                 break;
             case IEEE80211_FC0_SUBTYPE_DEAUTH:
+                if (((struct device *)ifp->if_softc)->dev->useAppleRSNSupplicant(ifp->iface)) {
+                    post_message(ifp, APPLE80211_M_DEAUTH_RECEIVED);
+                }
+                
                 /* try to reauth */
                 IEEE80211_SEND_MGMT(ic, ni,
                     IEEE80211_FC0_SUBTYPE_AUTH, 1);
@@ -1324,6 +1328,18 @@ justcleanup:
                     (ni->ni_flags & IEEE80211_NODE_VHT) ?
                     " VHT enabled" : "");
             }
+            
+            if (((struct device *)ifp->if_softc)->dev->useAppleRSNSupplicant(ifp->iface)) {
+                if (mgt == IEEE80211_FC0_SUBTYPE_ASSOC_RESP) {
+                    post_message(ifp, APPLE80211_M_ASSOC_DONE);
+                }
+                /*
+                 * NB: When RSN is enabled, we defer setting
+                 * the link up until the port is valid.
+                 */
+                ieee80211_set_link_state(ic, LINK_STATE_UP);
+                ni->ni_assoc_fail = 0;
+            } else
             if (!(ic->ic_flags & IEEE80211_F_RSNON)) {
                 /*
                  * NB: When RSN is enabled, we defer setting

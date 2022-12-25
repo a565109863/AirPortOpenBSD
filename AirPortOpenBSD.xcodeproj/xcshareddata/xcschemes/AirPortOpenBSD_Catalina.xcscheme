@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "18713D0D255F166400EF3D49"
+               BlueprintIdentifier = "18713CBD255F155700EF3D49"
                BuildableName = "AirPortOpenBSD.kext"
-               BlueprintName = "AirPortOpenBSD_Ethernet"
+               BlueprintName = "AirPortOpenBSD_Catalina"
                ReferencedContainer = "container:AirPortOpenBSD.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -50,9 +50,9 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "18713D0D255F166400EF3D49"
+            BlueprintIdentifier = "18713CBD255F155700EF3D49"
             BuildableName = "AirPortOpenBSD.kext"
-            BlueprintName = "AirPortOpenBSD_Ethernet"
+            BlueprintName = "AirPortOpenBSD_Catalina"
             ReferencedContainer = "container:AirPortOpenBSD.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

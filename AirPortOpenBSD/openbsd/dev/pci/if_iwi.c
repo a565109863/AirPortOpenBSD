@@ -1389,6 +1389,7 @@ iwi_start(struct ifnet *ifp)
     mbuf_t m0;
     struct ieee80211_node *ni;
 
+    if (!((struct device *)ifp->if_softc)->dev->useAppleRSNSupplicant(ifp->iface))
     if (ic->ic_state != IEEE80211_S_RUN)
         return;
 

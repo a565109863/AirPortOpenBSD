@@ -7,7 +7,7 @@
 //
 
 #include "bus.h"
-#include "AirPortOpenBSD.hpp"
+#include "AirPort_OpenBSD.hpp"
 
 int bus_dmamap_create(bus_dma_tag_t t, bus_size_t size, int nsegments, bus_size_t maxsegsz, bus_size_t boundary, int flags, bus_dmamap_t *map)
 {

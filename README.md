@@ -13,6 +13,7 @@ iwm、iwx、iwn、ipw、iwi、wpi、bwfm、bwi、rtwn。
 
 其中iwm、iwx已通过测试，其他驱动有待验证。
 
+- [https://gitee.com/AirPortOpenBSD](https://gitee.com/a565109863/AirPortOpenBSD)
 
 ## 参考
 

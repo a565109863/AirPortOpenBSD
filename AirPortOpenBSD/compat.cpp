@@ -20,7 +20,7 @@ void interrupt_func(OSObject *ih, IOInterruptEventSource *src, int count)
 
 int tsleep_nsec(void *ident, int priority, const char *wmesg, int timo)
 {
-    if (_ifp->fCommandGate == NULL) {
+    if (_fCommandGate == NULL) {
         // no command gate so we just sleep
         IOSleep(timo / 1000000000ULL);
         return 1;
@@ -28,9 +28,9 @@ int tsleep_nsec(void *ident, int priority, const char *wmesg, int timo)
     
     IOReturn ret;
     if (timo == 0) {
-        ret = _ifp->fCommandGate->runAction(AirPortOpenBSD::tsleepHandler, ident);
+        ret = _fCommandGate->runAction(AirPort_OpenBSD::tsleepHandler, ident);
     } else {
-        ret = _ifp->fCommandGate->runAction(AirPortOpenBSD::tsleepHandler, ident, &timo);
+        ret = _fCommandGate->runAction(AirPort_OpenBSD::tsleepHandler, ident, &timo);
     }
     
     if (ret == kIOReturnSuccess)
@@ -41,10 +41,10 @@ int tsleep_nsec(void *ident, int priority, const char *wmesg, int timo)
 
 void wakeup_sleep(void *ident, bool one)
 {
-    if (_ifp->fCommandGate == NULL)
+    if (_fCommandGate == NULL)
         return;
     else
-        _ifp->fCommandGate->commandWakeup(ident, one);
+        _fCommandGate->commandWakeup(ident, one);
 }
 
 int ticks = INT_MAX - (15 * 60 * 1000);
@@ -57,6 +57,24 @@ int loadfirmware(const char *name, u_char **bufp, size_t *buflen)
     struct device *dev = (struct device *)_ifp->if_softc;
     return dev->dev->loadfirmware(name, bufp, buflen);
 }
+
+TAILQ_HEAD(,ifnet) ifnet_list = TAILQ_HEAD_INITIALIZER(ifnet_list);
+
+void if_attach(struct ifnet *ifp)
+{
+    mq_init(&ifp->if_snd, IFQ_MAXLEN, IPL_NET);
+    
+    if (ifp->if_enqueue == NULL)
+        ifp->if_enqueue = if_enqueue_ifq;
+    
+    TAILQ_INSERT_TAIL(&ifnet_list, ifp, if_list);
+}
+
+void if_detach(struct ifnet *ifp)
+{
+    
+}
+
 
 void if_link_state_change(struct ifnet * ifp)
 {
@@ -75,14 +93,60 @@ void if_input(struct ifnet* ifp, struct mbuf_list *ml)
     dev->dev->if_input(ifp, ml);
 }
 
+void post_message(struct ifnet *ifp, int msgCode)
+{
+    ifp->iface->postMessage(msgCode);
+}
+
 void ether_ifattach(struct ifnet *ifp)
 {
     struct device *dev = (struct device *)ifp->if_softc;
-    dev->dev->ether_ifattach();
+    dev->dev->ether_ifattach(ifp);
 }
 
 void ether_ifdetach(struct ifnet *ifp)
 {
     struct device *dev = (struct device *)ifp->if_softc;
-    dev->dev->ether_ifdetach();
+    dev->dev->ether_ifdetach(ifp);
+}
+
+struct ifnet *if_get(const char* if_xname)
+{
+    struct ifnet *ifp, *tmp;
+    TAILQ_FOREACH_SAFE(ifp, &ifnet_list, if_list, tmp) {
+//        if (ifp->if_index == sock) {
+        if (strcmp(ifp->if_xname, if_xname) == 0) {
+            return ifp;
+        }
+    }
+    
+    return NULL;
+}
+
+int ioctl(int sock, u_long type, void *add)
+{
+    int ret = 0;
+    
+    struct ifnet *ifp = if_get(ifname);
+    if (ifp == NULL) {
+        return 0;
+    }
+    
+    ret = ifp->if_ioctl(ifp, type, (caddr_t)add);
+    
+    return ret;
+}
+
+int ifnet_sock(char* xname)
+{
+    int sock = -1;
+    struct ifnet *ifp, *tmp;
+    TAILQ_FOREACH_SAFE(ifp, &ifnet_list, if_list, tmp) {
+        if (strcmp(ifp->if_xname, xname) == 0) {
+            sock = ifp->if_index;
+            break;
+        }
+    }
+    
+    return sock;
 }
