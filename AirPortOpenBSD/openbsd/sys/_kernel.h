@@ -60,7 +60,7 @@ extern int debug_log;
             kprintf("tid = %llu, %s: line = %d %s", new_thread_id, __FUNCTION__, __LINE__, argsStr); \
             if (_ifp->if_softc != NULL) { \
                 char *logStr = (char*)IOMalloc(2048); \
-                snprintf(logStr, 2048, "%s: line = %d tid = %llu %s", __FUNCTION__, __LINE__, new_thread_id, argsStr); \
+                snprintf(logStr, 2048, "%s: line = %d tid = %llu sysuptime = %llu %s", __FUNCTION__, __LINE__, new_thread_id, sysuptime(), argsStr); \
                 OSString *log = OSString::withCString(logStr); \
                 char logKey[256]; \
                 snprintf(logKey, sizeof(logKey), "DebugLog_%06d", logStr_i++); \

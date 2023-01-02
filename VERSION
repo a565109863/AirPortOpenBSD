@@ -2,7 +2,7 @@
 feature
 1、增加开机参数：debug，非0打印日志，默认不打印日志
 2、增加开机参数：AirPortOpenBSD，非0启用wifi，默认启用wifi
-3、增加开机参数：scanmultiple，非0启用批量扫描，默认停用批量扫描
+3、增加开机参数：scanmultiple，非0启用批量扫描，默认启用批量扫描
 4、代码优化
 
 

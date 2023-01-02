@@ -26,7 +26,6 @@
 //    return kIOReturnError;
 //}
 //
-//
 ////
 //// MARK: 85 - IE
 ////
@@ -48,6 +47,26 @@
 //    return kIOReturnSuccess;
 //}
 //
+////
+//// MARK: 87 - BTCOEX_MODE
+////
+//
+//IOReturn AirPort_OpenBSD::getBTCOEX_MODE(OSObject *object, struct apple80211_btc_mode_data *data)
+//{
+//    if (!data)
+//        return kIOReturnError;
+//    data->version = APPLE80211_VERSION;
+//    data->btc_mode = btcMode;
+//    return kIOReturnSuccess;
+//}
+//
+//IOReturn AirPort_OpenBSD::setBTCOEX_MODE(OSObject *object, struct apple80211_btc_mode_data *data)
+//{
+//    if (!data)
+//        return kIOReturnError;
+//    btcMode = data->btc_mode;
+//    return kIOReturnSuccess;
+//}
 //
 ////
 //// MARK: 93 - P2P_SCAN
@@ -60,7 +79,6 @@
 //    return kIOReturnSuccess;
 //}
 //
-//
 ////
 //// MARK: 92 - P2P_LISTEN
 ////
@@ -72,7 +90,6 @@
 //    return kIOReturnSuccess;
 //}
 //
-//
 ////
 //// MARK: 98 - P2P_GO_CONF
 ////
@@ -81,5 +98,98 @@
 //{
 //    DebugLog("%s %s auth_upper=%d auth_lower=%d channel=%d bcn_len=%d ssid=%s suppress_beacon=%d\n", __FUNCTION__, INTERFACE_NAME(object), data->auth_upper, data->auth_lower, data->channel, data->bcn_len, data->ssid, data->suppress_beacon);
 //
+//    return kIOReturnSuccess;
+//}
+//
+//
+//
+//// MARK: 216 - ROAM_PROFILE
+////
+//
+//IOReturn AirPort_OpenBSD::getROAM_PROFILE(OSObject *object, struct apple80211_roam_profile_band_data *data)
+//{
+//    if (roamProfile == NULL) {
+//        DebugLog("no roam profile, return error\n");
+//        return kIOReturnError;
+//    }
+//    memcpy(data, roamProfile, sizeof(struct apple80211_roam_profile_band_data));
+//    return kIOReturnSuccess;
+//}
+//
+//IOReturn AirPort_OpenBSD::setROAM_PROFILE(OSObject *object, struct apple80211_roam_profile_band_data *data)
+//{
+//    DebugLog("cnt=%d flags=%d\n", data->profile_cnt, data->flags);
+//
+//    if (roamProfile != NULL) {
+//        IOFree(roamProfile, sizeof(struct apple80211_roam_profile_band_data));
+//    }
+//    roamProfile = (uint8_t *)IOMalloc(sizeof(struct apple80211_roam_profile_band_data));
+//    memcpy(roamProfile, data, sizeof(struct apple80211_roam_profile_band_data));
+//    return kIOReturnSuccess;
+//}
+//
+////
+//// MARK: 221 - BTCOEX_PROFILES
+////
+//
+//IOReturn AirPort_OpenBSD::getBTCOEX_PROFILES(OSObject *object, struct apple80211_btc_profiles_data *data)
+//{
+//    if (!data || !btcProfile)
+//        return kIOReturnError;
+//    memcpy(data, btcProfile, sizeof(struct apple80211_btc_profiles_data));
+//    return kIOReturnSuccess;
+//}
+//
+//IOReturn AirPort_OpenBSD::setBTCOEX_PROFILES(OSObject *object, struct apple80211_btc_profiles_data *data)
+//{
+//    if (!data)
+//        return kIOReturnError;
+//    if (btcProfile)
+//        IOFree(btcProfile, sizeof(struct apple80211_btc_profiles_data));
+//    btcProfile = (struct apple80211_btc_profiles_data *)IOMalloc(sizeof(struct apple80211_btc_profiles_data));
+//    memcpy(btcProfile, data, sizeof(struct apple80211_btc_profiles_data));
+//    return kIOReturnSuccess;
+//}
+//
+////
+//// MARK: 222 - BTCOEX_CONFIG
+////
+//
+//IOReturn AirPort_OpenBSD::getBTCOEX_CONFIG(OSObject *object, struct apple80211_btc_config_data *data)
+//{
+//    if (!data)
+//        return kIOReturnError;
+//    memcpy(data, &btcConfig, sizeof(struct apple80211_btc_config_data));
+//    return kIOReturnSuccess;
+//}
+//
+//IOReturn AirPort_OpenBSD::setBTCOEX_CONFIG(OSObject *object, struct apple80211_btc_config_data *data)
+//{
+//    if (!data)
+//        return kIOReturnError;
+//    memcpy(&btcConfig, data, sizeof(struct apple80211_btc_config_data));
+//    return kIOReturnSuccess;
+//}
+//
+////
+//// MARK: 235 - BTCOEX_OPTIONS
+////
+//
+//IOReturn AirPort_OpenBSD::
+//getBTCOEX_OPTIONS(OSObject *object, struct apple80211_btc_options_data *data)
+//{
+//    if (!data)
+//        return kIOReturnError;
+//    data->version = APPLE80211_VERSION;
+//    data->btc_options = btcOptions;
+//    return kIOReturnSuccess;
+//}
+//
+//IOReturn AirPort_OpenBSD::
+//setBTCOEX_OPTIONS(OSObject *object, struct apple80211_btc_options_data *data)
+//{
+//    if (!data)
+//        return kIOReturnError;
+//    btcOptions = data->btc_options;
 //    return kIOReturnSuccess;
 //}

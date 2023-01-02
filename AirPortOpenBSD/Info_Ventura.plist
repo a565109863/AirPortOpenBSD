@@ -32,6 +32,8 @@
 			<string>0x00008086&amp;0x0000ffff</string>
 			<key>IOProviderClass</key>
 			<string>IOPCIDevice</string>
+			<key>IOProbeScore</key>
+			<integer>1400</integer>
 		</dict>
 	</dict>
 	<key>NSHumanReadableCopyright</key>
@@ -41,17 +43,17 @@
 		<key>com.apple.iokit.IO80211FamilyLegacy</key>
 		<string>600.0</string>
 		<key>com.apple.iokit.IONetworkingFamily</key>
-		<string>3.2</string>
+		<string>3.1</string>
 		<key>com.apple.iokit.IOPCIFamily</key>
-		<string>2.9</string>
+		<string>2.8</string>
 		<key>com.apple.kpi.bsd</key>
-		<string>16.7</string>
+		<string>13.0.0</string>
 		<key>com.apple.kpi.iokit</key>
-		<string>16.7</string>
+		<string>13.0.0</string>
 		<key>com.apple.kpi.libkern</key>
-		<string>16.7</string>
+		<string>13.0.0</string>
 		<key>com.apple.kpi.mach</key>
-		<string>16.7</string>
+		<string>13.0.0</string>
 	</dict>
 	<key>OSBundleRequired</key>
 	<string>Network-Root</string>

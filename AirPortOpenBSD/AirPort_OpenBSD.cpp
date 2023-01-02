@@ -4,7 +4,6 @@
 
 OSDefineMetaClassAndStructors(AirPort_OpenBSD, IOController);
 OSDefineMetaClassAndStructors(IOTimeout, OSObject);
-#define super IOController
 
 struct ifnet *_ifp;
 IOWorkLoop *_fWorkloop;
@@ -145,7 +144,7 @@ bool AirPort_OpenBSD::start(IOService* provider) {
     
      // 是否开启批量扫描
     if (PE_parse_boot_argn("scanmultiple", &this->scanReqMultiple, sizeof(this->scanReqMultiple)) == false) {
-        this->scanReqMultiple = 0;
+        this->scanReqMultiple = 1;
     }
     
     if_softc = malloc(this->ca->ca_devsize, M_DEVBUF, M_NOWAIT);

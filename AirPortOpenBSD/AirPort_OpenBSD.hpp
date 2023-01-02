@@ -36,6 +36,7 @@ typedef enum {
 extern int _stop(struct kmod_info*, void*);
 extern int _start(struct kmod_info*, void*);
 
+#define super IOController
 #define kTimeoutMS 1000
 #define RELEASE(x) if(x){(x)->release();(x)=NULL;}
 
@@ -83,7 +84,7 @@ public:
     // IO80211
     virtual IOReturn getHardwareAddressForInterface(IO80211Interface* netif,
                                             IOEthernetAddress* addr) APPLE_KEXT_OVERRIDE;
-//    virtual SInt32 monitorModeSetEnabled(IO80211Interface* interface, bool enabled, UInt32 dlt) APPLE_KEXT_OVERRIDE;
+    virtual SInt32 monitorModeSetEnabled(IO80211Interface* interface, bool enabled, UInt32 dlt) APPLE_KEXT_OVERRIDE;
     IOReturn postMessage(unsigned int, void* data = NULL, unsigned long dataLen = 0) ;
     IOReturn apple80211Request(UInt32 request_type, int request_number, IOInterface* interface, void* data) APPLE_KEXT_OVERRIDE;
     int bpfOutputPacket(OSObject *object,UInt,mbuf_t m) APPLE_KEXT_OVERRIDE;
@@ -356,7 +357,7 @@ public:
     struct apple80211_scan_result_list *scan_result_next;
     uint32_t scanResultsCount = 0;
     
-    int scanReqMultiple = 0;
+    int scanReqMultiple = 1;
     
     // ASSOC
     void setPTK(const u_int8_t *key, size_t key_len);

@@ -8,10 +8,6 @@
 
 #include "AirPort_OpenBSD.hpp"
 
-#include <crypto/sha1.h>
-#include <net80211/ieee80211_priv.h>
-#include <net80211/ieee80211_var.h>
-
 //
 // MARK: 1 - SSID
 //
@@ -194,7 +190,6 @@ IOReturn AirPort_OpenBSD::setPOWERSAVE(OSObject *object, struct apple80211_power
     return kIOReturnSuccess;
 }
 
-
 //
 // MARK: 6 - PROTMODE
 //
@@ -209,7 +204,6 @@ IOReturn AirPort_OpenBSD::getPROTMODE(OSObject *object, struct apple80211_protmo
     pd->threshold = ic->ic_rtsthreshold;
     return kIOReturnSuccess;
 }
-
 
 //
 // MARK: 7 - TXPOWER
@@ -331,13 +325,13 @@ IOReturn AirPort_OpenBSD::setSCAN_REQ(OSObject *object, struct apple80211_scan_d
           sd->ssid_len,
           sd->scan_flags,
           sizeof(*sd));
-
-    for (int i = 0; i < sd->num_channels; i++) {
-        DebugLog("i = %d channel = %d", i, sd->channels[i].channel);
-    }
     
     if (this->scanComplete() != kIOReturnSuccess) {
         return 0x16;
+    }
+    
+    for (int i = 0; i < sd->num_channels; i++) {
+        DebugLog("i = %d channel = %d", i, sd->channels[i].channel);
     }
     
     if (this->fScanSource) {
@@ -373,16 +367,16 @@ IOReturn AirPort_OpenBSD::setSCAN_REQ_MULTIPLE(OSObject *object, struct apple802
           smd->rest_time,
           smd->num_channels);
     
+    if (this->scanComplete() != kIOReturnSuccess) {
+        return 0x16;
+    }
+    
     for (int i = 0; i < smd->ssid_count; i++) {
         DebugLog("i = %d ssid = %s ssid_len = %d", i, smd->ssids[i].ssid, smd->ssids[i].ssid_len);
     }
     
     for (int i = 0; i < smd->num_channels; i++) {
         DebugLog("i = %d channel = %d", i, smd->channels[i].channel);
-    }
-    
-    if (this->scanComplete() != kIOReturnSuccess) {
-        return 0x16;
     }
     
     if (this->fScanSource) {
@@ -755,7 +749,6 @@ IOReturn AirPort_OpenBSD::getINT_MIT(OSObject *object, struct apple80211_intmit_
     return kIOReturnSuccess;
 }
 
-
 //
 // MARK: 19 - POWER
 //
@@ -1126,7 +1119,6 @@ IOReturn AirPort_OpenBSD::setTX_ANTENNA(OSObject *object, apple80211_antenna_dat
     return kIOReturnSuccess;
 }
 
-
 //
 // MARK: 39 - ANTENNA_DIVERSITY
 //
@@ -1268,7 +1260,6 @@ IOReturn AirPort_OpenBSD::getSTATS(OSObject *object, struct apple80211_stats_dat
     return kIOReturnSuccess;
 }
 
-
 //
 // MARK: 50 - ASSOCIATION_STATUS
 //
@@ -1375,7 +1366,6 @@ IOReturn AirPort_OpenBSD::getMCS_INDEX_SET(OSObject *object, struct apple80211_m
     return kIOReturnSuccess;
 }
 
-
 //
 // MARK: 80 - ROAM_THRESH
 //
@@ -1388,28 +1378,6 @@ IOReturn AirPort_OpenBSD::getROAM_THRESH(OSObject *object, struct apple80211_roa
     rtd->count = 0;
     return kIOReturnSuccess;
 }
-
-////
-//// MARK: 87 - BTCOEX_MODE
-////
-//
-//IOReturn AirPort_OpenBSD::getBTCOEX_MODE(OSObject *object, struct apple80211_btc_mode_data *data)
-//{
-//    if (!data)
-//        return kIOReturnError;
-//    data->version = APPLE80211_VERSION;
-//    data->btc_mode = btcMode;
-//    return kIOReturnSuccess;
-//}
-//
-//IOReturn AirPort_OpenBSD::setBTCOEX_MODE(OSObject *object, struct apple80211_btc_mode_data *data)
-//{
-//    if (!data)
-//        return kIOReturnError;
-//    btcMode = data->btc_mode;
-//    return kIOReturnSuccess;
-//}
-
 
 //
 // MARK: 90 - SCANCACHE_CLEAR
@@ -1427,7 +1395,6 @@ IOReturn AirPort_OpenBSD::setSCANCACHE_CLEAR(OSObject *object, struct device *de
     ieee80211_free_allnodes(ic, 0);
     return kIOReturnSuccess;
 }
-
 
 //
 // MARK: 107 - ROAM
@@ -1447,7 +1414,6 @@ IOReturn AirPort_OpenBSD::getLINK_CHANGED_EVENT_DATA(OSObject *object, struct ap
         return 16;
 
     bzero(ed, sizeof(*ed));
-    
     
     ed->isLinkDown = ic->ic_state!= IEEE80211_S_RUN;
     struct apple80211_rssi_data rd_data;
@@ -1531,98 +1497,6 @@ IOReturn AirPort_OpenBSD::setTX_NSS(OSObject *object, struct apple80211_tx_nss_d
 {
     return kIOReturnError;
 }
-
-//
-//// MARK: 216 - ROAM_PROFILE
-////
-//
-//IOReturn AirPort_OpenBSD::getROAM_PROFILE(OSObject *object, struct apple80211_roam_profile_band_data *data)
-//{
-//    if (roamProfile == NULL) {
-//        DebugLog("no roam profile, return error\n");
-//        return kIOReturnError;
-//    }
-//    memcpy(data, roamProfile, sizeof(struct apple80211_roam_profile_band_data));
-//    return kIOReturnSuccess;
-//}
-//
-//IOReturn AirPort_OpenBSD::setROAM_PROFILE(OSObject *object, struct apple80211_roam_profile_band_data *data)
-//{
-//    DebugLog("cnt=%d flags=%d\n", data->profile_cnt, data->flags);
-//
-//    if (roamProfile != NULL) {
-//        IOFree(roamProfile, sizeof(struct apple80211_roam_profile_band_data));
-//    }
-//    roamProfile = (uint8_t *)IOMalloc(sizeof(struct apple80211_roam_profile_band_data));
-//    memcpy(roamProfile, data, sizeof(struct apple80211_roam_profile_band_data));
-//    return kIOReturnSuccess;
-//}
-//
-////
-//// MARK: 221 - BTCOEX_PROFILES
-////
-//
-//IOReturn AirPort_OpenBSD::getBTCOEX_PROFILES(OSObject *object, struct apple80211_btc_profiles_data *data)
-//{
-//    if (!data || !btcProfile)
-//        return kIOReturnError;
-//    memcpy(data, btcProfile, sizeof(struct apple80211_btc_profiles_data));
-//    return kIOReturnSuccess;
-//}
-//
-//IOReturn AirPort_OpenBSD::setBTCOEX_PROFILES(OSObject *object, struct apple80211_btc_profiles_data *data)
-//{
-//    if (!data)
-//        return kIOReturnError;
-//    if (btcProfile)
-//        IOFree(btcProfile, sizeof(struct apple80211_btc_profiles_data));
-//    btcProfile = (struct apple80211_btc_profiles_data *)IOMalloc(sizeof(struct apple80211_btc_profiles_data));
-//    memcpy(btcProfile, data, sizeof(struct apple80211_btc_profiles_data));
-//    return kIOReturnSuccess;
-//}
-//
-////
-//// MARK: 222 - BTCOEX_CONFIG
-////
-//
-//IOReturn AirPort_OpenBSD::getBTCOEX_CONFIG(OSObject *object, struct apple80211_btc_config_data *data)
-//{
-//    if (!data)
-//        return kIOReturnError;
-//    memcpy(data, &btcConfig, sizeof(struct apple80211_btc_config_data));
-//    return kIOReturnSuccess;
-//}
-//
-//IOReturn AirPort_OpenBSD::setBTCOEX_CONFIG(OSObject *object, struct apple80211_btc_config_data *data)
-//{
-//    if (!data)
-//        return kIOReturnError;
-//    memcpy(&btcConfig, data, sizeof(struct apple80211_btc_config_data));
-//    return kIOReturnSuccess;
-//}
-//
-////
-//// MARK: 235 - BTCOEX_OPTIONS
-////
-//
-//IOReturn AirPort_OpenBSD::
-//getBTCOEX_OPTIONS(OSObject *object, struct apple80211_btc_options_data *data)
-//{
-//    if (!data)
-//        return kIOReturnError;
-//    data->version = APPLE80211_VERSION;
-//    data->btc_options = btcOptions;
-//    return kIOReturnSuccess;
-//}
-//
-//IOReturn AirPort_OpenBSD::
-//setBTCOEX_OPTIONS(OSObject *object, struct apple80211_btc_options_data *data)
-//{
-//    if (!data)
-//        return kIOReturnError;
-//    btcOptions = data->btc_options;
-//    return kIOReturnSuccess;
-//}
 
 //
 // MARK: 353 - NSS
@@ -1851,7 +1725,7 @@ ret = set##REQ(interface, (struct DATA_TYPE* )data); \
 //        case APPLE80211_IOC_VIRTUAL_IF_CREATE: // 94
 //            IOCTL_SET(request_type, VIRTUAL_IF_CREATE, apple80211_virt_if_create_data);
 //            break;
-//        case APPLE80211_IOC_VIRTUAL_IF_DELETE:
+//        case APPLE80211_IOC_VIRTUAL_IF_DELETE: // 95
 //            IOCTL_SET(request_type, VIRTUAL_IF_DELETE, apple80211_virt_if_delete_data);
 //            break;
         case APPLE80211_IOC_ROAM: // 107
