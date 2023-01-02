@@ -291,7 +291,7 @@ IOReturn AirPort_OpenBSD::getBSSID(OSObject *object, struct apple80211_bssid_dat
 
 IOReturn AirPort_OpenBSD::setBSSID(OSObject *object, struct apple80211_bssid_data *bd)
 {
-    DebugLog("bssid=%s\n", ether_sprintf(bd->bssid.octet));
+    DebugLog("bssid=%s", ether_sprintf(bd->bssid.octet));
     return kIOReturnSuccess;
 }
 
@@ -336,20 +336,15 @@ IOReturn AirPort_OpenBSD::setSCAN_REQ(OSObject *object, struct apple80211_scan_d
         DebugLog("i = %d channel = %d", i, sd->channels[i].channel);
     }
     
-    struct ifnet *ifp = &this->ic->ic_if;
-    if (!(ifp->if_flags & IFF_RUNNING)) {
+    if (this->scanComplete() != kIOReturnSuccess) {
         return 0x16;
     }
-    
-    this->scanComplete();
     
     if (this->fScanSource) {
         this->scan_result_next = SLIST_FIRST(&this->scan_result_lists);
         
         this->fScanSource->setTimeoutMS(200);
         this->fScanSource->enable();
-        
-        return kIOReturnSuccess;
     }
 
     return kIOReturnSuccess;
@@ -361,6 +356,9 @@ IOReturn AirPort_OpenBSD::setSCAN_REQ(OSObject *object, struct apple80211_scan_d
 
 IOReturn AirPort_OpenBSD::setSCAN_REQ_MULTIPLE(OSObject *object, struct apple80211_scan_multiple_data *smd)
 {
+    if (smd == NULL) {
+        return 0x16;
+    }
     
     DebugLog("Scan requested. Type: %u "
           "SSID count: %u "
@@ -379,20 +377,19 @@ IOReturn AirPort_OpenBSD::setSCAN_REQ_MULTIPLE(OSObject *object, struct apple802
         DebugLog("i = %d ssid = %s ssid_len = %d", i, smd->ssids[i].ssid, smd->ssids[i].ssid_len);
     }
     
-    struct ifnet *ifp = &this->ic->ic_if;
-    if (!(ifp->if_flags & IFF_RUNNING)) {
-        return 0x16;
+    for (int i = 0; i < smd->num_channels; i++) {
+        DebugLog("i = %d channel = %d", i, smd->channels[i].channel);
     }
     
-    this->scanComplete();
+    if (this->scanComplete() != kIOReturnSuccess) {
+        return 0x16;
+    }
     
     if (this->fScanSource) {
         this->scan_result_next = SLIST_FIRST(&this->scan_result_lists);
         
         this->fScanSource->setTimeoutMS(200);
         this->fScanSource->enable();
-        
-        return kIOReturnSuccess;
     }
 
     return kIOReturnSuccess;
@@ -404,6 +401,7 @@ IOReturn AirPort_OpenBSD::setSCAN_REQ_MULTIPLE(OSObject *object, struct apple802
 
 IOReturn AirPort_OpenBSD::getSCAN_RESULT(OSObject *object, struct apple80211_scan_result **sr)
 {
+    IOReturn ret = kIOReturnSuccess;
     struct apple80211_scan_result_list *next;
     
     if (this->scanResultsCount != 0) {
@@ -415,17 +413,18 @@ IOReturn AirPort_OpenBSD::getSCAN_RESULT(OSObject *object, struct apple80211_sca
                 
                 DebugLog("this->scanResultsCount = %d, asr_use = %d, asr_ssid = %s", this->scanResultsCount, next->scan_result.asr_use, next->scan_result.asr_ssid);
 
-                return kIOReturnSuccess;
+                ret = kIOReturnSuccess;
             } else {
-                return 0x05;
+                ret = 0x05;
             }
         } else {
-            return 0x16;
+            ret = 0x16;
         }
     } else {
-        return 0x10;
+        ret = 0x10;
     }
     
+    return  ret;
 }
 
 //
@@ -469,31 +468,6 @@ IOReturn AirPort_OpenBSD::getCARD_CAPABILITIES(OSObject *object, struct apple802
     cd->capabilities[0] = (caps & 0xff);
     cd->capabilities[1] = (caps >> 8) & 0xff;
     
-//    cd->capabilities[0] |= 0xeb;
-//    cd->capabilities[1] |= 0x7e;
-//    cd->capabilities[2] |= 0x3;
-//    cd->capabilities[2] |= 0x13;    // 无线网络唤醒;
-//    cd->capabilities[2] |= 0x20;
-//    cd->capabilities[2] |= 0x80;
-//    // APPLE80211_M_STA模式不能使用批量扫描
-////    cd->capabilities[2] |= 0xc0;    // 批量扫描;
-//
-//    cd->capabilities[3] |= 0x2;
-//    cd->capabilities[3] |= 0x23;
-//    cd->capabilities[3] |= 0x8;
-//    cd->capabilities[4] |= 0x1;   // 隔空投送
-//    cd->capabilities[6] |= 0x8;
-//
-//    cd->capabilities[6] |= 0x84;
-//    cd->capabilities[6] |= 0x1;
-////    cd->capabilities[7] = 0x84;
-//
-//    return kIOReturnSuccess;
-    
-    
-    
-    cd->version = APPLE80211_VERSION;
-
     cd->capabilities[0] = 0xeb;
     cd->capabilities[1] = 0x7e;
 
@@ -544,9 +518,9 @@ IOReturn AirPort_OpenBSD::getCARD_CAPABILITIES(OSObject *object, struct apple802
     if (0) {
         cd->capabilities[5] |= 0x4; // 如果是0x4331，则支持0x4
     }
-#if MAC_TARGET > __MAC_12_0
-    cd->capabilities[2] = rax | 0xc0; // 批量扫描;
-#endif
+    if (this->scanReqMultiple) {
+        cd->capabilities[2] = rax | 0xc0; // 批量扫描;
+    }
     cd->capabilities[6] |= 0x84;
 
 //    if ((OSMetaClassBase::safeMetaCast(r15, **qword_55a050) != 0x0) && (*(int32_t *)(r14 + 0x2f44) >= 0x0)) {
@@ -1401,21 +1375,6 @@ IOReturn AirPort_OpenBSD::getMCS_INDEX_SET(OSObject *object, struct apple80211_m
     return kIOReturnSuccess;
 }
 
-//
-// MARK: 69 - WOW_PARAMETERS
-//
-
-IOReturn AirPort_OpenBSD::getWOW_PARAMETERS(OSObject *object, struct apple80211_wow_parameter_data *data)
-{
-    return kIOReturnError;
-}
-
-IOReturn AirPort_OpenBSD::setWOW_PARAMETERS(OSObject *object, struct apple80211_wow_parameter_data *data)
-{
-    DebugLog("pattern_count=%d\n", data->pattern_count);
-    return kIOReturnError;
-}
-
 
 //
 // MARK: 80 - ROAM_THRESH
@@ -1430,26 +1389,26 @@ IOReturn AirPort_OpenBSD::getROAM_THRESH(OSObject *object, struct apple80211_roa
     return kIOReturnSuccess;
 }
 
+////
+//// MARK: 87 - BTCOEX_MODE
+////
 //
-// MARK: 87 - BTCOEX_MODE
+//IOReturn AirPort_OpenBSD::getBTCOEX_MODE(OSObject *object, struct apple80211_btc_mode_data *data)
+//{
+//    if (!data)
+//        return kIOReturnError;
+//    data->version = APPLE80211_VERSION;
+//    data->btc_mode = btcMode;
+//    return kIOReturnSuccess;
+//}
 //
-
-IOReturn AirPort_OpenBSD::getBTCOEX_MODE(OSObject *object, struct apple80211_btc_mode_data *data)
-{
-    if (!data)
-        return kIOReturnError;
-    data->version = APPLE80211_VERSION;
-    data->btc_mode = btcMode;
-    return kIOReturnSuccess;
-}
-
-IOReturn AirPort_OpenBSD::setBTCOEX_MODE(OSObject *object, struct apple80211_btc_mode_data *data)
-{
-    if (!data)
-        return kIOReturnError;
-    btcMode = data->btc_mode;
-    return kIOReturnSuccess;
-}
+//IOReturn AirPort_OpenBSD::setBTCOEX_MODE(OSObject *object, struct apple80211_btc_mode_data *data)
+//{
+//    if (!data)
+//        return kIOReturnError;
+//    btcMode = data->btc_mode;
+//    return kIOReturnSuccess;
+//}
 
 
 //
@@ -1574,96 +1533,96 @@ IOReturn AirPort_OpenBSD::setTX_NSS(OSObject *object, struct apple80211_tx_nss_d
 }
 
 //
-// MARK: 216 - ROAM_PROFILE
+//// MARK: 216 - ROAM_PROFILE
+////
 //
-
-IOReturn AirPort_OpenBSD::getROAM_PROFILE(OSObject *object, struct apple80211_roam_profile_band_data *data)
-{
-    if (roamProfile == NULL) {
-        DebugLog("no roam profile, return error\n");
-        return kIOReturnError;
-    }
-    memcpy(data, roamProfile, sizeof(struct apple80211_roam_profile_band_data));
-    return kIOReturnSuccess;
-}
-
-IOReturn AirPort_OpenBSD::setROAM_PROFILE(OSObject *object, struct apple80211_roam_profile_band_data *data)
-{
-    DebugLog("cnt=%d flags=%d\n", data->profile_cnt, data->flags);
-    
-    if (roamProfile != NULL) {
-        IOFree(roamProfile, sizeof(struct apple80211_roam_profile_band_data));
-    }
-    roamProfile = (uint8_t *)IOMalloc(sizeof(struct apple80211_roam_profile_band_data));
-    memcpy(roamProfile, data, sizeof(struct apple80211_roam_profile_band_data));
-    return kIOReturnSuccess;
-}
-
+//IOReturn AirPort_OpenBSD::getROAM_PROFILE(OSObject *object, struct apple80211_roam_profile_band_data *data)
+//{
+//    if (roamProfile == NULL) {
+//        DebugLog("no roam profile, return error\n");
+//        return kIOReturnError;
+//    }
+//    memcpy(data, roamProfile, sizeof(struct apple80211_roam_profile_band_data));
+//    return kIOReturnSuccess;
+//}
 //
-// MARK: 221 - BTCOEX_PROFILES
+//IOReturn AirPort_OpenBSD::setROAM_PROFILE(OSObject *object, struct apple80211_roam_profile_band_data *data)
+//{
+//    DebugLog("cnt=%d flags=%d\n", data->profile_cnt, data->flags);
 //
-
-IOReturn AirPort_OpenBSD::getBTCOEX_PROFILES(OSObject *object, struct apple80211_btc_profiles_data *data)
-{
-    if (!data || !btcProfile)
-        return kIOReturnError;
-    memcpy(data, btcProfile, sizeof(struct apple80211_btc_profiles_data));
-    return kIOReturnSuccess;
-}
-
-IOReturn AirPort_OpenBSD::setBTCOEX_PROFILES(OSObject *object, struct apple80211_btc_profiles_data *data)
-{
-    if (!data)
-        return kIOReturnError;
-    if (btcProfile)
-        IOFree(btcProfile, sizeof(struct apple80211_btc_profiles_data));
-    btcProfile = (struct apple80211_btc_profiles_data *)IOMalloc(sizeof(struct apple80211_btc_profiles_data));
-    memcpy(btcProfile, data, sizeof(struct apple80211_btc_profiles_data));
-    return kIOReturnSuccess;
-}
-
+//    if (roamProfile != NULL) {
+//        IOFree(roamProfile, sizeof(struct apple80211_roam_profile_band_data));
+//    }
+//    roamProfile = (uint8_t *)IOMalloc(sizeof(struct apple80211_roam_profile_band_data));
+//    memcpy(roamProfile, data, sizeof(struct apple80211_roam_profile_band_data));
+//    return kIOReturnSuccess;
+//}
 //
-// MARK: 222 - BTCOEX_CONFIG
+////
+//// MARK: 221 - BTCOEX_PROFILES
+////
 //
-
-IOReturn AirPort_OpenBSD::getBTCOEX_CONFIG(OSObject *object, struct apple80211_btc_config_data *data)
-{
-    if (!data)
-        return kIOReturnError;
-    memcpy(data, &btcConfig, sizeof(struct apple80211_btc_config_data));
-    return kIOReturnSuccess;
-}
-
-IOReturn AirPort_OpenBSD::setBTCOEX_CONFIG(OSObject *object, struct apple80211_btc_config_data *data)
-{
-    if (!data)
-        return kIOReturnError;
-    memcpy(&btcConfig, data, sizeof(struct apple80211_btc_config_data));
-    return kIOReturnSuccess;
-}
-
+//IOReturn AirPort_OpenBSD::getBTCOEX_PROFILES(OSObject *object, struct apple80211_btc_profiles_data *data)
+//{
+//    if (!data || !btcProfile)
+//        return kIOReturnError;
+//    memcpy(data, btcProfile, sizeof(struct apple80211_btc_profiles_data));
+//    return kIOReturnSuccess;
+//}
 //
-// MARK: 235 - BTCOEX_OPTIONS
+//IOReturn AirPort_OpenBSD::setBTCOEX_PROFILES(OSObject *object, struct apple80211_btc_profiles_data *data)
+//{
+//    if (!data)
+//        return kIOReturnError;
+//    if (btcProfile)
+//        IOFree(btcProfile, sizeof(struct apple80211_btc_profiles_data));
+//    btcProfile = (struct apple80211_btc_profiles_data *)IOMalloc(sizeof(struct apple80211_btc_profiles_data));
+//    memcpy(btcProfile, data, sizeof(struct apple80211_btc_profiles_data));
+//    return kIOReturnSuccess;
+//}
 //
-
-IOReturn AirPort_OpenBSD::
-getBTCOEX_OPTIONS(OSObject *object, struct apple80211_btc_options_data *data)
-{
-    if (!data)
-        return kIOReturnError;
-    data->version = APPLE80211_VERSION;
-    data->btc_options = btcOptions;
-    return kIOReturnSuccess;
-}
-
-IOReturn AirPort_OpenBSD::
-setBTCOEX_OPTIONS(OSObject *object, struct apple80211_btc_options_data *data)
-{
-    if (!data)
-        return kIOReturnError;
-    btcOptions = data->btc_options;
-    return kIOReturnSuccess;
-}
+////
+//// MARK: 222 - BTCOEX_CONFIG
+////
+//
+//IOReturn AirPort_OpenBSD::getBTCOEX_CONFIG(OSObject *object, struct apple80211_btc_config_data *data)
+//{
+//    if (!data)
+//        return kIOReturnError;
+//    memcpy(data, &btcConfig, sizeof(struct apple80211_btc_config_data));
+//    return kIOReturnSuccess;
+//}
+//
+//IOReturn AirPort_OpenBSD::setBTCOEX_CONFIG(OSObject *object, struct apple80211_btc_config_data *data)
+//{
+//    if (!data)
+//        return kIOReturnError;
+//    memcpy(&btcConfig, data, sizeof(struct apple80211_btc_config_data));
+//    return kIOReturnSuccess;
+//}
+//
+////
+//// MARK: 235 - BTCOEX_OPTIONS
+////
+//
+//IOReturn AirPort_OpenBSD::
+//getBTCOEX_OPTIONS(OSObject *object, struct apple80211_btc_options_data *data)
+//{
+//    if (!data)
+//        return kIOReturnError;
+//    data->version = APPLE80211_VERSION;
+//    data->btc_options = btcOptions;
+//    return kIOReturnSuccess;
+//}
+//
+//IOReturn AirPort_OpenBSD::
+//setBTCOEX_OPTIONS(OSObject *object, struct apple80211_btc_options_data *data)
+//{
+//    if (!data)
+//        return kIOReturnError;
+//    btcOptions = data->btc_options;
+//    return kIOReturnSuccess;
+//}
 
 //
 // MARK: 353 - NSS
@@ -1735,18 +1694,11 @@ ret = set##REQ(interface, (struct DATA_TYPE* )data); \
 //        case 353:
 //            break;
 //        case 90:
-//            DebugLog("--%s: IOCTL %s(%d)", __FUNCTION__,
-//                  isGet ? "get" : "set",
-//                  request_number);
+//            DebugLog("IOCTL %s(%d)", isGet ? "get" : "set", request_number);
 //            break;
 //        default:
-////    DebugLog("--%s: IOCTL %s(%d)", __FUNCTION__,
-////          isGet ? "get" : "set",
-////          request_number);
-////    DebugLog("%s: IOCTL %s(%d) %s", __FUNCTION__,
-////          isGet ? "get" : "set",
-////          request_number,
-////          IOCTL_NAMES[request_number]);
+////    DebugLog("IOCTL %s(%d)", isGet ? "get" : "set", request_number);
+////    DebugLog("IOCTL %s(%d) %s", isGet ? "get" : "set",  request_number, IOCTL_NAMES[request_number]);
 //            break;
 //
 //    }
@@ -1887,9 +1839,9 @@ ret = set##REQ(interface, (struct DATA_TYPE* )data); \
         case APPLE80211_IOC_ROAM_THRESH: // 80
             IOCTL_GET(request_type, ROAM_THRESH, apple80211_roam_threshold_data);
             break;
-        case APPLE80211_IOC_IE: // 85
-            IOCTL(request_type, IE, apple80211_ie_data);
-            break;
+//        case APPLE80211_IOC_IE: // 85
+//            IOCTL(request_type, IE, apple80211_ie_data);
+//            break;
         case APPLE80211_IOC_SCAN_REQ_MULTIPLE: // 86
             IOCTL_SET(request_type, SCAN_REQ_MULTIPLE, apple80211_scan_multiple_data);
             break;
@@ -1923,41 +1875,41 @@ ret = set##REQ(interface, (struct DATA_TYPE* )data); \
         case APPLE80211_IOC_TX_NSS: // 196
             IOCTL(request_type, TX_NSS, apple80211_tx_nss_data);
             break;
-        case APPLE80211_IOC_ROAM_PROFILE: // 216
-            IOCTL(request_type, ROAM_PROFILE, apple80211_roam_profile_band_data);
-            break;
-        case APPLE80211_IOC_BTCOEX_PROFILES: // 221
-            IOCTL(request_type, BTCOEX_PROFILES, apple80211_btc_profiles_data);
-            break;
-        case APPLE80211_IOC_BTCOEX_CONFIG: // 222
-            IOCTL(request_type, BTCOEX_CONFIG, apple80211_btc_config_data);
-            break;
-        case APPLE80211_IOC_BTCOEX_OPTIONS: // 235
-            IOCTL(request_type, BTCOEX_OPTIONS, apple80211_btc_options_data);
-            break;
-//        case APPLE80211_IOC_MAX_NSS_FOR_AP: // 259
+//        case APPLE80211_IOC_ROAM_PROFILE: // 216
+//            IOCTL(request_type, ROAM_PROFILE, apple80211_roam_profile_band_data);
+//            break;
+//        case APPLE80211_IOC_BTCOEX_PROFILES: // 221
+//            IOCTL(request_type, BTCOEX_PROFILES, apple80211_btc_profiles_data);
+//            break;
+//        case APPLE80211_IOC_BTCOEX_CONFIG: // 222
+//            IOCTL(request_type, BTCOEX_CONFIG, apple80211_btc_config_data);
+//            break;
+//        case APPLE80211_IOC_BTCOEX_OPTIONS: // 235
 //            IOCTL(request_type, BTCOEX_OPTIONS, apple80211_btc_options_data);
 //            break;
-        case APPLE80211_IOC_BTCOEX_MODE: // 87
-            IOCTL(request_type, BTCOEX_MODE, apple80211_btc_mode_data);
-            break;
+//        case APPLE80211_IOC_MAX_NSS_FOR_AP: // 259
+//            IOCTL(request_type, MAX_NSS_FOR_AP, apple80211_btc_options_data);
+//            break;
+//        case APPLE80211_IOC_BTCOEX_MODE: // 87
+//            IOCTL(request_type, BTCOEX_MODE, apple80211_btc_mode_data);
+//            break;
         case APPLE80211_IOC_NSS: // 353
             IOCTL_GET(request_type, NSS, apple80211_nss_data);
             break;
             
-        case APPLE80211_IOC_P2P_LISTEN: // 92
-            IOCTL_SET(request_type, P2P_LISTEN, apple80211_p2p_listen_data);
-            break;
-        case APPLE80211_IOC_P2P_SCAN: // 93
-            IOCTL_SET(request_type, P2P_SCAN, apple80211_scan_data);
-            break;
-        case APPLE80211_IOC_P2P_GO_CONF: // 98
-            IOCTL_SET(request_type, P2P_GO_CONF, apple80211_p2p_go_conf_data);
-            break;
-            
-        case APPLE80211_IOC_WOW_PARAMETERS: // 69
-            IOCTL(request_type, WOW_PARAMETERS, apple80211_wow_parameter_data);
-            break;
+//        case APPLE80211_IOC_P2P_LISTEN: // 92
+//            IOCTL_SET(request_type, P2P_LISTEN, apple80211_p2p_listen_data);
+//            break;
+//        case APPLE80211_IOC_P2P_SCAN: // 93
+//            IOCTL_SET(request_type, P2P_SCAN, apple80211_scan_data);
+//            break;
+//        case APPLE80211_IOC_P2P_GO_CONF: // 98
+//            IOCTL_SET(request_type, P2P_GO_CONF, apple80211_p2p_go_conf_data);
+//            break;
+//
+//        case APPLE80211_IOC_WOW_PARAMETERS: // 69
+//            IOCTL(request_type, WOW_PARAMETERS, apple80211_wow_parameter_data);
+//            break;
             
         case APPLE80211_IOC_BLOCK_ACK: // 62
         case APPLE80211_IOC_VENDOR_DBG_FLAGS: // 81

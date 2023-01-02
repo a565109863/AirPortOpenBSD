@@ -64,7 +64,7 @@ IOReturn AirPort_OpenBSD::scanConvertResult(struct ieee80211_nodereq *nr, struct
     
     oneResult->asr_age = 0;
     if (nr->nr_age_ts != 0) {
-        oneResult->asr_age = (uint32_t)(sysuptime() - nr->nr_age_ts) + 10000;
+        oneResult->asr_age = (uint32_t)(sysuptime() - nr->nr_age_ts);
     }
     oneResult->asr_ie_len = 0;
     if (nr->nr_ie != NULL && nr->nr_ie_len > 0) {
@@ -84,7 +84,7 @@ IOReturn AirPort_OpenBSD::scanConvertResult(struct ieee80211_nodereq *nr, struct
     return 0;
 }
 
-void AirPort_OpenBSD::scanComplete()
+IOReturn AirPort_OpenBSD::scanComplete()
 {
     struct ieee80211_nodereq_all *na = (typeof na)IOMalloc(sizeof(*na));
     struct ieee80211_nodereq *nr = (typeof nr)IOMalloc(512 * sizeof(*nr));
@@ -97,8 +97,11 @@ void AirPort_OpenBSD::scanComplete()
     strlcpy(na->na_ifname, this->getName(), strlen(this->getName()));
 
     if (ioctl(0, SIOCG80211ALLNODES, na) != 0) {
+        IOFree(na, sizeof(*na));
+        IOFree(nr, 512 * sizeof(*nr));
+        
         warn("SIOCG80211ALLNODES");
-        return;
+        return kIOReturnError;
     }
 
     if (!na->na_nodes)
@@ -151,6 +154,8 @@ void AirPort_OpenBSD::scanComplete()
 
     IOFree(na, sizeof(*na));
     IOFree(nr, 512 * sizeof(*nr));
+    
+    return kIOReturnSuccess;
 }
 
 void AirPort_OpenBSD::scanFreeResults()

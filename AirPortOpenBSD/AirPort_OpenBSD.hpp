@@ -83,7 +83,7 @@ public:
     // IO80211
     virtual IOReturn getHardwareAddressForInterface(IO80211Interface* netif,
                                             IOEthernetAddress* addr) APPLE_KEXT_OVERRIDE;
-    virtual SInt32 monitorModeSetEnabled(IO80211Interface* interface, bool enabled, UInt32 dlt) APPLE_KEXT_OVERRIDE;
+//    virtual SInt32 monitorModeSetEnabled(IO80211Interface* interface, bool enabled, UInt32 dlt) APPLE_KEXT_OVERRIDE;
     IOReturn postMessage(unsigned int, void* data = NULL, unsigned long dataLen = 0) ;
     IOReturn apple80211Request(UInt32 request_type, int request_number, IOInterface* interface, void* data) APPLE_KEXT_OVERRIDE;
     int bpfOutputPacket(OSObject *object,UInt,mbuf_t m) APPLE_KEXT_OVERRIDE;
@@ -99,11 +99,11 @@ public:
     
 //    static IOReturn setLinkStateGated(OSObject *target, void *arg0, void *arg1, void *arg2, void *arg3);
     
-    //virtual interface
-    virtual SInt32 enableVirtualInterface(IO80211VirtualInterface *interface) APPLE_KEXT_OVERRIDE;
-    virtual SInt32 disableVirtualInterface(IO80211VirtualInterface *interface) APPLE_KEXT_OVERRIDE;
-    virtual IO80211VirtualInterface* createVirtualInterface(ether_addr *eth,uint role) APPLE_KEXT_OVERRIDE;
-    virtual SInt32 apple80211VirtualRequest(uint request_type, int request_number,IO80211VirtualInterface *interface,void *data) APPLE_KEXT_OVERRIDE;
+//    //virtual interface
+//    virtual SInt32 enableVirtualInterface(IO80211VirtualInterface *interface) APPLE_KEXT_OVERRIDE;
+//    virtual SInt32 disableVirtualInterface(IO80211VirtualInterface *interface) APPLE_KEXT_OVERRIDE;
+//    virtual IO80211VirtualInterface* createVirtualInterface(ether_addr *eth,uint role) APPLE_KEXT_OVERRIDE;
+//    virtual SInt32 apple80211VirtualRequest(uint request_type, int request_number,IO80211VirtualInterface *interface,void *data) APPLE_KEXT_OVERRIDE;
     
     virtual SInt32 stopDMA() APPLE_KEXT_OVERRIDE;
     virtual UInt32 hardwareOutputQueueDepth(IO80211Interface* interface) APPLE_KEXT_OVERRIDE;
@@ -241,49 +241,49 @@ IOReturn set##REQ(OSObject *object, struct DATA_TYPE *data);
     IOCTL_FUNC(MCS_VHT, apple80211_mcs_vht_data)
     // 196 - TX_NSS
     IOCTL_FUNC(TX_NSS, apple80211_tx_nss_data)
-    // 216 - ROAM_PROFILE
-    IOCTL_FUNC(ROAM_PROFILE, apple80211_roam_profile_band_data)
-    // 221 - BTCOEX_PROFILES
-    IOCTL_FUNC(BTCOEX_PROFILES, apple80211_btc_profiles_data)
-    // 222 - BTCOEX_CONFIG
-    IOCTL_FUNC(BTCOEX_CONFIG, apple80211_btc_config_data)
-    // 235 - BTCOEX_OPTIONS
-    IOCTL_FUNC(BTCOEX_OPTIONS, apple80211_btc_options_data)
-    // 87 - BTCOEX_MODE
-    IOCTL_FUNC(BTCOEX_MODE, apple80211_btc_mode_data)
+//    // 216 - ROAM_PROFILE
+//    IOCTL_FUNC(ROAM_PROFILE, apple80211_roam_profile_band_data)
+//    // 221 - BTCOEX_PROFILES
+//    IOCTL_FUNC(BTCOEX_PROFILES, apple80211_btc_profiles_data)
+//    // 222 - BTCOEX_CONFIG
+//    IOCTL_FUNC(BTCOEX_CONFIG, apple80211_btc_config_data)
+//    // 235 - BTCOEX_OPTIONS
+//    IOCTL_FUNC(BTCOEX_OPTIONS, apple80211_btc_options_data)
+//    // 87 - BTCOEX_MODE
+//    IOCTL_FUNC(BTCOEX_MODE, apple80211_btc_mode_data)
     // 353 - NSS
     IOCTL_FUNC_GET(NSS, apple80211_nss_data)
     
-    //AirportVirtualIOCTL
-    IOCTL_FUNC(AWDL_PEER_TRAFFIC_REGISTRATION, apple80211_awdl_peer_traffic_registration)
-    IOCTL_FUNC(AWDL_ELECTION_METRIC, apple80211_awdl_election_metric)
-    IOCTL_FUNC(SYNC_ENABLED, apple80211_awdl_sync_enabled)
-    IOCTL_FUNC(SYNC_FRAME_TEMPLATE, apple80211_awdl_sync_frame_template)
-    IOCTL_FUNC_GET(AWDL_HT_CAPABILITY, apple80211_ht_capability)
-    IOCTL_FUNC_GET(AWDL_VHT_CAPABILITY, apple80211_vht_capability)
-    
-    //AWDL
-    IOCTL_FUNC(AWDL_BSSID, apple80211_awdl_bssid)
-    IOCTL_FUNC_GET(CHANNELS_INFO, apple80211_channels_info)
-    IOCTL_FUNC(PEER_CACHE_MAXIMUM_SIZE, apple80211_peer_cache_maximum_size)
-    IOCTL_FUNC(AWDL_ELECTION_ID, apple80211_awdl_election_id)
-    IOCTL_FUNC(AWDL_MASTER_CHANNEL, apple80211_awdl_master_channel)
-    IOCTL_FUNC(AWDL_SECONDARY_MASTER_CHANNEL, apple80211_awdl_secondary_master_channel)
-    IOCTL_FUNC(AWDL_MIN_RATE, apple80211_awdl_min_rate)
-    IOCTL_FUNC(AWDL_ELECTION_RSSI_THRESHOLDS, apple80211_awdl_election_rssi_thresholds)
-    IOCTL_FUNC(AWDL_SYNCHRONIZATION_CHANNEL_SEQUENCE, apple80211_awdl_sync_channel_sequence)
-    IOCTL_FUNC(AWDL_PRESENCE_MODE, apple80211_awdl_presence_mode)
-    IOCTL_FUNC(AWDL_EXTENSION_STATE_MACHINE_PARAMETERS, apple80211_awdl_extension_state_machine_parameter)
-    IOCTL_FUNC(AWDL_SYNC_STATE, apple80211_awdl_sync_state)
-    IOCTL_FUNC(AWDL_SYNC_PARAMS, apple80211_awdl_sync_params)
-    IOCTL_FUNC_GET(AWDL_CAPABILITIES, apple80211_awdl_cap)
-    IOCTL_FUNC(AWDL_AF_TX_MODE, apple80211_awdl_af_tx_mode)
-    IOCTL_FUNC_SET(AWDL_OOB_AUTO_REQUEST, apple80211_awdl_oob_request)
-    IOCTL_FUNC(WOW_PARAMETERS, apple80211_wow_parameter_data)
-    IOCTL_FUNC(IE, apple80211_ie_data)
-    IOCTL_FUNC_SET(P2P_SCAN, apple80211_scan_data)
-    IOCTL_FUNC_SET(P2P_LISTEN, apple80211_p2p_listen_data)
-    IOCTL_FUNC_SET(P2P_GO_CONF, apple80211_p2p_go_conf_data)
+//    //AirportVirtualIOCTL
+//    IOCTL_FUNC(AWDL_PEER_TRAFFIC_REGISTRATION, apple80211_awdl_peer_traffic_registration)
+//    IOCTL_FUNC(AWDL_ELECTION_METRIC, apple80211_awdl_election_metric)
+//    IOCTL_FUNC(SYNC_ENABLED, apple80211_awdl_sync_enabled)
+//    IOCTL_FUNC(SYNC_FRAME_TEMPLATE, apple80211_awdl_sync_frame_template)
+//    IOCTL_FUNC_GET(AWDL_HT_CAPABILITY, apple80211_ht_capability)
+//    IOCTL_FUNC_GET(AWDL_VHT_CAPABILITY, apple80211_vht_capability)
+//
+//    //AWDL
+//    IOCTL_FUNC(AWDL_BSSID, apple80211_awdl_bssid)
+//    IOCTL_FUNC_GET(CHANNELS_INFO, apple80211_channels_info)
+//    IOCTL_FUNC(PEER_CACHE_MAXIMUM_SIZE, apple80211_peer_cache_maximum_size)
+//    IOCTL_FUNC(AWDL_ELECTION_ID, apple80211_awdl_election_id)
+//    IOCTL_FUNC(AWDL_MASTER_CHANNEL, apple80211_awdl_master_channel)
+//    IOCTL_FUNC(AWDL_SECONDARY_MASTER_CHANNEL, apple80211_awdl_secondary_master_channel)
+//    IOCTL_FUNC(AWDL_MIN_RATE, apple80211_awdl_min_rate)
+//    IOCTL_FUNC(AWDL_ELECTION_RSSI_THRESHOLDS, apple80211_awdl_election_rssi_thresholds)
+//    IOCTL_FUNC(AWDL_SYNCHRONIZATION_CHANNEL_SEQUENCE, apple80211_awdl_sync_channel_sequence)
+//    IOCTL_FUNC(AWDL_PRESENCE_MODE, apple80211_awdl_presence_mode)
+//    IOCTL_FUNC(AWDL_EXTENSION_STATE_MACHINE_PARAMETERS, apple80211_awdl_extension_state_machine_parameter)
+//    IOCTL_FUNC(AWDL_SYNC_STATE, apple80211_awdl_sync_state)
+//    IOCTL_FUNC(AWDL_SYNC_PARAMS, apple80211_awdl_sync_params)
+//    IOCTL_FUNC_GET(AWDL_CAPABILITIES, apple80211_awdl_cap)
+//    IOCTL_FUNC(AWDL_AF_TX_MODE, apple80211_awdl_af_tx_mode)
+//    IOCTL_FUNC_SET(AWDL_OOB_AUTO_REQUEST, apple80211_awdl_oob_request)
+//    IOCTL_FUNC(WOW_PARAMETERS, apple80211_wow_parameter_data)
+//    IOCTL_FUNC(IE, apple80211_ie_data)
+//    IOCTL_FUNC_SET(P2P_SCAN, apple80211_scan_data)
+//    IOCTL_FUNC_SET(P2P_LISTEN, apple80211_p2p_listen_data)
+//    IOCTL_FUNC_SET(P2P_GO_CONF, apple80211_p2p_go_conf_data)
     
     
 public:
@@ -349,13 +349,14 @@ public:
     IOReturn scanConvertResult(struct ieee80211_nodereq *nr, struct apple80211_scan_result* oneResult);
     
     static void apple80211_scan_done(OSObject *owner, IOTimerEventSource *sender);
-    void scanComplete();
+    IOReturn scanComplete();
     void scanFreeResults();
     
     SLIST_HEAD(,apple80211_scan_result_list) scan_result_lists = SLIST_HEAD_INITIALIZER(scan_result_lists);
     struct apple80211_scan_result_list *scan_result_next;
     uint32_t scanResultsCount = 0;
     
+    int scanReqMultiple = 0;
     
     // ASSOC
     void setPTK(const u_int8_t *key, size_t key_len);
@@ -376,25 +377,25 @@ public:
     // P2P
     IOReturn getVirtIf(OSObject *object);
 
-    IO80211P2PInterface *fP2PDISCInterface;
-    IO80211P2PInterface *fP2PGOInterface;
-    IO80211P2PInterface *fAWDLInterface;
-
-    //AWDL
-    uint8_t *syncFrameTemplate;
-    uint32_t syncFrameTemplateLength;
-    uint8_t awdlBSSID[6];
-    uint32_t awdlSyncState;
-    uint32_t awdlElectionId;
-    uint32_t awdlPresenceMode;
-    uint16_t awdlMasterChannel;
-    uint16_t awdlSecondaryMasterChannel;
-    uint8_t *roamProfile;
-    struct apple80211_btc_profiles_data *btcProfile;
-    struct apple80211_btc_config_data btcConfig;
-    uint32_t btcMode;
-    uint32_t btcOptions;
-    bool awdlSyncEnable;
+//    IO80211P2PInterface *fP2PDISCInterface;
+//    IO80211P2PInterface *fP2PGOInterface;
+//    IO80211P2PInterface *fAWDLInterface;
+//
+//    //AWDL
+//    uint8_t *syncFrameTemplate;
+//    uint32_t syncFrameTemplateLength;
+//    uint8_t awdlBSSID[6];
+//    uint32_t awdlSyncState;
+//    uint32_t awdlElectionId;
+//    uint32_t awdlPresenceMode;
+//    uint16_t awdlMasterChannel;
+//    uint16_t awdlSecondaryMasterChannel;
+//    uint8_t *roamProfile;
+//    struct apple80211_btc_profiles_data *btcProfile;
+//    struct apple80211_btc_config_data btcConfig;
+//    uint32_t btcMode;
+//    uint32_t btcOptions;
+//    bool awdlSyncEnable;
 
 };
 

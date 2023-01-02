@@ -27,6 +27,7 @@ extern IOWorkLoop *_fWorkloop;
 extern IOCommandGate *_fCommandGate;
 
 extern int logStr_i;
+extern int debug_log;
 
 //#define IEEE80211_STA_ONLY    1
 
@@ -44,7 +45,7 @@ extern int logStr_i;
 
     #if MAC_TARGET < __MAC_11_0
         #define DebugLog(args...) \
-        if(1) { \
+        if(debug_log) { \
             uint64_t new_thread_id = thread_tid(current_thread()); \
             char argsStr[1024]; \
             snprintf(argsStr, sizeof(argsStr), args); \
@@ -52,20 +53,22 @@ extern int logStr_i;
         }
     #else
         #define DebugLog(args...) \
-        if(1) { \
+        if(debug_log) { \
             uint64_t new_thread_id = thread_tid(current_thread()); \
             char *argsStr = (char*)IOMalloc(1024); \
             snprintf(argsStr, 1024, args); \
             kprintf("tid = %llu, %s: line = %d %s", new_thread_id, __FUNCTION__, __LINE__, argsStr); \
-            char *logStr = (char*)IOMalloc(2048); \
-            snprintf(logStr, 2048, "%s: line = %d tid = %llu %s", __FUNCTION__, __LINE__, new_thread_id, argsStr); \
-            OSString *log = OSString::withCString(logStr); \
-            char logKey[256]; \
-            snprintf(logKey, sizeof(logKey), "DebugLog_%06d", logStr_i++); \
-            struct device *dev = (struct device *)_ifp->if_softc; \
-            dev->dev->setProperty(logKey, log); \
+            if (_ifp->if_softc != NULL) { \
+                char *logStr = (char*)IOMalloc(2048); \
+                snprintf(logStr, 2048, "%s: line = %d tid = %llu %s", __FUNCTION__, __LINE__, new_thread_id, argsStr); \
+                OSString *log = OSString::withCString(logStr); \
+                char logKey[256]; \
+                snprintf(logKey, sizeof(logKey), "DebugLog_%06d", logStr_i++); \
+                struct device *dev = (struct device *)_ifp->if_softc; \
+                dev->dev->setProperty(logKey, log); \
+                IOFree(logStr, 2048); \
+            } \
             IOFree(argsStr, 1024); \
-            IOFree(logStr, 2048); \
         }
     #endif
 

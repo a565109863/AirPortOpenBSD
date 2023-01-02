@@ -3,23 +3,15 @@
 #include "AirPort_OpenBSD.hpp"
 
 OSDefineMetaClassAndStructors(AirPort_OpenBSD, IOController);
-OSDefineMetaClassAndStructors(IOTimeout, OSObject)
+OSDefineMetaClassAndStructors(IOTimeout, OSObject);
 #define super IOController
-
-int _stop(struct kmod_info*, void*) {
-    IOLog("_stop(struct kmod_info*, void*) has been invoked\n");
-    return 0;
-};
-int _start(struct kmod_info*, void*) {
-    IOLog("_start(struct kmod_info*, void*) has been invoked\n");
-    return 0;
-};
 
 struct ifnet *_ifp;
 IOWorkLoop *_fWorkloop;
 IOCommandGate *_fCommandGate;
 
 int logStr_i = 0;
+int debug_log = 0;
 
 bool AirPort_OpenBSD::init(OSDictionary* parameters) {
     IOLog("AirPort_OpenBSD: Init");
@@ -38,6 +30,14 @@ bool AirPort_OpenBSD::init(OSDictionary* parameters) {
 
 IOService* AirPort_OpenBSD::probe(IOService* provider, SInt32 *score)
 {
+    // 是否启用WIFI
+    int AirPortOpenBSD = 0;
+    if (PE_parse_boot_argn("AirPortOpenBSD", &AirPortOpenBSD, sizeof(AirPortOpenBSD)) == true) {
+        if (AirPortOpenBSD == 0) {
+            return NULL;
+        }
+    }
+    
     super::probe(provider, score);
     IOPCIDevice* device = OSDynamicCast(IOPCIDevice, provider);
     if (!device) {
@@ -71,21 +71,8 @@ IOService* AirPort_OpenBSD::probe(IOService* provider, SInt32 *score)
 bool AirPort_OpenBSD::start(IOService* provider) {
     IOLog("AirPort_OpenBSD: Start");
     
-//    struct ieee80211com *ic;
     struct device *dev;
     IOReturn ret = false;
-    
-#ifdef Ethernet
-    OSArray *IFConfig;
-    OSString *NWID;
-    OSString *WPAKEY;
-    OSBoolean *kSecurityType;
-    OSDictionary *wifi;
-    
-    bool security;
-    const char *nwid;
-    const char *wpakey;
-#endif
     
     if (!super::start(provider)) {
         IOLog("AirPort_OpenBSD: Failed to call super::start!");
@@ -151,6 +138,16 @@ bool AirPort_OpenBSD::start(IOService* provider) {
         goto fail6;
     }
     
+     // 是否开启打印日志
+    if (PE_parse_boot_argn("debug", &debug_log, sizeof(debug_log)) == false) {
+        debug_log = 0;
+    }
+    
+     // 是否开启批量扫描
+    if (PE_parse_boot_argn("scanmultiple", &this->scanReqMultiple, sizeof(this->scanReqMultiple)) == false) {
+        this->scanReqMultiple = 0;
+    }
+    
     if_softc = malloc(this->ca->ca_devsize, M_DEVBUF, M_NOWAIT);
     dev = (struct device *)if_softc;
     dev->dev = this;
@@ -200,56 +197,6 @@ bool AirPort_OpenBSD::start(IOService* provider) {
     
     registerService();
     _ifp->iface->registerService();
-    
-
-#ifdef Ethernet
-    #define kIFConfigName       "IFConfig"
-    #define kSecurityTypeName   "WPA/WPA2"
-    #define kNwidName           "NWID"
-    #define kWpaKeyName         "WPAKEY"
-
-    assoc_data_Arr = OSArray::withCapacity(512);
-    IFConfig = OSDynamicCast(OSArray, getProperty(kIFConfigName));
-    NWID = OSString::withCString("");
-    WPAKEY = OSString::withCString("");
-    kSecurityType = OSBoolean::withBoolean(false);
-    if (IFConfig->getCount() > 0) {
-        for(int i = 0; i < IFConfig->getCount(); i++) {
-            wifi = OSDynamicCast(OSDictionary, IFConfig->getObject(i));
-            kSecurityType = OSDynamicCast(OSBoolean, wifi->getObject(kSecurityTypeName));
-            NWID = OSDynamicCast(OSString, wifi->getObject(kNwidName));
-            WPAKEY = OSDynamicCast(OSString, wifi->getObject(kWpaKeyName));
-            
-            security = kSecurityType->getValue();
-            nwid = NWID->getCStringNoCopy();
-            wpakey = WPAKEY->getCStringNoCopy();
-
-            struct apple80211_assoc_data ad;
-            bzero(&ad, sizeof(apple80211_assoc_data));
-            bcopy(nwid, ad.ad_ssid, sizeof(ad.ad_ssid));
-            ad.ad_ssid_len = strlen((char *)ad.ad_ssid);
-            
-            if (security) {
-                ad.ad_key.key_cipher_type = APPLE80211_CIPHER_TKIP;
-                ad.ad_key.key_len = APPLE80211_KEY_BUFF_LEN;
-                u_int32_t passlen = strlen(wpakey);
-                if (pkcs5_pbkdf2(wpakey, passlen, (const uint8_t *)nwid, strlen(nwid),
-                                 ad.ad_key.key, sizeof(ad.ad_key.key), 4096) != 0)
-                    errx(1, "wpakey: passphrase hashing failed");
-                
-            }else {
-                ad.ad_key.key_cipher_type = APPLE80211_CIPHER_NONE;
-            }
-
-            OSData* scanresult = OSData::withBytes(&ad, sizeof(ad));
-            if (!scanresult) {
-                continue;
-            }
-            assoc_data_Arr->setObject(scanresult);
-
-        }
-    }
-#endif
     
 //    fPciDevice->close(this);
     ret = true;
@@ -401,54 +348,9 @@ UInt32 AirPort_OpenBSD::outputPacket(mbuf_t m, void* param) {
     return kIOReturnSuccess;
 }
 
-IO80211VirtualInterface *AirPort_OpenBSD::createVirtualInterface(ether_addr *ether, UInt role)
-{
-    if (role - 1 > 3) {
-        return super::createVirtualInterface(ether, role);
-    }
-    IO80211VirtualInterface *inf = new IO80211VirtualInterface;
-    if (inf) {
-        if (inf->init(this, ether, role, role == APPLE80211_VIF_AWDL ? "awdl" : "p2p")) {
-            IOLog("%s role=%d succeed\n", __FUNCTION__, role);
-        } else {
-            inf->release();
-            return NULL;
-        }
-    }
-    return inf;
-}
-
-SInt32 AirPort_OpenBSD::enableVirtualInterface(IO80211VirtualInterface *interface)
-{
-    IOLog("%s interface=%s role=%d\n", __FUNCTION__, interface->getBSDName(), interface->getInterfaceRole());
-    SInt32 ret = super::enableVirtualInterface(interface);
-    if (!ret) {
-#if MAC_TARGET >= __MAC_13_0
-        interface->setEnabledBySystem(true);
-#endif
-        interface->setLinkState(kIO80211NetworkLinkUp, 0);
-        interface->postMessage(APPLE80211_M_LINK_CHANGED);
-        return kIOReturnSuccess;
-    }
-    return ret;
-}
-
-SInt32 AirPort_OpenBSD::disableVirtualInterface(IO80211VirtualInterface *interface)
-{
-    IOLog("%s interface=%s role=%d\n", __FUNCTION__, interface->getBSDName(), interface->getInterfaceRole());
-    SInt32 ret = super::disableVirtualInterface(interface);
-    if (!ret) {
-        interface->setLinkState(kIO80211NetworkLinkDown, 0);
-        interface->postMessage(APPLE80211_M_LINK_CHANGED);
-        return kIOReturnSuccess;
-    }
-    return ret;
-}
-
 IONetworkInterface *AirPort_OpenBSD::createInterface()
 {
     AirPort_OpenBSD_Interface *netif = new AirPort_OpenBSD_Interface;
-//    IOInterface *netif = new IOInterface;
     if (!netif) {
         return NULL;
     }
@@ -542,83 +444,3 @@ UInt32 AirPort_OpenBSD::getFeatures() const {
     return 0x8;
 }
 
-
-void
-AirPort_OpenBSD::ether_ifattach(struct ifnet *ifp)
-{
-    if (ifp->iface != NULL) {
-        return;
-    }
-    
-    this->setName(ifp->if_xname);
-    
-    if (!attachInterface((IONetworkInterface**)&ifp->iface, true)) {
-        panic("AirPort_OpenBSD: Failed to attach interface!");
-    }
-    
-}
-
-void
-AirPort_OpenBSD::ether_ifdetach(struct ifnet *ifp)
-{
-    if (ifp->iface == NULL) {
-        return;
-    }
-    detachInterface((IONetworkInterface*)ifp->iface, true);
-    ifp->iface = NULL;
-}
-
-void AirPort_OpenBSD::setLinkState(int linkState)
-{
-    DebugLog("ifp->if_link_state = %d", linkState);
-    int reason = 0;
-    if (linkState == LINK_STATE_UP) {
-        setLinkStatus(kIONetworkLinkValid | kIONetworkLinkActive, this->getCurrentMedium());
-        _ifp->iface->startOutputThread();
-    }else {
-        this->scanFreeResults();
-        
-        setLinkStatus(kIONetworkLinkValid);
-        _ifp->iface->stopOutputThread();
-        _ifp->iface->flushOutputQueue();
-        reason = APPLE80211_REASON_UNSPECIFIED;
-    }
-    
-#ifndef Ethernet
-    getNetworkInterface()->setLinkState((IO80211LinkState)linkState, reason);
-    _ifp->iface->setLinkQualityMetric(100);
-//    _ifp->iface->postMessage(APPLE80211_M_LINK_CHANGED);
-#endif
-    
-}
-
-IOReturn AirPort_OpenBSD::tsleepHandler(OSObject* owner, void* arg0 = 0, void* arg1 = 0, void* arg2 = 0, void* arg3 = 0) {
-    AirPort_OpenBSD* dev = OSDynamicCast(AirPort_OpenBSD, owner);
-    if (dev == NULL)
-        return kIOReturnError;
-    
-    if (arg1 == 0) {
-        // no deadline
-        if (dev->fCommandGate->commandSleep(arg0, THREAD_INTERRUPTIBLE) == THREAD_AWAKENED)
-            return kIOReturnSuccess;
-        else
-            return kIOReturnTimeout;
-    } else {
-        AbsoluteTime deadline;
-        clock_interval_to_deadline((*(int*)arg1), kNanosecondScale, reinterpret_cast<uint64_t*> (&deadline));
-        if (dev->fCommandGate->commandSleep(arg0, deadline, THREAD_INTERRUPTIBLE) == THREAD_AWAKENED)
-            return kIOReturnSuccess;
-        else
-            return kIOReturnTimeout;
-    }
-}
-
-void AirPort_OpenBSD::if_watchdog(IOTimerEventSource *timer)
-{
-    if (_ifp->if_watchdog) {
-        if (_ifp->if_timer > 0 && --_ifp->if_timer == 0)
-                (*_ifp->if_watchdog)(_ifp);
-        
-        this->fWatchdogTimer->setTimeoutMS(kTimeoutMS);
-    }
-}

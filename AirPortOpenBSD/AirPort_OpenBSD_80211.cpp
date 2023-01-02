@@ -72,10 +72,10 @@ bool AirPort_OpenBSD::useAppleRSNSupplicant(IO80211VirtualInterface *interface)
     return true;
 }
 
-SInt32 AirPort_OpenBSD::monitorModeSetEnabled(IO80211Interface *interface, bool enabled, UInt32 dlt)
-{
-    return kIOReturnSuccess;
-}
+//SInt32 AirPort_OpenBSD::monitorModeSetEnabled(IO80211Interface *interface, bool enabled, UInt32 dlt)
+//{
+//    return kIOReturnSuccess;
+//}
 
 
 SInt32 AirPort_OpenBSD::enableFeature(IO80211FeatureCode code, void *data)

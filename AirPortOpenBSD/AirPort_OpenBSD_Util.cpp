@@ -8,6 +8,15 @@
 
 #include "AirPort_OpenBSD.hpp"
 
+int _stop(struct kmod_info*, void*) {
+    IOLog("_stop(struct kmod_info*, void*) has been invoked\n");
+    return 0;
+};
+int _start(struct kmod_info*, void*) {
+    IOLog("_start(struct kmod_info*, void*) has been invoked\n");
+    return 0;
+};
+
 void AirPort_OpenBSD::firmwareLoadComplete( OSKextRequestTag requestTag, OSReturn result, const void *resourceData, uint32_t resourceDataLength, void *context) {
     AirPort_OpenBSD *dev = (typeof dev)context;
     if(result == kOSReturnSuccess) {
@@ -92,6 +101,83 @@ IOReturn AirPort_OpenBSD::postMessage(unsigned int msg, void* data, unsigned lon
 {
     this->getNetworkInterface()->postMessage(msg, data, dataLen);
     return kIOReturnSuccess;
+}
+
+void
+AirPort_OpenBSD::ether_ifattach(struct ifnet *ifp)
+{
+    if (ifp->iface != NULL) {
+        return;
+    }
+    
+    this->setName(ifp->if_xname);
+    
+    if (!attachInterface((IONetworkInterface**)&ifp->iface, true)) {
+        panic("AirPort_OpenBSD: Failed to attach interface!");
+    }
+    
+}
+
+void
+AirPort_OpenBSD::ether_ifdetach(struct ifnet *ifp)
+{
+    if (ifp->iface == NULL) {
+        return;
+    }
+    detachInterface((IONetworkInterface*)ifp->iface, true);
+    ifp->iface = NULL;
+}
+
+void AirPort_OpenBSD::setLinkState(int linkState)
+{
+    DebugLog("ifp->if_link_state = %d", linkState);
+    int reason = 0;
+    if (linkState == LINK_STATE_UP) {
+        setLinkStatus(kIONetworkLinkValid | kIONetworkLinkActive, this->getCurrentMedium());
+        _ifp->iface->startOutputThread();
+    }else {
+        this->scanFreeResults();
+        
+        setLinkStatus(kIONetworkLinkValid);
+        _ifp->iface->stopOutputThread();
+        _ifp->iface->flushOutputQueue();
+        reason = APPLE80211_REASON_UNSPECIFIED;
+    }
+    
+    this->getNetworkInterface()->setLinkState((IO80211LinkState)linkState, reason);
+    _ifp->iface->setLinkQualityMetric(100);
+    
+}
+
+IOReturn AirPort_OpenBSD::tsleepHandler(OSObject* owner, void* arg0 = 0, void* arg1 = 0, void* arg2 = 0, void* arg3 = 0) {
+    AirPort_OpenBSD* dev = OSDynamicCast(AirPort_OpenBSD, owner);
+    if (dev == NULL)
+        return kIOReturnError;
+    
+    if (arg1 == 0) {
+        // no deadline
+        if (dev->fCommandGate->commandSleep(arg0, THREAD_INTERRUPTIBLE) == THREAD_AWAKENED)
+            return kIOReturnSuccess;
+        else
+            return kIOReturnTimeout;
+    } else {
+        AbsoluteTime deadline;
+        clock_interval_to_deadline((*(int*)arg1), kNanosecondScale, reinterpret_cast<uint64_t*> (&deadline));
+        if (dev->fCommandGate->commandSleep(arg0, deadline, THREAD_INTERRUPTIBLE) == THREAD_AWAKENED)
+            return kIOReturnSuccess;
+        else
+            return kIOReturnTimeout;
+    }
+}
+
+void AirPort_OpenBSD::if_watchdog(IOTimerEventSource *timer)
+{
+    if (_ifp->if_watchdog) {
+        if (_ifp->if_timer > 0 && --_ifp->if_timer == 0)
+                (*_ifp->if_watchdog)(_ifp);
+        
+        this->fWatchdogTimer->setTimeoutMS(kTimeoutMS);
+    }
 }
 
 
