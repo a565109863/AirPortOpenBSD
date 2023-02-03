@@ -1,4 +1,4 @@
-/*    $OpenBSD: ieee80211_pae_output.c,v 1.32 2020/07/10 13:22:22 patrick Exp $    */
+/*    $OpenBSD: ieee80211_pae_output.c,v 1.33 2022/01/05 05:18:25 dlg Exp $    */
 
 /*-
  * Copyright (c) 2007,2008 Damien Bergamini <damien.bergamini@free.fr>

@@ -1,4 +1,4 @@
-/*    $OpenBSD: if_wpi.c,v 1.155 2020/12/12 11:48:53 jan Exp $    */
+/*    $OpenBSD: if_wpi.c,v 1.157 2022/04/21 21:03:03 stsp Exp $    */
 
 /*-
  * Copyright (c) 2006-2008
@@ -987,8 +987,8 @@ wpi_node_alloc(struct ieee80211com *ic)
 void
 wpi_newassoc(struct ieee80211com *ic, struct ieee80211_node *ni, int isnew)
 {
-    struct wpi_softc *sc = (struct wpi_softc *)ic->ic_if.if_softc;
-    struct wpi_node *wn = (struct wpi_node *)ni;
+    struct wpi_softc *sc = (typeof sc)ic->ic_if.if_softc;
+    struct wpi_node *wn = (typeof wn)ni;
     uint8_t rate;
     int ridx, i;
 
@@ -1009,7 +1009,7 @@ wpi_newassoc(struct ieee80211com *ic, struct ieee80211_node *ni, int isnew)
 int
 wpi_media_change(struct ifnet *ifp)
 {
-    struct wpi_softc *sc = (struct wpi_softc *)ifp->if_softc;
+    struct wpi_softc *sc = (typeof sc)ifp->if_softc;
     struct ieee80211com *ic = &sc->sc_ic;
     uint8_t rate, ridx;
     int error;
@@ -1040,7 +1040,7 @@ int
 wpi_newstate(struct ieee80211com *ic, enum ieee80211_state nstate, int arg)
 {
     struct ifnet *ifp = &ic->ic_if;
-    struct wpi_softc *sc = (struct wpi_softc *)ifp->if_softc;
+    struct wpi_softc *sc = (typeof sc)ifp->if_softc;
     int error;
 
     timeout_del(&sc->calib_to);
@@ -1098,7 +1098,7 @@ wpi_newstate(struct ieee80211com *ic, enum ieee80211_state nstate, int arg)
 void
 wpi_iter_func(void *arg, struct ieee80211_node *ni)
 {
-    struct wpi_softc *sc = (struct wpi_softc *)arg;
+    struct wpi_softc *sc = (typeof sc)arg;
     struct wpi_node *wn = (struct wpi_node *)ni;
 
     ieee80211_amrr_choose(&sc->amrr, ni, &wn->amn);
@@ -1107,7 +1107,7 @@ wpi_iter_func(void *arg, struct ieee80211_node *ni)
 void
 wpi_calib_timeout(void *arg)
 {
-    struct wpi_softc *sc = (struct wpi_softc *)arg;
+    struct wpi_softc *sc = (typeof sc)arg;
     struct ieee80211com *ic = &sc->sc_ic;
     int s;
 
@@ -1265,7 +1265,7 @@ wpi_rx_done(struct wpi_softc *sc, struct wpi_rx_desc *desc,
     wh = mtod(m, struct ieee80211_frame *);
     ni = ieee80211_find_rxnode(ic, wh);
 
-    rxi.rxi_flags = 0;
+    memset(&rxi, 0, sizeof(rxi));
     if ((wh->i_fc[1] & IEEE80211_FC1_PROTECTED) &&
         !IEEE80211_IS_MULTICAST(wh->i_addr1) &&
         (ni->ni_flags & IEEE80211_NODE_RXPROT) &&
@@ -1336,7 +1336,6 @@ wpi_rx_done(struct wpi_softc *sc, struct wpi_rx_desc *desc,
 
     /* Send the frame to the 802.11 layer. */
     rxi.rxi_rssi = stat->rssi;
-    rxi.rxi_tstamp = 0;    /* unused */
     ieee80211_inputm(ifp, m, ni, &rxi, ml);
 
     /* Node is no longer needed. */
@@ -1601,7 +1600,7 @@ wpi_fatal_intr(struct wpi_softc *sc)
 int
 wpi_intr(void *arg)
 {
-    struct wpi_softc *sc = (struct wpi_softc *)arg;
+    struct wpi_softc *sc = (typeof sc)arg;
     struct ifnet *ifp = &sc->sc_ic.ic_if;
     uint32_t r1, r2;
 
@@ -1651,7 +1650,7 @@ int
 wpi_tx(struct wpi_softc *sc, mbuf_t m, struct ieee80211_node *ni)
 {
     struct ieee80211com *ic = &sc->sc_ic;
-    struct wpi_node *wn = (struct wpi_node *)ni;
+    struct wpi_node *wn = (typeof wn)ni;
     struct wpi_tx_ring *ring;
     struct wpi_tx_desc *desc;
     struct wpi_tx_data *data;
@@ -1889,7 +1888,7 @@ wpi_tx(struct wpi_softc *sc, mbuf_t m, struct ieee80211_node *ni)
 void
 wpi_start(struct ifnet *ifp)
 {
-    struct wpi_softc *sc = (struct wpi_softc *)ifp->if_softc;
+    struct wpi_softc *sc = (typeof sc)ifp->if_softc;
     struct ieee80211com *ic = &sc->sc_ic;
     struct ieee80211_node *ni;
     mbuf_t m;
@@ -1941,7 +1940,7 @@ sendit:
 void
 wpi_watchdog(struct ifnet *ifp)
 {
-    struct wpi_softc *sc = (struct wpi_softc *)ifp->if_softc;
+    struct wpi_softc *sc = (typeof sc)ifp->if_softc;
 
     ifp->if_timer = 0;
 
@@ -1961,7 +1960,7 @@ wpi_watchdog(struct ifnet *ifp)
 int
 wpi_ioctl(struct ifnet *ifp, u_long cmd, caddr_t data)
 {
-    struct wpi_softc *sc = (struct wpi_softc *)ifp->if_softc;
+    struct wpi_softc *sc = (typeof sc)ifp->if_softc;
     struct ieee80211com *ic = &sc->sc_ic;
     int s, error = 0;
 
@@ -2148,7 +2147,7 @@ void
 wpi_updateedca(struct ieee80211com *ic)
 {
 #define WPI_EXP2(x)    ((1 << (x)) - 1)    /* CWmin = 2^ECWmin - 1 */
-    struct wpi_softc *sc = (struct wpi_softc *)ic->ic_softc;
+    struct wpi_softc *sc = (typeof sc)ic->ic_softc;
     struct wpi_edca_params cmd;
     int aci;
 
@@ -2503,7 +2502,7 @@ wpi_scan(struct wpi_softc *sc, uint16_t flags)
     uint8_t *buf, *frm;
     int buflen, error;
 
-    buf = (uint8_t *)malloc(WPI_SCAN_MAXSZ, M_DEVBUF, M_NOWAIT | M_ZERO);
+    buf = (typeof buf)malloc(WPI_SCAN_MAXSZ, M_DEVBUF, M_NOWAIT | M_ZERO);
     if (buf == NULL) {
         printf("%s: could not allocate buffer for scan command\n",
             sc->sc_dev.dv_xname);
@@ -2746,8 +2745,8 @@ int
 wpi_set_key(struct ieee80211com *ic, struct ieee80211_node *ni,
     struct ieee80211_key *k)
 {
-    struct wpi_softc *sc = (struct wpi_softc *)ic->ic_softc;
-    struct wpi_node *wn = (struct wpi_node *)ni;
+    struct wpi_softc *sc = (typeof sc)ic->ic_softc;
+    struct wpi_node *wn = (typeof wn)ni;
     struct wpi_node_info node;
     uint16_t kflags;
 
@@ -2770,8 +2769,8 @@ void
 wpi_delete_key(struct ieee80211com *ic, struct ieee80211_node *ni,
     struct ieee80211_key *k)
 {
-    struct wpi_softc *sc = (struct wpi_softc *)ic->ic_softc;
-    struct wpi_node *wn = (struct wpi_node *)ni;
+    struct wpi_softc *sc = (typeof sc)ic->ic_softc;
+    struct wpi_node *wn = (typeof wn)ni;
     struct wpi_node_info node;
 
     if ((k->k_flags & IEEE80211_KEY_GROUP) ||
@@ -3251,7 +3250,7 @@ wpi_hw_stop(struct wpi_softc *sc)
 int
 wpi_init(struct ifnet *ifp)
 {
-    struct wpi_softc *sc = (struct wpi_softc *)ifp->if_softc;
+    struct wpi_softc *sc = (typeof sc)ifp->if_softc;
     struct ieee80211com *ic = &sc->sc_ic;
     int error;
 
@@ -3303,7 +3302,7 @@ fail:    wpi_stop(ifp, 1);
 void
 wpi_stop(struct ifnet *ifp, int disable)
 {
-    struct wpi_softc *sc = (struct wpi_softc *)ifp->if_softc;
+    struct wpi_softc *sc = (typeof sc)ifp->if_softc;
     struct ieee80211com *ic = &sc->sc_ic;
 
     ifp->if_timer = sc->sc_tx_timer = 0;

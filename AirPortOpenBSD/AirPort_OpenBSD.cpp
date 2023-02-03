@@ -137,14 +137,23 @@ bool AirPort_OpenBSD::start(IOService* provider) {
         goto fail6;
     }
     
-     // 是否开启打印日志
+    // 是否开启打印日志
     if (PE_parse_boot_argn("debug", &debug_log, sizeof(debug_log)) == false) {
         debug_log = 0;
     }
     
-     // 是否开启批量扫描
+    // 是否开启批量扫描
     if (PE_parse_boot_argn("scanmultiple", &this->scanReqMultiple, sizeof(this->scanReqMultiple)) == false) {
+#if MAC_TARGET >= __MAC_13_0
+//        IOReturn pmret = this->getAggressiveness(kPMPowerSource, &this->currentPMPowerLevel);
+//        if (pmret == kIOReturnSuccess && this->currentPMPowerLevel == kIOPMInternalPower) {
+//            // Ventura使用内部电池时，启用批量扫描，提高自动连接速度
+//            this->scanReqMultiple = 1;
+//        }
         this->scanReqMultiple = 1;
+#else
+        this->scanReqMultiple = 0;
+#endif
     }
     
     if_softc = malloc(this->ca->ca_devsize, M_DEVBUF, M_NOWAIT);

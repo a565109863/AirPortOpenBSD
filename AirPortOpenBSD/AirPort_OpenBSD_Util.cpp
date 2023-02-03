@@ -29,7 +29,7 @@ void AirPort_OpenBSD::firmwareLoadComplete( OSKextRequestTag requestTag, OSRetur
 void AirPort_OpenBSD::firmwareLoadComplete(const char* name) {
     for (int i = 0; i < firmwares_total; i++) {
         if (strcmp(firmwares[i].name, name) == 0) {
-            firmware fw = firmwares[i];
+            struct firmware fw = firmwares[i];
             this->firmwareData = OSData::withBytes(fw.data, fw.size);
             return;
         }

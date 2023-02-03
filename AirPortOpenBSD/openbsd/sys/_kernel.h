@@ -47,28 +47,34 @@ extern int debug_log;
         #define DebugLog(args...) \
         if(debug_log) { \
             uint64_t new_thread_id = thread_tid(current_thread()); \
-            char argsStr[1024]; \
-            snprintf(argsStr, sizeof(argsStr), args); \
+            int argsStrSize = 1024; \
+            char *argsStr = (typeof argsStr)IOMalloc(argsStrSize); \
+            snprintf(argsStr, argsStrSize, args); \
             kprintf("tid = %llu, %s: line = %d %s", new_thread_id, __FUNCTION__, __LINE__, argsStr); \
+            IOFree(argsStr, argsStrSize); \
         }
     #else
         #define DebugLog(args...) \
         if(debug_log) { \
             uint64_t new_thread_id = thread_tid(current_thread()); \
-            char *argsStr = (char*)IOMalloc(1024); \
-            snprintf(argsStr, 1024, args); \
+            int argsStrSize = 1024; \
+            char *argsStr = (typeof argsStr)IOMalloc(argsStrSize); \
+            snprintf(argsStr, argsStrSize, args); \
             kprintf("tid = %llu, %s: line = %d %s", new_thread_id, __FUNCTION__, __LINE__, argsStr); \
             if (_ifp->if_softc != NULL) { \
-                char *logStr = (char*)IOMalloc(2048); \
-                snprintf(logStr, 2048, "%s: line = %d tid = %llu sysuptime = %llu %s", __FUNCTION__, __LINE__, new_thread_id, sysuptime(), argsStr); \
+                int logStrSize = 2048; \
+                char *logStr = (typeof logStr)IOMalloc(logStrSize); \
+                snprintf(logStr, logStrSize, "%s: line = %d tid = %llu sysuptime = %llu %s", __FUNCTION__, __LINE__, new_thread_id, sysuptime(), argsStr); \
                 OSString *log = OSString::withCString(logStr); \
-                char logKey[256]; \
-                snprintf(logKey, sizeof(logKey), "DebugLog_%06d", logStr_i++); \
+                int logKeySize = 256; \
+                char *logKey = (typeof logKey)IOMalloc(logKeySize); \
+                snprintf(logKey, logKeySize, "DebugLog_%06d", logStr_i++); \
                 struct device *dev = (struct device *)_ifp->if_softc; \
                 dev->dev->setProperty(logKey, log); \
-                IOFree(logStr, 2048); \
+                IOFree(logKey, logKeySize); \
+                IOFree(logStr, logStrSize); \
             } \
-            IOFree(argsStr, 1024); \
+            IOFree(argsStr, argsStrSize); \
         }
     #endif
 

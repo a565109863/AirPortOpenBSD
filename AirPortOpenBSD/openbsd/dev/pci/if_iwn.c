@@ -1,4 +1,4 @@
-/*    $OpenBSD: if_iwn.c,v 1.259 2022/06/15 08:43:17 stsp Exp $    */
+/*    $OpenBSD: if_iwn.c,v 1.260 2022/06/19 18:27:06 stsp Exp $    */
 
 /*-
  * Copyright (c) 2007-2010 Damien Bergamini <damien.bergamini@free.fr>

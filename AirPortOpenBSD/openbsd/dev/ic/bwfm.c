@@ -1,4 +1,4 @@
-/* $OpenBSD: bwfm.c,v 1.102 2022/03/20 12:01:58 stsp Exp $ */
+/* $OpenBSD: bwfm.c,v 1.106 2022/12/30 16:49:34 kettenis Exp $ */
 /*
  * Copyright (c) 2010-2016 Broadcom Corporation
  * Copyright (c) 2016,2017 Patrick Wildt <patrick@blueri.se>
@@ -356,9 +356,10 @@ bwfm_detach(struct bwfm_softc *sc, int flags)
     struct ifnet *ifp = &ic->ic_if;
 
     task_del(sc->sc_taskq, &sc->sc_task);
-    taskq_destroy(sc->sc_taskq);
     ieee80211_ifdetach(ifp);
+    taskq_barrier(sc->sc_taskq);
     if_detach(ifp);
+    taskq_destroy(sc->sc_taskq);
 
     bwfm_cleanup(sc);
     return 0;
@@ -390,6 +391,7 @@ void
 bwfm_start(struct ifnet *ifp)
 {
     struct bwfm_softc *sc = (typeof sc)ifp->if_softc;
+    struct ieee80211com *ic = &sc->sc_ic;
     mbuf_t m;
 
     if (!(ifp->if_flags & IFF_RUNNING))
@@ -406,6 +408,11 @@ bwfm_start(struct ifnet *ifp)
             ifq_set_oactive(&ifp->if_snd);
             break;
         }
+
+        if (!((struct device *)ifp->if_softc)->dev->useAppleRSNSupplicant(ifp->iface))
+        if (ic->ic_state != IEEE80211_S_RUN ||
+            (ic->ic_xflags & IEEE80211_F_TX_MGMT_ONLY))
+            break;
 
         m = ifq_dequeue(&ifp->if_snd);
         if (m == NULL)
@@ -703,22 +710,24 @@ bwfm_update_node(void *arg, struct ieee80211_node *ni)
     if (!IEEE80211_ADDR_EQ(ni->ni_macaddr, sta.ea))
         return;
 
-    if (le16toh(sta.ver) < 4)
+    if (le16toh(sta.ver) < 3)
         return;
 
     flags = le32toh(sta.flags);
     if ((flags & BWFM_STA_SCBSTATS) == 0)
         return;
 
-    rssi = 0;
-    for (i = 0; i < BWFM_ANT_MAX; i++) {
-        if (sta.rssi[i] >= 0)
-            continue;
-        if (rssi == 0 || sta.rssi[i] > rssi)
-            rssi = sta.rssi[i];
+    if (le16toh(sta.ver) >= 4) {
+        rssi = 0;
+        for (i = 0; i < BWFM_ANT_MAX; i++) {
+            if (sta.rssi[i] >= 0)
+                continue;
+            if (rssi == 0 || sta.rssi[i] > rssi)
+                rssi = sta.rssi[i];
+        }
+        if (rssi)
+            ni->ni_rssi = rssi;
     }
-    if (rssi)
-        ni->ni_rssi = rssi;
 
     txrate = le32toh(sta.tx_rate); /* in kbit/s */
     if (txrate == 0xffffffff) /* Seen this happening during association. */
@@ -2441,9 +2450,7 @@ bwfm_rx_auth_ind(struct bwfm_softc *sc, struct bwfm_event *e, size_t len)
     /* Finalize mbuf. */
     mbuf_setlen(m, pktlen);
     mbuf_pkthdr_setlen(m, pktlen);
-    rxi.rxi_flags = 0;
-    rxi.rxi_rssi = 0;
-    rxi.rxi_tstamp = 0;
+    memset(&rxi, 0, sizeof(rxi));
     ieee80211_input(ifp, m, ic->ic_bss, &rxi);
 }
 
@@ -2498,9 +2505,7 @@ bwfm_rx_assoc_ind(struct bwfm_softc *sc, struct bwfm_event *e, size_t len,
         m_freem(m);
         return;
     }
-    rxi.rxi_flags = 0;
-    rxi.rxi_rssi = 0;
-    rxi.rxi_tstamp = 0;
+    memset(&rxi, 0, sizeof(rxi));
     ieee80211_input(ifp, m, ni, &rxi);
 }
 
@@ -2554,9 +2559,7 @@ bwfm_rx_leave_ind(struct bwfm_softc *sc, struct bwfm_event *e, size_t len,
         m_freem(m);
         return;
     }
-    rxi.rxi_flags = 0;
-    rxi.rxi_rssi = 0;
-    rxi.rxi_tstamp = 0;
+    memset(&rxi, 0, sizeof(rxi));
     ieee80211_input(ifp, m, ni, &rxi);
 }
 #endif
@@ -2745,9 +2748,8 @@ bwfm_scan_node(struct bwfm_softc *sc, struct bwfm_bss_info *bss, size_t len)
     /* Channel mask equals IEEE80211_CHAN_MAX */
     chanidx = bwfm_spec2chan(sc, letoh32(bss->chanspec));
     /* Supply RSSI */
-    rxi.rxi_flags = 0;
+    memset(&rxi, 0, sizeof(rxi));
     rxi.rxi_rssi = (int16_t)letoh16(bss->rssi);
-    rxi.rxi_tstamp = 0;
     rxi.rxi_chan = chanidx;
     ieee80211_input(ifp, m, ni, &rxi);
     /* Node is no longer needed. */

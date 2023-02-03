@@ -1,4 +1,4 @@
-/*    $OpenBSD: bwi.c,v 1.132 2022/01/09 05:42:38 jsg Exp $    */
+/*    $OpenBSD: bwi.c,v 1.133 2022/04/21 21:03:02 stsp Exp $    */
 
 /*
  * Copyright (c) 2007 The DragonFly Project.  All rights reserved.
@@ -7704,7 +7704,7 @@ bwi_dma_txstats_alloc(struct bwi_softc *sc, uint32_t ctrl_base,
     bus_size_t dma_size;
     int error, nsegs;
 
-    st = (struct bwi_txstats_data *)malloc(sizeof(*st), M_DEVBUF, M_WAITOK | M_ZERO);
+    st = (typeof st)malloc(sizeof(*st), M_DEVBUF, M_WAITOK | M_ZERO);
     sc->sc_txstats = st;
 
     /*
@@ -8459,6 +8459,7 @@ bwi_rxeof(struct bwi_softc *sc, int end_idx)
         ni = ieee80211_find_rxnode(ic, wh);
         type = wh->i_fc[0] & IEEE80211_FC0_TYPE_MASK;
 
+        memset(&rxi, 0, sizeof(rxi));
         rxi.rxi_rssi = hdr->rxh_rssi;
         rxi.rxi_tstamp = letoh16(hdr->rxh_tsf);
         ieee80211_inputm(ifp, m, ni, &rxi, &ml);
@@ -8905,7 +8906,7 @@ bwi_encap(struct bwi_softc *sc, int idx, mbuf_t m,
             htole16(ic->ic_bss->ni_chan->ic_flags);
 
         mbuf_setdata(mb, tap, sc->sc_txtap_len);
-        mbuf_setlen(mb, sc->sc_rxtap_len);
+        mbuf_setlen(mb, sc->sc_txtap_len);
         mbuf_setnext(mb, m);
         mbuf_setnextpkt(mb, NULL);
         mbuf_settype(mb, 0);

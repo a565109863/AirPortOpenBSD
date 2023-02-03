@@ -160,12 +160,12 @@ IOReturn AirPort_OpenBSD::scanComplete()
 
 void AirPort_OpenBSD::scanFreeResults()
 {
+    this->scanResultsCount = 0;
     while (!SLIST_EMPTY(&this->scan_result_lists)) {
         struct apple80211_scan_result_list *scan_result_list = SLIST_FIRST(&this->scan_result_lists);
         SLIST_REMOVE_HEAD(&this->scan_result_lists, list);
         IOFree(scan_result_list, sizeof(struct apple80211_scan_result_list));
     }
-    this->scanResultsCount = 0;
     
     return;
 }

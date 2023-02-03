@@ -335,6 +335,8 @@ public:
     struct apple80211_country_code_data ccd;
     
     // PM
+    unsigned long currentPMPowerLevel = 0;
+    
     static IOReturn setPowerStateAction(OSObject *owner, void *arg1, void *arg2, void *arg3, void *arg4);
     IOReturn changePowerState(OSObject *object, int powerState);
     unsigned long powerState;

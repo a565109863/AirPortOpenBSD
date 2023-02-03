@@ -1,4 +1,5 @@
-/*    $OpenBSD: ieee80211_input.c,v 1.248 2022/12/27 20:13:03 patrick Exp $    */
+/*    $OpenBSD: ieee80211_input.c,v 1.250 2023/01/09 00:22:47 daniel Exp $    */
+/*    $NetBSD: ieee80211_input.c,v 1.24 2004/05/31 11:12:24 dyoung Exp $    */
 
 /*-
  * Copyright (c) 2001 Atsushi Onoe
@@ -1720,7 +1721,12 @@ ieee80211_recv_probe_resp(struct ieee80211com *ic, mbuf_t m,
             htcaps = frm;
             break;
         case IEEE80211_ELEMID_HTOP:
+            if (frm[1] < 22) {
+                ic->ic_stats.is_rx_elem_toosmall++;
+                break;
+            }
             htop = frm;
+            chan = frm[2];
             break;
         case IEEE80211_ELEMID_VHTCAPS:
             vhtcaps = frm;

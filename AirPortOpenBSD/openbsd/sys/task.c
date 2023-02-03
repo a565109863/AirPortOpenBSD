@@ -84,6 +84,11 @@ taskq_create(const char *name, unsigned int nthreads, int ipl,
 
 }
 
+void taskq_barrier(struct taskq *)
+{
+    
+}
+
 void taskq_destroy(struct taskq *)
 {
     

@@ -35,6 +35,7 @@ extern struct taskq *const systq;
 //extern struct taskq *const systqmp;
 
 struct taskq *taskq_create(const char *, unsigned int, int, unsigned int);
+void taskq_barrier(struct taskq *);
 void taskq_destroy(struct taskq *);
 
 void task_set(struct task *, void (*)(void *), void *);

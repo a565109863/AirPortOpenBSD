@@ -1,4 +1,4 @@
-/*    $OpenBSD: if_iwxvar.h,v 1.36 2022/05/13 05:06:56 stsp Exp $    */
+/*    $OpenBSD: if_iwxvar.h,v 1.37 2022/05/14 05:48:44 stsp Exp $    */
 
 /*
  * Copyright (c) 2014 genua mbh <info@genua.de>

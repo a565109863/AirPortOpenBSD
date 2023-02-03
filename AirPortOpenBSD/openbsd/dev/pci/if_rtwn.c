@@ -1,4 +1,4 @@
-/*    $OpenBSD: if_rtwn.c,v 1.37 2020/12/12 11:48:53 jan Exp $    */
+/*    $OpenBSD: if_rtwn.c,v 1.40 2022/04/21 21:03:03 stsp Exp $    */
 
 /*-
  * Copyright (c) 2010 Damien Bergamini <damien.bergamini@free.fr>
@@ -306,7 +306,7 @@ void
 rtwn_pci_attach(struct device *parent, struct device *self, void *aux)
 {
     struct rtwn_pci_softc *sc = (struct rtwn_pci_softc*)self;
-    struct pci_attach_args *pa = (struct pci_attach_args *)aux;
+    struct pci_attach_args *pa = (typeof pa)aux;
     struct ifnet *ifp;
     int i, error;
     pcireg_t memtype;
@@ -761,7 +761,7 @@ rtwn_free_tx_list(struct rtwn_pci_softc *sc, int qid)
 void
 rtwn_pci_write_1(void *cookie, uint16_t addr, uint8_t val)
 {
-    struct rtwn_pci_softc *sc = (struct rtwn_pci_softc *)cookie;
+    struct rtwn_pci_softc *sc = (typeof sc)cookie;
 
     bus_space_write_1(sc->sc_st, sc->sc_sh, addr, val);
 }
@@ -769,7 +769,7 @@ rtwn_pci_write_1(void *cookie, uint16_t addr, uint8_t val)
 void
 rtwn_pci_write_2(void *cookie, uint16_t addr, uint16_t val)
 {
-    struct rtwn_pci_softc *sc = (struct rtwn_pci_softc *)cookie;
+    struct rtwn_pci_softc *sc = (typeof sc)cookie;
 
     val = htole16(val);
     bus_space_write_2(sc->sc_st, sc->sc_sh, addr, val);
@@ -778,7 +778,7 @@ rtwn_pci_write_2(void *cookie, uint16_t addr, uint16_t val)
 void
 rtwn_pci_write_4(void *cookie, uint16_t addr, uint32_t val)
 {
-    struct rtwn_pci_softc *sc = (struct rtwn_pci_softc *)cookie;
+    struct rtwn_pci_softc *sc = (typeof sc)cookie;
 
     val = htole32(val);
     bus_space_write_4(sc->sc_st, sc->sc_sh, addr, val);
@@ -787,7 +787,7 @@ rtwn_pci_write_4(void *cookie, uint16_t addr, uint32_t val)
 uint8_t
 rtwn_pci_read_1(void *cookie, uint16_t addr)
 {
-    struct rtwn_pci_softc *sc = (struct rtwn_pci_softc *)cookie;
+    struct rtwn_pci_softc *sc = (typeof sc)cookie;
 
     return bus_space_read_1(sc->sc_st, sc->sc_sh, addr);
 }
@@ -795,7 +795,7 @@ rtwn_pci_read_1(void *cookie, uint16_t addr)
 uint16_t
 rtwn_pci_read_2(void *cookie, uint16_t addr)
 {
-    struct rtwn_pci_softc *sc = (struct rtwn_pci_softc *)cookie;
+    struct rtwn_pci_softc *sc = (typeof sc)cookie;
     uint16_t val;
 
     val = bus_space_read_2(sc->sc_st, sc->sc_sh, addr);
@@ -805,7 +805,7 @@ rtwn_pci_read_2(void *cookie, uint16_t addr)
 uint32_t
 rtwn_pci_read_4(void *cookie, uint16_t addr)
 {
-    struct rtwn_pci_softc *sc = (struct rtwn_pci_softc *)cookie;
+    struct rtwn_pci_softc *sc = (typeof sc)cookie;
     uint32_t val;
 
     val = bus_space_read_4(sc->sc_st, sc->sc_sh, addr);
@@ -962,20 +962,20 @@ rtwn_rx_frame(struct rtwn_pci_softc *sc, struct r92c_rx_desc_pci *rx_desc,
         tap->wr_chan_freq = htole16(ic->ic_ibss_chan->ic_freq);
         tap->wr_chan_flags = htole16(ic->ic_ibss_chan->ic_flags);
 
-//        mb.m_data = (caddr_t)tap;
-//        mb.m_len = sc->sc_rxtap_len;
-//        mb.m_next = m;
-//        mb.m_nextpkt = NULL;
-//        mb.m_type = 0;
-//        mb.m_flags = 0;
+        mbuf_setdata(mb, tap, sc->sc_rxtap_len);
+        mbuf_setlen(mb, sc->sc_rxtap_len);
+        mbuf_setnext(mb, m);
+        mbuf_setnextpkt(mb, NULL);
+        mbuf_settype(mb, 0);
+        mbuf_setflags(mb, 0);
+        
         bpf_mtap(sc->sc_drvbpf, mb, BPF_DIRECTION_IN);
     }
 #endif
 
     ni = ieee80211_find_rxnode(ic, wh);
-    rxi.rxi_flags = 0;
+    memset(&rxi, 0, sizeof(rxi));
     rxi.rxi_rssi = rssi;
-    rxi.rxi_tstamp = 0;    /* Unused. */
     ieee80211_inputm(ifp, m, ni, &rxi, ml);
     /* Node is no longer needed. */
     ieee80211_release_node(ic, ni);
@@ -984,7 +984,7 @@ rtwn_rx_frame(struct rtwn_pci_softc *sc, struct r92c_rx_desc_pci *rx_desc,
 int
 rtwn_tx(void *cookie, mbuf_t m, struct ieee80211_node *ni)
 {
-    struct rtwn_pci_softc *sc = (struct rtwn_pci_softc *)cookie;
+    struct rtwn_pci_softc *sc = (typeof sc)cookie;
     struct ieee80211com *ic = &sc->sc_sc.sc_ic;
     struct ieee80211_frame *wh;
     struct ieee80211_key *k = NULL;
@@ -1096,7 +1096,7 @@ rtwn_tx(void *cookie, mbuf_t m, struct ieee80211_node *ni)
         if (ic->ic_curmode == IEEE80211_MODE_11B)
             txd->txdw4 |= htole32(SM(R92C_TXDW4_RTSRATE, 0));
         else
-            txd->txdw4 |= htole32(SM(R92C_TXDW4_RTSRATE, 3));
+            txd->txdw4 |= htole32(SM(R92C_TXDW4_RTSRATE, 8));
         txd->txdw5 |= htole32(SM(R92C_TXDW5_RTSRATE_FBLIMIT, 0xf));
 
         /* Use AMMR rate for data. */
@@ -1179,12 +1179,13 @@ rtwn_tx(void *cookie, mbuf_t m, struct ieee80211_node *ni)
         tap->wt_chan_freq = htole16(ic->ic_bss->ni_chan->ic_freq);
         tap->wt_chan_flags = htole16(ic->ic_bss->ni_chan->ic_flags);
 
-//        mb.m_data = (caddr_t)tap;
-//        mb.m_len = sc->sc_txtap_len;
-//        mb.m_next = m;
-//        mb.m_nextpkt = NULL;
-//        mb.m_type = 0;
-//        mb.m_flags = 0;
+        mbuf_setdata(mb, tap, sc->sc_txtap_len);
+        mbuf_setlen(mb, sc->sc_txtap_len);
+        mbuf_setnext(mb, m);
+        mbuf_setnextpkt(mb, NULL);
+        mbuf_settype(mb, 0);
+        mbuf_setflags(mb, 0);
+        
         bpf_mtap(sc->sc_drvbpf, mb, BPF_DIRECTION_OUT);
     }
 #endif
@@ -1255,7 +1256,7 @@ rtwn_alloc_buffers(void *cookie)
 int
 rtwn_pci_init(void *cookie)
 {
-    struct rtwn_pci_softc *sc = (struct rtwn_pci_softc *)cookie;
+    struct rtwn_pci_softc *sc = (typeof sc)cookie;
     ieee80211_amrr_node_init(&sc->amrr, &sc->amn);
 
     /* Enable TX reports for AMRR */
@@ -1459,7 +1460,7 @@ rtwn_pci_23a_stop(struct rtwn_pci_softc *sc)
 void
 rtwn_pci_stop(void *cookie)
 {
-    struct rtwn_pci_softc *sc = (struct rtwn_pci_softc *)cookie;
+    struct rtwn_pci_softc *sc = (typeof sc)cookie;
     int i, s;
 
     s = splnet();
@@ -1548,7 +1549,7 @@ rtwn_88e_intr(struct rtwn_pci_softc *sc)
 int
 rtwn_intr(void *xsc)
 {
-    struct rtwn_pci_softc *sc = (struct rtwn_pci_softc *)xsc;
+    struct rtwn_pci_softc *sc = (typeof sc)xsc;
     struct mbuf_list ml = MBUF_LIST_INITIALIZER();
     u_int32_t status;
     int i;
@@ -1615,7 +1616,7 @@ rtwn_intr(void *xsc)
 int
 rtwn_is_oactive(void *cookie)
 {
-    struct rtwn_pci_softc *sc = (struct rtwn_pci_softc *)cookie;
+    struct rtwn_pci_softc *sc = (typeof sc)cookie;
     
     return (sc->qfullmsk != 0);
 }
@@ -1982,7 +1983,7 @@ rtwn_23a_power_on(struct rtwn_pci_softc *sc)
 int
 rtwn_power_on(void *cookie)
 {
-    struct rtwn_pci_softc *sc = (struct rtwn_pci_softc *)cookie;
+    struct rtwn_pci_softc *sc = (typeof sc)cookie;
 
     if (sc->sc_sc.chip & RTWN_CHIP_88E)
         return (rtwn_88e_power_on(sc));
@@ -1995,7 +1996,7 @@ rtwn_power_on(void *cookie)
 int
 rtwn_dma_init(void *cookie)
 {
-    struct rtwn_pci_softc *sc = (struct rtwn_pci_softc *)cookie;
+    struct rtwn_pci_softc *sc = (typeof sc)cookie;
     uint32_t reg;
     uint16_t dmasize;
     int hqpages, lqpages, nqpages, pagecnt, boundary, trxdma, tcr;
@@ -2097,7 +2098,7 @@ rtwn_dma_init(void *cookie)
 int
 rtwn_fw_loadpage(void *cookie, int page, uint8_t *buf, int len)
 {
-    struct rtwn_pci_softc *sc = (struct rtwn_pci_softc *)cookie;
+    struct rtwn_pci_softc *sc = (typeof sc)cookie;
     uint32_t reg;
     int off, mlen, error = 0, i;
 
@@ -2127,22 +2128,22 @@ rtwn_fw_loadpage(void *cookie, int page, uint8_t *buf, int len)
 int
 rtwn_pci_load_firmware(void *cookie, u_char **fw, size_t *len)
 {
-    struct rtwn_pci_softc *sc = (struct rtwn_pci_softc *)cookie;
+    struct rtwn_pci_softc *sc = (typeof sc)cookie;
     const char *name;
     int error;
 
     if (sc->sc_sc.chip & RTWN_CHIP_88E)
-        name = "rtwn-rtl8188efw";
+        name = "rtwn-rtl8188e";
     else if (sc->sc_sc.chip & RTWN_CHIP_23A) {
         if (sc->sc_sc.chip & RTWN_CHIP_UMC_A_CUT)
-            name = "rtwn-rtl8723fw";
+            name = "rtwn-rtl8723";
         else
-            name = "rtwn-rtl8723fw_B";
+            name = "rtwn-rtl8723_B";
     } else if ((sc->sc_sc.chip & (RTWN_CHIP_UMC_A_CUT | RTWN_CHIP_92C)) ==
         RTWN_CHIP_UMC_A_CUT)
-        name = "rtwn-rtl8192cfwU";
+        name = "rtwn-rtl8192cU";
     else
-        name = "rtwn-rtl8192cfwU_B";
+        name = "rtwn-rtl8192cU_B";
 
     error = loadfirmware(name, fw, len);
     if (error)
@@ -2154,7 +2155,7 @@ rtwn_pci_load_firmware(void *cookie, u_char **fw, size_t *len)
 void
 rtwn_mac_init(void *cookie)
 {
-    struct rtwn_pci_softc *sc = (struct rtwn_pci_softc *)cookie;
+    struct rtwn_pci_softc *sc = (typeof sc)cookie;
     int i;
 
     /* Write MAC initialization values. */
@@ -2182,7 +2183,7 @@ rtwn_mac_init(void *cookie)
 void
 rtwn_bb_init(void *cookie)
 {
-    struct rtwn_pci_softc *sc = (struct rtwn_pci_softc *)cookie;
+    struct rtwn_pci_softc *sc = (typeof sc)cookie;
     const struct r92c_bb_prog *prog;
     uint32_t reg;
     int i;
@@ -2280,7 +2281,7 @@ rtwn_bb_init(void *cookie)
 void
 rtwn_calib_to(void *arg)
 {
-    struct rtwn_pci_softc *sc = (struct rtwn_pci_softc *)arg;
+    struct rtwn_pci_softc *sc = (typeof sc)arg;
     struct ieee80211com *ic = &sc->sc_sc.sc_ic;
     int s;
 
@@ -2294,7 +2295,7 @@ rtwn_calib_to(void *arg)
 void
 rtwn_next_calib(void *cookie)
 {
-    struct rtwn_pci_softc *sc = (struct rtwn_pci_softc *)cookie;
+    struct rtwn_pci_softc *sc = (typeof sc)cookie;
 
     timeout_add_sec(&sc->calib_to, 2);
 }
@@ -2302,7 +2303,7 @@ rtwn_next_calib(void *cookie)
 void
 rtwn_cancel_calib(void *cookie)
 {
-    struct rtwn_pci_softc *sc = (struct rtwn_pci_softc *)cookie;
+    struct rtwn_pci_softc *sc = (typeof sc)cookie;
 
     if (timeout_initialized(&sc->calib_to))
         timeout_del(&sc->calib_to);
@@ -2311,7 +2312,7 @@ rtwn_cancel_calib(void *cookie)
 void
 rtwn_scan_to(void *arg)
 {
-    struct rtwn_pci_softc *sc = (struct rtwn_pci_softc *)arg;
+    struct rtwn_pci_softc *sc = (typeof sc)arg;
 
     rtwn_next_scan(&sc->sc_sc);
 }
@@ -2319,7 +2320,7 @@ rtwn_scan_to(void *arg)
 void
 rtwn_pci_next_scan(void *cookie)
 {
-    struct rtwn_pci_softc *sc = (struct rtwn_pci_softc *)cookie;
+    struct rtwn_pci_softc *sc = (typeof sc)cookie;
 
     timeout_add_msec(&sc->scan_to, 200);
 }
@@ -2327,7 +2328,7 @@ rtwn_pci_next_scan(void *cookie)
 void
 rtwn_cancel_scan(void *cookie)
 {
-    struct rtwn_pci_softc *sc = (struct rtwn_pci_softc *)cookie;
+    struct rtwn_pci_softc *sc = (typeof sc)cookie;
 
     if (timeout_initialized(&sc->scan_to))
         timeout_del(&sc->scan_to);
