@@ -122,7 +122,7 @@ IOReturn AirPort_OpenBSD::scanComplete()
         
         struct apple80211_scan_result_list *scan_result_list, *tmp;
         SLIST_FOREACH_SAFE(scan_result_list, &this->scan_result_lists, list, tmp) {
-            // 查找ssid和channel一样
+            // 查找ssid和channel
             if (memcmp((char*) na_node->nr_nwid, (char*)scan_result_list->scan_result.asr_ssid, max(scan_result_list->scan_result.asr_ssid_len, na_node->nr_nwid_len)) == 0 && na_node->nr_channel == scan_result_list->scan_result.asr_channel.channel){
                 // 找到
                 found = true;
@@ -147,9 +147,6 @@ IOReturn AirPort_OpenBSD::scanComplete()
         
         SLIST_INSERT_HEAD(&this->scan_result_lists, scan_result_list, list);
         
-        this->scanResultsCount++;
-        
-//        DebugLog("oneResult->asr_use = %d", scan_result_list->scan_result.asr_use);
     }
 
     IOFree(na, sizeof(*na));
@@ -160,7 +157,6 @@ IOReturn AirPort_OpenBSD::scanComplete()
 
 void AirPort_OpenBSD::scanFreeResults()
 {
-    this->scanResultsCount = 0;
     while (!SLIST_EMPTY(&this->scan_result_lists)) {
         struct apple80211_scan_result_list *scan_result_list = SLIST_FIRST(&this->scan_result_lists);
         SLIST_REMOVE_HEAD(&this->scan_result_lists, list);

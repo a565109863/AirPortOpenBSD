@@ -310,9 +310,9 @@
 //    memset(data, 0, sizeof(*data));
 //    data->version = APPLE80211_VERSION;
 //    for (int i = 0; i < IEEE80211_CHAN_MAX; i++) {
-//        struct ieee80211_channel *channel = &ic->ic_channels[i];
+//        struct ieee80211_channel *channel = &this->ic->ic_channels[i];
 //        if (channel->ic_freq != 0) {
-//            int chanNum = ieee80211_chan2ieee(ic, channel);
+//            int chanNum = ieee80211_chan2ieee(this->ic, channel);
 //            data->chan_num[data->num_chan_specs] = chanNum;
 ////            data->support_80Mhz[data->num_chan_specs] = IEEE80211_IS_CHAN_VHT80(channel);
 ////            data->support_40Mhz[data->num_chan_specs] = IEEE80211_IS_CHAN_HT40(channel) || IEEE80211_IS_CHAN_VHT40(channel);

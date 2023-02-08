@@ -101,8 +101,9 @@ SInt32 AirPort_OpenBSD::performCountryCodeOperation(IO80211Interface *interface,
 
 SInt32 AirPort_OpenBSD::stopDMA()
 {
-    if (_ifp->iface) {
-        this->disable(_ifp->iface);
+    struct ifnet *ifp = &this->ic->ic_if;
+    if (ifp->iface) {
+        this->disable(ifp->iface);
     }
     return 0;
 }

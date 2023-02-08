@@ -89,6 +89,7 @@ ieee80211_begin_bgscan(struct ifnet *ifp)
          * stay cached if it is turned off while we are scanning, and
          * we could end up picking a now non-existent AP over and over.
          */
+        if (ic->ic_state != IEEE80211_S_RUN)
         ieee80211_free_allnodes(ic, 0 /* keep ic->ic_bss */);
 
         ic->ic_flags |= IEEE80211_F_BGSCAN;

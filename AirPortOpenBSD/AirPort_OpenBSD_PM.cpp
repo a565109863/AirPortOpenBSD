@@ -45,7 +45,8 @@ IOReturn AirPort_OpenBSD::setPowerStateAction(OSObject *owner, void *arg1, void 
         return kIOReturnError;
     unsigned long *powerStateOrdinal = (unsigned long *)arg1;
     
-    dev->changePowerState(_ifp->iface, *powerStateOrdinal);
+    struct ifnet *ifp = &dev->ic->ic_if;
+    dev->changePowerState(ifp->iface, *powerStateOrdinal);
     return kIOReturnSuccess;
 }
 
@@ -81,13 +82,14 @@ IOReturn AirPort_OpenBSD::changePowerState(OSObject *object, int powerStateOrdin
             ret =  kIOReturnSuccess;
             break;
         case APPLE_POWER_OFF:
-            logStr_i = 0;
+            DebugLogClean();
             DebugLog("Setting power off");
             this->fWatchdogTimer->cancelTimeout();
             
             this->ca->ca_activate((struct device *)if_softc, DVACT_QUIESCE);
             
-            ieee80211_free_allnodes(ic, 1);
+            ieee80211_free_allnodes(this->ic, 1);
+            bzero(&this->scan_ssid, sizeof(this->scan_ssid));
             
             ret = kIOReturnSuccess;
             break;

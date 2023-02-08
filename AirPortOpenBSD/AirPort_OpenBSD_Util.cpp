@@ -131,21 +131,24 @@ AirPort_OpenBSD::ether_ifdetach(struct ifnet *ifp)
 void AirPort_OpenBSD::setLinkState(int linkState)
 {
     DebugLog("ifp->if_link_state = %d", linkState);
+    
+    struct ifnet *ifp = &this->ic->ic_if;
+    
     int reason = 0;
     if (linkState == LINK_STATE_UP) {
         setLinkStatus(kIONetworkLinkValid | kIONetworkLinkActive, this->getCurrentMedium());
-        _ifp->iface->startOutputThread();
+        ifp->iface->startOutputThread();
     }else {
         this->scanFreeResults();
         
         setLinkStatus(kIONetworkLinkValid);
-        _ifp->iface->stopOutputThread();
-        _ifp->iface->flushOutputQueue();
+        ifp->iface->stopOutputThread();
+        ifp->iface->flushOutputQueue();
         reason = APPLE80211_REASON_UNSPECIFIED;
     }
     
     this->getNetworkInterface()->setLinkState((IO80211LinkState)linkState, reason);
-    _ifp->iface->setLinkQualityMetric(100);
+    ifp->iface->setLinkQualityMetric(100);
     
 }
 
@@ -162,7 +165,7 @@ IOReturn AirPort_OpenBSD::tsleepHandler(OSObject* owner, void* arg0 = 0, void* a
             return kIOReturnTimeout;
     } else {
         AbsoluteTime deadline;
-        clock_interval_to_deadline((*(int*)arg1), kNanosecondScale, reinterpret_cast<uint64_t*> (&deadline));
+        clock_absolutetime_interval_to_deadline((*(uint64_t*)arg1), &deadline);
         if (dev->fCommandGate->commandSleep(arg0, deadline, THREAD_INTERRUPTIBLE) == THREAD_AWAKENED)
             return kIOReturnSuccess;
         else
@@ -172,9 +175,15 @@ IOReturn AirPort_OpenBSD::tsleepHandler(OSObject* owner, void* arg0 = 0, void* a
 
 void AirPort_OpenBSD::if_watchdog(IOTimerEventSource *timer)
 {
-    if (_ifp->if_watchdog) {
-        if (_ifp->if_timer > 0 && --_ifp->if_timer == 0)
-                (*_ifp->if_watchdog)(_ifp);
+//    if (this->powerState == APPLE_POWER_ON && this->ic->ic_state <= IEEE80211_S_INIT) {
+//        DebugLog("");
+////        this->ca->ca_activate((struct device *)if_softc, DVACT_WAKEUP);
+//    }
+    
+    struct ifnet *ifp = &this->ic->ic_if;
+    if (ifp->if_watchdog) {
+        if (ifp->if_timer > 0 && --ifp->if_timer == 0)
+                (*ifp->if_watchdog)(ifp);
         
         this->fWatchdogTimer->setTimeoutMS(kTimeoutMS);
     }

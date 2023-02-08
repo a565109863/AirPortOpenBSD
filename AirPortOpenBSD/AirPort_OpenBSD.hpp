@@ -45,6 +45,11 @@ struct apple80211_scan_result_list {
     struct apple80211_scan_result scan_result;
 };
 
+struct apple80211_ssid_data_known_list {
+    SLIST_ENTRY(apple80211_ssid_data_known_list)    list;
+    struct apple80211_ssid_data ssid;
+};
+
 class AirPort_OpenBSD : public IOController
 {
     OSDeclareDefaultStructors(AirPort_OpenBSD)
@@ -357,9 +362,12 @@ public:
     
     SLIST_HEAD(,apple80211_scan_result_list) scan_result_lists = SLIST_HEAD_INITIALIZER(scan_result_lists);
     struct apple80211_scan_result_list *scan_result_next;
-    uint32_t scanResultsCount = 0;
     
     int scanReqMultiple = 1;
+    
+    struct apple80211_ssid_data scan_ssid;
+    
+    SLIST_HEAD(,apple80211_ssid_data_known_list) known_ssid_lists = SLIST_HEAD_INITIALIZER(known_ssid_lists);
     
     // ASSOC
     void setPTK(const u_int8_t *key, size_t key_len);

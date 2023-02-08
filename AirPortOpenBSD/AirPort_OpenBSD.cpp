@@ -144,25 +144,21 @@ bool AirPort_OpenBSD::start(IOService* provider) {
     
     // 是否开启批量扫描
     if (PE_parse_boot_argn("scanmultiple", &this->scanReqMultiple, sizeof(this->scanReqMultiple)) == false) {
-#if MAC_TARGET >= __MAC_13_0
 //        IOReturn pmret = this->getAggressiveness(kPMPowerSource, &this->currentPMPowerLevel);
 //        if (pmret == kIOReturnSuccess && this->currentPMPowerLevel == kIOPMInternalPower) {
 //            // Ventura使用内部电池时，启用批量扫描，提高自动连接速度
 //            this->scanReqMultiple = 1;
 //        }
         this->scanReqMultiple = 1;
-#else
-        this->scanReqMultiple = 0;
-#endif
     }
     
     if_softc = malloc(this->ca->ca_devsize, M_DEVBUF, M_NOWAIT);
     dev = (struct device *)if_softc;
     dev->dev = this;
     
-    ic = (struct ieee80211com *)((char *)if_softc + sizeof(struct device));
+    this->ic = (struct ieee80211com *)((char *)if_softc + sizeof(struct device));
     
-    _ifp = &ic->ic_if;
+    _ifp = &this->ic->ic_if;
     _fWorkloop = fWorkloop;
     _fCommandGate = fCommandGate;
     _ifp->if_link_state = LINK_STATE_DOWN;
@@ -215,7 +211,7 @@ done:
 fail7:
     if (_ifp->iface){
         struct ieee80211com *ic = (struct ieee80211com *)_ifp;
-        ieee80211_ifdetach(&ic->ic_ac.ac_if);
+        ieee80211_ifdetach(&this->ic->ic_ac.ac_if);
         _ifp->iface = NULL;
     }
     dev = (struct device *)_ifp->if_softc;
@@ -279,20 +275,17 @@ void AirPort_OpenBSD::free() {
 }
 
 IOReturn AirPort_OpenBSD::getHardwareAddress(IOEthernetAddress* addr) {
-    struct ieee80211com *ic = (struct ieee80211com *)_ifp;
-    bcopy(ic->ic_myaddr, addr->bytes, kIOEthernetAddressSize);
+    bcopy(this->ic->ic_myaddr, addr->bytes, kIOEthernetAddressSize);
     return kIOReturnSuccess;
 }
 
 IOReturn AirPort_OpenBSD::setHardwareAddress(const IOEthernetAddress *addrP)
 {
-    if (!_ifp->iface || !addrP)
-        return kIOReturnError;
-    struct ieee80211com *ic = (struct ieee80211com *)_ifp;
-    if_setlladdr(&ic->ic_ac.ac_if, addrP->bytes);
-    if (ic->ic_state > IEEE80211_S_INIT) {
-        this->disable(_ifp->iface);
-        this->enable(_ifp->iface);
+    struct ifnet *ifp = &this->ic->ic_if;
+    if_setlladdr(ifp, addrP->bytes);
+    if (this->ic->ic_state > IEEE80211_S_INIT) {
+        this->disable(ifp->iface);
+        this->enable(ifp->iface);
     }
     return kIOReturnSuccess;
 }
@@ -321,7 +314,7 @@ UInt32 AirPort_OpenBSD::outputPacket(mbuf_t m, void* param) {
     int error;
     struct ifnet *ifp = &this->ic->ic_if;
     
-    if (ic->ic_state != IEEE80211_S_RUN) {
+    if (this->ic->ic_state != IEEE80211_S_RUN) {
         if (m && mbuf_type(m) != MBUF_TYPE_FREE) {
             ifp->if_oerrors++;
             freePacket(m);
@@ -400,7 +393,8 @@ IOReturn AirPort_OpenBSD::enable(IONetworkInterface *netif) {
     
     kprintf("enable() ===>\n");
     
-    setLinkStatus((kIONetworkLinkValid | kIONetworkLinkActive), mediumTable[MEDIUM_TYPE_AUTO], IF_Mbps(_ifp->if_baudrate), NULL);
+    struct ifnet *ifp = &this->ic->ic_if;
+    setLinkStatus((kIONetworkLinkValid | kIONetworkLinkActive), mediumTable[MEDIUM_TYPE_AUTO], IF_Mbps(ifp->if_baudrate), NULL);
     
     if (powerState == APPLE_POWER_OFF) {
         unsigned long powerStateOrdinal = APPLE_POWER_ON;
@@ -445,7 +439,8 @@ const OSString* AirPort_OpenBSD::newVendorString() const {
 }
 
 const OSString* AirPort_OpenBSD::newModelString() const {
-    return OSString::withCString(_ifp->fwname);
+    struct ifnet *ifp = &this->ic->ic_if;
+    return OSString::withCString(ifp->fwname);
 }
 
 UInt32 AirPort_OpenBSD::getFeatures() const {

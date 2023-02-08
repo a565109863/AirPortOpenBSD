@@ -71,7 +71,7 @@ int loadfirmware(const char *name, u_char **bufp, size_t *buflen);
 void ether_ifattach(struct ifnet *ifp);
 void ether_ifdetach(struct ifnet *ifp);
 
-int tsleep_nsec(void* chan,  int pri,  const char* wmesg,  int timo);
+int tsleep_nsec(void *ident, int priority, const char *wmesg, uint64_t nsecs);
 void wakeup_sleep(void *chan, bool one);
 #define wakeup(x) wakeup_sleep(x, false);
 #define wakeup_one(x) wakeup_sleep(x, true);

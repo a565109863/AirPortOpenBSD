@@ -50,9 +50,10 @@ extern int debug_log;
             int argsStrSize = 1024; \
             char *argsStr = (typeof argsStr)IOMalloc(argsStrSize); \
             snprintf(argsStr, argsStrSize, args); \
-            kprintf("tid = %llu, %s: line = %d %s", new_thread_id, __FUNCTION__, __LINE__, argsStr); \
+            kprintf("i=%d: tid = %llu, %s: line = %d %s", logStr_i++, new_thread_id, __FUNCTION__, __LINE__, argsStr); \
             IOFree(argsStr, argsStrSize); \
         }
+        #define DebugLogClean()
     #else
         #define DebugLog(args...) \
         if(debug_log) { \
@@ -76,10 +77,26 @@ extern int debug_log;
             } \
             IOFree(argsStr, argsStrSize); \
         }
+
+        #define DebugLogClean() \
+        if(debug_log) { \
+            if (_ifp->if_softc != NULL) { \
+                int logKeySize = 256; \
+                char *logKey = (typeof logKey)IOMalloc(logKeySize); \
+                while(logStr_i-- > 0) { \
+                    snprintf(logKey, logKeySize, "DebugLog_%06d", logStr_i); \
+                    struct device *dev = (struct device *)_ifp->if_softc; \
+                    dev->dev->removeProperty(logKey); \
+                } \
+                IOFree(logKey, logKeySize); \
+            } \
+            logStr_i = 0; \
+        }
     #endif
 
 #else
 #define DebugLog(args...)
+#define DebugLogClean()
 #endif
 
 #define DPRINTF(X) do {                \

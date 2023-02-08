@@ -30,10 +30,10 @@
 			<string>AirPort_OpenBSD</string>
 			<key>IOPCIPrimaryMatch</key>
 			<string>0x00008086&amp;0x0000ffff</string>
-			<key>IOProviderClass</key>
-			<string>IOPCIDevice</string>
 			<key>IOProbeScore</key>
 			<integer>1400</integer>
+			<key>IOProviderClass</key>
+			<string>IOPCIDevice</string>
 		</dict>
 	</dict>
 	<key>NSHumanReadableCopyright</key>

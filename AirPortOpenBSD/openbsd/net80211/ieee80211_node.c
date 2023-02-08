@@ -1454,6 +1454,9 @@ ieee80211_end_scan(struct ifnet *ifp)
 
     if (ic->ic_scan_count)
         ic->ic_flags &= ~IEEE80211_F_ASCAN;
+    
+    if (ic->ic_scan_count)
+        wakeup(&ic->ic_flags);
 
     if (ic->ic_opmode == IEEE80211_M_STA)
         ieee80211_clean_inactive_nodes(ic, IEEE80211_INACT_SCAN);

@@ -3631,7 +3631,7 @@
 				);
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = "BigSur v2.2.1";
+				MARKETING_VERSION = "BigSur v2.2.2";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3652,7 +3652,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "MAC_TARGET=__MAC_11_0";
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = "BigSur v2.2.1";
+				MARKETING_VERSION = "BigSur v2.2.2";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3680,7 +3680,7 @@
 					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = "Catalina v2.2.1";
+				MARKETING_VERSION = "Catalina v2.2.2";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3705,7 +3705,7 @@
 					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = "Catalina v2.2.1";
+				MARKETING_VERSION = "Catalina v2.2.2";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3729,7 +3729,7 @@
 				);
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = "Mojave v2.2.1";
+				MARKETING_VERSION = "Mojave v2.2.2";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3750,7 +3750,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "MAC_TARGET=__MAC_10_14";
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = "Mojave v2.2.1";
+				MARKETING_VERSION = "Mojave v2.2.2";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3774,7 +3774,7 @@
 				);
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = "HighSierra v2.2.1";
+				MARKETING_VERSION = "HighSierra v2.2.2";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3795,7 +3795,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "MAC_TARGET=__MAC_10_13";
 				INFOPLIST_FILE = AirPortOpenBSD/Info.plist;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = "HighSierra v2.2.1";
+				MARKETING_VERSION = "HighSierra v2.2.2";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3845,7 +3845,7 @@
 				);
 				INFOPLIST_FILE = AirPortOpenBSD/Info_Monterey.plist;
 				MACOSX_DEPLOYMENT_TARGET = 12;
-				MARKETING_VERSION = "Monterey v2.2.1";
+				MARKETING_VERSION = "Monterey v2.2.2";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3867,7 +3867,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "MAC_TARGET=__MAC_12_0";
 				INFOPLIST_FILE = AirPortOpenBSD/Info_Monterey.plist;
 				MACOSX_DEPLOYMENT_TARGET = 12;
-				MARKETING_VERSION = "Monterey v2.2.1";
+				MARKETING_VERSION = "Monterey v2.2.2";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3893,7 +3893,7 @@
 				);
 				INFOPLIST_FILE = AirPortOpenBSD/Info_Ventura.plist;
 				MACOSX_DEPLOYMENT_TARGET = 13;
-				MARKETING_VERSION = "Ventura v2.2.1";
+				MARKETING_VERSION = "Ventura v2.2.2";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;
@@ -3915,7 +3915,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "MAC_TARGET=__MAC_13_0";
 				INFOPLIST_FILE = AirPortOpenBSD/Info_Ventura.plist;
 				MACOSX_DEPLOYMENT_TARGET = 13;
-				MARKETING_VERSION = "Ventura v2.2.1";
+				MARKETING_VERSION = "Ventura v2.2.2";
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSD;

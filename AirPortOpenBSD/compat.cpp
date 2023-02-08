@@ -18,19 +18,19 @@ void interrupt_func(OSObject *ih, IOInterruptEventSource *src, int count)
     _ih->func(_ih->arg);
 }
 
-int tsleep_nsec(void *ident, int priority, const char *wmesg, int timo)
+int tsleep_nsec(void *ident, int priority, const char *wmesg, uint64_t nsecs)
 {
     if (_fCommandGate == NULL) {
         // no command gate so we just sleep
-        IOSleep(timo / 1000000000ULL);
+        IOSleep(nsecs / 1000000000ULL);
         return 1;
     }
     
     IOReturn ret;
-    if (timo == 0) {
+    if (nsecs == 0) {
         ret = _fCommandGate->runAction(AirPort_OpenBSD::tsleepHandler, ident);
     } else {
-        ret = _fCommandGate->runAction(AirPort_OpenBSD::tsleepHandler, ident, &timo);
+        ret = _fCommandGate->runAction(AirPort_OpenBSD::tsleepHandler, ident, &nsecs);
     }
     
     if (ret == kIOReturnSuccess)
@@ -95,7 +95,8 @@ void if_input(struct ifnet* ifp, struct mbuf_list *ml)
 
 void post_message(struct ifnet *ifp, int msgCode)
 {
-    ifp->iface->postMessage(msgCode);
+    struct device *dev = (struct device *)ifp->if_softc;
+    dev->dev->postMessage(msgCode);
 }
 
 void ether_ifattach(struct ifnet *ifp)
