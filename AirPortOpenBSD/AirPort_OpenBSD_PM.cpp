@@ -43,14 +43,14 @@ IOReturn AirPort_OpenBSD::setPowerStateAction(OSObject *owner, void *arg1, void 
     AirPort_OpenBSD* dev = OSDynamicCast(AirPort_OpenBSD, owner);
     if (dev == NULL)
         return kIOReturnError;
-    unsigned long *powerStateOrdinal = (unsigned long *)arg1;
+    u_int32_t *powerStateOrdinal = (u_int32_t *)arg1;
     
     struct ifnet *ifp = &dev->ic->ic_if;
     dev->changePowerState(ifp->iface, *powerStateOrdinal);
     return kIOReturnSuccess;
 }
 
-IOReturn AirPort_OpenBSD::changePowerState(OSObject *object, int powerStateOrdinal)
+IOReturn AirPort_OpenBSD::changePowerState(OSObject *object, u_int32_t powerStateOrdinal)
 {
     IOReturn ret = kIOReturnSuccess;
     
@@ -89,7 +89,8 @@ IOReturn AirPort_OpenBSD::changePowerState(OSObject *object, int powerStateOrdin
             this->ca->ca_activate((struct device *)if_softc, DVACT_QUIESCE);
             
             ieee80211_free_allnodes(this->ic, 1);
-            bzero(&this->scan_ssid, sizeof(this->scan_ssid));
+            
+            this->scanFreeResults();
             
             ret = kIOReturnSuccess;
             break;

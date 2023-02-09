@@ -343,9 +343,9 @@ public:
     unsigned long currentPMPowerLevel = 0;
     
     static IOReturn setPowerStateAction(OSObject *owner, void *arg1, void *arg2, void *arg3, void *arg4);
-    IOReturn changePowerState(OSObject *object, int powerState);
-    unsigned long powerState;
-    u_int32_t    powersave_level;
+    IOReturn changePowerState(OSObject *object, u_int32_t powerState);
+    u_int32_t   powerState;
+    u_int32_t   powersave_level;
     struct apple80211_antenna_data tx_antenna;
     struct apple80211_antenna_data ad;
     

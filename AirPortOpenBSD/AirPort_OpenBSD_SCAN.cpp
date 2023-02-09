@@ -163,6 +163,14 @@ void AirPort_OpenBSD::scanFreeResults()
         IOFree(scan_result_list, sizeof(struct apple80211_scan_result_list));
     }
     
+    while (!SLIST_EMPTY(&this->known_ssid_lists)) {
+        struct apple80211_ssid_data_known_list *known_ssid_list = SLIST_FIRST(&this->known_ssid_lists);
+        SLIST_REMOVE_HEAD(&this->known_ssid_lists, list);
+        IOFree(known_ssid_list, sizeof(struct apple80211_ssid_data_known_list));
+    }
+    
+    bzero(&this->scan_ssid, sizeof(this->scan_ssid));
+    
     return;
 }
 

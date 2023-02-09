@@ -50,7 +50,7 @@ extern int debug_log;
             int argsStrSize = 1024; \
             char *argsStr = (typeof argsStr)IOMalloc(argsStrSize); \
             snprintf(argsStr, argsStrSize, args); \
-            kprintf("i=%d: tid = %llu, %s: line = %d %s", logStr_i++, new_thread_id, __FUNCTION__, __LINE__, argsStr); \
+            kprintf("i=%d: %s: line = %d tid = %llu sysuptime = %llu %s", logStr_i++, __FUNCTION__, __LINE__, new_thread_id, sysuptime(), argsStr); \
             IOFree(argsStr, argsStrSize); \
         }
         #define DebugLogClean()
@@ -61,7 +61,7 @@ extern int debug_log;
             int argsStrSize = 1024; \
             char *argsStr = (typeof argsStr)IOMalloc(argsStrSize); \
             snprintf(argsStr, argsStrSize, args); \
-            kprintf("tid = %llu, %s: line = %d %s", new_thread_id, __FUNCTION__, __LINE__, argsStr); \
+            kprintf("%s: line = %d tid = %llu sysuptime = %llu %s", __FUNCTION__, __LINE__, new_thread_id, sysuptime(), argsStr); \
             if (_ifp->if_softc != NULL) { \
                 int logStrSize = 2048; \
                 char *logStr = (typeof logStr)IOMalloc(logStrSize); \
