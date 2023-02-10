@@ -1189,6 +1189,8 @@ IOReturn AirPort_OpenBSD::setASSOCIATE(OSObject *object, struct apple80211_assoc
         }
     }
     
+    this->ic->ic_deauth_reason = APPLE80211_REASON_UNSPECIFIED;
+    
     return kIOReturnSuccess;
     
 }
@@ -1213,21 +1215,24 @@ IOReturn AirPort_OpenBSD::getASSOCIATE_RESULT(OSObject *object, struct apple8021
 
 IOReturn AirPort_OpenBSD::setDISASSOCIATE(OSObject *object)
 {
-    DebugLog("");
+    if (this->ic->ic_state != IEEE80211_S_RUN) {
+        return kIOReturnSuccess;
+    }
+    
+    DebugLog("this->ic->ic_des_essid = %s", this->ic->ic_des_essid);
+    
+    ieee80211_new_state(ic, IEEE80211_S_ASSOC,
+        IEEE80211_FC0_SUBTYPE_DISASSOC);
+    
+    while (ic->ic_state == IEEE80211_S_RUN) {
+        tsleep_nsec(&ic->ic_state, 0, "DISASSOC", MSEC_TO_NSEC(50));
+    }
 
-//    if (this->ic->ic_state < IEEE80211_S_SCAN) {
-//        return kIOReturnSuccess;
-//    }
-//
-//    if (this->ic->ic_state == IEEE80211_S_ASSOC || this->ic->ic_state == IEEE80211_S_AUTH) {
-//        return kIOReturnSuccess;
-//    }
-//
-//    ieee80211_del_ess(this->ic, nullptr, 0, 1);
-//    ieee80211_deselect_ess(this->ic);
-//    this->ic->ic_rsnie[1] = 0;
-//    this->ic->ic_deauth_reason = APPLE80211_REASON_ASSOC_LEAVING;
-//    ieee80211_new_state(this->ic, IEEE80211_S_SCAN, -1);
+    ieee80211_deselect_ess(this->ic);
+    ieee80211_new_state(this->ic, IEEE80211_S_SCAN, -1);
+    
+    this->ic->ic_deauth_reason = APPLE80211_REASON_ASSOC_LEAVING;
+    
     return kIOReturnSuccess;
 }
 
