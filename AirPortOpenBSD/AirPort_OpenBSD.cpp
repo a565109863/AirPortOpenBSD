@@ -209,7 +209,7 @@ done:
     return ret;
     
 fail7:
-    if (_ifp->iface){
+    if (_ifp->iface) {
         struct ieee80211com *ic = (struct ieee80211com *)_ifp;
         ieee80211_ifdetach(&this->ic->ic_ac.ac_if);
         _ifp->iface = NULL;
@@ -326,7 +326,7 @@ UInt32 AirPort_OpenBSD::outputPacket(mbuf_t m, void* param) {
         ifp->if_oerrors++;
         return kIOReturnOutputDropped;
     }
-    if (!(mbuf_flags(m) & MBUF_PKTHDR) ){
+    if (!(mbuf_flags(m) & MBUF_PKTHDR) ) {
         mbuf_freem(m);
         ifp->if_oerrors++;
         return kIOReturnOutputDropped;

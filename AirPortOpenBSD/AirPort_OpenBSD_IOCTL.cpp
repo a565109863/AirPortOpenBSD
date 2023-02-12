@@ -328,7 +328,7 @@ IOReturn AirPort_OpenBSD::setSCAN_REQ(OSObject *object, struct apple80211_scan_d
         tsleep_nsec(&this->ic->ic_flags, 0, "scan ssid", SEC_TO_NSEC(1));
     }
     
-    if (this->ic->ic_state <= IEEE80211_S_INIT) {
+    if (this->ic->ic_state != IEEE80211_S_SCAN && this->ic->ic_state != IEEE80211_S_RUN) {
         return 0x16;
     }
     
@@ -338,30 +338,43 @@ IOReturn AirPort_OpenBSD::setSCAN_REQ(OSObject *object, struct apple80211_scan_d
         if (this->ic->ic_state > IEEE80211_S_SCAN && memcmp(sd->ssid, this->ic->ic_des_essid, max(sd->ssid_len, this->ic->ic_des_esslen)) == 0) {
             bzero(&this->scan_ssid, sizeof(this->scan_ssid));
         } else {
+            struct apple80211_ssid_data *ssid, ssid1 = {};
+            ssid1.version = APPLE80211_VERSION;
+            ssid1.ssid_len = sd->ssid_len;
+            bcopy(sd->ssid, ssid1.ssid, ssid1.ssid_len);
+            ssid = &ssid1;
+            
             // 查找有没有在已知网络里
             bool found_known_ssid = false;
             struct apple80211_ssid_data_known_list *known_ssid_list, *tmp;
             SLIST_FOREACH_SAFE(known_ssid_list, &this->known_ssid_lists, list, tmp) {
                 // 查找ssid和channel
-                if (memcmp(sd->ssid, known_ssid_list->ssid.ssid, max(sd->ssid_len, known_ssid_list->ssid.ssid_len)) == 0){
+                if (memcmp(ssid->ssid, known_ssid_list->ssid.ssid, max(ssid->ssid_len, known_ssid_list->ssid.ssid_len)) == 0) {
                     // 找到已知网络ssid
                     found_known_ssid = true;
                     break;
                 }
             }
             
+//            if (!found_known_ssid) {
+//                // 加入已知网络
+//                known_ssid_list = (typeof known_ssid_list)IOMalloc(sizeof(struct apple80211_ssid_data_known_list));
+//                bzero(known_ssid_list, sizeof(struct apple80211_ssid_data_known_list));
+//                bcopy(ssid, &known_ssid_list->ssid, sizeof(struct apple80211_ssid_data));
+//                SLIST_INSERT_HEAD(&this->known_ssid_lists, known_ssid_list, list);
+//            }
+            
             if (!found_known_ssid || this->ic->ic_state == IEEE80211_S_SCAN) {
                 // 没找到，或正在扫描中，则主动扫描
                 DebugLog("this->scan_ssid.ssid = %s, sd->ssid = %s", this->scan_ssid.ssid, sd->ssid);
-                DebugLog("this->scan_ssid.ssid = %s, sd->ssid = %s", this->scan_ssid.ssid, sd->ssid);
-
+                
                 // 查找有没有在扫描结果里
                 bool found_scan_result = false;
 
                 struct apple80211_scan_result_list *scan_result_list, *tmp;
                 SLIST_FOREACH_SAFE(scan_result_list, &this->scan_result_lists, list, tmp) {
                     // 查找ssid
-                    if (memcmp((char*) sd->ssid, (char*)scan_result_list->scan_result.asr_ssid, max(scan_result_list->scan_result.asr_ssid_len, sd->ssid_len)) == 0){
+                    if (memcmp((char*) sd->ssid, (char*)scan_result_list->scan_result.asr_ssid, max(scan_result_list->scan_result.asr_ssid_len, sd->ssid_len)) == 0) {
                         // 找到扫描结果的ssid
                         found_scan_result = true;
                         
@@ -446,43 +459,44 @@ IOReturn AirPort_OpenBSD::setSCAN_REQ_MULTIPLE(OSObject *object, struct apple802
         DebugLog("i = %d ssid = %s ssid_len = %d", i, smd->ssids[i].ssid, smd->ssids[i].ssid_len);
     }
     
-    
-//#if MAC_TARGET >= __MAC_13_0
     // 保存已知网络
     for (int i = 0; i < smd->ssid_count; i++) {
         struct apple80211_ssid_data *ssid = &smd->ssids[i];
-        if (ssid->ssid_len == 0) {
-            continue;
-        }
-        
-        // 查找有没有在已知网络里
-        bool found_known_ssid = false;
-        struct apple80211_ssid_data_known_list *known_ssid_list, *tmp;
-        SLIST_FOREACH_SAFE(known_ssid_list, &this->known_ssid_lists, list, tmp) {
-            // 查找ssid和channel
-            if (memcmp(ssid->ssid, known_ssid_list->ssid.ssid, max(ssid->ssid_len, known_ssid_list->ssid.ssid_len)) == 0){
-                // 找到已知网络ssid
-                found_known_ssid = true;
-                break;
+        if (ssid->ssid_len > 0) {
+            // 查找有没有在已知网络里
+            bool found_known_ssid = false;
+            struct apple80211_ssid_data_known_list *known_ssid_list, *tmp;
+            SLIST_FOREACH_SAFE(known_ssid_list, &this->known_ssid_lists, list, tmp) {
+                // 查找ssid和channel
+                if (memcmp(ssid->ssid, known_ssid_list->ssid.ssid, max(ssid->ssid_len, known_ssid_list->ssid.ssid_len)) == 0) {
+                    // 找到已知网络ssid
+                    found_known_ssid = true;
+                    break;
+                }
+            }
+            
+            if (!found_known_ssid) {
+                // 加入已知网络
+                known_ssid_list = (typeof known_ssid_list)IOMalloc(sizeof(struct apple80211_ssid_data_known_list));
+                bzero(known_ssid_list, sizeof(struct apple80211_ssid_data_known_list));
+                bcopy(ssid, &known_ssid_list->ssid, sizeof(struct apple80211_ssid_data));
+                SLIST_INSERT_HEAD(&this->known_ssid_lists, known_ssid_list, list);
             }
         }
-        
-        if (!found_known_ssid) {
-            // 加入已知网络
-            known_ssid_list = (typeof known_ssid_list)IOMalloc(sizeof(struct apple80211_ssid_data_known_list));
-            bcopy(ssid, &known_ssid_list->ssid, sizeof(struct apple80211_ssid_data));
-            SLIST_INSERT_HEAD(&this->known_ssid_lists, known_ssid_list, list);
-        }
     }
-    
-//#endif
     
     while (this->ic->ic_state <= IEEE80211_S_INIT) {
         tsleep_nsec(&this->ic->ic_flags, 0, "scan ssid", SEC_TO_NSEC(1));
     }
     
-    if (this->ic->ic_state <= IEEE80211_S_INIT) {
+    if (this->ic->ic_state != IEEE80211_S_SCAN && this->ic->ic_state != IEEE80211_S_RUN) {
         return 0x16;
+    }
+    
+    uint32_t max_channel = 0;
+    for (int i = 0; i < smd->num_channels; i++) {
+        DebugLog("i = %d channel = %d", i, smd->channels[i].channel);
+        max_channel = max_channel > smd->channels[i].channel ? max_channel : smd->channels[i].channel;
     }
 
 #if MAC_TARGET < __MAC_13_0
@@ -495,115 +509,52 @@ IOReturn AirPort_OpenBSD::setSCAN_REQ_MULTIPLE(OSObject *object, struct apple802
                 continue;
             }
             
-            if (smd->num_channels == 6 || this->ic->ic_state == IEEE80211_S_SCAN) {
-                // 没找到，或正在扫描中，则主动扫描
-//                DebugLog("this->scan_ssid.ssid = %s, sd->ssid = %s", this->scan_ssid.ssid, ssid->ssid);
-//                DebugLog("this->scan_ssid.ssid = %s, sd->ssid = %s", this->scan_ssid.ssid, ssid->ssid);
+            if (this->active_scan == 0 && smd->num_channels == 6) {
+                // 准备主动扫描ssid
+                if (memcmp(this->scan_ssid.ssid, ssid->ssid, max(this->scan_ssid.ssid_len, ssid->ssid_len)) != 0) {
 
-                // 查找有没有在扫描结果里
-                bool found_scan_result = false;
+                    bzero(&this->scan_ssid, sizeof(this->scan_ssid));
 
-                struct apple80211_scan_result_list *scan_result_list, *tmp;
-                SLIST_FOREACH_SAFE(scan_result_list, &this->scan_result_lists, list, tmp) {
-                    // 查找ssid和channel一样
-                    if (memcmp((char*) ssid->ssid, (char*)scan_result_list->scan_result.asr_ssid, max(scan_result_list->scan_result.asr_ssid_len, ssid->ssid_len)) == 0){
-                        // 找到扫描结果的ssid
-                        found_scan_result = true;
-                        
-                        bzero(&this->scan_ssid, sizeof(this->scan_ssid));
-                        break;
-                    }
+                    this->scan_ssid.ssid_len = ssid->ssid_len;
+                    bcopy(ssid->ssid, this->scan_ssid.ssid, this->scan_ssid.ssid_len);
+
+                    this->active_scan = 1;
+
                 }
+            } else if (this->active_scan == 1 && max_channel == 165) {
 
-                if (!found_scan_result) {
-                    // 不存在
-                    if (memcmp(this->scan_ssid.ssid, ssid->ssid, max(this->scan_ssid.ssid_len, ssid->ssid_len)) != 0) {
+                if (memcmp(this->scan_ssid.ssid, ssid->ssid, max(this->scan_ssid.ssid_len, ssid->ssid_len)) == 0) {
+                    // 开始主动扫描ssid
+                    DebugLog("this->scan_ssid.ssid = %s, ssid->ssid = %s", this->scan_ssid.ssid, ssid->ssid);
+                    
+                    this->configArr[0] = this->getName();
+                    this->configArr[1] = "nwid";
+                    this->configArr[2] = (const char *)this->scan_ssid.ssid;
+                    this->configArrCount = 2;
+                    ifconfig(this->configArr, this->configArrCount);
 
-                        bzero(&this->scan_ssid, sizeof(this->scan_ssid));
-
-                        this->scan_ssid.ssid_len = ssid->ssid_len;
-                        bcopy(ssid->ssid, this->scan_ssid.ssid, this->scan_ssid.ssid_len);
-
-                        this->configArr[0] = this->getName();
-                        this->configArr[1] = "nwid";
-                        this->configArr[2] = (const char *)ssid->ssid;
-                        this->configArrCount = 2;
-                        ifconfig(this->configArr, this->configArrCount);
-
-                        while ((this->ic->ic_flags & IEEE80211_F_ASCAN) && this->ic->ic_state == IEEE80211_S_SCAN) {
-                            DebugLog("this->scan_ssid.ssid = %s, ssid->ssid = %s", this->scan_ssid.ssid, ssid->ssid);
-                            tsleep_nsec(&this->ic->ic_flags, 0, "scan ssid", SEC_TO_NSEC(1));
-                        }
-
+                    while ((this->ic->ic_flags & IEEE80211_F_ASCAN) && this->ic->ic_state == IEEE80211_S_SCAN) {
                         DebugLog("this->scan_ssid.ssid = %s, ssid->ssid = %s", this->scan_ssid.ssid, ssid->ssid);
+                        tsleep_nsec(&this->ic->ic_flags, 0, "scan ssid", SEC_TO_NSEC(1));
                     }
+                    
+                    DebugLog("this->scan_ssid.ssid = %s, ssid->ssid = %s", this->scan_ssid.ssid, ssid->ssid);
+
                 }
+                
+                this->active_scan = 0;
             }
         }
     }
+    
+    if (max_channel == 165) {
+        this->active_scan = 0;
+    }
+    
 #endif
-
-//    // 设置ssid，主动扫描
-//    for (int i = 0; i < smd->ssid_count; i++) {
-//        struct apple80211_ssid_data *multiple_ssid = &smd->ssids[i];
-//        DebugLog("i = %d ssid = %s ssid_len = %d", i, multiple_ssid->ssid, multiple_ssid->ssid_len);
-//        
-//        if (this->ic->ic_state == IEEE80211_S_SCAN) {
-//            if (multiple_ssid->ssid_len > 0) {
-//                
-//                DebugLog("i = %d ssid = %s ssid_len = %d", i, multiple_ssid->ssid, multiple_ssid->ssid_len);
-//                DebugLog("i = %d ssid = %s ssid_len = %d", i, multiple_ssid->ssid, multiple_ssid->ssid_len);
-//                
-//                // 查找有没有在缓存里
-//                bool found = false;
-//                
-//                struct apple80211_scan_result_list *scan_result_list, *tmp;
-//                SLIST_FOREACH_SAFE(scan_result_list, &this->scan_result_lists, list, tmp) {
-//                    // 查找ssid和channel一样
-//                    if (memcmp((char*) multiple_ssid->ssid, (char*)scan_result_list->scan_result.asr_ssid, max(scan_result_list->scan_result.asr_ssid_len, multiple_ssid->ssid_len)) == 0){
-//                        // 找到
-//                        found = true;
-//                        break;
-//                    }
-//                }
-//                
-//                if (!found) {
-//                    // 不存在
-//                    if (memcmp(this->scan_ssid.ssid, multiple_ssid->ssid, max(this->scan_ssid.ssid_len, multiple_ssid->ssid_len)) != 0) {
-//                        
-//                        bzero(&this->scan_ssid, sizeof(this->scan_ssid));
-//                        
-//                        this->scan_ssid.ssid_len = multiple_ssid->ssid_len;
-//                        bcopy(multiple_ssid->ssid, this->scan_ssid.ssid, this->scan_ssid.ssid_len);
-//                        
-//                        DebugLog("");
-//                        
-//                        this->configArr[0] = this->getName();
-//                        this->configArr[1] = "nwid";
-//                        this->configArr[2] = (const char *)multiple_ssid->ssid;
-//                        this->configArrCount = 2;
-//                        ifconfig(this->configArr, this->configArrCount);
-//                        
-//                        DebugLog("");
-//                        
-//                        while (this->ic->ic_flags & IEEE80211_F_ASCAN) {
-//                            tsleep_nsec(&this->ic->ic_flags, 0, "scan ssid", SEC_TO_NSEC(1));
-//                        }
-//                        DebugLog("");
-//                    }
-//                }
-//                
-//            }
-//            
-//        }
-//    }
     
     if (this->scanComplete() != kIOReturnSuccess) {
         return 0x16;
-    }
-    
-    for (int i = 0; i < smd->num_channels; i++) {
-        DebugLog("i = %d channel = %d", i, smd->channels[i].channel);
     }
     
     if (this->fScanSource) {
@@ -631,10 +582,9 @@ IOReturn AirPort_OpenBSD::getSCAN_RESULT(OSObject *object, struct apple80211_sca
             if (next != NULL) {
                 *sr = &next->scan_result;
                 this->scan_result_next = SLIST_NEXT(this->scan_result_next, list);
-                
-                DebugLog("asr_ssid = %s", next->scan_result.asr_ssid);
-
                 ret = kIOReturnSuccess;
+                
+//                DebugLog("asr_ssid = %s", next->scan_result.asr_ssid);
             } else {
                 ret = 0x05;
             }
@@ -643,6 +593,10 @@ IOReturn AirPort_OpenBSD::getSCAN_RESULT(OSObject *object, struct apple80211_sca
         }
     } else {
         ret = 0x10;
+    }
+    
+    if (ret != kIOReturnSuccess) {
+        DebugLog("");
     }
     
     return  ret;
@@ -1187,6 +1141,11 @@ IOReturn AirPort_OpenBSD::setASSOCIATE(OSObject *object, struct apple80211_assoc
             ifconfig(this->configArr, this->configArrCount);
             
         }
+        
+        while (ic->ic_state <= IEEE80211_S_SCAN) {
+            tsleep_nsec(&ic->ic_state, 0, "ASSOC", MSEC_TO_NSEC(50));
+        }
+
     }
     
     this->ic->ic_deauth_reason = APPLE80211_REASON_UNSPECIFIED;

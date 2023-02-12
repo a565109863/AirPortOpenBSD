@@ -366,6 +366,7 @@ public:
     int scanReqMultiple = 1;
     
     struct apple80211_ssid_data scan_ssid;
+    int active_scan = 0;
     
     SLIST_HEAD(,apple80211_ssid_data_known_list) known_ssid_lists = SLIST_HEAD_INITIALIZER(known_ssid_lists);
     

@@ -123,7 +123,7 @@ IOReturn AirPort_OpenBSD::scanComplete()
         struct apple80211_scan_result_list *scan_result_list, *tmp;
         SLIST_FOREACH_SAFE(scan_result_list, &this->scan_result_lists, list, tmp) {
             // 查找ssid和channel
-            if (memcmp((char*) na_node->nr_nwid, (char*)scan_result_list->scan_result.asr_ssid, max(scan_result_list->scan_result.asr_ssid_len, na_node->nr_nwid_len)) == 0 && na_node->nr_channel == scan_result_list->scan_result.asr_channel.channel){
+            if (memcmp((char*) na_node->nr_nwid, (char*)scan_result_list->scan_result.asr_ssid, max(scan_result_list->scan_result.asr_ssid_len, na_node->nr_nwid_len)) == 0 && na_node->nr_channel == scan_result_list->scan_result.asr_channel.channel) {
                 // 找到
                 found = true;
                 break;
@@ -133,7 +133,7 @@ IOReturn AirPort_OpenBSD::scanComplete()
         if (found) {
             // 已存在, 更新
             // 跳过已连接的ssid
-//                if (memcmp((char*) na_node->nr_nwid, (char*)assoc_ssid.ssid, max(assoc_ssid.ssid_len, na_node->nr_nwid_len)) != 0){
+//                if (memcmp((char*) na_node->nr_nwid, (char*)assoc_ssid.ssid, max(assoc_ssid.ssid_len, na_node->nr_nwid_len)) != 0) {
 //                    // 找不到才更新
             this->scanConvertResult(na_node, &scan_result_list->scan_result);
 //                }
