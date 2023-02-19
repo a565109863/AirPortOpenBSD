@@ -22,7 +22,7 @@ bool AirPort_OpenBSD::init(OSDictionary* parameters) {
     
     fwLoadLock = IOLockAlloc();
     
-    powerState = APPLE_POWER_OFF;
+    this->powerState = APPLE_POWER_OFF;
     
     return true;
 }
@@ -396,7 +396,7 @@ IOReturn AirPort_OpenBSD::enable(IONetworkInterface *netif) {
     struct ifnet *ifp = &this->ic->ic_if;
     setLinkStatus((kIONetworkLinkValid | kIONetworkLinkActive), mediumTable[MEDIUM_TYPE_AUTO], IF_Mbps(ifp->if_baudrate), NULL);
     
-    if (powerState == APPLE_POWER_OFF) {
+    if (this->powerState == APPLE_POWER_OFF) {
         unsigned long powerStateOrdinal = APPLE_POWER_ON;
         this->fCommandGate->runAction(setPowerStateAction, &powerStateOrdinal);
     }

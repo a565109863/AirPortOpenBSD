@@ -54,11 +54,11 @@ IOReturn AirPort_OpenBSD::changePowerState(OSObject *object, u_int32_t powerStat
 {
     IOReturn ret = kIOReturnSuccess;
     
-    if (powerState == powerStateOrdinal) {
+    if (this->powerState == powerStateOrdinal) {
         return ret;
     }
     
-    powerState = powerStateOrdinal;
+    this->powerState = powerStateOrdinal;
     
     switch (powerStateOrdinal) {
         case APPLE_POWER_ON:

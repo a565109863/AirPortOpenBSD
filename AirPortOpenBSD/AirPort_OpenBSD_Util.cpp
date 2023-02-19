@@ -136,12 +136,11 @@ void AirPort_OpenBSD::setLinkState(int linkState)
     
     int reason = 0;
     if (linkState == LINK_STATE_UP) {
-        setLinkStatus(kIONetworkLinkValid | kIONetworkLinkActive, this->getCurrentMedium());
+        this->setLinkStatus(kIONetworkLinkValid | kIONetworkLinkActive, this->getCurrentMedium());
         ifp->iface->startOutputThread();
     }else {
-        this->scanFreeResults();
-        
-        setLinkStatus(kIONetworkLinkValid);
+//        this->scanFreeResults();
+        this->setLinkStatus(kIONetworkLinkValid);
         ifp->iface->stopOutputThread();
         ifp->iface->flushOutputQueue();
         reason = APPLE80211_REASON_UNSPECIFIED;

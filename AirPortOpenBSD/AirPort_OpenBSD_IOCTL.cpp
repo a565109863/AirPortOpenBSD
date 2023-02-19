@@ -73,7 +73,6 @@ IOReturn AirPort_OpenBSD::setAUTH_TYPE(OSObject *object, struct apple80211_autht
 
 IOReturn AirPort_OpenBSD::setCIPHER_KEY(OSObject *object, struct apple80211_key *key)
 {
-    DebugLog("");
     const char* keydump = hexdump(key->key, key->key_len);
     const char* rscdump = hexdump(key->key_rsc, key->key_rsc_len);
     const char* eadump = hexdump(key->key_ea.octet, APPLE80211_ADDR_LEN);
@@ -324,10 +323,6 @@ IOReturn AirPort_OpenBSD::setSCAN_REQ(OSObject *object, struct apple80211_scan_d
 //          sd->scan_flags,
           sizeof(*sd));
     
-    while (this->ic->ic_state <= IEEE80211_S_INIT) {
-        tsleep_nsec(&this->ic->ic_flags, 0, "scan ssid", SEC_TO_NSEC(1));
-    }
-    
     if (this->ic->ic_state != IEEE80211_S_SCAN && this->ic->ic_state != IEEE80211_S_RUN) {
         return 0x16;
     }
@@ -483,10 +478,6 @@ IOReturn AirPort_OpenBSD::setSCAN_REQ_MULTIPLE(OSObject *object, struct apple802
                 SLIST_INSERT_HEAD(&this->known_ssid_lists, known_ssid_list, list);
             }
         }
-    }
-    
-    while (this->ic->ic_state <= IEEE80211_S_INIT) {
-        tsleep_nsec(&this->ic->ic_flags, 0, "scan ssid", SEC_TO_NSEC(1));
     }
     
     if (this->ic->ic_state != IEEE80211_S_SCAN && this->ic->ic_state != IEEE80211_S_RUN) {
@@ -939,7 +930,7 @@ IOReturn AirPort_OpenBSD::getPOWER(OSObject *object, struct apple80211_power_dat
     ret->version = APPLE80211_VERSION;
     ret->num_radios = 4;
     for (int i = 0; i < ret->num_radios; i++) {
-        ret->power_state[i] = powerState;
+        ret->power_state[i] = this->powerState;
     }
 
     return kIOReturnSuccess;
@@ -980,14 +971,6 @@ IOReturn AirPort_OpenBSD::setASSOCIATE(OSObject *object, struct apple80211_assoc
     if (OSDynamicCast(IO80211P2PInterface, object) != NULL) {
         DebugLog("IO80211P2PInterface");
     } else {
-        
-        if (this->ic->ic_state < IEEE80211_S_SCAN) {
-            return kIOReturnSuccess;
-        }
-        
-        if (this->ic->ic_state == IEEE80211_S_ASSOC || this->ic->ic_state == IEEE80211_S_AUTH) {
-            return kIOReturnSuccess;
-        }
         
         if (ad->ad_mode != APPLE80211_AP_MODE_IBSS) {
             
@@ -1142,9 +1125,9 @@ IOReturn AirPort_OpenBSD::setASSOCIATE(OSObject *object, struct apple80211_assoc
             
         }
         
-        while (ic->ic_state <= IEEE80211_S_SCAN) {
-            tsleep_nsec(&ic->ic_state, 0, "ASSOC", MSEC_TO_NSEC(50));
-        }
+//        while (ic->ic_state <= IEEE80211_S_SCAN) {
+//            tsleep_nsec(&ic->ic_state, 0, "ASSOC", MSEC_TO_NSEC(50));
+//        }
 
     }
     
@@ -1160,12 +1143,13 @@ IOReturn AirPort_OpenBSD::setASSOCIATE(OSObject *object, struct apple80211_assoc
 
 IOReturn AirPort_OpenBSD::getASSOCIATE_RESULT(OSObject *object, struct apple80211_assoc_result_data *ad)
 {
-    if (this->ic->ic_state != IEEE80211_S_RUN || this->ic->ic_bss == NULL)
-        return kIOReturnError;
-    memset(ad, 0, sizeof(*ad));
     ad->version = APPLE80211_VERSION;
-    ad->result = APPLE80211_RESULT_SUCCESS;
+    if (this->ic->ic_state == IEEE80211_S_RUN)
+        ad->result = APPLE80211_RESULT_SUCCESS;
+    else
+        ad->result = APPLE80211_RESULT_UNAVAILABLE;
     return kIOReturnSuccess;
+
 }
 
 //
@@ -1186,11 +1170,17 @@ IOReturn AirPort_OpenBSD::setDISASSOCIATE(OSObject *object)
     while (ic->ic_state == IEEE80211_S_RUN) {
         tsleep_nsec(&ic->ic_state, 0, "DISASSOC", MSEC_TO_NSEC(50));
     }
-
+    
+    this->scanFreeResults();
+    
     ieee80211_deselect_ess(this->ic);
     ieee80211_new_state(this->ic, IEEE80211_S_SCAN, -1);
     
-    this->ic->ic_deauth_reason = APPLE80211_REASON_ASSOC_LEAVING;
+    while (ic->ic_state > IEEE80211_S_SCAN) {
+        tsleep_nsec(&ic->ic_state, 0, "SCAN", MSEC_TO_NSEC(50));
+    }
+    
+    this->ic->ic_deauth_reason = APPLE80211_REASON_AUTH_LEAVING;
     
     return kIOReturnSuccess;
 }
@@ -1459,7 +1449,6 @@ IOReturn AirPort_OpenBSD::getSTATS(OSObject *object, struct apple80211_stats_dat
 
 IOReturn AirPort_OpenBSD::getASSOCIATION_STATUS(OSObject *object, struct apple80211_assoc_status_data* ret)
 {
-    memset(ret, 0, sizeof(*ret));
     ret->version = APPLE80211_VERSION;
     if (this->ic->ic_state == IEEE80211_S_RUN)
         ret->status = APPLE80211_STATUS_SUCCESS;
