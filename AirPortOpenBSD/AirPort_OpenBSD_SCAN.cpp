@@ -157,6 +157,10 @@ IOReturn AirPort_OpenBSD::scanComplete()
 
 void AirPort_OpenBSD::scanFreeResults()
 {
+    if (this->ic->ic_state != IEEE80211_S_RUN || this->ic->ic_bss == NULL) {
+        return;
+    }
+    
     while (!SLIST_EMPTY(&this->scan_result_lists)) {
         struct apple80211_scan_result_list *scan_result_list = SLIST_FIRST(&this->scan_result_lists);
         SLIST_REMOVE_HEAD(&this->scan_result_lists, list);
