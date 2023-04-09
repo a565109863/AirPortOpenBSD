@@ -483,7 +483,7 @@ struct apple80211_scan_result
 
     u_int16_t             unk3; // 0x88 - 0x89
     int16_t               asr_ie_len; // 0x8a - 0x8b
-#if MAC_TARGET < __MAC_12_0
+#if MAC_VERSION_MAJOR < MAC_VERSION_MAJOR_Monterey
     uint32_t              asr_unk3; // 0x8c - 0x8d - 0x8e - 0x8f
     void*                 asr_ie_data; // 0x90
 #else
@@ -564,7 +564,7 @@ enum apple80211_card_capability
 
 enum apple80211_virtual_interface_type
 {
-#if MAC_TARGET < __MAC_13_0
+#if MAC_VERSION_MAJOR < MAC_VERSION_MAJOR_Ventura
     APPLE80211_VIF_P2P_DEVICE   = 1,
 #else
     APPLE80211_VIF_P2P_DEVICE   = 3,

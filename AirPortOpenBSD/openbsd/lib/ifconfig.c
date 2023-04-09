@@ -831,7 +831,8 @@ void ifconfig(const char **argv, int argc)
 void ifconfig(const char *config_str)
 {
     struct device *dev = (struct device *)_ifp->if_softc;
-    strlcpy(ifname, dev->dev->getName(), sizeof(ifname));
+    struct ifnet *ifp = &dev->dev->ic->ic_if;
+    strlcpy(ifname, ifp->if_xname, sizeof(ifname));
     
     char *config[100] = {0};
     

@@ -8,11 +8,11 @@
 
 #include <compat.h>
 
-OSDefineMetaClassAndStructors(pci_intr_handle, OSObject)
+OSDefineMetaClassAndStructors(pci_intr_handle_class, OSObject)
 
 void interrupt_func(OSObject *ih, IOInterruptEventSource *src, int count)
 {
-    pci_intr_handle* _ih = OSDynamicCast(pci_intr_handle, ih);
+    pci_intr_handle_class* _ih = OSDynamicCast(pci_intr_handle_class, ih);
     if (_ih == NULL)
         return;
     _ih->func(_ih->arg);
@@ -28,9 +28,9 @@ int tsleep_nsec(void *ident, int priority, const char *wmesg, uint64_t nsecs)
     
     IOReturn ret;
     if (nsecs == 0) {
-        ret = _fCommandGate->runAction(AirPort_OpenBSD::tsleepHandler, ident);
+        ret = _fCommandGate->runAction(AirPort_OpenBSD_Class::tsleepHandler, ident);
     } else {
-        ret = _fCommandGate->runAction(AirPort_OpenBSD::tsleepHandler, ident, &nsecs);
+        ret = _fCommandGate->runAction(AirPort_OpenBSD_Class::tsleepHandler, ident, &nsecs);
     }
     
     if (ret == kIOReturnSuccess)
@@ -52,7 +52,7 @@ int ticks = INT_MAX - (15 * 60 * 1000);
 int loadfirmware(const char *name, u_char **bufp, size_t *buflen)
 {
     snprintf(_ifp->fwname, sizeof(_ifp->fwname), "%s", name);
-    snprintf(_ifp->fwver, sizeof(_ifp->fwver), "%s", name);
+//    snprintf(_ifp->fwver, sizeof(_ifp->fwver), "%s", name);
     
     struct device *dev = (struct device *)_ifp->if_softc;
     return dev->dev->loadfirmware(name, bufp, buflen);

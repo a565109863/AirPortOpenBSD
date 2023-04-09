@@ -228,7 +228,7 @@ wpi_attach(struct device *parent, struct device *self, void *aux)
     }
     printf(": %s", intrstr);
     
-    snprintf(ifp->fwver, sizeof(ifp->fwver), "fwname wpi-3945abg");
+    snprintf(ifp->fwver, sizeof(ifp->fwver), "wpi-3945abg");
 
     /* Power ON adapter. */
     if ((error = wpi_apm_init(sc)) != 0) {

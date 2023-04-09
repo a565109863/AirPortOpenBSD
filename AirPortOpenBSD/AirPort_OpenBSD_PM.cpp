@@ -23,12 +23,12 @@ static IOPMPowerState powerStateArray[kPowerStateCount] =
 
 
 // Power Management
-IOReturn AirPort_OpenBSD::registerWithPolicyMaker(IOService* policyMaker)
+IOReturn AirPort_OpenBSD_Class::registerWithPolicyMaker(IOService* policyMaker)
 {
     return policyMaker->registerPowerDriver(this, powerStateArray, kPowerStateCount);
 }
 
-IOReturn AirPort_OpenBSD::setPowerState(unsigned long powerStateOrdinal, IOService *policyMaker)
+IOReturn AirPort_OpenBSD_Class::setPowerState(unsigned long powerStateOrdinal, IOService *policyMaker)
 {
     IOReturn result = IOPMAckImplied;
     
@@ -38,9 +38,9 @@ done:
     return result;
 }
 
-IOReturn AirPort_OpenBSD::setPowerStateAction(OSObject *owner, void *arg1, void *arg2, void *arg3, void *arg4)
+IOReturn AirPort_OpenBSD_Class::setPowerStateAction(OSObject *owner, void *arg1, void *arg2, void *arg3, void *arg4)
 {
-    AirPort_OpenBSD* dev = OSDynamicCast(AirPort_OpenBSD, owner);
+    AirPort_OpenBSD_Class* dev = OSDynamicCast(AirPort_OpenBSD_Class, owner);
     if (dev == NULL)
         return kIOReturnError;
     u_int32_t *powerStateOrdinal = (u_int32_t *)arg1;
@@ -50,7 +50,7 @@ IOReturn AirPort_OpenBSD::setPowerStateAction(OSObject *owner, void *arg1, void 
     return kIOReturnSuccess;
 }
 
-IOReturn AirPort_OpenBSD::changePowerState(OSObject *object, u_int32_t powerStateOrdinal)
+IOReturn AirPort_OpenBSD_Class::changePowerState(OSObject *object, u_int32_t powerStateOrdinal)
 {
     IOReturn ret = kIOReturnSuccess;
     
@@ -67,7 +67,8 @@ IOReturn AirPort_OpenBSD::changePowerState(OSObject *object, u_int32_t powerStat
             if (this->firstUp) {
                 this->firstUp = false;
                 
-                this->configArr[0] = this->getName();
+                struct ifnet *ifp = &this->ic->ic_if;
+                this->configArr[0] = ifp->if_xname;
                 this->configArr[1] = "up";
                 this->configArr[2] = "debug";
                 this->configArrCount = 3;

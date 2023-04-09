@@ -2214,7 +2214,7 @@ iwi_init(struct ifnet *ifp)
         goto fail2;
     }
 
-    snprintf(ifp->fwver, sizeof(ifp->fwver), "fwname %s ver %d", name,
+    snprintf(ifp->fwver, sizeof(ifp->fwver), "%s ver %d", name,
         hdr->vermaj);
 
     if (size < sizeof (struct iwi_firmware_hdr) + letoh32(hdr->bootsz) +

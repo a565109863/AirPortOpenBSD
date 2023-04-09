@@ -43,7 +43,7 @@ extern int debug_log;
 
 #ifdef DEBUG
 
-    #if MAC_TARGET < __MAC_11_0
+    #if MAC_VERSION_MAJOR < MAC_VERSION_MAJOR_BigSur
         #define DebugLog(args...) \
         if(debug_log) { \
             uint64_t new_thread_id = thread_tid(current_thread()); \

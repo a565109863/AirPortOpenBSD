@@ -7,7 +7,7 @@
 
 #include "AirPort_OpenBSD.hpp"
 
-int AirPort_OpenBSD::chanspec2applechannel(int ic_flags, int ic_xflags)
+int AirPort_OpenBSD_Class::chanspec2applechannel(int ic_flags, int ic_xflags)
 {
     struct ieee80211_channel ni_chan = {0, ic_flags, ic_xflags};
     
@@ -39,7 +39,7 @@ int AirPort_OpenBSD::chanspec2applechannel(int ic_flags, int ic_xflags)
 }
 
 
-IOReturn AirPort_OpenBSD::scanConvertResult(struct ieee80211_nodereq *nr, struct apple80211_scan_result* oneResult)
+IOReturn AirPort_OpenBSD_Class::scanConvertResult(struct ieee80211_nodereq *nr, struct apple80211_scan_result* oneResult)
 {
     bzero(oneResult, sizeof(apple80211_scan_result));
 
@@ -55,7 +55,7 @@ IOReturn AirPort_OpenBSD::scanConvertResult(struct ieee80211_nodereq *nr, struct
     oneResult->asr_snr = oneResult->asr_rssi - oneResult->asr_noise;
     oneResult->asr_beacon_int = nr->nr_intval;
     oneResult->asr_cap = nr->nr_capinfo;
-    bcopy(nr->nr_bssid, oneResult->asr_bssid.octet, IEEE80211_ADDR_LEN);
+    IEEE80211_ADDR_COPY(oneResult->asr_bssid.octet, nr->nr_bssid);
     oneResult->asr_nrates = nr->nr_nrates;
     for (int r = 0; r < oneResult->asr_nrates; r++)
         oneResult->asr_rates[r] = (nr->nr_rates[r] & IEEE80211_RATE_VAL) / 2;
@@ -69,7 +69,7 @@ IOReturn AirPort_OpenBSD::scanConvertResult(struct ieee80211_nodereq *nr, struct
     oneResult->asr_ie_len = 0;
     if (nr->nr_ie != NULL && nr->nr_ie_len > 0) {
         oneResult->asr_ie_len = nr->nr_ie_len;
-#if MAC_TARGET < __MAC_12_0
+#if MAC_VERSION_MAJOR < MAC_VERSION_MAJOR_Monterey
         oneResult->asr_ie_data = IOMalloc(oneResult->asr_ie_len);
         if (oneResult->asr_ie_data != NULL) {
             memcpy(oneResult->asr_ie_data, nr->nr_ie, oneResult->asr_ie_len);
@@ -84,7 +84,7 @@ IOReturn AirPort_OpenBSD::scanConvertResult(struct ieee80211_nodereq *nr, struct
     return 0;
 }
 
-IOReturn AirPort_OpenBSD::scanComplete()
+IOReturn AirPort_OpenBSD_Class::scanComplete()
 {
     struct ieee80211_nodereq_all *na = (typeof na)IOMalloc(sizeof(*na));
     struct ieee80211_nodereq *nr = (typeof nr)IOMalloc(512 * sizeof(*nr));
@@ -94,7 +94,8 @@ IOReturn AirPort_OpenBSD::scanComplete()
     bzero(nr, 512 * sizeof(*nr));
     na->na_node = nr;
     na->na_size = 512 * sizeof(*nr);
-    strlcpy(na->na_ifname, this->getName(), strlen(this->getName()));
+    struct ifnet *ifp = &this->ic->ic_if;
+    strlcpy(na->na_ifname, ifp->if_xname, strlen(ifp->if_xname));
 
     if (ioctl(0, SIOCG80211ALLNODES, na) != 0) {
         IOFree(na, sizeof(*na));
@@ -122,8 +123,8 @@ IOReturn AirPort_OpenBSD::scanComplete()
         
         struct apple80211_scan_result_list *scan_result_list, *tmp;
         SLIST_FOREACH_SAFE(scan_result_list, &this->scan_result_lists, list, tmp) {
-            // 查找ssid和channel
-            if (memcmp((char*) na_node->nr_nwid, (char*)scan_result_list->scan_result.asr_ssid, max(scan_result_list->scan_result.asr_ssid_len, na_node->nr_nwid_len)) == 0 && na_node->nr_channel == scan_result_list->scan_result.asr_channel.channel) {
+            // 查找bssid和channel
+            if (IEEE80211_ADDR_EQ(na_node->nr_bssid, scan_result_list->scan_result.asr_bssid.octet) && na_node->nr_channel == scan_result_list->scan_result.asr_channel.channel) {
                 // 找到
                 found = true;
                 break;
@@ -155,16 +156,18 @@ IOReturn AirPort_OpenBSD::scanComplete()
     return kIOReturnSuccess;
 }
 
-void AirPort_OpenBSD::scanFreeResults()
+void AirPort_OpenBSD_Class::scanFreeResults()
 {
-    if (this->ic->ic_state != IEEE80211_S_RUN || this->ic->ic_bss == NULL) {
-        return;
-    }
+    DebugLog("this->ic->ic_state = %d", this->ic->ic_state);
     
     while (!SLIST_EMPTY(&this->scan_result_lists)) {
         struct apple80211_scan_result_list *scan_result_list = SLIST_FIRST(&this->scan_result_lists);
         SLIST_REMOVE_HEAD(&this->scan_result_lists, list);
         IOFree(scan_result_list, sizeof(struct apple80211_scan_result_list));
+    }
+    
+    if (this->ic->ic_state != IEEE80211_S_RUN || this->ic->ic_bss == NULL) {
+        return;
     }
     
     while (!SLIST_EMPTY(&this->known_ssid_lists)) {
@@ -178,8 +181,11 @@ void AirPort_OpenBSD::scanFreeResults()
     return;
 }
 
-void AirPort_OpenBSD::apple80211_scan_done(OSObject *owner, IOTimerEventSource *sender)
+void AirPort_OpenBSD_Class::apple80211_scan_done(OSObject *owner, IOTimerEventSource *sender)
 {
-    AirPort_OpenBSD *that = (AirPort_OpenBSD *)owner;
+    AirPort_OpenBSD_Class *that = (AirPort_OpenBSD_Class *)owner;
+    
+    that->scan_result_next = SLIST_FIRST(&that->scan_result_lists);
+    
     that->postMessage(APPLE80211_M_SCAN_DONE);
 }

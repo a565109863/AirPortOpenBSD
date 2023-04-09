@@ -28,7 +28,7 @@ typedef u_int pci_intr_handle_t;
 
 #define PCITAG_OFFSET(x)    ((x) & 0xffffffff)
 
-//typedef pci_intr_handle* pci_intr_handle_t;
+//typedef pci_intr_handle_class* pci_intr_handle_t;
 
 struct pci_matchid {
     pci_vendor_id_t        pm_vid;

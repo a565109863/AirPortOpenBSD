@@ -17,8 +17,8 @@ int _start(struct kmod_info*, void*) {
     return 0;
 };
 
-void AirPort_OpenBSD::firmwareLoadComplete( OSKextRequestTag requestTag, OSReturn result, const void *resourceData, uint32_t resourceDataLength, void *context) {
-    AirPort_OpenBSD *dev = (typeof dev)context;
+void AirPort_OpenBSD_Class::firmwareLoadComplete( OSKextRequestTag requestTag, OSReturn result, const void *resourceData, uint32_t resourceDataLength, void *context) {
+    AirPort_OpenBSD_Class *dev = (typeof dev)context;
     if(result == kOSReturnSuccess) {
         dev->firmwareData = OSData::withBytes(resourceData, resourceDataLength);
     } else
@@ -26,7 +26,7 @@ void AirPort_OpenBSD::firmwareLoadComplete( OSKextRequestTag requestTag, OSRetur
     IOLockWakeup(dev->fwLoadLock, dev, true);
 }
 
-void AirPort_OpenBSD::firmwareLoadComplete(const char* name) {
+void AirPort_OpenBSD_Class::firmwareLoadComplete(const char* name) {
     for (int i = 0; i < firmwares_total; i++) {
         if (strcmp(firmwares[i].name, name) == 0) {
             struct firmware fw = firmwares[i];
@@ -36,7 +36,7 @@ void AirPort_OpenBSD::firmwareLoadComplete(const char* name) {
     }
 }
 
-int AirPort_OpenBSD::loadfirmware(const char *firmware_name, u_char **bufp, size_t *buflen)
+int AirPort_OpenBSD_Class::loadfirmware(const char *firmware_name, u_char **bufp, size_t *buflen)
 {
 //    IOLockLock(this->fwLoadLock);
 //
@@ -67,7 +67,7 @@ int AirPort_OpenBSD::loadfirmware(const char *firmware_name, u_char **bufp, size
     return 0;
 }
 
-void AirPort_OpenBSD::if_input(struct ifnet* ifp, struct mbuf_list *ml)
+void AirPort_OpenBSD_Class::if_input(struct ifnet* ifp, struct mbuf_list *ml)
 {
     int packets = 0;
     mbuf_t m;
@@ -88,7 +88,7 @@ void AirPort_OpenBSD::if_input(struct ifnet* ifp, struct mbuf_list *ml)
 }
 
 
-IOReturn AirPort_OpenBSD::getVirtIf(OSObject *object)
+IOReturn AirPort_OpenBSD_Class::getVirtIf(OSObject *object)
 {
     if (object == NULL) {
         return kIOReturnError;
@@ -97,20 +97,20 @@ IOReturn AirPort_OpenBSD::getVirtIf(OSObject *object)
     return (OSDynamicCast(IO80211P2PInterface, object) != NULL) ? kIOReturnSuccess : kIOReturnError ;
 }
 
-IOReturn AirPort_OpenBSD::postMessage(unsigned int msg, void* data, unsigned long dataLen)
+IOReturn AirPort_OpenBSD_Class::postMessage(unsigned int msg, void* data, unsigned long dataLen)
 {
     this->getNetworkInterface()->postMessage(msg, data, dataLen);
     return kIOReturnSuccess;
 }
 
 void
-AirPort_OpenBSD::ether_ifattach(struct ifnet *ifp)
+AirPort_OpenBSD_Class::ether_ifattach(struct ifnet *ifp)
 {
     if (ifp->iface != NULL) {
         return;
     }
     
-    this->setName(ifp->if_xname);
+    this->setName("AirPortOpenBSD");
     
     if (!attachInterface((IONetworkInterface**)&ifp->iface, true)) {
         panic("AirPort_OpenBSD: Failed to attach interface!");
@@ -119,7 +119,7 @@ AirPort_OpenBSD::ether_ifattach(struct ifnet *ifp)
 }
 
 void
-AirPort_OpenBSD::ether_ifdetach(struct ifnet *ifp)
+AirPort_OpenBSD_Class::ether_ifdetach(struct ifnet *ifp)
 {
     if (ifp->iface == NULL) {
         return;
@@ -128,7 +128,7 @@ AirPort_OpenBSD::ether_ifdetach(struct ifnet *ifp)
     ifp->iface = NULL;
 }
 
-void AirPort_OpenBSD::setLinkState(int linkState)
+void AirPort_OpenBSD_Class::setLinkState(int linkState)
 {
     DebugLog("ifp->if_link_state = %d", linkState);
     
@@ -151,8 +151,8 @@ void AirPort_OpenBSD::setLinkState(int linkState)
     
 }
 
-IOReturn AirPort_OpenBSD::tsleepHandler(OSObject* owner, void* arg0 = 0, void* arg1 = 0, void* arg2 = 0, void* arg3 = 0) {
-    AirPort_OpenBSD* dev = OSDynamicCast(AirPort_OpenBSD, owner);
+IOReturn AirPort_OpenBSD_Class::tsleepHandler(OSObject* owner, void* arg0 = 0, void* arg1 = 0, void* arg2 = 0, void* arg3 = 0) {
+    AirPort_OpenBSD_Class* dev = OSDynamicCast(AirPort_OpenBSD_Class, owner);
     if (dev == NULL)
         return kIOReturnError;
     
@@ -172,7 +172,7 @@ IOReturn AirPort_OpenBSD::tsleepHandler(OSObject* owner, void* arg0 = 0, void* a
     }
 }
 
-void AirPort_OpenBSD::if_watchdog(IOTimerEventSource *timer)
+void AirPort_OpenBSD_Class::if_watchdog(IOTimerEventSource *timer)
 {
 //    if (this->powerState == APPLE_POWER_ON && this->ic->ic_state <= IEEE80211_S_INIT) {
 //        DebugLog("");
@@ -190,7 +190,7 @@ void AirPort_OpenBSD::if_watchdog(IOTimerEventSource *timer)
 
 
 
-OSString *AirPort_OpenBSD::getNVRAMProperty(char *name)
+OSString *AirPort_OpenBSD_Class::getNVRAMProperty(char *name)
 {
     OSString *value = OSString::withCString("");
     char val[120];

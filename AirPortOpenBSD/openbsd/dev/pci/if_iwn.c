@@ -405,7 +405,7 @@ iwn_attach(struct device *parent, struct device *self, void *aux)
         return;
     }
     
-    snprintf(ifp->fwver, sizeof(ifp->fwver), "fwname %s",
+    snprintf(ifp->fwver, sizeof(ifp->fwver), "%s",
         sc->fwname);
 
     if ((error = iwn_hw_prepare(sc)) != 0) {

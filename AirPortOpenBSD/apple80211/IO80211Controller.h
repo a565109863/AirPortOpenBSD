@@ -22,7 +22,7 @@
 #include <net/bpf.h>
 
 #include "apple80211_ioctl.h"
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
 #include "IO80211SkywalkInterface.h"
 #endif
 #include "IO80211WorkLoop.h"
@@ -96,7 +96,7 @@ class IO80211FlowQueue;
 class IO80211FlowQueueLegacy;
 class FlowIdMetadata;
 class IOReporter;
-#if MAC_TARGET >= __MAC_11_0
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_BigSur
 class IO80211InfraInterface;
 #endif
 extern void IO80211VirtualInterfaceNamerRetain();
@@ -133,7 +133,7 @@ class IO80211Controller : public IOEthernetController {
 public:
 
     virtual void free() APPLE_KEXT_OVERRIDE;
-#if MAC_TARGET <= __MAC_10_15
+#if MAC_VERSION_MAJOR <= MAC_VERSION_MAJOR_Catalina
     virtual bool terminate(unsigned int) APPLE_KEXT_OVERRIDE;
 #endif
     virtual bool init(OSDictionary *) APPLE_KEXT_OVERRIDE;
@@ -150,7 +150,7 @@ public:
     virtual IOReturn enable(IONetworkInterface *) APPLE_KEXT_OVERRIDE;
     virtual IOReturn disable(IONetworkInterface *) APPLE_KEXT_OVERRIDE;
     virtual bool attachInterface(IONetworkInterface **, bool attach = true) APPLE_KEXT_OVERRIDE;
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     virtual void detachInterface(IONetworkInterface *, bool sync = false) APPLE_KEXT_OVERRIDE;
 #endif
     virtual IONetworkInterface* createInterface(void) APPLE_KEXT_OVERRIDE;
@@ -167,11 +167,11 @@ public:
     virtual int bpfOutputPacket(OSObject *,UInt,mbuf_t m);
     virtual SInt32 monitorModeSetEnabled(IO80211Interface*, bool, UInt);
     virtual IO80211Interface* getNetworkInterface(void);
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     virtual IO80211SkywalkInterface* getPrimarySkywalkInterface(void);
 #endif
     virtual SInt32 apple80211_ioctl(IO80211Interface *, IO80211VirtualInterface*, ifnet_t,unsigned long,void *);
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     virtual SInt32 apple80211_ioctl(IO80211SkywalkInterface *,unsigned long,void *);
 #endif
     virtual SInt32 apple80211_ioctl(IO80211Interface *interface, ifnet_t net,unsigned long id,void *data) {
@@ -179,7 +179,7 @@ public:
     }
     virtual SInt32 apple80211Request(unsigned int, int, IO80211Interface*, void*) = 0;
     virtual SInt32 apple80211VirtualRequest(UInt,int,IO80211VirtualInterface *,void *);
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     virtual SInt32 apple80211SkywalkRequest(UInt,int,IO80211SkywalkInterface *,void *);
 #endif
     virtual SInt32 stopDMA() = 0;
@@ -200,7 +200,7 @@ public:
     }
     virtual IO80211FlowQueueLegacy* requestFlowQueue(FlowIdMetadata const*);
     virtual void releaseFlowQueue(IO80211FlowQueue *);
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     virtual void getLogPipes(CCPipe**, CCPipe**, CCPipe**) {};
 #endif
     virtual IOReturn enablePacketTimestamping(void) {
@@ -211,14 +211,14 @@ public:
     }
     virtual UInt32 selfDiagnosticsReport(int,char const*,UInt);
     virtual UInt32 getDataQueueDepth(OSObject *);
-#if MAC_TARGET >= __MAC_11_0
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_BigSur
     virtual bool isAssociatedToMovingNetwork(void) { return false; }
 #endif
     virtual mbuf_flags_t inputPacket(mbuf_t);
     virtual SInt32 apple80211_ioctl_get(IO80211Interface *,IO80211VirtualInterface *,ifnet_t,void *);
     
     
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     virtual SInt32 apple80211_ioctl_get(IO80211SkywalkInterface *,void *);
     virtual SInt32 apple80211_ioctl_set(IO80211Interface *,IO80211VirtualInterface *,IO80211SkywalkInterface *,void *);
     virtual SInt32 apple80211_ioctl_set(IO80211SkywalkInterface *,void*);
@@ -228,26 +228,26 @@ public:
 #endif
     
     
-#if MAC_TARGET >= __MAC_11_0
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_BigSur
     virtual bool detachInterface(IOSkywalkInterface *, bool);
 #endif
     virtual IO80211VirtualInterface* createVirtualInterface(ether_addr *,UInt);
     virtual bool attachVirtualInterface(IO80211VirtualInterface **,ether_addr *,UInt,bool);
     virtual bool detachVirtualInterface(IO80211VirtualInterface *,bool);
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     virtual IOReturn enable(IO80211SkywalkInterface *);
     virtual IOReturn disable(IO80211SkywalkInterface *);
 #endif
     
 public:
-#if MAC_TARGET >= __MAC_11_0
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_BigSur
     void setDisplayState(bool);
     void resetIO80211ReporterHistory(void);
     bool markInterfaceUnitUnused(char const*,UInt);
     bool markInterfaceUnitUsed(char const*,UInt);
     bool assignUnitNumber(char const*);
 #endif
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     IO80211SkywalkInterface* getInfraInterface(void);
     IO80211ScanManager* getPrimaryInterfaceScanManager(void);
     IO80211ControllerMonitor* getInterfaceMonitor(void);
@@ -266,10 +266,10 @@ public:
     void setIOReportersStreamLevel(CCStreamLogLevel);
     void powerChangeGated(OSObject *,void *,void *,void *,void *);
     int copyOut(void const*,unsigned long long,unsigned long);
-#if MAC_TARGET >= __MAC_11_0
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_BigSur
     SInt32 getASSOCIATE_EXTENDED_RESULT(IO80211Interface *,IO80211VirtualInterface *,IO80211InfraInterface *,apple80211_assoc_result_data *);
 #endif
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     SInt32 getASSOCIATE_RESULT(IO80211Interface *,IO80211VirtualInterface *,IO80211SkywalkInterface *,apple80211_assoc_result_data *);
 #endif
     IOReturn copyIn(unsigned long long,void *,unsigned long);
@@ -286,7 +286,7 @@ public:
     IOReturn setCountryCode(apple80211_country_code_data *);
     bool getInfraExtendedStats(apple80211_extended_stats *);
     bool getChipCounterStats(apple80211_chip_stats *);
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     bool setExtendedChipCounterStats(apple80211_stat_report *,void *);
 #endif
     bool setChipCounterStats(apple80211_stat_report *,apple80211_chip_stats *,apple80211_channel *);
@@ -298,7 +298,7 @@ public:
     bool getBSSIDData(OSObject *,apple80211_bssid_data *);
     bool getSSIDData(apple80211_ssid_data *);
     bool inputInfraPacket(mbuf_t);
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     void notifyHostapState(apple80211_hostap_state *);
 #endif
     bool isAwdlAssistedDiscoveryEnabled(void);
@@ -308,13 +308,13 @@ public:
     void scanDone(scanSource,int);
     void scanStarted(scanSource,apple80211_scan_data *);
     void printChannels(void);
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     void updateInterfaceCoexRiskPct(unsigned long long);
 #endif
     SInt32 getInfraChannel(apple80211_channel_data *);
     void calculateInterfacesAvaiability(void); // Suspected return type - int
     void setChannelSequenceList(apple80211_awdl_sync_channel_sequence *); // Suspected return type - int
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     void setPrimaryInterfaceDatapathState(bool);
     UInt32 getPrimaryInterfaceLinkState(void);
 #endif
@@ -328,13 +328,13 @@ public:
     void logDebug(char const*,...); // Suspected return type - int
     bool calculateInterfacesCoex(void);
     void setInfraChannel(apple80211_channel *);
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     void configureAntennae(void);
 #endif
     SInt32 apple80211RequestIoctl(unsigned int,int,IO80211Interface *,void *);
     UInt32 radioCountForInterface(IO80211Interface *);
     void releaseIOReporters(void);
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     bool findAndAttachToFaultReporter(void);
 #endif
     UInt32 setupControlPathLogging(void);

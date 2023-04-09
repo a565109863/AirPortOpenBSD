@@ -146,7 +146,7 @@ struct ifnet {                /* and the entries */
     int if_ibytes;
     int if_hdrlen;
     
-    AirPort_OpenBSD_Interface *iface;
+    AirPort_OpenBSD_Class_Interface *iface;
     int if_capabilities;
     int if_baudrate;
     int if_link_state;

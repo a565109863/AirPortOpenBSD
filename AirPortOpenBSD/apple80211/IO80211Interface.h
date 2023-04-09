@@ -88,7 +88,7 @@ public:
     virtual bool terminate(unsigned int) APPLE_KEXT_OVERRIDE;
     virtual bool attach(IOService*) APPLE_KEXT_OVERRIDE;
     virtual void detach(IOService*) APPLE_KEXT_OVERRIDE;
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     virtual IOReturn newUserClient(task_t, void*, UInt32 type, OSDictionary*, IOUserClient**) APPLE_KEXT_OVERRIDE;
 #endif
     virtual const char* stringFromReturn(int) APPLE_KEXT_OVERRIDE;
@@ -213,10 +213,10 @@ public:
     void reportTxStatistics(apple80211_txstats *);
     void resetLeakyApStats(void);
     void resetSupplicant(void);
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     void resetUserClientReference(void);
 #endif
-#if MAC_TARGET >= __MAC_11_0
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_BigSur
     IOReturn resetUserClientReferenceGated(OSObject *,void *,void *,void *,void *);
 #endif
     void setAuthTimeout(unsigned long);
@@ -238,7 +238,7 @@ public:
     bool setLeakyApSsidMetrics(apple80211_leaky_ap_ssid_metrics *);
     void setNetBooting(bool);
     bool setPMK(unsigned char *,unsigned char *);
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     bool setPSKPMK(unsigned char *);
 #endif
     void setPeerManagerLogFlag(UInt,UInt,UInt);
@@ -249,7 +249,7 @@ public:
     bool shortGISupported40MHz(void);
     bool shouldLog(unsigned long long);
     bool shouldRoam(apple80211_scan_result *);
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     IOReturn startAsyncEventUserClientForTask(task *,kIO80211InterfaceType);
 #endif
     void startOutputQueues();

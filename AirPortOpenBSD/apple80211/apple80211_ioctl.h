@@ -40,7 +40,7 @@ struct apple80211req
     void        *req_data;                // 4 bytes
 };
 
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
 #define SIOCSA80211 2150656456
 #define SIOCGA80211 3224398281
 #else
@@ -720,7 +720,7 @@ struct apple80211_ap_ie_data
 {
     u_int32_t    version;
     u_int32_t    len;
-#if MAC_TARGET < __MAC_13_0
+#if MAC_VERSION_MAJOR < MAC_VERSION_MAJOR_Ventura
     u_int8_t     *ie_data;
 #else
     u_int8_t     ie_data[APPLE80211_NETWORK_DATA_MAX_IE_LEN];

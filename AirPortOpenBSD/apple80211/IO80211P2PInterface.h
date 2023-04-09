@@ -8,7 +8,7 @@ class IO80211P2PInterface : public IO80211VirtualInterface {
     
 public:
     virtual void free(void) APPLE_KEXT_OVERRIDE;
-#if MAC_TARGET >= __MAC_11_0
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_BigSur
     virtual bool willTerminate(IOService *,uint) APPLE_KEXT_OVERRIDE;
 #endif
     virtual IOReturn configureReport(IOReportChannelList   *channels,
@@ -23,7 +23,7 @@ public:
     virtual bool terminate( IOOptionBits options = 0 ) APPLE_KEXT_OVERRIDE;
     virtual bool attach(IOService *) APPLE_KEXT_OVERRIDE;
     virtual void detach(IOService *) APPLE_KEXT_OVERRIDE;
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     virtual IOReturn newUserClient(task_t,void *,UInt,OSDictionary *,IOUserClient **) APPLE_KEXT_OVERRIDE;
 #endif
     virtual const char * stringFromReturn( IOReturn rtn ) APPLE_KEXT_OVERRIDE;
@@ -51,7 +51,7 @@ public:
     virtual bool handleDebugCmd(apple80211_debug_command *) APPLE_KEXT_OVERRIDE;
     virtual IOReturn postPeerPresence(ether_addr *,int,int,int,char *) APPLE_KEXT_OVERRIDE;
     virtual IOReturn postPeerAbsence(ether_addr *) APPLE_KEXT_OVERRIDE;
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     virtual IOReturn postPeerPresenceIPv6(ether_addr *,int,int,int,char *,unsigned char *) APPLE_KEXT_OVERRIDE;
 #endif
     virtual void signalOutputThread() APPLE_KEXT_OVERRIDE;
@@ -81,7 +81,7 @@ public:
     OSMetaClassDeclareReservedUnused( IO80211P2PInterface, 14);
     OSMetaClassDeclareReservedUnused( IO80211P2PInterface, 15);
 public:
-#if MAC_TARGET < __MAC_11_0
+#if MAC_VERSION_MAJOR < MAC_VERSION_MAJOR_BigSur
     void setJoiningState(UInt,joinStatus,bool);
     void setInfraChannel(apple80211_channel *);
 #endif
@@ -89,8 +89,8 @@ public:
     bool p2pCreatePeerManager(ether_addr *,IO80211PeerManager **);
     bool p2pConfigureIfnet(void);
     bool p2pAttachToBpf(void);
-#if MAC_TARGET < __MAC_11_0
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR < MAC_VERSION_MAJOR_BigSur
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     void notifyHostapState(apple80211_hostap_state *);
 #endif
     bool isAwdlAssistedDiscoveryEnabled(void);
@@ -102,7 +102,7 @@ public:
     bool awdlConfigureIfnet(void);
     bool awdlAttachToBpf(void);
 #endif
-#if MAC_TARGET >= __MAC_11_0
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_BigSur
     bool isP2P(void);
     bool isAPSTA(void);
 #endif

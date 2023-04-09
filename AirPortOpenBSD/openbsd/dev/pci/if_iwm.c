@@ -11627,7 +11627,7 @@ iwm_preinit(struct iwm_softc *sc)
         DEVNAME(sc), sc->sc_hw_rev & IWM_CSR_HW_REV_TYPE_MSK,
         sc->sc_fwver, ether_sprintf(sc->sc_nvm.hw_addr));
     
-    snprintf(ifp->fwver, sizeof(ifp->fwver), "hw rev 0x%x, fwname %s ver %s",
+    snprintf(ifp->fwver, sizeof(ifp->fwver), "hw rev 0x%x, %s ver %s",
         sc->sc_hw_rev & IWM_CSR_HW_REV_TYPE_MSK, sc->sc_fwname,
         sc->sc_fwver);
 

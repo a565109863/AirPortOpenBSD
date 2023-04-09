@@ -7,7 +7,7 @@
 //
 //#include "AirPort_OpenBSD.hpp"
 //
-//IO80211VirtualInterface *AirPort_OpenBSD::createVirtualInterface(ether_addr *ether, UInt role)
+//IO80211VirtualInterface *AirPort_OpenBSD_Class::createVirtualInterface(ether_addr *ether, UInt role)
 //{
 //    if (role - 1 > 3) {
 //        return super::createVirtualInterface(ether, role);
@@ -24,12 +24,12 @@
 //    return inf;
 //}
 //
-//SInt32 AirPort_OpenBSD::enableVirtualInterface(IO80211VirtualInterface *interface)
+//SInt32 AirPort_OpenBSD_Class::enableVirtualInterface(IO80211VirtualInterface *interface)
 //{
 //    DebugLog("%s interface=%s role=%d\n", __FUNCTION__, interface->getBSDName(), interface->getInterfaceRole());
 //    SInt32 ret = super::enableVirtualInterface(interface);
 //    if (!ret) {
-//#if MAC_TARGET >= __MAC_13_0
+//#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Ventura
 //        interface->setEnabledBySystem(true);
 //#endif
 //        interface->setLinkState(kIO80211NetworkLinkUp, 0);
@@ -39,7 +39,7 @@
 //    return ret;
 //}
 //
-//SInt32 AirPort_OpenBSD::disableVirtualInterface(IO80211VirtualInterface *interface)
+//SInt32 AirPort_OpenBSD_Class::disableVirtualInterface(IO80211VirtualInterface *interface)
 //{
 //    DebugLog("%s interface=%s role=%d\n", __FUNCTION__, interface->getBSDName(), interface->getInterfaceRole());
 //    SInt32 ret = super::disableVirtualInterface(interface);
@@ -52,7 +52,7 @@
 //}
 //
 //
-//IOReturn AirPort_OpenBSD::setVIRTUAL_IF_CREATE(OSObject *object, struct apple80211_virt_if_create_data* data)
+//IOReturn AirPort_OpenBSD_Class::setVIRTUAL_IF_CREATE(OSObject *object, struct apple80211_virt_if_create_data* data)
 //{
 //    struct ether_addr addr;
 //    struct apple80211_channel chann;
@@ -94,7 +94,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::setVIRTUAL_IF_DELETE(OSObject *object, struct apple80211_virt_if_delete_data *data)
+//IOReturn AirPort_OpenBSD_Class::setVIRTUAL_IF_DELETE(OSObject *object, struct apple80211_virt_if_delete_data *data)
 //{
 //    DebugLog("%s bsd_name=%s\n", __FUNCTION__, data->bsd_name);
 //    //TODO find vif according to the bsd_name

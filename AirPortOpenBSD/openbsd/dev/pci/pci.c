@@ -194,7 +194,7 @@ int pci_intr_vec_count(struct pci_attach_args *pa, int vec)
         
         if (interruptType & type)
         {
-            pci_intr_handle *ihp = new pci_intr_handle();
+            pci_intr_handle_class *ihp = new pci_intr_handle_class();
             ihp->ih = i;
             ihp->dev = pa->pa_tag;  // pci device reference
             ihp->workloop = pa->dev.dev->fWorkloop;
@@ -209,7 +209,7 @@ int pci_intr_vec_count(struct pci_attach_args *pa, int vec)
 void
 pci_intr_unmap(struct pci_attach_args *pa, pci_intr_handle_t *ihp)
 {
-    pci_intr_handle *ih = pa->dev.ih[0];
+    pci_intr_handle_class *ih = pa->dev.ih[0];
     for (int i = 0; i < *ihp; i++, ih++) {
         delete &ih;
     }
@@ -232,7 +232,7 @@ void* pci_intr_establish(pci_chipset_tag_t pc, pci_intr_handle_t ih, int level, 
     struct device *dev = (struct device *)arg;
     memcpy(dev, &dev->dev->pa->dev, sizeof(struct device));
     
-    pci_intr_handle *ihp = dev->ih[0];
+    pci_intr_handle_class *ihp = dev->ih[0];
     for (int i = 0; i < dev->ih_count; i++, ihp++) {
         ihp->arg = arg;
         ihp->func = handler;
@@ -253,7 +253,7 @@ pci_intr_disestablish(pci_chipset_tag_t pc, void *cookie)
 {
     struct device *dev = (struct device*)pc;
     
-    pci_intr_handle *ih = (pci_intr_handle *)cookie;
+    pci_intr_handle_class *ih = (pci_intr_handle_class *)cookie;
     for (int i = 0; i < dev->ih_count; i++, ih++) {
         ih->intr->disable();
         

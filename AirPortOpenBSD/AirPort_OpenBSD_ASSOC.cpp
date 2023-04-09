@@ -10,7 +10,7 @@
 #include <net80211/ieee80211_priv.h>
 #include <net80211/ieee80211_var.h>
 
-void AirPort_OpenBSD::setPTK(const u_int8_t *key, size_t key_len) {
+void AirPort_OpenBSD_Class::setPTK(const u_int8_t *key, size_t key_len) {
     struct ieee80211_node *ni = this->ic->ic_bss;
     struct ieee80211_key *k;
     int keylen;
@@ -51,7 +51,7 @@ void AirPort_OpenBSD::setPTK(const u_int8_t *key, size_t key_len) {
               this->ic->ic_if.if_xname, ether_sprintf(ni->ni_macaddr));
 }
 
-void AirPort_OpenBSD::setGTK(const u_int8_t *gtk, size_t key_len, u_int8_t kid, u_int8_t *rsc) {
+void AirPort_OpenBSD_Class::setGTK(const u_int8_t *gtk, size_t key_len, u_int8_t kid, u_int8_t *rsc) {
     struct ieee80211_node *ni = this->ic->ic_bss;
     struct ieee80211_key *k;
     int keylen;

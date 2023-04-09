@@ -50,9 +50,9 @@ struct apple80211_ssid_data_known_list {
     struct apple80211_ssid_data ssid;
 };
 
-class AirPort_OpenBSD : public IOController
+class AirPort_OpenBSD_Class : public IOController
 {
-    OSDeclareDefaultStructors(AirPort_OpenBSD)
+    OSDeclareDefaultStructors(AirPort_OpenBSD_Class)
     
 public:
     bool init(OSDictionary *properties) APPLE_KEXT_OVERRIDE;

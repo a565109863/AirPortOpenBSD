@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "18713CBD255F155700EF3D49"
-               BuildableName = "AirPortOpenBSD.kext"
+               BuildableName = "AirPortOpenBSD_Catalina.kext"
                BlueprintName = "AirPortOpenBSD_Catalina"
                ReferencedContainer = "container:AirPortOpenBSD.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "18713CBD255F155700EF3D49"
-            BuildableName = "AirPortOpenBSD.kext"
+            BuildableName = "AirPortOpenBSD_Catalina.kext"
             BlueprintName = "AirPortOpenBSD_Catalina"
             ReferencedContainer = "container:AirPortOpenBSD.xcodeproj">
          </BuildableReference>

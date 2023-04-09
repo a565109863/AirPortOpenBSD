@@ -13,8 +13,9 @@
 #include <libkern/OSKextLib.h>
 #include <sys/kernel_types.h>
 
-class AirPort_OpenBSD_Interface : public IO80211Interface {
-    OSDeclareDefaultStructors(AirPort_OpenBSD_Interface)
+
+class AirPort_OpenBSD_Class_Interface : public IO80211Interface {
+    OSDeclareDefaultStructors(AirPort_OpenBSD_Class_Interface)
     
 public:
     virtual UInt32   inputPacket(

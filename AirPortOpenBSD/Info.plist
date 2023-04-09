@@ -22,12 +22,12 @@
 	<string>$(MODULE_VERSION)</string>
 	<key>IOKitPersonalities</key>
 	<dict>
-		<key>AirPort_OpenBSD</key>
+		<key>AirPortOpenBSD</key>
 		<dict>
 			<key>CFBundleIdentifier</key>
 			<string>com.zhong.${PRODUCT_NAME}</string>
 			<key>IOClass</key>
-			<string>AirPort_OpenBSD</string>
+			<string>${PRODUCT_NAME}</string>
 			<key>IOPCIPrimaryMatch</key>
 			<string>0x00008086&amp;0x0000ffff</string>
 			<key>IOProbeScore</key>

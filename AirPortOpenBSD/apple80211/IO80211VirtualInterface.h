@@ -23,7 +23,7 @@ class IO80211VirtualInterface : public IOService {
     
 public:
     virtual void free(void) APPLE_KEXT_OVERRIDE;
-#if MAC_TARGET >= __MAC_11_0
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_BigSur
     virtual bool willTerminate( IOService * provider, IOOptionBits options ) APPLE_KEXT_OVERRIDE;
 #endif
     virtual IOReturn configureReport(IOReportChannelList   *channels,
@@ -37,7 +37,7 @@ public:
     virtual bool terminate( IOOptionBits options = 0 ) APPLE_KEXT_OVERRIDE;
     virtual bool attach(IOService *) APPLE_KEXT_OVERRIDE;
     virtual void detach(IOService *) APPLE_KEXT_OVERRIDE;
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     virtual IOReturn newUserClient(task_t,void *,UInt,OSDictionary *,IOUserClient **) APPLE_KEXT_OVERRIDE;
 #endif
     virtual const char * stringFromReturn( IOReturn rtn ) APPLE_KEXT_OVERRIDE;
@@ -65,7 +65,7 @@ public:
     virtual bool handleDebugCmd(apple80211_debug_command *);
     virtual IOReturn postPeerPresence(ether_addr *,int,int,int,char *);
     virtual IOReturn postPeerAbsence(ether_addr *);
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     virtual IOReturn postPeerPresenceIPv6(ether_addr *,int,int,int,char *,unsigned char *);
 #endif
     virtual void signalOutputThread();
@@ -96,7 +96,7 @@ public:
     OSMetaClassDeclareReservedUnused( IO80211VirtualInterface, 15);
 public:
     IOReturn IO80211InterfacePostMessage(UInt,void *,unsigned long);
-#if MAC_TARGET < __MAC_10_15
+#if MAC_VERSION_MAJOR < MAC_VERSION_MAJOR_Catalina
     IOReturn _outputStart(OSObject *,void *,void *,void *,void *);
     IOReturn _outputStartGated(UInt);
     IOReturn _outputStartGatedNoPM(UInt);
@@ -127,7 +127,7 @@ public:
     IO80211Controller *getController(void);
     IOLock *getDetachLock(void);
     ifnet_t getIfnet(void);
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     bool getInterfaceAddress(unsigned char *);
 #endif
     UInt getInterfaceRole(void);
@@ -135,7 +135,7 @@ public:
     void getPMKSAList(apple80211_pmk_cache_data *);
     void getWmeTxCounters(unsigned long long *);
     IO80211WorkLoop *getWorkLoop(void);
-#if MAC_TARGET >= __MAC_11_0
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_BigSur
     void handleChannelSwitchAnnouncement(apple80211_channel_switch_announcement *);
 #endif
     IOReturn handleIoctlGated(void *,void *,void *,void *,void *);
@@ -148,7 +148,7 @@ public:
     bool initSupplicant(unsigned char *,int);
     void ioctl_internal(void *);
     IOReturn ioctl_internal_gated(void *,void *,void *,void *,void *);
-#if MAC_TARGET >= __MAC_11_0
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_BigSur
     bool isAwdlAssistedDiscoveryEnabled(void);
     bool isPeerToPeerInterface(void);
 #endif
@@ -157,32 +157,32 @@ public:
     void logDebug(unsigned long long,char const*,...);
     void logTxCompletionPacket(mbuf_t,int);
     void logTxPacket(mbuf_t);
-#if MAC_TARGET >= __MAC_11_0
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_BigSur
     void notifyHostapState(apple80211_hostap_state *);
     void p2pDaemonExited(void);
 #endif
     UInt64 packetSpace(unsigned char);
-#if MAC_TARGET >= __MAC_11_0
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_BigSur
     bool peerToPeerAttachToBpf(void);
     errno_t peerToPeerConfigureIfnet(void);
 #endif
     UInt64 pendingPackets(unsigned char);
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     void postAwdlAppSpecificInfo(apple80211_awdl_app_specific_info *);
 #endif
-#if MAC_TARGET >= __MAC_11_0
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_BigSur
     void postAwdlHppStatsEvent(realTimeServiceId);
 #else
     void postAwdlSidecarStatistics(apple80211_awdl_sidecar_statistics *);
 #endif
     void postAwdlStatistics(apple80211_awdl_statistics *);
-#if MAC_TARGET >= __MAC_11_0
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_BigSur
     void postHostapChannelChanged(apple80211_hostap_state *);
     void postLowlatencyStatistics(apple80211_lowlatency_peer_statistics_evevt *);
 #endif
     IOReturn postMessage(unsigned int, void* data = NULL, unsigned long dataLen = 0);
     void postNewMasterElected(void);
-#if MAC_TARGET >= __MAC_11_0
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_BigSur
     void postP2PAirplayStatistics(apple80211_p2p_airplay_statistics *);
 #endif
     void postServiceIndication(void);
@@ -199,10 +199,10 @@ public:
     IOReturn reportTransmitCompletionStatus(mbuf_t,int,UInt,UInt,UInt);
     void reportTransmitStatus(mbuf_t,int,packet_info_tx *);
     void resetSupplicant(void);
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     void resetUserClientReference(void);
 #endif
-#if MAC_TARGET >= __MAC_11_0
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_BigSur
     IOReturn resetUserClientReferenceGated(OSObject *,void *,void *,void *,void *);
     void sendToBpfTap(mbuf_t,UInt,void *,unsigned long);
     void setAMPDUstat(apple80211_stat_report *,apple80211_ampdu_stat_report *);
@@ -210,7 +210,7 @@ public:
     void setAuthTimeout(unsigned long);
     void setDebugFlags(unsigned long long,UInt);
     bool setFrameStats(apple80211_stat_report *,apple80211_frame_counters *);
-#if MAC_TARGET >= __MAC_11_0
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_BigSur
     void setInfraChannel(apple80211_channel *);
 #endif
     void setInfraTxState(bool);
@@ -219,11 +219,11 @@ public:
     bool setInterfaceExtendedCCA(apple80211_channel,apple80211_cca_report *,apple80211_awdl_sync_channel_sequence *);
     bool setInterfaceMIBdot11(apple80211_stat_report *,apple80211_ManagementInformationBasedot11_counters *);
     void setInterfaceRole(UInt);
-#if MAC_TARGET >= __MAC_11_0
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_BigSur
     void setJoiningState(UInt,joinStatus,bool);
 #endif
     bool setPMK(unsigned char *);
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     bool setPSKPMK(unsigned char *);
 #endif
     void setScanningState(UInt,bool,apple80211_scan_data *,int);
@@ -231,11 +231,11 @@ public:
     void setWaitingForDetach(bool);
     void setWoWEnabled(bool);
     bool shouldLog(unsigned long long);
-#if MAC_TARGET >= __MAC_10_15
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
     IOReturn startAsyncEventUserClientForTask(task *,kIO80211InterfaceType);
 #endif
     void startOutputQueues(void);
-#if MAC_TARGET >= __MAC_11_0
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_BigSur
     IOReturn startP2PDaemonUserClientForTask(task *);
 #endif
     void stopOutputQueues(void);

@@ -9,7 +9,7 @@
 //#include "AirPort_OpenBSD.hpp"
 //
 //
-//SInt32 AirPort_OpenBSD::
+//SInt32 AirPort_OpenBSD_Class::
 //apple80211VirtualRequest(UInt request_type, int request_number, IO80211VirtualInterface *interface, void *data)
 //{
 //    if (request_type != SIOCGA80211 && request_type != SIOCSA80211) {
@@ -171,7 +171,7 @@
 //    return ret;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //setAWDL_PEER_TRAFFIC_REGISTRATION(OSObject *object, struct apple80211_awdl_peer_traffic_registration *data)
 //{
 //    char name[255];
@@ -192,7 +192,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //getAWDL_PEER_TRAFFIC_REGISTRATION(OSObject *object, struct apple80211_awdl_peer_traffic_registration *)
 //{
 //    IOLog("%s\n", __FUNCTION__);
@@ -202,21 +202,21 @@
 //    return 22;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //setAWDL_ELECTION_METRIC(OSObject *object, struct apple80211_awdl_election_metric *data)
 //{
 //    IOLog("%s metric=%d\n", __FUNCTION__, data->metric);
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //getAWDL_ELECTION_METRIC(OSObject *object, struct apple80211_awdl_election_metric *data)
 //{
 //    IOLog("%s\n", __FUNCTION__);
 //    return kIOReturnError;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //getSYNC_ENABLED(OSObject *object, struct apple80211_awdl_sync_enabled *data)
 //{
 //    IOLog("%s\n", __FUNCTION__);
@@ -226,7 +226,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //setSYNC_ENABLED(OSObject *object, struct apple80211_awdl_sync_enabled *data)
 //{
 //    IOLog("%s sync_enabled=%d\n", __FUNCTION__, data->enabled);
@@ -234,7 +234,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //getSYNC_FRAME_TEMPLATE(OSObject *object, struct apple80211_awdl_sync_frame_template *data)
 //{
 //    IOLog("%s\n", __FUNCTION__);
@@ -247,7 +247,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //setSYNC_FRAME_TEMPLATE(OSObject *object, struct apple80211_awdl_sync_frame_template *data)
 //{
 //    IOLog("%s payload_len=%d\n", __FUNCTION__, data->payload_len);
@@ -266,7 +266,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //getAWDL_HT_CAPABILITY(OSObject *object, struct apple80211_ht_capability *data)
 //{
 //    memset(data, 0, sizeof(*data));
@@ -276,7 +276,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //getAWDL_VHT_CAPABILITY(OSObject *object, struct apple80211_vht_capability *data)
 //{
 //    memset(data, 0, sizeof(*data));
@@ -286,7 +286,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //getAWDL_BSSID(OSObject *object, struct apple80211_awdl_bssid *data)
 //{
 //    IOLog("%s\n", __FUNCTION__);
@@ -295,7 +295,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //setAWDL_BSSID(OSObject *object, struct apple80211_awdl_bssid *data)
 //{
 //    IOLog("%s bssid=%s unk_mac=%s\n", __FUNCTION__, ether_sprintf(data->bssid), ether_sprintf(data->unk_mac));
@@ -303,7 +303,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //getCHANNELS_INFO(OSObject *object, struct apple80211_channels_info *data)
 //{
 //    IOLog("%s\n", __FUNCTION__);
@@ -324,7 +324,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //getAWDL_ELECTION_ID(OSObject *object, struct apple80211_awdl_election_id *data)
 //{
 //    IOLog("%s\n", __FUNCTION__);
@@ -333,7 +333,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //setAWDL_ELECTION_ID(OSObject *object, struct apple80211_awdl_election_id *data)
 //{
 //    IOLog("%s election_id=%d\n", __FUNCTION__, data->election_id);
@@ -341,7 +341,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //getPEER_CACHE_MAXIMUM_SIZE(OSObject *object, struct apple80211_peer_cache_maximum_size *data)
 //{
 //    IOLog("%s\n", __FUNCTION__);
@@ -350,7 +350,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //setPEER_CACHE_MAXIMUM_SIZE(OSObject *object, struct apple80211_peer_cache_maximum_size *data)
 //{
 //    IOLog("%s max_peers=%d\n", __FUNCTION__, data->max_peers);
@@ -358,7 +358,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //getAWDL_MASTER_CHANNEL(OSObject *object, struct apple80211_awdl_master_channel *data)
 //{
 //    data->version = APPLE80211_VERSION;
@@ -366,7 +366,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //setAWDL_MASTER_CHANNEL(OSObject *object, struct apple80211_awdl_master_channel *data)
 //{
 //    IOLog("%s master_channel=%d\n", __FUNCTION__, data->master_channel);
@@ -374,7 +374,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //getAWDL_SECONDARY_MASTER_CHANNEL(OSObject *object, struct apple80211_awdl_secondary_master_channel *data)
 //{
 //    IOLog("%s temporary return channel 0\n", __FUNCTION__);
@@ -383,7 +383,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //setAWDL_SECONDARY_MASTER_CHANNEL(OSObject *object, struct apple80211_awdl_secondary_master_channel *data)
 //{
 //    IOLog("%s secondary_master_channel=%d\n", __FUNCTION__, data->secondary_master_channel);
@@ -391,7 +391,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //setAWDL_MIN_RATE(OSObject *object, struct apple80211_awdl_min_rate *data)
 //{
 //    IOLog("%s min_rate=%d plus=%d\n", __FUNCTION__, data->min_rate, 2 *data->min_rate);
@@ -399,7 +399,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //getAWDL_MIN_RATE(OSObject *object, struct apple80211_awdl_min_rate *data)
 //{
 //    IOLog("%s\n", __FUNCTION__);
@@ -408,14 +408,14 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //getAWDL_ELECTION_RSSI_THRESHOLDS(OSObject *object, struct apple80211_awdl_election_rssi_thresholds *data)
 //{
 //    IOLog("%s\n", __FUNCTION__);
 //    return kIOReturnError;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //setAWDL_ELECTION_RSSI_THRESHOLDS(OSObject *object, struct apple80211_awdl_election_rssi_thresholds *data)
 //{
 //    IOLog("%s unk1=%d unk2=%d unk3=%d\n", __FUNCTION__, data->unk1, data->unk2, data->unk3);
@@ -423,7 +423,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //getAWDL_SYNCHRONIZATION_CHANNEL_SEQUENCE(OSObject *object, struct apple80211_awdl_sync_channel_sequence *data)
 //{
 //    IOLog("%s\n", __FUNCTION__);
@@ -449,7 +449,7 @@
 //}
 //#endif
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //setAWDL_SYNCHRONIZATION_CHANNEL_SEQUENCE(OSObject *object, struct apple80211_awdl_sync_channel_sequence *data)
 //{
 //    IOLog("%s\n", __FUNCTION__);
@@ -459,7 +459,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //getAWDL_PRESENCE_MODE(OSObject *object, struct apple80211_awdl_presence_mode *data)
 //{
 //    IOLog("%s\n", __FUNCTION__);
@@ -468,7 +468,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //setAWDL_PRESENCE_MODE(OSObject *object, struct apple80211_awdl_presence_mode *data)
 //{
 //    IOLog("%s mode=%d\n", __FUNCTION__, data->mode);
@@ -476,7 +476,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //getAWDL_EXTENSION_STATE_MACHINE_PARAMETERS(OSObject *object, struct apple80211_awdl_extension_state_machine_parameter *data)
 //{
 //    IOLog("%s\n", __FUNCTION__);
@@ -485,7 +485,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //setAWDL_EXTENSION_STATE_MACHINE_PARAMETERS(OSObject *object, struct apple80211_awdl_extension_state_machine_parameter *data)
 //{
 //    IOLog("%s unk1=%d unk2=%d unk3=%d unk4=%d\n", __FUNCTION__, data->unk1, data->unk2, data->unk3, data->unk4);
@@ -493,7 +493,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //getAWDL_SYNC_STATE(OSObject *object, struct apple80211_awdl_sync_state *data)
 //{
 //    IOLog("%s\n", __FUNCTION__);
@@ -502,7 +502,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //setAWDL_SYNC_STATE(OSObject *object, struct apple80211_awdl_sync_state *data)
 //{
 //    IOLog("%s state=%d\n", __FUNCTION__, data->state);
@@ -510,7 +510,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //getAWDL_SYNC_PARAMS(OSObject *object, struct apple80211_awdl_sync_params *data)
 //{
 //    IOLog("%s\n", __FUNCTION__);
@@ -519,14 +519,14 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //setAWDL_SYNC_PARAMS(OSObject *object, struct apple80211_awdl_sync_params *data)
 //{
 //    IOLog("%s availability_window_length=%d availability_window_period=%d extension_length=%d synchronization_frame_period=%d\n", __FUNCTION__, data->availability_window_length, data->availability_window_period, data->extension_length, data->synchronization_frame_period);
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //getAWDL_CAPABILITIES(OSObject *object, struct apple80211_awdl_cap *data)
 //{
 //    IOLog("%s\n", __FUNCTION__);
@@ -535,7 +535,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //getAWDL_AF_TX_MODE(OSObject *object, struct apple80211_awdl_af_tx_mode *data)
 //{
 //    IOLog("%s\n", __FUNCTION__);
@@ -544,7 +544,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //setAWDL_AF_TX_MODE(OSObject *object, struct apple80211_awdl_af_tx_mode *data)
 //{
 //    IOLog("%s mode=%llu\n", __FUNCTION__, data->mode);
@@ -552,7 +552,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD::
+//IOReturn AirPort_OpenBSD_Class::
 //setAWDL_OOB_AUTO_REQUEST(OSObject *object, struct apple80211_awdl_oob_request *data)
 //{
 //    IOLog("%s data_len=%d unk1=%d unk2=%d unk3=%d unk4=%d unk5=%d unk6=%d unk7=%d unk9=%d\n", __FUNCTION__, data->data_len, data->unk1, data->unk2, data->unk3, data->unk4, data->unk5, data->unk6, data->unk7, data->unk9);

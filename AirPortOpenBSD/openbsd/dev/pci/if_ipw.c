@@ -1635,7 +1635,7 @@ ipw_read_firmware(struct ipw_softc *sc, struct ipw_firmware *fw)
     fw->main  = fw->data + sizeof (*hdr);
     fw->ucode = fw->main + fw->main_size;
     
-    snprintf((&sc->sc_ic.ic_if)->fwver, sizeof((&sc->sc_ic.ic_if)->fwver),"fwname %s ver %d", name,
+    snprintf((&sc->sc_ic.ic_if)->fwver, sizeof((&sc->sc_ic.ic_if)->fwver),"%s ver %d", name,
         hdr->version);
 
     return 0;

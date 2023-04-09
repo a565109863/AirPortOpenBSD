@@ -8,9 +8,9 @@
 #include "AirPort_OpenBSD_Interface.hpp"
 
 #define super IO80211Interface
-OSDefineMetaClassAndStructors(AirPort_OpenBSD_Interface, IO80211Interface);
+OSDefineMetaClassAndStructors(AirPort_OpenBSD_Class_Interface, IO80211Interface);
 
-bool AirPort_OpenBSD_Interface::init(IO80211Controller *controller)
+bool AirPort_OpenBSD_Class_Interface::init(IO80211Controller *controller)
 {
     if (!super::init(controller)) {
         return false;
@@ -19,7 +19,7 @@ bool AirPort_OpenBSD_Interface::init(IO80211Controller *controller)
     return true;
 }
 
-UInt32 AirPort_OpenBSD_Interface::inputPacket(mbuf_t packet, UInt32 length, IOOptionBits options, void *param)
+UInt32 AirPort_OpenBSD_Class_Interface::inputPacket(mbuf_t packet, UInt32 length, IOOptionBits options, void *param)
 {
     uint16_t ether_type;
     size_t len = mbuf_len(packet);

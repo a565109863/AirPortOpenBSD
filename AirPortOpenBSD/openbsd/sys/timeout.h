@@ -32,8 +32,8 @@
 #include <sys/libkern.h>
 #include <netinet/_if_ether.h>
 
-class IOTimeout : public OSObject {
-    OSDeclareDefaultStructors(IOTimeout)
+class IOTimeout_Class : public OSObject {
+    OSDeclareDefaultStructors(IOTimeout_Class)
     
 public:
     static void timeout_run(OSObject* obj, IOTimerEventSource* timer);
@@ -46,7 +46,7 @@ public:
 };
 
 struct timeout {
-    IOTimeout* vt;
+    IOTimeout_Class* vt;
 };
 
 void timeout_set(struct timeout *t, void (*fn)(void *), void *arg);
