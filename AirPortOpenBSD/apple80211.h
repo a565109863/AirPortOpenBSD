@@ -17,6 +17,7 @@
 #define MAC_VERSION_MAJOR_Ventura       22
 
 #if MAC_VERSION_MAJOR == MAC_VERSION_MAJOR_Ventura
+#define PRODUCT_NAME                    "AirPortOpenBSD_Ventura"
 #define AirPort_OpenBSD_Class           AirPortOpenBSD_Ventura
 #define AirPort_OpenBSD_Class_Interface AirPortOpenBSD_Ventura_Interface
 #define IOTimeout_Class                 IOTimeout_Ventura
@@ -24,6 +25,7 @@
 #endif
 
 #if MAC_VERSION_MAJOR == MAC_VERSION_MAJOR_Monterey
+#define PRODUCT_NAME                    "AirPortOpenBSD_Monterey"
 #define AirPort_OpenBSD_Class           AirPortOpenBSD_Monterey
 #define AirPort_OpenBSD_Class_Interface AirPortOpenBSD_Monterey_Interface
 #define IOTimeout_Class                 IOTimeout_Monterey
@@ -31,6 +33,7 @@
 #endif
 
 #if MAC_VERSION_MAJOR == MAC_VERSION_MAJOR_BigSur
+#define PRODUCT_NAME                    "AirPortOpenBSD_BigSur"
 #define AirPort_OpenBSD_Class           AirPortOpenBSD_BigSur
 #define AirPort_OpenBSD_Class_Interface AirPortOpenBSD_BigSur_Interface
 #define IOTimeout_Class                 IOTimeout_BigSur
@@ -38,6 +41,7 @@
 #endif
 
 #if MAC_VERSION_MAJOR == MAC_VERSION_MAJOR_Catalina
+#define PRODUCT_NAME                    "AirPortOpenBSD_Catalina"
 #define AirPort_OpenBSD_Class           AirPortOpenBSD_Catalina
 #define AirPort_OpenBSD_Class_Interface AirPortOpenBSD_Catalina_Interface
 #define IOTimeout_Class                 IOTimeout_Catalina
@@ -45,6 +49,7 @@
 #endif
 
 #if MAC_VERSION_MAJOR == MAC_VERSION_MAJOR_Mojave
+#define PRODUCT_NAME                    "AirPortOpenBSD_Mojave"
 #define AirPort_OpenBSD_Class           AirPortOpenBSD_Mojave
 #define AirPort_OpenBSD_Class_Interface AirPortOpenBSD_Mojave_Interface
 #define IOTimeout_Class                 IOTimeout_Mojave
@@ -52,6 +57,7 @@
 #endif
 
 #if MAC_VERSION_MAJOR == MAC_VERSION_MAJOR_HighSierra
+#define PRODUCT_NAME                    "AirPortOpenBSD_HighSierra"
 #define AirPort_OpenBSD_Class           AirPortOpenBSD_HighSierra
 #define AirPort_OpenBSD_Class_Interface AirPortOpenBSD_HighSierra_Interface
 #define IOTimeout_Class                 IOTimeout_HighSierra

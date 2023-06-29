@@ -1,4 +1,4 @@
-/*    $OpenBSD: sha2.c,v 1.20 2022/08/29 06:08:03 jsg Exp $    */
+/*    $OpenBSD: sha2.c,v 1.21 2022/12/27 20:13:03 patrick Exp $    */
 
 /*
  * FILE:    sha2.c
@@ -472,7 +472,7 @@ SHA256Update(SHA2_CTX *context, const void *dataptr, size_t len)
 }
 
 void
-SHA256Final(u_int8_t digest[], SHA2_CTX *context)
+SHA256Final(u_int8_t *digest, SHA2_CTX *context)
 {
     unsigned int    usedspace;
 
@@ -797,7 +797,7 @@ SHA512Last(SHA2_CTX *context)
 }
 
 void
-SHA512Final(u_int8_t digest[], SHA2_CTX *context)
+SHA512Final(u_int8_t *digest, SHA2_CTX *context)
 {
 
     SHA512Last(context);
@@ -836,7 +836,7 @@ SHA384Update(SHA2_CTX *context, const void *data, size_t len)
 }
 
 void
-SHA384Final(u_int8_t digest[], SHA2_CTX *context)
+SHA384Final(u_int8_t *digest, SHA2_CTX *context)
 {
 
     SHA512Last(context);

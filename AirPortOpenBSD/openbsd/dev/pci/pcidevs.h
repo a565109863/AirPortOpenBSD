@@ -2,7 +2,7 @@
  * THIS FILE AUTOMATICALLY GENERATED.  DO NOT EDIT.
  *
  * generated from:
- *    OpenBSD: pcidevs,v 1.2016 2022/12/18 10:29:28 kettenis Exp
+ *    OpenBSD: pcidevs,v 1.2040 2023/06/27 15:30:25 stsp Exp
  */
 /*    $NetBSD: pcidevs,v 1.30 1997/06/24 06:20:24 thorpej Exp $    */
 
@@ -232,6 +232,7 @@
 #define    PCI_VENDOR_PE    0x1318        /* Packet Engines */
 #define    PCI_VENDOR_FORTEMEDIA    0x1319        /* Forte Media */
 #define    PCI_VENDOR_SIIG    0x131f        /* SIIG */
+#define    PCI_VENDOR_MICRON    0x1344        /* Micron Technology */
 #define    PCI_VENDOR_DTCTECH    0x134a        /* DTC Tech */
 #define    PCI_VENDOR_PCTEL    0x134d        /* PCTEL */
 #define    PCI_VENDOR_BRAINBOXES    0x135a        /* Brainboxes */
@@ -348,6 +349,7 @@
 #define    PCI_VENDOR_SKHYNIX    0x1c5c        /* SK hynix */
 #define    PCI_VENDOR_ADATA    0x1cc1        /* ADATA Technology */
 #define    PCI_VENDOR_UMIS    0x1cc4        /* Union Memory */
+#define    PCI_VENDOR_BAIKAL    0x1d39        /* Baikal Electronics */
 #define    PCI_VENDOR_AQUANTIA    0x1d6a        /* Aquantia */
 #define    PCI_VENDOR_ROCKCHIP    0x1d87        /* Rockchip */
 #define    PCI_VENDOR_TEKRAM2    0x1de1        /* Tekram */
@@ -377,6 +379,7 @@
 #define    PCI_VENDOR_DCI    0x6666        /* Decision Computer */
 #define    PCI_VENDOR_QUANCOM    0x8008        /* Quancom Informationssysteme */
 #define    PCI_VENDOR_INTEL    0x8086        /* Intel */
+#define    PCI_VENDOR_WANGXUN    0x8088        /* Beijing WangXun Technology */
 #define    PCI_VENDOR_INNOTEK    0x80ee        /* InnoTek */
 #define    PCI_VENDOR_SIGMATEL    0x8384        /* Sigmatel */
 #define    PCI_VENDOR_WINBOND2    0x8c4a        /* Winbond */
@@ -759,6 +762,7 @@
 #define    PCI_PRODUCT_AMD_17_PCIE_3    0x1454        /* 17h PCIE */
 #define    PCI_PRODUCT_AMD_17_CCP_1    0x1456        /* 17h Crypto */
 #define    PCI_PRODUCT_AMD_17_HDA    0x1457        /* 17h HD Audio */
+#define    PCI_PRODUCT_AMD_EPYC_TENGB    0x1458        /* EPYC Embedded 3000 10GbE */
 #define    PCI_PRODUCT_AMD_17_XHCI_1    0x145c        /* 17h xHCI */
 #define    PCI_PRODUCT_AMD_17_XHCI_2    0x145f        /* 17h xHCI */
 #define    PCI_PRODUCT_AMD_17_DF_1    0x1460        /* 17h Data Fabric */
@@ -1127,17 +1131,24 @@
 
 /* Aquantia Corp. */
 #define    PCI_PRODUCT_AQUANTIA_AQC100    0x00b1        /* AQC100 */
+#define    PCI_PRODUCT_AQUANTIA_AQC113    0x04c0        /* AQC113 */
 #define    PCI_PRODUCT_AQUANTIA_AQC107    0x07b1        /* AQC107 */
 #define    PCI_PRODUCT_AQUANTIA_AQC108    0x08b1        /* AQC108 */
 #define    PCI_PRODUCT_AQUANTIA_AQC109    0x09b1        /* AQC109 */
 #define    PCI_PRODUCT_AQUANTIA_AQC111    0x11b1        /* AQC111 */
 #define    PCI_PRODUCT_AQUANTIA_AQC112    0x12b1        /* AQC112 */
+#define    PCI_PRODUCT_AQUANTIA_AQC116C    0x11c0        /* AQC116C */
+#define    PCI_PRODUCT_AQUANTIA_AQC115C    0x12c0        /* AQC115C */
+#define    PCI_PRODUCT_AQUANTIA_AQC113C    0x14c0        /* AQC113C */
+#define    PCI_PRODUCT_AQUANTIA_AQC113CA    0x34c0        /* AQC113CA */
 #define    PCI_PRODUCT_AQUANTIA_AQC100S    0x80b1        /* AQC100S */
 #define    PCI_PRODUCT_AQUANTIA_AQC107S    0x87b1        /* AQC107S */
 #define    PCI_PRODUCT_AQUANTIA_AQC108S    0x88b1        /* AQC108S */
 #define    PCI_PRODUCT_AQUANTIA_AQC109S    0x89b1        /* AQC109S */
 #define    PCI_PRODUCT_AQUANTIA_AQC111S    0x91b1        /* AQC111S */
 #define    PCI_PRODUCT_AQUANTIA_AQC112S    0x92b1        /* AQC112S */
+#define    PCI_PRODUCT_AQUANTIA_AQC114CS    0x93c0        /* AQC114CS */
+#define    PCI_PRODUCT_AQUANTIA_AQC113CS    0x94c0        /* AQC113CS */
 #define    PCI_PRODUCT_AQUANTIA_D100    0xd100        /* D100 */
 #define    PCI_PRODUCT_AQUANTIA_D107    0xd107        /* D107 */
 #define    PCI_PRODUCT_AQUANTIA_D108    0xd108        /* D108 */
@@ -1190,6 +1201,7 @@
 #define    PCI_PRODUCT_ASMEDIA_ASM1184E    0x1184        /* ASM1184e */
 #define    PCI_PRODUCT_ASMEDIA_ASM1042AE    0x1242        /* ASM1042AE xHCI */
 #define    PCI_PRODUCT_ASMEDIA_ASM1143    0x1343        /* ASM1143 xHCI */
+#define    PCI_PRODUCT_ASMEDIA_ASM2142    0x2142        /* ASM2142 xHCI */
 #define    PCI_PRODUCT_ASMEDIA_ASM2824    0x2824        /* ASM2824 */
 
 /* ASPEED Technology products */
@@ -1268,9 +1280,11 @@
 #define    PCI_PRODUCT_ATI_KAVERI_21    0x131c        /* Kaveri Radeon R7 */
 #define    PCI_PRODUCT_ATI_KAVERI_22    0x131d        /* Kaveri Radeon R6 */
 #define    PCI_PRODUCT_ATI_CYAN_SKILLFISH_1    0x13fe        /* Cyan Skillfish */
+#define    PCI_PRODUCT_ATI_CYAN_SKILLFISH_2    0x143f        /* Cyan Skillfish */
 #define    PCI_PRODUCT_ATI_PPB_1    0x1478        /* PCIE */
 #define    PCI_PRODUCT_ATI_PPB_2    0x1479        /* PCIE */
 #define    PCI_PRODUCT_ATI_MENDOCINO    0x1506        /* Mendocino */
+#define    PCI_PRODUCT_ATI_PHOENIX    0x15bf        /* Phoenix */
 #define    PCI_PRODUCT_ATI_PICASSO    0x15d8        /* Picasso */
 #define    PCI_PRODUCT_ATI_RAVEN_VEGA    0x15dd        /* Radeon Vega */
 #define    PCI_PRODUCT_ATI_RAVEN_VEGA_HDA    0x15de        /* Radeon Vega HD Audio */
@@ -1281,9 +1295,9 @@
 #define    PCI_PRODUCT_ATI_VANGOGH    0x163f        /* Van Gogh */
 #define    PCI_PRODUCT_ATI_VANGOGH_HDA    0x1640        /* Van Gogh HD Audio */
 #define    PCI_PRODUCT_ATI_LUCIENNE    0x164c        /* Lucienne */
-#define    PCI_PRODUCT_ATI_YELLOW_CARP_1    0x164d        /* Yellow Carp */
+#define    PCI_PRODUCT_ATI_YELLOW_CARP_1    0x164d        /* Rembrandt */
 #define    PCI_PRODUCT_ATI_RAPHAEL    0x164e        /* Raphael */
-#define    PCI_PRODUCT_ATI_YELLOW_CARP_2    0x1681        /* Yellow Carp */
+#define    PCI_PRODUCT_ATI_YELLOW_CARP_2    0x1681        /* Rembrandt */
 #define    PCI_PRODUCT_ATI_RADEON_HD6500D_HDA    0x1714        /* Radeon HD 6500D HD Audio */
 #define    PCI_PRODUCT_ATI_RADEON_M241P    0x3150        /* Mobility Radeon X600 */
 #define    PCI_PRODUCT_ATI_FIREMV_2400_1    0x3151        /* FireMV 2400 */
@@ -2078,13 +2092,21 @@
 #define    PCI_PRODUCT_ATI_DIMGREY_CAVEFISH_10    0x73ed        /* Navi 23 */
 #define    PCI_PRODUCT_ATI_DIMGREY_CAVEFISH_11    0x73ef        /* Navi 23 */
 #define    PCI_PRODUCT_ATI_DIMGREY_CAVEFISH_12    0x73ff        /* Navi 23 */
+#define    PCI_PRODUCT_ATI_ALDEBARAN_1    0x7408        /* Aldebaran */
+#define    PCI_PRODUCT_ATI_ALDEBARAN_2    0x740c        /* Aldebaran */
+#define    PCI_PRODUCT_ATI_ALDEBARAN_3    0x740f        /* Aldebaran */
+#define    PCI_PRODUCT_ATI_ALDEBARAN_4    0x7410        /* Aldebaran */
 #define    PCI_PRODUCT_ATI_BEIGE_GOBY_1    0x7420        /* Navi 24 */
 #define    PCI_PRODUCT_ATI_BEIGE_GOBY_2    0x7421        /* Navi 24 */
 #define    PCI_PRODUCT_ATI_BEIGE_GOBY_3    0x7422        /* Navi 24 */
 #define    PCI_PRODUCT_ATI_BEIGE_GOBY_4    0x7423        /* Navi 24 */
 #define    PCI_PRODUCT_ATI_BEIGE_GOBY_5    0x7424        /* Navi 24 */
 #define    PCI_PRODUCT_ATI_BEIGE_GOBY_6    0x743f        /* Navi 24 */
+#define    PCI_PRODUCT_ATI_NAVI31_2    0x7448        /* Navi 31 */
 #define    PCI_PRODUCT_ATI_NAVI31_1    0x744c        /* Navi 31 */
+#define    PCI_PRODUCT_ATI_NAVI31_3    0x745e        /* Navi 31 */
+#define    PCI_PRODUCT_ATI_NAVI33_1    0x7480        /* Navi 33 */
+#define    PCI_PRODUCT_ATI_NAVI33_2    0x7483        /* Navi 33 */
 #define    PCI_PRODUCT_ATI_RADEON_9000IGP    0x7834        /* Radeon 9000/9100 IGP */
 #define    PCI_PRODUCT_ATI_RADEON_RS350IGP    0x7835        /* Radeon RS350IGP */
 #define    PCI_PRODUCT_ATI_RS690_HB    0x7910        /* RS690 Host */
@@ -2417,6 +2439,9 @@
 /* AWT products */
 #define    PCI_PRODUCT_AWT_RT2890    0x1059        /* RT2890 */
 
+/* Baikal products */
+#define    PCI_PRODUCT_BAIKAL_BE_M1000    0x8060        /* BE-M1000 */
+
 /* Belkin Components products */
 #define    PCI_PRODUCT_BELKIN_F5D6000    0xec00        /* F5D6000 */
 #define    PCI_PRODUCT_BELKIN2_F5D6001    0x6001        /* F5D6001 */
@@ -2605,6 +2630,7 @@
 #define    PCI_PRODUCT_BROADCOM_BCM4371    0x440d        /* BCM4371 */
 #define    PCI_PRODUCT_BROADCOM_BCM4378    0x4425        /* BCM4378 */
 #define    PCI_PRODUCT_BROADCOM_BCM4387    0x4433        /* BCM4387 */
+#define    PCI_PRODUCT_BROADCOM_BCM4388    0x4434        /* BCM4388 */
 #define    PCI_PRODUCT_BROADCOM_BCM4313    0x4727        /* BCM4313 */
 #define    PCI_PRODUCT_BROADCOM_5801    0x5801        /* 5801 */
 #define    PCI_PRODUCT_BROADCOM_5802    0x5802        /* 5802 */
@@ -4422,6 +4448,7 @@
 #define    PCI_PRODUCT_INTEL_BSW_SIO_HSUART_1    0x228a        /* Braswell Serial */
 #define    PCI_PRODUCT_INTEL_BSW_SIO_HSUART_2    0x228c        /* Braswell Serial */
 #define    PCI_PRODUCT_INTEL_BRASWELL_SMB    0x2292        /* Braswell SMBus */
+#define    PCI_PRODUCT_INTEL_BSW_SDIO    0x2295        /* Braswell SDIO */
 #define    PCI_PRODUCT_INTEL_BSW_TXE    0x2298        /* Braswell TXE */
 #define    PCI_PRODUCT_INTEL_BSW_PCU_LPC    0x229c        /* Braswell PCU LPC */
 #define    PCI_PRODUCT_INTEL_BSW_AHCI    0x22a3        /* Braswell AHCI */
@@ -5553,11 +5580,29 @@
 #define    PCI_PRODUCT_INTEL_500SERIES_ISH    0x43fc        /* 500 Series ISH */
 #define    PCI_PRODUCT_INTEL_500SERIES_GSPI_3    0x43fd        /* 500 Series GSPI */
 #define    PCI_PRODUCT_INTEL_TURBO_MEMORY    0x444e        /* Turbo Memory */
+#define    PCI_PRODUCT_INTEL_EHL_DPTF    0x4503        /* Elkhart Lake DPTF */
+#define    PCI_PRODUCT_INTEL_EHL_GNA    0x4511        /* Elkhart Lake GNA */
+#define    PCI_PRODUCT_INTEL_EHL_HB_1    0x4512        /* Elkhart Lake Host */
+#define    PCI_PRODUCT_INTEL_EHL_HB_2    0x4514        /* Elkhart Lake Host */
+#define    PCI_PRODUCT_INTEL_EHL_HB_3    0x4516        /* Elkhart Lake Host */
+#define    PCI_PRODUCT_INTEL_EHL_HB_4    0x4518        /* Elkhart Lake Host */
+#define    PCI_PRODUCT_INTEL_EHL_HB_5    0x451e        /* Elkhart Lake Host */
+#define    PCI_PRODUCT_INTEL_EHL_HB_6    0x4522        /* Elkhart Lake Host */
+#define    PCI_PRODUCT_INTEL_EHL_HB_7    0x4526        /* Elkhart Lake Host */
+#define    PCI_PRODUCT_INTEL_EHL_HB_8    0x4528        /* Elkhart Lake Host */
+#define    PCI_PRODUCT_INTEL_EHL_GCD_TH    0x4529        /* Elkhart Lake TH */
+#define    PCI_PRODUCT_INTEL_EHL_HB_9    0x452a        /* Elkhart Lake Host */
+#define    PCI_PRODUCT_INTEL_EHL_HB_10    0x452c        /* Elkhart Lake Host */
+#define    PCI_PRODUCT_INTEL_EHL_HB_11    0x452e        /* Elkhart Lake Host */
+#define    PCI_PRODUCT_INTEL_EHL_HB_12    0x4532        /* Elkhart Lake Host */
+#define    PCI_PRODUCT_INTEL_EHL_HB_13    0x4538        /* Elkhart Lake Host */
+#define    PCI_PRODUCT_INTEL_EHL_HB_14    0x453a        /* Elkhart Lake Host */
 #define    PCI_PRODUCT_INTEL_EHL_GT_1    0x4541        /* UHD Graphics */
 #define    PCI_PRODUCT_INTEL_EHL_GT_2    0x4551        /* UHD Graphics */
 #define    PCI_PRODUCT_INTEL_EHL_GT_3    0x4555        /* UHD Graphics */
 #define    PCI_PRODUCT_INTEL_EHL_GT_4    0x4557        /* UHD Graphics */
-#define    PCI_PRODUCT_INTEL_EHL_GT_5    0x4571        /* UHD Graphics */
+#define    PCI_PRODUCT_INTEL_EHL_GT_6    0x4570        /* UHD Graphics */
+#define    PCI_PRODUCT_INTEL_EHL_GT_7    0x4571        /* UHD Graphics */
 #define    PCI_PRODUCT_INTEL_ADL_PU15_HB_1    0x4601        /* Core 12G Host */
 #define    PCI_PRODUCT_INTEL_ADL_U9_HB_1    0x4602        /* Core 12G Host */
 #define    PCI_PRODUCT_INTEL_ADL_U15_HB_1    0x4609        /* Core 12G Host */
@@ -5630,6 +5675,90 @@
 #define    PCI_PRODUCT_INTEL_DG1_3    0x4907        /* SG-18M */
 #define    PCI_PRODUCT_INTEL_DG1_4    0x4908        /* Graphics */
 #define    PCI_PRODUCT_INTEL_DG1_5    0x4909        /* Graphics */
+#define    PCI_PRODUCT_INTEL_EHL_ESPI    0x4b00        /* Elkhart Lake eSPI */
+#define    PCI_PRODUCT_INTEL_EHL_P2SB    0x4b20        /* Elkhart Lake P2SB */
+#define    PCI_PRODUCT_INTEL_EHL_PMC    0x4b21        /* Elkhart Lake PMC */
+#define    PCI_PRODUCT_INTEL_EHL_SMB    0x4b23        /* Elkhart Lake SMBus */
+#define    PCI_PRODUCT_INTEL_EHL_SPI    0x4b24        /* Elkhart Lake SPI */
+#define    PCI_PRODUCT_INTEL_EHL_TH    0x4b26        /* Elkhart Lake TH */
+#define    PCI_PRODUCT_INTEL_EHL_SIO_UART_0    0x4b28        /* Elkhart Lake UART */
+#define    PCI_PRODUCT_INTEL_EHL_SIO_UART_1    0x4b29        /* Elkhart Lake UART */
+#define    PCI_PRODUCT_INTEL_EHL_SIO_SPI_0    0x4b2a        /* Elkhart Lake SPI */
+#define    PCI_PRODUCT_INTEL_EHL_SIO_SPI_1    0x4b2b        /* Elkhart Lake SPI */
+#define    PCI_PRODUCT_INTEL_EHL_IEH    0x4b2f        /* Elkhart Lake IEH */
+#define    PCI_PRODUCT_INTEL_EHL_SGMII    0x4b32        /* Elkhart Lake Ethernet */
+#define    PCI_PRODUCT_INTEL_EHL_SIO_SPI_2    0x4b37        /* Elkhart Lake SPI */
+#define    PCI_PRODUCT_INTEL_EHL_PCIE_0    0x4b38        /* Elkhart Lake PCIE */
+#define    PCI_PRODUCT_INTEL_EHL_PCIE_1    0x4b39        /* Elkhart Lake PCIE */
+#define    PCI_PRODUCT_INTEL_EHL_PCIE_2    0x4b3a        /* Elkhart Lake PCIE */
+#define    PCI_PRODUCT_INTEL_EHL_PCIE_3    0x4b3b        /* Elkhart Lake PCIE */
+#define    PCI_PRODUCT_INTEL_EHL_PCIE_4    0x4b3c        /* Elkhart Lake PCIE */
+#define    PCI_PRODUCT_INTEL_EHL_PCIE_5    0x4b3d        /* Elkhart Lake PCIE */
+#define    PCI_PRODUCT_INTEL_EHL_PCIE_6    0x4b3e        /* Elkhart Lake PCIE */
+#define    PCI_PRODUCT_INTEL_EHL_SIO_I2C_6    0x4b44        /* Elkhart Lake I2C */
+#define    PCI_PRODUCT_INTEL_EHL_SIO_I2C_7    0x4b45        /* Elkhart Lake I2C */
+#define    PCI_PRODUCT_INTEL_EHL_EMMC    0x4b47        /* Elkhart Lake eMMC */
+#define    PCI_PRODUCT_INTEL_EHL_SDMMC    0x4b48        /* Elkhart Lake SD/MMC */
+#define    PCI_PRODUCT_INTEL_EHL_SI    0x4b4a        /* Elkhart Lake SI */
+#define    PCI_PRODUCT_INTEL_EHL_SIO_I2C_4    0x4b4b        /* Elkhart Lake I2C */
+#define    PCI_PRODUCT_INTEL_EHL_SIO_I2C_5    0x4b4c        /* Elkhart Lake I2C */
+#define    PCI_PRODUCT_INTEL_EHL_SIO_UART_2    0x4b4d        /* Elkhart Lake UART */
+#define    PCI_PRODUCT_INTEL_EHL_HDA    0x4b58        /* Elkhart Lake HD Audio */
+#define    PCI_PRODUCT_INTEL_EHL_AHCI    0x4b63        /* Elkhart Lake AHCI */
+#define    PCI_PRODUCT_INTEL_EHL_HPET    0x4b68        /* Elkhart Lake HPET */
+#define    PCI_PRODUCT_INTEL_EHL_IOAPIC    0x4b69        /* Elkhart Lake IOAPIC */
+#define    PCI_PRODUCT_INTEL_EHL_CSE_PTT_DMA    0x4b6b        /* Elkhart Lake PTT DMA */
+#define    PCI_PRODUCT_INTEL_EHL_CSE_UMA    0x4b6c        /* Elkhart Lake UMA */
+#define    PCI_PRODUCT_INTEL_EHL_CSE_HECI_0    0x4b70        /* Elkhart Lake HECI */
+#define    PCI_PRODUCT_INTEL_EHL_CSE_HECI_1    0x4b71        /* Elkhart Lake HECI */
+#define    PCI_PRODUCT_INTEL_EHL_CSE_HECI_2    0x4b74        /* Elkhart Lake HECI */
+#define    PCI_PRODUCT_INTEL_EHL_CSE_HECI_3    0x4b75        /* Elkhart Lake HECI */
+#define    PCI_PRODUCT_INTEL_EHL_SIO_I2C_0    0x4b78        /* Elkhart Lake I2C */
+#define    PCI_PRODUCT_INTEL_EHL_SIO_I2C_1    0x4b79        /* Elkhart Lake I2C */
+#define    PCI_PRODUCT_INTEL_EHL_SIO_I2C_2    0x4b7a        /* Elkhart Lake I2C */
+#define    PCI_PRODUCT_INTEL_EHL_SIO_I2C_3    0x4b7b        /* Elkhart Lake I2C */
+#define    PCI_PRODUCT_INTEL_EHL_XHCI    0x4b7d        /* Elkhart Lake xHCI */
+#define    PCI_PRODUCT_INTEL_EHL_XDCI    0x4b7e        /* Elkhart Lake xDCI */
+#define    PCI_PRODUCT_INTEL_EHL_SRAM    0x4b7f        /* Elkhart Lake SRAM */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_QEP_1    0x4b81        /* Elkhart Lake QEP */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_QEP_2    0x4b82        /* Elkhart Lake QEP */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_QEP_3    0x4b83        /* Elkhart Lake QEP */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_SPI_0    0x4b84        /* Elkhart Lake SPI */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_SPI_1    0x4b85        /* Elkhart Lake SPI */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_SPI_2    0x4b86        /* Elkhart Lake SPI */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_SPI_3    0x4b87        /* Elkhart Lake SPI */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_GPIO_0    0x4b88        /* Elkhart Lake GPIO */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_GPIO_1    0x4b89        /* Elkhart Lake GPIO */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_UART_0    0x4b96        /* Elkhart Lake UART */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_UART_1    0x4b97        /* Elkhart Lake UART */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_UART_2    0x4b98        /* Elkhart Lake UART */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_UART_3    0x4b99        /* Elkhart Lake UART */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_UART_4    0x4b9a        /* Elkhart Lake UART */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_UART_5    0x4b9b        /* Elkhart Lake UART */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_I2S_0    0x4b9c        /* Elkhart Lake I2S */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_I2S_1    0x4b9d        /* Elkhart Lake I2S */
+#define    PCI_PRODUCT_INTEL_EHL_PSE0_RGMII_1G    0x4ba0        /* Elkhart Lake Ethernet */
+#define    PCI_PRODUCT_INTEL_EHL_PSE0_SGMII_1G    0x4ba1        /* Elkhart Lake Ethernet */
+#define    PCI_PRODUCT_INTEL_EHL_PSE0_SGMII_2G    0x4ba2        /* Elkhart Lake Ethernet */
+#define    PCI_PRODUCT_INTEL_EHL_PSE1_RGMII_1G    0x4bb0        /* Elkhart Lake Ethernet */
+#define    PCI_PRODUCT_INTEL_EHL_PSE1_SGMII_1G    0x4bb1        /* Elkhart Lake Ethernet */
+#define    PCI_PRODUCT_INTEL_EHL_PSE1_SGMII_2G    0x4bb2        /* Elkhart Lake Ethernet */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_LH2OSE    0x4bb3        /* Elkhart Lake LH2OSE */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_DMA_0    0x4bb4        /* Elkhart Lake DMA */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_DMA_1    0x4bb5        /* Elkhart Lake DMA */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_DMA_2    0x4bb6        /* Elkhart Lake DMA */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_PWM    0x4bb7        /* Elkhart Lake PWM */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_I2C_0    0x4bb9        /* Elkhart Lake I2C */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_I2C_1    0x4bba        /* Elkhart Lake I2C */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_I2C_2    0x4bbb        /* Elkhart Lake I2C */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_I2C_3    0x4bbc        /* Elkhart Lake I2C */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_I2C_4    0x4bbd        /* Elkhart Lake I2C */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_I2C_5    0x4bbe        /* Elkhart Lake I2C */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_I2C_6    0x4bbf        /* Elkhart Lake I2C */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_I2C_7    0x4bc0        /* Elkhart Lake I2C */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_CAN_0    0x4bc1        /* Elkhart Lake CAN */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_CAN_1    0x4bc2        /* Elkhart Lake CAN */
+#define    PCI_PRODUCT_INTEL_EHL_PSE_QEP_0    0x4bc3        /* Elkhart Lake QEP */
 #define    PCI_PRODUCT_INTEL_RKL_GT_1    0x4c80        /* UHD Graphics */
 #define    PCI_PRODUCT_INTEL_RKL_GT_2    0x4c8a        /* UHD Graphics */
 #define    PCI_PRODUCT_INTEL_RKL_GT_3    0x4c8b        /* UHD Graphics */
@@ -5765,6 +5894,7 @@
 #define    PCI_PRODUCT_INTEL_600SERIES_LP_XDCI    0x51ee        /* 600 Series xDCI */
 #define    PCI_PRODUCT_INTEL_600SERIES_LP_SRAM    0x51ef        /* 600 Series SRAM */
 #define    PCI_PRODUCT_INTEL_WL_22500_11    0x51f0        /* Wi-Fi 6 AX211 */
+#define    PCI_PRODUCT_INTEL_WL_22500_17    0x51f1        /* Wi-Fi 6 AX211 */
 #define    PCI_PRODUCT_INTEL_600SERIES_LP_GSPI_2    0x51fb        /* 600 Series GSPI */
 #define    PCI_PRODUCT_INTEL_600SERIES_LP_ISH    0x51fc        /* 600 Series ISH */
 #define    PCI_PRODUCT_INTEL_600SERIES_LP_UFS    0x51ff        /* 600 Series UFS */
@@ -5785,16 +5915,15 @@
 #define    PCI_PRODUCT_INTEL_DG2_G11_3    0x5695        /* Graphics */
 #define    PCI_PRODUCT_INTEL_DG2_G12_1    0x5696        /* Graphics */
 #define    PCI_PRODUCT_INTEL_DG2_G12_2    0x5697        /* Graphics */
-#define    PCI_PRODUCT_INTEL_DG2_G11_4    0x5698        /* Graphics */
 #define    PCI_PRODUCT_INTEL_DG2_G10_4    0x56a0        /* Arc A770 */
 #define    PCI_PRODUCT_INTEL_DG2_G10_5    0x56a1        /* Arc A750 */
 #define    PCI_PRODUCT_INTEL_DG2_G10_6    0x56a2        /* Arc A580 */
 #define    PCI_PRODUCT_INTEL_DG2_G12_3    0x56a3        /* Graphics */
 #define    PCI_PRODUCT_INTEL_DG2_G12_4    0x56a4        /* Graphics */
-#define    PCI_PRODUCT_INTEL_DG2_G11_5    0x56a5        /* Arc A380 */
-#define    PCI_PRODUCT_INTEL_DG2_G11_6    0x56a6        /* Arc A310 */
-#define    PCI_PRODUCT_INTEL_DG2_G11_7    0x56b0        /* Arc Pro A30M */
-#define    PCI_PRODUCT_INTEL_DG2_G11_8    0x56b1        /* Arc Pro A40/A50 */
+#define    PCI_PRODUCT_INTEL_DG2_G11_4    0x56a5        /* Arc A380 */
+#define    PCI_PRODUCT_INTEL_DG2_G11_5    0x56a6        /* Arc A310 */
+#define    PCI_PRODUCT_INTEL_DG2_G11_6    0x56b0        /* Arc Pro A30M */
+#define    PCI_PRODUCT_INTEL_DG2_G11_7    0x56b1        /* Arc Pro A40/A50 */
 #define    PCI_PRODUCT_INTEL_DG2_G12_5    0x56b2        /* Graphics */
 #define    PCI_PRODUCT_INTEL_DG2_G12_6    0x56b3        /* Graphics */
 #define    PCI_PRODUCT_INTEL_ATS_M150    0x56c0        /* Flex 170 */
@@ -6918,6 +7047,8 @@
 
 /* Kingston */
 #define    PCI_PRODUCT_KINGSTON_A2000    0x2263        /* A2000 */
+#define    PCI_PRODUCT_KINGSTON_KC3000    0x5013        /* KC3000 */
+#define    PCI_PRODUCT_KINGSTON_NV2    0x5019        /* NV2 */
 
 /* Kioxia */
 #define    PCI_PRODUCT_KIOXIA_BG4    0x0001        /* BG4 */
@@ -6954,6 +7085,7 @@
 
 /* Lenovo products */
 #define    PCI_PRODUCT_LENOVO_NVME    0x0003        /* NVMe */
+#define    PCI_PRODUCT_LENOVO_NVME_2    0x0006        /* NVMe */
 
 /* Level 1 (Intel) */
 #define    PCI_PRODUCT_LEVEL1_LXT1001    0x0001        /* LXT1001 */
@@ -7172,6 +7304,9 @@
 /* Micrel products */
 #define    PCI_PRODUCT_MICREL_KSZ8841    0x8841        /* KSZ8841 */
 #define    PCI_PRODUCT_MICREL_KSZ8842    0x8842        /* KSZ8842 */
+
+/* Micron Technology products */
+#define    PCI_PRODUCT_MICRON_MTFDKBA512QFM    0x5413        /* NVMe */
 
 /* Microsoft products */
 #define    PCI_PRODUCT_MICROSOFT_MN120    0x0001        /* MN-120 */
@@ -8430,7 +8565,9 @@
 #define    PCI_PRODUCT_RICOH_R5U852    0xe852        /* 5U852 SD/MMC */
 
 /* Rockchip products */
-#define    PCI_PRODUCT_ROCKCHIP_RK3399_RC    0x0100        /* RK3399 Root Complex */
+#define    PCI_PRODUCT_ROCKCHIP_RK3399    0x0100        /* RK3399 */
+#define    PCI_PRODUCT_ROCKCHIP_RK3566    0x3566        /* RK3566 */
+#define    PCI_PRODUCT_ROCKCHIP_RK3588    0x3588        /* RK3588 */
 
 /* Rockwell products */
 #define    PCI_PRODUCT_ROCKWELL_RS56SP_PCI11P1    0x2005        /* RS56/SP-PCI11P1 Modem */
@@ -8502,6 +8639,7 @@
 #define    PCI_PRODUCT_SAMSUNG2_SM981_NVME    0xa808        /* SM981/PM981 NVMe */
 #define    PCI_PRODUCT_SAMSUNG2_PM991_NVME    0xa809        /* PM991 NVMe */
 #define    PCI_PRODUCT_SAMSUNG2_PM9A1_NVME    0xa80a        /* PM9A1 NVMe */
+#define    PCI_PRODUCT_SAMSUNG2_PM9B1_NVME    0xa80b        /* PM9B1 NVMe */
 #define    PCI_PRODUCT_SAMSUNG2_NVME_171X    0xa820        /* NVMe */
 #define    PCI_PRODUCT_SAMSUNG2_NVME_172X    0xa821        /* NVMe */
 #define    PCI_PRODUCT_SAMSUNG2_NVME_172X_A_B    0xa822        /* NVMe */
@@ -8514,6 +8652,7 @@
 #define    PCI_PRODUCT_SANDISK_WDSXXXG3X0C    0x5006        /* WD Black NVMe */
 #define    PCI_PRODUCT_SANDISK_PCSN530    0x5008        /* PC SN530 */
 #define    PCI_PRODUCT_SANDISK_SN850    0x5011        /* SN850 */
+#define    PCI_PRODUCT_SANDISK_PCSN740    0x5015        /* PC SN740 */
 
 /* Sangoma products */
 #define    PCI_PRODUCT_SANGOMA_A10X    0x0300        /* A10x */
@@ -9050,7 +9189,7 @@
 #define    PCI_PRODUCT_TOSHIBA2_SDCARD    0x0805        /* SD */
 
 /* Transmeta products */
-#define    PCI_PRODUCT_TRANSMETA_TM8000_HB    0x0060        /* TM8000 Host */
+#define    PCI_PRODUCT_TRANSMETA_TM8000_HT    0x0060        /* TM8000 HyperTransport */
 #define    PCI_PRODUCT_TRANSMETA_TM8000_AGP    0x0061        /* TM8000 AGP */
 #define    PCI_PRODUCT_TRANSMETA_NB    0x0295        /* Northbridge */
 #define    PCI_PRODUCT_TRANSMETA_LONGRUN_NB    0x0395        /* LongRun Northbridge */
@@ -9521,6 +9660,10 @@
 #define    PCI_PRODUCT_WCH2_CH351    0x2273        /* CH351 */
 #define    PCI_PRODUCT_WCH2_CH382_2    0x3250        /* CH382 */
 #define    PCI_PRODUCT_WCH2_CH382_1    0x3253        /* CH382 */
+
+/* Beijing WangXun Technology products */
+#define    PCI_PRODUCT_WANGXUN_WX1860A2    0x0101        /* WX1860A2 */
+#define    PCI_PRODUCT_WANGXUN_WX1860AL1    0x010b        /* WX1860AL1 */
 
 /* Western Digital products */
 #define    PCI_PRODUCT_WD_WD33C193A    0x0193        /* WD33C193A */

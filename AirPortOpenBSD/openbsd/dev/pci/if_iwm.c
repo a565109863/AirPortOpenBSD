@@ -10926,14 +10926,14 @@ iwm_dump_driver_status(struct iwm_softc *sc)
 do {                                    \
     bus_dmamap_sync(sc->sc_dmat, data->map, sizeof(*(_pkt_)),    \
         sizeof(*(_var_)), BUS_DMASYNC_POSTREAD);            \
-    _var_ = (typeof (_var_))((_pkt_)+1);                    \
+    _var_ = (typeof _var_)((_pkt_)+1);                    \
 } while (/*CONSTCOND*/0)
 
 #define SYNC_RESP_PTR(_ptr_, _len_, _pkt_)                \
 do {                                    \
     bus_dmamap_sync(sc->sc_dmat, data->map, sizeof(*(_pkt_)),    \
         sizeof(len), BUS_DMASYNC_POSTREAD);                \
-    _ptr_ = (typeof (_ptr_))((_pkt_)+1);                    \
+    _ptr_ = (typeof _ptr_)((_pkt_)+1);                    \
 } while (/*CONSTCOND*/0)
 
 #define ADVANCE_RXQ(sc) (sc->rxq.cur = (sc->rxq.cur + 1) % count);

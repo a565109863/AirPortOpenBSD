@@ -1347,7 +1347,7 @@ IOReturn AirPort_OpenBSD_Class::getDRIVER_VERSION(OSObject *object, struct apple
     hv->version = APPLE80211_VERSION;
     
     char fwname[256];
-    snprintf(fwname, sizeof(fwname), "AirPortOpenBSD %s", ifp->fwver);
+    snprintf(fwname, sizeof(fwname), "%s %s", PRODUCT_NAME, ifp->fwver);
     
     strncpy(hv->string, fwname, sizeof(hv->string));
     hv->string_len = strlen(fwname);

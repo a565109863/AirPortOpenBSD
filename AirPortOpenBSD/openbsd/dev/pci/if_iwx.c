@@ -1,4 +1,4 @@
-/*    $OpenBSD: if_iwx.c,v 1.169 2023/03/06 11:42:11 stsp Exp $    */
+/*    $OpenBSD: if_iwx.c,v 1.173 2023/06/27 15:31:27 stsp Exp $    */
 
 /*
  * Copyright (c) 2014, 2016 genua gmbh <info@genua.de>
@@ -724,7 +724,7 @@ iwx_init_fw_sec(struct iwx_softc *sc, const struct iwx_fw_sects *fws,
 
     return 0;
 }
-        
+
 void
 iwx_fw_version_str(char *buf, size_t bufsize,
     uint32_t major, uint32_t minor, uint32_t api)
@@ -1075,7 +1075,7 @@ iwx_ctxt_info_gen3_init(struct iwx_softc *sc, const struct iwx_fw_sects *fws)
 
     IWX_SETBITS(sc, IWX_CSR_CTXT_INFO_BOOT_CTRL,
             IWX_CSR_AUTO_FUNC_BOOT_ENA);
-    
+
     /* kick FW self load */
     if (!iwx_nic_lock(sc)) {
         iwx_dma_contig_free(&sc->iml_dma);
@@ -2343,7 +2343,7 @@ iwx_prepare_card_hw(struct iwx_softc *sc)
     IWX_SETBITS(sc, IWX_CSR_DBG_LINK_PWR_MGMT_REG,
         IWX_CSR_RESET_LINK_PWR_MGMT_DISABLED);
     DELAY(1000);
- 
+
     for (ntries = 0; ntries < 10; ntries++) {
         /* If HW is not ready, prepare the conditions to check again */
         IWX_SETBITS(sc, IWX_CSR_HW_IF_CONFIG_REG,
@@ -4396,7 +4396,7 @@ iwx_run_init_mvm_ucode(struct iwx_softc *sc, int readnvm)
         if (IEEE80211_ADDR_EQ(etheranyaddr, sc->sc_ic.ic_myaddr))
             IEEE80211_ADDR_COPY(sc->sc_ic.ic_myaddr,
                 sc->sc_nvm.hw_addr);
-        
+
     }
     return 0;
 }
@@ -5214,7 +5214,7 @@ iwx_rx_mpdu_mq(struct iwx_softc *sc, mbuf_t m, void *pktdata,
             /* Padding is inserted after the IV. */
             hdrlen += IEEE80211_CCMP_HDRLEN;
         }
-    
+
         memmove(mtod(m, uint8_t *) + 2, mbuf_data(m), hdrlen);
         m_adj(m, 2);
     }
@@ -7805,7 +7805,7 @@ iwx_rs_vht_rates(struct iwx_softc *sc, struct ieee80211_node *ni, int num_ss)
         /* Should not happen; Values above cover the possible range. */
         panic("invalid VHT Rx MCS value %u", rx_mcs);
     }
-        
+
     return ((1 << (max_mcs + 1)) - 1);
 }
 
@@ -8435,17 +8435,6 @@ iwx_run_stop(struct iwx_softc *sc)
     if (err) {
         printf("%s: failed to update MAC\n", DEVNAME(sc));
         return err;
-    }
-
-    /* Reset Tx chains in case MIMO or 40 MHz channels were enabled. */
-    if (in->in_ni.ni_flags & IEEE80211_NODE_HT) {
-        err = iwx_phy_ctxt_update(sc, in->in_phyctxt,
-            in->in_phyctxt->channel, 1, 1, 0, IEEE80211_HTOP0_SCO_SCN,
-            IEEE80211_VHTOP0_CHAN_WIDTH_HT);
-        if (err) {
-            printf("%s: failed to update PHY\n", DEVNAME(sc));
-            return err;
-        }
     }
 
     return 0;
@@ -9743,14 +9732,14 @@ iwx_dump_driver_status(struct iwx_softc *sc)
 do {                                    \
     bus_dmamap_sync(sc->sc_dmat, data->map, sizeof(*(_pkt_)),    \
         sizeof(*(_var_)), BUS_DMASYNC_POSTREAD);            \
-    _var_ = (typeof(_var_))((_pkt_)+1);                    \
+    _var_ = (typeof _var_)((_pkt_)+1);                    \
 } while (/*CONSTCOND*/0)
 
 #define SYNC_RESP_PTR(_ptr_, _len_, _pkt_)                \
 do {                                    \
     bus_dmamap_sync(sc->sc_dmat, data->map, sizeof(*(_pkt_)),    \
         sizeof(len), BUS_DMASYNC_POSTREAD);                \
-    _ptr_ = (typeof(_ptr_))((_pkt_)+1);                    \
+    _ptr_ = (typeof _ptr_)((_pkt_)+1);                    \
 } while (/*CONSTCOND*/0)
 
 int
@@ -10064,7 +10053,7 @@ iwx_rx_pkt(struct iwx_softc *sc, struct iwx_rx_data *data, struct mbuf_list *ml)
             iwx_mcc_update(sc, notif);
             break;
         }
-    
+
         case IWX_REPLY_ERROR: {
             struct iwx_error_resp *resp;
             SYNC_RESP_STRUCT(resp, pkt);
@@ -10452,6 +10441,7 @@ static const struct pci_matchid iwx_devices[] = {
     /* _14 is an MA device, not yet supported */
     { PCI_VENDOR_INTEL, PCI_PRODUCT_INTEL_WL_22500_15,},
     { PCI_VENDOR_INTEL, PCI_PRODUCT_INTEL_WL_22500_16,},
+    { PCI_VENDOR_INTEL, PCI_PRODUCT_INTEL_WL_22500_17,},
 };
 
 
@@ -10542,6 +10532,8 @@ static const struct iwx_dev_info iwx_dev_info_table[] = {
     IWX_DEV_INFO(0x2725, 0x1674, iwx_2ax_cfg_ty_gf_a0), /* killer_1675x */
     IWX_DEV_INFO(0x51f0, 0x1691, iwx_2ax_cfg_so_gf4_a0), /* killer_1690s */
     IWX_DEV_INFO(0x51f0, 0x1692, iwx_2ax_cfg_so_gf4_a0), /* killer_1690i */
+    IWX_DEV_INFO(0x51f1, 0x1691, iwx_2ax_cfg_so_gf4_a0),
+    IWX_DEV_INFO(0x51f1, 0x1692, iwx_2ax_cfg_so_gf4_a0),
     IWX_DEV_INFO(0x54f0, 0x1691, iwx_2ax_cfg_so_gf4_a0), /* killer_1690s */
     IWX_DEV_INFO(0x54f0, 0x1692, iwx_2ax_cfg_so_gf4_a0), /* killer_1690i */
     IWX_DEV_INFO(0x7a70, 0x0090, iwx_2ax_cfg_so_gf_a0_long),
@@ -11155,7 +11147,6 @@ iwx_attach(struct device *parent, struct device *self, void *aux)
     case PCI_PRODUCT_INTEL_WL_22500_9:
     case PCI_PRODUCT_INTEL_WL_22500_10:
     case PCI_PRODUCT_INTEL_WL_22500_11:
-    case PCI_PRODUCT_INTEL_WL_22500_12:
     case PCI_PRODUCT_INTEL_WL_22500_13:
     /* _14 is an MA device, not yet supported */
     case PCI_PRODUCT_INTEL_WL_22500_15:
@@ -11169,6 +11160,19 @@ iwx_attach(struct device *parent, struct device *self, void *aux)
         sc->sc_xtal_latency = 0;
         sc->sc_tx_with_siso_diversity = 0;
         sc->sc_uhb_supported = 1;
+        break;
+    case PCI_PRODUCT_INTEL_WL_22500_12:
+    case PCI_PRODUCT_INTEL_WL_22500_17:
+        sc->sc_fwname = IWX_SO_A_GF_A_FW;
+        sc->sc_pnvm_name = IWX_SO_A_GF_A_PNVM;
+        sc->sc_device_family = IWX_DEVICE_FAMILY_AX210;
+        sc->sc_integrated = 1;
+        sc->sc_ltr_delay = IWX_SOC_FLAGS_LTR_APPLY_DELAY_2500;
+        sc->sc_low_latency_xtal = 1;
+        sc->sc_xtal_latency = 12000;
+        sc->sc_tx_with_siso_diversity = 0;
+        sc->sc_uhb_supported = 0;
+        sc->sc_imr_enabled = 1;
         break;
     default:
         printf("%s: unknown adapter type\n", DEVNAME(sc));
@@ -11352,6 +11356,7 @@ iwx_attach(struct device *parent, struct device *self, void *aux)
     /* Override 802.11 state transition machine. */
     sc->sc_newstate = ic->ic_newstate;
     ic->ic_newstate = iwx_newstate;
+    ic->ic_updatechan = iwx_updatechan;
     ic->ic_updateprot = iwx_updateprot;
     ic->ic_updateslot = iwx_updateslot;
     ic->ic_updateedca = iwx_updateedca;
@@ -11373,7 +11378,7 @@ fail4:    while (--txq_i >= 0)
     iwx_free_rx_ring(sc, &sc->rxq);
     if (sc->ict_dma.vaddr != NULL)
         iwx_dma_contig_free(&sc->ict_dma);
-    
+
 fail1:    iwx_dma_contig_free(&sc->ctxt_info_dma);
     iwx_dma_contig_free(&sc->prph_scratch_dma);
     iwx_dma_contig_free(&sc->prph_info_dma);
