@@ -8,11 +8,12 @@
 
 #include "compat.h"
 #include "iwlwifi.h"
-#include <sys/firmware.h>
 
 extern struct ifnet *_ifp;
 
 #include "ifconfig.h"
+
+#include "AirPortOpenBSDFirmwareData.hpp"
 
 
 enum {
@@ -32,9 +33,6 @@ typedef enum {
     MEDIUM_TYPE_INVALID
 } mediumType_t;
 
-
-extern int _stop(struct kmod_info*, void*);
-extern int _start(struct kmod_info*, void*);
 
 #define super IOController
 #define kTimeoutMS 1000
@@ -293,8 +291,11 @@ IOReturn set##REQ(OSObject *object, struct DATA_TYPE *data);
     
     
 public:
-    // firmware
-    void firmwareLoadComplete(const char* name);
+    // firmware data
+    AirPortOpenBSDFirmwareData* getFirmwareStore();
+    AirPortOpenBSDFirmwareData *_mFirmware;
+    
+//    OSData *firmwareLoadComplete(const char* name);
     int loadfirmware(const char *name, u_char **bufp, size_t *buflen);
     static void firmwareLoadComplete(OSKextRequestTag requestTag, OSReturn result, const void *resourceData, uint32_t resourceDataLength, void *context);
     IOLock *fwLoadLock;

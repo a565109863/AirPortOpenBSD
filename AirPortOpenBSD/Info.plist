@@ -19,7 +19,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>$(MODULE_VERSION)</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>IOKitPersonalities</key>
 	<dict>
 		<key>AirPortOpenBSD</key>
@@ -30,8 +30,6 @@
 			<string>${PRODUCT_NAME}</string>
 			<key>IOPCIPrimaryMatch</key>
 			<string>0x00008086&amp;0x0000ffff</string>
-			<key>IOProbeScore</key>
-			<integer>1400</integer>
 			<key>IOProviderClass</key>
 			<string>IOPCIDevice</string>
 		</dict>
@@ -56,6 +54,8 @@
 		<string>13.0.0</string>
 		<key>com.apple.kpi.unsupported</key>
 		<string>13.0.0</string>
+		<key>com.zhong.AirPortOpenBSDFirmwareData</key>
+		<string>${CURRENT_PROJECT_VERSION}</string>
 	</dict>
 	<key>OSBundleRequired</key>
 	<string>Network-Root</string>

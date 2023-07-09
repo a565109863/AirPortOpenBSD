@@ -30,8 +30,12 @@ bool AirPort_OpenBSD_Class::init(OSDictionary* parameters) {
     return true;
 }
 
-IOService* AirPort_OpenBSD_Class::probe(IOService* provider, SInt32 *score)
+IOService* AirPort_OpenBSD_Class::probe(IOService *provider, SInt32 *score)
 {
+    if (MAC_VERSION_MAJOR != version_major) {
+        return NULL;
+    }
+    
     // 是否启用WIFI
     int AirPortOpenBSD = 0;
     if (PE_parse_boot_argn("AirPortOpenBSD", &AirPortOpenBSD, sizeof(AirPortOpenBSD)) == true) {
@@ -70,7 +74,7 @@ IOService* AirPort_OpenBSD_Class::probe(IOService* provider, SInt32 *score)
     return NULL;
 }
 
-bool AirPort_OpenBSD_Class::start(IOService* provider) {
+bool AirPort_OpenBSD_Class::start(IOService *provider) {
     IOLog("AirPort_OpenBSD: Start");
     
     struct device *dev;
@@ -259,7 +263,7 @@ bool AirPort_OpenBSD_Class::addMediumType(UInt32 type, UInt32 speed, UInt32 code
 }
 
 
-void AirPort_OpenBSD_Class::stop(IOService* provider) {
+void AirPort_OpenBSD_Class::stop(IOService *provider) {
     IOLog("AirPort_OpenBSD: stop");
     
     RELEASE(mediumDict);

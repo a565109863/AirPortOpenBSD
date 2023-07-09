@@ -56,7 +56,6 @@
 		18713DF9255F1BD900EF3D49 /* bpfilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1D255F14E700EF3D49 /* bpfilter.h */; };
 		18713DFA255F1BD900EF3D49 /* bridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B0E255F14E600EF3D49 /* bridge.h */; };
 		18713DFB255F1BD900EF3D49 /* compat.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B21255F14E700EF3D49 /* compat.h */; };
-		18713DFC255F1BD900EF3D49 /* firmware.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BD4255F14E900EF3D49 /* firmware.h */; };
 		18713DFE255F1BD900EF3D49 /* ifconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B22255F14E700EF3D49 /* ifconfig.h */; };
 		18713DFF255F1BD900EF3D49 /* iwlwifi.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1C255F14E700EF3D49 /* iwlwifi.h */; };
 		18713E00255F1BD900EF3D49 /* key_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B29255F14E700EF3D49 /* key_wrap.h */; };
@@ -214,7 +213,6 @@
 		18713EF6255F1BF600EF3D49 /* bpfilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1D255F14E700EF3D49 /* bpfilter.h */; };
 		18713EF7255F1BF600EF3D49 /* bridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B0E255F14E600EF3D49 /* bridge.h */; };
 		18713EF8255F1BF600EF3D49 /* compat.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B21255F14E700EF3D49 /* compat.h */; };
-		18713EF9255F1BF600EF3D49 /* firmware.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BD4255F14E900EF3D49 /* firmware.h */; };
 		18713EFB255F1BF600EF3D49 /* ifconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B22255F14E700EF3D49 /* ifconfig.h */; };
 		18713EFC255F1BF600EF3D49 /* iwlwifi.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1C255F14E700EF3D49 /* iwlwifi.h */; };
 		18713EFD255F1BF600EF3D49 /* key_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B29255F14E700EF3D49 /* key_wrap.h */; };
@@ -326,7 +324,6 @@
 		18713F9A255F1C0F00EF3D49 /* bpfilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1D255F14E700EF3D49 /* bpfilter.h */; };
 		18713F9B255F1C0F00EF3D49 /* bridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B0E255F14E600EF3D49 /* bridge.h */; };
 		18713F9C255F1C0F00EF3D49 /* compat.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B21255F14E700EF3D49 /* compat.h */; };
-		18713F9D255F1C0F00EF3D49 /* firmware.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BD4255F14E900EF3D49 /* firmware.h */; };
 		18713F9F255F1C0F00EF3D49 /* ifconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B22255F14E700EF3D49 /* ifconfig.h */; };
 		18713FA0255F1C0F00EF3D49 /* iwlwifi.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1C255F14E700EF3D49 /* iwlwifi.h */; };
 		18713FA1255F1C0F00EF3D49 /* key_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B29255F14E700EF3D49 /* key_wrap.h */; };
@@ -438,7 +435,6 @@
 		1871403E255F1C2300EF3D49 /* bpfilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1D255F14E700EF3D49 /* bpfilter.h */; };
 		1871403F255F1C2300EF3D49 /* bridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B0E255F14E600EF3D49 /* bridge.h */; };
 		18714040255F1C2300EF3D49 /* compat.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B21255F14E700EF3D49 /* compat.h */; };
-		18714041255F1C2300EF3D49 /* firmware.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BD4255F14E900EF3D49 /* firmware.h */; };
 		18714043255F1C2300EF3D49 /* ifconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B22255F14E700EF3D49 /* ifconfig.h */; };
 		18714044255F1C2300EF3D49 /* iwlwifi.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1C255F14E700EF3D49 /* iwlwifi.h */; };
 		18714045255F1C2300EF3D49 /* key_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B29255F14E700EF3D49 /* key_wrap.h */; };
@@ -539,7 +535,6 @@
 		7F3055AE2912DA5F004AE7C3 /* PrivateSPI.pch in Headers */ = {isa = PBXBuildFile; fileRef = 7F3055A92912DA5F004AE7C3 /* PrivateSPI.pch */; };
 		7F3055AF2912DA5F004AE7C3 /* PrivateSPI.pch in Headers */ = {isa = PBXBuildFile; fileRef = 7F3055A92912DA5F004AE7C3 /* PrivateSPI.pch */; };
 		7F3055B02912DA5F004AE7C3 /* PrivateSPI.pch in Headers */ = {isa = PBXBuildFile; fileRef = 7F3055A92912DA5F004AE7C3 /* PrivateSPI.pch */; };
-		7F3055CF2912DAE1004AE7C3 /* libkmod.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F3055CE2912DAE1004AE7C3 /* libkmod.a */; };
 		7F3055E32912DB29004AE7C3 /* IO80211P2PInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F3055DE2912DB29004AE7C3 /* IO80211P2PInterface.h */; };
 		7F3055E42912DB29004AE7C3 /* IO80211P2PInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F3055DE2912DB29004AE7C3 /* IO80211P2PInterface.h */; };
 		7F3055E52912DB29004AE7C3 /* IO80211P2PInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F3055DE2912DB29004AE7C3 /* IO80211P2PInterface.h */; };
@@ -564,21 +559,6 @@
 		7F3055FB2912DB29004AE7C3 /* IO80211VirtualInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F3055E12912DB29004AE7C3 /* IO80211VirtualInterface.h */; };
 		7F3055FC2912DB29004AE7C3 /* IO80211VirtualInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F3055E12912DB29004AE7C3 /* IO80211VirtualInterface.h */; };
 		7F3055FD2912DB29004AE7C3 /* IO80211VirtualInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F3055E12912DB29004AE7C3 /* IO80211VirtualInterface.h */; };
-		7F40D7B0282A03A200BE973C /* iwx_so_a0_gf_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7A8282A03A100BE973C /* iwx_so_a0_gf_a0_pnvm.c */; };
-		7F40D7B1282A03A200BE973C /* iwx_so_a0_gf_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7A8282A03A100BE973C /* iwx_so_a0_gf_a0_pnvm.c */; };
-		7F40D7B2282A03A200BE973C /* iwx_so_a0_gf_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7A8282A03A100BE973C /* iwx_so_a0_gf_a0_pnvm.c */; };
-		7F40D7B3282A03A200BE973C /* iwx_so_a0_gf_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7A8282A03A100BE973C /* iwx_so_a0_gf_a0_pnvm.c */; };
-		7F40D7B4282A03A200BE973C /* iwx_so_a0_gf_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7A8282A03A100BE973C /* iwx_so_a0_gf_a0_pnvm.c */; };
-		7F40D7B6282A03A200BE973C /* iwx_so_a0_gf4_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7A9282A03A100BE973C /* iwx_so_a0_gf4_a0_pnvm.c */; };
-		7F40D7B7282A03A200BE973C /* iwx_so_a0_gf4_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7A9282A03A100BE973C /* iwx_so_a0_gf4_a0_pnvm.c */; };
-		7F40D7B8282A03A200BE973C /* iwx_so_a0_gf4_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7A9282A03A100BE973C /* iwx_so_a0_gf4_a0_pnvm.c */; };
-		7F40D7B9282A03A200BE973C /* iwx_so_a0_gf4_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7A9282A03A100BE973C /* iwx_so_a0_gf4_a0_pnvm.c */; };
-		7F40D7BA282A03A200BE973C /* iwx_so_a0_gf4_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7A9282A03A100BE973C /* iwx_so_a0_gf4_a0_pnvm.c */; };
-		7F40D7D4282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AE282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c */; };
-		7F40D7D5282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AE282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c */; };
-		7F40D7D6282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AE282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c */; };
-		7F40D7D7282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AE282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c */; };
-		7F40D7D8282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AE282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c */; };
 		7F467944291C93420076781E /* AirPort_OpenBSD_PM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F467942291C93420076781E /* AirPort_OpenBSD_PM.cpp */; };
 		7F467945291C93420076781E /* AirPort_OpenBSD_PM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F467942291C93420076781E /* AirPort_OpenBSD_PM.cpp */; };
 		7F467946291C93420076781E /* AirPort_OpenBSD_PM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F467942291C93420076781E /* AirPort_OpenBSD_PM.cpp */; };
@@ -625,84 +605,75 @@
 		7F8AB19027E8475F0045D670 /* ieee80211_ra_vht.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F8AB18627E8475F0045D670 /* ieee80211_ra_vht.c */; };
 		7F8AB19127E8475F0045D670 /* ieee80211_ra_vht.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F8AB18627E8475F0045D670 /* ieee80211_ra_vht.c */; };
 		7F8AB19227E8475F0045D670 /* ieee80211_ra_vht.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F8AB18627E8475F0045D670 /* ieee80211_ra_vht.c */; };
-		7FB2B67F29B70D8200E7DFAA /* iwx_Qu_b0_hr_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67329B70D7F00E7DFAA /* iwx_Qu_b0_hr_b0_77.c */; };
-		7FB2B68029B70D8200E7DFAA /* iwx_Qu_b0_hr_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67329B70D7F00E7DFAA /* iwx_Qu_b0_hr_b0_77.c */; };
-		7FB2B68129B70D8200E7DFAA /* iwx_Qu_b0_hr_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67329B70D7F00E7DFAA /* iwx_Qu_b0_hr_b0_77.c */; };
-		7FB2B68229B70D8200E7DFAA /* iwx_Qu_b0_hr_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67329B70D7F00E7DFAA /* iwx_Qu_b0_hr_b0_77.c */; };
-		7FB2B68329B70D8200E7DFAA /* iwx_Qu_b0_hr_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67329B70D7F00E7DFAA /* iwx_Qu_b0_hr_b0_77.c */; };
-		7FB2B68429B70D8200E7DFAA /* iwx_Qu_b0_hr_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67329B70D7F00E7DFAA /* iwx_Qu_b0_hr_b0_77.c */; };
-		7FB2B68529B70D8200E7DFAA /* iwx_so_a0_gf4_a0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67429B70D7F00E7DFAA /* iwx_so_a0_gf4_a0_77.c */; };
-		7FB2B68629B70D8200E7DFAA /* iwx_so_a0_gf4_a0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67429B70D7F00E7DFAA /* iwx_so_a0_gf4_a0_77.c */; };
-		7FB2B68729B70D8200E7DFAA /* iwx_so_a0_gf4_a0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67429B70D7F00E7DFAA /* iwx_so_a0_gf4_a0_77.c */; };
-		7FB2B68829B70D8200E7DFAA /* iwx_so_a0_gf4_a0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67429B70D7F00E7DFAA /* iwx_so_a0_gf4_a0_77.c */; };
-		7FB2B68929B70D8200E7DFAA /* iwx_so_a0_gf4_a0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67429B70D7F00E7DFAA /* iwx_so_a0_gf4_a0_77.c */; };
-		7FB2B68A29B70D8200E7DFAA /* iwx_so_a0_gf4_a0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67429B70D7F00E7DFAA /* iwx_so_a0_gf4_a0_77.c */; };
-		7FB2B68B29B70D8200E7DFAA /* iwx_cc_a0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67529B70D8000E7DFAA /* iwx_cc_a0_77.c */; };
-		7FB2B68C29B70D8200E7DFAA /* iwx_cc_a0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67529B70D8000E7DFAA /* iwx_cc_a0_77.c */; };
-		7FB2B68D29B70D8200E7DFAA /* iwx_cc_a0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67529B70D8000E7DFAA /* iwx_cc_a0_77.c */; };
-		7FB2B68E29B70D8200E7DFAA /* iwx_cc_a0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67529B70D8000E7DFAA /* iwx_cc_a0_77.c */; };
-		7FB2B68F29B70D8200E7DFAA /* iwx_cc_a0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67529B70D8000E7DFAA /* iwx_cc_a0_77.c */; };
-		7FB2B69029B70D8200E7DFAA /* iwx_cc_a0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67529B70D8000E7DFAA /* iwx_cc_a0_77.c */; };
-		7FB2B69129B70D8200E7DFAA /* iwx_Qu_c0_hr_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67629B70D8000E7DFAA /* iwx_Qu_c0_hr_b0_77.c */; };
-		7FB2B69229B70D8200E7DFAA /* iwx_Qu_c0_hr_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67629B70D8000E7DFAA /* iwx_Qu_c0_hr_b0_77.c */; };
-		7FB2B69329B70D8200E7DFAA /* iwx_Qu_c0_hr_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67629B70D8000E7DFAA /* iwx_Qu_c0_hr_b0_77.c */; };
-		7FB2B69429B70D8200E7DFAA /* iwx_Qu_c0_hr_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67629B70D8000E7DFAA /* iwx_Qu_c0_hr_b0_77.c */; };
-		7FB2B69529B70D8200E7DFAA /* iwx_Qu_c0_hr_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67629B70D8000E7DFAA /* iwx_Qu_c0_hr_b0_77.c */; };
-		7FB2B69629B70D8200E7DFAA /* iwx_Qu_c0_hr_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67629B70D8000E7DFAA /* iwx_Qu_c0_hr_b0_77.c */; };
-		7FB2B69729B70D8200E7DFAA /* iwx_Qu_c0_jf_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67729B70D8000E7DFAA /* iwx_Qu_c0_jf_b0_77.c */; };
-		7FB2B69829B70D8200E7DFAA /* iwx_Qu_c0_jf_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67729B70D8000E7DFAA /* iwx_Qu_c0_jf_b0_77.c */; };
-		7FB2B69929B70D8200E7DFAA /* iwx_Qu_c0_jf_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67729B70D8000E7DFAA /* iwx_Qu_c0_jf_b0_77.c */; };
-		7FB2B69A29B70D8200E7DFAA /* iwx_Qu_c0_jf_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67729B70D8000E7DFAA /* iwx_Qu_c0_jf_b0_77.c */; };
-		7FB2B69B29B70D8200E7DFAA /* iwx_Qu_c0_jf_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67729B70D8000E7DFAA /* iwx_Qu_c0_jf_b0_77.c */; };
-		7FB2B69C29B70D8200E7DFAA /* iwx_Qu_c0_jf_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67729B70D8000E7DFAA /* iwx_Qu_c0_jf_b0_77.c */; };
-		7FB2B69D29B70D8200E7DFAA /* iwx_so_a0_gf_a0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67829B70D8000E7DFAA /* iwx_so_a0_gf_a0_77.c */; };
-		7FB2B69E29B70D8200E7DFAA /* iwx_so_a0_gf_a0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67829B70D8000E7DFAA /* iwx_so_a0_gf_a0_77.c */; };
-		7FB2B69F29B70D8200E7DFAA /* iwx_so_a0_gf_a0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67829B70D8000E7DFAA /* iwx_so_a0_gf_a0_77.c */; };
-		7FB2B6A029B70D8200E7DFAA /* iwx_so_a0_gf_a0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67829B70D8000E7DFAA /* iwx_so_a0_gf_a0_77.c */; };
-		7FB2B6A129B70D8200E7DFAA /* iwx_so_a0_gf_a0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67829B70D8000E7DFAA /* iwx_so_a0_gf_a0_77.c */; };
-		7FB2B6A229B70D8200E7DFAA /* iwx_so_a0_gf_a0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67829B70D8000E7DFAA /* iwx_so_a0_gf_a0_77.c */; };
-		7FB2B6A329B70D8200E7DFAA /* iwx_so_a0_jf_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67929B70D8000E7DFAA /* iwx_so_a0_jf_b0_77.c */; };
-		7FB2B6A429B70D8200E7DFAA /* iwx_so_a0_jf_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67929B70D8000E7DFAA /* iwx_so_a0_jf_b0_77.c */; };
-		7FB2B6A529B70D8200E7DFAA /* iwx_so_a0_jf_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67929B70D8000E7DFAA /* iwx_so_a0_jf_b0_77.c */; };
-		7FB2B6A629B70D8200E7DFAA /* iwx_so_a0_jf_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67929B70D8000E7DFAA /* iwx_so_a0_jf_b0_77.c */; };
-		7FB2B6A729B70D8200E7DFAA /* iwx_so_a0_jf_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67929B70D8000E7DFAA /* iwx_so_a0_jf_b0_77.c */; };
-		7FB2B6A829B70D8200E7DFAA /* iwx_so_a0_jf_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67929B70D8000E7DFAA /* iwx_so_a0_jf_b0_77.c */; };
-		7FB2B6A929B70D8200E7DFAA /* iwx_QuZ_a0_jf_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67A29B70D8100E7DFAA /* iwx_QuZ_a0_jf_b0_77.c */; };
-		7FB2B6AA29B70D8200E7DFAA /* iwx_QuZ_a0_jf_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67A29B70D8100E7DFAA /* iwx_QuZ_a0_jf_b0_77.c */; };
-		7FB2B6AB29B70D8200E7DFAA /* iwx_QuZ_a0_jf_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67A29B70D8100E7DFAA /* iwx_QuZ_a0_jf_b0_77.c */; };
-		7FB2B6AC29B70D8200E7DFAA /* iwx_QuZ_a0_jf_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67A29B70D8100E7DFAA /* iwx_QuZ_a0_jf_b0_77.c */; };
-		7FB2B6AD29B70D8200E7DFAA /* iwx_QuZ_a0_jf_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67A29B70D8100E7DFAA /* iwx_QuZ_a0_jf_b0_77.c */; };
-		7FB2B6AE29B70D8200E7DFAA /* iwx_QuZ_a0_jf_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67A29B70D8100E7DFAA /* iwx_QuZ_a0_jf_b0_77.c */; };
-		7FB2B6AF29B70D8200E7DFAA /* iwx_Qu_b0_jf_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67B29B70D8100E7DFAA /* iwx_Qu_b0_jf_b0_77.c */; };
-		7FB2B6B029B70D8200E7DFAA /* iwx_Qu_b0_jf_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67B29B70D8100E7DFAA /* iwx_Qu_b0_jf_b0_77.c */; };
-		7FB2B6B129B70D8200E7DFAA /* iwx_Qu_b0_jf_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67B29B70D8100E7DFAA /* iwx_Qu_b0_jf_b0_77.c */; };
-		7FB2B6B229B70D8200E7DFAA /* iwx_Qu_b0_jf_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67B29B70D8100E7DFAA /* iwx_Qu_b0_jf_b0_77.c */; };
-		7FB2B6B329B70D8200E7DFAA /* iwx_Qu_b0_jf_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67B29B70D8100E7DFAA /* iwx_Qu_b0_jf_b0_77.c */; };
-		7FB2B6B429B70D8200E7DFAA /* iwx_Qu_b0_jf_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67B29B70D8100E7DFAA /* iwx_Qu_b0_jf_b0_77.c */; };
-		7FB2B6B529B70D8200E7DFAA /* iwx_QuZ_a0_hr_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67C29B70D8100E7DFAA /* iwx_QuZ_a0_hr_b0_77.c */; };
-		7FB2B6B629B70D8200E7DFAA /* iwx_QuZ_a0_hr_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67C29B70D8100E7DFAA /* iwx_QuZ_a0_hr_b0_77.c */; };
-		7FB2B6B729B70D8200E7DFAA /* iwx_QuZ_a0_hr_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67C29B70D8100E7DFAA /* iwx_QuZ_a0_hr_b0_77.c */; };
-		7FB2B6B829B70D8200E7DFAA /* iwx_QuZ_a0_hr_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67C29B70D8100E7DFAA /* iwx_QuZ_a0_hr_b0_77.c */; };
-		7FB2B6B929B70D8200E7DFAA /* iwx_QuZ_a0_hr_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67C29B70D8100E7DFAA /* iwx_QuZ_a0_hr_b0_77.c */; };
-		7FB2B6BA29B70D8200E7DFAA /* iwx_QuZ_a0_hr_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67C29B70D8100E7DFAA /* iwx_QuZ_a0_hr_b0_77.c */; };
-		7FB2B6BB29B70D8200E7DFAA /* iwx_so_a0_hr_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67D29B70D8100E7DFAA /* iwx_so_a0_hr_b0_77.c */; };
-		7FB2B6BC29B70D8200E7DFAA /* iwx_so_a0_hr_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67D29B70D8100E7DFAA /* iwx_so_a0_hr_b0_77.c */; };
-		7FB2B6BD29B70D8200E7DFAA /* iwx_so_a0_hr_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67D29B70D8100E7DFAA /* iwx_so_a0_hr_b0_77.c */; };
-		7FB2B6BE29B70D8200E7DFAA /* iwx_so_a0_hr_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67D29B70D8100E7DFAA /* iwx_so_a0_hr_b0_77.c */; };
-		7FB2B6BF29B70D8200E7DFAA /* iwx_so_a0_hr_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67D29B70D8100E7DFAA /* iwx_so_a0_hr_b0_77.c */; };
-		7FB2B6C029B70D8200E7DFAA /* iwx_so_a0_hr_b0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67D29B70D8100E7DFAA /* iwx_so_a0_hr_b0_77.c */; };
-		7FB2B6C129B70D8200E7DFAA /* iwx_ty_a0_gf_a0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67E29B70D8200E7DFAA /* iwx_ty_a0_gf_a0_77.c */; };
-		7FB2B6C229B70D8200E7DFAA /* iwx_ty_a0_gf_a0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67E29B70D8200E7DFAA /* iwx_ty_a0_gf_a0_77.c */; };
-		7FB2B6C329B70D8200E7DFAA /* iwx_ty_a0_gf_a0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67E29B70D8200E7DFAA /* iwx_ty_a0_gf_a0_77.c */; };
-		7FB2B6C429B70D8200E7DFAA /* iwx_ty_a0_gf_a0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67E29B70D8200E7DFAA /* iwx_ty_a0_gf_a0_77.c */; };
-		7FB2B6C529B70D8200E7DFAA /* iwx_ty_a0_gf_a0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67E29B70D8200E7DFAA /* iwx_ty_a0_gf_a0_77.c */; };
-		7FB2B6C629B70D8200E7DFAA /* iwx_ty_a0_gf_a0_77.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FB2B67E29B70D8200E7DFAA /* iwx_ty_a0_gf_a0_77.c */; };
+		7FA595B42A59A95200824D8B /* AirPortOpenBSDFirmwareData.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 7FA595B32A59A95200824D8B /* AirPortOpenBSDFirmwareData.hpp */; };
+		7FA595B62A59A95200824D8B /* AirPortOpenBSDFirmwareData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595B52A59A95200824D8B /* AirPortOpenBSDFirmwareData.cpp */; };
+		7FA595F82A59AA4F00824D8B /* brcmfmac43602_pcie_ap_bin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595BB2A59AA4B00824D8B /* brcmfmac43602_pcie_ap_bin.cpp */; };
+		7FA595F92A59AA4F00824D8B /* iwn_6030.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595BC2A59AA4B00824D8B /* iwn_6030.cpp */; };
+		7FA595FA2A59AA4F00824D8B /* iwm_3160_17.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595BD2A59AA4B00824D8B /* iwm_3160_17.cpp */; };
+		7FA595FB2A59AA4F00824D8B /* iwn_5150.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595BE2A59AA4B00824D8B /* iwn_5150.cpp */; };
+		7FA595FC2A59AA4F00824D8B /* bwi_airforce.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595BF2A59AA4B00824D8B /* bwi_airforce.cpp */; };
+		7FA595FD2A59AA4F00824D8B /* iwn_2030.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595C02A59AA4B00824D8B /* iwn_2030.cpp */; };
+		7FA595FE2A59AA4F00824D8B /* iwi_monitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595C12A59AA4B00824D8B /* iwi_monitor.cpp */; };
+		7FA595FF2A59AA4F00824D8B /* rtwn_rtl8192cfwU_B.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595C22A59AA4B00824D8B /* rtwn_rtl8192cfwU_B.cpp */; };
+		7FA596002A59AA4F00824D8B /* iwx_Qu_b0_jf_b0_77.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595C32A59AA4B00824D8B /* iwx_Qu_b0_jf_b0_77.cpp */; };
+		7FA596012A59AA4F00824D8B /* iwx_so_a0_gf4_a0_pnvm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595C42A59AA4B00824D8B /* iwx_so_a0_gf4_a0_pnvm.cpp */; };
+		7FA596022A59AA4F00824D8B /* iwm_3168_29.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595C52A59AA4B00824D8B /* iwm_3168_29.cpp */; };
+		7FA596032A59AA4F00824D8B /* firmware.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595C62A59AA4B00824D8B /* firmware.cpp */; };
+		7FA596042A59AA4F00824D8B /* iwi_bss.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595C72A59AA4B00824D8B /* iwi_bss.cpp */; };
+		7FA596052A59AA4F00824D8B /* brcmfmac4350c2_pcie_bin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595C82A59AA4B00824D8B /* brcmfmac4350c2_pcie_bin.cpp */; };
+		7FA596062A59AA4F00824D8B /* iwn_5000.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595C92A59AA4B00824D8B /* iwn_5000.cpp */; };
+		7FA596072A59AA4F00824D8B /* iwx_QuZ_a0_jf_b0_77.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595CA2A59AA4C00824D8B /* iwx_QuZ_a0_jf_b0_77.cpp */; };
+		7FA596082A59AA4F00824D8B /* iwm_8265_36.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595CB2A59AA4C00824D8B /* iwm_8265_36.cpp */; };
+		7FA596092A59AA4F00824D8B /* ipw_bss.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595CC2A59AA4C00824D8B /* ipw_bss.cpp */; };
+		7FA5960A2A59AA4F00824D8B /* firmwarevar.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 7FA595CD2A59AA4C00824D8B /* firmwarevar.hpp */; };
+		7FA5960B2A59AA4F00824D8B /* rtwn_rtl8192cfwU.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595CE2A59AA4C00824D8B /* rtwn_rtl8192cfwU.cpp */; };
+		7FA5960C2A59AA4F00824D8B /* iwx_so_a0_hr_b0_77.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595CF2A59AA4C00824D8B /* iwx_so_a0_hr_b0_77.cpp */; };
+		7FA5960D2A59AA4F00824D8B /* iwx_Qu_c0_jf_b0_77.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595D02A59AA4C00824D8B /* iwx_Qu_c0_jf_b0_77.cpp */; };
+		7FA5960E2A59AA4F00824D8B /* iwn_100.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595D12A59AA4C00824D8B /* iwn_100.cpp */; };
+		7FA5960F2A59AA4F00824D8B /* ipw_ibss.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595D22A59AA4C00824D8B /* ipw_ibss.cpp */; };
+		7FA596102A59AA4F00824D8B /* brcmfmac4366c_pcie_bin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595D32A59AA4C00824D8B /* brcmfmac4366c_pcie_bin.cpp */; };
+		7FA596112A59AA4F00824D8B /* iwm_7265D_29.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595D42A59AA4C00824D8B /* iwm_7265D_29.cpp */; };
+		7FA596122A59AA4F00824D8B /* iwx_so_a0_gf_a0_pnvm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595D52A59AA4C00824D8B /* iwx_so_a0_gf_a0_pnvm.cpp */; };
+		7FA596132A59AA4F00824D8B /* iwx_so_a0_jf_b0_77.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595D62A59AA4C00824D8B /* iwx_so_a0_jf_b0_77.cpp */; };
+		7FA596142A59AA4F00824D8B /* brcmfmac4358_pcie_bin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595D72A59AA4C00824D8B /* brcmfmac4358_pcie_bin.cpp */; };
+		7FA596152A59AA4F00824D8B /* iwx_ty_a0_gf_a0_pnvm.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595D82A59AA4D00824D8B /* iwx_ty_a0_gf_a0_pnvm.cpp */; };
+		7FA596162A59AA4F00824D8B /* iwn_6050.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595D92A59AA4D00824D8B /* iwn_6050.cpp */; };
+		7FA596172A59AA4F00824D8B /* rtwn_rtl8188efw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595DA2A59AA4D00824D8B /* rtwn_rtl8188efw.cpp */; };
+		7FA596182A59AA4F00824D8B /* brcmfmac4350_pcie_bin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595DB2A59AA4D00824D8B /* brcmfmac4350_pcie_bin.cpp */; };
+		7FA596192A59AA4F00824D8B /* wpi_3945abg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595DC2A59AA4D00824D8B /* wpi_3945abg.cpp */; };
+		7FA5961A2A59AA4F00824D8B /* iwn_2000.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595DD2A59AA4D00824D8B /* iwn_2000.cpp */; };
+		7FA5961B2A59AA4F00824D8B /* iwx_so_a0_gf4_a0_77.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595DE2A59AA4D00824D8B /* iwx_so_a0_gf4_a0_77.cpp */; };
+		7FA5961C2A59AA4F00824D8B /* iwx_Qu_c0_hr_b0_77.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595DF2A59AA4D00824D8B /* iwx_Qu_c0_hr_b0_77.cpp */; };
+		7FA5961D2A59AA4F00824D8B /* iwn_135.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595E02A59AA4D00824D8B /* iwn_135.cpp */; };
+		7FA5961E2A59AA4F00824D8B /* brcmfmac43602_pcie_bin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595E12A59AA4D00824D8B /* brcmfmac43602_pcie_bin.cpp */; };
+		7FA5961F2A59AA4F00824D8B /* brcmfmac4366b_pcie_bin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595E22A59AA4D00824D8B /* brcmfmac4366b_pcie_bin.cpp */; };
+		7FA596202A59AA4F00824D8B /* iwx_QuZ_a0_hr_b0_77.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595E32A59AA4D00824D8B /* iwx_QuZ_a0_hr_b0_77.cpp */; };
+		7FA596212A59AA4F00824D8B /* iwx_cc_a0_77.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595E42A59AA4D00824D8B /* iwx_cc_a0_77.cpp */; };
+		7FA596222A59AA4F00824D8B /* iwn_105.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595E52A59AA4E00824D8B /* iwn_105.cpp */; };
+		7FA596232A59AA4F00824D8B /* iwx_ty_a0_gf_a0_77.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595E62A59AA4E00824D8B /* iwx_ty_a0_gf_a0_77.cpp */; };
+		7FA596242A59AA4F00824D8B /* iwn_6005.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595E72A59AA4E00824D8B /* iwn_6005.cpp */; };
+		7FA596252A59AA4F00824D8B /* iwi_ibss.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595E82A59AA4E00824D8B /* iwi_ibss.cpp */; };
+		7FA596262A59AA4F00824D8B /* iwm_9260_46.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595E92A59AA4E00824D8B /* iwm_9260_46.cpp */; };
+		7FA596272A59AA4F00824D8B /* ipw_monitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595EA2A59AA4E00824D8B /* ipw_monitor.cpp */; };
+		7FA596282A59AA4F00824D8B /* brcmfmac4371_pcie_bin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595EB2A59AA4E00824D8B /* brcmfmac4371_pcie_bin.cpp */; };
+		7FA596292A59AA4F00824D8B /* iwm_7260_17.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595EC2A59AA4E00824D8B /* iwm_7260_17.cpp */; };
+		7FA5962A2A59AA4F00824D8B /* iwn_6000.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595ED2A59AA4E00824D8B /* iwn_6000.cpp */; };
+		7FA5962B2A59AA4F00824D8B /* iwx_so_a0_gf_a0_77.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595EE2A59AA4E00824D8B /* iwx_so_a0_gf_a0_77.cpp */; };
+		7FA5962C2A59AA4F00824D8B /* iwm_8000C_36.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595EF2A59AA4E00824D8B /* iwm_8000C_36.cpp */; };
+		7FA5962D2A59AA4F00824D8B /* rtwn_rtl8723fw_B.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595F02A59AA4E00824D8B /* rtwn_rtl8723fw_B.cpp */; };
+		7FA5962E2A59AA4F00824D8B /* iwx_Qu_b0_hr_b0_77.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595F12A59AA4E00824D8B /* iwx_Qu_b0_hr_b0_77.cpp */; };
+		7FA5962F2A59AA4F00824D8B /* iwm_9000_46.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595F22A59AA4E00824D8B /* iwm_9000_46.cpp */; };
+		7FA596302A59AA4F00824D8B /* brcmfmac4356_pcie_bin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595F32A59AA4F00824D8B /* brcmfmac4356_pcie_bin.cpp */; };
+		7FA596312A59AA4F00824D8B /* iwn_1000.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595F42A59AA4F00824D8B /* iwn_1000.cpp */; };
+		7FA596322A59AA4F00824D8B /* brcmfmac43570_pcie_bin.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595F52A59AA4F00824D8B /* brcmfmac43570_pcie_bin.cpp */; };
+		7FA596332A59AA4F00824D8B /* rtwn_rtl8723fw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595F62A59AA4F00824D8B /* rtwn_rtl8723fw.cpp */; };
+		7FA596342A59AA4F00824D8B /* iwn_4965.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595F72A59AA4F00824D8B /* iwn_4965.cpp */; };
+		7FA596362A59AAD300824D8B /* firmware.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 7FA596352A59AAD300824D8B /* firmware.hpp */; };
 		7FBA000827E077F20075D188 /* AirPort_OpenBSD.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 18713AFD255F148200EF3D49 /* AirPort_OpenBSD.hpp */; };
 		7FBA001327E077F20075D188 /* apple80211.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BDF255F14EC00EF3D49 /* apple80211.h */; };
 		7FBA001427E077F20075D188 /* bpfilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1D255F14E700EF3D49 /* bpfilter.h */; };
 		7FBA001527E077F20075D188 /* bridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B0E255F14E600EF3D49 /* bridge.h */; };
 		7FBA001627E077F20075D188 /* compat.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B21255F14E700EF3D49 /* compat.h */; };
-		7FBA001727E077F20075D188 /* firmware.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BD4255F14E900EF3D49 /* firmware.h */; };
 		7FBA001927E077F20075D188 /* iwlwifi.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1C255F14E700EF3D49 /* iwlwifi.h */; };
 		7FBA001A27E077F20075D188 /* aes.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B30255F14E700EF3D49 /* aes.h */; };
 		7FBA001B27E077F20075D188 /* arc4.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B2B255F14E700EF3D49 /* arc4.h */; };
@@ -884,7 +855,6 @@
 		7FF81527290EBB7300050008 /* pcidevs.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B7C255F14E800EF3D49 /* pcidevs.h */; };
 		7FF81528290EBB7300050008 /* pcireg.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B8C255F14E800EF3D49 /* pcireg.h */; };
 		7FF81529290EBB7300050008 /* pcivar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B89255F14E800EF3D49 /* pcivar.h */; };
-		7FF8152A290EBB7300050008 /* firmwarevar.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FFFCF36280C10B600EDD723 /* firmwarevar.h */; };
 		7FF8152B290EBB7300050008 /* ifconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B22255F14E700EF3D49 /* ifconfig.h */; };
 		7FF8152C290EBB7300050008 /* qsort.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FF2C20B274CD7E900DCECFD /* qsort.h */; };
 		7FF8152D290EBB7300050008 /* heapsort.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FF2C21C274CD9D000DCECFD /* heapsort.h */; };
@@ -914,7 +884,6 @@
 		7FF81545290EBB7600050008 /* _null.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B47255F14E700EF3D49 /* _null.h */; };
 		7FF81546290EBB7600050008 /* device.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B3F255F14E700EF3D49 /* device.h */; };
 		7FF81547290EBB7600050008 /* endian.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B41255F14E700EF3D49 /* endian.h */; };
-		7FF81548290EBB7600050008 /* firmware.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BD4255F14E900EF3D49 /* firmware.h */; };
 		7FF81549290EBB7600050008 /* fls.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B3D255F14E700EF3D49 /* fls.h */; };
 		7FF8154A290EBB7600050008 /* kern_compat.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B4A255F14E700EF3D49 /* kern_compat.h */; };
 		7FF8154B290EBB7600050008 /* libkern.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B51255F14E700EF3D49 /* libkern.h */; };
@@ -955,54 +924,6 @@
 		7FF81575290EBB9800050008 /* if_rtwn.c in Sources */ = {isa = PBXBuildFile; fileRef = 18C95A9F256285DC0047231F /* if_rtwn.c */; };
 		7FF81576290EBB9800050008 /* if_wpi.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B79255F14E800EF3D49 /* if_wpi.c */; };
 		7FF81577290EBB9800050008 /* pci.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B7F255F14E800EF3D49 /* pci.c */; };
-		7FF81578290EBB9800050008 /* brcmfmac4350_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3A280C10B600EDD723 /* brcmfmac4350_pcie_bin.c */; };
-		7FF81579290EBB9800050008 /* brcmfmac4350c2_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3F280C10B700EDD723 /* brcmfmac4350c2_pcie_bin.c */; };
-		7FF8157A290EBB9800050008 /* brcmfmac4356_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF22280C10B600EDD723 /* brcmfmac4356_pcie_bin.c */; };
-		7FF8157B290EBB9900050008 /* brcmfmac4358_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF28280C10B600EDD723 /* brcmfmac4358_pcie_bin.c */; };
-		7FF8157C290EBB9900050008 /* brcmfmac4366b_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF40280C10B700EDD723 /* brcmfmac4366b_pcie_bin.c */; };
-		7FF8157D290EBB9900050008 /* brcmfmac4366c_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1D280C10B500EDD723 /* brcmfmac4366c_pcie_bin.c */; };
-		7FF8157E290EBB9900050008 /* brcmfmac4371_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF37280C10B600EDD723 /* brcmfmac4371_pcie_bin.c */; };
-		7FF8157F290EBB9900050008 /* brcmfmac43570_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF30280C10B600EDD723 /* brcmfmac43570_pcie_bin.c */; };
-		7FF81580290EBB9900050008 /* brcmfmac43602_pcie_ap_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF45280C10B700EDD723 /* brcmfmac43602_pcie_ap_bin.c */; };
-		7FF81581290EBB9900050008 /* brcmfmac43602_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2F280C10B600EDD723 /* brcmfmac43602_pcie_bin.c */; };
-		7FF81582290EBB9900050008 /* bwi_airforce.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF4C280C10B700EDD723 /* bwi_airforce.c */; };
-		7FF81583290EBB9900050008 /* firmware.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3B280C10B700EDD723 /* firmware.c */; };
-		7FF81584290EBB9900050008 /* ipw_bss.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF31280C10B600EDD723 /* ipw_bss.c */; };
-		7FF81585290EBB9900050008 /* ipw_ibss.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF38280C10B600EDD723 /* ipw_ibss.c */; };
-		7FF81586290EBB9900050008 /* ipw_monitor.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF46280C10B700EDD723 /* ipw_monitor.c */; };
-		7FF81587290EBB9900050008 /* iwi_bss.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3D280C10B700EDD723 /* iwi_bss.c */; };
-		7FF81588290EBB9900050008 /* iwi_ibss.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF42280C10B700EDD723 /* iwi_ibss.c */; };
-		7FF81589290EBB9900050008 /* iwi_monitor.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF34280C10B600EDD723 /* iwi_monitor.c */; };
-		7FF8158A290EBB9900050008 /* iwm_3160_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF47280C10B700EDD723 /* iwm_3160_17.c */; };
-		7FF8158B290EBB9900050008 /* iwm_3168_29.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF41280C10B700EDD723 /* iwm_3168_29.c */; };
-		7FF8158C290EBB9900050008 /* iwm_7260_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF39280C10B600EDD723 /* iwm_7260_17.c */; };
-		7FF8158D290EBB9A00050008 /* iwm_7265D_29.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF35280C10B600EDD723 /* iwm_7265D_29.c */; };
-		7FF8158E290EBB9A00050008 /* iwm_8000C_36.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1A280C10B500EDD723 /* iwm_8000C_36.c */; };
-		7FF8158F290EBB9A00050008 /* iwm_8265_36.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF48280C10B700EDD723 /* iwm_8265_36.c */; };
-		7FF81590290EBB9A00050008 /* iwm_9000_46.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF20280C10B500EDD723 /* iwm_9000_46.c */; };
-		7FF81591290EBB9A00050008 /* iwm_9260_46.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2D280C10B600EDD723 /* iwm_9260_46.c */; };
-		7FF81592290EBB9A00050008 /* iwn_100.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF4A280C10B700EDD723 /* iwn_100.c */; };
-		7FF81593290EBB9A00050008 /* iwn_105.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1B280C10B500EDD723 /* iwn_105.c */; };
-		7FF81594290EBB9A00050008 /* iwn_135.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF29280C10B600EDD723 /* iwn_135.c */; };
-		7FF81595290EBB9A00050008 /* iwn_1000.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF24280C10B600EDD723 /* iwn_1000.c */; };
-		7FF81596290EBB9A00050008 /* iwn_2000.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF25280C10B600EDD723 /* iwn_2000.c */; };
-		7FF81597290EBB9A00050008 /* iwn_2030.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF21280C10B500EDD723 /* iwn_2030.c */; };
-		7FF81598290EBB9A00050008 /* iwn_4965.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF23280C10B600EDD723 /* iwn_4965.c */; };
-		7FF81599290EBB9A00050008 /* iwn_5000.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF26280C10B600EDD723 /* iwn_5000.c */; };
-		7FF8159A290EBB9A00050008 /* iwn_5150.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2A280C10B600EDD723 /* iwn_5150.c */; };
-		7FF8159B290EBB9A00050008 /* iwn_6000.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1E280C10B500EDD723 /* iwn_6000.c */; };
-		7FF8159C290EBB9A00050008 /* iwn_6005.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1C280C10B500EDD723 /* iwn_6005.c */; };
-		7FF8159D290EBB9A00050008 /* iwn_6030.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3E280C10B700EDD723 /* iwn_6030.c */; };
-		7FF8159E290EBB9A00050008 /* iwn_6050.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF4B280C10B700EDD723 /* iwn_6050.c */; };
-		7FF815A8290EBB9B00050008 /* iwx_so_a0_gf_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7A8282A03A100BE973C /* iwx_so_a0_gf_a0_pnvm.c */; };
-		7FF815AA290EBB9B00050008 /* iwx_so_a0_gf4_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7A9282A03A100BE973C /* iwx_so_a0_gf4_a0_pnvm.c */; };
-		7FF815AD290EBB9B00050008 /* iwx_ty_a0_gf_a0_pnvm.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F40D7AE282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c */; };
-		7FF815AE290EBB9B00050008 /* rtwn_rtl8188efw.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2E280C10B600EDD723 /* rtwn_rtl8188efw.c */; };
-		7FF815AF290EBB9B00050008 /* rtwn_rtl8192cfwU_B.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1F280C10B500EDD723 /* rtwn_rtl8192cfwU_B.c */; };
-		7FF815B0290EBB9B00050008 /* rtwn_rtl8192cfwU.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF27280C10B600EDD723 /* rtwn_rtl8192cfwU.c */; };
-		7FF815B1290EBB9C00050008 /* rtwn_rtl8723fw_B.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2B280C10B600EDD723 /* rtwn_rtl8723fw_B.c */; };
-		7FF815B2290EBB9C00050008 /* rtwn_rtl8723fw.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF19280C10B500EDD723 /* rtwn_rtl8723fw.c */; };
-		7FF815B3290EBB9C00050008 /* wpi_3945abg.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF4D280C10B700EDD723 /* wpi_3945abg.c */; };
 		7FF815B4290EBB9C00050008 /* ifconfig.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1E255F14E700EF3D49 /* ifconfig.c */; };
 		7FF815B5290EBB9C00050008 /* qsort.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FF2C20C274CD7E900DCECFD /* qsort.c */; };
 		7FF815B6290EBB9C00050008 /* heapsort.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FF2C21D274CD9D000DCECFD /* heapsort.c */; };
@@ -1032,236 +953,6 @@
 		7FF815CE290EBB9D00050008 /* timeout.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B42255F14E700EF3D49 /* timeout.c */; };
 		7FF815CF290EBB9D00050008 /* timingsafe_bcmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B4B255F14E700EF3D49 /* timingsafe_bcmp.c */; };
 		7FF815D0290EBB9D00050008 /* tree.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B52255F14E700EF3D49 /* tree.c */; };
-		7FFFCF55280C10B700EDD723 /* rtwn_rtl8723fw.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF19280C10B500EDD723 /* rtwn_rtl8723fw.c */; };
-		7FFFCF56280C10B700EDD723 /* rtwn_rtl8723fw.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF19280C10B500EDD723 /* rtwn_rtl8723fw.c */; };
-		7FFFCF57280C10B700EDD723 /* rtwn_rtl8723fw.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF19280C10B500EDD723 /* rtwn_rtl8723fw.c */; };
-		7FFFCF58280C10B700EDD723 /* rtwn_rtl8723fw.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF19280C10B500EDD723 /* rtwn_rtl8723fw.c */; };
-		7FFFCF59280C10B700EDD723 /* rtwn_rtl8723fw.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF19280C10B500EDD723 /* rtwn_rtl8723fw.c */; };
-		7FFFCF5B280C10B700EDD723 /* iwm_8000C_36.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1A280C10B500EDD723 /* iwm_8000C_36.c */; };
-		7FFFCF5C280C10B700EDD723 /* iwm_8000C_36.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1A280C10B500EDD723 /* iwm_8000C_36.c */; };
-		7FFFCF5D280C10B700EDD723 /* iwm_8000C_36.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1A280C10B500EDD723 /* iwm_8000C_36.c */; };
-		7FFFCF5E280C10B700EDD723 /* iwm_8000C_36.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1A280C10B500EDD723 /* iwm_8000C_36.c */; };
-		7FFFCF5F280C10B700EDD723 /* iwm_8000C_36.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1A280C10B500EDD723 /* iwm_8000C_36.c */; };
-		7FFFCF61280C10B700EDD723 /* iwn_105.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1B280C10B500EDD723 /* iwn_105.c */; };
-		7FFFCF62280C10B700EDD723 /* iwn_105.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1B280C10B500EDD723 /* iwn_105.c */; };
-		7FFFCF63280C10B700EDD723 /* iwn_105.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1B280C10B500EDD723 /* iwn_105.c */; };
-		7FFFCF64280C10B700EDD723 /* iwn_105.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1B280C10B500EDD723 /* iwn_105.c */; };
-		7FFFCF65280C10B700EDD723 /* iwn_105.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1B280C10B500EDD723 /* iwn_105.c */; };
-		7FFFCF67280C10B700EDD723 /* iwn_6005.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1C280C10B500EDD723 /* iwn_6005.c */; };
-		7FFFCF68280C10B700EDD723 /* iwn_6005.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1C280C10B500EDD723 /* iwn_6005.c */; };
-		7FFFCF69280C10B700EDD723 /* iwn_6005.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1C280C10B500EDD723 /* iwn_6005.c */; };
-		7FFFCF6A280C10B700EDD723 /* iwn_6005.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1C280C10B500EDD723 /* iwn_6005.c */; };
-		7FFFCF6B280C10B700EDD723 /* iwn_6005.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1C280C10B500EDD723 /* iwn_6005.c */; };
-		7FFFCF6D280C10B700EDD723 /* brcmfmac4366c_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1D280C10B500EDD723 /* brcmfmac4366c_pcie_bin.c */; };
-		7FFFCF6E280C10B700EDD723 /* brcmfmac4366c_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1D280C10B500EDD723 /* brcmfmac4366c_pcie_bin.c */; };
-		7FFFCF6F280C10B700EDD723 /* brcmfmac4366c_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1D280C10B500EDD723 /* brcmfmac4366c_pcie_bin.c */; };
-		7FFFCF70280C10B700EDD723 /* brcmfmac4366c_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1D280C10B500EDD723 /* brcmfmac4366c_pcie_bin.c */; };
-		7FFFCF71280C10B700EDD723 /* brcmfmac4366c_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1D280C10B500EDD723 /* brcmfmac4366c_pcie_bin.c */; };
-		7FFFCF73280C10B700EDD723 /* iwn_6000.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1E280C10B500EDD723 /* iwn_6000.c */; };
-		7FFFCF74280C10B700EDD723 /* iwn_6000.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1E280C10B500EDD723 /* iwn_6000.c */; };
-		7FFFCF75280C10B700EDD723 /* iwn_6000.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1E280C10B500EDD723 /* iwn_6000.c */; };
-		7FFFCF76280C10B700EDD723 /* iwn_6000.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1E280C10B500EDD723 /* iwn_6000.c */; };
-		7FFFCF77280C10B700EDD723 /* iwn_6000.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1E280C10B500EDD723 /* iwn_6000.c */; };
-		7FFFCF79280C10B700EDD723 /* rtwn_rtl8192cfwU_B.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1F280C10B500EDD723 /* rtwn_rtl8192cfwU_B.c */; };
-		7FFFCF7A280C10B700EDD723 /* rtwn_rtl8192cfwU_B.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1F280C10B500EDD723 /* rtwn_rtl8192cfwU_B.c */; };
-		7FFFCF7B280C10B700EDD723 /* rtwn_rtl8192cfwU_B.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1F280C10B500EDD723 /* rtwn_rtl8192cfwU_B.c */; };
-		7FFFCF7C280C10B700EDD723 /* rtwn_rtl8192cfwU_B.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1F280C10B500EDD723 /* rtwn_rtl8192cfwU_B.c */; };
-		7FFFCF7D280C10B700EDD723 /* rtwn_rtl8192cfwU_B.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF1F280C10B500EDD723 /* rtwn_rtl8192cfwU_B.c */; };
-		7FFFCF7F280C10B700EDD723 /* iwm_9000_46.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF20280C10B500EDD723 /* iwm_9000_46.c */; };
-		7FFFCF80280C10B700EDD723 /* iwm_9000_46.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF20280C10B500EDD723 /* iwm_9000_46.c */; };
-		7FFFCF81280C10B700EDD723 /* iwm_9000_46.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF20280C10B500EDD723 /* iwm_9000_46.c */; };
-		7FFFCF82280C10B700EDD723 /* iwm_9000_46.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF20280C10B500EDD723 /* iwm_9000_46.c */; };
-		7FFFCF83280C10B700EDD723 /* iwm_9000_46.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF20280C10B500EDD723 /* iwm_9000_46.c */; };
-		7FFFCF85280C10B700EDD723 /* iwn_2030.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF21280C10B500EDD723 /* iwn_2030.c */; };
-		7FFFCF86280C10B700EDD723 /* iwn_2030.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF21280C10B500EDD723 /* iwn_2030.c */; };
-		7FFFCF87280C10B700EDD723 /* iwn_2030.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF21280C10B500EDD723 /* iwn_2030.c */; };
-		7FFFCF88280C10B700EDD723 /* iwn_2030.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF21280C10B500EDD723 /* iwn_2030.c */; };
-		7FFFCF89280C10B700EDD723 /* iwn_2030.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF21280C10B500EDD723 /* iwn_2030.c */; };
-		7FFFCF8B280C10B700EDD723 /* brcmfmac4356_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF22280C10B600EDD723 /* brcmfmac4356_pcie_bin.c */; };
-		7FFFCF8C280C10B700EDD723 /* brcmfmac4356_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF22280C10B600EDD723 /* brcmfmac4356_pcie_bin.c */; };
-		7FFFCF8D280C10B700EDD723 /* brcmfmac4356_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF22280C10B600EDD723 /* brcmfmac4356_pcie_bin.c */; };
-		7FFFCF8E280C10B700EDD723 /* brcmfmac4356_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF22280C10B600EDD723 /* brcmfmac4356_pcie_bin.c */; };
-		7FFFCF8F280C10B700EDD723 /* brcmfmac4356_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF22280C10B600EDD723 /* brcmfmac4356_pcie_bin.c */; };
-		7FFFCF91280C10B700EDD723 /* iwn_4965.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF23280C10B600EDD723 /* iwn_4965.c */; };
-		7FFFCF92280C10B700EDD723 /* iwn_4965.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF23280C10B600EDD723 /* iwn_4965.c */; };
-		7FFFCF93280C10B700EDD723 /* iwn_4965.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF23280C10B600EDD723 /* iwn_4965.c */; };
-		7FFFCF94280C10B700EDD723 /* iwn_4965.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF23280C10B600EDD723 /* iwn_4965.c */; };
-		7FFFCF95280C10B700EDD723 /* iwn_4965.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF23280C10B600EDD723 /* iwn_4965.c */; };
-		7FFFCF97280C10B700EDD723 /* iwn_1000.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF24280C10B600EDD723 /* iwn_1000.c */; };
-		7FFFCF98280C10B700EDD723 /* iwn_1000.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF24280C10B600EDD723 /* iwn_1000.c */; };
-		7FFFCF99280C10B700EDD723 /* iwn_1000.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF24280C10B600EDD723 /* iwn_1000.c */; };
-		7FFFCF9A280C10B700EDD723 /* iwn_1000.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF24280C10B600EDD723 /* iwn_1000.c */; };
-		7FFFCF9B280C10B700EDD723 /* iwn_1000.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF24280C10B600EDD723 /* iwn_1000.c */; };
-		7FFFCF9D280C10B700EDD723 /* iwn_2000.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF25280C10B600EDD723 /* iwn_2000.c */; };
-		7FFFCF9E280C10B700EDD723 /* iwn_2000.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF25280C10B600EDD723 /* iwn_2000.c */; };
-		7FFFCF9F280C10B700EDD723 /* iwn_2000.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF25280C10B600EDD723 /* iwn_2000.c */; };
-		7FFFCFA0280C10B700EDD723 /* iwn_2000.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF25280C10B600EDD723 /* iwn_2000.c */; };
-		7FFFCFA1280C10B700EDD723 /* iwn_2000.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF25280C10B600EDD723 /* iwn_2000.c */; };
-		7FFFCFA3280C10B700EDD723 /* iwn_5000.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF26280C10B600EDD723 /* iwn_5000.c */; };
-		7FFFCFA4280C10B700EDD723 /* iwn_5000.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF26280C10B600EDD723 /* iwn_5000.c */; };
-		7FFFCFA5280C10B700EDD723 /* iwn_5000.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF26280C10B600EDD723 /* iwn_5000.c */; };
-		7FFFCFA6280C10B700EDD723 /* iwn_5000.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF26280C10B600EDD723 /* iwn_5000.c */; };
-		7FFFCFA7280C10B700EDD723 /* iwn_5000.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF26280C10B600EDD723 /* iwn_5000.c */; };
-		7FFFCFA9280C10B700EDD723 /* rtwn_rtl8192cfwU.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF27280C10B600EDD723 /* rtwn_rtl8192cfwU.c */; };
-		7FFFCFAA280C10B700EDD723 /* rtwn_rtl8192cfwU.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF27280C10B600EDD723 /* rtwn_rtl8192cfwU.c */; };
-		7FFFCFAB280C10B700EDD723 /* rtwn_rtl8192cfwU.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF27280C10B600EDD723 /* rtwn_rtl8192cfwU.c */; };
-		7FFFCFAC280C10B700EDD723 /* rtwn_rtl8192cfwU.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF27280C10B600EDD723 /* rtwn_rtl8192cfwU.c */; };
-		7FFFCFAD280C10B700EDD723 /* rtwn_rtl8192cfwU.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF27280C10B600EDD723 /* rtwn_rtl8192cfwU.c */; };
-		7FFFCFAF280C10B700EDD723 /* brcmfmac4358_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF28280C10B600EDD723 /* brcmfmac4358_pcie_bin.c */; };
-		7FFFCFB0280C10B700EDD723 /* brcmfmac4358_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF28280C10B600EDD723 /* brcmfmac4358_pcie_bin.c */; };
-		7FFFCFB1280C10B700EDD723 /* brcmfmac4358_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF28280C10B600EDD723 /* brcmfmac4358_pcie_bin.c */; };
-		7FFFCFB2280C10B700EDD723 /* brcmfmac4358_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF28280C10B600EDD723 /* brcmfmac4358_pcie_bin.c */; };
-		7FFFCFB3280C10B700EDD723 /* brcmfmac4358_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF28280C10B600EDD723 /* brcmfmac4358_pcie_bin.c */; };
-		7FFFCFB5280C10B700EDD723 /* iwn_135.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF29280C10B600EDD723 /* iwn_135.c */; };
-		7FFFCFB6280C10B700EDD723 /* iwn_135.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF29280C10B600EDD723 /* iwn_135.c */; };
-		7FFFCFB7280C10B700EDD723 /* iwn_135.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF29280C10B600EDD723 /* iwn_135.c */; };
-		7FFFCFB8280C10B700EDD723 /* iwn_135.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF29280C10B600EDD723 /* iwn_135.c */; };
-		7FFFCFB9280C10B700EDD723 /* iwn_135.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF29280C10B600EDD723 /* iwn_135.c */; };
-		7FFFCFBB280C10B700EDD723 /* iwn_5150.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2A280C10B600EDD723 /* iwn_5150.c */; };
-		7FFFCFBC280C10B700EDD723 /* iwn_5150.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2A280C10B600EDD723 /* iwn_5150.c */; };
-		7FFFCFBD280C10B700EDD723 /* iwn_5150.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2A280C10B600EDD723 /* iwn_5150.c */; };
-		7FFFCFBE280C10B700EDD723 /* iwn_5150.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2A280C10B600EDD723 /* iwn_5150.c */; };
-		7FFFCFBF280C10B700EDD723 /* iwn_5150.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2A280C10B600EDD723 /* iwn_5150.c */; };
-		7FFFCFC1280C10B700EDD723 /* rtwn_rtl8723fw_B.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2B280C10B600EDD723 /* rtwn_rtl8723fw_B.c */; };
-		7FFFCFC2280C10B700EDD723 /* rtwn_rtl8723fw_B.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2B280C10B600EDD723 /* rtwn_rtl8723fw_B.c */; };
-		7FFFCFC3280C10B700EDD723 /* rtwn_rtl8723fw_B.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2B280C10B600EDD723 /* rtwn_rtl8723fw_B.c */; };
-		7FFFCFC4280C10B700EDD723 /* rtwn_rtl8723fw_B.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2B280C10B600EDD723 /* rtwn_rtl8723fw_B.c */; };
-		7FFFCFC5280C10B700EDD723 /* rtwn_rtl8723fw_B.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2B280C10B600EDD723 /* rtwn_rtl8723fw_B.c */; };
-		7FFFCFCD280C10B700EDD723 /* iwm_9260_46.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2D280C10B600EDD723 /* iwm_9260_46.c */; };
-		7FFFCFCE280C10B700EDD723 /* iwm_9260_46.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2D280C10B600EDD723 /* iwm_9260_46.c */; };
-		7FFFCFCF280C10B700EDD723 /* iwm_9260_46.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2D280C10B600EDD723 /* iwm_9260_46.c */; };
-		7FFFCFD0280C10B700EDD723 /* iwm_9260_46.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2D280C10B600EDD723 /* iwm_9260_46.c */; };
-		7FFFCFD1280C10B700EDD723 /* iwm_9260_46.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2D280C10B600EDD723 /* iwm_9260_46.c */; };
-		7FFFCFD3280C10B700EDD723 /* rtwn_rtl8188efw.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2E280C10B600EDD723 /* rtwn_rtl8188efw.c */; };
-		7FFFCFD4280C10B700EDD723 /* rtwn_rtl8188efw.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2E280C10B600EDD723 /* rtwn_rtl8188efw.c */; };
-		7FFFCFD5280C10B700EDD723 /* rtwn_rtl8188efw.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2E280C10B600EDD723 /* rtwn_rtl8188efw.c */; };
-		7FFFCFD6280C10B700EDD723 /* rtwn_rtl8188efw.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2E280C10B600EDD723 /* rtwn_rtl8188efw.c */; };
-		7FFFCFD7280C10B700EDD723 /* rtwn_rtl8188efw.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2E280C10B600EDD723 /* rtwn_rtl8188efw.c */; };
-		7FFFCFD9280C10B700EDD723 /* brcmfmac43602_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2F280C10B600EDD723 /* brcmfmac43602_pcie_bin.c */; };
-		7FFFCFDA280C10B700EDD723 /* brcmfmac43602_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2F280C10B600EDD723 /* brcmfmac43602_pcie_bin.c */; };
-		7FFFCFDB280C10B700EDD723 /* brcmfmac43602_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2F280C10B600EDD723 /* brcmfmac43602_pcie_bin.c */; };
-		7FFFCFDC280C10B700EDD723 /* brcmfmac43602_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2F280C10B600EDD723 /* brcmfmac43602_pcie_bin.c */; };
-		7FFFCFDD280C10B700EDD723 /* brcmfmac43602_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF2F280C10B600EDD723 /* brcmfmac43602_pcie_bin.c */; };
-		7FFFCFDF280C10B700EDD723 /* brcmfmac43570_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF30280C10B600EDD723 /* brcmfmac43570_pcie_bin.c */; };
-		7FFFCFE0280C10B700EDD723 /* brcmfmac43570_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF30280C10B600EDD723 /* brcmfmac43570_pcie_bin.c */; };
-		7FFFCFE1280C10B700EDD723 /* brcmfmac43570_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF30280C10B600EDD723 /* brcmfmac43570_pcie_bin.c */; };
-		7FFFCFE2280C10B700EDD723 /* brcmfmac43570_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF30280C10B600EDD723 /* brcmfmac43570_pcie_bin.c */; };
-		7FFFCFE3280C10B700EDD723 /* brcmfmac43570_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF30280C10B600EDD723 /* brcmfmac43570_pcie_bin.c */; };
-		7FFFCFE5280C10B700EDD723 /* ipw_bss.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF31280C10B600EDD723 /* ipw_bss.c */; };
-		7FFFCFE6280C10B700EDD723 /* ipw_bss.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF31280C10B600EDD723 /* ipw_bss.c */; };
-		7FFFCFE7280C10B700EDD723 /* ipw_bss.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF31280C10B600EDD723 /* ipw_bss.c */; };
-		7FFFCFE8280C10B700EDD723 /* ipw_bss.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF31280C10B600EDD723 /* ipw_bss.c */; };
-		7FFFCFE9280C10B700EDD723 /* ipw_bss.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF31280C10B600EDD723 /* ipw_bss.c */; };
-		7FFFCFF7280C10B700EDD723 /* iwi_monitor.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF34280C10B600EDD723 /* iwi_monitor.c */; };
-		7FFFCFF8280C10B700EDD723 /* iwi_monitor.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF34280C10B600EDD723 /* iwi_monitor.c */; };
-		7FFFCFF9280C10B700EDD723 /* iwi_monitor.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF34280C10B600EDD723 /* iwi_monitor.c */; };
-		7FFFCFFA280C10B700EDD723 /* iwi_monitor.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF34280C10B600EDD723 /* iwi_monitor.c */; };
-		7FFFCFFB280C10B700EDD723 /* iwi_monitor.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF34280C10B600EDD723 /* iwi_monitor.c */; };
-		7FFFCFFD280C10B700EDD723 /* iwm_7265D_29.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF35280C10B600EDD723 /* iwm_7265D_29.c */; };
-		7FFFCFFE280C10B700EDD723 /* iwm_7265D_29.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF35280C10B600EDD723 /* iwm_7265D_29.c */; };
-		7FFFCFFF280C10B700EDD723 /* iwm_7265D_29.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF35280C10B600EDD723 /* iwm_7265D_29.c */; };
-		7FFFD000280C10B700EDD723 /* iwm_7265D_29.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF35280C10B600EDD723 /* iwm_7265D_29.c */; };
-		7FFFD001280C10B700EDD723 /* iwm_7265D_29.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF35280C10B600EDD723 /* iwm_7265D_29.c */; };
-		7FFFD003280C10B700EDD723 /* firmwarevar.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FFFCF36280C10B600EDD723 /* firmwarevar.h */; };
-		7FFFD004280C10B700EDD723 /* firmwarevar.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FFFCF36280C10B600EDD723 /* firmwarevar.h */; };
-		7FFFD005280C10B700EDD723 /* firmwarevar.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FFFCF36280C10B600EDD723 /* firmwarevar.h */; };
-		7FFFD006280C10B700EDD723 /* firmwarevar.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FFFCF36280C10B600EDD723 /* firmwarevar.h */; };
-		7FFFD007280C10B700EDD723 /* firmwarevar.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FFFCF36280C10B600EDD723 /* firmwarevar.h */; };
-		7FFFD009280C10B700EDD723 /* brcmfmac4371_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF37280C10B600EDD723 /* brcmfmac4371_pcie_bin.c */; };
-		7FFFD00A280C10B700EDD723 /* brcmfmac4371_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF37280C10B600EDD723 /* brcmfmac4371_pcie_bin.c */; };
-		7FFFD00B280C10B700EDD723 /* brcmfmac4371_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF37280C10B600EDD723 /* brcmfmac4371_pcie_bin.c */; };
-		7FFFD00C280C10B700EDD723 /* brcmfmac4371_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF37280C10B600EDD723 /* brcmfmac4371_pcie_bin.c */; };
-		7FFFD00D280C10B800EDD723 /* brcmfmac4371_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF37280C10B600EDD723 /* brcmfmac4371_pcie_bin.c */; };
-		7FFFD00F280C10B800EDD723 /* ipw_ibss.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF38280C10B600EDD723 /* ipw_ibss.c */; };
-		7FFFD010280C10B800EDD723 /* ipw_ibss.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF38280C10B600EDD723 /* ipw_ibss.c */; };
-		7FFFD011280C10B800EDD723 /* ipw_ibss.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF38280C10B600EDD723 /* ipw_ibss.c */; };
-		7FFFD012280C10B800EDD723 /* ipw_ibss.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF38280C10B600EDD723 /* ipw_ibss.c */; };
-		7FFFD013280C10B800EDD723 /* ipw_ibss.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF38280C10B600EDD723 /* ipw_ibss.c */; };
-		7FFFD015280C10B800EDD723 /* iwm_7260_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF39280C10B600EDD723 /* iwm_7260_17.c */; };
-		7FFFD016280C10B800EDD723 /* iwm_7260_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF39280C10B600EDD723 /* iwm_7260_17.c */; };
-		7FFFD017280C10B800EDD723 /* iwm_7260_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF39280C10B600EDD723 /* iwm_7260_17.c */; };
-		7FFFD018280C10B800EDD723 /* iwm_7260_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF39280C10B600EDD723 /* iwm_7260_17.c */; };
-		7FFFD019280C10B800EDD723 /* iwm_7260_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF39280C10B600EDD723 /* iwm_7260_17.c */; };
-		7FFFD01B280C10B800EDD723 /* brcmfmac4350_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3A280C10B600EDD723 /* brcmfmac4350_pcie_bin.c */; };
-		7FFFD01C280C10B800EDD723 /* brcmfmac4350_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3A280C10B600EDD723 /* brcmfmac4350_pcie_bin.c */; };
-		7FFFD01D280C10B800EDD723 /* brcmfmac4350_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3A280C10B600EDD723 /* brcmfmac4350_pcie_bin.c */; };
-		7FFFD01E280C10B800EDD723 /* brcmfmac4350_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3A280C10B600EDD723 /* brcmfmac4350_pcie_bin.c */; };
-		7FFFD01F280C10B800EDD723 /* brcmfmac4350_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3A280C10B600EDD723 /* brcmfmac4350_pcie_bin.c */; };
-		7FFFD021280C10B800EDD723 /* firmware.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3B280C10B700EDD723 /* firmware.c */; };
-		7FFFD022280C10B800EDD723 /* firmware.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3B280C10B700EDD723 /* firmware.c */; };
-		7FFFD023280C10B800EDD723 /* firmware.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3B280C10B700EDD723 /* firmware.c */; };
-		7FFFD024280C10B800EDD723 /* firmware.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3B280C10B700EDD723 /* firmware.c */; };
-		7FFFD025280C10B800EDD723 /* firmware.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3B280C10B700EDD723 /* firmware.c */; };
-		7FFFD02D280C10B800EDD723 /* iwi_bss.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3D280C10B700EDD723 /* iwi_bss.c */; };
-		7FFFD02E280C10B800EDD723 /* iwi_bss.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3D280C10B700EDD723 /* iwi_bss.c */; };
-		7FFFD02F280C10B800EDD723 /* iwi_bss.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3D280C10B700EDD723 /* iwi_bss.c */; };
-		7FFFD030280C10B800EDD723 /* iwi_bss.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3D280C10B700EDD723 /* iwi_bss.c */; };
-		7FFFD031280C10B800EDD723 /* iwi_bss.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3D280C10B700EDD723 /* iwi_bss.c */; };
-		7FFFD033280C10B800EDD723 /* iwn_6030.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3E280C10B700EDD723 /* iwn_6030.c */; };
-		7FFFD034280C10B800EDD723 /* iwn_6030.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3E280C10B700EDD723 /* iwn_6030.c */; };
-		7FFFD035280C10B800EDD723 /* iwn_6030.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3E280C10B700EDD723 /* iwn_6030.c */; };
-		7FFFD036280C10B800EDD723 /* iwn_6030.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3E280C10B700EDD723 /* iwn_6030.c */; };
-		7FFFD037280C10B800EDD723 /* iwn_6030.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3E280C10B700EDD723 /* iwn_6030.c */; };
-		7FFFD039280C10B800EDD723 /* brcmfmac4350c2_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3F280C10B700EDD723 /* brcmfmac4350c2_pcie_bin.c */; };
-		7FFFD03A280C10B800EDD723 /* brcmfmac4350c2_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3F280C10B700EDD723 /* brcmfmac4350c2_pcie_bin.c */; };
-		7FFFD03B280C10B800EDD723 /* brcmfmac4350c2_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3F280C10B700EDD723 /* brcmfmac4350c2_pcie_bin.c */; };
-		7FFFD03C280C10B800EDD723 /* brcmfmac4350c2_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3F280C10B700EDD723 /* brcmfmac4350c2_pcie_bin.c */; };
-		7FFFD03D280C10B800EDD723 /* brcmfmac4350c2_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF3F280C10B700EDD723 /* brcmfmac4350c2_pcie_bin.c */; };
-		7FFFD03F280C10B800EDD723 /* brcmfmac4366b_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF40280C10B700EDD723 /* brcmfmac4366b_pcie_bin.c */; };
-		7FFFD040280C10B800EDD723 /* brcmfmac4366b_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF40280C10B700EDD723 /* brcmfmac4366b_pcie_bin.c */; };
-		7FFFD041280C10B800EDD723 /* brcmfmac4366b_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF40280C10B700EDD723 /* brcmfmac4366b_pcie_bin.c */; };
-		7FFFD042280C10B800EDD723 /* brcmfmac4366b_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF40280C10B700EDD723 /* brcmfmac4366b_pcie_bin.c */; };
-		7FFFD043280C10B800EDD723 /* brcmfmac4366b_pcie_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF40280C10B700EDD723 /* brcmfmac4366b_pcie_bin.c */; };
-		7FFFD045280C10B800EDD723 /* iwm_3168_29.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF41280C10B700EDD723 /* iwm_3168_29.c */; };
-		7FFFD046280C10B800EDD723 /* iwm_3168_29.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF41280C10B700EDD723 /* iwm_3168_29.c */; };
-		7FFFD047280C10B800EDD723 /* iwm_3168_29.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF41280C10B700EDD723 /* iwm_3168_29.c */; };
-		7FFFD048280C10B800EDD723 /* iwm_3168_29.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF41280C10B700EDD723 /* iwm_3168_29.c */; };
-		7FFFD049280C10B800EDD723 /* iwm_3168_29.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF41280C10B700EDD723 /* iwm_3168_29.c */; };
-		7FFFD04B280C10B800EDD723 /* iwi_ibss.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF42280C10B700EDD723 /* iwi_ibss.c */; };
-		7FFFD04C280C10B800EDD723 /* iwi_ibss.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF42280C10B700EDD723 /* iwi_ibss.c */; };
-		7FFFD04D280C10B800EDD723 /* iwi_ibss.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF42280C10B700EDD723 /* iwi_ibss.c */; };
-		7FFFD04E280C10B800EDD723 /* iwi_ibss.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF42280C10B700EDD723 /* iwi_ibss.c */; };
-		7FFFD04F280C10B800EDD723 /* iwi_ibss.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF42280C10B700EDD723 /* iwi_ibss.c */; };
-		7FFFD05D280C10B800EDD723 /* brcmfmac43602_pcie_ap_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF45280C10B700EDD723 /* brcmfmac43602_pcie_ap_bin.c */; };
-		7FFFD05E280C10B800EDD723 /* brcmfmac43602_pcie_ap_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF45280C10B700EDD723 /* brcmfmac43602_pcie_ap_bin.c */; };
-		7FFFD05F280C10B800EDD723 /* brcmfmac43602_pcie_ap_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF45280C10B700EDD723 /* brcmfmac43602_pcie_ap_bin.c */; };
-		7FFFD060280C10B800EDD723 /* brcmfmac43602_pcie_ap_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF45280C10B700EDD723 /* brcmfmac43602_pcie_ap_bin.c */; };
-		7FFFD061280C10B800EDD723 /* brcmfmac43602_pcie_ap_bin.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF45280C10B700EDD723 /* brcmfmac43602_pcie_ap_bin.c */; };
-		7FFFD063280C10B800EDD723 /* ipw_monitor.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF46280C10B700EDD723 /* ipw_monitor.c */; };
-		7FFFD064280C10B800EDD723 /* ipw_monitor.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF46280C10B700EDD723 /* ipw_monitor.c */; };
-		7FFFD065280C10B800EDD723 /* ipw_monitor.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF46280C10B700EDD723 /* ipw_monitor.c */; };
-		7FFFD066280C10B800EDD723 /* ipw_monitor.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF46280C10B700EDD723 /* ipw_monitor.c */; };
-		7FFFD067280C10B800EDD723 /* ipw_monitor.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF46280C10B700EDD723 /* ipw_monitor.c */; };
-		7FFFD069280C10B800EDD723 /* iwm_3160_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF47280C10B700EDD723 /* iwm_3160_17.c */; };
-		7FFFD06A280C10B800EDD723 /* iwm_3160_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF47280C10B700EDD723 /* iwm_3160_17.c */; };
-		7FFFD06B280C10B800EDD723 /* iwm_3160_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF47280C10B700EDD723 /* iwm_3160_17.c */; };
-		7FFFD06C280C10B800EDD723 /* iwm_3160_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF47280C10B700EDD723 /* iwm_3160_17.c */; };
-		7FFFD06D280C10B800EDD723 /* iwm_3160_17.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF47280C10B700EDD723 /* iwm_3160_17.c */; };
-		7FFFD06F280C10B800EDD723 /* iwm_8265_36.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF48280C10B700EDD723 /* iwm_8265_36.c */; };
-		7FFFD070280C10B800EDD723 /* iwm_8265_36.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF48280C10B700EDD723 /* iwm_8265_36.c */; };
-		7FFFD071280C10B800EDD723 /* iwm_8265_36.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF48280C10B700EDD723 /* iwm_8265_36.c */; };
-		7FFFD072280C10B800EDD723 /* iwm_8265_36.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF48280C10B700EDD723 /* iwm_8265_36.c */; };
-		7FFFD073280C10B800EDD723 /* iwm_8265_36.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF48280C10B700EDD723 /* iwm_8265_36.c */; };
-		7FFFD07B280C10B800EDD723 /* iwn_100.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF4A280C10B700EDD723 /* iwn_100.c */; };
-		7FFFD07C280C10B800EDD723 /* iwn_100.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF4A280C10B700EDD723 /* iwn_100.c */; };
-		7FFFD07D280C10B800EDD723 /* iwn_100.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF4A280C10B700EDD723 /* iwn_100.c */; };
-		7FFFD07E280C10B800EDD723 /* iwn_100.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF4A280C10B700EDD723 /* iwn_100.c */; };
-		7FFFD07F280C10B800EDD723 /* iwn_100.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF4A280C10B700EDD723 /* iwn_100.c */; };
-		7FFFD081280C10B800EDD723 /* iwn_6050.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF4B280C10B700EDD723 /* iwn_6050.c */; };
-		7FFFD082280C10B800EDD723 /* iwn_6050.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF4B280C10B700EDD723 /* iwn_6050.c */; };
-		7FFFD083280C10B800EDD723 /* iwn_6050.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF4B280C10B700EDD723 /* iwn_6050.c */; };
-		7FFFD084280C10B800EDD723 /* iwn_6050.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF4B280C10B700EDD723 /* iwn_6050.c */; };
-		7FFFD085280C10B800EDD723 /* iwn_6050.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF4B280C10B700EDD723 /* iwn_6050.c */; };
-		7FFFD087280C10B800EDD723 /* bwi_airforce.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF4C280C10B700EDD723 /* bwi_airforce.c */; };
-		7FFFD088280C10B800EDD723 /* bwi_airforce.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF4C280C10B700EDD723 /* bwi_airforce.c */; };
-		7FFFD089280C10B800EDD723 /* bwi_airforce.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF4C280C10B700EDD723 /* bwi_airforce.c */; };
-		7FFFD08A280C10B800EDD723 /* bwi_airforce.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF4C280C10B700EDD723 /* bwi_airforce.c */; };
-		7FFFD08B280C10B800EDD723 /* bwi_airforce.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF4C280C10B700EDD723 /* bwi_airforce.c */; };
-		7FFFD08D280C10B800EDD723 /* wpi_3945abg.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF4D280C10B700EDD723 /* wpi_3945abg.c */; };
-		7FFFD08E280C10B800EDD723 /* wpi_3945abg.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF4D280C10B700EDD723 /* wpi_3945abg.c */; };
-		7FFFD08F280C10B800EDD723 /* wpi_3945abg.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF4D280C10B700EDD723 /* wpi_3945abg.c */; };
-		7FFFD090280C10B800EDD723 /* wpi_3945abg.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF4D280C10B700EDD723 /* wpi_3945abg.c */; };
-		7FFFD091280C10B800EDD723 /* wpi_3945abg.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FFFCF4D280C10B700EDD723 /* wpi_3945abg.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1397,7 +1088,6 @@
 		18713B8A255F14E800EF3D49 /* if_iwxreg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = if_iwxreg.h; sourceTree = "<group>"; };
 		18713B8B255F14E800EF3D49 /* if_iwmreg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = if_iwmreg.h; sourceTree = "<group>"; };
 		18713B8C255F14E800EF3D49 /* pcireg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pcireg.h; sourceTree = "<group>"; };
-		18713BD4255F14E900EF3D49 /* firmware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = firmware.h; sourceTree = "<group>"; };
 		18713BDF255F14EC00EF3D49 /* apple80211.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = apple80211.h; sourceTree = "<group>"; };
 		18713CA6255F14F900EF3D49 /* fw2bin.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = fw2bin.sh; sourceTree = "<group>"; };
 		18713CAD255F154500EF3D49 /* AirPortOpenBSD_BigSur.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirPortOpenBSD_BigSur.kext; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1415,14 +1105,10 @@
 		3714750025D187FC0052FDC0 /* _malloc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = _malloc.c; sourceTree = "<group>"; };
 		7F18B67029625C1C0082A5E2 /* AirPort_OpenBSD_Virtual.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AirPort_OpenBSD_Virtual.cpp; sourceTree = "<group>"; };
 		7F3055A92912DA5F004AE7C3 /* PrivateSPI.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateSPI.pch; sourceTree = "<group>"; };
-		7F3055CE2912DAE1004AE7C3 /* libkmod.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libkmod.a; path = MacKernelSDK/Library/x86_64/libkmod.a; sourceTree = "<group>"; };
 		7F3055DE2912DB29004AE7C3 /* IO80211P2PInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IO80211P2PInterface.h; sourceTree = "<group>"; };
 		7F3055DF2912DB29004AE7C3 /* debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = debug.h; sourceTree = "<group>"; };
 		7F3055E02912DB29004AE7C3 /* apple_private_spi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = apple_private_spi.h; sourceTree = "<group>"; };
 		7F3055E12912DB29004AE7C3 /* IO80211VirtualInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IO80211VirtualInterface.h; sourceTree = "<group>"; };
-		7F40D7A8282A03A100BE973C /* iwx_so_a0_gf_a0_pnvm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_so_a0_gf_a0_pnvm.c; sourceTree = "<group>"; };
-		7F40D7A9282A03A100BE973C /* iwx_so_a0_gf4_a0_pnvm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_so_a0_gf4_a0_pnvm.c; sourceTree = "<group>"; };
-		7F40D7AE282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_ty_a0_gf_a0_pnvm.c; sourceTree = "<group>"; };
 		7F467942291C93420076781E /* AirPort_OpenBSD_PM.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AirPort_OpenBSD_PM.cpp; sourceTree = "<group>"; };
 		7F467958291C93670076781E /* AirPort_OpenBSD_SCAN.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AirPort_OpenBSD_SCAN.cpp; sourceTree = "<group>"; };
 		7F4AEF2E291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AirPort_OpenBSD_Interface.cpp; sourceTree = "<group>"; };
@@ -1432,70 +1118,78 @@
 		7F8AB18527E8475F0045D670 /* ieee80211_ra_vht.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ieee80211_ra_vht.h; sourceTree = "<group>"; };
 		7F8AB18627E8475F0045D670 /* ieee80211_ra_vht.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ieee80211_ra_vht.c; sourceTree = "<group>"; };
 		7FA2CFB827EEDAF80063FDD2 /* InfoLegacy.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InfoLegacy.plist; sourceTree = "<group>"; };
-		7FB2B67329B70D7F00E7DFAA /* iwx_Qu_b0_hr_b0_77.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_Qu_b0_hr_b0_77.c; sourceTree = "<group>"; };
-		7FB2B67429B70D7F00E7DFAA /* iwx_so_a0_gf4_a0_77.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_so_a0_gf4_a0_77.c; sourceTree = "<group>"; };
-		7FB2B67529B70D8000E7DFAA /* iwx_cc_a0_77.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_cc_a0_77.c; sourceTree = "<group>"; };
-		7FB2B67629B70D8000E7DFAA /* iwx_Qu_c0_hr_b0_77.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_Qu_c0_hr_b0_77.c; sourceTree = "<group>"; };
-		7FB2B67729B70D8000E7DFAA /* iwx_Qu_c0_jf_b0_77.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_Qu_c0_jf_b0_77.c; sourceTree = "<group>"; };
-		7FB2B67829B70D8000E7DFAA /* iwx_so_a0_gf_a0_77.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_so_a0_gf_a0_77.c; sourceTree = "<group>"; };
-		7FB2B67929B70D8000E7DFAA /* iwx_so_a0_jf_b0_77.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_so_a0_jf_b0_77.c; sourceTree = "<group>"; };
-		7FB2B67A29B70D8100E7DFAA /* iwx_QuZ_a0_jf_b0_77.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_QuZ_a0_jf_b0_77.c; sourceTree = "<group>"; };
-		7FB2B67B29B70D8100E7DFAA /* iwx_Qu_b0_jf_b0_77.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_Qu_b0_jf_b0_77.c; sourceTree = "<group>"; };
-		7FB2B67C29B70D8100E7DFAA /* iwx_QuZ_a0_hr_b0_77.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_QuZ_a0_hr_b0_77.c; sourceTree = "<group>"; };
-		7FB2B67D29B70D8100E7DFAA /* iwx_so_a0_hr_b0_77.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_so_a0_hr_b0_77.c; sourceTree = "<group>"; };
-		7FB2B67E29B70D8200E7DFAA /* iwx_ty_a0_gf_a0_77.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwx_ty_a0_gf_a0_77.c; sourceTree = "<group>"; };
+		7FA595B12A59A95100824D8B /* AirPortOpenBSDFirmwareData.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirPortOpenBSDFirmwareData.kext; sourceTree = BUILT_PRODUCTS_DIR; };
+		7FA595B32A59A95200824D8B /* AirPortOpenBSDFirmwareData.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AirPortOpenBSDFirmwareData.hpp; sourceTree = "<group>"; };
+		7FA595B52A59A95200824D8B /* AirPortOpenBSDFirmwareData.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AirPortOpenBSDFirmwareData.cpp; sourceTree = "<group>"; };
+		7FA595B72A59A95200824D8B /* AirPortOpenBSDFirmwareData_Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = AirPortOpenBSDFirmwareData_Info.plist; sourceTree = "<group>"; };
+		7FA595BB2A59AA4B00824D8B /* brcmfmac43602_pcie_ap_bin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = brcmfmac43602_pcie_ap_bin.cpp; sourceTree = "<group>"; };
+		7FA595BC2A59AA4B00824D8B /* iwn_6030.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwn_6030.cpp; sourceTree = "<group>"; };
+		7FA595BD2A59AA4B00824D8B /* iwm_3160_17.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwm_3160_17.cpp; sourceTree = "<group>"; };
+		7FA595BE2A59AA4B00824D8B /* iwn_5150.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwn_5150.cpp; sourceTree = "<group>"; };
+		7FA595BF2A59AA4B00824D8B /* bwi_airforce.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = bwi_airforce.cpp; sourceTree = "<group>"; };
+		7FA595C02A59AA4B00824D8B /* iwn_2030.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwn_2030.cpp; sourceTree = "<group>"; };
+		7FA595C12A59AA4B00824D8B /* iwi_monitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwi_monitor.cpp; sourceTree = "<group>"; };
+		7FA595C22A59AA4B00824D8B /* rtwn_rtl8192cfwU_B.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rtwn_rtl8192cfwU_B.cpp; sourceTree = "<group>"; };
+		7FA595C32A59AA4B00824D8B /* iwx_Qu_b0_jf_b0_77.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwx_Qu_b0_jf_b0_77.cpp; sourceTree = "<group>"; };
+		7FA595C42A59AA4B00824D8B /* iwx_so_a0_gf4_a0_pnvm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwx_so_a0_gf4_a0_pnvm.cpp; sourceTree = "<group>"; };
+		7FA595C52A59AA4B00824D8B /* iwm_3168_29.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwm_3168_29.cpp; sourceTree = "<group>"; };
+		7FA595C62A59AA4B00824D8B /* firmware.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = firmware.cpp; sourceTree = "<group>"; };
+		7FA595C72A59AA4B00824D8B /* iwi_bss.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwi_bss.cpp; sourceTree = "<group>"; };
+		7FA595C82A59AA4B00824D8B /* brcmfmac4350c2_pcie_bin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = brcmfmac4350c2_pcie_bin.cpp; sourceTree = "<group>"; };
+		7FA595C92A59AA4B00824D8B /* iwn_5000.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwn_5000.cpp; sourceTree = "<group>"; };
+		7FA595CA2A59AA4C00824D8B /* iwx_QuZ_a0_jf_b0_77.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwx_QuZ_a0_jf_b0_77.cpp; sourceTree = "<group>"; };
+		7FA595CB2A59AA4C00824D8B /* iwm_8265_36.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwm_8265_36.cpp; sourceTree = "<group>"; };
+		7FA595CC2A59AA4C00824D8B /* ipw_bss.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ipw_bss.cpp; sourceTree = "<group>"; };
+		7FA595CD2A59AA4C00824D8B /* firmwarevar.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = firmwarevar.hpp; sourceTree = "<group>"; };
+		7FA595CE2A59AA4C00824D8B /* rtwn_rtl8192cfwU.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rtwn_rtl8192cfwU.cpp; sourceTree = "<group>"; };
+		7FA595CF2A59AA4C00824D8B /* iwx_so_a0_hr_b0_77.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwx_so_a0_hr_b0_77.cpp; sourceTree = "<group>"; };
+		7FA595D02A59AA4C00824D8B /* iwx_Qu_c0_jf_b0_77.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwx_Qu_c0_jf_b0_77.cpp; sourceTree = "<group>"; };
+		7FA595D12A59AA4C00824D8B /* iwn_100.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwn_100.cpp; sourceTree = "<group>"; };
+		7FA595D22A59AA4C00824D8B /* ipw_ibss.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ipw_ibss.cpp; sourceTree = "<group>"; };
+		7FA595D32A59AA4C00824D8B /* brcmfmac4366c_pcie_bin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = brcmfmac4366c_pcie_bin.cpp; sourceTree = "<group>"; };
+		7FA595D42A59AA4C00824D8B /* iwm_7265D_29.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwm_7265D_29.cpp; sourceTree = "<group>"; };
+		7FA595D52A59AA4C00824D8B /* iwx_so_a0_gf_a0_pnvm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwx_so_a0_gf_a0_pnvm.cpp; sourceTree = "<group>"; };
+		7FA595D62A59AA4C00824D8B /* iwx_so_a0_jf_b0_77.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwx_so_a0_jf_b0_77.cpp; sourceTree = "<group>"; };
+		7FA595D72A59AA4C00824D8B /* brcmfmac4358_pcie_bin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = brcmfmac4358_pcie_bin.cpp; sourceTree = "<group>"; };
+		7FA595D82A59AA4D00824D8B /* iwx_ty_a0_gf_a0_pnvm.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwx_ty_a0_gf_a0_pnvm.cpp; sourceTree = "<group>"; };
+		7FA595D92A59AA4D00824D8B /* iwn_6050.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwn_6050.cpp; sourceTree = "<group>"; };
+		7FA595DA2A59AA4D00824D8B /* rtwn_rtl8188efw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rtwn_rtl8188efw.cpp; sourceTree = "<group>"; };
+		7FA595DB2A59AA4D00824D8B /* brcmfmac4350_pcie_bin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = brcmfmac4350_pcie_bin.cpp; sourceTree = "<group>"; };
+		7FA595DC2A59AA4D00824D8B /* wpi_3945abg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = wpi_3945abg.cpp; sourceTree = "<group>"; };
+		7FA595DD2A59AA4D00824D8B /* iwn_2000.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwn_2000.cpp; sourceTree = "<group>"; };
+		7FA595DE2A59AA4D00824D8B /* iwx_so_a0_gf4_a0_77.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwx_so_a0_gf4_a0_77.cpp; sourceTree = "<group>"; };
+		7FA595DF2A59AA4D00824D8B /* iwx_Qu_c0_hr_b0_77.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwx_Qu_c0_hr_b0_77.cpp; sourceTree = "<group>"; };
+		7FA595E02A59AA4D00824D8B /* iwn_135.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwn_135.cpp; sourceTree = "<group>"; };
+		7FA595E12A59AA4D00824D8B /* brcmfmac43602_pcie_bin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = brcmfmac43602_pcie_bin.cpp; sourceTree = "<group>"; };
+		7FA595E22A59AA4D00824D8B /* brcmfmac4366b_pcie_bin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = brcmfmac4366b_pcie_bin.cpp; sourceTree = "<group>"; };
+		7FA595E32A59AA4D00824D8B /* iwx_QuZ_a0_hr_b0_77.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwx_QuZ_a0_hr_b0_77.cpp; sourceTree = "<group>"; };
+		7FA595E42A59AA4D00824D8B /* iwx_cc_a0_77.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwx_cc_a0_77.cpp; sourceTree = "<group>"; };
+		7FA595E52A59AA4E00824D8B /* iwn_105.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwn_105.cpp; sourceTree = "<group>"; };
+		7FA595E62A59AA4E00824D8B /* iwx_ty_a0_gf_a0_77.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwx_ty_a0_gf_a0_77.cpp; sourceTree = "<group>"; };
+		7FA595E72A59AA4E00824D8B /* iwn_6005.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwn_6005.cpp; sourceTree = "<group>"; };
+		7FA595E82A59AA4E00824D8B /* iwi_ibss.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwi_ibss.cpp; sourceTree = "<group>"; };
+		7FA595E92A59AA4E00824D8B /* iwm_9260_46.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwm_9260_46.cpp; sourceTree = "<group>"; };
+		7FA595EA2A59AA4E00824D8B /* ipw_monitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ipw_monitor.cpp; sourceTree = "<group>"; };
+		7FA595EB2A59AA4E00824D8B /* brcmfmac4371_pcie_bin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = brcmfmac4371_pcie_bin.cpp; sourceTree = "<group>"; };
+		7FA595EC2A59AA4E00824D8B /* iwm_7260_17.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwm_7260_17.cpp; sourceTree = "<group>"; };
+		7FA595ED2A59AA4E00824D8B /* iwn_6000.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwn_6000.cpp; sourceTree = "<group>"; };
+		7FA595EE2A59AA4E00824D8B /* iwx_so_a0_gf_a0_77.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwx_so_a0_gf_a0_77.cpp; sourceTree = "<group>"; };
+		7FA595EF2A59AA4E00824D8B /* iwm_8000C_36.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwm_8000C_36.cpp; sourceTree = "<group>"; };
+		7FA595F02A59AA4E00824D8B /* rtwn_rtl8723fw_B.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rtwn_rtl8723fw_B.cpp; sourceTree = "<group>"; };
+		7FA595F12A59AA4E00824D8B /* iwx_Qu_b0_hr_b0_77.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwx_Qu_b0_hr_b0_77.cpp; sourceTree = "<group>"; };
+		7FA595F22A59AA4E00824D8B /* iwm_9000_46.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwm_9000_46.cpp; sourceTree = "<group>"; };
+		7FA595F32A59AA4F00824D8B /* brcmfmac4356_pcie_bin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = brcmfmac4356_pcie_bin.cpp; sourceTree = "<group>"; };
+		7FA595F42A59AA4F00824D8B /* iwn_1000.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwn_1000.cpp; sourceTree = "<group>"; };
+		7FA595F52A59AA4F00824D8B /* brcmfmac43570_pcie_bin.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = brcmfmac43570_pcie_bin.cpp; sourceTree = "<group>"; };
+		7FA595F62A59AA4F00824D8B /* rtwn_rtl8723fw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = rtwn_rtl8723fw.cpp; sourceTree = "<group>"; };
+		7FA595F72A59AA4F00824D8B /* iwn_4965.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = iwn_4965.cpp; sourceTree = "<group>"; };
+		7FA596352A59AAD300824D8B /* firmware.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = firmware.hpp; sourceTree = "<group>"; };
 		7FBAFFF227E077790075D188 /* AirPortOpenBSD_Monterey.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirPortOpenBSD_Monterey.kext; sourceTree = BUILT_PRODUCTS_DIR; };
 		7FF2C20B274CD7E900DCECFD /* qsort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = qsort.h; sourceTree = "<group>"; };
 		7FF2C20C274CD7E900DCECFD /* qsort.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = qsort.c; sourceTree = "<group>"; };
 		7FF2C21C274CD9D000DCECFD /* heapsort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = heapsort.h; sourceTree = "<group>"; };
 		7FF2C21D274CD9D000DCECFD /* heapsort.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = heapsort.c; sourceTree = "<group>"; };
 		7FF814D5290EB9F100050008 /* AirPortOpenBSD_Ventura.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirPortOpenBSD_Ventura.kext; sourceTree = BUILT_PRODUCTS_DIR; };
-		7FFFCF19280C10B500EDD723 /* rtwn_rtl8723fw.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rtwn_rtl8723fw.c; sourceTree = "<group>"; };
-		7FFFCF1A280C10B500EDD723 /* iwm_8000C_36.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwm_8000C_36.c; sourceTree = "<group>"; };
-		7FFFCF1B280C10B500EDD723 /* iwn_105.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwn_105.c; sourceTree = "<group>"; };
-		7FFFCF1C280C10B500EDD723 /* iwn_6005.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwn_6005.c; sourceTree = "<group>"; };
-		7FFFCF1D280C10B500EDD723 /* brcmfmac4366c_pcie_bin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = brcmfmac4366c_pcie_bin.c; sourceTree = "<group>"; };
-		7FFFCF1E280C10B500EDD723 /* iwn_6000.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwn_6000.c; sourceTree = "<group>"; };
-		7FFFCF1F280C10B500EDD723 /* rtwn_rtl8192cfwU_B.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rtwn_rtl8192cfwU_B.c; sourceTree = "<group>"; };
-		7FFFCF20280C10B500EDD723 /* iwm_9000_46.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwm_9000_46.c; sourceTree = "<group>"; };
-		7FFFCF21280C10B500EDD723 /* iwn_2030.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwn_2030.c; sourceTree = "<group>"; };
-		7FFFCF22280C10B600EDD723 /* brcmfmac4356_pcie_bin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = brcmfmac4356_pcie_bin.c; sourceTree = "<group>"; };
-		7FFFCF23280C10B600EDD723 /* iwn_4965.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwn_4965.c; sourceTree = "<group>"; };
-		7FFFCF24280C10B600EDD723 /* iwn_1000.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwn_1000.c; sourceTree = "<group>"; };
-		7FFFCF25280C10B600EDD723 /* iwn_2000.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwn_2000.c; sourceTree = "<group>"; };
-		7FFFCF26280C10B600EDD723 /* iwn_5000.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwn_5000.c; sourceTree = "<group>"; };
-		7FFFCF27280C10B600EDD723 /* rtwn_rtl8192cfwU.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rtwn_rtl8192cfwU.c; sourceTree = "<group>"; };
-		7FFFCF28280C10B600EDD723 /* brcmfmac4358_pcie_bin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = brcmfmac4358_pcie_bin.c; sourceTree = "<group>"; };
-		7FFFCF29280C10B600EDD723 /* iwn_135.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwn_135.c; sourceTree = "<group>"; };
-		7FFFCF2A280C10B600EDD723 /* iwn_5150.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwn_5150.c; sourceTree = "<group>"; };
-		7FFFCF2B280C10B600EDD723 /* rtwn_rtl8723fw_B.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rtwn_rtl8723fw_B.c; sourceTree = "<group>"; };
-		7FFFCF2D280C10B600EDD723 /* iwm_9260_46.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwm_9260_46.c; sourceTree = "<group>"; };
-		7FFFCF2E280C10B600EDD723 /* rtwn_rtl8188efw.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rtwn_rtl8188efw.c; sourceTree = "<group>"; };
-		7FFFCF2F280C10B600EDD723 /* brcmfmac43602_pcie_bin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = brcmfmac43602_pcie_bin.c; sourceTree = "<group>"; };
-		7FFFCF30280C10B600EDD723 /* brcmfmac43570_pcie_bin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = brcmfmac43570_pcie_bin.c; sourceTree = "<group>"; };
-		7FFFCF31280C10B600EDD723 /* ipw_bss.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ipw_bss.c; sourceTree = "<group>"; };
-		7FFFCF34280C10B600EDD723 /* iwi_monitor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwi_monitor.c; sourceTree = "<group>"; };
-		7FFFCF35280C10B600EDD723 /* iwm_7265D_29.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwm_7265D_29.c; sourceTree = "<group>"; };
-		7FFFCF36280C10B600EDD723 /* firmwarevar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = firmwarevar.h; sourceTree = "<group>"; };
-		7FFFCF37280C10B600EDD723 /* brcmfmac4371_pcie_bin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = brcmfmac4371_pcie_bin.c; sourceTree = "<group>"; };
-		7FFFCF38280C10B600EDD723 /* ipw_ibss.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ipw_ibss.c; sourceTree = "<group>"; };
-		7FFFCF39280C10B600EDD723 /* iwm_7260_17.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwm_7260_17.c; sourceTree = "<group>"; };
-		7FFFCF3A280C10B600EDD723 /* brcmfmac4350_pcie_bin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = brcmfmac4350_pcie_bin.c; sourceTree = "<group>"; };
-		7FFFCF3B280C10B700EDD723 /* firmware.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = firmware.c; sourceTree = "<group>"; };
-		7FFFCF3D280C10B700EDD723 /* iwi_bss.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwi_bss.c; sourceTree = "<group>"; };
-		7FFFCF3E280C10B700EDD723 /* iwn_6030.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwn_6030.c; sourceTree = "<group>"; };
-		7FFFCF3F280C10B700EDD723 /* brcmfmac4350c2_pcie_bin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = brcmfmac4350c2_pcie_bin.c; sourceTree = "<group>"; };
-		7FFFCF40280C10B700EDD723 /* brcmfmac4366b_pcie_bin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = brcmfmac4366b_pcie_bin.c; sourceTree = "<group>"; };
-		7FFFCF41280C10B700EDD723 /* iwm_3168_29.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwm_3168_29.c; sourceTree = "<group>"; };
-		7FFFCF42280C10B700EDD723 /* iwi_ibss.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwi_ibss.c; sourceTree = "<group>"; };
-		7FFFCF45280C10B700EDD723 /* brcmfmac43602_pcie_ap_bin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = brcmfmac43602_pcie_ap_bin.c; sourceTree = "<group>"; };
-		7FFFCF46280C10B700EDD723 /* ipw_monitor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ipw_monitor.c; sourceTree = "<group>"; };
-		7FFFCF47280C10B700EDD723 /* iwm_3160_17.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwm_3160_17.c; sourceTree = "<group>"; };
-		7FFFCF48280C10B700EDD723 /* iwm_8265_36.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwm_8265_36.c; sourceTree = "<group>"; };
-		7FFFCF4A280C10B700EDD723 /* iwn_100.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwn_100.c; sourceTree = "<group>"; };
-		7FFFCF4B280C10B700EDD723 /* iwn_6050.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iwn_6050.c; sourceTree = "<group>"; };
-		7FFFCF4C280C10B700EDD723 /* bwi_airforce.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bwi_airforce.c; sourceTree = "<group>"; };
-		7FFFCF4D280C10B700EDD723 /* wpi_3945abg.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wpi_3945abg.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1510,7 +1204,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F3055CF2912DAE1004AE7C3 /* libkmod.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1522,6 +1215,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		18713CE0255F157300EF3D49 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7FA595AE2A59A95100824D8B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1577,8 +1277,8 @@
 				1813357C2597A569007DA358 /* LICENSE */,
 				1813357B2597A569007DA358 /* VERSION */,
 				18713AFC255F148200EF3D49 /* AirPortOpenBSD */,
+				7FA595B22A59A95200824D8B /* AirPortOpenBSDFirmwareData */,
 				18713AFB255F148200EF3D49 /* Products */,
-				7F3055CD2912DAE0004AE7C3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1591,6 +1291,7 @@
 				18713CE3255F157300EF3D49 /* AirPortOpenBSD_HighSierra.kext */,
 				7FBAFFF227E077790075D188 /* AirPortOpenBSD_Monterey.kext */,
 				7FF814D5290EB9F100050008 /* AirPortOpenBSD_Ventura.kext */,
+				7FA595B12A59A95100824D8B /* AirPortOpenBSDFirmwareData.kext */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1622,7 +1323,6 @@
 				18713B1C255F14E700EF3D49 /* iwlwifi.h */,
 				18713B23255F14E700EF3D49 /* openbsd */,
 				7F3055A92912DA5F004AE7C3 /* PrivateSPI.pch */,
-				18713B8D255F14E800EF3D49 /* sources */,
 				18713B1A255F14E700EF3D49 /* vlan.h */,
 			);
 			path = AirPortOpenBSD;
@@ -1652,7 +1352,6 @@
 			children = (
 				18713B24255F14E700EF3D49 /* crypto */,
 				18713B75255F14E800EF3D49 /* dev */,
-				18713BB7255F14E900EF3D49 /* firmware */,
 				7F200E79274D29F600461766 /* lib */,
 				18713B53255F14E700EF3D49 /* machine */,
 				18713B57255F14E700EF3D49 /* net80211 */,
@@ -1711,7 +1410,6 @@
 				18713B47255F14E700EF3D49 /* _null.h */,
 				18713B3F255F14E700EF3D49 /* device.h */,
 				18713B41255F14E700EF3D49 /* endian.h */,
-				18713BD4255F14E900EF3D49 /* firmware.h */,
 				18713B49255F14E700EF3D49 /* fls.c */,
 				18713B3D255F14E700EF3D49 /* fls.h */,
 				18713B4A255F14E700EF3D49 /* kern_compat.h */,
@@ -1829,70 +1527,70 @@
 			path = sources;
 			sourceTree = "<group>";
 		};
-		18713BB7255F14E900EF3D49 /* firmware */ = {
+		3F8A69832A52BD6000268E20 /* firmware */ = {
 			isa = PBXGroup;
 			children = (
-				7FFFCF3A280C10B600EDD723 /* brcmfmac4350_pcie_bin.c */,
-				7FFFCF3F280C10B700EDD723 /* brcmfmac4350c2_pcie_bin.c */,
-				7FFFCF22280C10B600EDD723 /* brcmfmac4356_pcie_bin.c */,
-				7FFFCF28280C10B600EDD723 /* brcmfmac4358_pcie_bin.c */,
-				7FFFCF40280C10B700EDD723 /* brcmfmac4366b_pcie_bin.c */,
-				7FFFCF1D280C10B500EDD723 /* brcmfmac4366c_pcie_bin.c */,
-				7FFFCF37280C10B600EDD723 /* brcmfmac4371_pcie_bin.c */,
-				7FFFCF30280C10B600EDD723 /* brcmfmac43570_pcie_bin.c */,
-				7FFFCF45280C10B700EDD723 /* brcmfmac43602_pcie_ap_bin.c */,
-				7FFFCF2F280C10B600EDD723 /* brcmfmac43602_pcie_bin.c */,
-				7FFFCF4C280C10B700EDD723 /* bwi_airforce.c */,
-				7FFFCF3B280C10B700EDD723 /* firmware.c */,
-				7FFFCF36280C10B600EDD723 /* firmwarevar.h */,
-				7FFFCF31280C10B600EDD723 /* ipw_bss.c */,
-				7FFFCF38280C10B600EDD723 /* ipw_ibss.c */,
-				7FFFCF46280C10B700EDD723 /* ipw_monitor.c */,
-				7FFFCF3D280C10B700EDD723 /* iwi_bss.c */,
-				7FFFCF42280C10B700EDD723 /* iwi_ibss.c */,
-				7FFFCF34280C10B600EDD723 /* iwi_monitor.c */,
-				7FFFCF47280C10B700EDD723 /* iwm_3160_17.c */,
-				7FFFCF41280C10B700EDD723 /* iwm_3168_29.c */,
-				7FFFCF39280C10B600EDD723 /* iwm_7260_17.c */,
-				7FFFCF35280C10B600EDD723 /* iwm_7265D_29.c */,
-				7FFFCF1A280C10B500EDD723 /* iwm_8000C_36.c */,
-				7FFFCF48280C10B700EDD723 /* iwm_8265_36.c */,
-				7FFFCF20280C10B500EDD723 /* iwm_9000_46.c */,
-				7FFFCF2D280C10B600EDD723 /* iwm_9260_46.c */,
-				7FFFCF4A280C10B700EDD723 /* iwn_100.c */,
-				7FFFCF1B280C10B500EDD723 /* iwn_105.c */,
-				7FFFCF29280C10B600EDD723 /* iwn_135.c */,
-				7FFFCF24280C10B600EDD723 /* iwn_1000.c */,
-				7FFFCF25280C10B600EDD723 /* iwn_2000.c */,
-				7FFFCF21280C10B500EDD723 /* iwn_2030.c */,
-				7FFFCF23280C10B600EDD723 /* iwn_4965.c */,
-				7FFFCF26280C10B600EDD723 /* iwn_5000.c */,
-				7FFFCF2A280C10B600EDD723 /* iwn_5150.c */,
-				7FFFCF1E280C10B500EDD723 /* iwn_6000.c */,
-				7FFFCF1C280C10B500EDD723 /* iwn_6005.c */,
-				7FFFCF3E280C10B700EDD723 /* iwn_6030.c */,
-				7FFFCF4B280C10B700EDD723 /* iwn_6050.c */,
-				7FB2B67529B70D8000E7DFAA /* iwx_cc_a0_77.c */,
-				7FB2B67329B70D7F00E7DFAA /* iwx_Qu_b0_hr_b0_77.c */,
-				7FB2B67B29B70D8100E7DFAA /* iwx_Qu_b0_jf_b0_77.c */,
-				7FB2B67629B70D8000E7DFAA /* iwx_Qu_c0_hr_b0_77.c */,
-				7FB2B67729B70D8000E7DFAA /* iwx_Qu_c0_jf_b0_77.c */,
-				7FB2B67C29B70D8100E7DFAA /* iwx_QuZ_a0_hr_b0_77.c */,
-				7FB2B67A29B70D8100E7DFAA /* iwx_QuZ_a0_jf_b0_77.c */,
-				7FB2B67829B70D8000E7DFAA /* iwx_so_a0_gf_a0_77.c */,
-				7F40D7A8282A03A100BE973C /* iwx_so_a0_gf_a0_pnvm.c */,
-				7FB2B67429B70D7F00E7DFAA /* iwx_so_a0_gf4_a0_77.c */,
-				7F40D7A9282A03A100BE973C /* iwx_so_a0_gf4_a0_pnvm.c */,
-				7FB2B67D29B70D8100E7DFAA /* iwx_so_a0_hr_b0_77.c */,
-				7FB2B67929B70D8000E7DFAA /* iwx_so_a0_jf_b0_77.c */,
-				7FB2B67E29B70D8200E7DFAA /* iwx_ty_a0_gf_a0_77.c */,
-				7F40D7AE282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c */,
-				7FFFCF2E280C10B600EDD723 /* rtwn_rtl8188efw.c */,
-				7FFFCF1F280C10B500EDD723 /* rtwn_rtl8192cfwU_B.c */,
-				7FFFCF27280C10B600EDD723 /* rtwn_rtl8192cfwU.c */,
-				7FFFCF2B280C10B600EDD723 /* rtwn_rtl8723fw_B.c */,
-				7FFFCF19280C10B500EDD723 /* rtwn_rtl8723fw.c */,
-				7FFFCF4D280C10B700EDD723 /* wpi_3945abg.c */,
+				7FA595DB2A59AA4D00824D8B /* brcmfmac4350_pcie_bin.cpp */,
+				7FA595C82A59AA4B00824D8B /* brcmfmac4350c2_pcie_bin.cpp */,
+				7FA595F32A59AA4F00824D8B /* brcmfmac4356_pcie_bin.cpp */,
+				7FA595D72A59AA4C00824D8B /* brcmfmac4358_pcie_bin.cpp */,
+				7FA595E22A59AA4D00824D8B /* brcmfmac4366b_pcie_bin.cpp */,
+				7FA595D32A59AA4C00824D8B /* brcmfmac4366c_pcie_bin.cpp */,
+				7FA595EB2A59AA4E00824D8B /* brcmfmac4371_pcie_bin.cpp */,
+				7FA595F52A59AA4F00824D8B /* brcmfmac43570_pcie_bin.cpp */,
+				7FA595BB2A59AA4B00824D8B /* brcmfmac43602_pcie_ap_bin.cpp */,
+				7FA595E12A59AA4D00824D8B /* brcmfmac43602_pcie_bin.cpp */,
+				7FA595BF2A59AA4B00824D8B /* bwi_airforce.cpp */,
+				7FA595C62A59AA4B00824D8B /* firmware.cpp */,
+				7FA595CD2A59AA4C00824D8B /* firmwarevar.hpp */,
+				7FA595CC2A59AA4C00824D8B /* ipw_bss.cpp */,
+				7FA595D22A59AA4C00824D8B /* ipw_ibss.cpp */,
+				7FA595EA2A59AA4E00824D8B /* ipw_monitor.cpp */,
+				7FA595C72A59AA4B00824D8B /* iwi_bss.cpp */,
+				7FA595E82A59AA4E00824D8B /* iwi_ibss.cpp */,
+				7FA595C12A59AA4B00824D8B /* iwi_monitor.cpp */,
+				7FA595BD2A59AA4B00824D8B /* iwm_3160_17.cpp */,
+				7FA595C52A59AA4B00824D8B /* iwm_3168_29.cpp */,
+				7FA595EC2A59AA4E00824D8B /* iwm_7260_17.cpp */,
+				7FA595D42A59AA4C00824D8B /* iwm_7265D_29.cpp */,
+				7FA595EF2A59AA4E00824D8B /* iwm_8000C_36.cpp */,
+				7FA595CB2A59AA4C00824D8B /* iwm_8265_36.cpp */,
+				7FA595F22A59AA4E00824D8B /* iwm_9000_46.cpp */,
+				7FA595E92A59AA4E00824D8B /* iwm_9260_46.cpp */,
+				7FA595D12A59AA4C00824D8B /* iwn_100.cpp */,
+				7FA595E52A59AA4E00824D8B /* iwn_105.cpp */,
+				7FA595E02A59AA4D00824D8B /* iwn_135.cpp */,
+				7FA595F42A59AA4F00824D8B /* iwn_1000.cpp */,
+				7FA595DD2A59AA4D00824D8B /* iwn_2000.cpp */,
+				7FA595C02A59AA4B00824D8B /* iwn_2030.cpp */,
+				7FA595F72A59AA4F00824D8B /* iwn_4965.cpp */,
+				7FA595C92A59AA4B00824D8B /* iwn_5000.cpp */,
+				7FA595BE2A59AA4B00824D8B /* iwn_5150.cpp */,
+				7FA595ED2A59AA4E00824D8B /* iwn_6000.cpp */,
+				7FA595E72A59AA4E00824D8B /* iwn_6005.cpp */,
+				7FA595BC2A59AA4B00824D8B /* iwn_6030.cpp */,
+				7FA595D92A59AA4D00824D8B /* iwn_6050.cpp */,
+				7FA595E42A59AA4D00824D8B /* iwx_cc_a0_77.cpp */,
+				7FA595F12A59AA4E00824D8B /* iwx_Qu_b0_hr_b0_77.cpp */,
+				7FA595C32A59AA4B00824D8B /* iwx_Qu_b0_jf_b0_77.cpp */,
+				7FA595DF2A59AA4D00824D8B /* iwx_Qu_c0_hr_b0_77.cpp */,
+				7FA595D02A59AA4C00824D8B /* iwx_Qu_c0_jf_b0_77.cpp */,
+				7FA595E32A59AA4D00824D8B /* iwx_QuZ_a0_hr_b0_77.cpp */,
+				7FA595CA2A59AA4C00824D8B /* iwx_QuZ_a0_jf_b0_77.cpp */,
+				7FA595EE2A59AA4E00824D8B /* iwx_so_a0_gf_a0_77.cpp */,
+				7FA595D52A59AA4C00824D8B /* iwx_so_a0_gf_a0_pnvm.cpp */,
+				7FA595DE2A59AA4D00824D8B /* iwx_so_a0_gf4_a0_77.cpp */,
+				7FA595C42A59AA4B00824D8B /* iwx_so_a0_gf4_a0_pnvm.cpp */,
+				7FA595CF2A59AA4C00824D8B /* iwx_so_a0_hr_b0_77.cpp */,
+				7FA595D62A59AA4C00824D8B /* iwx_so_a0_jf_b0_77.cpp */,
+				7FA595E62A59AA4E00824D8B /* iwx_ty_a0_gf_a0_77.cpp */,
+				7FA595D82A59AA4D00824D8B /* iwx_ty_a0_gf_a0_pnvm.cpp */,
+				7FA595DA2A59AA4D00824D8B /* rtwn_rtl8188efw.cpp */,
+				7FA595C22A59AA4B00824D8B /* rtwn_rtl8192cfwU_B.cpp */,
+				7FA595CE2A59AA4C00824D8B /* rtwn_rtl8192cfwU.cpp */,
+				7FA595F02A59AA4E00824D8B /* rtwn_rtl8723fw_B.cpp */,
+				7FA595F62A59AA4F00824D8B /* rtwn_rtl8723fw.cpp */,
+				7FA595DC2A59AA4D00824D8B /* wpi_3945abg.cpp */,
 			);
 			path = firmware;
 			sourceTree = "<group>";
@@ -1910,12 +1608,17 @@
 			path = lib;
 			sourceTree = "<group>";
 		};
-		7F3055CD2912DAE0004AE7C3 /* Frameworks */ = {
+		7FA595B22A59A95200824D8B /* AirPortOpenBSDFirmwareData */ = {
 			isa = PBXGroup;
 			children = (
-				7F3055CE2912DAE1004AE7C3 /* libkmod.a */,
+				7FA595B72A59A95200824D8B /* AirPortOpenBSDFirmwareData_Info.plist */,
+				7FA595B52A59A95200824D8B /* AirPortOpenBSDFirmwareData.cpp */,
+				7FA595B32A59A95200824D8B /* AirPortOpenBSDFirmwareData.hpp */,
+				3F8A69832A52BD6000268E20 /* firmware */,
+				7FA596352A59AAD300824D8B /* firmware.hpp */,
+				18713B8D255F14E800EF3D49 /* sources */,
 			);
-			name = Frameworks;
+			path = AirPortOpenBSDFirmwareData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1930,7 +1633,6 @@
 				18713DF9255F1BD900EF3D49 /* bpfilter.h in Headers */,
 				18713DFA255F1BD900EF3D49 /* bridge.h in Headers */,
 				18713DFB255F1BD900EF3D49 /* compat.h in Headers */,
-				18713DFC255F1BD900EF3D49 /* firmware.h in Headers */,
 				18713DFE255F1BD900EF3D49 /* ifconfig.h in Headers */,
 				18713DFF255F1BD900EF3D49 /* iwlwifi.h in Headers */,
 				18713E00255F1BD900EF3D49 /* key_wrap.h in Headers */,
@@ -1961,7 +1663,6 @@
 				7F8AB18827E8475F0045D670 /* ieee80211_ra_vht.h in Headers */,
 				18713E15255F1BD900EF3D49 /* _null.h in Headers */,
 				18713E16255F1BD900EF3D49 /* kern_compat.h in Headers */,
-				7FFFD004280C10B700EDD723 /* firmwarevar.h in Headers */,
 				7F3055F32912DB29004AE7C3 /* apple_private_spi.h in Headers */,
 				18713E17255F1BD900EF3D49 /* __types.h in Headers */,
 				18713E18255F1BD900EF3D49 /* refcnt.h in Headers */,
@@ -2023,7 +1724,6 @@
 				18713EF6255F1BF600EF3D49 /* bpfilter.h in Headers */,
 				18713EF7255F1BF600EF3D49 /* bridge.h in Headers */,
 				18713EF8255F1BF600EF3D49 /* compat.h in Headers */,
-				18713EF9255F1BF600EF3D49 /* firmware.h in Headers */,
 				18713EFB255F1BF600EF3D49 /* ifconfig.h in Headers */,
 				18713EFC255F1BF600EF3D49 /* iwlwifi.h in Headers */,
 				18713EFD255F1BF600EF3D49 /* key_wrap.h in Headers */,
@@ -2054,7 +1754,6 @@
 				7F8AB18927E8475F0045D670 /* ieee80211_ra_vht.h in Headers */,
 				18713F12255F1BF700EF3D49 /* _null.h in Headers */,
 				18713F13255F1BF700EF3D49 /* kern_compat.h in Headers */,
-				7FFFD005280C10B700EDD723 /* firmwarevar.h in Headers */,
 				7F3055F42912DB29004AE7C3 /* apple_private_spi.h in Headers */,
 				18713F14255F1BF700EF3D49 /* __types.h in Headers */,
 				18713F15255F1BF700EF3D49 /* refcnt.h in Headers */,
@@ -2116,7 +1815,6 @@
 				18713F9A255F1C0F00EF3D49 /* bpfilter.h in Headers */,
 				18713F9B255F1C0F00EF3D49 /* bridge.h in Headers */,
 				18713F9C255F1C0F00EF3D49 /* compat.h in Headers */,
-				18713F9D255F1C0F00EF3D49 /* firmware.h in Headers */,
 				18713F9F255F1C0F00EF3D49 /* ifconfig.h in Headers */,
 				18713FA0255F1C0F00EF3D49 /* iwlwifi.h in Headers */,
 				18713FA1255F1C0F00EF3D49 /* key_wrap.h in Headers */,
@@ -2147,7 +1845,6 @@
 				7F8AB18A27E8475F0045D670 /* ieee80211_ra_vht.h in Headers */,
 				18713FB6255F1C0F00EF3D49 /* _null.h in Headers */,
 				18713FB7255F1C0F00EF3D49 /* kern_compat.h in Headers */,
-				7FFFD006280C10B700EDD723 /* firmwarevar.h in Headers */,
 				7F3055F52912DB29004AE7C3 /* apple_private_spi.h in Headers */,
 				18713FB8255F1C0F00EF3D49 /* __types.h in Headers */,
 				18713FB9255F1C0F00EF3D49 /* refcnt.h in Headers */,
@@ -2209,7 +1906,6 @@
 				1871403E255F1C2300EF3D49 /* bpfilter.h in Headers */,
 				1871403F255F1C2300EF3D49 /* bridge.h in Headers */,
 				18714040255F1C2300EF3D49 /* compat.h in Headers */,
-				18714041255F1C2300EF3D49 /* firmware.h in Headers */,
 				18714043255F1C2300EF3D49 /* ifconfig.h in Headers */,
 				18714044255F1C2300EF3D49 /* iwlwifi.h in Headers */,
 				18714045255F1C2300EF3D49 /* key_wrap.h in Headers */,
@@ -2240,7 +1936,6 @@
 				7F8AB18B27E8475F0045D670 /* ieee80211_ra_vht.h in Headers */,
 				1871405A255F1C2300EF3D49 /* _null.h in Headers */,
 				1871405B255F1C2300EF3D49 /* kern_compat.h in Headers */,
-				7FFFD007280C10B700EDD723 /* firmwarevar.h in Headers */,
 				7F3055F62912DB29004AE7C3 /* apple_private_spi.h in Headers */,
 				1871405C255F1C2300EF3D49 /* __types.h in Headers */,
 				1871405D255F1C2300EF3D49 /* refcnt.h in Headers */,
@@ -2293,6 +1988,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7FA595AC2A59A95100824D8B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7FA596362A59AAD300824D8B /* firmware.hpp in Headers */,
+				7FA595B42A59A95200824D8B /* AirPortOpenBSDFirmwareData.hpp in Headers */,
+				7FA5960A2A59AA4F00824D8B /* firmwarevar.hpp in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7FBAFFED27E077790075D188 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -2302,7 +2007,6 @@
 				7FBA001427E077F20075D188 /* bpfilter.h in Headers */,
 				7FBA001527E077F20075D188 /* bridge.h in Headers */,
 				7FBA001627E077F20075D188 /* compat.h in Headers */,
-				7FBA001727E077F20075D188 /* firmware.h in Headers */,
 				7FBA001927E077F20075D188 /* iwlwifi.h in Headers */,
 				7FBA001A27E077F20075D188 /* aes.h in Headers */,
 				7FBA001B27E077F20075D188 /* arc4.h in Headers */,
@@ -2333,7 +2037,6 @@
 				7F8AB18C27E8475F0045D670 /* ieee80211_ra_vht.h in Headers */,
 				7FBA003327E077F20075D188 /* if_iwxvar.h in Headers */,
 				7FBA003427E077F20075D188 /* if_wpireg.h in Headers */,
-				7FFFD003280C10B700EDD723 /* firmwarevar.h in Headers */,
 				7F3055F22912DB29004AE7C3 /* apple_private_spi.h in Headers */,
 				7FBA003527E077F20075D188 /* if_wpivar.h in Headers */,
 				7FBA003627E077F20075D188 /* pcidevs.h in Headers */,
@@ -2429,7 +2132,6 @@
 				7FF81528290EBB7300050008 /* pcireg.h in Headers */,
 				7F3055F12912DB29004AE7C3 /* apple_private_spi.h in Headers */,
 				7FF81529290EBB7300050008 /* pcivar.h in Headers */,
-				7FF8152A290EBB7300050008 /* firmwarevar.h in Headers */,
 				7FF8152B290EBB7300050008 /* ifconfig.h in Headers */,
 				7FF8152C290EBB7300050008 /* qsort.h in Headers */,
 				7FF8152D290EBB7300050008 /* heapsort.h in Headers */,
@@ -2461,7 +2163,6 @@
 				7FF81545290EBB7600050008 /* _null.h in Headers */,
 				7FF81546290EBB7600050008 /* device.h in Headers */,
 				7FF81547290EBB7600050008 /* endian.h in Headers */,
-				7FF81548290EBB7600050008 /* firmware.h in Headers */,
 				7FF81549290EBB7600050008 /* fls.h in Headers */,
 				7FF8154A290EBB7600050008 /* kern_compat.h in Headers */,
 				7FF8154B290EBB7600050008 /* libkern.h in Headers */,
@@ -2570,6 +2271,24 @@
 			productReference = 18713CE3255F157300EF3D49 /* AirPortOpenBSD_HighSierra.kext */;
 			productType = "com.apple.product-type.kernel-extension";
 		};
+		7FA595B02A59A95100824D8B /* AirPortOpenBSDFirmwareData */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7FA595B82A59A95200824D8B /* Build configuration list for PBXNativeTarget "AirPortOpenBSDFirmwareData" */;
+			buildPhases = (
+				7FA595AC2A59A95100824D8B /* Headers */,
+				7FA595AD2A59A95100824D8B /* Sources */,
+				7FA595AE2A59A95100824D8B /* Frameworks */,
+				7FA595AF2A59A95100824D8B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AirPortOpenBSDFirmwareData;
+			productName = AirPortOpenBSDFirmwareData;
+			productReference = 7FA595B12A59A95100824D8B /* AirPortOpenBSDFirmwareData.kext */;
+			productType = "com.apple.product-type.kernel-extension";
+		};
 		7FBAFFF127E077790075D188 /* AirPortOpenBSD_Monterey */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7FBAFFFB27E077790075D188 /* Build configuration list for PBXNativeTarget "AirPortOpenBSD_Monterey" */;
@@ -2629,6 +2348,9 @@
 					18713CF2255F158E00EF3D49 = {
 						CreatedOnToolsVersion = 12.2;
 					};
+					7FA595B02A59A95100824D8B = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
 					7FBAFFF127E077790075D188 = {
 						CreatedOnToolsVersion = 12.4;
 					};
@@ -2657,6 +2379,7 @@
 				18713CCF255F156700EF3D49 /* AirPortOpenBSD_Mojave */,
 				18713CE2255F157300EF3D49 /* AirPortOpenBSD_HighSierra */,
 				18713CF2255F158E00EF3D49 /* fw2bin */,
+				7FA595B02A59A95100824D8B /* AirPortOpenBSDFirmwareData */,
 			);
 		};
 /* End PBXProject section */
@@ -2690,6 +2413,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7FA595AF2A59A95100824D8B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7FBAFFF027E077790075D188 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2711,50 +2441,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7FB2B69F29B70D8200E7DFAA /* iwx_so_a0_gf_a0_77.c in Sources */,
-				7FFFD022280C10B800EDD723 /* firmware.c in Sources */,
 				18713E40255F1BE100EF3D49 /* AirPort_OpenBSD_80211.cpp in Sources */,
 				18713E41255F1BE100EF3D49 /* AirPort_OpenBSD_ASSOC.cpp in Sources */,
 				18713E42255F1BE100EF3D49 /* AirPort_OpenBSD_IOCTL.cpp in Sources */,
 				7F467946291C93420076781E /* AirPort_OpenBSD_PM.cpp in Sources */,
 				18713E43255F1BE100EF3D49 /* AirPort_OpenBSD_Util.cpp in Sources */,
 				18713E44255F1BE100EF3D49 /* AirPort_OpenBSD.cpp in Sources */,
-				7FFFCF8C280C10B700EDD723 /* brcmfmac4356_pcie_bin.c in Sources */,
-				7FB2B6BD29B70D8200E7DFAA /* iwx_so_a0_hr_b0_77.c in Sources */,
-				7FFFD064280C10B800EDD723 /* ipw_monitor.c in Sources */,
 				18C95A87256285CC0047231F /* rtwn.c in Sources */,
 				18713E45255F1BE100EF3D49 /* compat.cpp in Sources */,
 				18BB83E225FE3C49001220DF /* ieee80211_ra.c in Sources */,
-				7FFFD082280C10B800EDD723 /* iwn_6050.c in Sources */,
 				183CD6BD25605A89005F866F /* bwi.c in Sources */,
 				7FF2C224274CD9D000DCECFD /* heapsort.c in Sources */,
-				7FFFCFF8280C10B700EDD723 /* iwi_monitor.c in Sources */,
-				7FB2B6A529B70D8200E7DFAA /* iwx_so_a0_jf_b0_77.c in Sources */,
-				7FFFCFFE280C10B700EDD723 /* iwm_7265D_29.c in Sources */,
-				7FFFCFC2280C10B700EDD723 /* rtwn_rtl8723fw_B.c in Sources */,
-				7FFFCF56280C10B700EDD723 /* rtwn_rtl8723fw.c in Sources */,
 				7F46795C291C93670076781E /* AirPort_OpenBSD_SCAN.cpp in Sources */,
 				183CD6CF25605A98005F866F /* if_bwfm_pci.c in Sources */,
-				7FFFD040280C10B800EDD723 /* brcmfmac4366b_pcie_bin.c in Sources */,
-				7FB2B6B129B70D8200E7DFAA /* iwx_Qu_b0_jf_b0_77.c in Sources */,
-				7FB2B69329B70D8200E7DFAA /* iwx_Qu_c0_hr_b0_77.c in Sources */,
 				7FF2C213274CD7E900DCECFD /* qsort.c in Sources */,
-				7FFFCFB6280C10B700EDD723 /* iwn_135.c in Sources */,
-				7FFFCF6E280C10B700EDD723 /* brcmfmac4366c_pcie_bin.c in Sources */,
-				7FFFCF74280C10B700EDD723 /* iwn_6000.c in Sources */,
-				7FFFCF62280C10B700EDD723 /* iwn_105.c in Sources */,
-				7FFFCF98280C10B700EDD723 /* iwn_1000.c in Sources */,
 				18713E6B255F1BE100EF3D49 /* ifconfig.c in Sources */,
 				18713E6C255F1BE100EF3D49 /* aes.c in Sources */,
-				7FB2B6B729B70D8200E7DFAA /* iwx_QuZ_a0_hr_b0_77.c in Sources */,
 				18713E6D255F1BE100EF3D49 /* hmac.c in Sources */,
-				7FFFCF68280C10B700EDD723 /* iwn_6005.c in Sources */,
 				18713E6E255F1BE100EF3D49 /* sha2.c in Sources */,
-				7FB2B68729B70D8200E7DFAA /* iwx_so_a0_gf4_a0_77.c in Sources */,
-				7FFFCFCE280C10B700EDD723 /* iwm_9260_46.c in Sources */,
-				7FB2B68D29B70D8200E7DFAA /* iwx_cc_a0_77.c in Sources */,
 				18713E6F255F1BE100EF3D49 /* michael.c in Sources */,
-				7FFFD07C280C10B800EDD723 /* iwn_100.c in Sources */,
 				7F18B67329625C1C0082A5E2 /* AirPort_OpenBSD_Virtual.cpp in Sources */,
 				18713E70255F1BE100EF3D49 /* sha1.c in Sources */,
 				3714750225D187FC0052FDC0 /* _malloc.c in Sources */,
@@ -2763,76 +2468,41 @@
 				18713E72255F1BE100EF3D49 /* md5.c in Sources */,
 				18713E73255F1BE100EF3D49 /* arc4.c in Sources */,
 				18713E74255F1BE100EF3D49 /* key_wrap.c in Sources */,
-				7FFFD08E280C10B800EDD723 /* wpi_3945abg.c in Sources */,
 				18713E75255F1BE100EF3D49 /* _bpf.c in Sources */,
 				18713E76255F1BE100EF3D49 /* timeout.c in Sources */,
 				18713E77255F1BE100EF3D49 /* task.c in Sources */,
 				7F8AB18E27E8475F0045D670 /* ieee80211_ra_vht.c in Sources */,
-				7FFFCFBC280C10B700EDD723 /* iwn_5150.c in Sources */,
 				18713E78255F1BE100EF3D49 /* fls.c in Sources */,
 				18713E79255F1BE100EF3D49 /* timingsafe_bcmp.c in Sources */,
 				18713E7A255F1BE100EF3D49 /* tree.c in Sources */,
-				7FFFCFAA280C10B700EDD723 /* rtwn_rtl8192cfwU.c in Sources */,
 				18713E7B255F1BE100EF3D49 /* bus.c in Sources */,
-				7FFFD04C280C10B800EDD723 /* iwi_ibss.c in Sources */,
-				7FFFCFB0280C10B700EDD723 /* brcmfmac4358_pcie_bin.c in Sources */,
-				7FFFD01C280C10B800EDD723 /* brcmfmac4350_pcie_bin.c in Sources */,
 				18713E7C255F1BE100EF3D49 /* ieee80211_proto.c in Sources */,
-				7F40D7B1282A03A200BE973C /* iwx_so_a0_gf_a0_pnvm.c in Sources */,
 				18713E7D255F1BE100EF3D49 /* ieee80211_ioctl.c in Sources */,
 				7F4AEF33291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.cpp in Sources */,
 				18713E7E255F1BE100EF3D49 /* ieee80211.c in Sources */,
 				7F4CEDA32912DD1B00C46A15 /* AirPort_OpenBSD_AWDL.cpp in Sources */,
-				7FFFD05E280C10B800EDD723 /* brcmfmac43602_pcie_ap_bin.c in Sources */,
-				7F40D7D5282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c in Sources */,
-				7FB2B69929B70D8200E7DFAA /* iwx_Qu_c0_jf_b0_77.c in Sources */,
-				7F40D7B7282A03A200BE973C /* iwx_so_a0_gf4_a0_pnvm.c in Sources */,
 				18713E7F255F1BE100EF3D49 /* ieee80211_rssadapt.c in Sources */,
-				7FFFCF7A280C10B700EDD723 /* rtwn_rtl8192cfwU_B.c in Sources */,
-				7FFFD046280C10B800EDD723 /* iwm_3168_29.c in Sources */,
 				18713E80255F1BE100EF3D49 /* ieee80211_input.c in Sources */,
 				18713E82255F1BE100EF3D49 /* ieee80211_crypto_bip.c in Sources */,
 				18713E83255F1BE100EF3D49 /* ieee80211_crypto_tkip.c in Sources */,
-				7FFFD02E280C10B800EDD723 /* iwi_bss.c in Sources */,
-				7FFFCF9E280C10B700EDD723 /* iwn_2000.c in Sources */,
-				7FFFD034280C10B800EDD723 /* iwn_6030.c in Sources */,
-				7FFFCF80280C10B700EDD723 /* iwm_9000_46.c in Sources */,
-				7FB2B6AB29B70D8200E7DFAA /* iwx_QuZ_a0_jf_b0_77.c in Sources */,
 				18713E84255F1BE100EF3D49 /* ieee80211_crypto_ccmp.c in Sources */,
 				18713E85255F1BE100EF3D49 /* ieee80211_pae_input.c in Sources */,
-				7FFFCFE0280C10B700EDD723 /* brcmfmac43570_pcie_bin.c in Sources */,
-				7FFFD088280C10B800EDD723 /* bwi_airforce.c in Sources */,
-				7FFFCFD4280C10B700EDD723 /* rtwn_rtl8188efw.c in Sources */,
 				18713E86255F1BE100EF3D49 /* ieee80211_amrr.c in Sources */,
 				18713E87255F1BE100EF3D49 /* ieee80211_crypto_wep.c in Sources */,
-				7FFFCFA4280C10B700EDD723 /* iwn_5000.c in Sources */,
 				18713E88255F1BE100EF3D49 /* ieee80211_output.c in Sources */,
 				18713E89255F1BE100EF3D49 /* ieee80211_crypto.c in Sources */,
-				7FFFCFDA280C10B700EDD723 /* brcmfmac43602_pcie_bin.c in Sources */,
-				7FFFD010280C10B800EDD723 /* ipw_ibss.c in Sources */,
-				7FFFCFE6280C10B700EDD723 /* ipw_bss.c in Sources */,
-				7FFFD070280C10B800EDD723 /* iwm_8265_36.c in Sources */,
-				7FFFCF92280C10B700EDD723 /* iwn_4965.c in Sources */,
 				18C95AA1256285DC0047231F /* if_rtwn.c in Sources */,
-				7FFFD016280C10B800EDD723 /* iwm_7260_17.c in Sources */,
 				18713E8A255F1BE100EF3D49 /* ieee80211_regdomain.c in Sources */,
-				7FFFD00A280C10B700EDD723 /* brcmfmac4371_pcie_bin.c in Sources */,
 				183CD6B325605A89005F866F /* bwfm.c in Sources */,
 				18713E8B255F1BE100EF3D49 /* ieee80211_node.c in Sources */,
-				7FB2B6C329B70D8200E7DFAA /* iwx_ty_a0_gf_a0_77.c in Sources */,
 				18713E8C255F1BE100EF3D49 /* ieee80211_pae_output.c in Sources */,
-				7FFFCF86280C10B700EDD723 /* iwn_2030.c in Sources */,
 				183CD6D425605A98005F866F /* if_bwi_pci.c in Sources */,
 				18713E8D255F1BE100EF3D49 /* if_wpi.c in Sources */,
 				18713E8E255F1BE100EF3D49 /* if_iwi.c in Sources */,
 				18713E8F255F1BE100EF3D49 /* if_iwm.c in Sources */,
 				18713E90255F1BE100EF3D49 /* pci.c in Sources */,
 				18713E91255F1BE100EF3D49 /* if_iwx.c in Sources */,
-				7FB2B68129B70D8200E7DFAA /* iwx_Qu_b0_hr_b0_77.c in Sources */,
-				7FFFD06A280C10B800EDD723 /* iwm_3160_17.c in Sources */,
 				18713E92255F1BE100EF3D49 /* if_ipw.c in Sources */,
-				7FFFCF5C280C10B700EDD723 /* iwm_8000C_36.c in Sources */,
-				7FFFD03A280C10B800EDD723 /* brcmfmac4350c2_pcie_bin.c in Sources */,
 				18713E93255F1BE100EF3D49 /* if_iwn.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2841,50 +2511,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7FB2B6A029B70D8200E7DFAA /* iwx_so_a0_gf_a0_77.c in Sources */,
-				7FFFD023280C10B800EDD723 /* firmware.c in Sources */,
 				18713E99255F1BE900EF3D49 /* AirPort_OpenBSD_80211.cpp in Sources */,
 				18713E9A255F1BE900EF3D49 /* AirPort_OpenBSD_ASSOC.cpp in Sources */,
 				18713E9B255F1BE900EF3D49 /* AirPort_OpenBSD_IOCTL.cpp in Sources */,
 				7F467947291C93420076781E /* AirPort_OpenBSD_PM.cpp in Sources */,
 				18713E9C255F1BE900EF3D49 /* AirPort_OpenBSD_Util.cpp in Sources */,
 				18713E9D255F1BE900EF3D49 /* AirPort_OpenBSD.cpp in Sources */,
-				7FFFCF8D280C10B700EDD723 /* brcmfmac4356_pcie_bin.c in Sources */,
-				7FB2B6BE29B70D8200E7DFAA /* iwx_so_a0_hr_b0_77.c in Sources */,
-				7FFFD065280C10B800EDD723 /* ipw_monitor.c in Sources */,
 				18C95A88256285CC0047231F /* rtwn.c in Sources */,
 				18713E9E255F1BE900EF3D49 /* compat.cpp in Sources */,
 				18BB83E325FE3C49001220DF /* ieee80211_ra.c in Sources */,
-				7FFFD083280C10B800EDD723 /* iwn_6050.c in Sources */,
 				183CD6BE25605A89005F866F /* bwi.c in Sources */,
 				7FF2C225274CD9D000DCECFD /* heapsort.c in Sources */,
-				7FFFCFF9280C10B700EDD723 /* iwi_monitor.c in Sources */,
-				7FB2B6A629B70D8200E7DFAA /* iwx_so_a0_jf_b0_77.c in Sources */,
-				7FFFCFFF280C10B700EDD723 /* iwm_7265D_29.c in Sources */,
-				7FFFCFC3280C10B700EDD723 /* rtwn_rtl8723fw_B.c in Sources */,
-				7FFFCF57280C10B700EDD723 /* rtwn_rtl8723fw.c in Sources */,
 				7F46795D291C93670076781E /* AirPort_OpenBSD_SCAN.cpp in Sources */,
 				183CD6D025605A98005F866F /* if_bwfm_pci.c in Sources */,
-				7FFFD041280C10B800EDD723 /* brcmfmac4366b_pcie_bin.c in Sources */,
-				7FB2B6B229B70D8200E7DFAA /* iwx_Qu_b0_jf_b0_77.c in Sources */,
-				7FB2B69429B70D8200E7DFAA /* iwx_Qu_c0_hr_b0_77.c in Sources */,
 				7FF2C214274CD7E900DCECFD /* qsort.c in Sources */,
-				7FFFCFB7280C10B700EDD723 /* iwn_135.c in Sources */,
-				7FFFCF6F280C10B700EDD723 /* brcmfmac4366c_pcie_bin.c in Sources */,
-				7FFFCF75280C10B700EDD723 /* iwn_6000.c in Sources */,
-				7FFFCF63280C10B700EDD723 /* iwn_105.c in Sources */,
-				7FFFCF99280C10B700EDD723 /* iwn_1000.c in Sources */,
 				18713EC4255F1BE900EF3D49 /* ifconfig.c in Sources */,
 				18713EC5255F1BE900EF3D49 /* aes.c in Sources */,
-				7FB2B6B829B70D8200E7DFAA /* iwx_QuZ_a0_hr_b0_77.c in Sources */,
 				18713EC6255F1BE900EF3D49 /* hmac.c in Sources */,
-				7FFFCF69280C10B700EDD723 /* iwn_6005.c in Sources */,
 				18713EC7255F1BE900EF3D49 /* sha2.c in Sources */,
-				7FB2B68829B70D8200E7DFAA /* iwx_so_a0_gf4_a0_77.c in Sources */,
-				7FFFCFCF280C10B700EDD723 /* iwm_9260_46.c in Sources */,
-				7FB2B68E29B70D8200E7DFAA /* iwx_cc_a0_77.c in Sources */,
 				18713EC8255F1BE900EF3D49 /* michael.c in Sources */,
-				7FFFD07D280C10B800EDD723 /* iwn_100.c in Sources */,
 				7F18B67429625C1C0082A5E2 /* AirPort_OpenBSD_Virtual.cpp in Sources */,
 				18713EC9255F1BE900EF3D49 /* sha1.c in Sources */,
 				3714750325D187FC0052FDC0 /* _malloc.c in Sources */,
@@ -2893,76 +2538,41 @@
 				18713ECB255F1BE900EF3D49 /* md5.c in Sources */,
 				18713ECC255F1BE900EF3D49 /* arc4.c in Sources */,
 				18713ECD255F1BE900EF3D49 /* key_wrap.c in Sources */,
-				7FFFD08F280C10B800EDD723 /* wpi_3945abg.c in Sources */,
 				18713ECE255F1BE900EF3D49 /* _bpf.c in Sources */,
 				18713ECF255F1BE900EF3D49 /* timeout.c in Sources */,
 				18713ED0255F1BE900EF3D49 /* task.c in Sources */,
 				7F8AB18F27E8475F0045D670 /* ieee80211_ra_vht.c in Sources */,
-				7FFFCFBD280C10B700EDD723 /* iwn_5150.c in Sources */,
 				18713ED1255F1BE900EF3D49 /* fls.c in Sources */,
 				18713ED2255F1BE900EF3D49 /* timingsafe_bcmp.c in Sources */,
 				18713ED3255F1BE900EF3D49 /* tree.c in Sources */,
-				7FFFCFAB280C10B700EDD723 /* rtwn_rtl8192cfwU.c in Sources */,
 				18713ED4255F1BE900EF3D49 /* bus.c in Sources */,
-				7FFFD04D280C10B800EDD723 /* iwi_ibss.c in Sources */,
-				7FFFCFB1280C10B700EDD723 /* brcmfmac4358_pcie_bin.c in Sources */,
-				7FFFD01D280C10B800EDD723 /* brcmfmac4350_pcie_bin.c in Sources */,
 				18713ED5255F1BE900EF3D49 /* ieee80211_proto.c in Sources */,
-				7F40D7B2282A03A200BE973C /* iwx_so_a0_gf_a0_pnvm.c in Sources */,
 				18713ED6255F1BE900EF3D49 /* ieee80211_ioctl.c in Sources */,
 				7F4AEF34291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.cpp in Sources */,
 				18713ED7255F1BE900EF3D49 /* ieee80211.c in Sources */,
 				7F4CEDA42912DD1B00C46A15 /* AirPort_OpenBSD_AWDL.cpp in Sources */,
-				7FFFD05F280C10B800EDD723 /* brcmfmac43602_pcie_ap_bin.c in Sources */,
-				7F40D7D6282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c in Sources */,
-				7FB2B69A29B70D8200E7DFAA /* iwx_Qu_c0_jf_b0_77.c in Sources */,
-				7F40D7B8282A03A200BE973C /* iwx_so_a0_gf4_a0_pnvm.c in Sources */,
 				18713ED8255F1BE900EF3D49 /* ieee80211_rssadapt.c in Sources */,
-				7FFFCF7B280C10B700EDD723 /* rtwn_rtl8192cfwU_B.c in Sources */,
-				7FFFD047280C10B800EDD723 /* iwm_3168_29.c in Sources */,
 				18713ED9255F1BE900EF3D49 /* ieee80211_input.c in Sources */,
 				18713EDB255F1BE900EF3D49 /* ieee80211_crypto_bip.c in Sources */,
 				18713EDC255F1BE900EF3D49 /* ieee80211_crypto_tkip.c in Sources */,
-				7FFFD02F280C10B800EDD723 /* iwi_bss.c in Sources */,
-				7FFFCF9F280C10B700EDD723 /* iwn_2000.c in Sources */,
-				7FFFD035280C10B800EDD723 /* iwn_6030.c in Sources */,
-				7FFFCF81280C10B700EDD723 /* iwm_9000_46.c in Sources */,
-				7FB2B6AC29B70D8200E7DFAA /* iwx_QuZ_a0_jf_b0_77.c in Sources */,
 				18713EDD255F1BE900EF3D49 /* ieee80211_crypto_ccmp.c in Sources */,
 				18713EDE255F1BE900EF3D49 /* ieee80211_pae_input.c in Sources */,
-				7FFFCFE1280C10B700EDD723 /* brcmfmac43570_pcie_bin.c in Sources */,
-				7FFFD089280C10B800EDD723 /* bwi_airforce.c in Sources */,
-				7FFFCFD5280C10B700EDD723 /* rtwn_rtl8188efw.c in Sources */,
 				18713EDF255F1BE900EF3D49 /* ieee80211_amrr.c in Sources */,
 				18713EE0255F1BE900EF3D49 /* ieee80211_crypto_wep.c in Sources */,
-				7FFFCFA5280C10B700EDD723 /* iwn_5000.c in Sources */,
 				18713EE1255F1BE900EF3D49 /* ieee80211_output.c in Sources */,
 				18713EE2255F1BE900EF3D49 /* ieee80211_crypto.c in Sources */,
-				7FFFCFDB280C10B700EDD723 /* brcmfmac43602_pcie_bin.c in Sources */,
-				7FFFD011280C10B800EDD723 /* ipw_ibss.c in Sources */,
-				7FFFCFE7280C10B700EDD723 /* ipw_bss.c in Sources */,
-				7FFFD071280C10B800EDD723 /* iwm_8265_36.c in Sources */,
-				7FFFCF93280C10B700EDD723 /* iwn_4965.c in Sources */,
 				18C95AA2256285DC0047231F /* if_rtwn.c in Sources */,
-				7FFFD017280C10B800EDD723 /* iwm_7260_17.c in Sources */,
 				18713EE3255F1BE900EF3D49 /* ieee80211_regdomain.c in Sources */,
-				7FFFD00B280C10B700EDD723 /* brcmfmac4371_pcie_bin.c in Sources */,
 				183CD6B425605A89005F866F /* bwfm.c in Sources */,
 				18713EE4255F1BE900EF3D49 /* ieee80211_node.c in Sources */,
-				7FB2B6C429B70D8200E7DFAA /* iwx_ty_a0_gf_a0_77.c in Sources */,
 				18713EE5255F1BE900EF3D49 /* ieee80211_pae_output.c in Sources */,
-				7FFFCF87280C10B700EDD723 /* iwn_2030.c in Sources */,
 				183CD6D525605A98005F866F /* if_bwi_pci.c in Sources */,
 				18713EE6255F1BE900EF3D49 /* if_wpi.c in Sources */,
 				18713EE7255F1BE900EF3D49 /* if_iwi.c in Sources */,
 				18713EE8255F1BE900EF3D49 /* if_iwm.c in Sources */,
 				18713EE9255F1BE900EF3D49 /* pci.c in Sources */,
 				18713EEA255F1BE900EF3D49 /* if_iwx.c in Sources */,
-				7FB2B68229B70D8200E7DFAA /* iwx_Qu_b0_hr_b0_77.c in Sources */,
-				7FFFD06B280C10B800EDD723 /* iwm_3160_17.c in Sources */,
 				18713EEB255F1BE900EF3D49 /* if_ipw.c in Sources */,
-				7FFFCF5D280C10B700EDD723 /* iwm_8000C_36.c in Sources */,
-				7FFFD03B280C10B800EDD723 /* brcmfmac4350c2_pcie_bin.c in Sources */,
 				18713EEC255F1BE900EF3D49 /* if_iwn.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2971,50 +2581,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7FB2B6A129B70D8200E7DFAA /* iwx_so_a0_gf_a0_77.c in Sources */,
-				7FFFD024280C10B800EDD723 /* firmware.c in Sources */,
 				18713F3D255F1C0200EF3D49 /* AirPort_OpenBSD_80211.cpp in Sources */,
 				18713F3E255F1C0200EF3D49 /* AirPort_OpenBSD_ASSOC.cpp in Sources */,
 				18713F3F255F1C0200EF3D49 /* AirPort_OpenBSD_IOCTL.cpp in Sources */,
 				7F467948291C93420076781E /* AirPort_OpenBSD_PM.cpp in Sources */,
 				18713F40255F1C0200EF3D49 /* AirPort_OpenBSD_Util.cpp in Sources */,
 				18713F41255F1C0200EF3D49 /* AirPort_OpenBSD.cpp in Sources */,
-				7FFFCF8E280C10B700EDD723 /* brcmfmac4356_pcie_bin.c in Sources */,
-				7FB2B6BF29B70D8200E7DFAA /* iwx_so_a0_hr_b0_77.c in Sources */,
-				7FFFD066280C10B800EDD723 /* ipw_monitor.c in Sources */,
 				18C95A89256285CC0047231F /* rtwn.c in Sources */,
 				18713F42255F1C0200EF3D49 /* compat.cpp in Sources */,
 				18BB83E425FE3C49001220DF /* ieee80211_ra.c in Sources */,
-				7FFFD084280C10B800EDD723 /* iwn_6050.c in Sources */,
 				183CD6BF25605A89005F866F /* bwi.c in Sources */,
 				7FF2C226274CD9D000DCECFD /* heapsort.c in Sources */,
-				7FFFCFFA280C10B700EDD723 /* iwi_monitor.c in Sources */,
-				7FB2B6A729B70D8200E7DFAA /* iwx_so_a0_jf_b0_77.c in Sources */,
-				7FFFD000280C10B700EDD723 /* iwm_7265D_29.c in Sources */,
-				7FFFCFC4280C10B700EDD723 /* rtwn_rtl8723fw_B.c in Sources */,
-				7FFFCF58280C10B700EDD723 /* rtwn_rtl8723fw.c in Sources */,
 				7F46795E291C93670076781E /* AirPort_OpenBSD_SCAN.cpp in Sources */,
 				183CD6D125605A98005F866F /* if_bwfm_pci.c in Sources */,
-				7FFFD042280C10B800EDD723 /* brcmfmac4366b_pcie_bin.c in Sources */,
-				7FB2B6B329B70D8200E7DFAA /* iwx_Qu_b0_jf_b0_77.c in Sources */,
-				7FB2B69529B70D8200E7DFAA /* iwx_Qu_c0_hr_b0_77.c in Sources */,
 				7FF2C215274CD7E900DCECFD /* qsort.c in Sources */,
-				7FFFCFB8280C10B700EDD723 /* iwn_135.c in Sources */,
-				7FFFCF70280C10B700EDD723 /* brcmfmac4366c_pcie_bin.c in Sources */,
-				7FFFCF76280C10B700EDD723 /* iwn_6000.c in Sources */,
-				7FFFCF64280C10B700EDD723 /* iwn_105.c in Sources */,
-				7FFFCF9A280C10B700EDD723 /* iwn_1000.c in Sources */,
 				18713F68255F1C0200EF3D49 /* ifconfig.c in Sources */,
 				18713F69255F1C0200EF3D49 /* aes.c in Sources */,
-				7FB2B6B929B70D8200E7DFAA /* iwx_QuZ_a0_hr_b0_77.c in Sources */,
 				18713F6A255F1C0200EF3D49 /* hmac.c in Sources */,
-				7FFFCF6A280C10B700EDD723 /* iwn_6005.c in Sources */,
 				18713F6B255F1C0200EF3D49 /* sha2.c in Sources */,
-				7FB2B68929B70D8200E7DFAA /* iwx_so_a0_gf4_a0_77.c in Sources */,
-				7FFFCFD0280C10B700EDD723 /* iwm_9260_46.c in Sources */,
-				7FB2B68F29B70D8200E7DFAA /* iwx_cc_a0_77.c in Sources */,
 				18713F6C255F1C0200EF3D49 /* michael.c in Sources */,
-				7FFFD07E280C10B800EDD723 /* iwn_100.c in Sources */,
 				7F18B67529625C1C0082A5E2 /* AirPort_OpenBSD_Virtual.cpp in Sources */,
 				18713F6D255F1C0200EF3D49 /* sha1.c in Sources */,
 				3714750425D187FC0052FDC0 /* _malloc.c in Sources */,
@@ -3023,76 +2608,41 @@
 				18713F6F255F1C0200EF3D49 /* md5.c in Sources */,
 				18713F70255F1C0200EF3D49 /* arc4.c in Sources */,
 				18713F71255F1C0200EF3D49 /* key_wrap.c in Sources */,
-				7FFFD090280C10B800EDD723 /* wpi_3945abg.c in Sources */,
 				18713F72255F1C0200EF3D49 /* _bpf.c in Sources */,
 				18713F73255F1C0200EF3D49 /* timeout.c in Sources */,
 				18713F74255F1C0200EF3D49 /* task.c in Sources */,
 				7F8AB19027E8475F0045D670 /* ieee80211_ra_vht.c in Sources */,
-				7FFFCFBE280C10B700EDD723 /* iwn_5150.c in Sources */,
 				18713F75255F1C0200EF3D49 /* fls.c in Sources */,
 				18713F76255F1C0200EF3D49 /* timingsafe_bcmp.c in Sources */,
 				18713F77255F1C0200EF3D49 /* tree.c in Sources */,
-				7FFFCFAC280C10B700EDD723 /* rtwn_rtl8192cfwU.c in Sources */,
 				18713F78255F1C0200EF3D49 /* bus.c in Sources */,
-				7FFFD04E280C10B800EDD723 /* iwi_ibss.c in Sources */,
-				7FFFCFB2280C10B700EDD723 /* brcmfmac4358_pcie_bin.c in Sources */,
-				7FFFD01E280C10B800EDD723 /* brcmfmac4350_pcie_bin.c in Sources */,
 				18713F79255F1C0200EF3D49 /* ieee80211_proto.c in Sources */,
-				7F40D7B3282A03A200BE973C /* iwx_so_a0_gf_a0_pnvm.c in Sources */,
 				18713F7A255F1C0200EF3D49 /* ieee80211_ioctl.c in Sources */,
 				7F4AEF35291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.cpp in Sources */,
 				18713F7B255F1C0200EF3D49 /* ieee80211.c in Sources */,
 				7F4CEDA52912DD1B00C46A15 /* AirPort_OpenBSD_AWDL.cpp in Sources */,
-				7FFFD060280C10B800EDD723 /* brcmfmac43602_pcie_ap_bin.c in Sources */,
-				7F40D7D7282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c in Sources */,
-				7FB2B69B29B70D8200E7DFAA /* iwx_Qu_c0_jf_b0_77.c in Sources */,
-				7F40D7B9282A03A200BE973C /* iwx_so_a0_gf4_a0_pnvm.c in Sources */,
 				18713F7C255F1C0200EF3D49 /* ieee80211_rssadapt.c in Sources */,
-				7FFFCF7C280C10B700EDD723 /* rtwn_rtl8192cfwU_B.c in Sources */,
-				7FFFD048280C10B800EDD723 /* iwm_3168_29.c in Sources */,
 				18713F7D255F1C0200EF3D49 /* ieee80211_input.c in Sources */,
 				18713F7F255F1C0200EF3D49 /* ieee80211_crypto_bip.c in Sources */,
 				18713F80255F1C0200EF3D49 /* ieee80211_crypto_tkip.c in Sources */,
-				7FFFD030280C10B800EDD723 /* iwi_bss.c in Sources */,
-				7FFFCFA0280C10B700EDD723 /* iwn_2000.c in Sources */,
-				7FFFD036280C10B800EDD723 /* iwn_6030.c in Sources */,
-				7FFFCF82280C10B700EDD723 /* iwm_9000_46.c in Sources */,
-				7FB2B6AD29B70D8200E7DFAA /* iwx_QuZ_a0_jf_b0_77.c in Sources */,
 				18713F81255F1C0200EF3D49 /* ieee80211_crypto_ccmp.c in Sources */,
 				18713F82255F1C0200EF3D49 /* ieee80211_pae_input.c in Sources */,
-				7FFFCFE2280C10B700EDD723 /* brcmfmac43570_pcie_bin.c in Sources */,
-				7FFFD08A280C10B800EDD723 /* bwi_airforce.c in Sources */,
-				7FFFCFD6280C10B700EDD723 /* rtwn_rtl8188efw.c in Sources */,
 				18713F83255F1C0200EF3D49 /* ieee80211_amrr.c in Sources */,
 				18713F84255F1C0200EF3D49 /* ieee80211_crypto_wep.c in Sources */,
-				7FFFCFA6280C10B700EDD723 /* iwn_5000.c in Sources */,
 				18713F85255F1C0200EF3D49 /* ieee80211_output.c in Sources */,
 				18713F86255F1C0200EF3D49 /* ieee80211_crypto.c in Sources */,
-				7FFFCFDC280C10B700EDD723 /* brcmfmac43602_pcie_bin.c in Sources */,
-				7FFFD012280C10B800EDD723 /* ipw_ibss.c in Sources */,
-				7FFFCFE8280C10B700EDD723 /* ipw_bss.c in Sources */,
-				7FFFD072280C10B800EDD723 /* iwm_8265_36.c in Sources */,
-				7FFFCF94280C10B700EDD723 /* iwn_4965.c in Sources */,
 				18C95AA3256285DC0047231F /* if_rtwn.c in Sources */,
-				7FFFD018280C10B800EDD723 /* iwm_7260_17.c in Sources */,
 				18713F87255F1C0200EF3D49 /* ieee80211_regdomain.c in Sources */,
-				7FFFD00C280C10B700EDD723 /* brcmfmac4371_pcie_bin.c in Sources */,
 				183CD6B525605A89005F866F /* bwfm.c in Sources */,
 				18713F88255F1C0200EF3D49 /* ieee80211_node.c in Sources */,
-				7FB2B6C529B70D8200E7DFAA /* iwx_ty_a0_gf_a0_77.c in Sources */,
 				18713F89255F1C0200EF3D49 /* ieee80211_pae_output.c in Sources */,
-				7FFFCF88280C10B700EDD723 /* iwn_2030.c in Sources */,
 				183CD6D625605A98005F866F /* if_bwi_pci.c in Sources */,
 				18713F8A255F1C0200EF3D49 /* if_wpi.c in Sources */,
 				18713F8B255F1C0200EF3D49 /* if_iwi.c in Sources */,
 				18713F8C255F1C0200EF3D49 /* if_iwm.c in Sources */,
 				18713F8D255F1C0200EF3D49 /* pci.c in Sources */,
 				18713F8E255F1C0200EF3D49 /* if_iwx.c in Sources */,
-				7FB2B68329B70D8200E7DFAA /* iwx_Qu_b0_hr_b0_77.c in Sources */,
-				7FFFD06C280C10B800EDD723 /* iwm_3160_17.c in Sources */,
 				18713F8F255F1C0200EF3D49 /* if_ipw.c in Sources */,
-				7FFFCF5E280C10B700EDD723 /* iwm_8000C_36.c in Sources */,
-				7FFFD03C280C10B800EDD723 /* brcmfmac4350c2_pcie_bin.c in Sources */,
 				18713F90255F1C0200EF3D49 /* if_iwn.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3101,50 +2651,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7FB2B6A229B70D8200E7DFAA /* iwx_so_a0_gf_a0_77.c in Sources */,
-				7FFFD025280C10B800EDD723 /* firmware.c in Sources */,
 				18713FE1255F1C1800EF3D49 /* AirPort_OpenBSD_80211.cpp in Sources */,
 				18713FE2255F1C1800EF3D49 /* AirPort_OpenBSD_ASSOC.cpp in Sources */,
 				18713FE3255F1C1800EF3D49 /* AirPort_OpenBSD_IOCTL.cpp in Sources */,
 				7F467949291C93420076781E /* AirPort_OpenBSD_PM.cpp in Sources */,
 				18713FE4255F1C1800EF3D49 /* AirPort_OpenBSD_Util.cpp in Sources */,
 				18713FE5255F1C1800EF3D49 /* AirPort_OpenBSD.cpp in Sources */,
-				7FFFCF8F280C10B700EDD723 /* brcmfmac4356_pcie_bin.c in Sources */,
-				7FB2B6C029B70D8200E7DFAA /* iwx_so_a0_hr_b0_77.c in Sources */,
-				7FFFD067280C10B800EDD723 /* ipw_monitor.c in Sources */,
 				18C95A8A256285CC0047231F /* rtwn.c in Sources */,
 				18713FE6255F1C1800EF3D49 /* compat.cpp in Sources */,
 				18BB83E525FE3C49001220DF /* ieee80211_ra.c in Sources */,
-				7FFFD085280C10B800EDD723 /* iwn_6050.c in Sources */,
 				183CD6C025605A89005F866F /* bwi.c in Sources */,
 				7FF2C227274CD9D000DCECFD /* heapsort.c in Sources */,
-				7FFFCFFB280C10B700EDD723 /* iwi_monitor.c in Sources */,
-				7FB2B6A829B70D8200E7DFAA /* iwx_so_a0_jf_b0_77.c in Sources */,
-				7FFFD001280C10B700EDD723 /* iwm_7265D_29.c in Sources */,
-				7FFFCFC5280C10B700EDD723 /* rtwn_rtl8723fw_B.c in Sources */,
-				7FFFCF59280C10B700EDD723 /* rtwn_rtl8723fw.c in Sources */,
 				7F46795F291C93670076781E /* AirPort_OpenBSD_SCAN.cpp in Sources */,
 				183CD6D225605A98005F866F /* if_bwfm_pci.c in Sources */,
-				7FFFD043280C10B800EDD723 /* brcmfmac4366b_pcie_bin.c in Sources */,
-				7FB2B6B429B70D8200E7DFAA /* iwx_Qu_b0_jf_b0_77.c in Sources */,
-				7FB2B69629B70D8200E7DFAA /* iwx_Qu_c0_hr_b0_77.c in Sources */,
 				7FF2C216274CD7E900DCECFD /* qsort.c in Sources */,
-				7FFFCFB9280C10B700EDD723 /* iwn_135.c in Sources */,
-				7FFFCF71280C10B700EDD723 /* brcmfmac4366c_pcie_bin.c in Sources */,
-				7FFFCF77280C10B700EDD723 /* iwn_6000.c in Sources */,
-				7FFFCF65280C10B700EDD723 /* iwn_105.c in Sources */,
-				7FFFCF9B280C10B700EDD723 /* iwn_1000.c in Sources */,
 				1871400C255F1C1800EF3D49 /* ifconfig.c in Sources */,
 				1871400D255F1C1800EF3D49 /* aes.c in Sources */,
-				7FB2B6BA29B70D8200E7DFAA /* iwx_QuZ_a0_hr_b0_77.c in Sources */,
 				1871400E255F1C1800EF3D49 /* hmac.c in Sources */,
-				7FFFCF6B280C10B700EDD723 /* iwn_6005.c in Sources */,
 				1871400F255F1C1800EF3D49 /* sha2.c in Sources */,
-				7FB2B68A29B70D8200E7DFAA /* iwx_so_a0_gf4_a0_77.c in Sources */,
-				7FFFCFD1280C10B700EDD723 /* iwm_9260_46.c in Sources */,
-				7FB2B69029B70D8200E7DFAA /* iwx_cc_a0_77.c in Sources */,
 				18714010255F1C1800EF3D49 /* michael.c in Sources */,
-				7FFFD07F280C10B800EDD723 /* iwn_100.c in Sources */,
 				7F18B67629625C1C0082A5E2 /* AirPort_OpenBSD_Virtual.cpp in Sources */,
 				18714011255F1C1800EF3D49 /* sha1.c in Sources */,
 				3714750525D187FC0052FDC0 /* _malloc.c in Sources */,
@@ -3153,77 +2678,110 @@
 				18714013255F1C1800EF3D49 /* md5.c in Sources */,
 				18714014255F1C1800EF3D49 /* arc4.c in Sources */,
 				18714015255F1C1800EF3D49 /* key_wrap.c in Sources */,
-				7FFFD091280C10B800EDD723 /* wpi_3945abg.c in Sources */,
 				18714016255F1C1800EF3D49 /* _bpf.c in Sources */,
 				18714017255F1C1800EF3D49 /* timeout.c in Sources */,
 				18714018255F1C1800EF3D49 /* task.c in Sources */,
 				7F8AB19127E8475F0045D670 /* ieee80211_ra_vht.c in Sources */,
-				7FFFCFBF280C10B700EDD723 /* iwn_5150.c in Sources */,
 				18714019255F1C1800EF3D49 /* fls.c in Sources */,
 				1871401A255F1C1800EF3D49 /* timingsafe_bcmp.c in Sources */,
 				1871401B255F1C1800EF3D49 /* tree.c in Sources */,
-				7FFFCFAD280C10B700EDD723 /* rtwn_rtl8192cfwU.c in Sources */,
 				1871401C255F1C1800EF3D49 /* bus.c in Sources */,
-				7FFFD04F280C10B800EDD723 /* iwi_ibss.c in Sources */,
-				7FFFCFB3280C10B700EDD723 /* brcmfmac4358_pcie_bin.c in Sources */,
-				7FFFD01F280C10B800EDD723 /* brcmfmac4350_pcie_bin.c in Sources */,
 				1871401D255F1C1800EF3D49 /* ieee80211_proto.c in Sources */,
-				7F40D7B4282A03A200BE973C /* iwx_so_a0_gf_a0_pnvm.c in Sources */,
 				1871401E255F1C1800EF3D49 /* ieee80211_ioctl.c in Sources */,
 				7F4AEF36291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.cpp in Sources */,
 				1871401F255F1C1800EF3D49 /* ieee80211.c in Sources */,
 				7F4CEDA62912DD1B00C46A15 /* AirPort_OpenBSD_AWDL.cpp in Sources */,
-				7FFFD061280C10B800EDD723 /* brcmfmac43602_pcie_ap_bin.c in Sources */,
-				7F40D7D8282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c in Sources */,
-				7FB2B69C29B70D8200E7DFAA /* iwx_Qu_c0_jf_b0_77.c in Sources */,
-				7F40D7BA282A03A200BE973C /* iwx_so_a0_gf4_a0_pnvm.c in Sources */,
 				18714020255F1C1800EF3D49 /* ieee80211_rssadapt.c in Sources */,
-				7FFFCF7D280C10B700EDD723 /* rtwn_rtl8192cfwU_B.c in Sources */,
-				7FFFD049280C10B800EDD723 /* iwm_3168_29.c in Sources */,
 				18714021255F1C1800EF3D49 /* ieee80211_input.c in Sources */,
 				18714023255F1C1800EF3D49 /* ieee80211_crypto_bip.c in Sources */,
 				18714024255F1C1800EF3D49 /* ieee80211_crypto_tkip.c in Sources */,
-				7FFFD031280C10B800EDD723 /* iwi_bss.c in Sources */,
-				7FFFCFA1280C10B700EDD723 /* iwn_2000.c in Sources */,
-				7FFFD037280C10B800EDD723 /* iwn_6030.c in Sources */,
-				7FFFCF83280C10B700EDD723 /* iwm_9000_46.c in Sources */,
-				7FB2B6AE29B70D8200E7DFAA /* iwx_QuZ_a0_jf_b0_77.c in Sources */,
 				18714025255F1C1800EF3D49 /* ieee80211_crypto_ccmp.c in Sources */,
 				18714026255F1C1800EF3D49 /* ieee80211_pae_input.c in Sources */,
-				7FFFCFE3280C10B700EDD723 /* brcmfmac43570_pcie_bin.c in Sources */,
-				7FFFD08B280C10B800EDD723 /* bwi_airforce.c in Sources */,
-				7FFFCFD7280C10B700EDD723 /* rtwn_rtl8188efw.c in Sources */,
 				18714027255F1C1800EF3D49 /* ieee80211_amrr.c in Sources */,
 				18714028255F1C1800EF3D49 /* ieee80211_crypto_wep.c in Sources */,
-				7FFFCFA7280C10B700EDD723 /* iwn_5000.c in Sources */,
 				18714029255F1C1800EF3D49 /* ieee80211_output.c in Sources */,
 				1871402A255F1C1800EF3D49 /* ieee80211_crypto.c in Sources */,
-				7FFFCFDD280C10B700EDD723 /* brcmfmac43602_pcie_bin.c in Sources */,
-				7FFFD013280C10B800EDD723 /* ipw_ibss.c in Sources */,
-				7FFFCFE9280C10B700EDD723 /* ipw_bss.c in Sources */,
-				7FFFD073280C10B800EDD723 /* iwm_8265_36.c in Sources */,
-				7FFFCF95280C10B700EDD723 /* iwn_4965.c in Sources */,
 				18C95AA4256285DC0047231F /* if_rtwn.c in Sources */,
-				7FFFD019280C10B800EDD723 /* iwm_7260_17.c in Sources */,
 				1871402B255F1C1800EF3D49 /* ieee80211_regdomain.c in Sources */,
-				7FFFD00D280C10B800EDD723 /* brcmfmac4371_pcie_bin.c in Sources */,
 				183CD6B625605A89005F866F /* bwfm.c in Sources */,
 				1871402C255F1C1800EF3D49 /* ieee80211_node.c in Sources */,
-				7FB2B6C629B70D8200E7DFAA /* iwx_ty_a0_gf_a0_77.c in Sources */,
 				1871402D255F1C1800EF3D49 /* ieee80211_pae_output.c in Sources */,
-				7FFFCF89280C10B700EDD723 /* iwn_2030.c in Sources */,
 				183CD6D725605A98005F866F /* if_bwi_pci.c in Sources */,
 				1871402E255F1C1800EF3D49 /* if_wpi.c in Sources */,
 				1871402F255F1C1800EF3D49 /* if_iwi.c in Sources */,
 				18714030255F1C1800EF3D49 /* if_iwm.c in Sources */,
 				18714031255F1C1800EF3D49 /* pci.c in Sources */,
 				18714032255F1C1800EF3D49 /* if_iwx.c in Sources */,
-				7FB2B68429B70D8200E7DFAA /* iwx_Qu_b0_hr_b0_77.c in Sources */,
-				7FFFD06D280C10B800EDD723 /* iwm_3160_17.c in Sources */,
 				18714033255F1C1800EF3D49 /* if_ipw.c in Sources */,
-				7FFFCF5F280C10B700EDD723 /* iwm_8000C_36.c in Sources */,
-				7FFFD03D280C10B800EDD723 /* brcmfmac4350c2_pcie_bin.c in Sources */,
 				18714034255F1C1800EF3D49 /* if_iwn.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7FA595AD2A59A95100824D8B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7FA596022A59AA4F00824D8B /* iwm_3168_29.cpp in Sources */,
+				7FA595FE2A59AA4F00824D8B /* iwi_monitor.cpp in Sources */,
+				7FA596092A59AA4F00824D8B /* ipw_bss.cpp in Sources */,
+				7FA596322A59AA4F00824D8B /* brcmfmac43570_pcie_bin.cpp in Sources */,
+				7FA596042A59AA4F00824D8B /* iwi_bss.cpp in Sources */,
+				7FA595F82A59AA4F00824D8B /* brcmfmac43602_pcie_ap_bin.cpp in Sources */,
+				7FA5962D2A59AA4F00824D8B /* rtwn_rtl8723fw_B.cpp in Sources */,
+				7FA596112A59AA4F00824D8B /* iwm_7265D_29.cpp in Sources */,
+				7FA5961D2A59AA4F00824D8B /* iwn_135.cpp in Sources */,
+				7FA596272A59AA4F00824D8B /* ipw_monitor.cpp in Sources */,
+				7FA596262A59AA4F00824D8B /* iwm_9260_46.cpp in Sources */,
+				7FA5962C2A59AA4F00824D8B /* iwm_8000C_36.cpp in Sources */,
+				7FA596312A59AA4F00824D8B /* iwn_1000.cpp in Sources */,
+				7FA5962B2A59AA4F00824D8B /* iwx_so_a0_gf_a0_77.cpp in Sources */,
+				7FA596122A59AA4F00824D8B /* iwx_so_a0_gf_a0_pnvm.cpp in Sources */,
+				7FA596052A59AA4F00824D8B /* brcmfmac4350c2_pcie_bin.cpp in Sources */,
+				7FA5960C2A59AA4F00824D8B /* iwx_so_a0_hr_b0_77.cpp in Sources */,
+				7FA596282A59AA4F00824D8B /* brcmfmac4371_pcie_bin.cpp in Sources */,
+				7FA596162A59AA4F00824D8B /* iwn_6050.cpp in Sources */,
+				7FA5962E2A59AA4F00824D8B /* iwx_Qu_b0_hr_b0_77.cpp in Sources */,
+				7FA596072A59AA4F00824D8B /* iwx_QuZ_a0_jf_b0_77.cpp in Sources */,
+				7FA596002A59AA4F00824D8B /* iwx_Qu_b0_jf_b0_77.cpp in Sources */,
+				7FA5961A2A59AA4F00824D8B /* iwn_2000.cpp in Sources */,
+				7FA596222A59AA4F00824D8B /* iwn_105.cpp in Sources */,
+				7FA595FF2A59AA4F00824D8B /* rtwn_rtl8192cfwU_B.cpp in Sources */,
+				7FA596012A59AA4F00824D8B /* iwx_so_a0_gf4_a0_pnvm.cpp in Sources */,
+				7FA5960B2A59AA4F00824D8B /* rtwn_rtl8192cfwU.cpp in Sources */,
+				7FA5960E2A59AA4F00824D8B /* iwn_100.cpp in Sources */,
+				7FA596202A59AA4F00824D8B /* iwx_QuZ_a0_hr_b0_77.cpp in Sources */,
+				7FA5960F2A59AA4F00824D8B /* ipw_ibss.cpp in Sources */,
+				7FA5961C2A59AA4F00824D8B /* iwx_Qu_c0_hr_b0_77.cpp in Sources */,
+				7FA5961B2A59AA4F00824D8B /* iwx_so_a0_gf4_a0_77.cpp in Sources */,
+				7FA596332A59AA4F00824D8B /* rtwn_rtl8723fw.cpp in Sources */,
+				7FA596142A59AA4F00824D8B /* brcmfmac4358_pcie_bin.cpp in Sources */,
+				7FA596232A59AA4F00824D8B /* iwx_ty_a0_gf_a0_77.cpp in Sources */,
+				7FA596292A59AA4F00824D8B /* iwm_7260_17.cpp in Sources */,
+				7FA596082A59AA4F00824D8B /* iwm_8265_36.cpp in Sources */,
+				7FA5961E2A59AA4F00824D8B /* brcmfmac43602_pcie_bin.cpp in Sources */,
+				7FA5960D2A59AA4F00824D8B /* iwx_Qu_c0_jf_b0_77.cpp in Sources */,
+				7FA596102A59AA4F00824D8B /* brcmfmac4366c_pcie_bin.cpp in Sources */,
+				7FA595FD2A59AA4F00824D8B /* iwn_2030.cpp in Sources */,
+				7FA596302A59AA4F00824D8B /* brcmfmac4356_pcie_bin.cpp in Sources */,
+				7FA5961F2A59AA4F00824D8B /* brcmfmac4366b_pcie_bin.cpp in Sources */,
+				7FA596242A59AA4F00824D8B /* iwn_6005.cpp in Sources */,
+				7FA596252A59AA4F00824D8B /* iwi_ibss.cpp in Sources */,
+				7FA596152A59AA4F00824D8B /* iwx_ty_a0_gf_a0_pnvm.cpp in Sources */,
+				7FA596032A59AA4F00824D8B /* firmware.cpp in Sources */,
+				7FA596132A59AA4F00824D8B /* iwx_so_a0_jf_b0_77.cpp in Sources */,
+				7FA595FA2A59AA4F00824D8B /* iwm_3160_17.cpp in Sources */,
+				7FA596192A59AA4F00824D8B /* wpi_3945abg.cpp in Sources */,
+				7FA595FB2A59AA4F00824D8B /* iwn_5150.cpp in Sources */,
+				7FA5962A2A59AA4F00824D8B /* iwn_6000.cpp in Sources */,
+				7FA596212A59AA4F00824D8B /* iwx_cc_a0_77.cpp in Sources */,
+				7FA596172A59AA4F00824D8B /* rtwn_rtl8188efw.cpp in Sources */,
+				7FA595F92A59AA4F00824D8B /* iwn_6030.cpp in Sources */,
+				7FA595B62A59A95200824D8B /* AirPortOpenBSDFirmwareData.cpp in Sources */,
+				7FA595FC2A59AA4F00824D8B /* bwi_airforce.cpp in Sources */,
+				7FA596182A59AA4F00824D8B /* brcmfmac4350_pcie_bin.cpp in Sources */,
+				7FA5962F2A59AA4F00824D8B /* iwm_9000_46.cpp in Sources */,
+				7FA596342A59AA4F00824D8B /* iwn_4965.cpp in Sources */,
+				7FA596062A59AA4F00824D8B /* iwn_5000.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3231,50 +2789,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7FB2B69E29B70D8200E7DFAA /* iwx_so_a0_gf_a0_77.c in Sources */,
-				7FFFD021280C10B800EDD723 /* firmware.c in Sources */,
 				7FBA006727E077FE0075D188 /* AirPort_OpenBSD_80211.cpp in Sources */,
 				7FBA006827E077FE0075D188 /* AirPort_OpenBSD_ASSOC.cpp in Sources */,
 				7FBA006927E077FE0075D188 /* AirPort_OpenBSD_IOCTL.cpp in Sources */,
 				7F467945291C93420076781E /* AirPort_OpenBSD_PM.cpp in Sources */,
 				7FBA006A27E077FE0075D188 /* AirPort_OpenBSD_Util.cpp in Sources */,
 				7FBA006B27E077FE0075D188 /* AirPort_OpenBSD.cpp in Sources */,
-				7FFFCF8B280C10B700EDD723 /* brcmfmac4356_pcie_bin.c in Sources */,
-				7FB2B6BC29B70D8200E7DFAA /* iwx_so_a0_hr_b0_77.c in Sources */,
-				7FFFD063280C10B800EDD723 /* ipw_monitor.c in Sources */,
 				7FBA006C27E077FE0075D188 /* compat.cpp in Sources */,
 				7FBA00A427E077FE0075D188 /* aes.c in Sources */,
 				7FBA00A527E077FE0075D188 /* arc4.c in Sources */,
-				7FFFD081280C10B800EDD723 /* iwn_6050.c in Sources */,
 				7FBA00A627E077FE0075D188 /* cmac.c in Sources */,
 				7FBA00A727E077FE0075D188 /* hmac.c in Sources */,
-				7FFFCFF7280C10B700EDD723 /* iwi_monitor.c in Sources */,
-				7FB2B6A429B70D8200E7DFAA /* iwx_so_a0_jf_b0_77.c in Sources */,
-				7FFFCFFD280C10B700EDD723 /* iwm_7265D_29.c in Sources */,
-				7FFFCFC1280C10B700EDD723 /* rtwn_rtl8723fw_B.c in Sources */,
-				7FFFCF55280C10B700EDD723 /* rtwn_rtl8723fw.c in Sources */,
 				7F46795B291C93670076781E /* AirPort_OpenBSD_SCAN.cpp in Sources */,
 				7FBA00A827E077FE0075D188 /* key_wrap.c in Sources */,
-				7FFFD03F280C10B800EDD723 /* brcmfmac4366b_pcie_bin.c in Sources */,
-				7FB2B6B029B70D8200E7DFAA /* iwx_Qu_b0_jf_b0_77.c in Sources */,
-				7FB2B69229B70D8200E7DFAA /* iwx_Qu_c0_hr_b0_77.c in Sources */,
 				7FBA00A927E077FE0075D188 /* md5.c in Sources */,
-				7FFFCFB5280C10B700EDD723 /* iwn_135.c in Sources */,
-				7FFFCF6D280C10B700EDD723 /* brcmfmac4366c_pcie_bin.c in Sources */,
-				7FFFCF73280C10B700EDD723 /* iwn_6000.c in Sources */,
-				7FFFCF61280C10B700EDD723 /* iwn_105.c in Sources */,
-				7FFFCF97280C10B700EDD723 /* iwn_1000.c in Sources */,
 				7FBA00AA27E077FE0075D188 /* michael.c in Sources */,
 				7FBA00AB27E077FE0075D188 /* sha1.c in Sources */,
-				7FB2B6B629B70D8200E7DFAA /* iwx_QuZ_a0_hr_b0_77.c in Sources */,
 				7FBA00AC27E077FE0075D188 /* sha2.c in Sources */,
-				7FFFCF67280C10B700EDD723 /* iwn_6005.c in Sources */,
 				7FBA00AD27E077FE0075D188 /* bwfm.c in Sources */,
-				7FB2B68629B70D8200E7DFAA /* iwx_so_a0_gf4_a0_77.c in Sources */,
-				7FFFCFCD280C10B700EDD723 /* iwm_9260_46.c in Sources */,
-				7FB2B68C29B70D8200E7DFAA /* iwx_cc_a0_77.c in Sources */,
 				7FBA00AE27E077FE0075D188 /* bwi.c in Sources */,
-				7FFFD07B280C10B800EDD723 /* iwn_100.c in Sources */,
 				7F18B67229625C1C0082A5E2 /* AirPort_OpenBSD_Virtual.cpp in Sources */,
 				7FBA00AF27E077FE0075D188 /* rtwn.c in Sources */,
 				7FBA00B027E077FE0075D188 /* if_bwfm_pci.c in Sources */,
@@ -3283,76 +2816,41 @@
 				7FBA00B127E077FE0075D188 /* if_bwi_pci.c in Sources */,
 				7FBA00B227E077FE0075D188 /* if_ipw.c in Sources */,
 				7FBA00B327E077FE0075D188 /* if_iwi.c in Sources */,
-				7FFFD08D280C10B800EDD723 /* wpi_3945abg.c in Sources */,
 				7FBA00B427E077FE0075D188 /* if_iwm.c in Sources */,
 				7FBA00B527E077FE0075D188 /* if_iwn.c in Sources */,
 				7FBA00B627E077FE0075D188 /* if_iwx.c in Sources */,
 				7FBA00B727E077FE0075D188 /* if_rtwn.c in Sources */,
-				7FFFCFBB280C10B700EDD723 /* iwn_5150.c in Sources */,
 				7FBA00B827E077FE0075D188 /* if_wpi.c in Sources */,
 				7FBA00B927E077FE0075D188 /* pci.c in Sources */,
 				7FBA00BA27E077FE0075D188 /* ifconfig.c in Sources */,
-				7FFFCFA9280C10B700EDD723 /* rtwn_rtl8192cfwU.c in Sources */,
 				7FBA00BB27E077FE0075D188 /* qsort.c in Sources */,
-				7FFFD04B280C10B800EDD723 /* iwi_ibss.c in Sources */,
-				7FFFCFAF280C10B700EDD723 /* brcmfmac4358_pcie_bin.c in Sources */,
-				7FFFD01B280C10B800EDD723 /* brcmfmac4350_pcie_bin.c in Sources */,
 				7FBA00BC27E077FE0075D188 /* heapsort.c in Sources */,
-				7F40D7B0282A03A200BE973C /* iwx_so_a0_gf_a0_pnvm.c in Sources */,
 				7FBA00BD27E077FE0075D188 /* bus.c in Sources */,
 				7F4AEF32291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.cpp in Sources */,
 				7FBA00BE27E077FE0075D188 /* ieee80211_amrr.c in Sources */,
 				7F4CEDA22912DD1B00C46A15 /* AirPort_OpenBSD_AWDL.cpp in Sources */,
-				7FFFD05D280C10B800EDD723 /* brcmfmac43602_pcie_ap_bin.c in Sources */,
-				7F40D7D4282A03A200BE973C /* iwx_ty_a0_gf_a0_pnvm.c in Sources */,
-				7FB2B69829B70D8200E7DFAA /* iwx_Qu_c0_jf_b0_77.c in Sources */,
-				7F40D7B6282A03A200BE973C /* iwx_so_a0_gf4_a0_pnvm.c in Sources */,
 				7FBA00BF27E077FE0075D188 /* ieee80211_crypto_bip.c in Sources */,
-				7FFFCF79280C10B700EDD723 /* rtwn_rtl8192cfwU_B.c in Sources */,
-				7FFFD045280C10B800EDD723 /* iwm_3168_29.c in Sources */,
 				7FBA00C027E077FE0075D188 /* ieee80211_crypto_ccmp.c in Sources */,
 				7FBA00C127E077FE0075D188 /* ieee80211_crypto_tkip.c in Sources */,
 				7FBA00C227E077FE0075D188 /* ieee80211_crypto_wep.c in Sources */,
-				7FFFD02D280C10B800EDD723 /* iwi_bss.c in Sources */,
-				7FFFCF9D280C10B700EDD723 /* iwn_2000.c in Sources */,
-				7FFFD033280C10B800EDD723 /* iwn_6030.c in Sources */,
-				7FFFCF7F280C10B700EDD723 /* iwm_9000_46.c in Sources */,
-				7FB2B6AA29B70D8200E7DFAA /* iwx_QuZ_a0_jf_b0_77.c in Sources */,
 				7FBA00C327E077FE0075D188 /* ieee80211_crypto.c in Sources */,
 				7FBA00C427E077FE0075D188 /* ieee80211_input.c in Sources */,
-				7FFFCFDF280C10B700EDD723 /* brcmfmac43570_pcie_bin.c in Sources */,
-				7FFFD087280C10B800EDD723 /* bwi_airforce.c in Sources */,
-				7FFFCFD3280C10B700EDD723 /* rtwn_rtl8188efw.c in Sources */,
 				7FBA00C527E077FE0075D188 /* ieee80211_ioctl.c in Sources */,
 				7FBA00C627E077FE0075D188 /* ieee80211_node.c in Sources */,
-				7FFFCFA3280C10B700EDD723 /* iwn_5000.c in Sources */,
 				7FBA00C727E077FE0075D188 /* ieee80211_output.c in Sources */,
 				7FBA00C827E077FE0075D188 /* ieee80211_pae_input.c in Sources */,
-				7FFFCFD9280C10B700EDD723 /* brcmfmac43602_pcie_bin.c in Sources */,
-				7FFFD00F280C10B800EDD723 /* ipw_ibss.c in Sources */,
-				7FFFCFE5280C10B700EDD723 /* ipw_bss.c in Sources */,
-				7FFFD06F280C10B800EDD723 /* iwm_8265_36.c in Sources */,
-				7FFFCF91280C10B700EDD723 /* iwn_4965.c in Sources */,
 				7FBA00C927E077FE0075D188 /* ieee80211_pae_output.c in Sources */,
-				7FFFD015280C10B800EDD723 /* iwm_7260_17.c in Sources */,
 				7FBA00CA27E077FE0075D188 /* ieee80211_proto.c in Sources */,
-				7FFFD009280C10B700EDD723 /* brcmfmac4371_pcie_bin.c in Sources */,
 				7FBA00CB27E077FE0075D188 /* ieee80211_ra.c in Sources */,
 				7FBA00CC27E077FE0075D188 /* ieee80211_regdomain.c in Sources */,
-				7FB2B6C229B70D8200E7DFAA /* iwx_ty_a0_gf_a0_77.c in Sources */,
 				7FBA00CD27E077FE0075D188 /* ieee80211_rssadapt.c in Sources */,
-				7FFFCF85280C10B700EDD723 /* iwn_2030.c in Sources */,
 				7FBA00CE27E077FE0075D188 /* ieee80211.c in Sources */,
 				7FBA00CF27E077FE0075D188 /* _bpf.c in Sources */,
 				7FBA00D027E077FE0075D188 /* _malloc.c in Sources */,
 				7FBA00D127E077FE0075D188 /* fls.c in Sources */,
 				7FBA00D227E077FE0075D188 /* task.c in Sources */,
 				7FBA00D327E077FE0075D188 /* timeout.c in Sources */,
-				7FB2B68029B70D8200E7DFAA /* iwx_Qu_b0_hr_b0_77.c in Sources */,
-				7FFFD069280C10B800EDD723 /* iwm_3160_17.c in Sources */,
 				7FBA00D427E077FE0075D188 /* timingsafe_bcmp.c in Sources */,
-				7FFFCF5B280C10B700EDD723 /* iwm_8000C_36.c in Sources */,
-				7FFFD039280C10B800EDD723 /* brcmfmac4350c2_pcie_bin.c in Sources */,
 				7FBA00D527E077FE0075D188 /* tree.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3361,7 +2859,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7FB2B69D29B70D8200E7DFAA /* iwx_so_a0_gf_a0_77.c in Sources */,
 				7FF8155C290EBB9700050008 /* AirPort_OpenBSD_80211.cpp in Sources */,
 				7FF8155D290EBB9700050008 /* AirPort_OpenBSD_ASSOC.cpp in Sources */,
 				7FF8155E290EBB9700050008 /* AirPort_OpenBSD_IOCTL.cpp in Sources */,
@@ -3370,7 +2867,6 @@
 				7FF81560290EBB9700050008 /* AirPort_OpenBSD.cpp in Sources */,
 				7FF81561290EBB9700050008 /* compat.cpp in Sources */,
 				7FF81562290EBB9700050008 /* aes.c in Sources */,
-				7FB2B6BB29B70D8200E7DFAA /* iwx_so_a0_hr_b0_77.c in Sources */,
 				7FF81563290EBB9700050008 /* arc4.c in Sources */,
 				7FF81564290EBB9700050008 /* cmac.c in Sources */,
 				7FF81565290EBB9700050008 /* hmac.c in Sources */,
@@ -3379,15 +2875,12 @@
 				7FF81568290EBB9700050008 /* michael.c in Sources */,
 				7FF81569290EBB9700050008 /* sha1.c in Sources */,
 				7FF8156A290EBB9800050008 /* sha2.c in Sources */,
-				7FB2B6A329B70D8200E7DFAA /* iwx_so_a0_jf_b0_77.c in Sources */,
 				7FF8156B290EBB9800050008 /* bwfm.c in Sources */,
 				7FF8156C290EBB9800050008 /* bwi.c in Sources */,
 				7FF8156D290EBB9800050008 /* rtwn.c in Sources */,
 				7FF8156E290EBB9800050008 /* if_bwfm_pci.c in Sources */,
 				7FF8156F290EBB9800050008 /* if_bwi_pci.c in Sources */,
 				7FF81570290EBB9800050008 /* if_ipw.c in Sources */,
-				7FB2B6AF29B70D8200E7DFAA /* iwx_Qu_b0_jf_b0_77.c in Sources */,
-				7FB2B69129B70D8200E7DFAA /* iwx_Qu_c0_hr_b0_77.c in Sources */,
 				7F46795A291C93670076781E /* AirPort_OpenBSD_SCAN.cpp in Sources */,
 				7FF81571290EBB9800050008 /* if_iwi.c in Sources */,
 				7FF81572290EBB9800050008 /* if_iwm.c in Sources */,
@@ -3396,63 +2889,10 @@
 				7FF81575290EBB9800050008 /* if_rtwn.c in Sources */,
 				7FF81576290EBB9800050008 /* if_wpi.c in Sources */,
 				7FF81577290EBB9800050008 /* pci.c in Sources */,
-				7FB2B6B529B70D8200E7DFAA /* iwx_QuZ_a0_hr_b0_77.c in Sources */,
-				7FF81578290EBB9800050008 /* brcmfmac4350_pcie_bin.c in Sources */,
-				7FF81579290EBB9800050008 /* brcmfmac4350c2_pcie_bin.c in Sources */,
-				7FF8157A290EBB9800050008 /* brcmfmac4356_pcie_bin.c in Sources */,
-				7FB2B68529B70D8200E7DFAA /* iwx_so_a0_gf4_a0_77.c in Sources */,
-				7FF8157B290EBB9900050008 /* brcmfmac4358_pcie_bin.c in Sources */,
-				7FB2B68B29B70D8200E7DFAA /* iwx_cc_a0_77.c in Sources */,
-				7FF8157C290EBB9900050008 /* brcmfmac4366b_pcie_bin.c in Sources */,
-				7FF8157D290EBB9900050008 /* brcmfmac4366c_pcie_bin.c in Sources */,
-				7FF8157E290EBB9900050008 /* brcmfmac4371_pcie_bin.c in Sources */,
-				7FF8157F290EBB9900050008 /* brcmfmac43570_pcie_bin.c in Sources */,
-				7FF81580290EBB9900050008 /* brcmfmac43602_pcie_ap_bin.c in Sources */,
-				7FF81581290EBB9900050008 /* brcmfmac43602_pcie_bin.c in Sources */,
-				7FF81582290EBB9900050008 /* bwi_airforce.c in Sources */,
 				7F18B67129625C1C0082A5E2 /* AirPort_OpenBSD_Virtual.cpp in Sources */,
-				7FF81583290EBB9900050008 /* firmware.c in Sources */,
-				7FF81584290EBB9900050008 /* ipw_bss.c in Sources */,
 				7F4CEDA82912DD1B00C46A15 /* AirPort_OpenBSD_VirtualIOCTL.cpp in Sources */,
-				7FF81585290EBB9900050008 /* ipw_ibss.c in Sources */,
-				7FF81586290EBB9900050008 /* ipw_monitor.c in Sources */,
-				7FF81587290EBB9900050008 /* iwi_bss.c in Sources */,
-				7FF81588290EBB9900050008 /* iwi_ibss.c in Sources */,
-				7FF81589290EBB9900050008 /* iwi_monitor.c in Sources */,
-				7FF8158A290EBB9900050008 /* iwm_3160_17.c in Sources */,
-				7FF8158B290EBB9900050008 /* iwm_3168_29.c in Sources */,
-				7FF8158C290EBB9900050008 /* iwm_7260_17.c in Sources */,
-				7FF8158D290EBB9A00050008 /* iwm_7265D_29.c in Sources */,
-				7FF8158E290EBB9A00050008 /* iwm_8000C_36.c in Sources */,
-				7FF8158F290EBB9A00050008 /* iwm_8265_36.c in Sources */,
-				7FF81590290EBB9A00050008 /* iwm_9000_46.c in Sources */,
-				7FF81591290EBB9A00050008 /* iwm_9260_46.c in Sources */,
-				7FF81592290EBB9A00050008 /* iwn_100.c in Sources */,
-				7FF81593290EBB9A00050008 /* iwn_105.c in Sources */,
-				7FF81594290EBB9A00050008 /* iwn_135.c in Sources */,
-				7FF81595290EBB9A00050008 /* iwn_1000.c in Sources */,
-				7FF81596290EBB9A00050008 /* iwn_2000.c in Sources */,
-				7FF81597290EBB9A00050008 /* iwn_2030.c in Sources */,
-				7FF81598290EBB9A00050008 /* iwn_4965.c in Sources */,
-				7FF81599290EBB9A00050008 /* iwn_5000.c in Sources */,
-				7FB2B69729B70D8200E7DFAA /* iwx_Qu_c0_jf_b0_77.c in Sources */,
-				7FF8159A290EBB9A00050008 /* iwn_5150.c in Sources */,
-				7FF8159B290EBB9A00050008 /* iwn_6000.c in Sources */,
 				7F4AEF31291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.cpp in Sources */,
-				7FF8159C290EBB9A00050008 /* iwn_6005.c in Sources */,
 				7F4CEDA12912DD1B00C46A15 /* AirPort_OpenBSD_AWDL.cpp in Sources */,
-				7FF8159D290EBB9A00050008 /* iwn_6030.c in Sources */,
-				7FF8159E290EBB9A00050008 /* iwn_6050.c in Sources */,
-				7FF815A8290EBB9B00050008 /* iwx_so_a0_gf_a0_pnvm.c in Sources */,
-				7FF815AA290EBB9B00050008 /* iwx_so_a0_gf4_a0_pnvm.c in Sources */,
-				7FF815AD290EBB9B00050008 /* iwx_ty_a0_gf_a0_pnvm.c in Sources */,
-				7FF815AE290EBB9B00050008 /* rtwn_rtl8188efw.c in Sources */,
-				7FB2B6A929B70D8200E7DFAA /* iwx_QuZ_a0_jf_b0_77.c in Sources */,
-				7FF815AF290EBB9B00050008 /* rtwn_rtl8192cfwU_B.c in Sources */,
-				7FF815B0290EBB9B00050008 /* rtwn_rtl8192cfwU.c in Sources */,
-				7FF815B1290EBB9C00050008 /* rtwn_rtl8723fw_B.c in Sources */,
-				7FF815B2290EBB9C00050008 /* rtwn_rtl8723fw.c in Sources */,
-				7FF815B3290EBB9C00050008 /* wpi_3945abg.c in Sources */,
 				7FF815B4290EBB9C00050008 /* ifconfig.c in Sources */,
 				7FF815B5290EBB9C00050008 /* qsort.c in Sources */,
 				7FF815B6290EBB9C00050008 /* heapsort.c in Sources */,
@@ -3469,7 +2909,6 @@
 				7FF815C1290EBB9C00050008 /* ieee80211_output.c in Sources */,
 				7FF815C2290EBB9C00050008 /* ieee80211_pae_input.c in Sources */,
 				7FF815C3290EBB9D00050008 /* ieee80211_pae_output.c in Sources */,
-				7FB2B6C129B70D8200E7DFAA /* iwx_ty_a0_gf_a0_77.c in Sources */,
 				7FF815C4290EBB9D00050008 /* ieee80211_proto.c in Sources */,
 				7FF815C5290EBB9D00050008 /* ieee80211_ra_vht.c in Sources */,
 				7FF815C6290EBB9D00050008 /* ieee80211_ra.c in Sources */,
@@ -3478,7 +2917,6 @@
 				7FF815C9290EBB9D00050008 /* ieee80211.c in Sources */,
 				7FF815CA290EBB9D00050008 /* _bpf.c in Sources */,
 				7FF815CB290EBB9D00050008 /* _malloc.c in Sources */,
-				7FB2B67F29B70D8200E7DFAA /* iwx_Qu_b0_hr_b0_77.c in Sources */,
 				7FF815CC290EBB9D00050008 /* fls.c in Sources */,
 				7FF815CD290EBB9D00050008 /* task.c in Sources */,
 				7FF815CE290EBB9D00050008 /* timeout.c in Sources */,
@@ -3625,7 +3063,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)";
-				CURRENT_PROJECT_VERSION = 1.0.0d1;
+				CURRENT_PROJECT_VERSION = 1.0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"MAC_VERSION_MAJOR=20",
 					"$(inherited)",
@@ -3636,7 +3074,7 @@
 					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = v2.3.3;
+				MARKETING_VERSION = v2.4.0;
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zhong.$(PRODUCT_NAME:c99extidentifier)";
@@ -3653,7 +3091,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)";
-				CURRENT_PROJECT_VERSION = 1.0.0d1;
+				CURRENT_PROJECT_VERSION = 1.0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"MAC_VERSION_MAJOR=20",
 					"$(inherited)",
@@ -3664,7 +3102,7 @@
 					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = v2.3.3;
+				MARKETING_VERSION = v2.4.0;
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zhong.$(PRODUCT_NAME:c99extidentifier)";
@@ -3681,7 +3119,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)";
-				CURRENT_PROJECT_VERSION = 1.0.0d1;
+				CURRENT_PROJECT_VERSION = 1.0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"MAC_VERSION_MAJOR=19",
 					"$(inherited)",
@@ -3692,7 +3130,7 @@
 					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = v2.3.3;
+				MARKETING_VERSION = v2.4.0;
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zhong.$(PRODUCT_NAME:c99extidentifier)";
@@ -3709,7 +3147,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)";
-				CURRENT_PROJECT_VERSION = 1.0.0d1;
+				CURRENT_PROJECT_VERSION = 1.0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"MAC_VERSION_MAJOR=19",
 					"$(inherited)",
@@ -3720,7 +3158,7 @@
 					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = v2.3.3;
+				MARKETING_VERSION = v2.4.0;
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zhong.$(PRODUCT_NAME:c99extidentifier)";
@@ -3737,7 +3175,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)";
-				CURRENT_PROJECT_VERSION = 1.0.0d1;
+				CURRENT_PROJECT_VERSION = 1.0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"MAC_VERSION_MAJOR=18",
 					"$(inherited)",
@@ -3748,7 +3186,7 @@
 					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = v2.3.3;
+				MARKETING_VERSION = v2.4.0;
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zhong.$(PRODUCT_NAME:c99extidentifier)";
@@ -3765,7 +3203,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)";
-				CURRENT_PROJECT_VERSION = 1.0.0d1;
+				CURRENT_PROJECT_VERSION = 1.0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"MAC_VERSION_MAJOR=18",
 					"$(inherited)",
@@ -3776,7 +3214,7 @@
 					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = v2.3.3;
+				MARKETING_VERSION = v2.4.0;
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zhong.$(PRODUCT_NAME:c99extidentifier)";
@@ -3793,7 +3231,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)";
-				CURRENT_PROJECT_VERSION = 1.0.0d1;
+				CURRENT_PROJECT_VERSION = 1.0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"MAC_VERSION_MAJOR=17",
 					"$(inherited)",
@@ -3804,7 +3242,7 @@
 					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = v2.3.3;
+				MARKETING_VERSION = v2.4.0;
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zhong.$(PRODUCT_NAME:c99extidentifier)";
@@ -3821,7 +3259,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)";
-				CURRENT_PROJECT_VERSION = 1.0.0d1;
+				CURRENT_PROJECT_VERSION = 1.0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"MAC_VERSION_MAJOR=17",
 					"$(inherited)",
@@ -3832,7 +3270,7 @@
 					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = v2.3.3;
+				MARKETING_VERSION = v2.4.0;
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zhong.$(PRODUCT_NAME:c99extidentifier)";
@@ -3867,6 +3305,59 @@
 			};
 			name = Release;
 		};
+		7FA595B92A59A95200824D8B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1.0;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_INPUT_FILETYPE = automatic;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AirPortOpenBSDFirmwareData/AirPortOpenBSDFirmwareData_Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MARKETING_VERSION = v2.4.0;
+				MODULE_NAME = com.zhong.AirPortOpenBSDFirmwareData;
+				MODULE_VERSION = 1.0.0d1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSDFirmwareData;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				WRAPPER_EXTENSION = kext;
+			};
+			name = Debug;
+		};
+		7FA595BA2A59A95200824D8B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1.0;
+				GCC_INPUT_FILETYPE = automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AirPortOpenBSDFirmwareData/AirPortOpenBSDFirmwareData_Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				MARKETING_VERSION = v2.4.0;
+				MODULE_NAME = com.zhong.AirPortOpenBSDFirmwareData;
+				MODULE_VERSION = 1.0.0d1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSDFirmwareData;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				WRAPPER_EXTENSION = kext;
+			};
+			name = Release;
+		};
 		7FBAFFF927E077790075D188 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3875,7 +3366,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)";
-				CURRENT_PROJECT_VERSION = 1.0.0d1;
+				CURRENT_PROJECT_VERSION = 1.0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"MAC_VERSION_MAJOR=21",
 					"$(inherited)",
@@ -3886,7 +3377,7 @@
 					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12;
-				MARKETING_VERSION = v2.3.3;
+				MARKETING_VERSION = v2.4.0;
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zhong.$(PRODUCT_NAME:c99extidentifier)";
@@ -3904,7 +3395,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)";
-				CURRENT_PROJECT_VERSION = 1.0.0d1;
+				CURRENT_PROJECT_VERSION = 1.0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"MAC_VERSION_MAJOR=21",
 					"$(inherited)",
@@ -3915,7 +3406,7 @@
 					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12;
-				MARKETING_VERSION = v2.3.3;
+				MARKETING_VERSION = v2.4.0;
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zhong.$(PRODUCT_NAME:c99extidentifier)";
@@ -3933,7 +3424,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)";
-				CURRENT_PROJECT_VERSION = 1.0.0d1;
+				CURRENT_PROJECT_VERSION = 1.0;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"MAC_VERSION_MAJOR=22",
@@ -3945,7 +3436,7 @@
 					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13;
-				MARKETING_VERSION = v2.3.3;
+				MARKETING_VERSION = v2.4.0;
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zhong.$(PRODUCT_NAME:c99extidentifier)";
@@ -3963,7 +3454,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CONFIGURATION_BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)";
-				CURRENT_PROJECT_VERSION = 1.0.0d1;
+				CURRENT_PROJECT_VERSION = 1.0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"MAC_VERSION_MAJOR=22",
 					"$(inherited)",
@@ -3974,7 +3465,7 @@
 					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13;
-				MARKETING_VERSION = v2.3.3;
+				MARKETING_VERSION = v2.4.0;
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zhong.$(PRODUCT_NAME:c99extidentifier)";
@@ -4037,6 +3528,15 @@
 			buildConfigurations = (
 				18713CF4255F158E00EF3D49 /* Debug */,
 				18713CF5255F158E00EF3D49 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7FA595B82A59A95200824D8B /* Build configuration list for PBXNativeTarget "AirPortOpenBSDFirmwareData" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7FA595B92A59A95200824D8B /* Debug */,
+				7FA595BA2A59A95200824D8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -1,4 +1,4 @@
-/*    $OpenBSD: if_iwx.c,v 1.173 2023/06/27 15:31:27 stsp Exp $    */
+/*    $OpenBSD: if_iwx.c,v 1.175 2023/07/05 15:07:28 stsp Exp $    */
 
 /*
  * Copyright (c) 2014, 2016 genua gmbh <info@genua.de>
@@ -2925,7 +2925,7 @@ iwx_disable_txq(struct iwx_softc *sc, int sta_id, int qid, uint8_t tid)
         cmd_v0.cb_size = htole32(0);
         cmd_v0.byte_cnt_addr = htole64(0);
         cmd_v0.tfdq_addr = htole64(0);
-        hcmd.id = IWX_SCD_QUEUE_CFG,
+        hcmd.id = IWX_SCD_QUEUE_CFG;
         hcmd.data[0] = &cmd_v0;
         hcmd.len[0] = sizeof(cmd_v0);
     } else if (cmd_ver == 3) {
@@ -7613,7 +7613,7 @@ iwx_bgscan_done(struct ieee80211com *ic,
     free(sc->bgscan_unref_arg, M_DEVBUF, sc->bgscan_unref_arg_size);
     sc->bgscan_unref_arg = arg;
     sc->bgscan_unref_arg_size = arg_size;
-    iwx_add_task(sc, sc->sc_nswq, &sc->bgscan_done_task);
+    iwx_add_task(sc, systq, &sc->bgscan_done_task);
 }
 
 void
@@ -8054,7 +8054,7 @@ iwx_phy_send_rlc(struct iwx_softc *sc, struct iwx_phy_ctxt *phyctxt,
     idle_cnt = chains_static;
     active_cnt = chains_dynamic;
 
-    cmd.phy_id = htole32(phyctxt->id),
+    cmd.phy_id = htole32(phyctxt->id);
     cmd.rlc.rx_chain_info = htole32(iwx_fw_valid_rx_ant(sc) <<
         IWX_PHY_RX_CHAIN_VALID_POS);
     cmd.rlc.rx_chain_info |= htole32(idle_cnt << IWX_PHY_RX_CHAIN_CNT_POS);

@@ -26,14 +26,36 @@ void AirPort_OpenBSD_Class::firmwareLoadComplete( OSKextRequestTag requestTag, O
     IOLockWakeup(dev->fwLoadLock, dev, true);
 }
 
-void AirPort_OpenBSD_Class::firmwareLoadComplete(const char* name) {
-    for (int i = 0; i < firmwares_total; i++) {
-        if (strcmp(firmwares[i].name, name) == 0) {
-            struct firmware fw = firmwares[i];
-            this->firmwareData = OSData::withBytes(fw.data, fw.size);
-            return;
+//OSData *AirPort_OpenBSD_Class::firmwareLoadComplete(const char* name) {
+//    for (int i = 0; i < firmwares_total; i++) {
+//        if (strcmp(firmwares[i].name, name) == 0) {
+//            struct firmware fw = firmwares[i];
+//            return OSData::withBytes(fw.data, fw.size);
+//        }
+//    }
+//
+//    return NULL;
+//}
+
+AirPortOpenBSDFirmwareData* AirPort_OpenBSD_Class::getFirmwareStore()
+{
+    if (!_mFirmware)
+    {
+        // check to see if it already loaded
+        IOService* tmpStore = waitForMatchingService(serviceMatching(kAirPortOpenBSDFirmwareDataService), 0);
+        _mFirmware = OSDynamicCast(AirPortOpenBSDFirmwareData, tmpStore);
+        if (!_mFirmware)
+        {
+            if (tmpStore)
+                tmpStore->release();
         }
+
     }
+    
+    if (!_mFirmware)
+        DebugLog("FirmwareData does not appear to be available.\n");
+
+    return _mFirmware;
 }
 
 int AirPort_OpenBSD_Class::loadfirmware(const char *firmware_name, u_char **bufp, size_t *buflen)
@@ -53,7 +75,19 @@ int AirPort_OpenBSD_Class::loadfirmware(const char *firmware_name, u_char **bufp
 //    IOLockSleep(this->fwLoadLock, this, THREAD_INTERRUPTIBLE);
 //    IOLockUnlock(this->fwLoadLock);
     
-    firmwareLoadComplete(firmware_name);
+//    this->firmwareData = this->firmwareLoadComplete(firmware_name);
+    
+    AirPortOpenBSDFirmwareData* mFirmware = this->getFirmwareStore();
+    if (mFirmware == NULL) {
+        DebugLog("AirPortOpenBSDFirmwareData is unload");
+        return 1;
+    }
+    this->firmwareData = mFirmware->firmwareLoadComplete(firmware_name);
+    if (this->firmwareData == NULL) {
+        DebugLog("%s Unable to load firmware file", __FUNCTION__);
+        return 1;
+    }
+    
     
     *buflen = this->firmwareData->getLength();
     *bufp = (u_char *)malloc(*buflen, M_DEVBUF, M_NOWAIT);
