@@ -11,7 +11,7 @@
 #include <net80211/ieee80211_var.h>
 
 void AirPort_OpenBSD_Class::setPTK(const u_int8_t *key, size_t key_len) {
-    struct ieee80211_node *ni = this->ic->ic_bss;
+    struct ieee80211_node *ni = ic->ic_bss;
     struct ieee80211_key *k;
     int keylen;
     
@@ -36,19 +36,22 @@ void AirPort_OpenBSD_Class::setPTK(const u_int8_t *key, size_t key_len) {
         k->k_len = keylen;
         memcpy(k->k_key, key, k->k_len);
         /* install the PTK */
-        if ((*ic->ic_set_key)(this->ic, ni, k) != 0) {
+        switch ((*ic->ic_set_key)(ic, ni, k)) {
+        case 0:
+            break;
+        case EBUSY:
+            break;
+        default:
             DebugLog("setting PTK failed\n");
             return;
         }
-        else {
-            DebugLog("setting PTK successfully\n");
-        }
+        DebugLog("setting PTK successfully\n");
         ni->ni_flags &= ~IEEE80211_NODE_RSN_NEW_PTK;
         ni->ni_flags &= ~IEEE80211_NODE_TXRXPROT;
         ni->ni_flags |= IEEE80211_NODE_RXPROT;
     } else if (ni->ni_rsncipher != IEEE80211_CIPHER_USEGROUP)
         DebugLog("%s: unexpected pairwise key update received from %s\n",
-              this->ic->ic_if.if_xname, ether_sprintf(ni->ni_macaddr));
+              ic->ic_if.if_xname, ether_sprintf(ni->ni_macaddr));
 }
 
 void AirPort_OpenBSD_Class::setGTK(const u_int8_t *gtk, size_t key_len, u_int8_t kid, u_int8_t *rsc) {
@@ -76,13 +79,16 @@ void AirPort_OpenBSD_Class::setGTK(const u_int8_t *gtk, size_t key_len, u_int8_t
             k->k_len = keylen;
             memcpy(k->k_key, gtk, k->k_len);
             /* install the GTK */
-            if ((*ic->ic_set_key)(this->ic, ni, k) != 0) {
+            switch ((*ic->ic_set_key)(ic, ni, k)) {
+            case 0:
+                break;
+            case EBUSY:
+                break;
+            default:
                 DebugLog("setting GTK failed\n");
                 return;
             }
-            else {
-                DebugLog("setting GTK successfully\n");
-            }
+            DebugLog("setting GTK successfully\n");
         }
     }
     
@@ -104,3 +110,21 @@ void AirPort_OpenBSD_Class::setGTK(const u_int8_t *gtk, size_t key_len, u_int8_t
     }
 }
 
+
+bool AirPort_OpenBSD_Class::isConnected()
+{
+    struct ieee80211com *ic = (struct ieee80211com *)_ifp;
+    
+    return ic->ic_state == IEEE80211_S_RUN &&
+    (ic->ic_opmode != IEEE80211_M_STA ||
+     !(ic->ic_flags & IEEE80211_F_RSNON) ||
+     ic->ic_bss->ni_port_valid);
+}
+
+bool AirPort_OpenBSD_Class::isRun80211X()
+{
+    struct ieee80211com *ic = (struct ieee80211com *)_ifp;
+    
+    return ic->ic_state == IEEE80211_S_RUN &&
+    (ic->ic_opmode != IEEE80211_M_STA || (ic->ic_rsnakms & IEEE80211_AKM_8021X || ic->ic_rsnakms & IEEE80211_AKM_SHA256_8021X));
+}

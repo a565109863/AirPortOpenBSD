@@ -46,12 +46,16 @@ struct bus_dmamap {
     bus_size_t alignment;
     IOBufferMemoryDescriptor *bufDes;
     IOMbufNaturalMemoryCursor*    mbufCursor;
+    
+    bus_addr_t kvap;
+    
+    SLIST_ENTRY(bus_dmamap)    next;
 };
 
 typedef struct bus_dmamap* bus_dmamap_t;
 
 struct bus_dma_tag {
-    bus_dmamap_t map;
+    SLIST_HEAD(, bus_dmamap)    bus_dmamap_list;
 };
 
 typedef bus_dma_tag*               bus_dma_tag_t;

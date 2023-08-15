@@ -158,7 +158,14 @@ bool AirPort_OpenBSD_Class::start(IOService *provider) {
 //            // Ventura使用内部电池时，启用批量扫描，提高自动连接速度
 //            this->scanReqMultiple = 1;
 //        }
+        // 没有配置默认为1，开启
         this->scanReqMultiple = 1;
+    }
+    
+    // 是否开启苹果的rsn认证
+    if (PE_parse_boot_argn("useAppleRSN", &this->useAppleRSN, sizeof(this->useAppleRSN)) == false) {
+        // 没有配置默认为1，开启
+        this->useAppleRSN = 1;
     }
     
     if_softc = malloc(this->ca->ca_devsize, M_DEVBUF, M_NOWAIT);
@@ -181,6 +188,7 @@ bool AirPort_OpenBSD_Class::start(IOService *provider) {
     this->pa->workloop = fWorkloop;
     this->pa->pa_tag = fPciDevice;
     this->pa->pa_dmat = (bus_dma_tag_t)malloc(sizeof(bus_dma_tag_t), M_DEVBUF, M_NOWAIT);
+    SLIST_INIT(&this->pa->pa_dmat->bus_dmamap_list);
     
     fPciDevice->setMemoryEnable(true);
     fPciDevice->setIOEnable(true);

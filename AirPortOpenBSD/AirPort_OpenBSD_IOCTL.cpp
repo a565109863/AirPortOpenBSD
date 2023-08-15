@@ -408,9 +408,9 @@ IOReturn AirPort_OpenBSD_Class::setSCAN_REQ(OSObject *object, struct apple80211_
                 }
             }
         }
-        
-        this->scanComplete();
     }
+    
+    this->scanComplete();
     
     if (this->fScanSource) {
         this->fScanSource->setTimeoutMS(sd->dwell_time);
@@ -449,12 +449,6 @@ IOReturn AirPort_OpenBSD_Class::setSCAN_REQ_MULTIPLE(OSObject *object, struct ap
         DebugLog("i = %d ssid = %s ssid_len = %d", i, smd->ssids[i].ssid, smd->ssids[i].ssid_len);
     }
     
-    uint32_t max_channel = 0;
-    for (int i = 0; i < smd->num_channels; i++) {
-        DebugLog("i = %d channel = %d", i, smd->channels[i].channel);
-        max_channel = max_channel > smd->channels[i].channel ? max_channel : smd->channels[i].channel;
-    }
-    
     // 保存已知网络
     for (int i = 0; i < smd->ssid_count; i++) {
         struct apple80211_ssid_data *ssid = &smd->ssids[i];
@@ -481,9 +475,15 @@ IOReturn AirPort_OpenBSD_Class::setSCAN_REQ_MULTIPLE(OSObject *object, struct ap
         }
     }
     
-    if (this->ic->ic_state == IEEE80211_S_SCAN || this->ic->ic_state == IEEE80211_S_RUN) {
+    if (this->ic->ic_state == IEEE80211_S_SCAN) {
         
 #if MAC_VERSION_MAJOR < MAC_VERSION_MAJOR_Ventura
+        
+        uint32_t max_channel = 0;
+        for (int i = 0; i < smd->num_channels; i++) {
+            DebugLog("i = %d channel = %d", i, smd->channels[i].channel);
+            max_channel = max(max_channel, smd->channels[i].channel);
+        }
         
         for (int i = 0; i < smd->ssid_count && smd->ssid_count == 2; i++) {
             struct apple80211_ssid_data *ssid = &smd->ssids[i];
@@ -537,9 +537,10 @@ IOReturn AirPort_OpenBSD_Class::setSCAN_REQ_MULTIPLE(OSObject *object, struct ap
         }
         
 #endif
-        
-        this->scanComplete();
+    
     }
+    
+    this->scanComplete();
     
     if (this->fScanSource) {
         this->fScanSource->setTimeoutMS(smd->dwell_time);
@@ -959,6 +960,17 @@ IOReturn AirPort_OpenBSD_Class::setASSOCIATE(OSObject *object, struct apple80211
     if (!ad)
         return kIOReturnError;
     
+    struct ifnet *ifp = &this->ic->ic_if;
+    if (!(this->useAppleRSNSupplicant(ifp->iface))) {
+        if (this->ic->ic_state < IEEE80211_S_SCAN) {
+            return kIOReturnSuccess;
+        }
+        
+        if (this->ic->ic_state == IEEE80211_S_ASSOC || this->ic->ic_state == IEEE80211_S_AUTH) {
+            return kIOReturnSuccess;
+        }
+    }
+    
     if (OSDynamicCast(IO80211P2PInterface, object) != NULL) {
         DebugLog("IO80211P2PInterface");
     } else {
@@ -985,7 +997,6 @@ IOReturn AirPort_OpenBSD_Class::setASSOCIATE(OSObject *object, struct apple80211
             // 80211X认证         ad_auth_lower = 1, ad_auth_upper = 4, key_cipher_type = 0
             
             this->configArrCount = 0;
-            struct ifnet *ifp = &this->ic->ic_if;
             this->configArr[0] = ifp->if_xname;
             this->configArr[1] = "nwid";
             this->configArr[2] = (const char *)ad->ad_ssid;
@@ -1120,6 +1131,16 @@ IOReturn AirPort_OpenBSD_Class::setASSOCIATE(OSObject *object, struct apple80211
 //        while (ic->ic_state <= IEEE80211_S_SCAN) {
 //            tsleep_nsec(&ic->ic_state, 0, "ASSOC", MSEC_TO_NSEC(50));
 //        }
+        
+        if (!(this->useAppleRSNSupplicant(ifp->iface))) {
+            this->try_times = 10;
+            this->disassoc_times = false;
+
+            while (!(this->isConnected() || this->isRun80211X()) && this->try_times-- > 0) {
+                tsleep_nsec(&ic->ic_state, PCATCH, "getASSOCIATION_STATUS",
+                    SEC_TO_NSEC(1));
+            };
+        }
 
     }
     
@@ -1150,6 +1171,20 @@ IOReturn AirPort_OpenBSD_Class::getASSOCIATE_RESULT(OSObject *object, struct app
 
 IOReturn AirPort_OpenBSD_Class::setDISASSOCIATE(OSObject *object)
 {
+    struct ifnet *ifp = &this->ic->ic_if;
+    if (!(this->useAppleRSNSupplicant(ifp->iface))) {
+        if (this->disassoc_times) {
+            this->disassoc_times = false;
+            return kIOReturnSuccess;
+        }
+        
+        this->disassoc_times = true;
+        
+    //    _ifp->iface->postMessage(APPLE80211_M_SSID_CHANGED);
+        
+        return kIOReturnSuccess;
+    }
+    
     if (this->ic->ic_state != IEEE80211_S_RUN) {
         return kIOReturnSuccess;
     }
@@ -1445,6 +1480,24 @@ IOReturn AirPort_OpenBSD_Class::getSTATS(OSObject *object, struct apple80211_sta
 
 IOReturn AirPort_OpenBSD_Class::getASSOCIATION_STATUS(OSObject *object, struct apple80211_assoc_status_data* ret)
 {
+    struct ifnet *ifp = &this->ic->ic_if;
+    if (!(this->useAppleRSNSupplicant(ifp->iface))) {
+        ret->version = APPLE80211_VERSION;
+        ret->status = APPLE80211_STATUS_SUCCESS;
+        
+        if (this->isRun80211X()) {
+            struct ieee80211com *ic = (struct ieee80211com *)_ifp;
+            ieee80211_set_link_state(ic, LINK_STATE_UP);
+            this->disassoc_times = true;
+        } else if (this->isConnected()) {
+            this->disassoc_times = true;
+        } else {
+            ret->status = APPLE80211_STATUS_UNAVAILABLE;
+        }
+
+        return kIOReturnSuccess;
+    }
+    
     ret->version = APPLE80211_VERSION;
     if (this->ic->ic_state == IEEE80211_S_RUN)
         ret->status = APPLE80211_STATUS_SUCCESS;
@@ -1565,7 +1618,7 @@ IOReturn AirPort_OpenBSD_Class::setSCANCACHE_CLEAR(OSObject *object, struct devi
 {
     DebugLog("----");
     
-    if (this->ic->ic_state > IEEE80211_S_INIT) {
+    if (this->getNetworkInterface()->linkState() != kIO80211NetworkLinkUp) {
         this->scanFreeResults();
     }
     

@@ -28,7 +28,7 @@ int bus_dmamap_create(bus_dma_tag_t t, bus_size_t size, int nsegments, bus_size_
     
     (*map)->_dm_cookie = malloc(sizeof(struct dm_cookie), M_DEVBUF, M_NOWAIT);
     
-    t->map = (*map);
+    SLIST_INSERT_HEAD(&t->bus_dmamap_list, *map, next);
     
 fail:
     return err;
@@ -51,12 +51,10 @@ void bus_dmamap_destroy(bus_dma_tag_t t, bus_dmamap_t map)
         map->mbufCursor = NULL;
     }
     
+    SLIST_REMOVE(&t->bus_dmamap_list, map, bus_dmamap, next);
+    
     free(map, M_DEVBUF, sizeof(struct bus_dmamap));
-    if (t->map)
-        free(t->map, M_DEVBUF, sizeof(struct bus_dmamap));
-
     map = NULL;
-    t->map = NULL;
 }
 
 int  bus_dmamem_alloc(bus_dma_tag_t t, bus_size_t size, bus_size_t alignment,
@@ -64,24 +62,26 @@ bus_size_t boundary, bus_dma_segment_t *segs, int nsegs, int *rsegs,
 int flags)
 {
     int err = 0;
+    bus_dmamap_t map = SLIST_FIRST(&t->bus_dmamap_list);
     
-    if (t->map == NULL) {
+    if (map == NULL) {
         err = 1;
         goto fail;
     }
     
-    t->map->bufDes = IOBufferMemoryDescriptor::inTaskWithPhysicalMask(kernel_task, (kIODirectionInOut | kIOMemoryPhysicallyContiguous | kIOMapInhibitCache), size, 0xFFFFFFFFFFFFF000ull);
-    if (t->map->bufDes == NULL) {
+    map->bufDes = IOBufferMemoryDescriptor::inTaskWithPhysicalMask(kernel_task, (kIODirectionInOut | kIOMemoryPhysicallyContiguous | kIOMapInhibitCache), size, 0xFFFFFFFFFFFFF000ull);
+    if (map->bufDes == NULL) {
         err = 1;
         goto fail;
     }
     
-    segs->ds_addr = (bus_addr_t)t->map->bufDes->getBytesNoCopy();
-    segs->ds_len = t->map->bufDes->getLength();
+    segs->ds_addr = (bus_addr_t)map->bufDes->getBytesNoCopy();
+    segs->ds_len = map->bufDes->getLength();
     
     bzero((void *)segs->ds_addr, segs->ds_len);
     
-    t->map->alignment = alignment;
+    map->alignment = alignment;
+    map->kvap = segs->ds_addr;
     
 fail:
     return err;
@@ -89,16 +89,26 @@ fail:
 
 void bus_dmamem_free(bus_dma_tag_t t, bus_dma_segment_t *segs, int nsegs)
 {
-    if (t->map == NULL) {
+    bus_dmamap_t map, map_info, tmp;
+    SLIST_FOREACH_SAFE(map_info, &t->bus_dmamap_list, next, tmp) {
+        // 查找bssid和channel
+        if (segs->ds_addr == map_info->kvap) {
+            // 找到
+            map = map_info;
+            break;
+        }
+    }
+    
+    if (map == NULL) {
         return;
     }
     
-    if (t->map->bufDes == NULL) {
+    if (map->bufDes == NULL) {
         return;
     }
     
-    t->map->bufDes->release();
-    t->map->bufDes = NULL;
+    map->bufDes->release();
+    map->bufDes = NULL;
     
 //    segs->ds_addr = NULL;
 //    segs->ds_len = 0;
@@ -111,17 +121,27 @@ int bus_dmamem_map(bus_dma_tag_t t, bus_dma_segment_t *segs, int nsegs,
 {
     int err = 0;
     
-    if (t->map == NULL) {
+    bus_dmamap_t map, map_info, tmp;
+    SLIST_FOREACH_SAFE(map_info, &t->bus_dmamap_list, next, tmp) {
+        // 查找bssid和channel
+        if (segs->ds_addr == map_info->kvap) {
+            // 找到
+            map = map_info;
+            break;
+        }
+    }
+    
+    if (map == NULL) {
         err = 1;
         goto done;
     }
     
-    if (t->map->bufDes == NULL) {
+    if (map->bufDes == NULL) {
         err = 1;
         goto done;
     }
     
-    if (t->map->bufDes->prepare() != kIOReturnSuccess) {
+    if (map->bufDes->prepare() != kIOReturnSuccess) {
         printf("prepare()\n");
         err = 1;
         goto fail1;
@@ -133,18 +153,28 @@ done:
     return err;
 
 fail1:
-    t->map->bufDes->release();
-    t->map->bufDes = NULL;
+    map->bufDes->release();
+    map->bufDes = NULL;
     goto done;
 }
 
 void bus_dmamem_unmap(bus_dma_tag_t t, void *kvap,  bus_size_t size)
 {
-    if (t->map == NULL) {
+    bus_dmamap_t map, map_info, tmp;
+    SLIST_FOREACH_SAFE(map_info, &t->bus_dmamap_list, next, tmp) {
+        // 查找bssid和channel
+        if (kvap == (void *)map_info->kvap) {
+            // 找到
+            map = map_info;
+            break;
+        }
+    }
+    
+    if (map == NULL) {
         return;
     }
     
-    if (t->map->bufDes == NULL) {
+    if (map->bufDes == NULL) {
         return;
     }
     
@@ -152,7 +182,7 @@ void bus_dmamem_unmap(bus_dma_tag_t t, void *kvap,  bus_size_t size)
         return;
     }
     
-    t->map->bufDes->complete();
+    map->bufDes->complete();
 }
 
 int _bus_dmamap_load(bus_dma_tag_t t, bus_dmamap_t map, void *buf, bus_size_t buflen)

@@ -64,12 +64,12 @@ int AirPort_OpenBSD_Class::bpfOutput80211Radio(OSObject *object, mbuf_t m)
 
 bool AirPort_OpenBSD_Class::useAppleRSNSupplicant(IO80211Interface *interface)
 {
-    return true;
+    return this->useAppleRSN;
 }
 
 bool AirPort_OpenBSD_Class::useAppleRSNSupplicant(IO80211VirtualInterface *interface)
 {
-    return true;
+    return this->useAppleRSN;
 }
 
 SInt32 AirPort_OpenBSD_Class::monitorModeSetEnabled(IO80211Interface *interface, bool enabled, UInt32 dlt)

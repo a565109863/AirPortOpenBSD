@@ -1,6 +1,13 @@
 
 feature
 
+v2.4.1
+1、支持开机参数useAppleRSN=1/0，开启/关闭Apple自带EAPOL认证功能
+2、认证过程中不可清除ssid列表
+3、优化bus_dma_tag_t列表，修复iwx内核恐慌
+4、修复iwx驱动认证失败
+5、修复认证后wifi列表不更新
+
 
 v2.4.0
 1、固件分离，在OC配置里，把AirPortOpenBSDFirmwareData.kext放在AirPortOpenBSD_XXX.kext的前面

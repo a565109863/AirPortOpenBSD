@@ -365,13 +365,14 @@ public:
     struct apple80211_scan_result_list *scan_result_next;
     
     int scanReqMultiple = 1;
+    int useAppleRSN = 1;
     
     struct apple80211_ssid_data scan_ssid;
     int active_scan = 0;
     
     SLIST_HEAD(,apple80211_ssid_data_known_list) known_ssid_lists = SLIST_HEAD_INITIALIZER(known_ssid_lists);
     
-    // ASSOC
+    // ASSOC apple rsn
     void setPTK(const u_int8_t *key, size_t key_len);
     void setGTK(const u_int8_t *key, size_t key_len, u_int8_t kid, u_int8_t *rsc);
     struct apple80211_authtype_data authtype_data;
@@ -384,6 +385,12 @@ public:
     char key_tmp[256];
     u_int32_t current_authtype_lower;
     u_int32_t current_authtype_upper;
+    
+    // openbsd rsn
+    int try_times;
+    bool disassoc_times = false;
+    bool isConnected();
+    bool isRun80211X();
     
 public:
     
