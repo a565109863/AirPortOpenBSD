@@ -1,4 +1,4 @@
-/*    $OpenBSD: if_iwm.c,v 1.408 2023/07/05 15:07:28 stsp Exp $    */
+/*    $OpenBSD: if_iwm.c,v 1.410 2023/09/02 09:02:18 stsp Exp $    */
 
 /*
  * Copyright (c) 2014, 2016 genua gmbh <info@genua.de>
@@ -6753,7 +6753,12 @@ iwm_tx(struct iwm_softc *sc, mbuf_t m, struct ieee80211_node *ni, int ac)
      * client mode; the firmware's station table contains only one entry
      * which represents our access point.
      */
-    if (isset(sc->sc_enabled_capa, IWM_UCODE_TLV_CAPA_DQA_SUPPORT))
+    if (ic->ic_opmode == IEEE80211_M_MONITOR) {
+        if (isset(sc->sc_enabled_capa, IWM_UCODE_TLV_CAPA_DQA_SUPPORT))
+            qid = IWM_DQA_INJECT_MONITOR_QUEUE;
+        else
+            qid = IWM_AUX_QUEUE;
+    } else if (isset(sc->sc_enabled_capa, IWM_UCODE_TLV_CAPA_DQA_SUPPORT))
         qid = IWM_DQA_MIN_MGMT_QUEUE + ac;
     else
         qid = ac;
@@ -6825,7 +6830,8 @@ iwm_tx(struct iwm_softc *sc, mbuf_t m, struct ieee80211_node *ni, int ac)
 #endif
     totlen = mbuf_pkthdr_len(m);
 
-    if (wh->i_fc[1] & IEEE80211_FC1_PROTECTED) {
+    if (ic->ic_opmode != IEEE80211_M_MONITOR &&
+        (wh->i_fc[1] & IEEE80211_FC1_PROTECTED)) {
         k = ieee80211_get_txkey(ic, wh, ni);
         if ((k->k_flags & IEEE80211_KEY_GROUP) ||
             (k->k_cipher != IEEE80211_CIPHER_CCMP)) {
@@ -6852,7 +6858,10 @@ iwm_tx(struct iwm_softc *sc, mbuf_t m, struct ieee80211_node *ni, int ac)
         (ic->ic_flags & IEEE80211_F_USEPROT)))
         flags |= IWM_TX_CMD_FLG_PROT_REQUIRE;
 
-    tx->sta_id = IWM_STATION_ID;
+    if (ic->ic_opmode == IEEE80211_M_MONITOR)
+        tx->sta_id = IWM_MONITOR_STA_ID;
+    else
+        tx->sta_id = IWM_STATION_ID;
 
     if (type == IEEE80211_FC0_TYPE_MGT) {
         if (subtype == IEEE80211_FC0_SUBTYPE_ASSOC_REQ ||
@@ -9203,6 +9212,9 @@ iwm_delete_key(struct ieee80211com *ic, struct ieee80211_node *ni,
                 ieee80211_delete_key(ic, ni, k);
         return;
     }
+
+    if ((sc->sc_flags & IWM_FLAG_STA_ACTIVE) == 0)
+        return;
 
     if (!isset(sc->sc_ucode_api, IWM_UCODE_TLV_API_TKIP_MIC_KEYS))
         return iwm_delete_key_v1(ic, ni, k);

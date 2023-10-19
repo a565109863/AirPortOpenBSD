@@ -15,7 +15,7 @@ typedef IOPhysicalSegment   bus_dma_segment_t;
 #define ds_len  length
 
 struct dm_cookie {
-    IOMemoryDescriptor *bufDes;
+    IOMemoryDescriptor *memDes;
     IODMACommand *dmaCmd;
 };
 

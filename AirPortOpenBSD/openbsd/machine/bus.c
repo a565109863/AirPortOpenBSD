@@ -200,13 +200,13 @@ int _bus_dmamap_load(bus_dma_tag_t t, bus_dmamap_t map, void *buf, bus_size_t bu
     
     _dm_cookie = (struct dm_cookie *)map->_dm_cookie;
     
-    _dm_cookie->bufDes = IOBufferMemoryDescriptor::withAddress(buf, buflen, kIODirectionInOut);
-    if (_dm_cookie->bufDes == NULL) {
+    _dm_cookie->memDes = IOBufferMemoryDescriptor::withAddress(buf, buflen, kIODirectionInOut);
+    if (_dm_cookie->memDes == NULL) {
         err = 1;
         goto done;
     }
     
-    if (_dm_cookie->bufDes->prepare() != kIOReturnSuccess) {
+    if (_dm_cookie->memDes->prepare() != kIOReturnSuccess) {
         printf("prepare()\n");
         err = 1;
         goto fail1;
@@ -219,7 +219,7 @@ int _bus_dmamap_load(bus_dma_tag_t t, bus_dmamap_t map, void *buf, bus_size_t bu
         goto fail2;
     }
 
-    if (_dm_cookie->dmaCmd->setMemoryDescriptor(_dm_cookie->bufDes) != kIOReturnSuccess) {
+    if (_dm_cookie->dmaCmd->setMemoryDescriptor(_dm_cookie->memDes) != kIOReturnSuccess) {
         printf("setMemoryDescriptor() failed.\n");
         err = 1;
         goto fail3;
@@ -244,10 +244,10 @@ fail3:
     _dm_cookie->dmaCmd->release();
     _dm_cookie->dmaCmd = NULL;
 fail2:
-    _dm_cookie->bufDes->complete();
+    _dm_cookie->memDes->complete();
 fail1:
-    _dm_cookie->bufDes->release();
-    _dm_cookie->bufDes = NULL;
+    _dm_cookie->memDes->release();
+    _dm_cookie->memDes = NULL;
     goto done;
 }
 
@@ -308,10 +308,10 @@ void bus_dmamap_unload(bus_dma_tag_t t, bus_dmamap_t map)
             _dm_cookie->dmaCmd->release();
             _dm_cookie->dmaCmd = NULL;
         }
-        if (_dm_cookie->bufDes) {
-            _dm_cookie->bufDes->complete();
-            _dm_cookie->bufDes->release();
-            _dm_cookie->bufDes = NULL;
+        if (_dm_cookie->memDes) {
+            _dm_cookie->memDes->complete();
+            _dm_cookie->memDes->release();
+            _dm_cookie->memDes = NULL;
         }
     }
     

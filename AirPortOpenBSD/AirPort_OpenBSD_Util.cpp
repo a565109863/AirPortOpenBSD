@@ -164,7 +164,7 @@ AirPort_OpenBSD_Class::ether_ifdetach(struct ifnet *ifp)
 
 void AirPort_OpenBSD_Class::setLinkState(int linkState)
 {
-    DebugLog("ifp->if_link_state = %d", linkState);
+    DebugLog("ifp->if_link_state = %d, ic_state = %d", linkState, this->ic->ic_state);
     
     struct ifnet *ifp = &this->ic->ic_if;
     
@@ -176,7 +176,9 @@ void AirPort_OpenBSD_Class::setLinkState(int linkState)
 //        this->scanFreeResults();
         this->setLinkStatus(kIONetworkLinkValid);
         ifp->iface->stopOutputThread();
-        ifp->iface->flushOutputQueue();
+        if (this->ic->ic_state == IEEE80211_S_INIT) {
+            ifp->iface->flushOutputQueue();
+        }
         reason = APPLE80211_REASON_UNSPECIFIED;
     }
     

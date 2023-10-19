@@ -1,6 +1,10 @@
 
 feature
 
+v2.4.2
+1、修复无法连接部分开放式ssid，如Starbucks
+2、同步iwx、iwm代码
+
 v2.4.1
 1、支持开机参数useAppleRSN=1/0，开启/关闭Apple自带EAPOL认证功能
 2、认证过程中不可清除ssid列表
