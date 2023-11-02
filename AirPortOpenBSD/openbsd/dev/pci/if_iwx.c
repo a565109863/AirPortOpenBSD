@@ -7192,6 +7192,16 @@ iwx_umac_scan_v14(struct iwx_softc *sc, int bgscan)
         bitmap_ssid |= (1 << 0);
         n_ssid = 1;
     }
+    
+    for (int i = 0; i < ic->direct_scan_count; i++) {
+        scan_p->probe_params.direct_scan[i + n_ssid].id = IEEE80211_ELEMID_SSID;
+        scan_p->probe_params.direct_scan[i + n_ssid].len = ic->direct_scan[i].len;
+        memcpy(scan_p->probe_params.direct_scan[i + n_ssid].ssid,
+               ic->direct_scan[i].ssid, ic->direct_scan[i].len);
+        
+        bitmap_ssid |= (1 << (i + n_ssid));
+    }
+    n_ssid += ic->direct_scan_count;
 
     iwx_scan_umac_fill_ch_p_v6(sc, &scan_p->channel_params, bitmap_ssid,
         n_ssid);

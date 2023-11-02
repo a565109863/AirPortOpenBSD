@@ -8,11 +8,11 @@
 
 #include <compat.h>
 
-OSDefineMetaClassAndStructors(pci_intr_handle_class, OSObject)
+OSDefineMetaClassAndStructors(pci_intr_handle, OSObject)
 
 void interrupt_func(OSObject *ih, IOInterruptEventSource *src, int count)
 {
-    pci_intr_handle_class* _ih = OSDynamicCast(pci_intr_handle_class, ih);
+    pci_intr_handle* _ih = OSDynamicCast(pci_intr_handle, ih);
     if (_ih == NULL)
         return;
     _ih->func(_ih->arg);
@@ -28,9 +28,9 @@ int tsleep_nsec(void *ident, int priority, const char *wmesg, uint64_t nsecs)
     
     IOReturn ret;
     if (nsecs == 0) {
-        ret = _fCommandGate->runAction(AirPort_OpenBSD_Class::tsleepHandler, ident);
+        ret = _fCommandGate->runAction(AirPortOpenBSD::tsleepHandler, ident);
     } else {
-        ret = _fCommandGate->runAction(AirPort_OpenBSD_Class::tsleepHandler, ident, &nsecs);
+        ret = _fCommandGate->runAction(AirPortOpenBSD::tsleepHandler, ident, &nsecs);
     }
     
     if (ret == kIOReturnSuccess)

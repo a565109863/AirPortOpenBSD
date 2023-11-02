@@ -28,14 +28,14 @@
 #include <sys/timeout.h>
 #include <IOKit/IOCommandGate.h>
 
-OSDefineMetaClassAndStructors(IOTimeout_Class, OSObject);
+OSDefineMetaClassAndStructors(IOTimeout, OSObject);
 
-void IOTimeout_Class::timeout_run(OSObject* obj, IOTimerEventSource* timer)
+void IOTimeout::timeout_run(OSObject* obj, IOTimerEventSource* timer)
 {
     if (obj == NULL) {
         return;
     }
-    IOTimeout_Class *vt = OSDynamicCast(IOTimeout_Class, obj);
+    IOTimeout *vt = OSDynamicCast(IOTimeout, obj);
     if (vt == NULL) {
         return;
     }
@@ -46,10 +46,10 @@ void IOTimeout_Class::timeout_run(OSObject* obj, IOTimerEventSource* timer)
 void timeout_set(struct timeout* t, void (*func)(void *), void* arg)
 {
     if (t->vt == NULL) {
-        t->vt = new IOTimeout_Class();
+        t->vt = new IOTimeout();
     }
     t->vt->isPending = false;
-    t->vt->timer = IOTimerEventSource::timerEventSource(t->vt,(IOTimerEventSource::Action)IOTimeout_Class::timeout_run);
+    t->vt->timer = IOTimerEventSource::timerEventSource(t->vt,(IOTimerEventSource::Action)IOTimeout::timeout_run);
     _fWorkloop->addEventSource(t->vt->timer);
     t->vt->fn = func;
     t->vt->arg = arg;

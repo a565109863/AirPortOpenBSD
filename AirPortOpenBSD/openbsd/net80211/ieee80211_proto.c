@@ -1339,6 +1339,13 @@ justcleanup:
                  */
                 ieee80211_set_link_state(ic, LINK_STATE_UP);
                 ni->ni_assoc_fail = 0;
+            } else if (ieee80211_is_8021x_akm((enum ieee80211_akm)ni->ni_rsnakms)) {
+                    /*
+                     * NB: When RSN is enabled, we defer setting
+                     * the link up until the port is valid.
+                     */
+                    ieee80211_set_link_state(ic, LINK_STATE_UP);
+                    ni->ni_assoc_fail = 0;
             } else
             if (!(ic->ic_flags & IEEE80211_F_RSNON)) {
                 /*

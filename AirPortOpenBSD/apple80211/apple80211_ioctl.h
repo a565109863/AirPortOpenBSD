@@ -382,12 +382,12 @@ struct apple80211_virt_if_create_data {
     uint8_t     mac[APPLE80211_ADDR_LEN];
     uint16_t    unk1;
     uint32_t    role;
-    uint8_t     bsd_name[15];
+    uint8_t     bsd_name[IFNAMSIZ];
 } __attribute__((packed));
 
 struct apple80211_virt_if_delete_data {
     uint32_t    version;
-    uint8_t     bsd_name[15];
+    uint8_t     bsd_name[IFNAMSIZ];
 } __attribute__((packed));
 
 struct apple80211_ht_capability {
@@ -425,11 +425,19 @@ struct apple80211_bssid_data
     struct ether_addr    bssid;
 };
 
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Sonoma
+struct apple80211_capability_data
+{
+    u_int32_t    version;
+    u_int8_t     capabilities[14];
+};
+#else
 struct apple80211_capability_data
 {
     u_int32_t    version;
     u_int8_t     capabilities[11];
 };
+#endif
 
 struct apple80211_state_data
 {
@@ -1380,6 +1388,16 @@ struct apple80211_btc_options_data {
     uint32_t    version;
     uint32_t    btc_options;
 } __attribute__((packed));
+
+struct apple80211_driver_available_data {
+    uint64_t event;
+    uint64_t avaliable;
+    uint32_t reason;
+    uint32_t sub_reason;
+    char pad[160];
+} __attribute__((packed));
+
+static_assert(sizeof(struct apple80211_driver_available_data) == 0xB8, "invalid struct apple80211_driver_available_data");
 
 #endif // _APPLE80211_IOCTL_H_
 

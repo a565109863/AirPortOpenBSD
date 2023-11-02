@@ -1109,7 +1109,14 @@ ieee80211_enqueue_data(struct ieee80211com *ic, mbuf_t m,
 #endif
             if (((struct device *)ifp->if_softc)->dev->useAppleRSNSupplicant(ifp->iface)) {
                 ml_enqueue(ml, m);
-            } else
+                return;
+            }
+            if (ieee80211_is_8021x_akm((enum ieee80211_akm)ni->ni_rsnakms)) {
+                mbuf_t m2;
+                mbuf_dup(m, MBUF_DONTWAIT, &m2);
+                ml_enqueue(ml, m2);
+            }
+            
             ieee80211_eapol_key_input(ic, m, ni);
         } else {
             ml_enqueue(ml, m);

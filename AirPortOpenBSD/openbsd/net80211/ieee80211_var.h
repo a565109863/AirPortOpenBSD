@@ -215,6 +215,11 @@ struct ieee80211_defrag {
     u_int8_t    df_frag;
 };
 
+struct ssid_data {
+   uint8_t len;
+   uint8_t ssid[IEEE80211_NWID_LEN];
+};
+
 #define IEEE80211_PROTO_NONE    0
 #define IEEE80211_PROTO_RSN    (1 << 0)
 #define IEEE80211_PROTO_WPA    (1 << 1)
@@ -278,6 +283,9 @@ struct ieee80211com {
     u_char            ic_chan_scan[howmany(IEEE80211_CHAN_MAX,NBBY)];
     struct mbuf_queue    ic_mgtq;
     struct mbuf_queue    ic_pwrsaveq;
+    struct ssid_data direct_scan[15];
+    u_int8_t        direct_scan_count;
+    uint64_t        ic_scan_ts;
     u_int8_t        ic_scan_count;    /* count scans */
     u_int32_t        ic_flags;    /* state flags */
     u_int32_t        ic_xflags;    /* more flags */
@@ -509,6 +517,7 @@ void    ieee80211_set_ess(struct ieee80211com *, struct ieee80211_ess *,
 void    ieee80211_deselect_ess(struct ieee80211com *);
 struct ieee80211_ess *ieee80211_get_ess(struct ieee80211com *, const char *, int);
 void    ieee80211_begin_bgscan(struct ifnet *);
+void    ieee80211_begin_cache_bgscan(struct ifnet *);
 
 extern    int ieee80211_cache_size;
 

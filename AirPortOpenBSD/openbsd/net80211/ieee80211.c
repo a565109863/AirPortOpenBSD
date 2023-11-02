@@ -100,6 +100,45 @@ ieee80211_begin_bgscan(struct ifnet *ifp)
     }
 }
 
+
+void 
+ieee80211_begin_cache_bgscan(struct ifnet *ifp)
+{
+    struct timeval tv;
+    
+    struct ieee80211com *ic = (typeof ic)ifp;
+
+    if ((ic->ic_flags & IEEE80211_F_BGSCAN) ||
+        ic->ic_state != IEEE80211_S_RUN || ic->ic_mgt_timer != 0)
+        return;
+
+    if ((ic->ic_flags & IEEE80211_F_RSNON) && !ic->ic_bss->ni_port_valid)
+        return;
+
+    if (ic->ic_bgscan_start != NULL && ic->ic_bgscan_start(ic) == 0) {
+        /*
+         * Free the nodes table to ensure we get an up-to-date view
+         * of APs around us. In particular, we need to kick out the
+         * AP we are associated to. Otherwise, our current AP might
+         * stay cached if it is turned off while we are scanning, and
+         * we could end up picking a now non-existent AP over and over.
+         */
+        
+        //if last cache scan is 5 minutes ago, clear the nodes and rescan.
+        microtime(&tv);
+        if (ic->ic_scan_ts > 0 && tv.tv_sec - ic->ic_scan_ts > 5 * 60) {
+            ieee80211_free_allnodes(ic, 0);
+        }
+        ic->ic_scan_ts = tv.tv_sec;
+
+        ic->ic_flags |= IEEE80211_F_BGSCAN;
+        if (ifp->if_flags & IFF_DEBUG)
+            printf("%s: begin background scan\n", ifp->if_xname);
+
+        /* Driver calls ieee80211_end_scan() when done. */
+    }
+}
+
 void
 ieee80211_bgscan_timeout(void *arg)
 {

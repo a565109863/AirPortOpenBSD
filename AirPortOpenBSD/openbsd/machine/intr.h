@@ -9,10 +9,14 @@
 #ifndef intr_h
 #define intr_h
 
-#include "AirPort_OpenBSD.hpp"
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Sonoma
+#include "AirPortOpenBSD.hpp"
+#else
+#include "AirPortOpenBSDLegacy.hpp"
+#endif
 
-class pci_intr_handle_class : public OSObject {
-    OSDeclareDefaultStructors(pci_intr_handle_class)
+class pci_intr_handle : public OSObject {
+    OSDeclareDefaultStructors(pci_intr_handle)
 public:
     IOWorkLoop*        workloop;
     IOInterruptEventSource*    intr;

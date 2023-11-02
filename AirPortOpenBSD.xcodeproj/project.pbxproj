@@ -51,7 +51,7 @@
 		183CD6F625605C66005F866F /* uvm_extern.h in Headers */ = {isa = PBXBuildFile; fileRef = 183CD6F325605C66005F866F /* uvm_extern.h */; };
 		183CD6F725605C66005F866F /* uvm_extern.h in Headers */ = {isa = PBXBuildFile; fileRef = 183CD6F325605C66005F866F /* uvm_extern.h */; };
 		183CD6F825605C66005F866F /* uvm_extern.h in Headers */ = {isa = PBXBuildFile; fileRef = 183CD6F325605C66005F866F /* uvm_extern.h */; };
-		18713DF5255F1BD900EF3D49 /* AirPort_OpenBSD.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 18713AFD255F148200EF3D49 /* AirPort_OpenBSD.hpp */; };
+		18713DF5255F1BD900EF3D49 /* AirPortOpenBSDLegacy.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 18713AFD255F148200EF3D49 /* AirPortOpenBSDLegacy.hpp */; };
 		18713DF8255F1BD900EF3D49 /* apple80211.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BDF255F14EC00EF3D49 /* apple80211.h */; };
 		18713DF9255F1BD900EF3D49 /* bpfilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1D255F14E700EF3D49 /* bpfilter.h */; };
 		18713DFA255F1BD900EF3D49 /* bridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B0E255F14E600EF3D49 /* bridge.h */; };
@@ -116,11 +116,9 @@
 		18713E38255F1BD900EF3D49 /* if_iwmreg.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B8B255F14E800EF3D49 /* if_iwmreg.h */; };
 		18713E39255F1BD900EF3D49 /* pcireg.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B8C255F14E800EF3D49 /* pcireg.h */; };
 		18713E3A255F1BD900EF3D49 /* vlan.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1A255F14E700EF3D49 /* vlan.h */; };
-		18713E40255F1BE100EF3D49 /* AirPort_OpenBSD_80211.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B19255F14E700EF3D49 /* AirPort_OpenBSD_80211.cpp */; };
-		18713E41255F1BE100EF3D49 /* AirPort_OpenBSD_ASSOC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1B255F14E700EF3D49 /* AirPort_OpenBSD_ASSOC.cpp */; };
-		18713E42255F1BE100EF3D49 /* AirPort_OpenBSD_IOCTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1F255F14E700EF3D49 /* AirPort_OpenBSD_IOCTL.cpp */; };
-		18713E43255F1BE100EF3D49 /* AirPort_OpenBSD_Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B20255F14E700EF3D49 /* AirPort_OpenBSD_Util.cpp */; };
-		18713E44255F1BE100EF3D49 /* AirPort_OpenBSD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713AFF255F148200EF3D49 /* AirPort_OpenBSD.cpp */; };
+		18713E40255F1BE100EF3D49 /* AirPortOpenBSDLegacy_80211.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B19255F14E700EF3D49 /* AirPortOpenBSDLegacy_80211.cpp */; };
+		18713E42255F1BE100EF3D49 /* AirPortOpenBSDLegacy_IOCTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1F255F14E700EF3D49 /* AirPortOpenBSDLegacy_IOCTL.cpp */; };
+		18713E44255F1BE100EF3D49 /* AirPortOpenBSDLegacy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713AFF255F148200EF3D49 /* AirPortOpenBSDLegacy.cpp */; };
 		18713E45255F1BE100EF3D49 /* compat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B0D255F14E600EF3D49 /* compat.cpp */; };
 		18713E6B255F1BE100EF3D49 /* ifconfig.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1E255F14E700EF3D49 /* ifconfig.c */; };
 		18713E6C255F1BE100EF3D49 /* aes.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B25255F14E700EF3D49 /* aes.c */; };
@@ -162,11 +160,9 @@
 		18713E91255F1BE100EF3D49 /* if_iwx.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B80255F14E800EF3D49 /* if_iwx.c */; };
 		18713E92255F1BE100EF3D49 /* if_ipw.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B83255F14E800EF3D49 /* if_ipw.c */; };
 		18713E93255F1BE100EF3D49 /* if_iwn.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B86255F14E800EF3D49 /* if_iwn.c */; };
-		18713E99255F1BE900EF3D49 /* AirPort_OpenBSD_80211.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B19255F14E700EF3D49 /* AirPort_OpenBSD_80211.cpp */; };
-		18713E9A255F1BE900EF3D49 /* AirPort_OpenBSD_ASSOC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1B255F14E700EF3D49 /* AirPort_OpenBSD_ASSOC.cpp */; };
-		18713E9B255F1BE900EF3D49 /* AirPort_OpenBSD_IOCTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1F255F14E700EF3D49 /* AirPort_OpenBSD_IOCTL.cpp */; };
-		18713E9C255F1BE900EF3D49 /* AirPort_OpenBSD_Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B20255F14E700EF3D49 /* AirPort_OpenBSD_Util.cpp */; };
-		18713E9D255F1BE900EF3D49 /* AirPort_OpenBSD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713AFF255F148200EF3D49 /* AirPort_OpenBSD.cpp */; };
+		18713E99255F1BE900EF3D49 /* AirPortOpenBSDLegacy_80211.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B19255F14E700EF3D49 /* AirPortOpenBSDLegacy_80211.cpp */; };
+		18713E9B255F1BE900EF3D49 /* AirPortOpenBSDLegacy_IOCTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1F255F14E700EF3D49 /* AirPortOpenBSDLegacy_IOCTL.cpp */; };
+		18713E9D255F1BE900EF3D49 /* AirPortOpenBSDLegacy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713AFF255F148200EF3D49 /* AirPortOpenBSDLegacy.cpp */; };
 		18713E9E255F1BE900EF3D49 /* compat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B0D255F14E600EF3D49 /* compat.cpp */; };
 		18713EC4255F1BE900EF3D49 /* ifconfig.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1E255F14E700EF3D49 /* ifconfig.c */; };
 		18713EC5255F1BE900EF3D49 /* aes.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B25255F14E700EF3D49 /* aes.c */; };
@@ -208,7 +204,7 @@
 		18713EEA255F1BE900EF3D49 /* if_iwx.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B80255F14E800EF3D49 /* if_iwx.c */; };
 		18713EEB255F1BE900EF3D49 /* if_ipw.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B83255F14E800EF3D49 /* if_ipw.c */; };
 		18713EEC255F1BE900EF3D49 /* if_iwn.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B86255F14E800EF3D49 /* if_iwn.c */; };
-		18713EF2255F1BF600EF3D49 /* AirPort_OpenBSD.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 18713AFD255F148200EF3D49 /* AirPort_OpenBSD.hpp */; };
+		18713EF2255F1BF600EF3D49 /* AirPortOpenBSDLegacy.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 18713AFD255F148200EF3D49 /* AirPortOpenBSDLegacy.hpp */; };
 		18713EF5255F1BF600EF3D49 /* apple80211.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BDF255F14EC00EF3D49 /* apple80211.h */; };
 		18713EF6255F1BF600EF3D49 /* bpfilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1D255F14E700EF3D49 /* bpfilter.h */; };
 		18713EF7255F1BF600EF3D49 /* bridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B0E255F14E600EF3D49 /* bridge.h */; };
@@ -273,11 +269,9 @@
 		18713F35255F1BF700EF3D49 /* if_iwmreg.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B8B255F14E800EF3D49 /* if_iwmreg.h */; };
 		18713F36255F1BF700EF3D49 /* pcireg.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B8C255F14E800EF3D49 /* pcireg.h */; };
 		18713F37255F1BF700EF3D49 /* vlan.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1A255F14E700EF3D49 /* vlan.h */; };
-		18713F3D255F1C0200EF3D49 /* AirPort_OpenBSD_80211.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B19255F14E700EF3D49 /* AirPort_OpenBSD_80211.cpp */; };
-		18713F3E255F1C0200EF3D49 /* AirPort_OpenBSD_ASSOC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1B255F14E700EF3D49 /* AirPort_OpenBSD_ASSOC.cpp */; };
-		18713F3F255F1C0200EF3D49 /* AirPort_OpenBSD_IOCTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1F255F14E700EF3D49 /* AirPort_OpenBSD_IOCTL.cpp */; };
-		18713F40255F1C0200EF3D49 /* AirPort_OpenBSD_Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B20255F14E700EF3D49 /* AirPort_OpenBSD_Util.cpp */; };
-		18713F41255F1C0200EF3D49 /* AirPort_OpenBSD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713AFF255F148200EF3D49 /* AirPort_OpenBSD.cpp */; };
+		18713F3D255F1C0200EF3D49 /* AirPortOpenBSDLegacy_80211.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B19255F14E700EF3D49 /* AirPortOpenBSDLegacy_80211.cpp */; };
+		18713F3F255F1C0200EF3D49 /* AirPortOpenBSDLegacy_IOCTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1F255F14E700EF3D49 /* AirPortOpenBSDLegacy_IOCTL.cpp */; };
+		18713F41255F1C0200EF3D49 /* AirPortOpenBSDLegacy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713AFF255F148200EF3D49 /* AirPortOpenBSDLegacy.cpp */; };
 		18713F42255F1C0200EF3D49 /* compat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B0D255F14E600EF3D49 /* compat.cpp */; };
 		18713F68255F1C0200EF3D49 /* ifconfig.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1E255F14E700EF3D49 /* ifconfig.c */; };
 		18713F69255F1C0200EF3D49 /* aes.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B25255F14E700EF3D49 /* aes.c */; };
@@ -319,7 +313,7 @@
 		18713F8E255F1C0200EF3D49 /* if_iwx.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B80255F14E800EF3D49 /* if_iwx.c */; };
 		18713F8F255F1C0200EF3D49 /* if_ipw.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B83255F14E800EF3D49 /* if_ipw.c */; };
 		18713F90255F1C0200EF3D49 /* if_iwn.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B86255F14E800EF3D49 /* if_iwn.c */; };
-		18713F96255F1C0F00EF3D49 /* AirPort_OpenBSD.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 18713AFD255F148200EF3D49 /* AirPort_OpenBSD.hpp */; };
+		18713F96255F1C0F00EF3D49 /* AirPortOpenBSDLegacy.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 18713AFD255F148200EF3D49 /* AirPortOpenBSDLegacy.hpp */; };
 		18713F99255F1C0F00EF3D49 /* apple80211.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BDF255F14EC00EF3D49 /* apple80211.h */; };
 		18713F9A255F1C0F00EF3D49 /* bpfilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1D255F14E700EF3D49 /* bpfilter.h */; };
 		18713F9B255F1C0F00EF3D49 /* bridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B0E255F14E600EF3D49 /* bridge.h */; };
@@ -384,11 +378,9 @@
 		18713FD9255F1C0F00EF3D49 /* if_iwmreg.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B8B255F14E800EF3D49 /* if_iwmreg.h */; };
 		18713FDA255F1C0F00EF3D49 /* pcireg.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B8C255F14E800EF3D49 /* pcireg.h */; };
 		18713FDB255F1C0F00EF3D49 /* vlan.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1A255F14E700EF3D49 /* vlan.h */; };
-		18713FE1255F1C1800EF3D49 /* AirPort_OpenBSD_80211.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B19255F14E700EF3D49 /* AirPort_OpenBSD_80211.cpp */; };
-		18713FE2255F1C1800EF3D49 /* AirPort_OpenBSD_ASSOC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1B255F14E700EF3D49 /* AirPort_OpenBSD_ASSOC.cpp */; };
-		18713FE3255F1C1800EF3D49 /* AirPort_OpenBSD_IOCTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1F255F14E700EF3D49 /* AirPort_OpenBSD_IOCTL.cpp */; };
-		18713FE4255F1C1800EF3D49 /* AirPort_OpenBSD_Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B20255F14E700EF3D49 /* AirPort_OpenBSD_Util.cpp */; };
-		18713FE5255F1C1800EF3D49 /* AirPort_OpenBSD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713AFF255F148200EF3D49 /* AirPort_OpenBSD.cpp */; };
+		18713FE1255F1C1800EF3D49 /* AirPortOpenBSDLegacy_80211.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B19255F14E700EF3D49 /* AirPortOpenBSDLegacy_80211.cpp */; };
+		18713FE3255F1C1800EF3D49 /* AirPortOpenBSDLegacy_IOCTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1F255F14E700EF3D49 /* AirPortOpenBSDLegacy_IOCTL.cpp */; };
+		18713FE5255F1C1800EF3D49 /* AirPortOpenBSDLegacy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713AFF255F148200EF3D49 /* AirPortOpenBSDLegacy.cpp */; };
 		18713FE6255F1C1800EF3D49 /* compat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B0D255F14E600EF3D49 /* compat.cpp */; };
 		1871400C255F1C1800EF3D49 /* ifconfig.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1E255F14E700EF3D49 /* ifconfig.c */; };
 		1871400D255F1C1800EF3D49 /* aes.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B25255F14E700EF3D49 /* aes.c */; };
@@ -430,7 +422,7 @@
 		18714032255F1C1800EF3D49 /* if_iwx.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B80255F14E800EF3D49 /* if_iwx.c */; };
 		18714033255F1C1800EF3D49 /* if_ipw.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B83255F14E800EF3D49 /* if_ipw.c */; };
 		18714034255F1C1800EF3D49 /* if_iwn.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B86255F14E800EF3D49 /* if_iwn.c */; };
-		1871403A255F1C2300EF3D49 /* AirPort_OpenBSD.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 18713AFD255F148200EF3D49 /* AirPort_OpenBSD.hpp */; };
+		1871403A255F1C2300EF3D49 /* AirPortOpenBSDLegacy.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 18713AFD255F148200EF3D49 /* AirPortOpenBSDLegacy.hpp */; };
 		1871403D255F1C2300EF3D49 /* apple80211.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BDF255F14EC00EF3D49 /* apple80211.h */; };
 		1871403E255F1C2300EF3D49 /* bpfilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1D255F14E700EF3D49 /* bpfilter.h */; };
 		1871403F255F1C2300EF3D49 /* bridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B0E255F14E600EF3D49 /* bridge.h */; };
@@ -523,12 +515,222 @@
 		3714750325D187FC0052FDC0 /* _malloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3714750025D187FC0052FDC0 /* _malloc.c */; };
 		3714750425D187FC0052FDC0 /* _malloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3714750025D187FC0052FDC0 /* _malloc.c */; };
 		3714750525D187FC0052FDC0 /* _malloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3714750025D187FC0052FDC0 /* _malloc.c */; };
-		7F18B67129625C1C0082A5E2 /* AirPort_OpenBSD_Virtual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F18B67029625C1C0082A5E2 /* AirPort_OpenBSD_Virtual.cpp */; };
-		7F18B67229625C1C0082A5E2 /* AirPort_OpenBSD_Virtual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F18B67029625C1C0082A5E2 /* AirPort_OpenBSD_Virtual.cpp */; };
-		7F18B67329625C1C0082A5E2 /* AirPort_OpenBSD_Virtual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F18B67029625C1C0082A5E2 /* AirPort_OpenBSD_Virtual.cpp */; };
-		7F18B67429625C1C0082A5E2 /* AirPort_OpenBSD_Virtual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F18B67029625C1C0082A5E2 /* AirPort_OpenBSD_Virtual.cpp */; };
-		7F18B67529625C1C0082A5E2 /* AirPort_OpenBSD_Virtual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F18B67029625C1C0082A5E2 /* AirPort_OpenBSD_Virtual.cpp */; };
-		7F18B67629625C1C0082A5E2 /* AirPort_OpenBSD_Virtual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F18B67029625C1C0082A5E2 /* AirPort_OpenBSD_Virtual.cpp */; };
+		3F213E3B2AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F213E392AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.cpp */; };
+		3F213E3C2AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F213E392AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.cpp */; };
+		3F213E3D2AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F213E392AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.cpp */; };
+		3F213E3E2AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F213E392AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.cpp */; };
+		3F213E3F2AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F213E392AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.cpp */; };
+		3F213E402AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F213E392AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.cpp */; };
+		3F213E412AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3F213E3A2AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.hpp */; };
+		3F213E422AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3F213E3A2AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.hpp */; };
+		3F213E432AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3F213E3A2AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.hpp */; };
+		3F213E442AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3F213E3A2AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.hpp */; };
+		3F213E452AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3F213E3A2AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.hpp */; };
+		3F213E462AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3F213E3A2AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.hpp */; };
+		3F4F61242AEA1F2C009B0A33 /* AirPortOpenBSDWLANBusInterfacePCIeFirmware.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F61232AEA1F2C009B0A33 /* AirPortOpenBSDWLANBusInterfacePCIeFirmware.cpp */; };
+		3F4F61252AEA1F2C009B0A33 /* AirPortOpenBSDWLANBusInterfacePCIeFirmware.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F61232AEA1F2C009B0A33 /* AirPortOpenBSDWLANBusInterfacePCIeFirmware.cpp */; };
+		3F4F61262AEA1F2C009B0A33 /* AirPortOpenBSDWLANBusInterfacePCIeFirmware.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F61232AEA1F2C009B0A33 /* AirPortOpenBSDWLANBusInterfacePCIeFirmware.cpp */; };
+		3F4F61272AEA1F2C009B0A33 /* AirPortOpenBSDWLANBusInterfacePCIeFirmware.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F61232AEA1F2C009B0A33 /* AirPortOpenBSDWLANBusInterfacePCIeFirmware.cpp */; };
+		3F4F61282AEA1F2C009B0A33 /* AirPortOpenBSDWLANBusInterfacePCIeFirmware.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F61232AEA1F2C009B0A33 /* AirPortOpenBSDWLANBusInterfacePCIeFirmware.cpp */; };
+		3F4F61292AEA1F2C009B0A33 /* AirPortOpenBSDWLANBusInterfacePCIeFirmware.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F61232AEA1F2C009B0A33 /* AirPortOpenBSDWLANBusInterfacePCIeFirmware.cpp */; };
+		3F76224C2AF3628F0098BF50 /* AirPortOpenBSDComm_Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F76224B2AF3628E0098BF50 /* AirPortOpenBSDComm_Util.cpp */; };
+		3F76224D2AF3628F0098BF50 /* AirPortOpenBSDComm_Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F76224B2AF3628E0098BF50 /* AirPortOpenBSDComm_Util.cpp */; };
+		3F76224E2AF3628F0098BF50 /* AirPortOpenBSDComm_Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F76224B2AF3628E0098BF50 /* AirPortOpenBSDComm_Util.cpp */; };
+		3F76224F2AF3628F0098BF50 /* AirPortOpenBSDComm_Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F76224B2AF3628E0098BF50 /* AirPortOpenBSDComm_Util.cpp */; };
+		3F7622502AF3628F0098BF50 /* AirPortOpenBSDComm_Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F76224B2AF3628E0098BF50 /* AirPortOpenBSDComm_Util.cpp */; };
+		3F7622512AF3628F0098BF50 /* AirPortOpenBSDComm_Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F76224B2AF3628E0098BF50 /* AirPortOpenBSDComm_Util.cpp */; };
+		3F7622522AF3628F0098BF50 /* AirPortOpenBSDComm_Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F76224B2AF3628E0098BF50 /* AirPortOpenBSDComm_Util.cpp */; };
+		3F7622542AF363210098BF50 /* AirPortOpenBSDComm_SCAN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F7622532AF363210098BF50 /* AirPortOpenBSDComm_SCAN.cpp */; };
+		3F7622552AF363210098BF50 /* AirPortOpenBSDComm_SCAN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F7622532AF363210098BF50 /* AirPortOpenBSDComm_SCAN.cpp */; };
+		3F7622562AF363210098BF50 /* AirPortOpenBSDComm_SCAN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F7622532AF363210098BF50 /* AirPortOpenBSDComm_SCAN.cpp */; };
+		3F7622572AF363210098BF50 /* AirPortOpenBSDComm_SCAN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F7622532AF363210098BF50 /* AirPortOpenBSDComm_SCAN.cpp */; };
+		3F7622582AF363210098BF50 /* AirPortOpenBSDComm_SCAN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F7622532AF363210098BF50 /* AirPortOpenBSDComm_SCAN.cpp */; };
+		3F7622592AF363210098BF50 /* AirPortOpenBSDComm_SCAN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F7622532AF363210098BF50 /* AirPortOpenBSDComm_SCAN.cpp */; };
+		3F76225A2AF363210098BF50 /* AirPortOpenBSDComm_SCAN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F7622532AF363210098BF50 /* AirPortOpenBSDComm_SCAN.cpp */; };
+		3F76225C2AF3637C0098BF50 /* AirPortOpenBSDComm_PM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F76225B2AF3637C0098BF50 /* AirPortOpenBSDComm_PM.cpp */; };
+		3F76225D2AF3637C0098BF50 /* AirPortOpenBSDComm_PM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F76225B2AF3637C0098BF50 /* AirPortOpenBSDComm_PM.cpp */; };
+		3F76225E2AF3637C0098BF50 /* AirPortOpenBSDComm_PM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F76225B2AF3637C0098BF50 /* AirPortOpenBSDComm_PM.cpp */; };
+		3F76225F2AF3637C0098BF50 /* AirPortOpenBSDComm_PM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F76225B2AF3637C0098BF50 /* AirPortOpenBSDComm_PM.cpp */; };
+		3F7622602AF3637C0098BF50 /* AirPortOpenBSDComm_PM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F76225B2AF3637C0098BF50 /* AirPortOpenBSDComm_PM.cpp */; };
+		3F7622612AF3637C0098BF50 /* AirPortOpenBSDComm_PM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F76225B2AF3637C0098BF50 /* AirPortOpenBSDComm_PM.cpp */; };
+		3F7622622AF3637C0098BF50 /* AirPortOpenBSDComm_PM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F76225B2AF3637C0098BF50 /* AirPortOpenBSDComm_PM.cpp */; };
+		3F7622642AF363EF0098BF50 /* AirPortOpenBSDComm_ASSOC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F7622632AF363EF0098BF50 /* AirPortOpenBSDComm_ASSOC.cpp */; };
+		3F7622652AF363EF0098BF50 /* AirPortOpenBSDComm_ASSOC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F7622632AF363EF0098BF50 /* AirPortOpenBSDComm_ASSOC.cpp */; };
+		3F7622662AF363EF0098BF50 /* AirPortOpenBSDComm_ASSOC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F7622632AF363EF0098BF50 /* AirPortOpenBSDComm_ASSOC.cpp */; };
+		3F7622672AF363EF0098BF50 /* AirPortOpenBSDComm_ASSOC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F7622632AF363EF0098BF50 /* AirPortOpenBSDComm_ASSOC.cpp */; };
+		3F7622682AF363EF0098BF50 /* AirPortOpenBSDComm_ASSOC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F7622632AF363EF0098BF50 /* AirPortOpenBSDComm_ASSOC.cpp */; };
+		3F7622692AF363EF0098BF50 /* AirPortOpenBSDComm_ASSOC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F7622632AF363EF0098BF50 /* AirPortOpenBSDComm_ASSOC.cpp */; };
+		3F76226A2AF363EF0098BF50 /* AirPortOpenBSDComm_ASSOC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F7622632AF363EF0098BF50 /* AirPortOpenBSDComm_ASSOC.cpp */; };
+		3FED9CCE2AEA304A00170D1B /* AirPortOpenBSD_80211.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3FED9CC52AEA304A00170D1B /* AirPortOpenBSD_80211.cpp */; };
+		3FED9CD12AEA304A00170D1B /* AirPortOpenBSD_IOCTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3FED9CC82AEA304A00170D1B /* AirPortOpenBSD_IOCTL.cpp */; };
+		3FED9CDF2AEA309E00170D1B /* AirPortOpenBSDWLANBusInterfacePCIe.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F213E392AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.cpp */; };
+		3FED9CE02AEA309E00170D1B /* AirPortOpenBSDWLANBusInterfacePCIeFirmware.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3F4F61232AEA1F2C009B0A33 /* AirPortOpenBSDWLANBusInterfacePCIeFirmware.cpp */; };
+		3FED9CE12AEA309E00170D1B /* compat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B0D255F14E600EF3D49 /* compat.cpp */; };
+		3FED9CE22AEA309E00170D1B /* aes.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B25255F14E700EF3D49 /* aes.c */; };
+		3FED9CE32AEA309E00170D1B /* arc4.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B34255F14E700EF3D49 /* arc4.c */; };
+		3FED9CE42AEA309E00170D1B /* cmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B2D255F14E700EF3D49 /* cmac.c */; };
+		3FED9CE52AEA309E00170D1B /* hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B26255F14E700EF3D49 /* hmac.c */; };
+		3FED9CE62AEA309E00170D1B /* key_wrap.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B35255F14E700EF3D49 /* key_wrap.c */; };
+		3FED9CE72AEA309E00170D1B /* md5.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B33255F14E700EF3D49 /* md5.c */; };
+		3FED9CE82AEA309E00170D1B /* michael.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B28255F14E700EF3D49 /* michael.c */; };
+		3FED9CE92AEA309E00170D1B /* sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B2C255F14E700EF3D49 /* sha1.c */; };
+		3FED9CEA2AEA309E00170D1B /* sha2.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B27255F14E700EF3D49 /* sha2.c */; };
+		3FED9CEB2AEA309E00170D1B /* bwfm.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CD6A025605A89005F866F /* bwfm.c */; };
+		3FED9CEC2AEA309E00170D1B /* bwi.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CD6A225605A89005F866F /* bwi.c */; };
+		3FED9CED2AEA309E00170D1B /* rtwn.c in Sources */ = {isa = PBXBuildFile; fileRef = 18C95A83256285CC0047231F /* rtwn.c */; };
+		3FED9CEE2AEA309E00170D1B /* if_bwfm_pci.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CD6CB25605A98005F866F /* if_bwfm_pci.c */; };
+		3FED9CEF2AEA309E00170D1B /* if_bwi_pci.c in Sources */ = {isa = PBXBuildFile; fileRef = 183CD6CC25605A98005F866F /* if_bwi_pci.c */; };
+		3FED9CF02AEA309E00170D1B /* if_ipw.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B83255F14E800EF3D49 /* if_ipw.c */; };
+		3FED9CF12AEA309E00170D1B /* if_iwi.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B7B255F14E800EF3D49 /* if_iwi.c */; };
+		3FED9CF22AEA309E00170D1B /* if_iwm.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B7D255F14E800EF3D49 /* if_iwm.c */; };
+		3FED9CF32AEA309E00170D1B /* if_iwn.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B86255F14E800EF3D49 /* if_iwn.c */; };
+		3FED9CF42AEA309E00170D1B /* if_iwx.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B80255F14E800EF3D49 /* if_iwx.c */; };
+		3FED9CF52AEA309E00170D1B /* if_rtwn.c in Sources */ = {isa = PBXBuildFile; fileRef = 18C95A9F256285DC0047231F /* if_rtwn.c */; };
+		3FED9CF62AEA309E00170D1B /* if_wpi.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B79255F14E800EF3D49 /* if_wpi.c */; };
+		3FED9CF72AEA309E00170D1B /* pci.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B7F255F14E800EF3D49 /* pci.c */; };
+		3FED9CF82AEA309E00170D1B /* ifconfig.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1E255F14E700EF3D49 /* ifconfig.c */; };
+		3FED9CF92AEA309E00170D1B /* qsort.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FF2C20C274CD7E900DCECFD /* qsort.c */; };
+		3FED9CFA2AEA309E00170D1B /* heapsort.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FF2C21D274CD9D000DCECFD /* heapsort.c */; };
+		3FED9CFB2AEA309E00170D1B /* bus.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B56255F14E700EF3D49 /* bus.c */; };
+		3FED9CFC2AEA309E00170D1B /* ieee80211_amrr.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B67255F14E800EF3D49 /* ieee80211_amrr.c */; };
+		3FED9CFD2AEA309E00170D1B /* ieee80211_crypto_bip.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B62255F14E800EF3D49 /* ieee80211_crypto_bip.c */; };
+		3FED9CFE2AEA309E00170D1B /* ieee80211_crypto_ccmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B64255F14E800EF3D49 /* ieee80211_crypto_ccmp.c */; };
+		3FED9CFF2AEA309E00170D1B /* ieee80211_crypto_tkip.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B63255F14E800EF3D49 /* ieee80211_crypto_tkip.c */; };
+		3FED9D002AEA309E00170D1B /* ieee80211_crypto_wep.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B6D255F14E800EF3D49 /* ieee80211_crypto_wep.c */; };
+		3FED9D012AEA309E00170D1B /* ieee80211_crypto.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B6F255F14E800EF3D49 /* ieee80211_crypto.c */; };
+		3FED9D022AEA309E00170D1B /* ieee80211_input.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B5D255F14E700EF3D49 /* ieee80211_input.c */; };
+		3FED9D032AEA309E00170D1B /* ieee80211_ioctl.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B5A255F14E700EF3D49 /* ieee80211_ioctl.c */; };
+		3FED9D042AEA309E00170D1B /* ieee80211_node.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B72255F14E800EF3D49 /* ieee80211_node.c */; };
+		3FED9D052AEA309E00170D1B /* ieee80211_output.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B6E255F14E800EF3D49 /* ieee80211_output.c */; };
+		3FED9D062AEA309E00170D1B /* ieee80211_pae_input.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B65255F14E800EF3D49 /* ieee80211_pae_input.c */; };
+		3FED9D072AEA309E00170D1B /* ieee80211_pae_output.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B73255F14E800EF3D49 /* ieee80211_pae_output.c */; };
+		3FED9D082AEA309E00170D1B /* ieee80211_proto.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B58255F14E700EF3D49 /* ieee80211_proto.c */; };
+		3FED9D092AEA309E00170D1B /* ieee80211_ra_vht.c in Sources */ = {isa = PBXBuildFile; fileRef = 7F8AB18627E8475F0045D670 /* ieee80211_ra_vht.c */; };
+		3FED9D0A2AEA309E00170D1B /* ieee80211_ra.c in Sources */ = {isa = PBXBuildFile; fileRef = 18BB83DF25FE3C49001220DF /* ieee80211_ra.c */; };
+		3FED9D0B2AEA309E00170D1B /* ieee80211_regdomain.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B71255F14E800EF3D49 /* ieee80211_regdomain.c */; };
+		3FED9D0C2AEA309E00170D1B /* ieee80211_rssadapt.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B5C255F14E700EF3D49 /* ieee80211_rssadapt.c */; };
+		3FED9D0D2AEA309E00170D1B /* ieee80211.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B5B255F14E700EF3D49 /* ieee80211.c */; };
+		3FED9D0E2AEA309E00170D1B /* _bpf.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B3B255F14E700EF3D49 /* _bpf.c */; };
+		3FED9D0F2AEA309E00170D1B /* _malloc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3714750025D187FC0052FDC0 /* _malloc.c */; };
+		3FED9D102AEA309E00170D1B /* fls.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B49255F14E700EF3D49 /* fls.c */; };
+		3FED9D112AEA309E00170D1B /* task.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B48255F14E700EF3D49 /* task.c */; };
+		3FED9D122AEA309E00170D1B /* timeout.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B42255F14E700EF3D49 /* timeout.c */; };
+		3FED9D132AEA309E00170D1B /* timingsafe_bcmp.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B4B255F14E700EF3D49 /* timingsafe_bcmp.c */; };
+		3FED9D142AEA309E00170D1B /* tree.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B52255F14E700EF3D49 /* tree.c */; };
+		3FED9D1D2AEA30C500170D1B /* AirPortOpenBSDWLANBusInterfacePCIe.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3F213E3A2AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.hpp */; };
+		3FED9D1E2AEA30C500170D1B /* apple_private_spi.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F3055E02912DB29004AE7C3 /* apple_private_spi.h */; };
+		3FED9D1F2AEA30C500170D1B /* apple80211_ioctl.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B11255F14E600EF3D49 /* apple80211_ioctl.h */; };
+		3FED9D202AEA30C500170D1B /* apple80211_var.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B15255F14E600EF3D49 /* apple80211_var.h */; };
+		3FED9D212AEA30C500170D1B /* apple80211_wps.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B12255F14E600EF3D49 /* apple80211_wps.h */; };
+		3FED9D222AEA30C500170D1B /* debug.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F3055DF2912DB29004AE7C3 /* debug.h */; };
+		3FED9D232AEA30C500170D1B /* IO80211SkywalkInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B10255F14E600EF3D49 /* IO80211SkywalkInterface.h */; };
+		3FED9D242AEA30C500170D1B /* IO80211WorkLoop.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B13255F14E600EF3D49 /* IO80211WorkLoop.h */; };
+		3FED9D252AEA30C500170D1B /* IOSkywalkEthernetInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B14255F14E600EF3D49 /* IOSkywalkEthernetInterface.h */; };
+		3FED9D262AEA30C500170D1B /* apple80211.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BDF255F14EC00EF3D49 /* apple80211.h */; };
+		3FED9D272AEA30C500170D1B /* bpfilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1D255F14E700EF3D49 /* bpfilter.h */; };
+		3FED9D282AEA30C500170D1B /* bridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B0E255F14E600EF3D49 /* bridge.h */; };
+		3FED9D292AEA30C500170D1B /* compat.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B21255F14E700EF3D49 /* compat.h */; };
+		3FED9D2A2AEA30C500170D1B /* iwlwifi.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1C255F14E700EF3D49 /* iwlwifi.h */; };
+		3FED9D2B2AEA30C500170D1B /* aes.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B30255F14E700EF3D49 /* aes.h */; };
+		3FED9D2C2AEA30C500170D1B /* arc4.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B2B255F14E700EF3D49 /* arc4.h */; };
+		3FED9D2D2AEA30C500170D1B /* cmac.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B36255F14E700EF3D49 /* cmac.h */; };
+		3FED9D2E2AEA30C500170D1B /* hmac.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B2F255F14E700EF3D49 /* hmac.h */; };
+		3FED9D2F2AEA30C500170D1B /* key_wrap.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B29255F14E700EF3D49 /* key_wrap.h */; };
+		3FED9D302AEA30C500170D1B /* md5.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B2A255F14E700EF3D49 /* md5.h */; };
+		3FED9D312AEA30C500170D1B /* michael.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B31255F14E700EF3D49 /* michael.h */; };
+		3FED9D322AEA30C500170D1B /* sha1.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B32255F14E700EF3D49 /* sha1.h */; };
+		3FED9D332AEA30C500170D1B /* sha2.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B2E255F14E700EF3D49 /* sha2.h */; };
+		3FED9D342AEA30C500170D1B /* bwfmreg.h in Headers */ = {isa = PBXBuildFile; fileRef = 183CD6A125605A89005F866F /* bwfmreg.h */; };
+		3FED9D352AEA30C500170D1B /* bwfmvar.h in Headers */ = {isa = PBXBuildFile; fileRef = 183CD69E25605A89005F866F /* bwfmvar.h */; };
+		3FED9D362AEA30C500170D1B /* bwireg.h in Headers */ = {isa = PBXBuildFile; fileRef = 183CD69D25605A89005F866F /* bwireg.h */; };
+		3FED9D372AEA30C500170D1B /* bwivar.h in Headers */ = {isa = PBXBuildFile; fileRef = 183CD69F25605A89005F866F /* bwivar.h */; };
+		3FED9D382AEA30C500170D1B /* r92creg.h in Headers */ = {isa = PBXBuildFile; fileRef = 18C95A85256285CC0047231F /* r92creg.h */; };
+		3FED9D392AEA30C500170D1B /* rtwnvar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18C95A84256285CC0047231F /* rtwnvar.h */; };
+		3FED9D3A2AEA30C500170D1B /* if_bwfm_pci.h in Headers */ = {isa = PBXBuildFile; fileRef = 183CD6CD25605A98005F866F /* if_bwfm_pci.h */; };
+		3FED9D3B2AEA30C500170D1B /* if_ipwreg.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B81255F14E800EF3D49 /* if_ipwreg.h */; };
+		3FED9D3C2AEA30C500170D1B /* if_ipwvar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B77255F14E800EF3D49 /* if_ipwvar.h */; };
+		3FED9D3D2AEA30C500170D1B /* if_iwireg.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B82255F14E800EF3D49 /* if_iwireg.h */; };
+		3FED9D3E2AEA30C500170D1B /* if_iwivar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B78255F14E800EF3D49 /* if_iwivar.h */; };
+		3FED9D3F2AEA30C500170D1B /* if_iwmreg.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B8B255F14E800EF3D49 /* if_iwmreg.h */; };
+		3FED9D402AEA30C500170D1B /* if_iwmvar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B88255F14E800EF3D49 /* if_iwmvar.h */; };
+		3FED9D412AEA30C500170D1B /* if_iwnreg.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B7E255F14E800EF3D49 /* if_iwnreg.h */; };
+		3FED9D422AEA30C500170D1B /* if_iwnvar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B84255F14E800EF3D49 /* if_iwnvar.h */; };
+		3FED9D432AEA30C500170D1B /* if_iwxreg.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B8A255F14E800EF3D49 /* if_iwxreg.h */; };
+		3FED9D442AEA30C500170D1B /* if_iwxvar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B87255F14E800EF3D49 /* if_iwxvar.h */; };
+		3FED9D452AEA30C500170D1B /* if_wpireg.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B85255F14E800EF3D49 /* if_wpireg.h */; };
+		3FED9D462AEA30C500170D1B /* if_wpivar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B7A255F14E800EF3D49 /* if_wpivar.h */; };
+		3FED9D472AEA30C500170D1B /* pcidevs.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B7C255F14E800EF3D49 /* pcidevs.h */; };
+		3FED9D482AEA30C500170D1B /* pcireg.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B8C255F14E800EF3D49 /* pcireg.h */; };
+		3FED9D492AEA30C500170D1B /* pcivar.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B89255F14E800EF3D49 /* pcivar.h */; };
+		3FED9D4A2AEA30C500170D1B /* ifconfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B22255F14E700EF3D49 /* ifconfig.h */; };
+		3FED9D4B2AEA30C500170D1B /* qsort.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FF2C20B274CD7E900DCECFD /* qsort.h */; };
+		3FED9D4C2AEA30C500170D1B /* heapsort.h in Headers */ = {isa = PBXBuildFile; fileRef = 7FF2C21C274CD9D000DCECFD /* heapsort.h */; };
+		3FED9D4D2AEA30C500170D1B /* bus.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B54255F14E700EF3D49 /* bus.h */; };
+		3FED9D4E2AEA30C500170D1B /* intr.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B55255F14E700EF3D49 /* intr.h */; };
+		3FED9D4F2AEA30C500170D1B /* ieee80211_amrr.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B59255F14E700EF3D49 /* ieee80211_amrr.h */; };
+		3FED9D502AEA30C500170D1B /* ieee80211_crypto.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B61255F14E700EF3D49 /* ieee80211_crypto.h */; };
+		3FED9D512AEA30C500170D1B /* ieee80211_ioctl.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B6C255F14E800EF3D49 /* ieee80211_ioctl.h */; };
+		3FED9D522AEA30C500170D1B /* ieee80211_node.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B5E255F14E700EF3D49 /* ieee80211_node.h */; };
+		3FED9D532AEA30C500170D1B /* ieee80211_priv.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B6B255F14E800EF3D49 /* ieee80211_priv.h */; };
+		3FED9D542AEA30C500170D1B /* ieee80211_proto.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B68255F14E800EF3D49 /* ieee80211_proto.h */; };
+		3FED9D552AEA30C500170D1B /* ieee80211_ra_vht.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F8AB18527E8475F0045D670 /* ieee80211_ra_vht.h */; };
+		3FED9D562AEA30C500170D1B /* ieee80211_ra.h in Headers */ = {isa = PBXBuildFile; fileRef = 18BB83E025FE3C49001220DF /* ieee80211_ra.h */; };
+		3FED9D572AEA30C500170D1B /* ieee80211_radiotap.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B66255F14E800EF3D49 /* ieee80211_radiotap.h */; };
+		3FED9D582AEA30C500170D1B /* ieee80211_regdomain.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B5F255F14E700EF3D49 /* ieee80211_regdomain.h */; };
+		3FED9D592AEA30C500170D1B /* ieee80211_rssadapt.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B69255F14E800EF3D49 /* ieee80211_rssadapt.h */; };
+		3FED9D5A2AEA30C500170D1B /* ieee80211_var.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B74255F14E800EF3D49 /* ieee80211_var.h */; };
+		3FED9D5B2AEA30C500170D1B /* ieee80211.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B6A255F14E800EF3D49 /* ieee80211.h */; };
+		3FED9D5C2AEA30C500170D1B /* _bpf.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B38255F14E700EF3D49 /* _bpf.h */; };
+		3FED9D5D2AEA30C500170D1B /* _if_ether.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B39255F14E700EF3D49 /* _if_ether.h */; };
+		3FED9D5E2AEA30C500170D1B /* _if.h in Headers */ = {isa = PBXBuildFile; fileRef = 183CD6E225605B0E005F866F /* _if.h */; };
+		3FED9D5F2AEA30C500170D1B /* if_media.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B3A255F14E700EF3D49 /* if_media.h */; };
+		3FED9D602AEA30C500170D1B /* __types.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B4C255F14E700EF3D49 /* __types.h */; };
+		3FED9D612AEA30C500170D1B /* _kernel.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B50255F14E700EF3D49 /* _kernel.h */; };
+		3FED9D622AEA30C500170D1B /* _malloc.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B44255F14E700EF3D49 /* _malloc.h */; };
+		3FED9D632AEA30C500170D1B /* _mbuf.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B43255F14E700EF3D49 /* _mbuf.h */; };
+		3FED9D642AEA30C500170D1B /* _null.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B47255F14E700EF3D49 /* _null.h */; };
+		3FED9D652AEA30C500170D1B /* device.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B3F255F14E700EF3D49 /* device.h */; };
+		3FED9D662AEA30C500170D1B /* endian.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B41255F14E700EF3D49 /* endian.h */; };
+		3FED9D672AEA30C500170D1B /* fls.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B3D255F14E700EF3D49 /* fls.h */; };
+		3FED9D682AEA30C500170D1B /* kern_compat.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B4A255F14E700EF3D49 /* kern_compat.h */; };
+		3FED9D692AEA30C500170D1B /* libkern.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B51255F14E700EF3D49 /* libkern.h */; };
+		3FED9D6A2AEA30C500170D1B /* mutex.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B4E255F14E700EF3D49 /* mutex.h */; };
+		3FED9D6B2AEA30C500170D1B /* refcnt.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B4D255F14E700EF3D49 /* refcnt.h */; };
+		3FED9D6C2AEA30C500170D1B /* rwlock.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B45255F14E700EF3D49 /* rwlock.h */; };
+		3FED9D6D2AEA30C500170D1B /* task.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B3E255F14E700EF3D49 /* task.h */; };
+		3FED9D6E2AEA30C500170D1B /* timeout.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B4F255F14E700EF3D49 /* timeout.h */; };
+		3FED9D6F2AEA30C500170D1B /* timingsafe_bcmp.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B40255F14E700EF3D49 /* timingsafe_bcmp.h */; };
+		3FED9D702AEA30C500170D1B /* tree.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B46255F14E700EF3D49 /* tree.h */; };
+		3FED9D712AEA30C500170D1B /* uvm_extern.h in Headers */ = {isa = PBXBuildFile; fileRef = 183CD6F325605C66005F866F /* uvm_extern.h */; };
+		3FED9D722AEA30C500170D1B /* vlan.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1A255F14E700EF3D49 /* vlan.h */; };
+		3FFCC7342AEA29CE0066FF38 /* AirPortOpenBSD_SkywalkInterface.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3FFCC7312AEA29CE0066FF38 /* AirPortOpenBSD_SkywalkInterface.hpp */; };
+		3FFCC7352AEA29CE0066FF38 /* InfoSonoma.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3FFCC7322AEA29CE0066FF38 /* InfoSonoma.plist */; };
+		3FFCC7482AEA29EA0066FF38 /* AirPortOpenBSD_SkywalkInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3FFCC7472AEA29EA0066FF38 /* AirPortOpenBSD_SkywalkInterface.cpp */; };
+		3FFCC7602AEA2A100066FF38 /* CCLogPipe.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FFCC7512AEA2A100066FF38 /* CCLogPipe.h */; };
+		3FFCC7612AEA2A100066FF38 /* CCPipe.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FFCC7522AEA2A100066FF38 /* CCPipe.h */; };
+		3FFCC7622AEA2A100066FF38 /* CCDataPipe.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FFCC7532AEA2A100066FF38 /* CCDataPipe.h */; };
+		3FFCC7632AEA2A100066FF38 /* IO80211InfraInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FFCC7542AEA2A100066FF38 /* IO80211InfraInterface.h */; };
+		3FFCC7642AEA2A100066FF38 /* IO80211Controller.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FFCC7552AEA2A100066FF38 /* IO80211Controller.h */; };
+		3FFCC7652AEA2A100066FF38 /* CCStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FFCC7562AEA2A100066FF38 /* CCStream.h */; };
+		3FFCC7662AEA2A100066FF38 /* IO80211WorkQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FFCC7572AEA2A100066FF38 /* IO80211WorkQueue.h */; };
+		3FFCC7672AEA2A100066FF38 /* IO80211InfraProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FFCC7582AEA2A100066FF38 /* IO80211InfraProtocol.h */; };
+		3FFCC7682AEA2A100066FF38 /* IOSkywalkInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FFCC7592AEA2A100066FF38 /* IOSkywalkInterface.h */; };
+		3FFCC7692AEA2A100066FF38 /* IOSkywalkLegacyEthernetInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FFCC75A2AEA2A100066FF38 /* IOSkywalkLegacyEthernetInterface.h */; };
+		3FFCC76A2AEA2A100066FF38 /* IOSkywalkNetworkInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FFCC75B2AEA2A100066FF38 /* IOSkywalkNetworkInterface.h */; };
+		3FFCC76B2AEA2A100066FF38 /* IOSkywalkNetworkPacket.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FFCC75C2AEA2A100066FF38 /* IOSkywalkNetworkPacket.h */; };
+		3FFCC76C2AEA2A100066FF38 /* IOSkywalkPacketBufferPool.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FFCC75D2AEA2A100066FF38 /* IOSkywalkPacketBufferPool.h */; };
+		3FFCC76D2AEA2A100066FF38 /* CCLogStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FFCC75E2AEA2A100066FF38 /* CCLogStream.h */; };
+		3FFCC76E2AEA2A100066FF38 /* IOSkywalkLogicalLink.h in Headers */ = {isa = PBXBuildFile; fileRef = 3FFCC75F2AEA2A100066FF38 /* IOSkywalkLogicalLink.h */; };
+		3FFCC7792AEA2A3E0066FF38 /* AirPortOpenBSD.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3FFCC7772AEA2A3E0066FF38 /* AirPortOpenBSD.hpp */; };
+		3FFCC77A2AEA2A3E0066FF38 /* AirPortOpenBSD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3FFCC7782AEA2A3E0066FF38 /* AirPortOpenBSD.cpp */; };
+		3FFCC78D2AEA2AB90066FF38 /* AirPortOpenBSD_EthernetInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3FFCC78B2AEA2AB80066FF38 /* AirPortOpenBSD_EthernetInterface.cpp */; };
+		3FFCC78E2AEA2AB90066FF38 /* AirPortOpenBSD_EthernetInterface.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 3FFCC78C2AEA2AB90066FF38 /* AirPortOpenBSD_EthernetInterface.hpp */; };
+		7F18B67129625C1C0082A5E2 /* AirPortOpenBSDLegacy_Virtual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F18B67029625C1C0082A5E2 /* AirPortOpenBSDLegacy_Virtual.cpp */; };
+		7F18B67229625C1C0082A5E2 /* AirPortOpenBSDLegacy_Virtual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F18B67029625C1C0082A5E2 /* AirPortOpenBSDLegacy_Virtual.cpp */; };
+		7F18B67329625C1C0082A5E2 /* AirPortOpenBSDLegacy_Virtual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F18B67029625C1C0082A5E2 /* AirPortOpenBSDLegacy_Virtual.cpp */; };
+		7F18B67429625C1C0082A5E2 /* AirPortOpenBSDLegacy_Virtual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F18B67029625C1C0082A5E2 /* AirPortOpenBSDLegacy_Virtual.cpp */; };
+		7F18B67529625C1C0082A5E2 /* AirPortOpenBSDLegacy_Virtual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F18B67029625C1C0082A5E2 /* AirPortOpenBSDLegacy_Virtual.cpp */; };
+		7F18B67629625C1C0082A5E2 /* AirPortOpenBSDLegacy_Virtual.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F18B67029625C1C0082A5E2 /* AirPortOpenBSDLegacy_Virtual.cpp */; };
 		7F3055AB2912DA5F004AE7C3 /* PrivateSPI.pch in Headers */ = {isa = PBXBuildFile; fileRef = 7F3055A92912DA5F004AE7C3 /* PrivateSPI.pch */; };
 		7F3055AC2912DA5F004AE7C3 /* PrivateSPI.pch in Headers */ = {isa = PBXBuildFile; fileRef = 7F3055A92912DA5F004AE7C3 /* PrivateSPI.pch */; };
 		7F3055AD2912DA5F004AE7C3 /* PrivateSPI.pch in Headers */ = {isa = PBXBuildFile; fileRef = 7F3055A92912DA5F004AE7C3 /* PrivateSPI.pch */; };
@@ -559,42 +761,30 @@
 		7F3055FB2912DB29004AE7C3 /* IO80211VirtualInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F3055E12912DB29004AE7C3 /* IO80211VirtualInterface.h */; };
 		7F3055FC2912DB29004AE7C3 /* IO80211VirtualInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F3055E12912DB29004AE7C3 /* IO80211VirtualInterface.h */; };
 		7F3055FD2912DB29004AE7C3 /* IO80211VirtualInterface.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F3055E12912DB29004AE7C3 /* IO80211VirtualInterface.h */; };
-		7F467944291C93420076781E /* AirPort_OpenBSD_PM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F467942291C93420076781E /* AirPort_OpenBSD_PM.cpp */; };
-		7F467945291C93420076781E /* AirPort_OpenBSD_PM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F467942291C93420076781E /* AirPort_OpenBSD_PM.cpp */; };
-		7F467946291C93420076781E /* AirPort_OpenBSD_PM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F467942291C93420076781E /* AirPort_OpenBSD_PM.cpp */; };
-		7F467947291C93420076781E /* AirPort_OpenBSD_PM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F467942291C93420076781E /* AirPort_OpenBSD_PM.cpp */; };
-		7F467948291C93420076781E /* AirPort_OpenBSD_PM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F467942291C93420076781E /* AirPort_OpenBSD_PM.cpp */; };
-		7F467949291C93420076781E /* AirPort_OpenBSD_PM.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F467942291C93420076781E /* AirPort_OpenBSD_PM.cpp */; };
-		7F46795A291C93670076781E /* AirPort_OpenBSD_SCAN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F467958291C93670076781E /* AirPort_OpenBSD_SCAN.cpp */; };
-		7F46795B291C93670076781E /* AirPort_OpenBSD_SCAN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F467958291C93670076781E /* AirPort_OpenBSD_SCAN.cpp */; };
-		7F46795C291C93670076781E /* AirPort_OpenBSD_SCAN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F467958291C93670076781E /* AirPort_OpenBSD_SCAN.cpp */; };
-		7F46795D291C93670076781E /* AirPort_OpenBSD_SCAN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F467958291C93670076781E /* AirPort_OpenBSD_SCAN.cpp */; };
-		7F46795E291C93670076781E /* AirPort_OpenBSD_SCAN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F467958291C93670076781E /* AirPort_OpenBSD_SCAN.cpp */; };
-		7F46795F291C93670076781E /* AirPort_OpenBSD_SCAN.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F467958291C93670076781E /* AirPort_OpenBSD_SCAN.cpp */; };
-		7F4AEF31291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4AEF2E291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.cpp */; };
-		7F4AEF32291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4AEF2E291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.cpp */; };
-		7F4AEF33291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4AEF2E291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.cpp */; };
-		7F4AEF34291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4AEF2E291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.cpp */; };
-		7F4AEF35291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4AEF2E291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.cpp */; };
-		7F4AEF36291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4AEF2E291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.cpp */; };
-		7F4AEF38291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 7F4AEF2F291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.hpp */; };
-		7F4AEF39291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 7F4AEF2F291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.hpp */; };
-		7F4AEF3A291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 7F4AEF2F291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.hpp */; };
-		7F4AEF3B291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 7F4AEF2F291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.hpp */; };
-		7F4AEF3C291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 7F4AEF2F291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.hpp */; };
-		7F4AEF3D291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 7F4AEF2F291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.hpp */; };
-		7F4CEDA12912DD1B00C46A15 /* AirPort_OpenBSD_AWDL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CED9E2912DD1B00C46A15 /* AirPort_OpenBSD_AWDL.cpp */; };
-		7F4CEDA22912DD1B00C46A15 /* AirPort_OpenBSD_AWDL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CED9E2912DD1B00C46A15 /* AirPort_OpenBSD_AWDL.cpp */; };
-		7F4CEDA32912DD1B00C46A15 /* AirPort_OpenBSD_AWDL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CED9E2912DD1B00C46A15 /* AirPort_OpenBSD_AWDL.cpp */; };
-		7F4CEDA42912DD1B00C46A15 /* AirPort_OpenBSD_AWDL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CED9E2912DD1B00C46A15 /* AirPort_OpenBSD_AWDL.cpp */; };
-		7F4CEDA52912DD1B00C46A15 /* AirPort_OpenBSD_AWDL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CED9E2912DD1B00C46A15 /* AirPort_OpenBSD_AWDL.cpp */; };
-		7F4CEDA62912DD1B00C46A15 /* AirPort_OpenBSD_AWDL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CED9E2912DD1B00C46A15 /* AirPort_OpenBSD_AWDL.cpp */; };
-		7F4CEDA82912DD1B00C46A15 /* AirPort_OpenBSD_VirtualIOCTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CED9F2912DD1B00C46A15 /* AirPort_OpenBSD_VirtualIOCTL.cpp */; };
-		7F4CEDA92912DD1B00C46A15 /* AirPort_OpenBSD_VirtualIOCTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CED9F2912DD1B00C46A15 /* AirPort_OpenBSD_VirtualIOCTL.cpp */; };
-		7F4CEDAA2912DD1B00C46A15 /* AirPort_OpenBSD_VirtualIOCTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CED9F2912DD1B00C46A15 /* AirPort_OpenBSD_VirtualIOCTL.cpp */; };
-		7F4CEDAB2912DD1B00C46A15 /* AirPort_OpenBSD_VirtualIOCTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CED9F2912DD1B00C46A15 /* AirPort_OpenBSD_VirtualIOCTL.cpp */; };
-		7F4CEDAC2912DD1B00C46A15 /* AirPort_OpenBSD_VirtualIOCTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CED9F2912DD1B00C46A15 /* AirPort_OpenBSD_VirtualIOCTL.cpp */; };
-		7F4CEDAD2912DD1B00C46A15 /* AirPort_OpenBSD_VirtualIOCTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CED9F2912DD1B00C46A15 /* AirPort_OpenBSD_VirtualIOCTL.cpp */; };
+		7F4AEF31291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4AEF2E291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.cpp */; };
+		7F4AEF32291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4AEF2E291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.cpp */; };
+		7F4AEF33291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4AEF2E291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.cpp */; };
+		7F4AEF34291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4AEF2E291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.cpp */; };
+		7F4AEF35291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4AEF2E291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.cpp */; };
+		7F4AEF36291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4AEF2E291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.cpp */; };
+		7F4AEF38291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 7F4AEF2F291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.hpp */; };
+		7F4AEF39291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 7F4AEF2F291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.hpp */; };
+		7F4AEF3A291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 7F4AEF2F291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.hpp */; };
+		7F4AEF3B291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 7F4AEF2F291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.hpp */; };
+		7F4AEF3C291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 7F4AEF2F291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.hpp */; };
+		7F4AEF3D291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 7F4AEF2F291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.hpp */; };
+		7F4CEDA12912DD1B00C46A15 /* AirPortOpenBSDLegacy_AWDL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CED9E2912DD1B00C46A15 /* AirPortOpenBSDLegacy_AWDL.cpp */; };
+		7F4CEDA22912DD1B00C46A15 /* AirPortOpenBSDLegacy_AWDL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CED9E2912DD1B00C46A15 /* AirPortOpenBSDLegacy_AWDL.cpp */; };
+		7F4CEDA32912DD1B00C46A15 /* AirPortOpenBSDLegacy_AWDL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CED9E2912DD1B00C46A15 /* AirPortOpenBSDLegacy_AWDL.cpp */; };
+		7F4CEDA42912DD1B00C46A15 /* AirPortOpenBSDLegacy_AWDL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CED9E2912DD1B00C46A15 /* AirPortOpenBSDLegacy_AWDL.cpp */; };
+		7F4CEDA52912DD1B00C46A15 /* AirPortOpenBSDLegacy_AWDL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CED9E2912DD1B00C46A15 /* AirPortOpenBSDLegacy_AWDL.cpp */; };
+		7F4CEDA62912DD1B00C46A15 /* AirPortOpenBSDLegacy_AWDL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CED9E2912DD1B00C46A15 /* AirPortOpenBSDLegacy_AWDL.cpp */; };
+		7F4CEDA82912DD1B00C46A15 /* AirPortOpenBSDLegacy_VirtualIOCTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CED9F2912DD1B00C46A15 /* AirPortOpenBSDLegacy_VirtualIOCTL.cpp */; };
+		7F4CEDA92912DD1B00C46A15 /* AirPortOpenBSDLegacy_VirtualIOCTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CED9F2912DD1B00C46A15 /* AirPortOpenBSDLegacy_VirtualIOCTL.cpp */; };
+		7F4CEDAA2912DD1B00C46A15 /* AirPortOpenBSDLegacy_VirtualIOCTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CED9F2912DD1B00C46A15 /* AirPortOpenBSDLegacy_VirtualIOCTL.cpp */; };
+		7F4CEDAB2912DD1B00C46A15 /* AirPortOpenBSDLegacy_VirtualIOCTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CED9F2912DD1B00C46A15 /* AirPortOpenBSDLegacy_VirtualIOCTL.cpp */; };
+		7F4CEDAC2912DD1B00C46A15 /* AirPortOpenBSDLegacy_VirtualIOCTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CED9F2912DD1B00C46A15 /* AirPortOpenBSDLegacy_VirtualIOCTL.cpp */; };
+		7F4CEDAD2912DD1B00C46A15 /* AirPortOpenBSDLegacy_VirtualIOCTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7F4CED9F2912DD1B00C46A15 /* AirPortOpenBSDLegacy_VirtualIOCTL.cpp */; };
 		7F8AB18827E8475F0045D670 /* ieee80211_ra_vht.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F8AB18527E8475F0045D670 /* ieee80211_ra_vht.h */; };
 		7F8AB18927E8475F0045D670 /* ieee80211_ra_vht.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F8AB18527E8475F0045D670 /* ieee80211_ra_vht.h */; };
 		7F8AB18A27E8475F0045D670 /* ieee80211_ra_vht.h in Headers */ = {isa = PBXBuildFile; fileRef = 7F8AB18527E8475F0045D670 /* ieee80211_ra_vht.h */; };
@@ -669,7 +859,7 @@
 		7FA596332A59AA4F00824D8B /* rtwn_rtl8723fw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595F62A59AA4F00824D8B /* rtwn_rtl8723fw.cpp */; };
 		7FA596342A59AA4F00824D8B /* iwn_4965.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7FA595F72A59AA4F00824D8B /* iwn_4965.cpp */; };
 		7FA596362A59AAD300824D8B /* firmware.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 7FA596352A59AAD300824D8B /* firmware.hpp */; };
-		7FBA000827E077F20075D188 /* AirPort_OpenBSD.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 18713AFD255F148200EF3D49 /* AirPort_OpenBSD.hpp */; };
+		7FBA000827E077F20075D188 /* AirPortOpenBSDLegacy.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 18713AFD255F148200EF3D49 /* AirPortOpenBSDLegacy.hpp */; };
 		7FBA001327E077F20075D188 /* apple80211.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BDF255F14EC00EF3D49 /* apple80211.h */; };
 		7FBA001427E077F20075D188 /* bpfilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1D255F14E700EF3D49 /* bpfilter.h */; };
 		7FBA001527E077F20075D188 /* bridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B0E255F14E600EF3D49 /* bridge.h */; };
@@ -746,11 +936,9 @@
 		7FBA005E27E077F20075D188 /* tree.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B46255F14E700EF3D49 /* tree.h */; };
 		7FBA005F27E077F20075D188 /* uvm_extern.h in Headers */ = {isa = PBXBuildFile; fileRef = 183CD6F325605C66005F866F /* uvm_extern.h */; };
 		7FBA006027E077F20075D188 /* vlan.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1A255F14E700EF3D49 /* vlan.h */; };
-		7FBA006727E077FE0075D188 /* AirPort_OpenBSD_80211.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B19255F14E700EF3D49 /* AirPort_OpenBSD_80211.cpp */; };
-		7FBA006827E077FE0075D188 /* AirPort_OpenBSD_ASSOC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1B255F14E700EF3D49 /* AirPort_OpenBSD_ASSOC.cpp */; };
-		7FBA006927E077FE0075D188 /* AirPort_OpenBSD_IOCTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1F255F14E700EF3D49 /* AirPort_OpenBSD_IOCTL.cpp */; };
-		7FBA006A27E077FE0075D188 /* AirPort_OpenBSD_Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B20255F14E700EF3D49 /* AirPort_OpenBSD_Util.cpp */; };
-		7FBA006B27E077FE0075D188 /* AirPort_OpenBSD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713AFF255F148200EF3D49 /* AirPort_OpenBSD.cpp */; };
+		7FBA006727E077FE0075D188 /* AirPortOpenBSDLegacy_80211.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B19255F14E700EF3D49 /* AirPortOpenBSDLegacy_80211.cpp */; };
+		7FBA006927E077FE0075D188 /* AirPortOpenBSDLegacy_IOCTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1F255F14E700EF3D49 /* AirPortOpenBSDLegacy_IOCTL.cpp */; };
+		7FBA006B27E077FE0075D188 /* AirPortOpenBSDLegacy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713AFF255F148200EF3D49 /* AirPortOpenBSDLegacy.cpp */; };
 		7FBA006C27E077FE0075D188 /* compat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B0D255F14E600EF3D49 /* compat.cpp */; };
 		7FBA00A427E077FE0075D188 /* aes.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B25255F14E700EF3D49 /* aes.c */; };
 		7FBA00A527E077FE0075D188 /* arc4.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B34255F14E700EF3D49 /* arc4.c */; };
@@ -818,7 +1006,7 @@
 		7FF2C225274CD9D000DCECFD /* heapsort.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FF2C21D274CD9D000DCECFD /* heapsort.c */; };
 		7FF2C226274CD9D000DCECFD /* heapsort.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FF2C21D274CD9D000DCECFD /* heapsort.c */; };
 		7FF2C227274CD9D000DCECFD /* heapsort.c in Sources */ = {isa = PBXBuildFile; fileRef = 7FF2C21D274CD9D000DCECFD /* heapsort.c */; };
-		7FF814FB290EBB6E00050008 /* AirPort_OpenBSD.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 18713AFD255F148200EF3D49 /* AirPort_OpenBSD.hpp */; };
+		7FF814FB290EBB6E00050008 /* AirPortOpenBSDLegacy.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 18713AFD255F148200EF3D49 /* AirPortOpenBSDLegacy.hpp */; };
 		7FF81506290EBB6F00050008 /* apple80211.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713BDF255F14EC00EF3D49 /* apple80211.h */; };
 		7FF81507290EBB7000050008 /* bpfilter.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1D255F14E700EF3D49 /* bpfilter.h */; };
 		7FF81508290EBB7000050008 /* bridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B0E255F14E600EF3D49 /* bridge.h */; };
@@ -896,11 +1084,9 @@
 		7FF81552290EBB7700050008 /* tree.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B46255F14E700EF3D49 /* tree.h */; };
 		7FF81553290EBB7700050008 /* uvm_extern.h in Headers */ = {isa = PBXBuildFile; fileRef = 183CD6F325605C66005F866F /* uvm_extern.h */; };
 		7FF81554290EBB7700050008 /* vlan.h in Headers */ = {isa = PBXBuildFile; fileRef = 18713B1A255F14E700EF3D49 /* vlan.h */; };
-		7FF8155C290EBB9700050008 /* AirPort_OpenBSD_80211.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B19255F14E700EF3D49 /* AirPort_OpenBSD_80211.cpp */; };
-		7FF8155D290EBB9700050008 /* AirPort_OpenBSD_ASSOC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1B255F14E700EF3D49 /* AirPort_OpenBSD_ASSOC.cpp */; };
-		7FF8155E290EBB9700050008 /* AirPort_OpenBSD_IOCTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1F255F14E700EF3D49 /* AirPort_OpenBSD_IOCTL.cpp */; };
-		7FF8155F290EBB9700050008 /* AirPort_OpenBSD_Util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B20255F14E700EF3D49 /* AirPort_OpenBSD_Util.cpp */; };
-		7FF81560290EBB9700050008 /* AirPort_OpenBSD.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713AFF255F148200EF3D49 /* AirPort_OpenBSD.cpp */; };
+		7FF8155C290EBB9700050008 /* AirPortOpenBSDLegacy_80211.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B19255F14E700EF3D49 /* AirPortOpenBSDLegacy_80211.cpp */; };
+		7FF8155E290EBB9700050008 /* AirPortOpenBSDLegacy_IOCTL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B1F255F14E700EF3D49 /* AirPortOpenBSDLegacy_IOCTL.cpp */; };
+		7FF81560290EBB9700050008 /* AirPortOpenBSDLegacy.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713AFF255F148200EF3D49 /* AirPortOpenBSDLegacy.cpp */; };
 		7FF81561290EBB9700050008 /* compat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 18713B0D255F14E600EF3D49 /* compat.cpp */; };
 		7FF81562290EBB9700050008 /* aes.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B25255F14E700EF3D49 /* aes.c */; };
 		7FF81563290EBB9700050008 /* arc4.c in Sources */ = {isa = PBXBuildFile; fileRef = 18713B34255F14E700EF3D49 /* arc4.c */; };
@@ -969,8 +1155,8 @@
 		183CD6CD25605A98005F866F /* if_bwfm_pci.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = if_bwfm_pci.h; sourceTree = "<group>"; };
 		183CD6E225605B0E005F866F /* _if.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _if.h; sourceTree = "<group>"; };
 		183CD6F325605C66005F866F /* uvm_extern.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = uvm_extern.h; sourceTree = "<group>"; };
-		18713AFD255F148200EF3D49 /* AirPort_OpenBSD.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AirPort_OpenBSD.hpp; sourceTree = "<group>"; };
-		18713AFF255F148200EF3D49 /* AirPort_OpenBSD.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AirPort_OpenBSD.cpp; sourceTree = "<group>"; };
+		18713AFD255F148200EF3D49 /* AirPortOpenBSDLegacy.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AirPortOpenBSDLegacy.hpp; sourceTree = "<group>"; };
+		18713AFF255F148200EF3D49 /* AirPortOpenBSDLegacy.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AirPortOpenBSDLegacy.cpp; sourceTree = "<group>"; };
 		18713B01255F148200EF3D49 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		18713B0D255F14E600EF3D49 /* compat.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = compat.cpp; sourceTree = "<group>"; };
 		18713B0E255F14E600EF3D49 /* bridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bridge.h; sourceTree = "<group>"; };
@@ -981,15 +1167,13 @@
 		18713B14255F14E600EF3D49 /* IOSkywalkEthernetInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSkywalkEthernetInterface.h; sourceTree = "<group>"; };
 		18713B15255F14E600EF3D49 /* apple80211_var.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = apple80211_var.h; sourceTree = "<group>"; };
 		18713B16255F14E600EF3D49 /* IO80211Interface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IO80211Interface.h; sourceTree = "<group>"; };
-		18713B17255F14E600EF3D49 /* IO80211Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IO80211Controller.h; sourceTree = "<group>"; };
-		18713B19255F14E700EF3D49 /* AirPort_OpenBSD_80211.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirPort_OpenBSD_80211.cpp; sourceTree = "<group>"; };
+		18713B17255F14E600EF3D49 /* IO80211ControllerLegacy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IO80211ControllerLegacy.h; sourceTree = "<group>"; };
+		18713B19255F14E700EF3D49 /* AirPortOpenBSDLegacy_80211.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirPortOpenBSDLegacy_80211.cpp; sourceTree = "<group>"; };
 		18713B1A255F14E700EF3D49 /* vlan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vlan.h; sourceTree = "<group>"; };
-		18713B1B255F14E700EF3D49 /* AirPort_OpenBSD_ASSOC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirPort_OpenBSD_ASSOC.cpp; sourceTree = "<group>"; };
 		18713B1C255F14E700EF3D49 /* iwlwifi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iwlwifi.h; sourceTree = "<group>"; };
 		18713B1D255F14E700EF3D49 /* bpfilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bpfilter.h; sourceTree = "<group>"; };
 		18713B1E255F14E700EF3D49 /* ifconfig.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ifconfig.c; sourceTree = "<group>"; };
-		18713B1F255F14E700EF3D49 /* AirPort_OpenBSD_IOCTL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirPort_OpenBSD_IOCTL.cpp; sourceTree = "<group>"; };
-		18713B20255F14E700EF3D49 /* AirPort_OpenBSD_Util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirPort_OpenBSD_Util.cpp; sourceTree = "<group>"; };
+		18713B1F255F14E700EF3D49 /* AirPortOpenBSDLegacy_IOCTL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirPortOpenBSDLegacy_IOCTL.cpp; sourceTree = "<group>"; };
 		18713B21255F14E700EF3D49 /* compat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = compat.h; sourceTree = "<group>"; };
 		18713B22255F14E700EF3D49 /* ifconfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ifconfig.h; sourceTree = "<group>"; };
 		18713B25255F14E700EF3D49 /* aes.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aes.c; sourceTree = "<group>"; };
@@ -1103,19 +1287,49 @@
 		18C95A9F256285DC0047231F /* if_rtwn.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = if_rtwn.c; sourceTree = "<group>"; };
 		18FDC67B255F2126002AA72F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3714750025D187FC0052FDC0 /* _malloc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = _malloc.c; sourceTree = "<group>"; };
+		3F213E392AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AirPortOpenBSDWLANBusInterfacePCIe.cpp; sourceTree = "<group>"; };
+		3F213E3A2AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AirPortOpenBSDWLANBusInterfacePCIe.hpp; sourceTree = "<group>"; };
+		3F4F61232AEA1F2C009B0A33 /* AirPortOpenBSDWLANBusInterfacePCIeFirmware.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirPortOpenBSDWLANBusInterfacePCIeFirmware.cpp; sourceTree = "<group>"; };
+		3F76224B2AF3628E0098BF50 /* AirPortOpenBSDComm_Util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirPortOpenBSDComm_Util.cpp; sourceTree = "<group>"; };
+		3F7622532AF363210098BF50 /* AirPortOpenBSDComm_SCAN.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirPortOpenBSDComm_SCAN.cpp; sourceTree = "<group>"; };
+		3F76225B2AF3637C0098BF50 /* AirPortOpenBSDComm_PM.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirPortOpenBSDComm_PM.cpp; sourceTree = "<group>"; };
+		3F7622632AF363EF0098BF50 /* AirPortOpenBSDComm_ASSOC.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirPortOpenBSDComm_ASSOC.cpp; sourceTree = "<group>"; };
+		3F8F2F342AE5245E000AF582 /* AirPortOpenBSD_Sonoma.kext */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AirPortOpenBSD_Sonoma.kext; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FD3DF7E2ABEEDCE00EEFB3A /* MacKernelSDK */ = {isa = PBXFileReference; lastKnownFileType = folder; path = MacKernelSDK; sourceTree = "<group>"; };
-		7F18B67029625C1C0082A5E2 /* AirPort_OpenBSD_Virtual.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AirPort_OpenBSD_Virtual.cpp; sourceTree = "<group>"; };
+		3FED9CC52AEA304A00170D1B /* AirPortOpenBSD_80211.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirPortOpenBSD_80211.cpp; sourceTree = "<group>"; };
+		3FED9CC82AEA304A00170D1B /* AirPortOpenBSD_IOCTL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirPortOpenBSD_IOCTL.cpp; sourceTree = "<group>"; };
+		3FFCC7312AEA29CE0066FF38 /* AirPortOpenBSD_SkywalkInterface.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AirPortOpenBSD_SkywalkInterface.hpp; sourceTree = "<group>"; };
+		3FFCC7322AEA29CE0066FF38 /* InfoSonoma.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InfoSonoma.plist; sourceTree = "<group>"; };
+		3FFCC7472AEA29EA0066FF38 /* AirPortOpenBSD_SkywalkInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirPortOpenBSD_SkywalkInterface.cpp; sourceTree = "<group>"; };
+		3FFCC7512AEA2A100066FF38 /* CCLogPipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLogPipe.h; sourceTree = "<group>"; };
+		3FFCC7522AEA2A100066FF38 /* CCPipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCPipe.h; sourceTree = "<group>"; };
+		3FFCC7532AEA2A100066FF38 /* CCDataPipe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCDataPipe.h; sourceTree = "<group>"; };
+		3FFCC7542AEA2A100066FF38 /* IO80211InfraInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IO80211InfraInterface.h; sourceTree = "<group>"; };
+		3FFCC7552AEA2A100066FF38 /* IO80211Controller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IO80211Controller.h; sourceTree = "<group>"; };
+		3FFCC7562AEA2A100066FF38 /* CCStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCStream.h; sourceTree = "<group>"; };
+		3FFCC7572AEA2A100066FF38 /* IO80211WorkQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IO80211WorkQueue.h; sourceTree = "<group>"; };
+		3FFCC7582AEA2A100066FF38 /* IO80211InfraProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IO80211InfraProtocol.h; sourceTree = "<group>"; };
+		3FFCC7592AEA2A100066FF38 /* IOSkywalkInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSkywalkInterface.h; sourceTree = "<group>"; };
+		3FFCC75A2AEA2A100066FF38 /* IOSkywalkLegacyEthernetInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSkywalkLegacyEthernetInterface.h; sourceTree = "<group>"; };
+		3FFCC75B2AEA2A100066FF38 /* IOSkywalkNetworkInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSkywalkNetworkInterface.h; sourceTree = "<group>"; };
+		3FFCC75C2AEA2A100066FF38 /* IOSkywalkNetworkPacket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSkywalkNetworkPacket.h; sourceTree = "<group>"; };
+		3FFCC75D2AEA2A100066FF38 /* IOSkywalkPacketBufferPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSkywalkPacketBufferPool.h; sourceTree = "<group>"; };
+		3FFCC75E2AEA2A100066FF38 /* CCLogStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCLogStream.h; sourceTree = "<group>"; };
+		3FFCC75F2AEA2A100066FF38 /* IOSkywalkLogicalLink.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IOSkywalkLogicalLink.h; sourceTree = "<group>"; };
+		3FFCC7772AEA2A3E0066FF38 /* AirPortOpenBSD.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AirPortOpenBSD.hpp; sourceTree = "<group>"; };
+		3FFCC7782AEA2A3E0066FF38 /* AirPortOpenBSD.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirPortOpenBSD.cpp; sourceTree = "<group>"; };
+		3FFCC78B2AEA2AB80066FF38 /* AirPortOpenBSD_EthernetInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirPortOpenBSD_EthernetInterface.cpp; sourceTree = "<group>"; };
+		3FFCC78C2AEA2AB90066FF38 /* AirPortOpenBSD_EthernetInterface.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AirPortOpenBSD_EthernetInterface.hpp; sourceTree = "<group>"; };
+		7F18B67029625C1C0082A5E2 /* AirPortOpenBSDLegacy_Virtual.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AirPortOpenBSDLegacy_Virtual.cpp; sourceTree = "<group>"; };
 		7F3055A92912DA5F004AE7C3 /* PrivateSPI.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateSPI.pch; sourceTree = "<group>"; };
 		7F3055DE2912DB29004AE7C3 /* IO80211P2PInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IO80211P2PInterface.h; sourceTree = "<group>"; };
 		7F3055DF2912DB29004AE7C3 /* debug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = debug.h; sourceTree = "<group>"; };
 		7F3055E02912DB29004AE7C3 /* apple_private_spi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = apple_private_spi.h; sourceTree = "<group>"; };
 		7F3055E12912DB29004AE7C3 /* IO80211VirtualInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IO80211VirtualInterface.h; sourceTree = "<group>"; };
-		7F467942291C93420076781E /* AirPort_OpenBSD_PM.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AirPort_OpenBSD_PM.cpp; sourceTree = "<group>"; };
-		7F467958291C93670076781E /* AirPort_OpenBSD_SCAN.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AirPort_OpenBSD_SCAN.cpp; sourceTree = "<group>"; };
-		7F4AEF2E291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AirPort_OpenBSD_Interface.cpp; sourceTree = "<group>"; };
-		7F4AEF2F291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AirPort_OpenBSD_Interface.hpp; sourceTree = "<group>"; };
-		7F4CED9E2912DD1B00C46A15 /* AirPort_OpenBSD_AWDL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirPort_OpenBSD_AWDL.cpp; sourceTree = "<group>"; };
-		7F4CED9F2912DD1B00C46A15 /* AirPort_OpenBSD_VirtualIOCTL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirPort_OpenBSD_VirtualIOCTL.cpp; sourceTree = "<group>"; };
+		7F4AEF2E291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = AirPortOpenBSDLegacy_EthernetInterface.cpp; sourceTree = "<group>"; };
+		7F4AEF2F291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = AirPortOpenBSDLegacy_EthernetInterface.hpp; sourceTree = "<group>"; };
+		7F4CED9E2912DD1B00C46A15 /* AirPortOpenBSDLegacy_AWDL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirPortOpenBSDLegacy_AWDL.cpp; sourceTree = "<group>"; };
+		7F4CED9F2912DD1B00C46A15 /* AirPortOpenBSDLegacy_VirtualIOCTL.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AirPortOpenBSDLegacy_VirtualIOCTL.cpp; sourceTree = "<group>"; };
 		7F8AB18527E8475F0045D670 /* ieee80211_ra_vht.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ieee80211_ra_vht.h; sourceTree = "<group>"; };
 		7F8AB18627E8475F0045D670 /* ieee80211_ra_vht.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ieee80211_ra_vht.c; sourceTree = "<group>"; };
 		7FA2CFB827EEDAF80063FDD2 /* InfoLegacy.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = InfoLegacy.plist; sourceTree = "<group>"; };
@@ -1222,6 +1436,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3F8F2F312AE5245E000AF582 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7FA595AE2A59A95100824D8B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1294,6 +1515,7 @@
 				7FBAFFF227E077790075D188 /* AirPortOpenBSD_Monterey.kext */,
 				7FF814D5290EB9F100050008 /* AirPortOpenBSD_Ventura.kext */,
 				7FA595B12A59A95100824D8B /* AirPortOpenBSDFirmwareData.kext */,
+				3F8F2F342AE5245E000AF582 /* AirPortOpenBSD_Sonoma.kext */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1301,28 +1523,32 @@
 		18713AFC255F148200EF3D49 /* AirPortOpenBSD */ = {
 			isa = PBXGroup;
 			children = (
-				18713B19255F14E700EF3D49 /* AirPort_OpenBSD_80211.cpp */,
-				18713B1B255F14E700EF3D49 /* AirPort_OpenBSD_ASSOC.cpp */,
-				7F4CED9E2912DD1B00C46A15 /* AirPort_OpenBSD_AWDL.cpp */,
-				7F4AEF2E291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.cpp */,
-				7F4AEF2F291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.hpp */,
-				18713B1F255F14E700EF3D49 /* AirPort_OpenBSD_IOCTL.cpp */,
-				7F467942291C93420076781E /* AirPort_OpenBSD_PM.cpp */,
-				7F467958291C93670076781E /* AirPort_OpenBSD_SCAN.cpp */,
-				18713B20255F14E700EF3D49 /* AirPort_OpenBSD_Util.cpp */,
-				7F18B67029625C1C0082A5E2 /* AirPort_OpenBSD_Virtual.cpp */,
-				7F4CED9F2912DD1B00C46A15 /* AirPort_OpenBSD_VirtualIOCTL.cpp */,
-				18713AFF255F148200EF3D49 /* AirPort_OpenBSD.cpp */,
-				18713AFD255F148200EF3D49 /* AirPort_OpenBSD.hpp */,
+				3FED9CC52AEA304A00170D1B /* AirPortOpenBSD_80211.cpp */,
+				3FFCC78B2AEA2AB80066FF38 /* AirPortOpenBSD_EthernetInterface.cpp */,
+				3FFCC78C2AEA2AB90066FF38 /* AirPortOpenBSD_EthernetInterface.hpp */,
+				3FED9CC82AEA304A00170D1B /* AirPortOpenBSD_IOCTL.cpp */,
+				3FFCC7472AEA29EA0066FF38 /* AirPortOpenBSD_SkywalkInterface.cpp */,
+				3FFCC7312AEA29CE0066FF38 /* AirPortOpenBSD_SkywalkInterface.hpp */,
+				3FFCC7782AEA2A3E0066FF38 /* AirPortOpenBSD.cpp */,
+				3FFCC7772AEA2A3E0066FF38 /* AirPortOpenBSD.hpp */,
+				3F7622632AF363EF0098BF50 /* AirPortOpenBSDComm_ASSOC.cpp */,
+				3F76225B2AF3637C0098BF50 /* AirPortOpenBSDComm_PM.cpp */,
+				3F7622532AF363210098BF50 /* AirPortOpenBSDComm_SCAN.cpp */,
+				3F76224B2AF3628E0098BF50 /* AirPortOpenBSDComm_Util.cpp */,
+				3F213E392AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.cpp */,
+				3F213E3A2AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.hpp */,
+				3F4F61232AEA1F2C009B0A33 /* AirPortOpenBSDWLANBusInterfacePCIeFirmware.cpp */,
 				18713B0F255F14E600EF3D49 /* apple80211 */,
 				18713BDF255F14EC00EF3D49 /* apple80211.h */,
 				18713B1D255F14E700EF3D49 /* bpfilter.h */,
 				18713B0E255F14E600EF3D49 /* bridge.h */,
 				18713B0D255F14E600EF3D49 /* compat.cpp */,
 				18713B21255F14E700EF3D49 /* compat.h */,
-				7FA2CFB827EEDAF80063FDD2 /* InfoLegacy.plist */,
 				18713B01255F148200EF3D49 /* Info.plist */,
+				7FA2CFB827EEDAF80063FDD2 /* InfoLegacy.plist */,
+				3FFCC7322AEA29CE0066FF38 /* InfoSonoma.plist */,
 				18713B1C255F14E700EF3D49 /* iwlwifi.h */,
+				3F4F612A2AEA1F70009B0A33 /* Legacy */,
 				18713B23255F14E700EF3D49 /* openbsd */,
 				7F3055A92912DA5F004AE7C3 /* PrivateSPI.pch */,
 				18713B1A255F14E700EF3D49 /* vlan.h */,
@@ -1337,14 +1563,26 @@
 				18713B11255F14E600EF3D49 /* apple80211_ioctl.h */,
 				18713B15255F14E600EF3D49 /* apple80211_var.h */,
 				18713B12255F14E600EF3D49 /* apple80211_wps.h */,
+				3FFCC7532AEA2A100066FF38 /* CCDataPipe.h */,
+				3FFCC7512AEA2A100066FF38 /* CCLogPipe.h */,
+				3FFCC75E2AEA2A100066FF38 /* CCLogStream.h */,
+				3FFCC7522AEA2A100066FF38 /* CCPipe.h */,
+				3FFCC7562AEA2A100066FF38 /* CCStream.h */,
 				7F3055DF2912DB29004AE7C3 /* debug.h */,
-				18713B17255F14E600EF3D49 /* IO80211Controller.h */,
-				18713B16255F14E600EF3D49 /* IO80211Interface.h */,
-				7F3055DE2912DB29004AE7C3 /* IO80211P2PInterface.h */,
+				3FFCC7552AEA2A100066FF38 /* IO80211Controller.h */,
+				3FFCC7542AEA2A100066FF38 /* IO80211InfraInterface.h */,
+				3FFCC7582AEA2A100066FF38 /* IO80211InfraProtocol.h */,
 				18713B10255F14E600EF3D49 /* IO80211SkywalkInterface.h */,
-				7F3055E12912DB29004AE7C3 /* IO80211VirtualInterface.h */,
 				18713B13255F14E600EF3D49 /* IO80211WorkLoop.h */,
+				3FFCC7572AEA2A100066FF38 /* IO80211WorkQueue.h */,
 				18713B14255F14E600EF3D49 /* IOSkywalkEthernetInterface.h */,
+				3FFCC7592AEA2A100066FF38 /* IOSkywalkInterface.h */,
+				3FFCC75A2AEA2A100066FF38 /* IOSkywalkLegacyEthernetInterface.h */,
+				3FFCC75F2AEA2A100066FF38 /* IOSkywalkLogicalLink.h */,
+				3FFCC75B2AEA2A100066FF38 /* IOSkywalkNetworkInterface.h */,
+				3FFCC75C2AEA2A100066FF38 /* IOSkywalkNetworkPacket.h */,
+				3FFCC75D2AEA2A100066FF38 /* IOSkywalkPacketBufferPool.h */,
+				3F4F61222AEA1E5C009B0A33 /* Legacy */,
 			);
 			path = apple80211;
 			sourceTree = "<group>";
@@ -1529,6 +1767,33 @@
 			path = sources;
 			sourceTree = "<group>";
 		};
+		3F4F61222AEA1E5C009B0A33 /* Legacy */ = {
+			isa = PBXGroup;
+			children = (
+				18713B17255F14E600EF3D49 /* IO80211ControllerLegacy.h */,
+				18713B16255F14E600EF3D49 /* IO80211Interface.h */,
+				7F3055E12912DB29004AE7C3 /* IO80211VirtualInterface.h */,
+				7F3055DE2912DB29004AE7C3 /* IO80211P2PInterface.h */,
+			);
+			path = Legacy;
+			sourceTree = "<group>";
+		};
+		3F4F612A2AEA1F70009B0A33 /* Legacy */ = {
+			isa = PBXGroup;
+			children = (
+				18713B19255F14E700EF3D49 /* AirPortOpenBSDLegacy_80211.cpp */,
+				7F4CED9E2912DD1B00C46A15 /* AirPortOpenBSDLegacy_AWDL.cpp */,
+				7F4AEF2E291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.cpp */,
+				7F4AEF2F291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.hpp */,
+				18713B1F255F14E700EF3D49 /* AirPortOpenBSDLegacy_IOCTL.cpp */,
+				7F18B67029625C1C0082A5E2 /* AirPortOpenBSDLegacy_Virtual.cpp */,
+				7F4CED9F2912DD1B00C46A15 /* AirPortOpenBSDLegacy_VirtualIOCTL.cpp */,
+				18713AFF255F148200EF3D49 /* AirPortOpenBSDLegacy.cpp */,
+				18713AFD255F148200EF3D49 /* AirPortOpenBSDLegacy.hpp */,
+			);
+			path = Legacy;
+			sourceTree = "<group>";
+		};
 		3F8A69832A52BD6000268E20 /* firmware */ = {
 			isa = PBXGroup;
 			children = (
@@ -1630,7 +1895,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18713DF5255F1BD900EF3D49 /* AirPort_OpenBSD.hpp in Headers */,
+				18713DF5255F1BD900EF3D49 /* AirPortOpenBSDLegacy.hpp in Headers */,
 				18713DF8255F1BD900EF3D49 /* apple80211.h in Headers */,
 				18713DF9255F1BD900EF3D49 /* bpfilter.h in Headers */,
 				18713DFA255F1BD900EF3D49 /* bridge.h in Headers */,
@@ -1641,7 +1906,7 @@
 				18713E01255F1BD900EF3D49 /* md5.h in Headers */,
 				18713E02255F1BD900EF3D49 /* arc4.h in Headers */,
 				18713E03255F1BD900EF3D49 /* sha2.h in Headers */,
-				7F4AEF3A291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.hpp in Headers */,
+				7F4AEF3A291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.hpp in Headers */,
 				18C95A8C256285CC0047231F /* rtwnvar.h in Headers */,
 				18713E04255F1BD900EF3D49 /* hmac.h in Headers */,
 				18713E05255F1BD900EF3D49 /* aes.h in Headers */,
@@ -1674,6 +1939,7 @@
 				18BB83E725FE3C49001220DF /* ieee80211_ra.h in Headers */,
 				18713E1C255F1BD900EF3D49 /* libkern.h in Headers */,
 				18713E1D255F1BD900EF3D49 /* bus.h in Headers */,
+				3F213E432AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.hpp in Headers */,
 				18713E1E255F1BD900EF3D49 /* intr.h in Headers */,
 				183CD6AE25605A89005F866F /* bwivar.h in Headers */,
 				18713E1F255F1BD900EF3D49 /* ieee80211_amrr.h in Headers */,
@@ -1721,7 +1987,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18713EF2255F1BF600EF3D49 /* AirPort_OpenBSD.hpp in Headers */,
+				18713EF2255F1BF600EF3D49 /* AirPortOpenBSDLegacy.hpp in Headers */,
 				18713EF5255F1BF600EF3D49 /* apple80211.h in Headers */,
 				18713EF6255F1BF600EF3D49 /* bpfilter.h in Headers */,
 				18713EF7255F1BF600EF3D49 /* bridge.h in Headers */,
@@ -1732,7 +1998,7 @@
 				18713EFE255F1BF600EF3D49 /* md5.h in Headers */,
 				18713EFF255F1BF600EF3D49 /* arc4.h in Headers */,
 				18713F00255F1BF600EF3D49 /* sha2.h in Headers */,
-				7F4AEF3B291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.hpp in Headers */,
+				7F4AEF3B291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.hpp in Headers */,
 				18C95A8D256285CC0047231F /* rtwnvar.h in Headers */,
 				18713F01255F1BF600EF3D49 /* hmac.h in Headers */,
 				18713F02255F1BF600EF3D49 /* aes.h in Headers */,
@@ -1765,6 +2031,7 @@
 				18BB83E825FE3C49001220DF /* ieee80211_ra.h in Headers */,
 				18713F19255F1BF700EF3D49 /* libkern.h in Headers */,
 				18713F1A255F1BF700EF3D49 /* bus.h in Headers */,
+				3F213E442AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.hpp in Headers */,
 				18713F1B255F1BF700EF3D49 /* intr.h in Headers */,
 				183CD6AF25605A89005F866F /* bwivar.h in Headers */,
 				18713F1C255F1BF700EF3D49 /* ieee80211_amrr.h in Headers */,
@@ -1812,7 +2079,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18713F96255F1C0F00EF3D49 /* AirPort_OpenBSD.hpp in Headers */,
+				18713F96255F1C0F00EF3D49 /* AirPortOpenBSDLegacy.hpp in Headers */,
 				18713F99255F1C0F00EF3D49 /* apple80211.h in Headers */,
 				18713F9A255F1C0F00EF3D49 /* bpfilter.h in Headers */,
 				18713F9B255F1C0F00EF3D49 /* bridge.h in Headers */,
@@ -1823,7 +2090,7 @@
 				18713FA2255F1C0F00EF3D49 /* md5.h in Headers */,
 				18713FA3255F1C0F00EF3D49 /* arc4.h in Headers */,
 				18713FA4255F1C0F00EF3D49 /* sha2.h in Headers */,
-				7F4AEF3C291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.hpp in Headers */,
+				7F4AEF3C291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.hpp in Headers */,
 				18C95A8E256285CC0047231F /* rtwnvar.h in Headers */,
 				18713FA5255F1C0F00EF3D49 /* hmac.h in Headers */,
 				18713FA6255F1C0F00EF3D49 /* aes.h in Headers */,
@@ -1856,6 +2123,7 @@
 				18BB83E925FE3C49001220DF /* ieee80211_ra.h in Headers */,
 				18713FBD255F1C0F00EF3D49 /* libkern.h in Headers */,
 				18713FBE255F1C0F00EF3D49 /* bus.h in Headers */,
+				3F213E452AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.hpp in Headers */,
 				18713FBF255F1C0F00EF3D49 /* intr.h in Headers */,
 				183CD6B025605A89005F866F /* bwivar.h in Headers */,
 				18713FC0255F1C0F00EF3D49 /* ieee80211_amrr.h in Headers */,
@@ -1903,7 +2171,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1871403A255F1C2300EF3D49 /* AirPort_OpenBSD.hpp in Headers */,
+				1871403A255F1C2300EF3D49 /* AirPortOpenBSDLegacy.hpp in Headers */,
 				1871403D255F1C2300EF3D49 /* apple80211.h in Headers */,
 				1871403E255F1C2300EF3D49 /* bpfilter.h in Headers */,
 				1871403F255F1C2300EF3D49 /* bridge.h in Headers */,
@@ -1914,7 +2182,7 @@
 				18714046255F1C2300EF3D49 /* md5.h in Headers */,
 				18714047255F1C2300EF3D49 /* arc4.h in Headers */,
 				18714048255F1C2300EF3D49 /* sha2.h in Headers */,
-				7F4AEF3D291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.hpp in Headers */,
+				7F4AEF3D291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.hpp in Headers */,
 				18C95A8F256285CC0047231F /* rtwnvar.h in Headers */,
 				18714049255F1C2300EF3D49 /* hmac.h in Headers */,
 				1871404A255F1C2300EF3D49 /* aes.h in Headers */,
@@ -1947,6 +2215,7 @@
 				18BB83EA25FE3C49001220DF /* ieee80211_ra.h in Headers */,
 				18714061255F1C2300EF3D49 /* libkern.h in Headers */,
 				18714062255F1C2300EF3D49 /* bus.h in Headers */,
+				3F213E462AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.hpp in Headers */,
 				18714063255F1C2300EF3D49 /* intr.h in Headers */,
 				183CD6B125605A89005F866F /* bwivar.h in Headers */,
 				18714064255F1C2300EF3D49 /* ieee80211_amrr.h in Headers */,
@@ -1990,6 +2259,117 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3F8F2F2F2AE5245E000AF582 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FED9D1D2AEA30C500170D1B /* AirPortOpenBSDWLANBusInterfacePCIe.hpp in Headers */,
+				3FED9D1E2AEA30C500170D1B /* apple_private_spi.h in Headers */,
+				3FED9D1F2AEA30C500170D1B /* apple80211_ioctl.h in Headers */,
+				3FED9D202AEA30C500170D1B /* apple80211_var.h in Headers */,
+				3FED9D212AEA30C500170D1B /* apple80211_wps.h in Headers */,
+				3FED9D222AEA30C500170D1B /* debug.h in Headers */,
+				3FED9D232AEA30C500170D1B /* IO80211SkywalkInterface.h in Headers */,
+				3FED9D242AEA30C500170D1B /* IO80211WorkLoop.h in Headers */,
+				3FED9D252AEA30C500170D1B /* IOSkywalkEthernetInterface.h in Headers */,
+				3FED9D262AEA30C500170D1B /* apple80211.h in Headers */,
+				3FED9D272AEA30C500170D1B /* bpfilter.h in Headers */,
+				3FED9D282AEA30C500170D1B /* bridge.h in Headers */,
+				3FED9D292AEA30C500170D1B /* compat.h in Headers */,
+				3FED9D2A2AEA30C500170D1B /* iwlwifi.h in Headers */,
+				3FED9D2B2AEA30C500170D1B /* aes.h in Headers */,
+				3FED9D2C2AEA30C500170D1B /* arc4.h in Headers */,
+				3FED9D2D2AEA30C500170D1B /* cmac.h in Headers */,
+				3FED9D2E2AEA30C500170D1B /* hmac.h in Headers */,
+				3FED9D2F2AEA30C500170D1B /* key_wrap.h in Headers */,
+				3FED9D302AEA30C500170D1B /* md5.h in Headers */,
+				3FED9D312AEA30C500170D1B /* michael.h in Headers */,
+				3FED9D322AEA30C500170D1B /* sha1.h in Headers */,
+				3FED9D332AEA30C500170D1B /* sha2.h in Headers */,
+				3FED9D342AEA30C500170D1B /* bwfmreg.h in Headers */,
+				3FED9D352AEA30C500170D1B /* bwfmvar.h in Headers */,
+				3FED9D362AEA30C500170D1B /* bwireg.h in Headers */,
+				3FED9D372AEA30C500170D1B /* bwivar.h in Headers */,
+				3FED9D382AEA30C500170D1B /* r92creg.h in Headers */,
+				3FED9D392AEA30C500170D1B /* rtwnvar.h in Headers */,
+				3FED9D3A2AEA30C500170D1B /* if_bwfm_pci.h in Headers */,
+				3FED9D3B2AEA30C500170D1B /* if_ipwreg.h in Headers */,
+				3FED9D3C2AEA30C500170D1B /* if_ipwvar.h in Headers */,
+				3FED9D3D2AEA30C500170D1B /* if_iwireg.h in Headers */,
+				3FED9D3E2AEA30C500170D1B /* if_iwivar.h in Headers */,
+				3FED9D3F2AEA30C500170D1B /* if_iwmreg.h in Headers */,
+				3FED9D402AEA30C500170D1B /* if_iwmvar.h in Headers */,
+				3FED9D412AEA30C500170D1B /* if_iwnreg.h in Headers */,
+				3FED9D422AEA30C500170D1B /* if_iwnvar.h in Headers */,
+				3FED9D432AEA30C500170D1B /* if_iwxreg.h in Headers */,
+				3FED9D442AEA30C500170D1B /* if_iwxvar.h in Headers */,
+				3FED9D452AEA30C500170D1B /* if_wpireg.h in Headers */,
+				3FED9D462AEA30C500170D1B /* if_wpivar.h in Headers */,
+				3FED9D472AEA30C500170D1B /* pcidevs.h in Headers */,
+				3FED9D482AEA30C500170D1B /* pcireg.h in Headers */,
+				3FED9D492AEA30C500170D1B /* pcivar.h in Headers */,
+				3FED9D4A2AEA30C500170D1B /* ifconfig.h in Headers */,
+				3FED9D4B2AEA30C500170D1B /* qsort.h in Headers */,
+				3FED9D4C2AEA30C500170D1B /* heapsort.h in Headers */,
+				3FED9D4D2AEA30C500170D1B /* bus.h in Headers */,
+				3FED9D4E2AEA30C500170D1B /* intr.h in Headers */,
+				3FED9D4F2AEA30C500170D1B /* ieee80211_amrr.h in Headers */,
+				3FED9D502AEA30C500170D1B /* ieee80211_crypto.h in Headers */,
+				3FED9D512AEA30C500170D1B /* ieee80211_ioctl.h in Headers */,
+				3FED9D522AEA30C500170D1B /* ieee80211_node.h in Headers */,
+				3FED9D532AEA30C500170D1B /* ieee80211_priv.h in Headers */,
+				3FED9D542AEA30C500170D1B /* ieee80211_proto.h in Headers */,
+				3FED9D552AEA30C500170D1B /* ieee80211_ra_vht.h in Headers */,
+				3FED9D562AEA30C500170D1B /* ieee80211_ra.h in Headers */,
+				3FED9D572AEA30C500170D1B /* ieee80211_radiotap.h in Headers */,
+				3FED9D582AEA30C500170D1B /* ieee80211_regdomain.h in Headers */,
+				3FED9D592AEA30C500170D1B /* ieee80211_rssadapt.h in Headers */,
+				3FED9D5A2AEA30C500170D1B /* ieee80211_var.h in Headers */,
+				3FED9D5B2AEA30C500170D1B /* ieee80211.h in Headers */,
+				3FED9D5C2AEA30C500170D1B /* _bpf.h in Headers */,
+				3FED9D5D2AEA30C500170D1B /* _if_ether.h in Headers */,
+				3FED9D5E2AEA30C500170D1B /* _if.h in Headers */,
+				3FED9D5F2AEA30C500170D1B /* if_media.h in Headers */,
+				3FED9D602AEA30C500170D1B /* __types.h in Headers */,
+				3FED9D612AEA30C500170D1B /* _kernel.h in Headers */,
+				3FED9D622AEA30C500170D1B /* _malloc.h in Headers */,
+				3FED9D632AEA30C500170D1B /* _mbuf.h in Headers */,
+				3FED9D642AEA30C500170D1B /* _null.h in Headers */,
+				3FED9D652AEA30C500170D1B /* device.h in Headers */,
+				3FED9D662AEA30C500170D1B /* endian.h in Headers */,
+				3FED9D672AEA30C500170D1B /* fls.h in Headers */,
+				3FED9D682AEA30C500170D1B /* kern_compat.h in Headers */,
+				3FED9D692AEA30C500170D1B /* libkern.h in Headers */,
+				3FED9D6A2AEA30C500170D1B /* mutex.h in Headers */,
+				3FED9D6B2AEA30C500170D1B /* refcnt.h in Headers */,
+				3FED9D6C2AEA30C500170D1B /* rwlock.h in Headers */,
+				3FED9D6D2AEA30C500170D1B /* task.h in Headers */,
+				3FED9D6E2AEA30C500170D1B /* timeout.h in Headers */,
+				3FED9D6F2AEA30C500170D1B /* timingsafe_bcmp.h in Headers */,
+				3FED9D702AEA30C500170D1B /* tree.h in Headers */,
+				3FED9D712AEA30C500170D1B /* uvm_extern.h in Headers */,
+				3FED9D722AEA30C500170D1B /* vlan.h in Headers */,
+				3FFCC7632AEA2A100066FF38 /* IO80211InfraInterface.h in Headers */,
+				3FFCC7682AEA2A100066FF38 /* IOSkywalkInterface.h in Headers */,
+				3FFCC76A2AEA2A100066FF38 /* IOSkywalkNetworkInterface.h in Headers */,
+				3FFCC76E2AEA2A100066FF38 /* IOSkywalkLogicalLink.h in Headers */,
+				3FFCC7642AEA2A100066FF38 /* IO80211Controller.h in Headers */,
+				3FFCC78E2AEA2AB90066FF38 /* AirPortOpenBSD_EthernetInterface.hpp in Headers */,
+				3FFCC7622AEA2A100066FF38 /* CCDataPipe.h in Headers */,
+				3FFCC7612AEA2A100066FF38 /* CCPipe.h in Headers */,
+				3FFCC7662AEA2A100066FF38 /* IO80211WorkQueue.h in Headers */,
+				3FFCC7692AEA2A100066FF38 /* IOSkywalkLegacyEthernetInterface.h in Headers */,
+				3FFCC7342AEA29CE0066FF38 /* AirPortOpenBSD_SkywalkInterface.hpp in Headers */,
+				3FFCC7652AEA2A100066FF38 /* CCStream.h in Headers */,
+				3FFCC7602AEA2A100066FF38 /* CCLogPipe.h in Headers */,
+				3FFCC76C2AEA2A100066FF38 /* IOSkywalkPacketBufferPool.h in Headers */,
+				3FFCC76D2AEA2A100066FF38 /* CCLogStream.h in Headers */,
+				3FFCC76B2AEA2A100066FF38 /* IOSkywalkNetworkPacket.h in Headers */,
+				3FFCC7792AEA2A3E0066FF38 /* AirPortOpenBSD.hpp in Headers */,
+				3FFCC7672AEA2A100066FF38 /* IO80211InfraProtocol.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7FA595AC2A59A95100824D8B /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -2004,7 +2384,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7FBA000827E077F20075D188 /* AirPort_OpenBSD.hpp in Headers */,
+				7FBA000827E077F20075D188 /* AirPortOpenBSDLegacy.hpp in Headers */,
 				7FBA001327E077F20075D188 /* apple80211.h in Headers */,
 				7FBA001427E077F20075D188 /* bpfilter.h in Headers */,
 				7FBA001527E077F20075D188 /* bridge.h in Headers */,
@@ -2015,7 +2395,7 @@
 				7FBA001C27E077F20075D188 /* cmac.h in Headers */,
 				7FBA001D27E077F20075D188 /* hmac.h in Headers */,
 				7FBA001E27E077F20075D188 /* key_wrap.h in Headers */,
-				7F4AEF39291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.hpp in Headers */,
+				7F4AEF39291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.hpp in Headers */,
 				7FBA001F27E077F20075D188 /* md5.h in Headers */,
 				7FBA002027E077F20075D188 /* michael.h in Headers */,
 				7FBA002127E077F20075D188 /* sha1.h in Headers */,
@@ -2048,6 +2428,7 @@
 				7FBA003A27E077F20075D188 /* qsort.h in Headers */,
 				7FBA003B27E077F20075D188 /* heapsort.h in Headers */,
 				7FBA003C27E077F20075D188 /* bus.h in Headers */,
+				3F213E422AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.hpp in Headers */,
 				7FBA003D27E077F20075D188 /* intr.h in Headers */,
 				7FBA003E27E077F20075D188 /* ieee80211_amrr.h in Headers */,
 				7FBA003F27E077F20075D188 /* ieee80211_crypto.h in Headers */,
@@ -2095,7 +2476,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7FF814FB290EBB6E00050008 /* AirPort_OpenBSD.hpp in Headers */,
+				7FF814FB290EBB6E00050008 /* AirPortOpenBSDLegacy.hpp in Headers */,
 				7FF81506290EBB6F00050008 /* apple80211.h in Headers */,
 				7FF81507290EBB7000050008 /* bpfilter.h in Headers */,
 				7FF81508290EBB7000050008 /* bridge.h in Headers */,
@@ -2107,7 +2488,7 @@
 				7FF8150E290EBB7000050008 /* hmac.h in Headers */,
 				7FF8150F290EBB7000050008 /* key_wrap.h in Headers */,
 				7FF81510290EBB7000050008 /* md5.h in Headers */,
-				7F4AEF38291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.hpp in Headers */,
+				7F4AEF38291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.hpp in Headers */,
 				7FF81511290EBB7100050008 /* michael.h in Headers */,
 				7FF81512290EBB7100050008 /* sha1.h in Headers */,
 				7FF81513290EBB7100050008 /* sha2.h in Headers */,
@@ -2139,6 +2520,7 @@
 				7FF8152D290EBB7300050008 /* heapsort.h in Headers */,
 				7FF8152E290EBB7300050008 /* bus.h in Headers */,
 				7FF8152F290EBB7300050008 /* intr.h in Headers */,
+				3F213E412AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.hpp in Headers */,
 				7FF81530290EBB7400050008 /* ieee80211_amrr.h in Headers */,
 				7FF81531290EBB7400050008 /* ieee80211_crypto.h in Headers */,
 				7FF81532290EBB7400050008 /* ieee80211_ioctl.h in Headers */,
@@ -2273,6 +2655,24 @@
 			productReference = 18713CE3255F157300EF3D49 /* AirPortOpenBSD_HighSierra.kext */;
 			productType = "com.apple.product-type.kernel-extension";
 		};
+		3F8F2F332AE5245E000AF582 /* AirPortOpenBSD_Sonoma */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3F8F2F3D2AE5245F000AF582 /* Build configuration list for PBXNativeTarget "AirPortOpenBSD_Sonoma" */;
+			buildPhases = (
+				3F8F2F2F2AE5245E000AF582 /* Headers */,
+				3F8F2F302AE5245E000AF582 /* Sources */,
+				3F8F2F312AE5245E000AF582 /* Frameworks */,
+				3F8F2F322AE5245E000AF582 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AirPortOpenBSD_Sonoma;
+			productName = AirPortOpenBSD_Sonoma;
+			productReference = 3F8F2F342AE5245E000AF582 /* AirPortOpenBSD_Sonoma.kext */;
+			productType = "com.apple.product-type.kernel-extension";
+		};
 		7FA595B02A59A95100824D8B /* AirPortOpenBSDFirmwareData */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7FA595B82A59A95200824D8B /* Build configuration list for PBXNativeTarget "AirPortOpenBSDFirmwareData" */;
@@ -2350,6 +2750,9 @@
 					18713CF2255F158E00EF3D49 = {
 						CreatedOnToolsVersion = 12.2;
 					};
+					3F8F2F332AE5245E000AF582 = {
+						CreatedOnToolsVersion = 15.0;
+					};
 					7FA595B02A59A95100824D8B = {
 						CreatedOnToolsVersion = 14.3.1;
 					};
@@ -2374,6 +2777,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				3F8F2F332AE5245E000AF582 /* AirPortOpenBSD_Sonoma */,
 				7FF814D4290EB9F100050008 /* AirPortOpenBSD_Ventura */,
 				7FBAFFF127E077790075D188 /* AirPortOpenBSD_Monterey */,
 				18713CAC255F154500EF3D49 /* AirPortOpenBSD_BigSur */,
@@ -2415,6 +2819,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3F8F2F322AE5245E000AF582 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FFCC7352AEA29CE0066FF38 /* InfoSonoma.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7FA595AF2A59A95100824D8B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2443,31 +2855,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18713E40255F1BE100EF3D49 /* AirPort_OpenBSD_80211.cpp in Sources */,
-				18713E41255F1BE100EF3D49 /* AirPort_OpenBSD_ASSOC.cpp in Sources */,
-				18713E42255F1BE100EF3D49 /* AirPort_OpenBSD_IOCTL.cpp in Sources */,
-				7F467946291C93420076781E /* AirPort_OpenBSD_PM.cpp in Sources */,
-				18713E43255F1BE100EF3D49 /* AirPort_OpenBSD_Util.cpp in Sources */,
-				18713E44255F1BE100EF3D49 /* AirPort_OpenBSD.cpp in Sources */,
+				18713E40255F1BE100EF3D49 /* AirPortOpenBSDLegacy_80211.cpp in Sources */,
+				18713E42255F1BE100EF3D49 /* AirPortOpenBSDLegacy_IOCTL.cpp in Sources */,
+				18713E44255F1BE100EF3D49 /* AirPortOpenBSDLegacy.cpp in Sources */,
 				18C95A87256285CC0047231F /* rtwn.c in Sources */,
 				18713E45255F1BE100EF3D49 /* compat.cpp in Sources */,
 				18BB83E225FE3C49001220DF /* ieee80211_ra.c in Sources */,
 				183CD6BD25605A89005F866F /* bwi.c in Sources */,
 				7FF2C224274CD9D000DCECFD /* heapsort.c in Sources */,
-				7F46795C291C93670076781E /* AirPort_OpenBSD_SCAN.cpp in Sources */,
 				183CD6CF25605A98005F866F /* if_bwfm_pci.c in Sources */,
+				3F76225F2AF3637C0098BF50 /* AirPortOpenBSDComm_PM.cpp in Sources */,
 				7FF2C213274CD7E900DCECFD /* qsort.c in Sources */,
+				3F76224F2AF3628F0098BF50 /* AirPortOpenBSDComm_Util.cpp in Sources */,
 				18713E6B255F1BE100EF3D49 /* ifconfig.c in Sources */,
 				18713E6C255F1BE100EF3D49 /* aes.c in Sources */,
 				18713E6D255F1BE100EF3D49 /* hmac.c in Sources */,
 				18713E6E255F1BE100EF3D49 /* sha2.c in Sources */,
 				18713E6F255F1BE100EF3D49 /* michael.c in Sources */,
-				7F18B67329625C1C0082A5E2 /* AirPort_OpenBSD_Virtual.cpp in Sources */,
+				3F7622672AF363EF0098BF50 /* AirPortOpenBSDComm_ASSOC.cpp in Sources */,
+				7F18B67329625C1C0082A5E2 /* AirPortOpenBSDLegacy_Virtual.cpp in Sources */,
 				18713E70255F1BE100EF3D49 /* sha1.c in Sources */,
 				3714750225D187FC0052FDC0 /* _malloc.c in Sources */,
-				7F4CEDAA2912DD1B00C46A15 /* AirPort_OpenBSD_VirtualIOCTL.cpp in Sources */,
+				7F4CEDAA2912DD1B00C46A15 /* AirPortOpenBSDLegacy_VirtualIOCTL.cpp in Sources */,
 				18713E71255F1BE100EF3D49 /* cmac.c in Sources */,
 				18713E72255F1BE100EF3D49 /* md5.c in Sources */,
+				3F7622572AF363210098BF50 /* AirPortOpenBSDComm_SCAN.cpp in Sources */,
 				18713E73255F1BE100EF3D49 /* arc4.c in Sources */,
 				18713E74255F1BE100EF3D49 /* key_wrap.c in Sources */,
 				18713E75255F1BE100EF3D49 /* _bpf.c in Sources */,
@@ -2480,9 +2892,10 @@
 				18713E7B255F1BE100EF3D49 /* bus.c in Sources */,
 				18713E7C255F1BE100EF3D49 /* ieee80211_proto.c in Sources */,
 				18713E7D255F1BE100EF3D49 /* ieee80211_ioctl.c in Sources */,
-				7F4AEF33291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.cpp in Sources */,
+				7F4AEF33291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.cpp in Sources */,
 				18713E7E255F1BE100EF3D49 /* ieee80211.c in Sources */,
-				7F4CEDA32912DD1B00C46A15 /* AirPort_OpenBSD_AWDL.cpp in Sources */,
+				3F4F61262AEA1F2C009B0A33 /* AirPortOpenBSDWLANBusInterfacePCIeFirmware.cpp in Sources */,
+				7F4CEDA32912DD1B00C46A15 /* AirPortOpenBSDLegacy_AWDL.cpp in Sources */,
 				18713E7F255F1BE100EF3D49 /* ieee80211_rssadapt.c in Sources */,
 				18713E80255F1BE100EF3D49 /* ieee80211_input.c in Sources */,
 				18713E82255F1BE100EF3D49 /* ieee80211_crypto_bip.c in Sources */,
@@ -2493,6 +2906,7 @@
 				18713E87255F1BE100EF3D49 /* ieee80211_crypto_wep.c in Sources */,
 				18713E88255F1BE100EF3D49 /* ieee80211_output.c in Sources */,
 				18713E89255F1BE100EF3D49 /* ieee80211_crypto.c in Sources */,
+				3F213E3D2AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.cpp in Sources */,
 				18C95AA1256285DC0047231F /* if_rtwn.c in Sources */,
 				18713E8A255F1BE100EF3D49 /* ieee80211_regdomain.c in Sources */,
 				183CD6B325605A89005F866F /* bwfm.c in Sources */,
@@ -2513,31 +2927,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18713E99255F1BE900EF3D49 /* AirPort_OpenBSD_80211.cpp in Sources */,
-				18713E9A255F1BE900EF3D49 /* AirPort_OpenBSD_ASSOC.cpp in Sources */,
-				18713E9B255F1BE900EF3D49 /* AirPort_OpenBSD_IOCTL.cpp in Sources */,
-				7F467947291C93420076781E /* AirPort_OpenBSD_PM.cpp in Sources */,
-				18713E9C255F1BE900EF3D49 /* AirPort_OpenBSD_Util.cpp in Sources */,
-				18713E9D255F1BE900EF3D49 /* AirPort_OpenBSD.cpp in Sources */,
+				18713E99255F1BE900EF3D49 /* AirPortOpenBSDLegacy_80211.cpp in Sources */,
+				18713E9B255F1BE900EF3D49 /* AirPortOpenBSDLegacy_IOCTL.cpp in Sources */,
+				18713E9D255F1BE900EF3D49 /* AirPortOpenBSDLegacy.cpp in Sources */,
 				18C95A88256285CC0047231F /* rtwn.c in Sources */,
 				18713E9E255F1BE900EF3D49 /* compat.cpp in Sources */,
 				18BB83E325FE3C49001220DF /* ieee80211_ra.c in Sources */,
 				183CD6BE25605A89005F866F /* bwi.c in Sources */,
 				7FF2C225274CD9D000DCECFD /* heapsort.c in Sources */,
-				7F46795D291C93670076781E /* AirPort_OpenBSD_SCAN.cpp in Sources */,
 				183CD6D025605A98005F866F /* if_bwfm_pci.c in Sources */,
+				3F7622602AF3637C0098BF50 /* AirPortOpenBSDComm_PM.cpp in Sources */,
 				7FF2C214274CD7E900DCECFD /* qsort.c in Sources */,
+				3F7622502AF3628F0098BF50 /* AirPortOpenBSDComm_Util.cpp in Sources */,
 				18713EC4255F1BE900EF3D49 /* ifconfig.c in Sources */,
 				18713EC5255F1BE900EF3D49 /* aes.c in Sources */,
 				18713EC6255F1BE900EF3D49 /* hmac.c in Sources */,
 				18713EC7255F1BE900EF3D49 /* sha2.c in Sources */,
 				18713EC8255F1BE900EF3D49 /* michael.c in Sources */,
-				7F18B67429625C1C0082A5E2 /* AirPort_OpenBSD_Virtual.cpp in Sources */,
+				3F7622682AF363EF0098BF50 /* AirPortOpenBSDComm_ASSOC.cpp in Sources */,
+				7F18B67429625C1C0082A5E2 /* AirPortOpenBSDLegacy_Virtual.cpp in Sources */,
 				18713EC9255F1BE900EF3D49 /* sha1.c in Sources */,
 				3714750325D187FC0052FDC0 /* _malloc.c in Sources */,
-				7F4CEDAB2912DD1B00C46A15 /* AirPort_OpenBSD_VirtualIOCTL.cpp in Sources */,
+				7F4CEDAB2912DD1B00C46A15 /* AirPortOpenBSDLegacy_VirtualIOCTL.cpp in Sources */,
 				18713ECA255F1BE900EF3D49 /* cmac.c in Sources */,
 				18713ECB255F1BE900EF3D49 /* md5.c in Sources */,
+				3F7622582AF363210098BF50 /* AirPortOpenBSDComm_SCAN.cpp in Sources */,
 				18713ECC255F1BE900EF3D49 /* arc4.c in Sources */,
 				18713ECD255F1BE900EF3D49 /* key_wrap.c in Sources */,
 				18713ECE255F1BE900EF3D49 /* _bpf.c in Sources */,
@@ -2550,9 +2964,10 @@
 				18713ED4255F1BE900EF3D49 /* bus.c in Sources */,
 				18713ED5255F1BE900EF3D49 /* ieee80211_proto.c in Sources */,
 				18713ED6255F1BE900EF3D49 /* ieee80211_ioctl.c in Sources */,
-				7F4AEF34291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.cpp in Sources */,
+				7F4AEF34291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.cpp in Sources */,
 				18713ED7255F1BE900EF3D49 /* ieee80211.c in Sources */,
-				7F4CEDA42912DD1B00C46A15 /* AirPort_OpenBSD_AWDL.cpp in Sources */,
+				3F4F61272AEA1F2C009B0A33 /* AirPortOpenBSDWLANBusInterfacePCIeFirmware.cpp in Sources */,
+				7F4CEDA42912DD1B00C46A15 /* AirPortOpenBSDLegacy_AWDL.cpp in Sources */,
 				18713ED8255F1BE900EF3D49 /* ieee80211_rssadapt.c in Sources */,
 				18713ED9255F1BE900EF3D49 /* ieee80211_input.c in Sources */,
 				18713EDB255F1BE900EF3D49 /* ieee80211_crypto_bip.c in Sources */,
@@ -2563,6 +2978,7 @@
 				18713EE0255F1BE900EF3D49 /* ieee80211_crypto_wep.c in Sources */,
 				18713EE1255F1BE900EF3D49 /* ieee80211_output.c in Sources */,
 				18713EE2255F1BE900EF3D49 /* ieee80211_crypto.c in Sources */,
+				3F213E3E2AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.cpp in Sources */,
 				18C95AA2256285DC0047231F /* if_rtwn.c in Sources */,
 				18713EE3255F1BE900EF3D49 /* ieee80211_regdomain.c in Sources */,
 				183CD6B425605A89005F866F /* bwfm.c in Sources */,
@@ -2583,31 +2999,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18713F3D255F1C0200EF3D49 /* AirPort_OpenBSD_80211.cpp in Sources */,
-				18713F3E255F1C0200EF3D49 /* AirPort_OpenBSD_ASSOC.cpp in Sources */,
-				18713F3F255F1C0200EF3D49 /* AirPort_OpenBSD_IOCTL.cpp in Sources */,
-				7F467948291C93420076781E /* AirPort_OpenBSD_PM.cpp in Sources */,
-				18713F40255F1C0200EF3D49 /* AirPort_OpenBSD_Util.cpp in Sources */,
-				18713F41255F1C0200EF3D49 /* AirPort_OpenBSD.cpp in Sources */,
+				18713F3D255F1C0200EF3D49 /* AirPortOpenBSDLegacy_80211.cpp in Sources */,
+				18713F3F255F1C0200EF3D49 /* AirPortOpenBSDLegacy_IOCTL.cpp in Sources */,
+				18713F41255F1C0200EF3D49 /* AirPortOpenBSDLegacy.cpp in Sources */,
 				18C95A89256285CC0047231F /* rtwn.c in Sources */,
 				18713F42255F1C0200EF3D49 /* compat.cpp in Sources */,
 				18BB83E425FE3C49001220DF /* ieee80211_ra.c in Sources */,
 				183CD6BF25605A89005F866F /* bwi.c in Sources */,
 				7FF2C226274CD9D000DCECFD /* heapsort.c in Sources */,
-				7F46795E291C93670076781E /* AirPort_OpenBSD_SCAN.cpp in Sources */,
 				183CD6D125605A98005F866F /* if_bwfm_pci.c in Sources */,
+				3F7622612AF3637C0098BF50 /* AirPortOpenBSDComm_PM.cpp in Sources */,
 				7FF2C215274CD7E900DCECFD /* qsort.c in Sources */,
+				3F7622512AF3628F0098BF50 /* AirPortOpenBSDComm_Util.cpp in Sources */,
 				18713F68255F1C0200EF3D49 /* ifconfig.c in Sources */,
 				18713F69255F1C0200EF3D49 /* aes.c in Sources */,
 				18713F6A255F1C0200EF3D49 /* hmac.c in Sources */,
 				18713F6B255F1C0200EF3D49 /* sha2.c in Sources */,
 				18713F6C255F1C0200EF3D49 /* michael.c in Sources */,
-				7F18B67529625C1C0082A5E2 /* AirPort_OpenBSD_Virtual.cpp in Sources */,
+				3F7622692AF363EF0098BF50 /* AirPortOpenBSDComm_ASSOC.cpp in Sources */,
+				7F18B67529625C1C0082A5E2 /* AirPortOpenBSDLegacy_Virtual.cpp in Sources */,
 				18713F6D255F1C0200EF3D49 /* sha1.c in Sources */,
 				3714750425D187FC0052FDC0 /* _malloc.c in Sources */,
-				7F4CEDAC2912DD1B00C46A15 /* AirPort_OpenBSD_VirtualIOCTL.cpp in Sources */,
+				7F4CEDAC2912DD1B00C46A15 /* AirPortOpenBSDLegacy_VirtualIOCTL.cpp in Sources */,
 				18713F6E255F1C0200EF3D49 /* cmac.c in Sources */,
 				18713F6F255F1C0200EF3D49 /* md5.c in Sources */,
+				3F7622592AF363210098BF50 /* AirPortOpenBSDComm_SCAN.cpp in Sources */,
 				18713F70255F1C0200EF3D49 /* arc4.c in Sources */,
 				18713F71255F1C0200EF3D49 /* key_wrap.c in Sources */,
 				18713F72255F1C0200EF3D49 /* _bpf.c in Sources */,
@@ -2620,9 +3036,10 @@
 				18713F78255F1C0200EF3D49 /* bus.c in Sources */,
 				18713F79255F1C0200EF3D49 /* ieee80211_proto.c in Sources */,
 				18713F7A255F1C0200EF3D49 /* ieee80211_ioctl.c in Sources */,
-				7F4AEF35291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.cpp in Sources */,
+				7F4AEF35291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.cpp in Sources */,
 				18713F7B255F1C0200EF3D49 /* ieee80211.c in Sources */,
-				7F4CEDA52912DD1B00C46A15 /* AirPort_OpenBSD_AWDL.cpp in Sources */,
+				3F4F61282AEA1F2C009B0A33 /* AirPortOpenBSDWLANBusInterfacePCIeFirmware.cpp in Sources */,
+				7F4CEDA52912DD1B00C46A15 /* AirPortOpenBSDLegacy_AWDL.cpp in Sources */,
 				18713F7C255F1C0200EF3D49 /* ieee80211_rssadapt.c in Sources */,
 				18713F7D255F1C0200EF3D49 /* ieee80211_input.c in Sources */,
 				18713F7F255F1C0200EF3D49 /* ieee80211_crypto_bip.c in Sources */,
@@ -2633,6 +3050,7 @@
 				18713F84255F1C0200EF3D49 /* ieee80211_crypto_wep.c in Sources */,
 				18713F85255F1C0200EF3D49 /* ieee80211_output.c in Sources */,
 				18713F86255F1C0200EF3D49 /* ieee80211_crypto.c in Sources */,
+				3F213E3F2AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.cpp in Sources */,
 				18C95AA3256285DC0047231F /* if_rtwn.c in Sources */,
 				18713F87255F1C0200EF3D49 /* ieee80211_regdomain.c in Sources */,
 				183CD6B525605A89005F866F /* bwfm.c in Sources */,
@@ -2653,31 +3071,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				18713FE1255F1C1800EF3D49 /* AirPort_OpenBSD_80211.cpp in Sources */,
-				18713FE2255F1C1800EF3D49 /* AirPort_OpenBSD_ASSOC.cpp in Sources */,
-				18713FE3255F1C1800EF3D49 /* AirPort_OpenBSD_IOCTL.cpp in Sources */,
-				7F467949291C93420076781E /* AirPort_OpenBSD_PM.cpp in Sources */,
-				18713FE4255F1C1800EF3D49 /* AirPort_OpenBSD_Util.cpp in Sources */,
-				18713FE5255F1C1800EF3D49 /* AirPort_OpenBSD.cpp in Sources */,
+				18713FE1255F1C1800EF3D49 /* AirPortOpenBSDLegacy_80211.cpp in Sources */,
+				18713FE3255F1C1800EF3D49 /* AirPortOpenBSDLegacy_IOCTL.cpp in Sources */,
+				18713FE5255F1C1800EF3D49 /* AirPortOpenBSDLegacy.cpp in Sources */,
 				18C95A8A256285CC0047231F /* rtwn.c in Sources */,
 				18713FE6255F1C1800EF3D49 /* compat.cpp in Sources */,
 				18BB83E525FE3C49001220DF /* ieee80211_ra.c in Sources */,
 				183CD6C025605A89005F866F /* bwi.c in Sources */,
 				7FF2C227274CD9D000DCECFD /* heapsort.c in Sources */,
-				7F46795F291C93670076781E /* AirPort_OpenBSD_SCAN.cpp in Sources */,
 				183CD6D225605A98005F866F /* if_bwfm_pci.c in Sources */,
+				3F7622622AF3637C0098BF50 /* AirPortOpenBSDComm_PM.cpp in Sources */,
 				7FF2C216274CD7E900DCECFD /* qsort.c in Sources */,
+				3F7622522AF3628F0098BF50 /* AirPortOpenBSDComm_Util.cpp in Sources */,
 				1871400C255F1C1800EF3D49 /* ifconfig.c in Sources */,
 				1871400D255F1C1800EF3D49 /* aes.c in Sources */,
 				1871400E255F1C1800EF3D49 /* hmac.c in Sources */,
 				1871400F255F1C1800EF3D49 /* sha2.c in Sources */,
 				18714010255F1C1800EF3D49 /* michael.c in Sources */,
-				7F18B67629625C1C0082A5E2 /* AirPort_OpenBSD_Virtual.cpp in Sources */,
+				3F76226A2AF363EF0098BF50 /* AirPortOpenBSDComm_ASSOC.cpp in Sources */,
+				7F18B67629625C1C0082A5E2 /* AirPortOpenBSDLegacy_Virtual.cpp in Sources */,
 				18714011255F1C1800EF3D49 /* sha1.c in Sources */,
 				3714750525D187FC0052FDC0 /* _malloc.c in Sources */,
-				7F4CEDAD2912DD1B00C46A15 /* AirPort_OpenBSD_VirtualIOCTL.cpp in Sources */,
+				7F4CEDAD2912DD1B00C46A15 /* AirPortOpenBSDLegacy_VirtualIOCTL.cpp in Sources */,
 				18714012255F1C1800EF3D49 /* cmac.c in Sources */,
 				18714013255F1C1800EF3D49 /* md5.c in Sources */,
+				3F76225A2AF363210098BF50 /* AirPortOpenBSDComm_SCAN.cpp in Sources */,
 				18714014255F1C1800EF3D49 /* arc4.c in Sources */,
 				18714015255F1C1800EF3D49 /* key_wrap.c in Sources */,
 				18714016255F1C1800EF3D49 /* _bpf.c in Sources */,
@@ -2690,9 +3108,10 @@
 				1871401C255F1C1800EF3D49 /* bus.c in Sources */,
 				1871401D255F1C1800EF3D49 /* ieee80211_proto.c in Sources */,
 				1871401E255F1C1800EF3D49 /* ieee80211_ioctl.c in Sources */,
-				7F4AEF36291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.cpp in Sources */,
+				7F4AEF36291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.cpp in Sources */,
 				1871401F255F1C1800EF3D49 /* ieee80211.c in Sources */,
-				7F4CEDA62912DD1B00C46A15 /* AirPort_OpenBSD_AWDL.cpp in Sources */,
+				3F4F61292AEA1F2C009B0A33 /* AirPortOpenBSDWLANBusInterfacePCIeFirmware.cpp in Sources */,
+				7F4CEDA62912DD1B00C46A15 /* AirPortOpenBSDLegacy_AWDL.cpp in Sources */,
 				18714020255F1C1800EF3D49 /* ieee80211_rssadapt.c in Sources */,
 				18714021255F1C1800EF3D49 /* ieee80211_input.c in Sources */,
 				18714023255F1C1800EF3D49 /* ieee80211_crypto_bip.c in Sources */,
@@ -2703,6 +3122,7 @@
 				18714028255F1C1800EF3D49 /* ieee80211_crypto_wep.c in Sources */,
 				18714029255F1C1800EF3D49 /* ieee80211_output.c in Sources */,
 				1871402A255F1C1800EF3D49 /* ieee80211_crypto.c in Sources */,
+				3F213E402AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.cpp in Sources */,
 				18C95AA4256285DC0047231F /* if_rtwn.c in Sources */,
 				1871402B255F1C1800EF3D49 /* ieee80211_regdomain.c in Sources */,
 				183CD6B625605A89005F866F /* bwfm.c in Sources */,
@@ -2716,6 +3136,76 @@
 				18714032255F1C1800EF3D49 /* if_iwx.c in Sources */,
 				18714033255F1C1800EF3D49 /* if_ipw.c in Sources */,
 				18714034255F1C1800EF3D49 /* if_iwn.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3F8F2F302AE5245E000AF582 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3FED9CDF2AEA309E00170D1B /* AirPortOpenBSDWLANBusInterfacePCIe.cpp in Sources */,
+				3FED9CE02AEA309E00170D1B /* AirPortOpenBSDWLANBusInterfacePCIeFirmware.cpp in Sources */,
+				3FED9CE12AEA309E00170D1B /* compat.cpp in Sources */,
+				3FED9CE22AEA309E00170D1B /* aes.c in Sources */,
+				3FED9CE32AEA309E00170D1B /* arc4.c in Sources */,
+				3FED9CE42AEA309E00170D1B /* cmac.c in Sources */,
+				3FED9CE52AEA309E00170D1B /* hmac.c in Sources */,
+				3FED9CE62AEA309E00170D1B /* key_wrap.c in Sources */,
+				3FED9CE72AEA309E00170D1B /* md5.c in Sources */,
+				3FED9CE82AEA309E00170D1B /* michael.c in Sources */,
+				3FED9CE92AEA309E00170D1B /* sha1.c in Sources */,
+				3FED9CEA2AEA309E00170D1B /* sha2.c in Sources */,
+				3FED9CEB2AEA309E00170D1B /* bwfm.c in Sources */,
+				3FED9CEC2AEA309E00170D1B /* bwi.c in Sources */,
+				3FED9CED2AEA309E00170D1B /* rtwn.c in Sources */,
+				3FED9CEE2AEA309E00170D1B /* if_bwfm_pci.c in Sources */,
+				3FED9CEF2AEA309E00170D1B /* if_bwi_pci.c in Sources */,
+				3FED9CF02AEA309E00170D1B /* if_ipw.c in Sources */,
+				3FED9CF12AEA309E00170D1B /* if_iwi.c in Sources */,
+				3FED9CF22AEA309E00170D1B /* if_iwm.c in Sources */,
+				3FED9CF32AEA309E00170D1B /* if_iwn.c in Sources */,
+				3FED9CF42AEA309E00170D1B /* if_iwx.c in Sources */,
+				3FED9CF52AEA309E00170D1B /* if_rtwn.c in Sources */,
+				3FED9CF62AEA309E00170D1B /* if_wpi.c in Sources */,
+				3FED9CF72AEA309E00170D1B /* pci.c in Sources */,
+				3FED9CF82AEA309E00170D1B /* ifconfig.c in Sources */,
+				3FED9CF92AEA309E00170D1B /* qsort.c in Sources */,
+				3FED9CFA2AEA309E00170D1B /* heapsort.c in Sources */,
+				3FED9CFB2AEA309E00170D1B /* bus.c in Sources */,
+				3FED9CFC2AEA309E00170D1B /* ieee80211_amrr.c in Sources */,
+				3FED9CFD2AEA309E00170D1B /* ieee80211_crypto_bip.c in Sources */,
+				3FED9CFE2AEA309E00170D1B /* ieee80211_crypto_ccmp.c in Sources */,
+				3FED9CFF2AEA309E00170D1B /* ieee80211_crypto_tkip.c in Sources */,
+				3FED9D002AEA309E00170D1B /* ieee80211_crypto_wep.c in Sources */,
+				3FED9D012AEA309E00170D1B /* ieee80211_crypto.c in Sources */,
+				3FED9D022AEA309E00170D1B /* ieee80211_input.c in Sources */,
+				3FED9D032AEA309E00170D1B /* ieee80211_ioctl.c in Sources */,
+				3FED9D042AEA309E00170D1B /* ieee80211_node.c in Sources */,
+				3FED9D052AEA309E00170D1B /* ieee80211_output.c in Sources */,
+				3FED9D062AEA309E00170D1B /* ieee80211_pae_input.c in Sources */,
+				3FED9D072AEA309E00170D1B /* ieee80211_pae_output.c in Sources */,
+				3FED9D082AEA309E00170D1B /* ieee80211_proto.c in Sources */,
+				3FED9D092AEA309E00170D1B /* ieee80211_ra_vht.c in Sources */,
+				3FED9D0A2AEA309E00170D1B /* ieee80211_ra.c in Sources */,
+				3FED9D0B2AEA309E00170D1B /* ieee80211_regdomain.c in Sources */,
+				3FED9D0C2AEA309E00170D1B /* ieee80211_rssadapt.c in Sources */,
+				3FED9D0D2AEA309E00170D1B /* ieee80211.c in Sources */,
+				3FED9D0E2AEA309E00170D1B /* _bpf.c in Sources */,
+				3FED9D0F2AEA309E00170D1B /* _malloc.c in Sources */,
+				3FED9D102AEA309E00170D1B /* fls.c in Sources */,
+				3FED9D112AEA309E00170D1B /* task.c in Sources */,
+				3FED9D122AEA309E00170D1B /* timeout.c in Sources */,
+				3FED9D132AEA309E00170D1B /* timingsafe_bcmp.c in Sources */,
+				3F76225C2AF3637C0098BF50 /* AirPortOpenBSDComm_PM.cpp in Sources */,
+				3F7622642AF363EF0098BF50 /* AirPortOpenBSDComm_ASSOC.cpp in Sources */,
+				3FED9D142AEA309E00170D1B /* tree.c in Sources */,
+				3FED9CCE2AEA304A00170D1B /* AirPortOpenBSD_80211.cpp in Sources */,
+				3FFCC7482AEA29EA0066FF38 /* AirPortOpenBSD_SkywalkInterface.cpp in Sources */,
+				3FFCC78D2AEA2AB90066FF38 /* AirPortOpenBSD_EthernetInterface.cpp in Sources */,
+				3FFCC77A2AEA2A3E0066FF38 /* AirPortOpenBSD.cpp in Sources */,
+				3F76224C2AF3628F0098BF50 /* AirPortOpenBSDComm_Util.cpp in Sources */,
+				3FED9CD12AEA304A00170D1B /* AirPortOpenBSD_IOCTL.cpp in Sources */,
+				3F7622542AF363210098BF50 /* AirPortOpenBSDComm_SCAN.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2791,31 +3281,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7FBA006727E077FE0075D188 /* AirPort_OpenBSD_80211.cpp in Sources */,
-				7FBA006827E077FE0075D188 /* AirPort_OpenBSD_ASSOC.cpp in Sources */,
-				7FBA006927E077FE0075D188 /* AirPort_OpenBSD_IOCTL.cpp in Sources */,
-				7F467945291C93420076781E /* AirPort_OpenBSD_PM.cpp in Sources */,
-				7FBA006A27E077FE0075D188 /* AirPort_OpenBSD_Util.cpp in Sources */,
-				7FBA006B27E077FE0075D188 /* AirPort_OpenBSD.cpp in Sources */,
+				7FBA006727E077FE0075D188 /* AirPortOpenBSDLegacy_80211.cpp in Sources */,
+				7FBA006927E077FE0075D188 /* AirPortOpenBSDLegacy_IOCTL.cpp in Sources */,
+				7FBA006B27E077FE0075D188 /* AirPortOpenBSDLegacy.cpp in Sources */,
 				7FBA006C27E077FE0075D188 /* compat.cpp in Sources */,
 				7FBA00A427E077FE0075D188 /* aes.c in Sources */,
 				7FBA00A527E077FE0075D188 /* arc4.c in Sources */,
 				7FBA00A627E077FE0075D188 /* cmac.c in Sources */,
 				7FBA00A727E077FE0075D188 /* hmac.c in Sources */,
-				7F46795B291C93670076781E /* AirPort_OpenBSD_SCAN.cpp in Sources */,
 				7FBA00A827E077FE0075D188 /* key_wrap.c in Sources */,
+				3F76225E2AF3637C0098BF50 /* AirPortOpenBSDComm_PM.cpp in Sources */,
 				7FBA00A927E077FE0075D188 /* md5.c in Sources */,
+				3F76224E2AF3628F0098BF50 /* AirPortOpenBSDComm_Util.cpp in Sources */,
 				7FBA00AA27E077FE0075D188 /* michael.c in Sources */,
 				7FBA00AB27E077FE0075D188 /* sha1.c in Sources */,
 				7FBA00AC27E077FE0075D188 /* sha2.c in Sources */,
 				7FBA00AD27E077FE0075D188 /* bwfm.c in Sources */,
 				7FBA00AE27E077FE0075D188 /* bwi.c in Sources */,
-				7F18B67229625C1C0082A5E2 /* AirPort_OpenBSD_Virtual.cpp in Sources */,
+				3F7622662AF363EF0098BF50 /* AirPortOpenBSDComm_ASSOC.cpp in Sources */,
+				7F18B67229625C1C0082A5E2 /* AirPortOpenBSDLegacy_Virtual.cpp in Sources */,
 				7FBA00AF27E077FE0075D188 /* rtwn.c in Sources */,
 				7FBA00B027E077FE0075D188 /* if_bwfm_pci.c in Sources */,
-				7F4CEDA92912DD1B00C46A15 /* AirPort_OpenBSD_VirtualIOCTL.cpp in Sources */,
+				7F4CEDA92912DD1B00C46A15 /* AirPortOpenBSDLegacy_VirtualIOCTL.cpp in Sources */,
 				7F8AB19227E8475F0045D670 /* ieee80211_ra_vht.c in Sources */,
 				7FBA00B127E077FE0075D188 /* if_bwi_pci.c in Sources */,
+				3F7622562AF363210098BF50 /* AirPortOpenBSDComm_SCAN.cpp in Sources */,
 				7FBA00B227E077FE0075D188 /* if_ipw.c in Sources */,
 				7FBA00B327E077FE0075D188 /* if_iwi.c in Sources */,
 				7FBA00B427E077FE0075D188 /* if_iwm.c in Sources */,
@@ -2828,9 +3318,10 @@
 				7FBA00BB27E077FE0075D188 /* qsort.c in Sources */,
 				7FBA00BC27E077FE0075D188 /* heapsort.c in Sources */,
 				7FBA00BD27E077FE0075D188 /* bus.c in Sources */,
-				7F4AEF32291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.cpp in Sources */,
+				7F4AEF32291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.cpp in Sources */,
 				7FBA00BE27E077FE0075D188 /* ieee80211_amrr.c in Sources */,
-				7F4CEDA22912DD1B00C46A15 /* AirPort_OpenBSD_AWDL.cpp in Sources */,
+				3F4F61252AEA1F2C009B0A33 /* AirPortOpenBSDWLANBusInterfacePCIeFirmware.cpp in Sources */,
+				7F4CEDA22912DD1B00C46A15 /* AirPortOpenBSDLegacy_AWDL.cpp in Sources */,
 				7FBA00BF27E077FE0075D188 /* ieee80211_crypto_bip.c in Sources */,
 				7FBA00C027E077FE0075D188 /* ieee80211_crypto_ccmp.c in Sources */,
 				7FBA00C127E077FE0075D188 /* ieee80211_crypto_tkip.c in Sources */,
@@ -2841,6 +3332,7 @@
 				7FBA00C627E077FE0075D188 /* ieee80211_node.c in Sources */,
 				7FBA00C727E077FE0075D188 /* ieee80211_output.c in Sources */,
 				7FBA00C827E077FE0075D188 /* ieee80211_pae_input.c in Sources */,
+				3F213E3C2AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.cpp in Sources */,
 				7FBA00C927E077FE0075D188 /* ieee80211_pae_output.c in Sources */,
 				7FBA00CA27E077FE0075D188 /* ieee80211_proto.c in Sources */,
 				7FBA00CB27E077FE0075D188 /* ieee80211_ra.c in Sources */,
@@ -2861,45 +3353,46 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7FF8155C290EBB9700050008 /* AirPort_OpenBSD_80211.cpp in Sources */,
-				7FF8155D290EBB9700050008 /* AirPort_OpenBSD_ASSOC.cpp in Sources */,
-				7FF8155E290EBB9700050008 /* AirPort_OpenBSD_IOCTL.cpp in Sources */,
-				7FF8155F290EBB9700050008 /* AirPort_OpenBSD_Util.cpp in Sources */,
-				7F467944291C93420076781E /* AirPort_OpenBSD_PM.cpp in Sources */,
-				7FF81560290EBB9700050008 /* AirPort_OpenBSD.cpp in Sources */,
+				7FF8155C290EBB9700050008 /* AirPortOpenBSDLegacy_80211.cpp in Sources */,
+				7FF8155E290EBB9700050008 /* AirPortOpenBSDLegacy_IOCTL.cpp in Sources */,
+				7FF81560290EBB9700050008 /* AirPortOpenBSDLegacy.cpp in Sources */,
 				7FF81561290EBB9700050008 /* compat.cpp in Sources */,
 				7FF81562290EBB9700050008 /* aes.c in Sources */,
 				7FF81563290EBB9700050008 /* arc4.c in Sources */,
 				7FF81564290EBB9700050008 /* cmac.c in Sources */,
 				7FF81565290EBB9700050008 /* hmac.c in Sources */,
 				7FF81566290EBB9700050008 /* key_wrap.c in Sources */,
+				3F76225D2AF3637C0098BF50 /* AirPortOpenBSDComm_PM.cpp in Sources */,
 				7FF81567290EBB9700050008 /* md5.c in Sources */,
 				7FF81568290EBB9700050008 /* michael.c in Sources */,
+				3F76224D2AF3628F0098BF50 /* AirPortOpenBSDComm_Util.cpp in Sources */,
 				7FF81569290EBB9700050008 /* sha1.c in Sources */,
 				7FF8156A290EBB9800050008 /* sha2.c in Sources */,
 				7FF8156B290EBB9800050008 /* bwfm.c in Sources */,
 				7FF8156C290EBB9800050008 /* bwi.c in Sources */,
+				3F7622652AF363EF0098BF50 /* AirPortOpenBSDComm_ASSOC.cpp in Sources */,
 				7FF8156D290EBB9800050008 /* rtwn.c in Sources */,
 				7FF8156E290EBB9800050008 /* if_bwfm_pci.c in Sources */,
 				7FF8156F290EBB9800050008 /* if_bwi_pci.c in Sources */,
 				7FF81570290EBB9800050008 /* if_ipw.c in Sources */,
-				7F46795A291C93670076781E /* AirPort_OpenBSD_SCAN.cpp in Sources */,
 				7FF81571290EBB9800050008 /* if_iwi.c in Sources */,
 				7FF81572290EBB9800050008 /* if_iwm.c in Sources */,
+				3F7622552AF363210098BF50 /* AirPortOpenBSDComm_SCAN.cpp in Sources */,
 				7FF81573290EBB9800050008 /* if_iwn.c in Sources */,
 				7FF81574290EBB9800050008 /* if_iwx.c in Sources */,
 				7FF81575290EBB9800050008 /* if_rtwn.c in Sources */,
 				7FF81576290EBB9800050008 /* if_wpi.c in Sources */,
 				7FF81577290EBB9800050008 /* pci.c in Sources */,
-				7F18B67129625C1C0082A5E2 /* AirPort_OpenBSD_Virtual.cpp in Sources */,
-				7F4CEDA82912DD1B00C46A15 /* AirPort_OpenBSD_VirtualIOCTL.cpp in Sources */,
-				7F4AEF31291BF8A700EF9EE9 /* AirPort_OpenBSD_Interface.cpp in Sources */,
-				7F4CEDA12912DD1B00C46A15 /* AirPort_OpenBSD_AWDL.cpp in Sources */,
+				7F18B67129625C1C0082A5E2 /* AirPortOpenBSDLegacy_Virtual.cpp in Sources */,
+				7F4CEDA82912DD1B00C46A15 /* AirPortOpenBSDLegacy_VirtualIOCTL.cpp in Sources */,
+				7F4AEF31291BF8A700EF9EE9 /* AirPortOpenBSDLegacy_EthernetInterface.cpp in Sources */,
+				7F4CEDA12912DD1B00C46A15 /* AirPortOpenBSDLegacy_AWDL.cpp in Sources */,
 				7FF815B4290EBB9C00050008 /* ifconfig.c in Sources */,
 				7FF815B5290EBB9C00050008 /* qsort.c in Sources */,
 				7FF815B6290EBB9C00050008 /* heapsort.c in Sources */,
 				7FF815B7290EBB9C00050008 /* bus.c in Sources */,
 				7FF815B8290EBB9C00050008 /* ieee80211_amrr.c in Sources */,
+				3F4F61242AEA1F2C009B0A33 /* AirPortOpenBSDWLANBusInterfacePCIeFirmware.cpp in Sources */,
 				7FF815B9290EBB9C00050008 /* ieee80211_crypto_bip.c in Sources */,
 				7FF815BA290EBB9C00050008 /* ieee80211_crypto_ccmp.c in Sources */,
 				7FF815BB290EBB9C00050008 /* ieee80211_crypto_tkip.c in Sources */,
@@ -2911,6 +3404,7 @@
 				7FF815C1290EBB9C00050008 /* ieee80211_output.c in Sources */,
 				7FF815C2290EBB9C00050008 /* ieee80211_pae_input.c in Sources */,
 				7FF815C3290EBB9D00050008 /* ieee80211_pae_output.c in Sources */,
+				3F213E3B2AE4F16400C0BEE8 /* AirPortOpenBSDWLANBusInterfacePCIe.cpp in Sources */,
 				7FF815C4290EBB9D00050008 /* ieee80211_proto.c in Sources */,
 				7FF815C5290EBB9D00050008 /* ieee80211_ra_vht.c in Sources */,
 				7FF815C6290EBB9D00050008 /* ieee80211_ra.c in Sources */,
@@ -2964,6 +3458,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -2988,6 +3483,10 @@
 				HEADER_SEARCH_PATHS = AirPortOpenBSD/openbsd;
 				KERNEL_EXTENSION_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/MacKernelSDK/Headers";
 				KERNEL_FRAMEWORK_HEADERS = "$(PROJECT_DIR)/MacKernelSDK/Headers";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -3030,6 +3529,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONFIGURATION_BUILD_DIR = "$(SYMROOT)/$(CONFIGURATION)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -3051,6 +3551,10 @@
 				HEADER_SEARCH_PATHS = AirPortOpenBSD/openbsd;
 				KERNEL_EXTENSION_HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/MacKernelSDK/Headers";
 				KERNEL_FRAMEWORK_HEADERS = "$(PROJECT_DIR)/MacKernelSDK/Headers";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -3076,11 +3580,12 @@
 					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = v2.4.2;
+				MAC_VERSION = BigSur;
+				MARKETING_VERSION = v2.5.0;
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zhong.$(PRODUCT_NAME:c99extidentifier)";
-				PRODUCT_NAME = AirPortOpenBSD_BigSur;
+				PRODUCT_NAME = "AirPortOpenBSD_$(MAC_VERSION)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = kext;
 			};
@@ -3104,11 +3609,12 @@
 					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = v2.4.2;
+				MAC_VERSION = BigSur;
+				MARKETING_VERSION = v2.5.0;
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zhong.$(PRODUCT_NAME:c99extidentifier)";
-				PRODUCT_NAME = AirPortOpenBSD_BigSur;
+				PRODUCT_NAME = "AirPortOpenBSD_$(MAC_VERSION)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = kext;
 			};
@@ -3132,11 +3638,12 @@
 					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = v2.4.2;
+				MAC_VERSION = Catalina;
+				MARKETING_VERSION = v2.5.0;
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zhong.$(PRODUCT_NAME:c99extidentifier)";
-				PRODUCT_NAME = AirPortOpenBSD_Catalina;
+				PRODUCT_NAME = "AirPortOpenBSD_$(MAC_VERSION)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = kext;
 			};
@@ -3160,11 +3667,12 @@
 					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = v2.4.2;
+				MAC_VERSION = Catalina;
+				MARKETING_VERSION = v2.5.0;
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zhong.$(PRODUCT_NAME:c99extidentifier)";
-				PRODUCT_NAME = AirPortOpenBSD_Catalina;
+				PRODUCT_NAME = "AirPortOpenBSD_$(MAC_VERSION)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = kext;
 			};
@@ -3188,11 +3696,12 @@
 					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = v2.4.2;
+				MAC_VERSION = Mojave;
+				MARKETING_VERSION = v2.5.0;
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zhong.$(PRODUCT_NAME:c99extidentifier)";
-				PRODUCT_NAME = AirPortOpenBSD_Mojave;
+				PRODUCT_NAME = "AirPortOpenBSD_$(MAC_VERSION)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = kext;
 			};
@@ -3216,11 +3725,12 @@
 					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = v2.4.2;
+				MAC_VERSION = Mojave;
+				MARKETING_VERSION = v2.5.0;
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zhong.$(PRODUCT_NAME:c99extidentifier)";
-				PRODUCT_NAME = AirPortOpenBSD_Mojave;
+				PRODUCT_NAME = "AirPortOpenBSD_$(MAC_VERSION)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = kext;
 			};
@@ -3244,11 +3754,12 @@
 					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = v2.4.2;
+				MAC_VERSION = HighSierra;
+				MARKETING_VERSION = v2.5.0;
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zhong.$(PRODUCT_NAME:c99extidentifier)";
-				PRODUCT_NAME = AirPortOpenBSD_HighSierra;
+				PRODUCT_NAME = "AirPortOpenBSD_$(MAC_VERSION)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = kext;
 			};
@@ -3272,11 +3783,12 @@
 					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = v2.4.2;
+				MAC_VERSION = HighSierra;
+				MARKETING_VERSION = v2.5.0;
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zhong.$(PRODUCT_NAME:c99extidentifier)";
-				PRODUCT_NAME = AirPortOpenBSD_HighSierra;
+				PRODUCT_NAME = "AirPortOpenBSD_$(MAC_VERSION)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = kext;
 			};
@@ -3307,6 +3819,70 @@
 			};
 			name = Release;
 		};
+		3F8F2F3B2AE5245F000AF582 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1.0;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"MAC_VERSION_MAJOR=23",
+					"$(inherited)",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AirPortOpenBSD/InfoSonoma.plist;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MAC_VERSION = Sonoma;
+				MARKETING_VERSION = v2.5.0;
+				MODULE_NAME = com.zhong.AirPortOpenBSD;
+				MODULE_VERSION = 1.0.0d1;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zhong.$(PRODUCT_NAME:c99extidentifier)";
+				PRODUCT_NAME = "AirPortOpenBSD_$(MAC_VERSION)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				WRAPPER_EXTENSION = kext;
+			};
+			name = Debug;
+		};
+		3F8F2F3C2AE5245F000AF582 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1.0;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"MAC_VERSION_MAJOR=23",
+					"$(inherited)",
+				);
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AirPortOpenBSD/InfoSonoma.plist;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MAC_VERSION = Sonoma;
+				MARKETING_VERSION = v2.5.0;
+				MODULE_NAME = com.zhong.AirPortOpenBSD;
+				MODULE_VERSION = 1.0.0d1;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zhong.$(PRODUCT_NAME:c99extidentifier)";
+				PRODUCT_NAME = "AirPortOpenBSD_$(MAC_VERSION)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				WRAPPER_EXTENSION = kext;
+			};
+			name = Release;
+		};
 		7FA595B92A59A95200824D8B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3327,7 +3903,7 @@
 				INFOPLIST_FILE = AirPortOpenBSDFirmwareData/AirPortOpenBSDFirmwareData_Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = v2.4.0;
+				MARKETING_VERSION = v2.5.0;
 				MODULE_NAME = com.zhong.AirPortOpenBSDFirmwareData;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSDFirmwareData;
@@ -3353,7 +3929,7 @@
 				INFOPLIST_FILE = AirPortOpenBSDFirmwareData/AirPortOpenBSDFirmwareData_Info.plist;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
-				MARKETING_VERSION = v2.4.0;
+				MARKETING_VERSION = v2.5.0;
 				MODULE_NAME = com.zhong.AirPortOpenBSDFirmwareData;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.zhong.AirPortOpenBSDFirmwareData;
@@ -3383,11 +3959,12 @@
 					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12;
-				MARKETING_VERSION = v2.4.2;
+				MAC_VERSION = Monterey;
+				MARKETING_VERSION = v2.5.0;
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zhong.$(PRODUCT_NAME:c99extidentifier)";
-				PRODUCT_NAME = AirPortOpenBSD_Monterey;
+				PRODUCT_NAME = "AirPortOpenBSD_$(MAC_VERSION)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = kext;
 			};
@@ -3412,11 +3989,12 @@
 					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 12;
-				MARKETING_VERSION = v2.4.2;
+				MAC_VERSION = Monterey;
+				MARKETING_VERSION = v2.5.0;
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zhong.$(PRODUCT_NAME:c99extidentifier)";
-				PRODUCT_NAME = AirPortOpenBSD_Monterey;
+				PRODUCT_NAME = "AirPortOpenBSD_$(MAC_VERSION)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = kext;
 			};
@@ -3442,11 +4020,12 @@
 					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13;
-				MARKETING_VERSION = v2.4.2;
+				MAC_VERSION = Ventura;
+				MARKETING_VERSION = v2.5.0;
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zhong.$(PRODUCT_NAME:c99extidentifier)";
-				PRODUCT_NAME = AirPortOpenBSD_Ventura;
+				PRODUCT_NAME = "AirPortOpenBSD_$(MAC_VERSION)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = kext;
 			};
@@ -3471,11 +4050,12 @@
 					"$(PROJECT_DIR)/MacKernelSDK/Library/x86_64",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 13;
-				MARKETING_VERSION = v2.4.2;
+				MAC_VERSION = Ventura;
+				MARKETING_VERSION = v2.5.0;
 				MODULE_NAME = com.zhong.AirPortOpenBSD;
 				MODULE_VERSION = 1.0.0d1;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.zhong.$(PRODUCT_NAME:c99extidentifier)";
-				PRODUCT_NAME = AirPortOpenBSD_Ventura;
+				PRODUCT_NAME = "AirPortOpenBSD_$(MAC_VERSION)";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				WRAPPER_EXTENSION = kext;
 			};
@@ -3534,6 +4114,15 @@
 			buildConfigurations = (
 				18713CF4255F158E00EF3D49 /* Debug */,
 				18713CF5255F158E00EF3D49 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3F8F2F3D2AE5245F000AF582 /* Build configuration list for PBXNativeTarget "AirPortOpenBSD_Sonoma" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3F8F2F3B2AE5245F000AF582 /* Debug */,
+				3F8F2F3C2AE5245F000AF582 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

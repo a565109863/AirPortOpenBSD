@@ -1,12 +1,12 @@
 //
-//  AirPort_OpenBSD_Interface.hpp
+//  AirPortOpenBSDLegacy_EthernetInterface.hpp
 //  AirPortOpenBSD
 //
 //  Created by Mac-PC on 2022/11/5.
 //
 
-#ifndef AirPort_OpenBSD_Interface_hpp
-#define AirPort_OpenBSD_Interface_hpp
+#ifndef AirPortOpenBSDLegacy_EthernetInterface_hpp
+#define AirPortOpenBSDLegacy_EthernetInterface_hpp
 
 #include "apple80211.h"
 #include <IOKit/IOLib.h>
@@ -14,8 +14,8 @@
 #include <sys/kernel_types.h>
 
 
-class AirPort_OpenBSD_Class_Interface : public IO80211Interface {
-    OSDeclareDefaultStructors(AirPort_OpenBSD_Class_Interface)
+class AirPortOpenBSD_EthernetInterface : public IO80211Interface {
+    OSDeclareDefaultStructors(AirPortOpenBSD_EthernetInterface)
     
 public:
     virtual UInt32   inputPacket(
@@ -28,4 +28,4 @@ public:
 
 };
 
-#endif /* AirPort_OpenBSD_Interface_hpp */
+#endif /* AirPortOpenBSDLegacy_EthernetInterface_hpp */

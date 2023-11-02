@@ -992,6 +992,18 @@ ieee80211_ioctl(struct ifnet *ifp, u_long cmd, caddr_t data)
 //        error = ether_ioctl(ifp, &ic->ic_ac, cmd, data);
         break;
     }
+    
+    switch (cmd) {
+        case SIOCS80211NWID:
+        case SIOCS80211NWKEY:
+        case SIOCS80211WPAPARMS:
+        case SIOCS80211WPAPSK:
+        case SIOCS80211TXPOWER:
+            error = error == ENETRESET ? 0 : error;
+            break;
+        default:
+            break;
+    }
 
     return error;
 }

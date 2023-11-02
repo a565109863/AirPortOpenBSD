@@ -1,13 +1,13 @@
 ////
-////  AirPort_OpenBSD_Virtual.cpp
+////  AirPortOpenBSDLegacy_Virtual.cpp
 ////  AirPortOpenBSD
 ////
 ////  Created by Mac-PC on 2023/1/2.
 ////
 //
-//#include "AirPort_OpenBSD.hpp"
+//#include "AirPortOpenBSDLegacy.hpp"
 //
-//IO80211VirtualInterface *AirPort_OpenBSD_Class::createVirtualInterface(ether_addr *ether, UInt role)
+//IO80211VirtualInterface *AirPortOpenBSD::createVirtualInterface(ether_addr *ether, UInt role)
 //{
 //    if (role - 1 > 3) {
 //        return super::createVirtualInterface(ether, role);
@@ -24,7 +24,7 @@
 //    return inf;
 //}
 //
-//SInt32 AirPort_OpenBSD_Class::enableVirtualInterface(IO80211VirtualInterface *interface)
+//SInt32 AirPortOpenBSD::enableVirtualInterface(IO80211VirtualInterface *interface)
 //{
 //    DebugLog("%s interface=%s role=%d\n", __FUNCTION__, interface->getBSDName(), interface->getInterfaceRole());
 //    SInt32 ret = super::enableVirtualInterface(interface);
@@ -39,7 +39,7 @@
 //    return ret;
 //}
 //
-//SInt32 AirPort_OpenBSD_Class::disableVirtualInterface(IO80211VirtualInterface *interface)
+//SInt32 AirPortOpenBSD::disableVirtualInterface(IO80211VirtualInterface *interface)
 //{
 //    DebugLog("%s interface=%s role=%d\n", __FUNCTION__, interface->getBSDName(), interface->getInterfaceRole());
 //    SInt32 ret = super::disableVirtualInterface(interface);
@@ -52,7 +52,7 @@
 //}
 //
 //
-//IOReturn AirPort_OpenBSD_Class::setVIRTUAL_IF_CREATE(OSObject *object, struct apple80211_virt_if_create_data* data)
+//IOReturn AirPortOpenBSD::setVIRTUAL_IF_CREATE(OSObject *object, struct apple80211_virt_if_create_data* data)
 //{
 //    struct ether_addr addr;
 //    struct apple80211_channel chann;
@@ -94,7 +94,7 @@
 //    return kIOReturnSuccess;
 //}
 //
-//IOReturn AirPort_OpenBSD_Class::setVIRTUAL_IF_DELETE(OSObject *object, struct apple80211_virt_if_delete_data *data)
+//IOReturn AirPortOpenBSD::setVIRTUAL_IF_DELETE(OSObject *object, struct apple80211_virt_if_delete_data *data)
 //{
 //    DebugLog("%s bsd_name=%s\n", __FUNCTION__, data->bsd_name);
 //    //TODO find vif according to the bsd_name

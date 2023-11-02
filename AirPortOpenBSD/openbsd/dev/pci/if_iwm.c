@@ -466,7 +466,7 @@ int    iwm_rm_sta_cmd(struct iwm_softc *, struct iwm_node *);
 uint16_t iwm_scan_rx_chain(struct iwm_softc *);
 uint32_t iwm_scan_rate_n_flags(struct iwm_softc *, int, int);
 uint8_t    iwm_lmac_scan_fill_channels(struct iwm_softc *,
-        struct iwm_scan_channel_cfg_lmac *, int, int);
+        struct iwm_scan_channel_cfg_lmac *, uint32_t, int, int);
 int    iwm_fill_probe_req(struct iwm_softc *, struct iwm_scan_probe_req *);
 int    iwm_lmac_scan(struct iwm_softc *, int);
 int    iwm_config_umac_scan(struct iwm_softc *);
@@ -7557,7 +7557,7 @@ iwm_scan_rate_n_flags(struct iwm_softc *sc, int flags, int no_cck)
 
 uint8_t
 iwm_lmac_scan_fill_channels(struct iwm_softc *sc,
-    struct iwm_scan_channel_cfg_lmac *chan, int n_ssids, int bgscan)
+    struct iwm_scan_channel_cfg_lmac *chan, uint32_t channel_cfg_flags, int n_ssids, int bgscan)
 {
     struct ieee80211com *ic = &sc->sc_ic;
     struct ieee80211_channel *c;
@@ -7574,8 +7574,9 @@ iwm_lmac_scan_fill_channels(struct iwm_softc *sc,
         chan->iter_count = htole16(1);
         chan->iter_interval = 0;
         chan->flags = htole32(IWM_UNIFIED_SCAN_CHANNEL_PARTIAL);
-        if (n_ssids != 0 && !bgscan)
-            chan->flags |= htole32(1 << 1); /* select SSID 0 */
+//        if (n_ssids != 0 && !bgscan)
+//            chan->flags |= htole32(1 << 1); /* select SSID 0 */
+        chan->flags |= htole32(channel_cfg_flags); /* select SSID 0 */
         chan++;
         nchan++;
     }
@@ -7585,7 +7586,7 @@ iwm_lmac_scan_fill_channels(struct iwm_softc *sc,
 
 uint8_t
 iwm_umac_scan_fill_channels(struct iwm_softc *sc,
-    struct iwm_scan_channel_cfg_umac *chan, int n_ssids, int bgscan)
+    struct iwm_scan_channel_cfg_umac *chan, uint32_t channel_cfg_flags, int n_ssids, int bgscan)
 {
     struct ieee80211com *ic = &sc->sc_ic;
     struct ieee80211_channel *c;
@@ -7603,6 +7604,7 @@ iwm_umac_scan_fill_channels(struct iwm_softc *sc,
         chan->iter_interval = htole16(0);
         if (n_ssids != 0 && !bgscan)
             chan->flags = htole32(1 << 0); /* select SSID 0 */
+        chan->flags |= htole32(channel_cfg_flags); /* select SSID 0 */
         chan++;
         nchan++;
     }
@@ -7810,17 +7812,30 @@ iwm_lmac_scan(struct iwm_softc *sc, int bgscan)
         iwm_scan_rate_n_flags(sc, IEEE80211_CHAN_5GHZ, 1/*XXX*/);
     req->tx_cmd[1].sta_id = IWM_AUX_STA_ID;
 
+    int n_ssid = 0;
+    uint32_t bitmap_ssid = 0;
     /* Check if we're doing an active directed scan. */
     if (ic->ic_des_esslen != 0) {
         req->direct_scan[0].id = IEEE80211_ELEMID_SSID;
         req->direct_scan[0].len = ic->ic_des_esslen;
         memcpy(req->direct_scan[0].ssid, ic->ic_des_essid,
             ic->ic_des_esslen);
+        bitmap_ssid |= (1 << (n_ssid + 1));
+        n_ssid = 1;
     }
+    
+    for (int i = 0; i < ic->direct_scan_count; i++) {
+        req->direct_scan[i + n_ssid].id = IEEE80211_ELEMID_SSID;
+        req->direct_scan[i + n_ssid].len = ic->direct_scan[i].len;
+        memcpy(req->direct_scan[i + n_ssid].ssid,
+               ic->direct_scan[i].ssid, ic->direct_scan[i].len);
+        bitmap_ssid |= (1 << (i + n_ssid + 1));
+    }
+    n_ssid += ic->direct_scan_count;
 
     req->n_channels = iwm_lmac_scan_fill_channels(sc,
         (struct iwm_scan_channel_cfg_lmac *)req->data,
-        ic->ic_des_esslen != 0, bgscan);
+        bitmap_ssid, n_ssid, bgscan);
 
     preq = (struct iwm_scan_probe_req_v1 *)(req->data +
         (sizeof(struct iwm_scan_channel_cfg_lmac) *
@@ -8058,12 +8073,29 @@ iwm_umac_scan(struct iwm_softc *sc, int bgscan)
     }
 
     req->ooc_priority = htole32(IWM_SCAN_PRIORITY_HIGH);
+    
+    int n_ssid = 0;
+    uint32_t bitmap_ssid = 0;
+    if (ic->ic_des_esslen != 0) {
+        bitmap_ssid |= (1 << 0);
+        n_ssid = 1;
+        
+        for (int i = 0; i < ic->direct_scan_count; i++) {
+            tail->direct_scan[i + n_ssid].id = IEEE80211_ELEMID_SSID;
+            tail->direct_scan[i + n_ssid].len = ic->direct_scan[i].len;
+            memcpy(tail->direct_scan[i + n_ssid].ssid,
+                   ic->direct_scan[i].ssid, ic->direct_scan[i].len);
+
+            bitmap_ssid |= (1 << (i + n_ssid));
+        }
+        n_ssid += ic->direct_scan_count;
+    }
 
     cmd_data = iwm_get_scan_req_umac_data(sc, req);
     chanparam = iwm_get_scan_req_umac_chan_param(sc, req);
     chanparam->count = iwm_umac_scan_fill_channels(sc,
         (struct iwm_scan_channel_cfg_umac *)cmd_data,
-        ic->ic_des_esslen != 0, bgscan);
+        bitmap_ssid, n_ssid, bgscan);
     chanparam->flags = 0;
 
     tail_data = (uint8_t *)cmd_data + sizeof(struct iwm_scan_channel_cfg_umac) *
@@ -8080,17 +8112,34 @@ iwm_umac_scan(struct iwm_softc *sc, int bgscan)
     }
 
     if (ic->ic_des_esslen != 0) {
+        int n_ssid = 0;
         if (isset(sc->sc_ucode_api,
             IWM_UCODE_TLV_API_SCAN_EXT_CHAN_VER)) {
             tail->direct_scan[0].id = IEEE80211_ELEMID_SSID;
             tail->direct_scan[0].len = ic->ic_des_esslen;
             memcpy(tail->direct_scan[0].ssid, ic->ic_des_essid,
                 ic->ic_des_esslen);
+            n_ssid = 1;
+            
+            for (int i = 0; i < ic->direct_scan_count; i++) {
+                tail->direct_scan[i + n_ssid].id = IEEE80211_ELEMID_SSID;
+                tail->direct_scan[i + n_ssid].len = ic->direct_scan[i].len;
+                memcpy(tail->direct_scan[i + n_ssid].ssid,
+                       ic->direct_scan[i].ssid, ic->direct_scan[i].len);
+            }
         } else {
             tailv1->direct_scan[0].id = IEEE80211_ELEMID_SSID;
             tailv1->direct_scan[0].len = ic->ic_des_esslen;
             memcpy(tailv1->direct_scan[0].ssid, ic->ic_des_essid,
                 ic->ic_des_esslen);
+            n_ssid = 1;
+            
+            for (int i = 0; i < ic->direct_scan_count; i++) {
+                tailv1->direct_scan[i + n_ssid].id = IEEE80211_ELEMID_SSID;
+                tailv1->direct_scan[i + n_ssid].len = ic->direct_scan[i].len;
+                memcpy(tailv1->direct_scan[i + n_ssid].ssid,
+                       ic->direct_scan[i].ssid, ic->direct_scan[i].len);
+            }
         }
         req->general_flags |=
             htole32(IWM_UMAC_SCAN_GEN_FLAGS_PRE_CONNECT);

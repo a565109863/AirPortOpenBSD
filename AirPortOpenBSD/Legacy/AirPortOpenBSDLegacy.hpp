@@ -1,6 +1,6 @@
 /* add your code here */
-#ifndef AirPort_OpenBSD_h
-#define AirPort_OpenBSD_h
+#ifndef AirPortOpenBSD_h
+#define AirPortOpenBSD_h
 
 #include <Availability.h>
 
@@ -13,8 +13,7 @@ extern struct ifnet *_ifp;
 
 #include "ifconfig.h"
 
-#include "AirPortOpenBSDFirmwareData.hpp"
-
+#include "AirPortOpenBSDWLANBusInterfacePCIe.hpp"
 
 enum {
     kIOMessageNetworkChanged,
@@ -40,6 +39,7 @@ typedef enum {
 
 struct apple80211_scan_result_list {
     SLIST_ENTRY(apple80211_scan_result_list)    list;
+    uint64_t asr_age_ts;
     struct apple80211_scan_result scan_result;
 };
 
@@ -48,9 +48,11 @@ struct apple80211_ssid_data_known_list {
     struct apple80211_ssid_data ssid;
 };
 
-class AirPort_OpenBSD_Class : public IOController
+class AirPortOpenBSDWLANBusInterfacePCIe;
+
+class AirPortOpenBSD : public IOController
 {
-    OSDeclareDefaultStructors(AirPort_OpenBSD_Class)
+    OSDeclareDefaultStructors(AirPortOpenBSD)
     
 public:
     bool init(OSDictionary *properties) APPLE_KEXT_OVERRIDE;
@@ -89,7 +91,7 @@ public:
                                             IOEthernetAddress* addr) APPLE_KEXT_OVERRIDE;
     virtual SInt32 monitorModeSetEnabled(IO80211Interface* interface, bool enabled, UInt32 dlt) APPLE_KEXT_OVERRIDE;
     IOReturn postMessage(unsigned int, void* data = NULL, unsigned long dataLen = 0) ;
-    IOReturn apple80211Request(UInt32 request_type, int request_number, IOInterface* interface, void* data) APPLE_KEXT_OVERRIDE;
+    IOReturn apple80211Request(UInt32 request_type, int request_number, IO80211Interface* interface, void* data) APPLE_KEXT_OVERRIDE;
     int bpfOutputPacket(OSObject *object,UInt,mbuf_t m) APPLE_KEXT_OVERRIDE;
     int outputActionFrame(OSObject *object, mbuf_t m) APPLE_KEXT_OVERRIDE;
     int bpfOutput80211Radio(OSObject *object, mbuf_t m) APPLE_KEXT_OVERRIDE;
@@ -292,13 +294,8 @@ IOReturn set##REQ(OSObject *object, struct DATA_TYPE *data);
     
 public:
     // firmware data
-    AirPortOpenBSDFirmwareData* getFirmwareStore();
-    AirPortOpenBSDFirmwareData *_mFirmware;
-    
-//    OSData *firmwareLoadComplete(const char* name);
+    AirPortOpenBSDWLANBusInterfacePCIe *pciNub;
     int loadfirmware(const char *name, u_char **bufp, size_t *buflen);
-    static void firmwareLoadComplete(OSKextRequestTag requestTag, OSReturn result, const void *resourceData, uint32_t resourceDataLength, void *context);
-    IOLock *fwLoadLock;
     OSData *firmwareData;
     
     // WIFI
@@ -314,8 +311,7 @@ public:
     void setLinkState(int linkState);
     
     IOPCIDevice *fPciDevice;
-    IO80211WorkLoop *fWorkloop;
-    IOWorkLoop *fWatchdogWorkLoop;
+    IOWorkLoop *fWorkloop;
     IOCommandGate   *fCommandGate;
     IOTimerEventSource *fWatchdogTimer;
     IOTimerEventSource* fScanSource;
@@ -355,11 +351,11 @@ public:
     
     // SCAN
     int chanspec2applechannel(int ic_flags, int ic_xflags);
-    IOReturn scanConvertResult(struct ieee80211_nodereq *nr, struct apple80211_scan_result* oneResult);
+    IOReturn scanConvertResult(struct ieee80211_node *ni, struct apple80211_scan_result *oneResult);
     
     static void apple80211_scan_done(OSObject *owner, IOTimerEventSource *sender);
     IOReturn scanComplete();
-    void scanFreeResults();
+    void scanFreeResults(uint64_t asr_age_ts);
     
     SLIST_HEAD(,apple80211_scan_result_list) scan_result_lists = SLIST_HEAD_INITIALIZER(scan_result_lists);
     struct apple80211_scan_result_list *scan_result_next;
@@ -367,18 +363,9 @@ public:
     int scanReqMultiple = 1;
     int useAppleRSN = 1;
     
-    struct apple80211_ssid_data scan_ssid;
-    int active_scan = 0;
-    
-    SLIST_HEAD(,apple80211_ssid_data_known_list) known_ssid_lists = SLIST_HEAD_INITIALIZER(known_ssid_lists);
-    
     // ASSOC apple rsn
     void setPTK(const u_int8_t *key, size_t key_len);
     void setGTK(const u_int8_t *key, size_t key_len, u_int8_t kid, u_int8_t *rsc);
-    struct apple80211_authtype_data authtype_data;
-    struct apple80211_bssid_data bssid_data;
-    struct apple80211_rsn_ie_data rsn_ie_data;
-//    struct apple80211_assoc_data assoc_data;
     struct apple80211_assoc_status_data assoc_status_data;
     struct apple80211_key cipher_key;
     char i_psk[256];

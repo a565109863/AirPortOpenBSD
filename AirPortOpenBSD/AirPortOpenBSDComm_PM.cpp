@@ -1,11 +1,19 @@
 //
-//  AirPort_OpenBSD_PM.cpp
+//  AirPortOpenBSDComm_PM.cpp
 //  AirPortOpenBSD
 //
 //  Created by Mac-PC on 2022/11/5.
 //
 
-#include "AirPort_OpenBSD.hpp"
+#include <Availability.h>
+
+#include "apple80211.h"
+
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Sonoma
+#include "AirPortOpenBSD.hpp"
+#else
+#include "AirPortOpenBSDLegacy.hpp"
+#endif
 
 enum
 {
@@ -23,24 +31,24 @@ static IOPMPowerState powerStateArray[kPowerStateCount] =
 
 
 // Power Management
-IOReturn AirPort_OpenBSD_Class::registerWithPolicyMaker(IOService* policyMaker)
+IOReturn AirPortOpenBSD::registerWithPolicyMaker(IOService* policyMaker)
 {
     return policyMaker->registerPowerDriver(this, powerStateArray, kPowerStateCount);
 }
 
-IOReturn AirPort_OpenBSD_Class::setPowerState(unsigned long powerStateOrdinal, IOService *policyMaker)
+IOReturn AirPortOpenBSD::setPowerState(unsigned long powerStateOrdinal, IOService *policyMaker)
 {
     IOReturn result = IOPMAckImplied;
     
-    this->fCommandGate->runAction(setPowerStateAction, &powerStateOrdinal);
+    this->getCommandGate()->runAction(setPowerStateAction, &powerStateOrdinal);
 
 done:
     return result;
 }
 
-IOReturn AirPort_OpenBSD_Class::setPowerStateAction(OSObject *owner, void *arg1, void *arg2, void *arg3, void *arg4)
+IOReturn AirPortOpenBSD::setPowerStateAction(OSObject *owner, void *arg1, void *arg2, void *arg3, void *arg4)
 {
-    AirPort_OpenBSD_Class* dev = OSDynamicCast(AirPort_OpenBSD_Class, owner);
+    AirPortOpenBSD* dev = OSDynamicCast(AirPortOpenBSD, owner);
     if (dev == NULL)
         return kIOReturnError;
     u_int32_t *powerStateOrdinal = (u_int32_t *)arg1;
@@ -50,7 +58,7 @@ IOReturn AirPort_OpenBSD_Class::setPowerStateAction(OSObject *owner, void *arg1,
     return kIOReturnSuccess;
 }
 
-IOReturn AirPort_OpenBSD_Class::changePowerState(OSObject *object, u_int32_t powerStateOrdinal)
+IOReturn AirPortOpenBSD::changePowerState(OSObject *object, u_int32_t powerStateOrdinal)
 {
     IOReturn ret = kIOReturnSuccess;
     
@@ -68,10 +76,10 @@ IOReturn AirPort_OpenBSD_Class::changePowerState(OSObject *object, u_int32_t pow
                 this->firstUp = false;
                 
                 struct ifnet *ifp = &this->ic->ic_if;
-                this->configArr[0] = ifp->if_xname;
-                this->configArr[1] = "up";
-                this->configArr[2] = "debug";
-                this->configArrCount = 3;
+                this->configArrCount = 0;
+                this->configArr[this->configArrCount++] = ifp->if_xname;
+                this->configArr[this->configArrCount++] = "up";
+                this->configArr[this->configArrCount++] = "debug";
                 ifconfig(this->configArr, this->configArrCount);
             }else {
                 this->ca->ca_activate((struct device *)if_softc, DVACT_WAKEUP);
@@ -91,7 +99,7 @@ IOReturn AirPort_OpenBSD_Class::changePowerState(OSObject *object, u_int32_t pow
             
             ieee80211_free_allnodes(this->ic, 1);
             
-            this->scanFreeResults();
+            this->scanFreeResults(0);
             
             ret = kIOReturnSuccess;
             break;

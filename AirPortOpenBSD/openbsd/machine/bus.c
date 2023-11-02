@@ -7,7 +7,11 @@
 //
 
 #include "bus.h"
-#include "AirPort_OpenBSD.hpp"
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Sonoma
+#include "AirPortOpenBSD.hpp"
+#else
+#include "AirPortOpenBSDLegacy.hpp"
+#endif
 
 int bus_dmamap_create(bus_dma_tag_t t, bus_size_t size, int nsegments, bus_size_t maxsegsz, bus_size_t boundary, int flags, bus_dmamap_t *map)
 {

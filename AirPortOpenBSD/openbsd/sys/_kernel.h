@@ -9,6 +9,8 @@
 #ifndef _kernel_h
 #define _kernel_h
 
+#include "apple80211.h"
+
 #include <sys/__types.h>
 #include <sys/kern_compat.h>
 #include <sys/libkern.h>
@@ -37,62 +39,62 @@ extern int debug_log;
 #define BPF_DIRECTION_IN    1
 #define BPF_DIRECTION_OUT   (1<<1)
 
-#define IEEE80211_DEBUG     0
-#define IWM_DEBUG           0
+#define IEEE80211_DEBUG     1
+#define IWM_DEBUG           1
 //#undef DEBUG
 
 #ifdef DEBUG
 
-    #if MAC_VERSION_MAJOR < MAC_VERSION_MAJOR_BigSur
+//    #if MAC_VERSION_MAJOR < MAC_VERSION_MAJOR_BigSur
         #define DebugLog(args...) \
         if(debug_log) { \
             uint64_t new_thread_id = thread_tid(current_thread()); \
             int argsStrSize = 1024; \
             char *argsStr = (typeof argsStr)IOMalloc(argsStrSize); \
             snprintf(argsStr, argsStrSize, args); \
-            kprintf("i=%d: %s: line = %d tid = %llu sysuptime = %llu %s", logStr_i++, __FUNCTION__, __LINE__, new_thread_id, sysuptime(), argsStr); \
+            kprintf("AirPortOpenBSD:i=%d: %s: line = %d tid = %llu sysuptime = %llu %s\n", logStr_i++, __FUNCTION__, __LINE__, new_thread_id, sysuptime(), argsStr); \
             IOFree(argsStr, argsStrSize); \
         }
         #define DebugLogClean()
-    #else
-        #define DebugLog(args...) \
-        if(debug_log) { \
-            uint64_t new_thread_id = thread_tid(current_thread()); \
-            int argsStrSize = 1024; \
-            char *argsStr = (typeof argsStr)IOMalloc(argsStrSize); \
-            snprintf(argsStr, argsStrSize, args); \
-            kprintf("%s: line = %d tid = %llu sysuptime = %llu %s", __FUNCTION__, __LINE__, new_thread_id, sysuptime(), argsStr); \
-            if (_ifp->if_softc != NULL) { \
-                int logStrSize = 2048; \
-                char *logStr = (typeof logStr)IOMalloc(logStrSize); \
-                snprintf(logStr, logStrSize, "%s: line = %d tid = %llu sysuptime = %llu %s", __FUNCTION__, __LINE__, new_thread_id, sysuptime(), argsStr); \
-                OSString *log = OSString::withCString(logStr); \
-                int logKeySize = 256; \
-                char *logKey = (typeof logKey)IOMalloc(logKeySize); \
-                snprintf(logKey, logKeySize, "DebugLog_%06d", logStr_i++); \
-                struct device *dev = (struct device *)_ifp->if_softc; \
-                dev->dev->setProperty(logKey, log); \
-                IOFree(logKey, logKeySize); \
-                IOFree(logStr, logStrSize); \
-            } \
-            IOFree(argsStr, argsStrSize); \
-        }
-
-        #define DebugLogClean() \
-        if(debug_log) { \
-            if (_ifp->if_softc != NULL) { \
-                int logKeySize = 256; \
-                char *logKey = (typeof logKey)IOMalloc(logKeySize); \
-                while(logStr_i-- > 0) { \
-                    snprintf(logKey, logKeySize, "DebugLog_%06d", logStr_i); \
-                    struct device *dev = (struct device *)_ifp->if_softc; \
-                    dev->dev->removeProperty(logKey); \
-                } \
-                IOFree(logKey, logKeySize); \
-            } \
-            logStr_i = 0; \
-        }
-    #endif
+//    #else
+//        #define DebugLog(args...) \
+//        if(debug_log) { \
+//            uint64_t new_thread_id = thread_tid(current_thread()); \
+//            int argsStrSize = 1024; \
+//            char *argsStr = (typeof argsStr)IOMalloc(argsStrSize); \
+//            snprintf(argsStr, argsStrSize, args); \
+//            kprintf("AirPortOpenBSD:i=%d: %s: line = %d tid = %llu sysuptime = %llu %s\n", logStr_i++, __FUNCTION__, __LINE__, new_thread_id, sysuptime(), argsStr); \
+//            if (_ifp != NULL && _ifp->if_softc != NULL) { \
+//                int logStrSize = 2048; \
+//                char *logStr = (typeof logStr)IOMalloc(logStrSize); \
+//                snprintf(logStr, logStrSize, "%s: line = %d tid = %llu sysuptime = %llu %s", __FUNCTION__, __LINE__, new_thread_id, sysuptime(), argsStr); \
+//                OSString *log = OSString::withCString(logStr); \
+//                int logKeySize = 256; \
+//                char *logKey = (typeof logKey)IOMalloc(logKeySize); \
+//                snprintf(logKey, logKeySize, "log_%06d", logStr_i++); \
+//                struct device *dev = (struct device *)_ifp->if_softc; \
+//                dev->dev->pciNub->setProperty(logKey, log); \
+//                IOFree(logKey, logKeySize); \
+//                IOFree(logStr, logStrSize); \
+//            } \
+//            IOFree(argsStr, argsStrSize); \
+//        }
+//
+//        #define DebugLogClean() \
+//        if(debug_log) { \
+//            if (_ifp != NULL && _ifp->if_softc != NULL) { \
+//                int logKeySize = 256; \
+//                char *logKey = (typeof logKey)IOMalloc(logKeySize); \
+//                while(logStr_i-- > 0) { \
+//                    snprintf(logKey, logKeySize, "log_%06d", logStr_i); \
+//                    struct device *dev = (struct device *)_ifp->if_softc; \
+//                    dev->dev->pciNub->removeProperty(logKey); \
+//                } \
+//                IOFree(logKey, logKeySize); \
+//            } \
+//            logStr_i = 0; \
+//        }
+//    #endif
 
 #else
 #define DebugLog(args...)

@@ -2039,6 +2039,8 @@ delifjoin(const char *val, int d)
     ifr.ifr_data = (caddr_t)&join;
     if (ioctl(sock, SIOCS80211JOIN, (caddr_t)&ifr) == -1)
         err(1, "SIOCS80211JOIN");
+    
+    actions &= ~A_JOIN;
 }
 
 void
@@ -2250,7 +2252,7 @@ setifwpaprotos(const char *val, int d)
     
     struct ieee80211_txpower power = {NULL, 0, 100};
 
-    if (_ifp->if_ioctl(_ifp, SIOCS80211TXPOWER, (caddr_t)&power) == -1)
+    if (ioctl(sock, SIOCS80211TXPOWER, (caddr_t)&power) == -1)
         errx(1, "SIOCS80211TXPOWER");
 }
 

@@ -1,6 +1,15 @@
 
 feature
 
+v2.5.0
+1、支持Sonoma
+2、优化ssid连接速度
+3、优化隐藏ssid扫描
+4、优化代码结构
+
+v2.4.3
+1、代码优化，IOPCIDevice与IO80211Controller分离
+
 v2.4.2
 1、修复无法连接部分开放式ssid，如Starbucks
 2、同步iwx、iwm代码

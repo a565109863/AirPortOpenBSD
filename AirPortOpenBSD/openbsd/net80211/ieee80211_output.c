@@ -1479,9 +1479,12 @@ ieee80211_get_assoc_req(struct ieee80211com *ic, struct ieee80211_node *ni,
         frm = ieee80211_add_xrates(frm, rs);
     if ((ic->ic_flags & IEEE80211_F_RSNON) &&
         (ni->ni_rsnprotos & IEEE80211_PROTO_RSN)) {
-        if (ic->ic_rsnie[1] > 0) {
-            memcpy(frm, ic->ic_rsnie, 2 + ic->ic_rsnie[1]);
-            frm += 2 + ic->ic_rsnie[1];
+        struct ifnet *ifp = &ic->ic_if;
+        if (((struct device *)(ifp)->if_softc)->dev->useAppleRSNSupplicant(ifp->iface)) {
+            if (ic->ic_rsnie[1] > 0) {
+                memcpy(frm, ic->ic_rsnie, 2 + ic->ic_rsnie[1]);
+                frm += 2 + ic->ic_rsnie[1];
+            }
         }
         else
         frm = ieee80211_add_rsn(frm, ic, ni);
@@ -1490,9 +1493,12 @@ ieee80211_get_assoc_req(struct ieee80211com *ic, struct ieee80211_node *ni,
         frm = ieee80211_add_qos_capability(frm, ic);
     if ((ic->ic_flags & IEEE80211_F_RSNON) &&
         (ni->ni_rsnprotos & IEEE80211_PROTO_WPA)) {
-        if (ic->ic_rsnie[1] > 0) {
-            memcpy(frm, ic->ic_rsnie, 2 + ic->ic_rsnie[1]);
-            frm += 2 + ic->ic_rsnie[1];
+        struct ifnet *ifp = &ic->ic_if;
+        if (((struct device *)(ifp)->if_softc)->dev->useAppleRSNSupplicant(ifp->iface)) {
+            if (ic->ic_rsnie[1] > 0) {
+                memcpy(frm, ic->ic_rsnie, 2 + ic->ic_rsnie[1]);
+                frm += 2 + ic->ic_rsnie[1];
+            }
         }
         else
         frm = ieee80211_add_wpa(frm, ic, ni);

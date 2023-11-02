@@ -15,12 +15,16 @@
 
 #define PCI_MSIX_QUEUES    16
 
-#include "AirPort_OpenBSD.hpp"
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Sonoma
+#include "AirPortOpenBSD.hpp"
+#else
+#include "AirPortOpenBSDLegacy.hpp"
+#endif
 
-class AirPort_OpenBSD_Class;
+class AirPortOpenBSD;
 struct device {
-    AirPort_OpenBSD_Class* dev;
-    pci_intr_handle_class *ih[PCI_MSIX_QUEUES];
+    AirPortOpenBSD* dev;
+    pci_intr_handle *ih[PCI_MSIX_QUEUES];
     u_int           ih_count;
     char dv_xname[16];
 };

@@ -1,16 +1,27 @@
 //
-//  AirPort_OpenBSD_ASSOC.cpp
+//  AirPortOpenBSDComm_ASSOC.cpp
 //  AirPortOpenBSD
 //
 //  Created by Mac-PC on 2022/11/7.
 //
 
-#include "AirPort_OpenBSD.hpp"
+#include <Availability.h>
+
+#include "apple80211.h"
+
+#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Sonoma
+#include "AirPortOpenBSD.hpp"
+#else
+#include "AirPortOpenBSDLegacy.hpp"
+#endif
+
 #include <crypto/sha1.h>
 #include <net80211/ieee80211_priv.h>
 #include <net80211/ieee80211_var.h>
 
-void AirPort_OpenBSD_Class::setPTK(const u_int8_t *key, size_t key_len) {
+void AirPortOpenBSD::setPTK(const u_int8_t *key, size_t key_len)
+{
+    DebugLog("");
     struct ieee80211_node *ni = ic->ic_bss;
     struct ieee80211_key *k;
     int keylen;
@@ -54,7 +65,9 @@ void AirPort_OpenBSD_Class::setPTK(const u_int8_t *key, size_t key_len) {
               ic->ic_if.if_xname, ether_sprintf(ni->ni_macaddr));
 }
 
-void AirPort_OpenBSD_Class::setGTK(const u_int8_t *gtk, size_t key_len, u_int8_t kid, u_int8_t *rsc) {
+void AirPortOpenBSD::setGTK(const u_int8_t *gtk, size_t key_len, u_int8_t kid, u_int8_t *rsc)
+{
+    DebugLog("");
     struct ieee80211_node *ni = this->ic->ic_bss;
     struct ieee80211_key *k;
     int keylen;
@@ -102,6 +115,7 @@ void AirPort_OpenBSD_Class::setGTK(const u_int8_t *gtk, size_t key_len, u_int8_t
             DebugLog("marking port %s valid\n",
                   ether_sprintf(ni->ni_macaddr));
             ni->ni_port_valid = 1;
+            DebugLog("");
             ieee80211_set_link_state(this->ic, LINK_STATE_UP);
             ni->ni_assoc_fail = 0;
             if (this->ic->ic_opmode == IEEE80211_M_STA)
@@ -110,21 +124,16 @@ void AirPort_OpenBSD_Class::setGTK(const u_int8_t *gtk, size_t key_len, u_int8_t
     }
 }
 
-
-bool AirPort_OpenBSD_Class::isConnected()
+bool AirPortOpenBSD::isConnected()
 {
-    struct ieee80211com *ic = (struct ieee80211com *)_ifp;
-    
     return ic->ic_state == IEEE80211_S_RUN &&
     (ic->ic_opmode != IEEE80211_M_STA ||
      !(ic->ic_flags & IEEE80211_F_RSNON) ||
      ic->ic_bss->ni_port_valid);
 }
 
-bool AirPort_OpenBSD_Class::isRun80211X()
+bool AirPortOpenBSD::isRun80211X()
 {
-    struct ieee80211com *ic = (struct ieee80211com *)_ifp;
-    
     return ic->ic_state == IEEE80211_S_RUN &&
     (ic->ic_opmode != IEEE80211_M_STA || (ic->ic_rsnakms & IEEE80211_AKM_8021X || ic->ic_rsnakms & IEEE80211_AKM_SHA256_8021X));
 }

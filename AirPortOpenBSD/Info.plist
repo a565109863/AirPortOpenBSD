@@ -27,11 +27,26 @@
 			<key>CFBundleIdentifier</key>
 			<string>com.zhong.${PRODUCT_NAME}</string>
 			<key>IOClass</key>
-			<string>${PRODUCT_NAME}</string>
+			<string>AirPortOpenBSDWLANBusInterfacePCIe_$(MAC_VERSION)</string>
 			<key>IOPCIPrimaryMatch</key>
 			<string>0x00008086&amp;0x0000ffff</string>
 			<key>IOProviderClass</key>
 			<string>IOPCIDevice</string>
+		</dict>
+		<key>NetworkController</key>
+		<dict>
+			<key>CFBundleIdentifier</key>
+			<string>com.zhong.${PRODUCT_NAME}</string>
+			<key>IOClass</key>
+			<string>${PRODUCT_NAME}</string>
+			<key>IOMatchCategory</key>
+			<string>WiFiDriver</string>
+			<key>IONetworkRootType</key>
+			<string>airport</string>
+			<key>IOProviderClass</key>
+			<string>AirPortOpenBSDWLANBusInterfacePCIe_$(MAC_VERSION)</string>
+			<key>IOResourceMatch</key>
+			<string>IOBSD</string>
 		</dict>
 	</dict>
 	<key>NSHumanReadableCopyright</key>

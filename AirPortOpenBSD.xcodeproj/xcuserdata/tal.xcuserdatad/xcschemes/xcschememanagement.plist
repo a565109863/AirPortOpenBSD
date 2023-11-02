@@ -14,6 +14,11 @@
 			<key>orderHint</key>
 			<integer>5</integer>
 		</dict>
+		<key>AirPortOpenBSD_All.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
 		<key>AirPortOpenBSD_BigSur.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -32,17 +37,22 @@
 		<key>AirPortOpenBSD_HighSierra.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>3</integer>
+			<integer>7</integer>
 		</dict>
 		<key>AirPortOpenBSD_Mojave.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>7</integer>
+			<integer>8</integer>
 		</dict>
 		<key>AirPortOpenBSD_Monterey.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>6</integer>
+			<integer>5</integer>
+		</dict>
+		<key>AirPortOpenBSD_Sonoma.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>AirPortOpenBSD_Ventura.xcscheme_^#shared#^_</key>
 		<dict>
@@ -53,6 +63,49 @@
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>18713CAC255F154500EF3D49</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>18713CBD255F155700EF3D49</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>18713CCF255F156700EF3D49</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>18713CE2255F157300EF3D49</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3F8F2F332AE5245E000AF582</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7FA595B02A59A95100824D8B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7FBAFFF127E077790075D188</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7FF814D4290EB9F100050008</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>

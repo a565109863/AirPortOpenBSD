@@ -1,14 +1,14 @@
 //
-//  AirPort_OpenBSD_80211.cpp
+//  AirPortOpenBSDLegacy_80211.cpp
 //  AirPortOpenBSD
 //
 //  Created by Mac-PC on 2020/7/17.
 //  Copyright © 2020 Zhong-Mac. All rights reserved.
 //
 
-#include "AirPort_OpenBSD.hpp"
+#include "AirPortOpenBSDLegacy.hpp"
 
-int AirPort_OpenBSD_Class::bpfOutputPacket(OSObject *object, UInt dltType, mbuf_t m)
+int AirPortOpenBSD::bpfOutputPacket(OSObject *object, UInt dltType, mbuf_t m)
 {
     IOLog("%s len=%zu\n", __FUNCTION__, mbuf_len(m));
     if (dltType == DLT_IEEE802_11_RADIO || dltType == DLT_IEEE802_11) {
@@ -21,14 +21,14 @@ int AirPort_OpenBSD_Class::bpfOutputPacket(OSObject *object, UInt dltType, mbuf_
     return 1;
 }
 
-int AirPort_OpenBSD_Class::outputRaw80211Packet(IO80211Interface* interface, mbuf_t m)
+int AirPortOpenBSD::outputRaw80211Packet(IO80211Interface* interface, mbuf_t m)
 {
     IOLog("%s len=%zu\n", __FUNCTION__, mbuf_len(m));
     IOReturn ret = interface->outputPacket(m, NULL);
     return ret;
 }
 
-int AirPort_OpenBSD_Class::outputActionFrame(OSObject *object, mbuf_t m)
+int AirPortOpenBSD::outputActionFrame(OSObject *object, mbuf_t m)
 {
     IOReturn ret = kIOReturnOutputDropped;
     IOLog("%s len=%zu\n", __FUNCTION__, mbuf_len(m));
@@ -45,7 +45,7 @@ int AirPort_OpenBSD_Class::outputActionFrame(OSObject *object, mbuf_t m)
     return ret;
 }
 
-int AirPort_OpenBSD_Class::bpfOutput80211Radio(OSObject *object, mbuf_t m)
+int AirPortOpenBSD::bpfOutput80211Radio(OSObject *object, mbuf_t m)
 {
     IOReturn ret = kIOReturnOutputDropped;
     IOLog("%s len=%zu\n", __FUNCTION__, mbuf_len(m));
@@ -62,23 +62,23 @@ int AirPort_OpenBSD_Class::bpfOutput80211Radio(OSObject *object, mbuf_t m)
     return ret;
 }
 
-bool AirPort_OpenBSD_Class::useAppleRSNSupplicant(IO80211Interface *interface)
+bool AirPortOpenBSD::useAppleRSNSupplicant(IO80211Interface *interface)
 {
     return this->useAppleRSN;
 }
 
-bool AirPort_OpenBSD_Class::useAppleRSNSupplicant(IO80211VirtualInterface *interface)
+bool AirPortOpenBSD::useAppleRSNSupplicant(IO80211VirtualInterface *interface)
 {
     return this->useAppleRSN;
 }
 
-SInt32 AirPort_OpenBSD_Class::monitorModeSetEnabled(IO80211Interface *interface, bool enabled, UInt32 dlt)
+SInt32 AirPortOpenBSD::monitorModeSetEnabled(IO80211Interface *interface, bool enabled, UInt32 dlt)
 {
     return kIOReturnSuccess;
 }
 
 
-SInt32 AirPort_OpenBSD_Class::enableFeature(IO80211FeatureCode code, void *data)
+SInt32 AirPortOpenBSD::enableFeature(IO80211FeatureCode code, void *data)
 {
     if (code == kIO80211Feature80211n) {
         return 0;
@@ -88,18 +88,18 @@ SInt32 AirPort_OpenBSD_Class::enableFeature(IO80211FeatureCode code, void *data)
 
 
 
-UInt32 AirPort_OpenBSD_Class::hardwareOutputQueueDepth(IO80211Interface *interface)
+UInt32 AirPortOpenBSD::hardwareOutputQueueDepth(IO80211Interface *interface)
 {
     return 0;
 }
 
-SInt32 AirPort_OpenBSD_Class::performCountryCodeOperation(IO80211Interface *interface, IO80211CountryCodeOp op)
+SInt32 AirPortOpenBSD::performCountryCodeOperation(IO80211Interface *interface, IO80211CountryCodeOp op)
 {
     return 0;
 }
 
 
-SInt32 AirPort_OpenBSD_Class::stopDMA()
+SInt32 AirPortOpenBSD::stopDMA()
 {
     struct ifnet *ifp = &this->ic->ic_if;
     if (ifp->iface) {
