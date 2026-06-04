@@ -2,7 +2,7 @@
 //  AirPortOpenBSDWLANBusInterfacePCIe.cpp
 //  AirPortOpenBSD
 //
-//  Created by TAL on 2023/10/22.
+//  Created by Mac-PC on 2023/10/22.
 //
 
 #include "AirPortOpenBSDWLANBusInterfacePCIe.hpp"
@@ -12,7 +12,7 @@ OSDefineMetaClassAndStructors(AirPortOpenBSDWLANBusInterfacePCIe, IOService);
 
 IOService* AirPortOpenBSDWLANBusInterfacePCIe::probe(IOService *provider, SInt32 *score)
 {
-    if (MAC_VERSION_MAJOR != version_major) {
+    if (MAC_VERSION_MAJOR != version_major || version_minor < MAC_VERSION_MINOR || version_minor > MAC_VERSION_MINOR_MAX) {
         return NULL;
     }
     
@@ -51,7 +51,7 @@ IOService* AirPortOpenBSDWLANBusInterfacePCIe::probe(IOService *provider, SInt32
 bool AirPortOpenBSDWLANBusInterfacePCIe::start(IOService *provider)
 {
     
-#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Sonoma
+#if __MAC_X_VERSION >= __MAC_14_0
     this->fWorkloop = IO80211WorkQueue::workQueue();
 #endif
 
@@ -70,7 +70,7 @@ bool AirPortOpenBSDWLANBusInterfacePCIe::start(IOService *provider)
         return false;
     }
     
-    this->setName("WLANPCIeDriver");
+    this->setName("AirPortOpenBSDWLANBusInterfacePCIe");
     
     this->fwLoadLock = IOLockAlloc();
     

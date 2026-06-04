@@ -1,4 +1,4 @@
-/*    $OpenBSD: ieee80211_input.c,v 1.250 2023/01/09 00:22:47 daniel Exp $    */
+/*    $OpenBSD: ieee80211_input.c,v 1.258 2026/01/30 04:25:52 gnezdo Exp $    */
 /*    $NetBSD: ieee80211_input.c,v 1.24 2004/05/31 11:12:24 dyoung Exp $    */
 
 /*-
@@ -75,7 +75,6 @@ void    ieee80211_ba_move_window(struct ieee80211com *,
         struct ieee80211_node *, u_int8_t, u_int16_t, struct mbuf_list *);
 void    ieee80211_input_ba_seq(struct ieee80211com *,
         struct ieee80211_node *, uint8_t, uint16_t, struct mbuf_list *);
-mbuf_t ieee80211_align_mbuf(mbuf_t);
 void    ieee80211_decap(struct ieee80211com *, mbuf_t,
         struct ieee80211_node *, int, struct mbuf_list *);
 int    ieee80211_amsdu_decap_validate(struct ieee80211com *, mbuf_t,
@@ -191,8 +190,10 @@ ieee80211_input_hwdecrypt(struct ieee80211com *ic, struct ieee80211_node *ni,
              */
             break;
         }
-        if (ieee80211_ccmp_get_pn(&pn, &prsc, m, k) != 0)
+        if (ieee80211_ccmp_get_pn(&pn, &prsc, m, k) != 0) {
+            ic->ic_stats.is_ccmp_dec_errs++;
             return NULL;
+        }
         if (rxi->rxi_flags & IEEE80211_RXI_HWDEC_SAME_PN) {
             if (pn < *prsc) {
                 ic->ic_stats.is_ccmp_replays++;
@@ -424,7 +425,9 @@ ieee80211_inputm(struct ifnet *ifp, mbuf_t m, struct ieee80211_node *ni,
         *orxseq = nrxseq;
     }
     if (ic->ic_state > IEEE80211_S_SCAN) {
-        ni->ni_rssi = rxi->rxi_rssi;
+        /* Only update RSSI if driver provided a valid value. */
+        if (rxi->rxi_rssi != 0)
+            ni->ni_rssi = rxi->rxi_rssi;
         ni->ni_rstamp = rxi->rxi_tstamp;
         ni->ni_inact = 0;
 
@@ -637,26 +640,39 @@ ieee80211_inputm(struct ifnet *ifp, mbuf_t m, struct ieee80211_node *ni,
         }
 
         if (ni->ni_flags & IEEE80211_NODE_RXMGMTPROT) {
+            int is_multicast, is_protected;
+
+            is_multicast = IEEE80211_IS_MULTICAST(wh->i_addr1);
+            is_protected = (wh->i_fc[1] & IEEE80211_FC1_PROTECTED);
+
             /* MMPDU protection is on for Rx */
             if (subtype == IEEE80211_FC0_SUBTYPE_DISASSOC ||
                 subtype == IEEE80211_FC0_SUBTYPE_DEAUTH ||
                 subtype == IEEE80211_FC0_SUBTYPE_ACTION) {
-                if (!IEEE80211_IS_MULTICAST(wh->i_addr1) &&
-                    !(wh->i_fc[1] & IEEE80211_FC1_PROTECTED)) {
+                if (rxi->rxi_flags & IEEE80211_RXI_HWDEC) {
+                    m = ieee80211_input_hwdecrypt(ic, ni,
+                        m, rxi);
+                    if (m == NULL)
+                        goto out;
+                } else if (!is_multicast && !is_protected) {
                     /* unicast mgmt not encrypted */
+                    ic->ic_stats.is_rx_unencrypted++;
                     goto out;
-                }
-                /* do software decryption */
-                m = ieee80211_decrypt(ic, m, ni);
-                if (m == NULL) {
-                    /* XXX stats */
-                    goto out;
+                } else {
+                    /* do software decryption */
+                    m = ieee80211_decrypt(ic, m, ni);
+                    if (m == NULL) {
+                        ic->ic_stats.is_rx_wepfail++;
+                        goto out;
+                    }
                 }
                 wh = mtod(m, struct ieee80211_frame *);
             }
         } else if ((ic->ic_flags & IEEE80211_F_RSNON) &&
-            (wh->i_fc[1] & IEEE80211_FC1_PROTECTED)) {
+            ((wh->i_fc[1] & IEEE80211_FC1_PROTECTED) ||
+            (rxi->rxi_flags & IEEE80211_RXI_HWDEC))) {
             /* encrypted but MMPDU Rx protection off for TA */
+            ic->ic_stats.is_rx_nowep++;
             goto out;
         }
 
@@ -782,6 +798,7 @@ ieee80211_defrag(struct ieee80211com *ic, mbuf_t m, int hdrlen)
     /* strip 802.11 header and concatenate fragment */
     m_adj(m, hdrlen);
     m_cat(df->df_m, m);
+//    df->df_m->m_pkthdr.len += m->m_pkthdr.len;
     mbuf_pkthdr_setlen(df->df_m, mbuf_pkthdr_len(df->df_m) + mbuf_pkthdr_len(m));
 
     if (wh->i_fc[1] & IEEE80211_FC1_MORE_FRAG)
@@ -1080,6 +1097,7 @@ ieee80211_enqueue_data(struct ieee80211com *ic, mbuf_t m,
             if (m1 == NULL)
                 ifp->if_oerrors++;
             else
+//                m1->m_flags |= M_MCAST;
                 mbuf_setflags(m1, mbuf_flags(m1) | M_MCAST);
         } else if (!mcast) {
             ni1 = ieee80211_find_node(ic, eh->ether_dhost);
@@ -1439,6 +1457,8 @@ ieee80211_parse_rsn_akm(const u_int8_t selector[4])
             return IEEE80211_AKM_SHA256_8021X;
         case 6:    /* PSK with SHA256 KDF */
             return IEEE80211_AKM_SHA256_PSK;
+        case 8:    /* SAE */
+            return IEEE80211_AKM_SAE;
         }
     }
     return IEEE80211_AKM_NONE;    /* ignore unknown AKMs */
@@ -1676,7 +1696,7 @@ ieee80211_recv_probe_resp(struct ieee80211com *ic, mbuf_t m,
     tstamp  = frm; frm += 8;
     bintval = LE_READ_2(frm); frm += 2;
     capinfo = LE_READ_2(frm); frm += 2;
-    
+
     countryie = NULL;
     ie_len = mbuf_len(m) - (sizeof(*wh) + 12);
     ie = frm;
@@ -1845,7 +1865,7 @@ ieee80211_recv_probe_resp(struct ieee80211com *ic, mbuf_t m,
         ni->ni_dtimcount = tim[2];
         ni->ni_dtimperiod = tim[3];
     }
-    
+
     ni->ni_age_ts = sysuptime();
 
     /*
@@ -1939,7 +1959,7 @@ ieee80211_recv_probe_resp(struct ieee80211com *ic, mbuf_t m,
          * This probe response indicates the AP is still serving us
          * so don't allow ieee80211_watchdog() to move us into SCAN.
          */
-         if ((ic->ic_flags & IEEE80211_F_BGSCAN) == 0)
+        if ((ic->ic_flags & IEEE80211_F_BGSCAN) == 0)
              ic->ic_mgt_timer = 0;
     }
     /*
@@ -2715,7 +2735,7 @@ ieee80211_recv_assoc_resp(struct ieee80211com *ic, mbuf_t m,
     else if (ni->ni_flags & IEEE80211_NODE_HT)
         ieee80211_setmode(ic, IEEE80211_MODE_11N);
     else
-        ieee80211_setmode(ic, ieee80211_chan2mode(ic, ni->ni_chan));
+        ieee80211_setmode(ic, ieee80211_node_abg_mode(ic, ni));
     /*
      * Reset the erp state (mostly the slot time) now that
      * our operating mode has been nailed down.
@@ -2884,6 +2904,11 @@ ieee80211_recv_addba_req(struct ieee80211com *ic, mbuf_t m,
     u_int16_t params, ssn, bufsz, timeout;
     u_int8_t token, tid;
     int err = 0;
+
+    /* Ignore if we are not ready to receive data frames. */
+    if (ic->ic_state != IEEE80211_S_RUN ||
+        ((ic->ic_flags & IEEE80211_F_RSNON) && !ni->ni_port_valid))
+        return;
 
     if (!(ni->ni_flags & IEEE80211_NODE_HT)) {
         DPRINTF(("received ADDBA req from non-HT STA %s\n",

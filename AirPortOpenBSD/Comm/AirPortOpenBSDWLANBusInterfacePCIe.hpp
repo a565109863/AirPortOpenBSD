@@ -2,14 +2,11 @@
 //  AirPortOpenBSDWLANBusInterfacePCIe.hpp
 //  AirPortOpenBSD
 //
-//  Created by TAL on 2023/10/22.
+//  Created by Mac-PC on 2023/10/22.
 //
 
 #ifndef AirPortOpenBSDWLANBusInterfacePCIe_hpp
 #define AirPortOpenBSDWLANBusInterfacePCIe_hpp
-
-
-#include <Availability.h>
 
 #include "apple80211.h"
 

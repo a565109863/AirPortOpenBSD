@@ -2,8 +2,6 @@
 #ifndef AirPortOpenBSD_h
 #define AirPortOpenBSD_h
 
-#include <Availability.h>
-
 #include "apple80211.h"
 
 #include "compat.h"
@@ -258,8 +256,8 @@ public:
     
 public:
     // new
-    AirPortOpenBSD_SkywalkInterface* getNetworkInterface(void);
-    AirPortOpenBSD_SkywalkInterface *fNetIf;
+    AirPortOpenBSDWLANSkywalkInterface* getNetworkInterface(void);
+    AirPortOpenBSDWLANSkywalkInterface *fNetIf;
     bool magicPacketEnabled = false;
     bool magicPacketSupported = false;
     CCPipe *driverLogPipe;

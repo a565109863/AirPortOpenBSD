@@ -1,4 +1,4 @@
-/*    $OpenBSD: if_iwn.c,v 1.260 2022/06/19 18:27:06 stsp Exp $    */
+/*    $OpenBSD: if_iwn.c,v 1.264 2025/02/04 09:15:04 stsp Exp $    */
 
 /*-
  * Copyright (c) 2007-2010 Damien Bergamini <damien.bergamini@free.fr>
@@ -26,12 +26,10 @@
 #include <sys/param.h>
 #include <sys/sockio.h>
 #include <sys/mbuf.h>
-#include <sys/kernel.h>
 #include <sys/rwlock.h>
 #include <sys/socket.h>
 #include <sys/systm.h>
 #include <sys/malloc.h>
-#include <sys/conf.h>
 #include <sys/device.h>
 #include <sys/task.h>
 #include <sys/endian.h>
@@ -230,7 +228,6 @@ void        iwn_tune_sensitivity(struct iwn_softc *,
             const struct iwn_rx_stats *);
 int        iwn_send_sensitivity(struct iwn_softc *);
 int        iwn_set_pslevel(struct iwn_softc *, int, int, int);
-int        iwn_send_temperature_offset(struct iwn_softc *);
 int        iwn_send_btcoex(struct iwn_softc *);
 int        iwn_send_advanced_btcoex(struct iwn_softc *);
 int        iwn5000_runtime_calib(struct iwn_softc *);
@@ -404,7 +401,7 @@ iwn_attach(struct device *parent, struct device *self, void *aux)
         printf(": could not attach device\n");
         return;
     }
-    
+
     snprintf(ifp->fwver, sizeof(ifp->fwver), "%s",
         sc->fwname);
 

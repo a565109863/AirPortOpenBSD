@@ -1,20 +1,20 @@
 //
-//  AirPortOpenBSD_EthernetInterface.hpp
+//  AirPortOpenBSDWLANEthernetInterface.hpp
 //  AirPortOpenBSD
 //
 //  Created by Mac-PC on 2022/11/5.
 //
 
-#ifndef AirPortOpenBSD_EthernetInterface_hpp
-#define AirPortOpenBSD_EthernetInterface_hpp
+#ifndef AirPortOpenBSDWLANEthernetInterface_hpp
+#define AirPortOpenBSDWLANEthernetInterface_hpp
 
 #include "apple80211.h"
 #include <IOKit/IOLib.h>
 #include <libkern/OSKextLib.h>
 #include <sys/kernel_types.h>
 
-class AirPortOpenBSD_EthernetInterface : public IOEthernetInterface {
-    OSDeclareDefaultStructors(AirPortOpenBSD_EthernetInterface)
+class AirPortOpenBSDWLANEthernetInterface : public IOEthernetInterface {
+    OSDeclareDefaultStructors(AirPortOpenBSDWLANEthernetInterface)
     
 public:
     virtual IOReturn attachToDataLinkLayer( IOOptionBits options,
@@ -40,4 +40,4 @@ private:
     IO80211SkywalkInterface *interface;
 };
 
-#endif /* AirPortOpenBSD_EthernetInterface_hpp */
+#endif /* AirPortOpenBSDWLANEthernetInterface_hpp */

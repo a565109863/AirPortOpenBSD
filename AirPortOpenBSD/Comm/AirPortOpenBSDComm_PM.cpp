@@ -5,11 +5,9 @@
 //  Created by Mac-PC on 2022/11/5.
 //
 
-#include <Availability.h>
-
 #include "apple80211.h"
 
-#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Sonoma
+#if __MAC_X_VERSION >= __MAC_14_0
 #include "AirPortOpenBSD.hpp"
 #else
 #include "AirPortOpenBSDLegacy.hpp"

@@ -13,8 +13,8 @@
 #include "IOSkywalkEthernetInterface.h"
 
 // This is necessary, because even the latest Xcode does not support properly targeting 11.0.
-#ifndef MAC_VERSION_MAJOR
-#error "Please define MAC_VERSION_MAJOR to the requested version"
+#ifndef __MAC_X_VERSION
+#error "Please define __MAC_X_VERSION to the requested version"
 #endif
 
 class TxSubmissionDequeueStats;
@@ -37,6 +37,7 @@ struct apple80211_lteCoex_report;
 struct apple80211_frame_counters;
 struct userPrintCtx;
 struct apple80211_lqm_summary;
+struct apple80211_infra_specific_stats;
 
 struct TxPacketRequest {
     uint16_t    unk1;       // 0
@@ -117,6 +118,9 @@ public:
     virtual void setInterfaceChipCounters(apple80211_stat_report *,apple80211_chip_counters_tx *,apple80211_chip_error_counters_tx *,apple80211_chip_counters_rx *);
     virtual void setInterfaceMIBdot11(apple80211_stat_report *,apple80211_ManagementInformationBasedot11_counters *);
     virtual void setFrameStats(apple80211_stat_report *,apple80211_frame_counters *);
+#if __MAC_X_VERSION >= __MAC_14_4
+    virtual void setInfraSpecificFrameStats(apple80211_stat_report *,apple80211_infra_specific_stats *);
+#endif
     virtual SInt64 getWmeTxCounters(unsigned long long *);
     virtual void setEnabledBySystem(bool);
     virtual bool enabledBySystem(void);

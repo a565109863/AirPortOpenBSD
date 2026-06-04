@@ -1,4 +1,4 @@
-/*    $OpenBSD: ieee80211_output.c,v 1.137 2022/03/14 15:07:24 stsp Exp $    */
+/*    $OpenBSD: ieee80211_output.c,v 1.145 2026/01/05 13:41:03 stsp Exp $    */
 /*    $NetBSD: ieee80211_output.c,v 1.13 2004/05/31 11:02:55 dyoung Exp $    */
 
 /*-
@@ -51,7 +51,7 @@
 
 #include <netinet/in.h>
 #include <netinet/if_ether.h>
-#include <netinet/ip.h>
+#include <netinet/_ip.h>
 #ifdef INET6
 #include <netinet/ip6.h>
 #endif
@@ -125,7 +125,7 @@ ieee80211_output(struct ifnet *ifp, mbuf_t m, struct sockaddr *dst,
 
     /* Try to get the DLT from a mbuf tag */
 //    if ((mtag = m_tag_find(m, PACKET_TAG_DLT, NULL)) != NULL) {
-//        struct ieee80211com *ic = (typeof ic)ifp;
+//        struct ieee80211com *ic = (void *)ifp;
 //        u_int dlt = *(u_int *)(mtag + 1);
 //
 //        /* Fallback to ethernet for non-802.11 linktypes */
@@ -210,7 +210,7 @@ ieee80211_mgmt_output(struct ifnet *ifp, struct ieee80211_node *ni,
     IEEE80211_ADDR_COPY(wh->i_addr3, ni->ni_bssid);
 
     /* check if protection is required for this mgmt frame */
-    if ((ic->ic_caps & IEEE80211_C_MFP) &&
+    if ((ni->ni_flags & IEEE80211_NODE_MFP) &&
         (type == IEEE80211_FC0_SUBTYPE_DISASSOC ||
          type == IEEE80211_FC0_SUBTYPE_DEAUTH ||
          type == IEEE80211_FC0_SUBTYPE_ACTION)) {
@@ -418,6 +418,45 @@ ieee80211_up_to_ac(struct ieee80211com *ic, int up)
     return ac;
 }
 
+enum ieee80211_edca_ac
+ieee80211_classify_limit(struct ieee80211com *ic, enum ieee80211_edca_ac ac)
+{
+    const suseconds_t txop_interval = 100 * 1000; /* 100 msec, in usec */
+    /* Maximum amounts of high-prio Tx opportunities, per 100ms. */
+    static const int txop_limit[EDCA_NUM_AC] = {
+        0,    /* Best Effort */
+        0,    /* Background */
+        4,    /* Video */
+        2    /* Voice */
+    };
+
+    if (txop_limit[ac] <= 0) /* not rate-limited */
+        return ac;
+
+    if (ic->ic_edca_txop_count[ac] < txop_limit[ac]) {
+        if (ic->ic_edca_txop_count[ac] == 0)
+            getmicrouptime(&ic->ic_edca_txop_time[ac]);
+        ic->ic_edca_txop_count[ac]++;
+    } else {
+        struct timeval now, delta;
+
+        getmicrouptime(&now);
+        timersub(&now, &ic->ic_edca_txop_time[ac], &delta);
+
+        /*
+         * Fall back on best-effort if the limit has been exceeded
+         * within the current rate-limiting window.
+         */
+        if (delta.tv_sec == 0 && delta.tv_usec < txop_interval)
+            return EDCA_AC_BE;
+
+        ic->ic_edca_txop_count[ac] = 1;
+        ic->ic_edca_txop_time[ac] = now;
+    }
+
+    return ac;
+}
+
 /*
  * Get mbuf's user-priority: if mbuf is not VLAN tagged, select user-priority
  * based on the DSCP (Differentiated Services Codepoint) field.
@@ -427,16 +466,28 @@ ieee80211_classify(struct ieee80211com *ic, mbuf_t m)
 {
     struct ether_header eh;
     u_int8_t ds_field;
+    enum ieee80211_edca_ac ac;
+
+    /* Map EDCA categories (0-3) to User Priority TIDs (0-7) */
+    static const int edca_to_up[EDCA_NUM_AC] = {
+        0,    /* Best Effort */
+        1,    /* Background */
+        5,    /* Video (primary) */
+        6    /* Voice (primary) */
+    };
+
 #if NVLAN > 0
-    if (mbuf_flags(m) & M_VLANTAG)    /* use VLAN 802.1D user-priority */
-        return EVL_PRIOFTAG(m->m_pkthdr.ether_vtag);
+    if (mbuf_flags(m) & M_VLANTAG) {    /* use VLAN 802.1D user-priority */
+        ac = EVL_PRIOFTAG(m->m_pkthdr.ether_vtag);
+        return edca_to_up[ieee80211_classify_limit(ic, ac)];
+    }
 #endif
     m_copydata(m, 0, sizeof(eh), (caddr_t)&eh);
     if (eh.ether_type == htons(ETHERTYPE_IP)) {
         struct ip ip;
         m_copydata(m, sizeof(eh), sizeof(ip), (caddr_t)&ip);
         if (ip.ip_v != 4)
-            return 0;
+            return edca_to_up[EDCA_AC_BE];
         ds_field = ip.ip_tos;
     }
 #ifdef INET6
@@ -446,31 +497,44 @@ ieee80211_classify(struct ieee80211com *ic, mbuf_t m)
         m_copydata(m, sizeof(eh), sizeof(ip6), (caddr_t)&ip6);
         flowlabel = ntohl(ip6.ip6_flow);
         if ((flowlabel >> 28) != 6)
-            return 0;
+            return edca_to_up[EDCA_AC_BE];
         ds_field = (flowlabel >> 20) & 0xff;
     }
 #endif    /* INET6 */
     else    /* neither IPv4 nor IPv6 */
-        return 0;
+        return edca_to_up[EDCA_AC_BE];
 
     /*
-     * Map Differentiated Services Codepoint field (see RFC2474).
+     * Map Differentiated Services Codepoint field (see RFC8325).
      * Preserves backward compatibility with IP Precedence field.
      */
     switch (ds_field & 0xfc) {
-    case IPTOS_PREC_PRIORITY:
-        return EDCA_AC_VI;
-    case IPTOS_PREC_IMMEDIATE:
-        return EDCA_AC_BK;
-    case IPTOS_PREC_FLASH:
-    case IPTOS_PREC_FLASHOVERRIDE:
-    case IPTOS_PREC_CRITIC_ECP:
-    case IPTOS_PREC_INTERNETCONTROL:
-    case IPTOS_PREC_NETCONTROL:
-        return EDCA_AC_VO;
+    case IPTOS_DSCP_CS7:
+    case IPTOS_DSCP_CS6:
+    case IPTOS_DSCP_EF:
+    case IPTOS_DSCP_VA:
+        ac = EDCA_AC_VO;
+        break;
+    case IPTOS_DSCP_CS5:
+    case IPTOS_DSCP_AF41:
+    case IPTOS_DSCP_AF42:
+    case IPTOS_DSCP_AF43:
+    case IPTOS_DSCP_CS4:
+    case IPTOS_DSCP_AF31:
+    case IPTOS_DSCP_AF32:
+    case IPTOS_DSCP_AF33:
+    case IPTOS_DSCP_CS3:
+        ac = EDCA_AC_VI;
+        break;
+    case IPTOS_DSCP_CS1:
+        ac = EDCA_AC_BK;
+        break;
     default:
-        return EDCA_AC_BE;
+        /* unused, or explicitly mapped to UP 0 */
+        return edca_to_up[EDCA_AC_BE];
     }
+
+    return edca_to_up[ieee80211_classify_limit(ic, ac)];
 }
 
 int
@@ -571,6 +635,9 @@ ieee80211_encap(struct ifnet *ifp, mbuf_t m, struct ieee80211_node **pni)
 //    }
 
  fallback:
+    if (ic->ic_opmode == IEEE80211_M_MONITOR)
+        goto bad;
+
     if (mbuf_len(m) < sizeof(struct ether_header)) {
         m = m_pullup(m, sizeof(struct ether_header));
         if (m == NULL) {
@@ -800,14 +867,16 @@ ieee80211_add_tim(u_int8_t *frm, struct ieee80211com *ic)
     u_int i, offset = 0, len;
 
     /* find first non-zero octet in the virtual bit map */
-    for (i = 0; i < ic->ic_tim_len && ic->ic_tim_bitmap[i] == 0; i++);
+    for (i = 0; i < ic->ic_tim_len && ic->ic_tim_bitmap[i] == 0; i++)
+        ;
 
     /* clear the lsb as it is reserved for the broadcast indication bit */
     if (i < ic->ic_tim_len)
         offset = i & ~1;
 
     /* find last non-zero octet in the virtual bit map */
-    for (i = ic->ic_tim_len - 1; i > 0 && ic->ic_tim_bitmap[i] == 0; i--);
+    for (i = ic->ic_tim_len - 1; i > 0 && ic->ic_tim_bitmap[i] == 0; i--)
+        ;
 
     len = i - offset + 1;
 
@@ -982,6 +1051,7 @@ ieee80211_add_rsn_body(u_int8_t *frm, struct ieee80211com *ic,
     const u_int8_t *oui = wpa ? MICROSOFT_OUI : IEEE80211_OUI;
     u_int8_t *pcount;
     u_int16_t count, rsncaps;
+    int pmf = 0;
 
     /* write Version field */
     LE_WRITE_2(frm, 1); frm += 2;
@@ -1056,10 +1126,22 @@ ieee80211_add_rsn_body(u_int8_t *frm, struct ieee80211com *ic,
     if (wpa)
         return frm;
 
+    if (ic->ic_caps & IEEE80211_C_MFP) {
+        /*
+         * When acting as client station, only announce PMF support
+         * to access points which support PMF. There are access points
+         * out there which do not support PMF and won't even initiate
+         * the 4-way handshake with us if the PMF-capable bit is set.
+         */
+        if (ic->ic_opmode != IEEE80211_M_STA ||
+            (ni->ni_rsncaps & IEEE80211_RSNCAP_MFPC))
+            pmf = 1;
+    }
+
     /* write RSN Capabilities field */
     rsncaps = (ni->ni_rsncaps & (IEEE80211_RSNCAP_PTKSA_RCNT_MASK |
         IEEE80211_RSNCAP_GTKSA_RCNT_MASK));
-    if (ic->ic_caps & IEEE80211_C_MFP) {
+    if (pmf) {
         rsncaps |= IEEE80211_RSNCAP_MFPC;
         if (ic->ic_flags & IEEE80211_F_MFPR)
             rsncaps |= IEEE80211_RSNCAP_MFPR;
@@ -1076,7 +1158,7 @@ ieee80211_add_rsn_body(u_int8_t *frm, struct ieee80211com *ic,
         frm += IEEE80211_PMKID_LEN;
     }
 
-    if (!(ic->ic_caps & IEEE80211_C_MFP))
+    if (!pmf)
         return frm;
 
     if ((ni->ni_flags & IEEE80211_NODE_PMKID) == 0) {
@@ -1240,6 +1322,7 @@ ieee80211_getmgmt(int flags, int type, u_int pktlen)
         if (!(mbuf_flags(m) & M_EXT))
             return m_free(m);
     }
+//    m->m_data += sizeof(struct ieee80211_frame);
     mbuf_setdata(m, (u_int8_t*) mbuf_data(m) + sizeof(struct ieee80211_frame), mbuf_len(m) - sizeof(struct ieee80211_frame));
     return m;
 }
@@ -1255,7 +1338,7 @@ mbuf_t
 ieee80211_get_probe_req(struct ieee80211com *ic, struct ieee80211_node *ni)
 {
     const struct ieee80211_rateset *rs =
-        &ic->ic_sup_rates[ieee80211_chan2mode(ic, ni->ni_chan)];
+        &ic->ic_sup_rates[ieee80211_node_abg_mode(ic, ni)];
     mbuf_t m;
     u_int8_t *frm;
 
@@ -1281,6 +1364,7 @@ ieee80211_get_probe_req(struct ieee80211com *ic, struct ieee80211_node *ni)
     if (ic->ic_flags & IEEE80211_F_VHTON)
         frm = ieee80211_add_htcaps(frm, ic);
 
+//    m->m_pkthdr.len = m->m_len = frm - mtod(m, u_int8_t *);
     size_t len = frm - mtod(m, u_int8_t *);
     mbuf_pkthdr_setlen(m, len);
     mbuf_setlen(m, len);
@@ -1359,6 +1443,7 @@ ieee80211_get_probe_resp(struct ieee80211com *ic)
         frm = ieee80211_add_wme_param(frm, ic);
     }
 
+//    m->m_pkthdr.len = m->m_len = frm - mtod(m, u_int8_t *);
     size_t len = frm - mtod(m, u_int8_t *);
     mbuf_pkthdr_setlen(m, len);
     mbuf_setlen(m, len);
@@ -1384,6 +1469,7 @@ ieee80211_get_auth(struct ieee80211com *ic, struct ieee80211_node *ni,
     if (m == NULL)
         return NULL;
     m_align(m, 2 * 3);
+//    m->m_pkthdr.len = m->m_len = 2 * 3;
     mbuf_pkthdr_setlen(m, 2 * 3);
     mbuf_setlen(m, 2 * 3);
 
@@ -1409,6 +1495,7 @@ ieee80211_get_deauth(struct ieee80211com *ic, struct ieee80211_node *ni,
     if (m == NULL)
         return NULL;
     m_align(m, 2);
+//    m->m_pkthdr.len = m->m_len = 2;
     mbuf_pkthdr_setlen(m, 2);
     mbuf_setlen(m, 2);
 
@@ -1510,6 +1597,7 @@ ieee80211_get_assoc_req(struct ieee80211com *ic, struct ieee80211_node *ni,
     if (ic->ic_flags & IEEE80211_F_VHTON)
         frm = ieee80211_add_vhtcaps(frm, ic);
 
+//    m->m_pkthdr.len = m->m_len = frm - mtod(m, u_int8_t *);
     size_t len = frm - mtod(m, u_int8_t *);
     mbuf_pkthdr_setlen(m, len);
     mbuf_setlen(m, len);
@@ -1573,6 +1661,7 @@ ieee80211_get_assoc_resp(struct ieee80211com *ic, struct ieee80211_node *ni,
         frm = ieee80211_add_wme_param(frm, ic);
     }
 
+//    m->m_pkthdr.len = m->m_len = frm - mtod(m, u_int8_t *);
     size_t len = frm - mtod(m, u_int8_t *);
     mbuf_pkthdr_setlen(m, len);
     mbuf_setlen(m, len);
@@ -1595,6 +1684,7 @@ ieee80211_get_disassoc(struct ieee80211com *ic, struct ieee80211_node *ni,
     if (m == NULL)
         return NULL;
     m_align(m, 2);
+//    m->m_pkthdr.len = m->m_len = 2;
     mbuf_pkthdr_setlen(m, 2);
     mbuf_setlen(m, 2);
 
@@ -1632,6 +1722,7 @@ ieee80211_get_addba_req(struct ieee80211com *ic, struct ieee80211_node *ni,
     LE_WRITE_2(frm, ba->ba_timeout_val / IEEE80211_DUR_TU); frm += 2;
     LE_WRITE_2(frm, ba->ba_winstart << IEEE80211_SEQ_SEQ_SHIFT); frm += 2;
 
+//    m->m_pkthdr.len = m->m_len = frm - mtod(m, u_int8_t *);
     size_t len = frm - mtod(m, u_int8_t *);
     mbuf_pkthdr_setlen(m, len);
     mbuf_setlen(m, len);
@@ -1654,53 +1745,6 @@ ieee80211_output_ba_move_window(struct ieee80211com *ic,
 
     ba->ba_winstart = (ssn & 0xfff);
     ba->ba_winend = (ba->ba_winstart + ba->ba_winsize - 1) & 0xfff;
-}
-
-/*
- * Move Tx BA window forward up to the first hole in the bitmap
- * or up to the specified SSN, whichever comes first.
- * After calling this function, frames before the start of the
- * potentially changed BA window should be discarded.
- */
-void
-ieee80211_output_ba_move_window_to_first_unacked(struct ieee80211com *ic,
-    struct ieee80211_node *ni, uint8_t tid, uint16_t ssn)
-{
-    struct ieee80211_tx_ba *ba = &ni->ni_tx_ba[tid];
-    uint16_t s = ba->ba_winstart;
-    uint64_t bitmap = ba->ba_bitmap;
-    int can_move_window = 0;
-
-    while (bitmap && SEQ_LT(s, ssn)) {
-        if ((bitmap & 1) == 0)
-            break;
-        s = (s + 1) % 0xfff;
-        bitmap >>= 1;
-        can_move_window = 1;
-    }
-
-    if (can_move_window)
-        ieee80211_output_ba_move_window(ic, ni, tid, s);
-}
-
-/* Record an ACK for a frame with a given SSN within the Tx BA window. */
-void
-ieee80211_output_ba_record_ack(struct ieee80211com *ic,
-    struct ieee80211_node *ni, uint8_t tid, uint16_t ssn)
-{
-    struct ieee80211_tx_ba *ba = &ni->ni_tx_ba[tid];
-    int i = 0;
-    uint16_t s = ba->ba_winstart;
-
-    KASSERT(!SEQ_LT(ssn, ba->ba_winstart));
-    KASSERT(!SEQ_LT(ba->ba_winend, ssn));
-
-    while (SEQ_LT(s, ssn)) {
-        s = (s + 1) % 0xfff;
-        i++;
-    }
-    if (i < ba->ba_winsize)
-        ba->ba_bitmap |= (1 << i);
 }
 
 /*-
@@ -1741,6 +1785,7 @@ ieee80211_get_addba_resp(struct ieee80211com *ic, struct ieee80211_node *ni,
         LE_WRITE_2(frm, 0);
     frm += 2;
 
+//    m->m_pkthdr.len = m->m_len = frm - mtod(m, u_int8_t *);
     size_t len = frm - mtod(m, u_int8_t *);
     mbuf_pkthdr_setlen(m, len);
     mbuf_setlen(m, len);
@@ -1776,6 +1821,7 @@ ieee80211_get_delba(struct ieee80211com *ic, struct ieee80211_node *ni,
     LE_WRITE_2(frm, params); frm += 2;
     LE_WRITE_2(frm, reason); frm += 2;
 
+//    m->m_pkthdr.len = m->m_len = frm - mtod(m, u_int8_t *);
     size_t len = frm - mtod(m, u_int8_t *);
     mbuf_pkthdr_setlen(m, len);
     mbuf_setlen(m, len);
@@ -1805,6 +1851,7 @@ ieee80211_get_sa_query(struct ieee80211com *ic, struct ieee80211_node *ni,
     *frm++ = action;    /* ACTION_SA_QUERY_REQ/RESP */
     LE_WRITE_2(frm, ni->ni_sa_query_trid); frm += 2;
 
+//    m->m_pkthdr.len = m->m_len = frm - mtod(m, u_int8_t *);
     size_t len = frm - mtod(m, u_int8_t *);
     mbuf_pkthdr_setlen(m, len);
     mbuf_setlen(m, len);
@@ -1851,7 +1898,7 @@ ieee80211_get_action(struct ieee80211com *ic, struct ieee80211_node *ni,
 /*
  * Send a management frame.  The node is for the destination (or ic_bss
  * when in station mode).  Nodes other than ic_bss have their reference
- * count bumped to reflect our use for an indeterminant time.
+ * count bumped to reflect our use for an indeterminate time.
  */
 int
 ieee80211_send_mgmt(struct ieee80211com *ic, struct ieee80211_node *ni,
@@ -1973,6 +2020,7 @@ ieee80211_get_rts(struct ieee80211com *ic, const struct ieee80211_frame *wh,
     if (m == NULL)
         return NULL;
 
+//    m->m_pkthdr.len = m->m_len = sizeof(struct ieee80211_frame_rts);
     size_t len = sizeof(struct ieee80211_frame_rts);
     mbuf_pkthdr_setlen(m, len);
     mbuf_setlen(m, len);
@@ -2001,6 +2049,7 @@ ieee80211_get_cts_to_self(struct ieee80211com *ic, u_int16_t dur)
     if (m == NULL)
         return NULL;
 
+//    m->m_pkthdr.len = m->m_len = sizeof(struct ieee80211_frame_cts);
     size_t len = sizeof(struct ieee80211_frame_cts);
     mbuf_pkthdr_setlen(m, len);
     mbuf_setlen(m, len);
@@ -2031,6 +2080,8 @@ ieee80211_get_compressed_bar(struct ieee80211com *ic,
     if (m == NULL)
         return NULL;
 
+//    m->m_pkthdr.len = m->m_len = sizeof(struct ieee80211_frame_min) +
+//        sizeof(ctl) + sizeof(ssn);
     size_t len = sizeof(struct ieee80211_frame_min) +
         sizeof(ctl) + sizeof(ssn);
     mbuf_pkthdr_setlen(m, len);
@@ -2052,6 +2103,7 @@ ieee80211_get_compressed_bar(struct ieee80211com *ic,
     LE_WRITE_2(frm, ssn << IEEE80211_SEQ_SEQ_SHIFT);
     frm += 2;
 
+//    m->m_pkthdr.len = m->m_len = frm - mtod(m, u_int8_t *);
     len = frm - mtod(m, u_int8_t *);
     mbuf_pkthdr_setlen(m, len);
     mbuf_setlen(m, len);
@@ -2153,6 +2205,7 @@ ieee80211_beacon_alloc(struct ieee80211com *ic, struct ieee80211_node *ni)
         frm = ieee80211_add_wme_param(frm, ic);
     }
 
+//    m->m_pkthdr.len = m->m_len = frm - mtod(m, u_int8_t *);
     size_t len = frm - mtod(m, u_int8_t *);
     mbuf_pkthdr_setlen(m, len);
     mbuf_setlen(m, len);

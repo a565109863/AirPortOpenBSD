@@ -1,4 +1,4 @@
-/*    $OpenBSD: if_iwmreg.h,v 1.68 2022/03/19 10:26:52 stsp Exp $    */
+/*    $OpenBSD: if_iwmreg.h,v 1.70 2024/09/01 03:08:59 jsg Exp $    */
 
 /******************************************************************************
  *
@@ -1762,7 +1762,7 @@ static inline unsigned int IWM_FH_MEM_CBBC_QUEUE(unsigned int chnl)
 #define IWM_RX_LOW_WATERMARK 8
 
 /**
- * struct iwm_rb_status - reseve buffer status
+ * struct iwm_rb_status - reserve buffer status
  *     host memory mapped FH registers
  * @closed_rb_num [0:11] - Indicates the index of the RB which was closed
  * @closed_fr_num [0:11] - Indicates the index of the RX Frame which was closed
@@ -3361,7 +3361,7 @@ struct iwm_rx_mpdu_desc_v1 {
             uint32_t phy_data0;
             uint32_t phy_data1;
         };
-    };
+    } __packed;
 } __packed;
 
 #define IWM_RX_REORDER_DATA_INVALID_BAID    0x7f
@@ -6382,7 +6382,7 @@ struct iwm_add_sta_cmd {
  * ( REPLY_ADD_STA_KEY = 0x17 )
  * @sta_id: index of station in uCode's station table
  * @key_offset: key offset in key storage
- * @key_flags: IWM_STA_KEY_FLG_* 
+ * @key_flags: IWM_STA_KEY_FLG_*
  * @key: key material data
  * @rx_secur_seq_cnt: RX security sequence counter for the key
  */
@@ -6484,7 +6484,7 @@ struct iwm_wep_key_cmd {
     struct iwm_wep_key wep_key[0];
 } __packed; /* SEC_CURR_WEP_KEY_CMD_API_S_VER_2 */
 
-/* 
+/*
  * BT coex
  */
 

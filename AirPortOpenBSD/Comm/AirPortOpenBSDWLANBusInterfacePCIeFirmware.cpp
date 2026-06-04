@@ -2,7 +2,7 @@
 //  AirPortOpenBSDWLANBusInterfacePCIe_Firmware.cpp
 //  AirPortOpenBSD
 //
-//  Created by TAL on 2023/10/24.
+//  Created by Mac-PC on 2023/10/24.
 //
 
 #include "AirPortOpenBSDWLANBusInterfacePCIe.hpp"

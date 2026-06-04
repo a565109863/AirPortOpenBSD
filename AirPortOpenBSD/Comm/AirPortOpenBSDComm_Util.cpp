@@ -3,14 +3,11 @@
 //  AirPortOpenBSD
 //
 //  Created by User-PC on 2020/8/10.
-//  Copyright © 2020 Zhong-Mac. All rights reserved.
 //
-
-#include <Availability.h>
 
 #include "apple80211.h"
 
-#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Sonoma
+#if __MAC_X_VERSION >= __MAC_14_0
 #include "AirPortOpenBSD.hpp"
 #else
 #include "AirPortOpenBSDLegacy.hpp"

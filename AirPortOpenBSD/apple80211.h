@@ -9,82 +9,87 @@
 #ifndef apple80211_h
 #define apple80211_h
 
-#define MAC_VERSION_MAJOR_HighSierra    17
-#define MAC_VERSION_MAJOR_Mojave        18
-#define MAC_VERSION_MAJOR_Catalina      19
-#define MAC_VERSION_MAJOR_BigSur        20
-#define MAC_VERSION_MAJOR_Monterey      21
-#define MAC_VERSION_MAJOR_Ventura       22
-#define MAC_VERSION_MAJOR_Sonoma        23
-
-#if MAC_VERSION_MAJOR == MAC_VERSION_MAJOR_Sonoma
-#define PRODUCT_NAME                            "AirPortOpenBSD_Sonoma"
-#define AirPortOpenBSDWLANBusInterfacePCIe      AirPortOpenBSDWLANBusInterfacePCIe_Sonoma
-#define AirPortOpenBSD                          AirPortOpenBSD_Sonoma
-#define AirPortOpenBSD_EthernetInterface        AirPortOpenBSD_Sonoma_Interface
-#define IOTimeout                               IOTimeout_Sonoma
-#define pci_intr_handle                         pci_intr_handle_Sonoma
-#endif
-
-#if MAC_VERSION_MAJOR == MAC_VERSION_MAJOR_Ventura
+#if __MAC_X_VERSION >= __MAC_15_0
+#define PRODUCT_NAME                            "AirPortOpenBSD_Sequoia"
+#define AirPortOpenBSDWLANBusInterfacePCIe      AirPortOpenBSDWLANBusInterfacePCIe_Sequoia
+#define AirPortOpenBSD                          AirPortOpenBSD_Sequoia
+#define AirPortOpenBSDWLANSkywalkInterface      AirPortOpenBSDWLANSkywalkInterface_Sequoia
+#define AirPortOpenBSDWLANEthernetInterface     AirPortOpenBSDWLANEthernetInterface_Sequoia
+#define IOTimeout                               IOTimeout_Sequoia
+#define pci_intr_handle                         pci_intr_handle_Sequoia
+#elif __MAC_X_VERSION >= __MAC_14_4
+#define PRODUCT_NAME                            "AirPortOpenBSD_Sonoma14_4"
+#define AirPortOpenBSDWLANBusInterfacePCIe      AirPortOpenBSDWLANBusInterfacePCIe_Sonoma14_4
+#define AirPortOpenBSD                          AirPortOpenBSD_Sonoma14_4
+#define AirPortOpenBSDWLANSkywalkInterface      AirPortOpenBSDWLANSkywalkInterface_Sonoma14_4
+#define AirPortOpenBSDWLANEthernetInterface     AirPortOpenBSDWLANEthernetInterface_Sonoma14_4
+#define IOTimeout                               IOTimeout_Sonoma14_4
+#define pci_intr_handle                         pci_intr_handle_Sonoma14_4
+#elif __MAC_X_VERSION >= __MAC_14_0
+#define PRODUCT_NAME                            "AirPortOpenBSD_Sonoma14_0"
+#define AirPortOpenBSDWLANBusInterfacePCIe      AirPortOpenBSDWLANBusInterfacePCIe_Sonoma14_0
+#define AirPortOpenBSD                          AirPortOpenBSD_Sonoma14_0
+#define AirPortOpenBSDWLANSkywalkInterface      AirPortOpenBSDWLANSkywalkInterface_Sonoma14_0
+#define AirPortOpenBSDWLANEthernetInterface     AirPortOpenBSDWLANEthernetInterface_Sonoma14_0
+#define IOTimeout                               IOTimeout_Sonoma14_0
+#define pci_intr_handle                         pci_intr_handle_Sonoma14_0
+#elif __MAC_X_VERSION >= __MAC_13_0
 #define PRODUCT_NAME                            "AirPortOpenBSD_Ventura"
 #define AirPortOpenBSDWLANBusInterfacePCIe      AirPortOpenBSDWLANBusInterfacePCIe_Ventura
 #define AirPortOpenBSD                          AirPortOpenBSD_Ventura
-#define AirPortOpenBSD_EthernetInterface        AirPortOpenBSD_Ventura_Interface
+#define AirPortOpenBSDWLANSkywalkInterface      AirPortOpenBSDWLANSkywalkInterface_Ventura
+#define AirPortOpenBSDWLANEthernetInterface     AirPortOpenBSDWLANEthernetInterface_Ventura
 #define IOTimeout                               IOTimeout_Ventura
 #define pci_intr_handle                         pci_intr_handle_Ventura
-#endif
-
-#if MAC_VERSION_MAJOR == MAC_VERSION_MAJOR_Monterey
+#elif __MAC_X_VERSION >= __MAC_12_0
 #define PRODUCT_NAME                            "AirPortOpenBSD_Monterey"
 #define AirPortOpenBSDWLANBusInterfacePCIe      AirPortOpenBSDWLANBusInterfacePCIe_Monterey
 #define AirPortOpenBSD                          AirPortOpenBSD_Monterey
-#define AirPortOpenBSD_EthernetInterface        AirPortOpenBSD_Monterey_Interface
+#define AirPortOpenBSDWLANSkywalkInterface      AirPortOpenBSDWLANSkywalkInterface_Monterey
+#define AirPortOpenBSDWLANEthernetInterface     AirPortOpenBSDWLANEthernetInterface_Monterey
 #define IOTimeout                               IOTimeout_Monterey
 #define pci_intr_handle                         pci_intr_handle_Monterey
-#endif
-
-#if MAC_VERSION_MAJOR == MAC_VERSION_MAJOR_BigSur
+#elif __MAC_X_VERSION >= __MAC_11_0
 #define PRODUCT_NAME                            "AirPortOpenBSD_BigSur"
 #define AirPortOpenBSDWLANBusInterfacePCIe      AirPortOpenBSDWLANBusInterfacePCIe_BigSur
 #define AirPortOpenBSD                          AirPortOpenBSD_BigSur
-#define AirPortOpenBSD_EthernetInterface        AirPortOpenBSD_BigSur_Interface
+#define AirPortOpenBSDWLANSkywalkInterface      AirPortOpenBSDWLANSkywalkInterface_BigSur
+#define AirPortOpenBSDWLANEthernetInterface     AirPortOpenBSDWLANEthernetInterface_BigSur
 #define IOTimeout                               IOTimeout_BigSur
 #define pci_intr_handle                         pci_intr_handle_BigSur
-#endif
-
-#if MAC_VERSION_MAJOR == MAC_VERSION_MAJOR_Catalina
+#elif __MAC_X_VERSION >= __MAC_10_15
 #define PRODUCT_NAME                            "AirPortOpenBSD_Catalina"
 #define AirPortOpenBSDWLANBusInterfacePCIe      AirPortOpenBSDWLANBusInterfacePCIe_Catalina
 #define AirPortOpenBSD                          AirPortOpenBSD_Catalina
-#define AirPortOpenBSD_EthernetInterface        AirPortOpenBSD_Catalina_Interface
+#define AirPortOpenBSDWLANSkywalkInterface      AirPortOpenBSDWLANSkywalkInterface_Catalina
+#define AirPortOpenBSDWLANEthernetInterface     AirPortOpenBSDWLANEthernetInterface_Catalina
 #define IOTimeout                               IOTimeout_Catalina
 #define pci_intr_handle                         pci_intr_handle_Catalina
-#endif
-
-#if MAC_VERSION_MAJOR == MAC_VERSION_MAJOR_Mojave
+#elif __MAC_X_VERSION >= __MAC_10_14
 #define PRODUCT_NAME                            "AirPortOpenBSD_Mojave"
 #define AirPortOpenBSDWLANBusInterfacePCIe      AirPortOpenBSDWLANBusInterfacePCIe_Mojave
 #define AirPortOpenBSD                          AirPortOpenBSD_Mojave
-#define AirPortOpenBSD_EthernetInterface        AirPortOpenBSD_Mojave_Interface
+#define AirPortOpenBSDWLANSkywalkInterface      AirPortOpenBSDWLANSkywalkInterface_Mojave
+#define AirPortOpenBSDWLANEthernetInterface     AirPortOpenBSDWLANEthernetInterface_Mojave
 #define IOTimeout                               IOTimeout_Mojave
 #define pci_intr_handle                         pci_intr_handle_Mojave
-#endif
-
-#if MAC_VERSION_MAJOR == MAC_VERSION_MAJOR_HighSierra
+#elif __MAC_X_VERSION >= __MAC_10_13
 #define PRODUCT_NAME                            "AirPortOpenBSD_HighSierra"
 #define AirPortOpenBSDWLANBusInterfacePCIe      AirPortOpenBSDWLANBusInterfacePCIe_HighSierra
 #define AirPortOpenBSD                          AirPortOpenBSD_HighSierra
-#define AirPortOpenBSD_EthernetInterface        AirPortOpenBSD_HighSierra_Interface
+#define AirPortOpenBSDWLANSkywalkInterface      AirPortOpenBSDWLANSkywalkInterface_HighSierra
+#define AirPortOpenBSDWLANEthernetInterface     AirPortOpenBSDWLANEthernetInterface_HighSierra
 #define IOTimeout                               IOTimeout_HighSierra
 #define pci_intr_handle                         pci_intr_handle_HighSierra
+#else
+#error "Unsupported __MAC_X_VERSION value"
 #endif
 
 #include "apple_private_spi.h"
 #include "debug.h"
 #include "IO80211WorkLoop.h"
 
-#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Sonoma
+#if __MAC_X_VERSION >= __MAC_14_0
 #include "IO80211WorkQueue.h"
 #include "IO80211Controller.h"
 #include "IO80211InfraInterface.h"
@@ -92,19 +97,18 @@
 #include "IOSkywalkPacketBufferPool.h"
 #include "IOSkywalkLegacyEthernetInterface.h"
 #include "IO80211SkywalkInterface.h"
-#include "AirPortOpenBSD_SkywalkInterface.hpp"
-#include "AirPortOpenBSD_EthernetInterface.hpp"
+#include "AirPortOpenBSDWLANSkywalkInterface.hpp"
+#include "AirPortOpenBSDWLANEthernetInterface.hpp"
 #else
 #include "apple80211/Legacy/IO80211ControllerLegacy.h"
 #include "apple80211/Legacy/IO80211Interface.h"
 #include "apple80211/Legacy/IO80211VirtualInterface.h"
 #include "apple80211/Legacy/IO80211P2PInterface.h"
-#include "Legacy/AirPortOpenBSDLegacy_EthernetInterface.hpp"
+#include "Legacy/AirPortOpenBSDWLANLegacyEthernetInterface.hpp"
 #endif
 
 
 #define IOController                IO80211Controller
-//#define IOInterface                 IO80211Interface
 //#define WorkLoop                    IO80211WorkLoop
 
 #define kIONetworkLinkUndefined     kIO80211NetworkLinkUndefined

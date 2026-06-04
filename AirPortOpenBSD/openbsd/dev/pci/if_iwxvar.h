@@ -1,4 +1,4 @@
-/*    $OpenBSD: if_iwxvar.h,v 1.41 2023/03/06 11:53:24 stsp Exp $    */
+/*    $OpenBSD: if_iwxvar.h,v 1.43 2025/12/01 16:44:13 stsp Exp $    */
 
 /*
  * Copyright (c) 2014 genua mbh <info@genua.de>
@@ -123,7 +123,7 @@ struct iwx_tx_radiotap_header {
      (1 << IEEE80211_RADIOTAP_RATE) |                \
      (1 << IEEE80211_RADIOTAP_CHANNEL))
 
-#define IWX_UCODE_SECT_MAX 57
+#define IWX_UCODE_SECT_MAX 60
 
 /*
  * fw_status is used to determine if we've already parsed the firmware file
@@ -489,6 +489,14 @@ struct iwx_device_cfg {
 #define IWX_SO_A_GF4_A_PNVM    "iwx-so-a0-gf4-a0.pnvm"
 #define IWX_SO_A_HR_B_FW    "iwx-so-a0-hr-b0-77"
 #define IWX_SO_A_JF_B_FW    "iwx-so-a0-jf-b0-77"
+#define IWX_MA_B_HR_B_FW    "iwx-ma-a0-hr-b0-83"
+#define IWX_MA_B_HR_B_PNVM    "iwx-ma-a0-hr-b0.pnvm"
+#define IWX_MA_B_GF_A_FW    "iwx-ma-b0-gf-a0-83"
+#define IWX_MA_B_GF_A_PNVM    "iwx-ma-b0-gf-a0.pnvm"
+#define IWX_MA_B_GF4_A_FW    "iwx-ma-b0-gf4-a0-83"
+#define IWX_MA_B_GF4_A_PNVM    "iwx-ma-b0-gf4-a0.pnvm"
+#define IWX_MA_A_FM_A_FW    "iwx-ma-a0-fm-a0-83"
+#define IWX_MA_A_FM_A_PNVM    "iwx-ma-a0-fm-a0.pnvm"
 
 const struct iwx_device_cfg iwx_9560_quz_a0_jf_b0_cfg = {
     .fw_name = IWX_QUZ_A_JF_B_FW,
@@ -577,6 +585,26 @@ const struct iwx_device_cfg iwx_2ax_cfg_so_jf_b0 = {
     .fw_name = IWX_SO_A_JF_B_FW,
 };
 
+const struct iwx_device_cfg iwx_cfg_ma_b0_hr_b0 = {
+    .fw_name = IWX_MA_B_HR_B_FW,
+    .pnvm_name = IWX_MA_B_HR_B_PNVM,
+};
+
+const struct iwx_device_cfg iwx_cfg_ma_b0_gf_a0 = {
+    .fw_name = IWX_MA_B_GF_A_FW,
+    .pnvm_name = IWX_MA_B_GF_A_PNVM,
+};
+
+const struct iwx_device_cfg iwx_cfg_ma_b0_gf4_a0 = {
+    .fw_name = IWX_MA_B_GF4_A_FW,
+    .pnvm_name = IWX_MA_B_GF4_A_PNVM,
+};
+
+const struct iwx_device_cfg iwx_cfg_ma_a0_fm_a0 = {
+    .fw_name = IWX_MA_A_FM_A_FW,
+    .pnvm_name = IWX_MA_A_FM_A_PNVM,
+};
+
 #define IWX_CFG_ANY (~0)
 
 #define IWX_CFG_MAC_TYPE_QU        0x33
@@ -627,6 +655,8 @@ struct iwx_softc {
     enum ieee80211_state    ns_nstate;
     int            ns_arg;
 
+    int            deauth_sent;
+
     /* Task for firmware BlockAck setup/teardown and its arguments. */
     struct task        ba_task;
     struct iwx_ba_task_data    ba_rx;
@@ -635,13 +665,13 @@ struct iwx_softc {
     /* Task for setting encryption keys and its arguments. */
     struct task        setkey_task;
     /*
-     * At present we need to process at most two keys at once:
-     * Our pairwise key and a group key.
+     * At present we need to process at most three keys at once:
+     * Our pairwise key, a group key, and an integrity group key.
      * When hostap mode is implemented this array needs to grow or
      * it might become a bottleneck for associations that occur at
      * roughly the same time.
      */
-    struct iwx_setkey_task_arg setkey_arg[2];
+    struct iwx_setkey_task_arg setkey_arg[3];
     int setkey_cur;
     int setkey_tail;
     int setkey_nkeys;
@@ -696,6 +726,9 @@ struct iwx_softc {
     struct iwx_dma_info prph_info_dma;
     struct iwx_dma_info iml_dma;
     struct iwx_dma_info pnvm_dma;
+    struct iwx_dma_info pnvm_seg_dma[IWX_MAX_DRAM_ENTRY];
+    uint32_t pnvm_size;
+    int pnvm_segs;
     uint32_t sc_pnvm_ver;
 
     int sc_fw_chunk_done;
@@ -716,6 +749,7 @@ struct iwx_softc {
     struct iwx_fw_cmd_version cmd_versions[IWX_MAX_FW_CMD_VERSIONS];
     int n_cmd_versions;
     int sc_rate_n_flags_version;
+    int sc_use_mld_api;
 
     int sc_intmask;
     int sc_flags;
@@ -814,9 +848,11 @@ struct iwx_node {
     struct iwx_rxq_dup_data dup_data;
 
     int in_flags;
-#define IWX_NODE_FLAG_HAVE_PAIRWISE_KEY    0x01
-#define IWX_NODE_FLAG_HAVE_GROUP_KEY    0x02
+#define IWX_NODE_FLAG_HAVE_PAIRWISE_KEY        0x01
+#define IWX_NODE_FLAG_HAVE_GROUP_KEY        0x02
+#define IWX_NODE_FLAG_HAVE_INTEGRITY_GROUP_KEY    0x04
 };
+
 #define IWX_STATION_ID 0
 #define IWX_AUX_STA_ID 1
 #define IWX_MONITOR_STA_ID 2

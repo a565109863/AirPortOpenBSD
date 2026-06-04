@@ -166,7 +166,7 @@ m_defrag(mbuf_t m, mbuf_how_t how)
     if (mbuf_next(m) == NULL)
         return (0);
 
-    KASSERT(m->m_flags & M_PKTHDR);
+    KASSERT(mbuf_flags(m) & M_PKTHDR);
 
     if ((m0 = m_gethdr(how, mbuf_type(m))) == NULL)
         return (ENOBUFS);

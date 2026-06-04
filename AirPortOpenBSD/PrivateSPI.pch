@@ -4,3 +4,60 @@
 #ifdef __PRIVATE_SPI__
 typedef u_int32_t ifnet_ctl_cmd_t;
 #endif
+
+#ifndef __MAC_14_4
+#define __MAC_14_4   140400
+#endif
+
+#ifndef __MAC_15_0
+#define __MAC_15_0   150000
+#endif
+
+#ifndef __MAC_X_VERSION
+#error "Please define __MAC_X_VERSION to the requested version"
+#endif
+
+// Derive kernel version from __MAC_X_VERSION for runtime version checks
+// MAC_VERSION_MAJOR: kernel major (version_major)
+// MAC_VERSION_MINOR: kernel minor lower bound (version_minor >= MAC_VERSION_MINOR)
+// MAC_VERSION_MINOR_MAX: kernel minor upper bound (version_minor <= MAC_VERSION_MINOR_MAX)
+// Mapping: 10.13→17.0, 10.14→18.0, 10.15→19.0, 11.0→20.0, 12.0→21.0, 13.0→22.0, 14.0→23.0~3, 14.4→23.4+, 15.0→24.0
+#if __MAC_X_VERSION >= __MAC_15_0
+#define MAC_VERSION_MAJOR       24
+#define MAC_VERSION_MINOR       0
+#define MAC_VERSION_MINOR_MAX   99
+#elif __MAC_X_VERSION >= __MAC_14_4
+#define MAC_VERSION_MAJOR       23
+#define MAC_VERSION_MINOR       4
+#define MAC_VERSION_MINOR_MAX   99
+#elif __MAC_X_VERSION >= __MAC_14_0
+#define MAC_VERSION_MAJOR       23
+#define MAC_VERSION_MINOR       0
+#define MAC_VERSION_MINOR_MAX   3
+#elif __MAC_X_VERSION >= __MAC_13_0
+#define MAC_VERSION_MAJOR       22
+#define MAC_VERSION_MINOR       0
+#define MAC_VERSION_MINOR_MAX   99
+#elif __MAC_X_VERSION >= __MAC_12_0
+#define MAC_VERSION_MAJOR       21
+#define MAC_VERSION_MINOR       0
+#define MAC_VERSION_MINOR_MAX   99
+#elif __MAC_X_VERSION >= __MAC_11_0
+#define MAC_VERSION_MAJOR       20
+#define MAC_VERSION_MINOR       0
+#define MAC_VERSION_MINOR_MAX   99
+#elif __MAC_X_VERSION >= __MAC_10_15
+#define MAC_VERSION_MAJOR       19
+#define MAC_VERSION_MINOR       0
+#define MAC_VERSION_MINOR_MAX   99
+#elif __MAC_X_VERSION >= __MAC_10_14
+#define MAC_VERSION_MAJOR       18
+#define MAC_VERSION_MINOR       0
+#define MAC_VERSION_MINOR_MAX   99
+#elif __MAC_X_VERSION >= __MAC_10_13
+#define MAC_VERSION_MAJOR       17
+#define MAC_VERSION_MINOR       0
+#define MAC_VERSION_MINOR_MAX   99
+#else
+#error "Unsupported __MAC_X_VERSION value for MAC_VERSION_MAJOR derivation"
+#endif

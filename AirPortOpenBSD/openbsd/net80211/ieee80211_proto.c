@@ -1,4 +1,4 @@
-/*    $OpenBSD: ieee80211_proto.c,v 1.108 2022/03/14 15:07:24 stsp Exp $    */
+/*    $OpenBSD: ieee80211_proto.c,v 1.111 2025/12/01 16:05:11 stsp Exp $    */
 /*    $NetBSD: ieee80211_proto.c,v 1.8 2004/04/30 23:58:20 dyoung Exp $    */
 
 /*-
@@ -221,7 +221,7 @@ ieee80211_fix_rate(struct ieee80211com *ic, struct ieee80211_node *ni,
 
     error = 0;
     okrate = badrate = fixedrate = 0;
-    srs = &ic->ic_sup_rates[ieee80211_chan2mode(ic, ni->ni_chan)];
+    srs = &ic->ic_sup_rates[ieee80211_node_abg_mode(ic, ni)];
     nrs = &ni->ni_rates;
     for (i = 0; i < nrs->rs_nrates; ) {
         ignore = 0;
@@ -861,7 +861,7 @@ ieee80211_try_another_bss(struct ieee80211com *ic)
 
     /* Should not happen but seriously, don't try the same AP again. */
     if (memcmp(selbs->ni_macaddr, ic->ic_bss->ni_macaddr,
-        IEEE80211_NWID_LEN) == 0)
+        IEEE80211_ADDR_LEN) == 0)
         return;
 
     if (ifp->if_flags & IFF_DEBUG)
@@ -948,6 +948,8 @@ ieee80211_auth_open(struct ieee80211com *ic, const struct ieee80211_frame *wh,
         if (ic->ic_flags & IEEE80211_F_RSNON) {
             /* XXX not here! */
             ic->ic_bss->ni_flags &= ~IEEE80211_NODE_TXRXPROT;
+            ic->ic_bss->ni_flags &= ~IEEE80211_NODE_RXMGMTPROT;
+            ic->ic_bss->ni_flags &= ~IEEE80211_NODE_TXMGMTPROT;
             ic->ic_bss->ni_port_valid = 0;
             ic->ic_bss->ni_replaycnt_ok = 0;
             (*ic->ic_delete_key)(ic, ic->ic_bss,
@@ -1154,7 +1156,7 @@ justcleanup:
         IEEE80211_ADDR_COPY(ni->ni_macaddr, etherbroadcastaddr);
         IEEE80211_ADDR_COPY(ni->ni_bssid, etherbroadcastaddr);
         ni->ni_rates = ic->ic_sup_rates[
-            ieee80211_chan2mode(ic, ni->ni_chan)];
+            ieee80211_node_abg_mode(ic, ni)];
         ni->ni_associd = 0;
         ni->ni_rstamp = 0;
         ni->ni_rsn_supp_state = RSNA_SUPP_INITIALIZE;

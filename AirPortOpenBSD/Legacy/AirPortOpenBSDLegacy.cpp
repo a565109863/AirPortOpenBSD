@@ -14,7 +14,7 @@ int debug_log = 0;
 bool AirPortOpenBSD::init(OSDictionary* parameters) {
     DebugLog("AirPortOpenBSD: Init");
     
-    if (MAC_VERSION_MAJOR != version_major) {
+    if (MAC_VERSION_MAJOR != version_major || version_minor < MAC_VERSION_MINOR || version_minor > MAC_VERSION_MINOR_MAX) {
         return false;
     }
     
@@ -30,7 +30,7 @@ bool AirPortOpenBSD::init(OSDictionary* parameters) {
 
 IOService* AirPortOpenBSD::probe(IOService *provider, SInt32 *score)
 {
-    if (MAC_VERSION_MAJOR != version_major) {
+    if (MAC_VERSION_MAJOR != version_major || version_minor < MAC_VERSION_MINOR || version_minor > MAC_VERSION_MINOR_MAX) {
         return NULL;
     }
     
@@ -40,14 +40,14 @@ IOService* AirPortOpenBSD::probe(IOService *provider, SInt32 *score)
         return NULL;
     }
     
-    this->fPciDevice = pciNub->fPciDevice;
-    this->pa = pciNub->pa;
-    if (!this->fPciDevice || !this->pa) {
+    if (!pciNub->fPciDevice || !pciNub->pa) {
         DebugLog("%s Not a valid AirPortOpenBSDWLANBusInterfacePCIe instance\n", __FUNCTION__);
         return NULL;
     }
     this->pciNub = pciNub;
     
+    this->fPciDevice = this->pciNub->fPciDevice;
+    this->pa = this->pciNub->pa;
     this->cd = this->pciNub->cd;
     this->ca = this->pciNub->ca;
     
@@ -163,13 +163,13 @@ bool AirPortOpenBSD::start(IOService *provider) {
         bcopy("AirPortOpenBSD", this->pa->dev.dv_xname, sizeof(this->pa->dev.dv_xname));
     }
     this->pa->workloop = fWorkloop;
-    this->pa->pa_tag = fPciDevice;
+    this->pa->pa_tag = this->fPciDevice;
     this->pa->pa_dmat = (bus_dma_tag_t)malloc(sizeof(bus_dma_tag_t), M_DEVBUF, M_NOWAIT);
     SLIST_INIT(&this->pa->pa_dmat->bus_dmamap_list);
     
-    fPciDevice->setMemoryEnable(true);
-    fPciDevice->setIOEnable(true);
-    fPciDevice->setBusMasterEnable(true);
+    this->fPciDevice->setMemoryEnable(true);
+    this->fPciDevice->setIOEnable(true);
+    this->fPciDevice->setBusMasterEnable(true);
     
     this->ca->ca_attach((struct device *)provider, (struct device *)if_softc, this->pa);
     if (_ifp->err)
@@ -203,18 +203,25 @@ done:
     return ret;
     
 fail7:
-    if (_ifp->iface) {
-        struct ieee80211com *ic = (struct ieee80211com *)_ifp;
-        ieee80211_ifdetach(&this->ic->ic_ac.ac_if);
+    if (_ifp && _ifp->iface) {
+        ieee80211_ifdetach(_ifp);
         _ifp->iface = NULL;
     }
-    dev = (struct device *)_ifp->if_softc;
-    if (dev->ih_count) {
-        pci_intr_disestablish(dev, dev->ih);
-        pci_intr_unmap(dev->dev->pa, &dev->ih_count);
+    if (if_softc) {
+        dev = (struct device *)if_softc;
+        if (dev->ih_count) {
+            pci_intr_disestablish(dev, dev->ih);
+            pci_intr_unmap(dev->dev->pa, &dev->ih_count);
+        }
     }
-    IOFree(this->pa->pa_dmat, sizeof(bus_dma_tag_t));
-    IOFree(if_softc, this->ca->ca_devsize);
+    if (this->pa->pa_dmat) {
+        IOFree(this->pa->pa_dmat, sizeof(bus_dma_tag_t));
+        this->pa->pa_dmat = NULL;
+    }
+    if (if_softc) {
+        IOFree(if_softc, this->ca->ca_devsize);
+        if_softc = NULL;
+    }
     
     fWorkloop->removeEventSource(fScanSource);
 fail6:
@@ -259,10 +266,6 @@ void AirPortOpenBSD::stop(IOService *provider) {
 
 void AirPortOpenBSD::free() {
     DebugLog("AirPortOpenBSD: Free");
-    
-    if (MAC_VERSION_MAJOR != version_major) {
-        return;
-    }
     
     super::free();
 }
@@ -344,7 +347,7 @@ UInt32 AirPortOpenBSD::outputPacket(mbuf_t m, void* param) {
 
 IONetworkInterface *AirPortOpenBSD::createInterface()
 {
-    AirPortOpenBSD_EthernetInterface *netif = new AirPortOpenBSD_EthernetInterface;
+    AirPortOpenBSDWLANEthernetInterface *netif = new AirPortOpenBSDWLANEthernetInterface;
     if (!netif) {
         return NULL;
     }

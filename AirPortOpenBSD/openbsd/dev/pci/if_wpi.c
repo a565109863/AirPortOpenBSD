@@ -1,4 +1,4 @@
-/*    $OpenBSD: if_wpi.c,v 1.157 2022/04/21 21:03:03 stsp Exp $    */
+/*    $OpenBSD: if_wpi.c,v 1.158 2024/05/24 06:02:57 jsg Exp $    */
 
 /*-
  * Copyright (c) 2006-2008
@@ -26,12 +26,9 @@
 #include <sys/param.h>
 #include <sys/sockio.h>
 #include <sys/mbuf.h>
-#include <sys/kernel.h>
 #include <sys/rwlock.h>
-#include <sys/socket.h>
 #include <sys/systm.h>
 #include <sys/malloc.h>
-#include <sys/conf.h>
 #include <sys/device.h>
 #include <sys/task.h>
 #include <sys/endian.h>
@@ -177,7 +174,7 @@ wpi_attach(struct device *parent, struct device *self, void *aux)
     struct wpi_softc *sc = (struct wpi_softc *)self;
     struct ieee80211com *ic = &sc->sc_ic;
     struct ifnet *ifp = &ic->ic_if;
-    struct pci_attach_args *pa = (struct pci_attach_args *)aux;
+    struct pci_attach_args *pa = (typeof pa)aux;
     const char *intrstr;
     pci_intr_handle_t ih;
     pcireg_t memtype, reg;
@@ -227,7 +224,7 @@ wpi_attach(struct device *parent, struct device *self, void *aux)
         return;
     }
     printf(": %s", intrstr);
-    
+
     snprintf(ifp->fwver, sizeof(ifp->fwver), "wpi-3945abg");
 
     /* Power ON adapter. */
@@ -421,7 +418,7 @@ wpi_wakeup(struct wpi_softc *sc)
 void
 wpi_init_task(void *arg1)
 {
-    struct wpi_softc *sc = (struct wpi_softc *)arg1;
+    struct wpi_softc *sc = (typeof sc)arg1;
     struct ifnet *ifp = &sc->sc_ic.ic_if;
     int s;
 

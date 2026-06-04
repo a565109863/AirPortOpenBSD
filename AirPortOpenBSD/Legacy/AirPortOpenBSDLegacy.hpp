@@ -3,7 +3,6 @@
 #define AirPortOpenBSD_h
 
 #include <Availability.h>
-
 #include "apple80211.h"
 
 #include "compat.h"

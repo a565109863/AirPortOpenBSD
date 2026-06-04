@@ -14,7 +14,7 @@ int debug_log = 0;
 bool AirPortOpenBSD::init(OSDictionary* parameters) {
     DebugLog("AirPortOpenBSD: Init");
     
-    if (MAC_VERSION_MAJOR != version_major) {
+    if (MAC_VERSION_MAJOR != version_major || version_minor < MAC_VERSION_MINOR || version_minor > MAC_VERSION_MINOR_MAX) {
         return false;
     }
     
@@ -30,7 +30,7 @@ bool AirPortOpenBSD::init(OSDictionary* parameters) {
 
 IOService* AirPortOpenBSD::probe(IOService *provider, SInt32 *score)
 {
-    if (MAC_VERSION_MAJOR != version_major) {
+    if (MAC_VERSION_MAJOR != version_major || version_minor < MAC_VERSION_MINOR || version_minor > MAC_VERSION_MINOR_MAX) {
         return NULL;
     }
     
@@ -40,9 +40,7 @@ IOService* AirPortOpenBSD::probe(IOService *provider, SInt32 *score)
         return NULL;
     }
     
-    this->fPciDevice = pciNub->fPciDevice;
-    this->pa = pciNub->pa;
-    if (!this->fPciDevice || !this->pa) {
+    if (!pciNub->fPciDevice || !pciNub->pa) {
         DebugLog("%s Not a valid AirPortOpenBSDWLANBusInterfacePCIe instance\n", __FUNCTION__);
         return NULL;
     }
@@ -50,6 +48,8 @@ IOService* AirPortOpenBSD::probe(IOService *provider, SInt32 *score)
     this->fWorkloop = this->pciNub->fWorkloop;
     _fWorkloop = this->fWorkloop;
     
+    this->fPciDevice = pciNub->fPciDevice;
+    this->pa = pciNub->pa;
     this->cd = this->pciNub->cd;
     this->ca = this->pciNub->ca;
     
@@ -138,11 +138,13 @@ bool AirPortOpenBSD::start(IOService *provider) {
     _fCommandGate = fCommandGate;
     _ifp->if_link_state = LINK_STATE_DOWN;
     
+    this->setName("AirPortOpenBSDCore");
+    
     this->pa->dev.dev = this;
     if (this->cd) {
         bcopy(this->cd->cd_name, this->pa->dev.dv_xname, sizeof(this->pa->dev.dv_xname));
     } else {
-        bcopy("AirPortOpenBSD", this->pa->dev.dv_xname, sizeof(this->pa->dev.dv_xname));
+        bcopy(this->getName(), this->pa->dev.dv_xname, sizeof(this->pa->dev.dv_xname));
     }
     this->pa->workloop = fWorkloop;
     this->pa->pa_tag = fPciDevice;
@@ -185,18 +187,25 @@ done:
     return ret;
     
 fail7:
-    if (_ifp->iface) {
-        struct ieee80211com *ic = (struct ieee80211com *)_ifp;
-        ieee80211_ifdetach(&this->ic->ic_ac.ac_if);
+    if (_ifp && _ifp->iface) {
+        ieee80211_ifdetach(_ifp);
         _ifp->iface = NULL;
     }
-    dev = (struct device *)_ifp->if_softc;
-    if (dev->ih_count) {
-        pci_intr_disestablish(dev, dev->ih);
-        pci_intr_unmap(dev->dev->pa, &dev->ih_count);
+    if (if_softc) {
+        dev = (struct device *)if_softc;
+        if (dev->ih_count) {
+            pci_intr_disestablish(dev, dev->ih);
+            pci_intr_unmap(dev->dev->pa, &dev->ih_count);
+        }
     }
-    IOFree(this->pa->pa_dmat, sizeof(bus_dma_tag_t));
-    IOFree(if_softc, this->ca->ca_devsize);
+    if (this->pa->pa_dmat) {
+        IOFree(this->pa->pa_dmat, sizeof(bus_dma_tag_t));
+        this->pa->pa_dmat = NULL;
+    }
+    if (if_softc) {
+        IOFree(if_softc, this->ca->ca_devsize);
+        if_softc = NULL;
+    }
     
     fWorkloop->removeEventSource(fScanSource);
 fail6:
@@ -241,10 +250,6 @@ void AirPortOpenBSD::stop(IOService *provider) {
 
 void AirPortOpenBSD::free() {
     DebugLog("AirPortOpenBSD: Free");
-    
-    if (MAC_VERSION_MAJOR != version_major) {
-        return;
-    }
     
     super::free();
 }
@@ -340,7 +345,7 @@ UInt32 AirPortOpenBSD::outputPacket(mbuf_t m, void* param) {
 
 IONetworkInterface *AirPortOpenBSD::createInterface()
 {
-    AirPortOpenBSD_EthernetInterface *netif = new AirPortOpenBSD_EthernetInterface;
+    AirPortOpenBSDWLANEthernetInterface *netif = new AirPortOpenBSDWLANEthernetInterface;
     if (!netif) {
         return NULL;
     }
@@ -520,7 +525,7 @@ initCCLogs()
     driverLogOptions.pad10 = 2;
     driverLogOptions.file_options = 0;
     driverLogOptions.log_policy = 0;
-    driverLogPipe = CCPipe::withOwnerNameCapacity(this, "com.zhong.AirPortOpenBSD_Sonoma", "DriverLogs", &driverLogOptions);
+    driverLogPipe = CCPipe::withOwnerNameCapacity(this, "com.zhong.AirPortOpenBSD_Sonoma14_0", "DriverLogs", &driverLogOptions);
     DebugLog("%s driverLogPipeRet %d\n", __FUNCTION__, driverLogPipe != NULL);
     
     memset(&driverLogOptions, 0, sizeof(driverLogOptions));
@@ -535,7 +540,7 @@ initCCLogs()
     driverLogOptions.pad10 = LOWER32(0x202800000);
     driverLogOptions.file_options = 0;
     driverLogOptions.log_policy = 0;
-    driverDataPathPipe = CCPipe::withOwnerNameCapacity(this, "com.zhong.AirPortOpenBSD_Sonoma", "DatapathEvents", &driverLogOptions);
+    driverDataPathPipe = CCPipe::withOwnerNameCapacity(this, "com.zhong.AirPortOpenBSD_Sonoma14_0", "DatapathEvents", &driverLogOptions);
     DebugLog("%s driverDataPathPipeRet %d\n", __FUNCTION__, driverDataPathPipe != NULL);
     
     memset(&driverLogOptions, 0, sizeof(driverLogOptions));
@@ -545,7 +550,7 @@ initCCLogs()
     strlcpy(driverLogOptions.name, "0", sizeof(driverLogOptions.name));
     strlcpy(driverLogOptions.directory_name, "WiFi", sizeof(driverLogOptions.directory_name));
     driverLogOptions.pipe_size = 128;
-    driverSnapshotsPipe = CCPipe::withOwnerNameCapacity(this, "com.zhong.AirPortOpenBSD_Sonoma", "StateSnapshots", &driverLogOptions);
+    driverSnapshotsPipe = CCPipe::withOwnerNameCapacity(this, "com.zhong.AirPortOpenBSD_Sonoma14_0", "StateSnapshots", &driverLogOptions);
     DebugLog("%s driverSnapshotsPipeRet %d\n", __FUNCTION__, driverSnapshotsPipe != NULL);
     
     CCStreamOptions faultReportOptions = { 0 };
@@ -585,7 +590,7 @@ void *AirPortOpenBSD::getFaultReporterFromDriver()
     return driverFaultReporter;
 }
 
-AirPortOpenBSD_SkywalkInterface* AirPortOpenBSD::getNetworkInterface()
+AirPortOpenBSDWLANSkywalkInterface* AirPortOpenBSD::getNetworkInterface()
 {
     return this->fNetIf;
 }
@@ -596,11 +601,9 @@ void AirPortOpenBSD::ether_ifattach(struct ifnet *ifp)
         return;
     }
     
-    this->setName("AirPortOpenBSD");
-    
     struct IOSkywalkEthernetInterface::RegistrationInfo registInfo;
     
-    this->fNetIf = new AirPortOpenBSD_SkywalkInterface;
+    this->fNetIf = new AirPortOpenBSDWLANSkywalkInterface;
     if (!this->fNetIf->init(this)) {
         panic("Skywalk interface init fail\n");
     }

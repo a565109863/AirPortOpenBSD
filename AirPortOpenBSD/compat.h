@@ -85,7 +85,9 @@ static u_int8_t empty_macaddr[IEEE80211_ADDR_LEN] = {
 #include <dev/pci/pcivar.h>
 #include <dev/pci/pcidevs.h>
 
-#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Sonoma
+#include "apple80211.h"
+
+#if __MAC_X_VERSION >= __MAC_14_0
 #include "AirPortOpenBSD.hpp"
 #else
 #include "AirPortOpenBSDLegacy.hpp"

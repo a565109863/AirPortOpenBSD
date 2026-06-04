@@ -1,20 +1,20 @@
 //
-//  AirPortOpenBSD_SkywalkInterface.cpp
+//  AirPortOpenBSDWLANSkywalkInterface.cpp
 //  AirPortOpenBSD
 //
-//  Created by qcwap on 2023/6/27.
-//  Copyright © 2023 钟先耀. All rights reserved.
+//  Created by Mac-PC on 2022/11/5.
 //
+
 #include "AirPortOpenBSD.hpp"
-#include "AirPortOpenBSD_SkywalkInterface.hpp"
+#include "AirPortOpenBSDWLANSkywalkInterface.hpp"
 #include <crypto/sha1.h>
 #include <net80211/ieee80211_priv.h>
 #include <net80211/ieee80211_var.h>
 
 #define super IO80211InfraProtocol
-OSDefineMetaClassAndStructors(AirPortOpenBSD_SkywalkInterface, IO80211InfraProtocol);
+OSDefineMetaClassAndStructors(AirPortOpenBSDWLANSkywalkInterface, IO80211InfraProtocol);
 
-bool AirPortOpenBSD_SkywalkInterface::
+bool AirPortOpenBSDWLANSkywalkInterface::
 init(IOService *provider)
 {
     bool ret = IO80211InfraInterface::init();
@@ -28,7 +28,7 @@ init(IOService *provider)
     return ret;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 getSSID(struct apple80211_ssid_data *sd)
 {
     if (this->instance->ic->ic_state != IEEE80211_S_RUN || this->instance->ic->ic_bss == NULL)
@@ -52,7 +52,7 @@ getSSID(struct apple80211_ssid_data *sd)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 getAUTH_TYPE(struct apple80211_authtype_data *ad)
 {
     ad->version = APPLE80211_VERSION;
@@ -61,7 +61,7 @@ getAUTH_TYPE(struct apple80211_authtype_data *ad)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 setAUTH_TYPE(struct apple80211_authtype_data *ad)
 {
     this->instance->current_authtype_lower = ad->authtype_lower;
@@ -69,7 +69,7 @@ setAUTH_TYPE(struct apple80211_authtype_data *ad)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::setCIPHER_KEY(struct apple80211_key *key)
+IOReturn AirPortOpenBSDWLANSkywalkInterface::setCIPHER_KEY(struct apple80211_key *key)
 {
     DebugLog("%s\n", __FUNCTION__);
     const char* keydump = hexdump(key->key, key->key_len);
@@ -136,7 +136,7 @@ IOReturn AirPortOpenBSD_SkywalkInterface::setCIPHER_KEY(struct apple80211_key *k
 }
 
 
-IOReturn AirPortOpenBSD_SkywalkInterface::getPHY_MODE(struct apple80211_phymode_data *pd)
+IOReturn AirPortOpenBSDWLANSkywalkInterface::getPHY_MODE(struct apple80211_phymode_data *pd)
 {
     pd->version = APPLE80211_VERSION;
     
@@ -179,7 +179,7 @@ IOReturn AirPortOpenBSD_SkywalkInterface::getPHY_MODE(struct apple80211_phymode_
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 getCHANNEL(struct apple80211_channel_data *cd)
 {
     if (this->instance->ic->ic_state != IEEE80211_S_RUN || this->instance->ic->ic_bss == NULL)
@@ -192,7 +192,7 @@ getCHANNEL(struct apple80211_channel_data *cd)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 getSTATE(struct apple80211_state_data *sd)
 {
     memset(sd, 0, sizeof(*sd));
@@ -201,7 +201,7 @@ getSTATE(struct apple80211_state_data *sd)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 getMCS_INDEX_SET(struct apple80211_mcs_index_set_data *md)
 {
     if (this->instance->ic->ic_state != IEEE80211_S_RUN || this->instance->ic->ic_bss == NULL)
@@ -215,7 +215,7 @@ getMCS_INDEX_SET(struct apple80211_mcs_index_set_data *md)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 getVHT_MCS_INDEX_SET(struct apple80211_vht_mcs_index_set_data *data)
 {
     if (this->instance->ic->ic_bss == NULL || this->instance->ic->ic_curmode < IEEE80211_MODE_11AC) {
@@ -228,7 +228,7 @@ getVHT_MCS_INDEX_SET(struct apple80211_vht_mcs_index_set_data *data)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 getMCS_VHT(struct apple80211_mcs_vht_data *data)
 {
     if (this->instance->ic->ic_bss == NULL || this->instance->ic->ic_curmode < IEEE80211_MODE_11AC) {
@@ -255,7 +255,7 @@ getMCS_VHT(struct apple80211_mcs_vht_data *data)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 getRATE_SET(struct apple80211_rate_set_data *ad)
 {
     if (this->instance->ic->ic_state == IEEE80211_S_RUN) {
@@ -274,7 +274,7 @@ getRATE_SET(struct apple80211_rate_set_data *ad)
     return kIOReturnError;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 getOP_MODE(struct apple80211_opmode_data *od)
 {
     od->version = APPLE80211_VERSION;
@@ -309,7 +309,7 @@ getOP_MODE(struct apple80211_opmode_data *od)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 getTXPOWER(struct apple80211_txpower_data *txd)
 {
     struct ifnet *ifp = &this->instance->ic->ic_if;
@@ -323,7 +323,7 @@ getTXPOWER(struct apple80211_txpower_data *txd)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 getRATE(struct apple80211_rate_data *rate_data)
 {
     struct ifnet *ifp = &this->instance->ic->ic_if;
@@ -353,7 +353,7 @@ getRATE(struct apple80211_rate_data *rate_data)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 getBSSID(struct apple80211_bssid_data *bd)
 {
     if (this->instance->ic->ic_state != IEEE80211_S_RUN || this->instance->ic->ic_bss == NULL)
@@ -365,7 +365,7 @@ getBSSID(struct apple80211_bssid_data *bd)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 getRSSI(struct apple80211_rssi_data *rd_data)
 {
     struct ifnet *ifp = &this->instance->ic->ic_if;
@@ -397,7 +397,7 @@ getRSSI(struct apple80211_rssi_data *rd_data)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 getRSN_IE(struct apple80211_rsn_ie_data *data)
 {
     DebugLog("");
@@ -419,7 +419,7 @@ getRSN_IE(struct apple80211_rsn_ie_data *data)
     }
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 setRSN_IE(struct apple80211_rsn_ie_data *data)
 {
     if (this->instance->useAppleRSN) {
@@ -435,7 +435,7 @@ setRSN_IE(struct apple80211_rsn_ie_data *data)
     }
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 getAP_IE_LIST(struct apple80211_ap_ie_data *data)
 {
     if (!data)
@@ -450,7 +450,7 @@ getAP_IE_LIST(struct apple80211_ap_ie_data *data)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 getNOISE(struct apple80211_noise_data *nd_data)
 {
     struct ifnet *ifp = &this->instance->ic->ic_if;
@@ -482,7 +482,7 @@ getNOISE(struct apple80211_noise_data *nd_data)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 getPOWERSAVE(struct apple80211_powersave_data *pd)
 {
     //    pd->version = APPLE80211_VERSION;
@@ -499,7 +499,7 @@ getPOWERSAVE(struct apple80211_powersave_data *pd)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 getNSS(struct apple80211_nss_data *data)
 {
     if (this->instance->ic->ic_state != IEEE80211_S_RUN || this->instance->ic->ic_bss == NULL)
@@ -511,7 +511,7 @@ getNSS(struct apple80211_nss_data *data)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 setASSOCIATE(struct apple80211_assoc_data *ad)
 {
     DebugLog("[%s] mode=%d ad_auth_lower=%d ad_auth_upper=%d rsn_ie_len=%d%s%s%s%s%s%s%s\n", ad->ad_ssid, ad->ad_mode, ad->ad_auth_lower, ad->ad_auth_upper, ad->ad_rsn_ie_len,
@@ -618,7 +618,7 @@ setASSOCIATE(struct apple80211_assoc_data *ad)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 setDISASSOCIATE(struct apple80211_disassoc_data *ad)
 {
     struct ifnet *ifp = &this->instance->ic->ic_if;
@@ -651,7 +651,7 @@ setDISASSOCIATE(struct apple80211_disassoc_data *ad)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 getSUPPORTED_CHANNELS(struct apple80211_sup_channel_data *ad)
 {
     ad->version = APPLE80211_VERSION;
@@ -667,7 +667,7 @@ getSUPPORTED_CHANNELS(struct apple80211_sup_channel_data *ad)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 getLOCALE(struct apple80211_locale_data *ld)
 {
     ld->version = APPLE80211_VERSION;
@@ -675,7 +675,7 @@ getLOCALE(struct apple80211_locale_data *ld)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 getDEAUTH(struct apple80211_deauth_data *dd)
 {
     if (!dd)
@@ -687,7 +687,7 @@ getDEAUTH(struct apple80211_deauth_data *dd)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 getASSOCIATION_STATUS(struct apple80211_assoc_status_data *ret)
 {
     if (!ret)
@@ -702,7 +702,7 @@ getASSOCIATION_STATUS(struct apple80211_assoc_status_data *ret)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 setSCANCACHE_CLEAR(void *req)
 {
     DebugLog("----");
@@ -720,7 +720,7 @@ setSCANCACHE_CLEAR(void *req)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 setDEAUTH(struct apple80211_deauth_data *da)
 {
     DebugLog("");
@@ -737,7 +737,7 @@ setDEAUTH(struct apple80211_deauth_data *da)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 getMCS(struct apple80211_mcs_data* md)
 {
     if (this->instance->ic->ic_state != IEEE80211_S_RUN || this->instance->ic->ic_bss == NULL)
@@ -747,7 +747,7 @@ getMCS(struct apple80211_mcs_data* md)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 getLINK_CHANGED_EVENT_DATA(struct apple80211_link_changed_event_data *ed)
 {
     if (ed == NULL)
@@ -768,7 +768,7 @@ getLINK_CHANGED_EVENT_DATA(struct apple80211_link_changed_event_data *ed)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 setSCAN_REQ(struct apple80211_scan_data *ssid)
 {
     if (ssid == NULL) {
@@ -866,8 +866,18 @@ setSCAN_REQ(struct apple80211_scan_data *ssid)
     for (int i = 0; i < this->instance->ic->direct_scan_count; i++) {
         DebugLog("%s, %d", this->instance->ic->direct_scan[i].ssid, ms);
     }
-    
-    ieee80211_begin_cache_bgscan(ifp);
+        
+    if (ssid->scan_type == APPLE80211_SCAN_TYPE_FAST || ssid->scan_type == APPLE80211_SCAN_TYPE_PASSIVE) {
+        DebugLog("APPLE80211_SCAN_TYPE_PASSIVE");
+        if (this->instance->fScanSource) {
+            this->instance->fScanSource->setTimeoutMS(ssid->dwell_time);
+            this->instance->fScanSource->enable();
+        }
+
+        return kIOReturnSuccess;
+    }
+
+    ieee80211_begin_bgscan(ifp);
     
     if (this->instance->fScanSource) {
         this->instance->fScanSource->setTimeoutMS(ms);
@@ -877,7 +887,7 @@ setSCAN_REQ(struct apple80211_scan_data *ssid)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 getCURRENT_NETWORK(apple80211_scan_result *oneResult)
 {
     if (this->instance->ic->ic_state != IEEE80211_S_RUN || this->instance->ic->ic_bss == NULL)
@@ -892,7 +902,7 @@ getCURRENT_NETWORK(apple80211_scan_result *oneResult)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 getCOLOCATED_NETWORK_SCOPE_ID(apple80211_colocated_network_scope_id *as)
 {
     if (!as)
@@ -901,7 +911,7 @@ getCOLOCATED_NETWORK_SCOPE_ID(apple80211_colocated_network_scope_id *as)
     return kIOReturnSuccess;
 }
 
-IOReturn AirPortOpenBSD_SkywalkInterface::
+IOReturn AirPortOpenBSDWLANSkywalkInterface::
 getSCAN_RESULT(struct apple80211_scan_result *sr)
 {
     IOReturn ret = 0x05;

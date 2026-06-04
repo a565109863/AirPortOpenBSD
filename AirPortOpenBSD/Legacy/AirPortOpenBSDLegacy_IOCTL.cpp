@@ -1383,7 +1383,7 @@ IOReturn AirPortOpenBSD::getASSOCIATION_STATUS(OSObject *object, struct apple802
 IOReturn AirPortOpenBSD::getCOUNTRY_CODE(OSObject *object, struct apple80211_country_code_data *ccd)
 {
     if (this->ic->ic_state != IEEE80211_S_RUN || this->ic->ic_bss == NULL || this->ic->ic_bss->ni_countryie == NULL) {
-        *ccd = this->ccd;
+        memcpy(ccd, &this->ccd, sizeof(*ccd));
         return kIOReturnSuccess;
     }
     
@@ -1396,9 +1396,9 @@ IOReturn AirPortOpenBSD::getCOUNTRY_CODE(OSObject *object, struct apple80211_cou
 IOReturn AirPortOpenBSD::setCOUNTRY_CODE(OSObject *object, struct apple80211_country_code_data *ccd)
 {
     struct ifnet *ifp = &this->ic->ic_if;
-    this->ccd = *ccd;
+    memcpy(&this->ccd, ccd, sizeof(*ccd));
     
-    ifp->iface->postMessage(APPLE80211_M_COUNTRY_CODE_CHANGED);
+    this->postMessage(APPLE80211_M_COUNTRY_CODE_CHANGED);
     
     return kIOReturnSuccess;
 }

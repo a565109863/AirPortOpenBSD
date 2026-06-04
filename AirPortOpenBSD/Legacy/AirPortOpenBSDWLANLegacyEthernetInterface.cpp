@@ -1,16 +1,16 @@
 //
-//  AirPortOpenBSDLegacy_EthernetInterface.cpp
+//  AirPortOpenBSDWLANLegacyEthernetInterface.cpp
 //  AirPortOpenBSD
 //
 //  Created by Mac-PC on 2022/11/5.
 //
 
-#include "AirPortOpenBSDLegacy_EthernetInterface.hpp"
+#include "AirPortOpenBSDWLANLegacyEthernetInterface.hpp"
 
 #define super IO80211Interface
-OSDefineMetaClassAndStructors(AirPortOpenBSD_EthernetInterface, IO80211Interface);
+OSDefineMetaClassAndStructors(AirPortOpenBSDWLANEthernetInterface, IO80211Interface);
 
-bool AirPortOpenBSD_EthernetInterface::init(IO80211Controller *controller)
+bool AirPortOpenBSDWLANEthernetInterface::init(IO80211Controller *controller)
 {
     if (!super::init(controller)) {
         return false;
@@ -19,7 +19,7 @@ bool AirPortOpenBSD_EthernetInterface::init(IO80211Controller *controller)
     return true;
 }
 
-UInt32 AirPortOpenBSD_EthernetInterface::inputPacket(mbuf_t packet, UInt32 length, IOOptionBits options, void *param)
+UInt32 AirPortOpenBSDWLANEthernetInterface::inputPacket(mbuf_t packet, UInt32 length, IOOptionBits options, void *param)
 {
     uint16_t ether_type;
     size_t len = mbuf_len(packet);

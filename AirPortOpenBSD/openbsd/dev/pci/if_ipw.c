@@ -1,4 +1,4 @@
-/*    $OpenBSD: if_ipw.c,v 1.132 2022/04/21 21:03:03 stsp Exp $    */
+/*    $OpenBSD: if_ipw.c,v 1.134 2024/04/14 03:26:25 jsg Exp $    */
 
 /*-
  * Copyright (c) 2004-2008
@@ -653,7 +653,8 @@ ipw_media_status(struct ifnet *ifp, struct ifmediareq *imr)
     val &= 0xf;
 
     /* convert rate to 802.11 rate */
-    for (i = 0; i < nitems(rates) && rates[i].val != val; i++);
+    for (i = 0; i < nitems(rates) && rates[i].val != val; i++)
+        ;
     rate = (i < nitems(rates)) ? rates[i].rate : 0;
 
     imr->ifm_active |= IFM_IEEE80211_11B;
@@ -1128,7 +1129,6 @@ ipw_cmd(struct ipw_softc *sc, uint32_t type, void *data, uint32_t len)
     return error;
 }
 
-/* ARGSUSED */
 int
 ipw_send_mgmt(struct ieee80211com *ic, struct ieee80211_node *ni, int type,
     int arg1, int arg2)
@@ -1634,7 +1634,7 @@ ipw_read_firmware(struct ipw_softc *sc, struct ipw_firmware *fw)
     }
     fw->main  = fw->data + sizeof (*hdr);
     fw->ucode = fw->main + fw->main_size;
-    
+
     snprintf((&sc->sc_ic.ic_if)->fwver, sizeof((&sc->sc_ic.ic_if)->fwver),"%s ver %d", name,
         hdr->version);
 

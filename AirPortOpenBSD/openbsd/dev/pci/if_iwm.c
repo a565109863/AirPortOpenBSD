@@ -1,4 +1,4 @@
-/*    $OpenBSD: if_iwm.c,v 1.410 2023/09/02 09:02:18 stsp Exp $    */
+/*    $OpenBSD: if_iwm.c,v 1.419 2025/12/01 16:30:46 stsp Exp $    */
 
 /*
  * Copyright (c) 2014, 2016 genua gmbh <info@genua.de>
@@ -109,12 +109,8 @@
 #include "bpfilter.h"
 
 #include <sys/param.h>
-#include <sys/conf.h>
-#include <sys/kernel.h>
 #include <sys/malloc.h>
 #include <sys/mbuf.h>
-#include <sys/mutex.h>
-#include <sys/proc.h>
 #include <sys/rwlock.h>
 #include <sys/socket.h>
 #include <sys/sockio.h>
@@ -134,7 +130,6 @@
 #include <net/bpf.h>
 #endif
 #include <net/if.h>
-#include <net/if_dl.h>
 #include <net/if_media.h>
 
 #include <netinet/in.h>
@@ -466,7 +461,7 @@ int    iwm_rm_sta_cmd(struct iwm_softc *, struct iwm_node *);
 uint16_t iwm_scan_rx_chain(struct iwm_softc *);
 uint32_t iwm_scan_rate_n_flags(struct iwm_softc *, int, int);
 uint8_t    iwm_lmac_scan_fill_channels(struct iwm_softc *,
-        struct iwm_scan_channel_cfg_lmac *, uint32_t, int, int);
+        struct iwm_scan_channel_cfg_lmac *, int, int, uint32_t);
 int    iwm_fill_probe_req(struct iwm_softc *, struct iwm_scan_probe_req *);
 int    iwm_lmac_scan(struct iwm_softc *, int);
 int    iwm_config_umac_scan(struct iwm_softc *);
@@ -4581,6 +4576,7 @@ iwm_rx_addbuf(struct iwm_softc *sc, int size, int idx)
         fatal = 1;
     }
 
+//    m->m_len = m->m_pkthdr.len = m->m_ext.ext_size;
     mbuf_setlen(m, size);
     mbuf_pkthdr_setlen(m, size);
     err = bus_dmamap_load_mbuf(sc->sc_dmat, data->map, m,
@@ -6173,7 +6169,7 @@ uint8_t
 iwm_get_vht_ctrl_pos(struct ieee80211com *ic, struct ieee80211_channel *chan)
 {
     int center_idx = ic->ic_bss->ni_vht_chan_center_freq_idx0;
-    int primary_idx = ieee80211_chan2ieee(ic, ic->ic_bss->ni_chan);
+    int primary_idx = ic->ic_bss->ni_primary_chan;
     /*
      * The FW is expected to check the control channel position only
      * when in HT/VHT and the channel width is not 20MHz. Return
@@ -6828,6 +6824,7 @@ iwm_tx(struct iwm_softc *sc, mbuf_t m, struct ieee80211_node *ni, int ac)
             m, BPF_DIRECTION_OUT);
     }
 #endif
+//    totlen = m->m_pkthdr.len;
     totlen = mbuf_pkthdr_len(m);
 
     if (ic->ic_opmode != IEEE80211_M_MONITOR &&
@@ -6839,6 +6836,7 @@ iwm_tx(struct iwm_softc *sc, mbuf_t m, struct ieee80211_node *ni, int ac)
                 return ENOBUFS;
             /* 802.11 header may have moved. */
             wh = mtod(m, struct ieee80211_frame *);
+//            totlen = m->m_pkthdr.len;
             totlen = mbuf_pkthdr_len(m);
             k = NULL; /* skip hardware crypto below */
         } else {
@@ -7557,7 +7555,7 @@ iwm_scan_rate_n_flags(struct iwm_softc *sc, int flags, int no_cck)
 
 uint8_t
 iwm_lmac_scan_fill_channels(struct iwm_softc *sc,
-    struct iwm_scan_channel_cfg_lmac *chan, uint32_t channel_cfg_flags, int n_ssids, int bgscan)
+    struct iwm_scan_channel_cfg_lmac *chan, int n_ssids, int bgscan, uint32_t channel_cfg_flags)
 {
     struct ieee80211com *ic = &sc->sc_ic;
     struct ieee80211_channel *c;
@@ -7574,9 +7572,10 @@ iwm_lmac_scan_fill_channels(struct iwm_softc *sc,
         chan->iter_count = htole16(1);
         chan->iter_interval = 0;
         chan->flags = htole32(IWM_UNIFIED_SCAN_CHANNEL_PARTIAL);
-//        if (n_ssids != 0 && !bgscan)
-//            chan->flags |= htole32(1 << 1); /* select SSID 0 */
-        chan->flags |= htole32(channel_cfg_flags); /* select SSID 0 */
+        if (n_ssids != 0 && !bgscan)
+            chan->flags |= htole32(1 << 1); /* select SSID 0 */
+        if (channel_cfg_flags)
+            chan->flags |= htole32(channel_cfg_flags); /* select SSID 0 */
         chan++;
         nchan++;
     }
@@ -7586,7 +7585,7 @@ iwm_lmac_scan_fill_channels(struct iwm_softc *sc,
 
 uint8_t
 iwm_umac_scan_fill_channels(struct iwm_softc *sc,
-    struct iwm_scan_channel_cfg_umac *chan, uint32_t channel_cfg_flags, int n_ssids, int bgscan)
+    struct iwm_scan_channel_cfg_umac *chan, int n_ssids, int bgscan, uint32_t channel_cfg_flags)
 {
     struct ieee80211com *ic = &sc->sc_ic;
     struct ieee80211_channel *c;
@@ -7604,7 +7603,8 @@ iwm_umac_scan_fill_channels(struct iwm_softc *sc,
         chan->iter_interval = htole16(0);
         if (n_ssids != 0 && !bgscan)
             chan->flags = htole32(1 << 0); /* select SSID 0 */
-        chan->flags |= htole32(channel_cfg_flags); /* select SSID 0 */
+        if (channel_cfg_flags)
+            chan->flags |= htole32(channel_cfg_flags); /* select SSID 0 */
         chan++;
         nchan++;
     }
@@ -7713,6 +7713,7 @@ iwm_fill_probe_req(struct iwm_softc *sc, struct iwm_scan_probe_req *preq)
                 return ENOBUFS;
             frm = ieee80211_add_vhtcaps(frm, ic);
             remain -= frm - pos;
+            preq->band_data[1].len = htole16(frm - pos);
         }
     }
 
@@ -7812,7 +7813,7 @@ iwm_lmac_scan(struct iwm_softc *sc, int bgscan)
         iwm_scan_rate_n_flags(sc, IEEE80211_CHAN_5GHZ, 1/*XXX*/);
     req->tx_cmd[1].sta_id = IWM_AUX_STA_ID;
 
-    int n_ssid = 0;
+    int n_ssids = 0;
     uint32_t bitmap_ssid = 0;
     /* Check if we're doing an active directed scan. */
     if (ic->ic_des_esslen != 0) {
@@ -7820,22 +7821,22 @@ iwm_lmac_scan(struct iwm_softc *sc, int bgscan)
         req->direct_scan[0].len = ic->ic_des_esslen;
         memcpy(req->direct_scan[0].ssid, ic->ic_des_essid,
             ic->ic_des_esslen);
-        bitmap_ssid |= (1 << (n_ssid + 1));
-        n_ssid = 1;
+        bitmap_ssid |= (1 << (n_ssids + 1));
+        n_ssids = 1;
     }
     
     for (int i = 0; i < ic->direct_scan_count; i++) {
-        req->direct_scan[i + n_ssid].id = IEEE80211_ELEMID_SSID;
-        req->direct_scan[i + n_ssid].len = ic->direct_scan[i].len;
-        memcpy(req->direct_scan[i + n_ssid].ssid,
+        req->direct_scan[i + n_ssids].id = IEEE80211_ELEMID_SSID;
+        req->direct_scan[i + n_ssids].len = ic->direct_scan[i].len;
+        memcpy(req->direct_scan[i + n_ssids].ssid,
                ic->direct_scan[i].ssid, ic->direct_scan[i].len);
-        bitmap_ssid |= (1 << (i + n_ssid + 1));
+        bitmap_ssid |= (1 << (i + n_ssids + 1));
     }
-    n_ssid += ic->direct_scan_count;
+    n_ssids += ic->direct_scan_count;
 
     req->n_channels = iwm_lmac_scan_fill_channels(sc,
         (struct iwm_scan_channel_cfg_lmac *)req->data,
-        bitmap_ssid, n_ssid, bgscan);
+        n_ssids, bgscan, bitmap_ssid);
 
     preq = (struct iwm_scan_probe_req_v1 *)(req->data +
         (sizeof(struct iwm_scan_channel_cfg_lmac) *
@@ -8073,29 +8074,29 @@ iwm_umac_scan(struct iwm_softc *sc, int bgscan)
     }
 
     req->ooc_priority = htole32(IWM_SCAN_PRIORITY_HIGH);
-    
-    int n_ssid = 0;
+
+    int n_ssids = 0;
     uint32_t bitmap_ssid = 0;
     if (ic->ic_des_esslen != 0) {
         bitmap_ssid |= (1 << 0);
-        n_ssid = 1;
         
+        n_ssids = 1;
         for (int i = 0; i < ic->direct_scan_count; i++) {
-            tail->direct_scan[i + n_ssid].id = IEEE80211_ELEMID_SSID;
-            tail->direct_scan[i + n_ssid].len = ic->direct_scan[i].len;
-            memcpy(tail->direct_scan[i + n_ssid].ssid,
+            tail->direct_scan[i + n_ssids].id = IEEE80211_ELEMID_SSID;
+            tail->direct_scan[i + n_ssids].len = ic->direct_scan[i].len;
+            memcpy(tail->direct_scan[i + n_ssids].ssid,
                    ic->direct_scan[i].ssid, ic->direct_scan[i].len);
 
-            bitmap_ssid |= (1 << (i + n_ssid));
+            bitmap_ssid |= (1 << (i + n_ssids));
         }
-        n_ssid += ic->direct_scan_count;
+        n_ssids += ic->direct_scan_count;
     }
 
     cmd_data = iwm_get_scan_req_umac_data(sc, req);
     chanparam = iwm_get_scan_req_umac_chan_param(sc, req);
     chanparam->count = iwm_umac_scan_fill_channels(sc,
         (struct iwm_scan_channel_cfg_umac *)cmd_data,
-        bitmap_ssid, n_ssid, bgscan);
+        n_ssids, bgscan, bitmap_ssid);
     chanparam->flags = 0;
 
     tail_data = (uint8_t *)cmd_data + sizeof(struct iwm_scan_channel_cfg_umac) *
@@ -8112,19 +8113,19 @@ iwm_umac_scan(struct iwm_softc *sc, int bgscan)
     }
 
     if (ic->ic_des_esslen != 0) {
-        int n_ssid = 0;
+        int n_ssids = 0;
         if (isset(sc->sc_ucode_api,
             IWM_UCODE_TLV_API_SCAN_EXT_CHAN_VER)) {
             tail->direct_scan[0].id = IEEE80211_ELEMID_SSID;
             tail->direct_scan[0].len = ic->ic_des_esslen;
             memcpy(tail->direct_scan[0].ssid, ic->ic_des_essid,
                 ic->ic_des_esslen);
-            n_ssid = 1;
             
+            n_ssids = 1;
             for (int i = 0; i < ic->direct_scan_count; i++) {
-                tail->direct_scan[i + n_ssid].id = IEEE80211_ELEMID_SSID;
-                tail->direct_scan[i + n_ssid].len = ic->direct_scan[i].len;
-                memcpy(tail->direct_scan[i + n_ssid].ssid,
+                tail->direct_scan[i + n_ssids].id = IEEE80211_ELEMID_SSID;
+                tail->direct_scan[i + n_ssids].len = ic->direct_scan[i].len;
+                memcpy(tail->direct_scan[i + n_ssids].ssid,
                        ic->direct_scan[i].ssid, ic->direct_scan[i].len);
             }
         } else {
@@ -8132,12 +8133,12 @@ iwm_umac_scan(struct iwm_softc *sc, int bgscan)
             tailv1->direct_scan[0].len = ic->ic_des_esslen;
             memcpy(tailv1->direct_scan[0].ssid, ic->ic_des_essid,
                 ic->ic_des_esslen);
-            n_ssid = 1;
             
+            n_ssids = 1;
             for (int i = 0; i < ic->direct_scan_count; i++) {
-                tailv1->direct_scan[i + n_ssid].id = IEEE80211_ELEMID_SSID;
-                tailv1->direct_scan[i + n_ssid].len = ic->direct_scan[i].len;
-                memcpy(tailv1->direct_scan[i + n_ssid].ssid,
+                tailv1->direct_scan[i + n_ssids].id = IEEE80211_ELEMID_SSID;
+                tailv1->direct_scan[i + n_ssids].len = ic->direct_scan[i].len;
+                memcpy(tailv1->direct_scan[i + n_ssids].ssid,
                        ic->direct_scan[i].ssid, ic->direct_scan[i].len);
             }
         }
@@ -8224,7 +8225,7 @@ iwm_rval2ridx(int rval)
             break;
     }
 
-       return ridx;
+    return ridx;
 }
 
 void
@@ -9184,6 +9185,8 @@ iwm_set_key_v1(struct ieee80211com *ic, struct ieee80211_node *ni,
         IWM_STA_KEY_FLG_KEYID_MSK));
     if (k->k_flags & IEEE80211_KEY_GROUP)
         cmd.common.key_flags |= htole16(IWM_STA_KEY_MULTICAST);
+    if (ni->ni_flags & IEEE80211_NODE_MFP)
+        cmd.common.key_flags |= htole16(IWM_STA_KEY_MFP);
 
     memcpy(cmd.common.key, k->k_key, MIN(sizeof(cmd.common.key), k->k_len));
     cmd.common.key_offset = 0;
@@ -9217,6 +9220,8 @@ iwm_set_key(struct ieee80211com *ic, struct ieee80211_node *ni,
         IWM_STA_KEY_FLG_KEYID_MSK));
     if (k->k_flags & IEEE80211_KEY_GROUP)
         cmd.common.key_flags |= htole16(IWM_STA_KEY_MULTICAST);
+    if (ni->ni_flags & IEEE80211_NODE_MFP)
+        cmd.common.key_flags |= htole16(IWM_STA_KEY_MFP);
 
     memcpy(cmd.common.key, k->k_key, MIN(sizeof(cmd.common.key), k->k_len));
     cmd.common.key_offset = 0;
@@ -9298,7 +9303,7 @@ iwm_calib_timeout(void *arg)
         ieee80211_amrr_choose(&sc->sc_amrr, &in->in_ni, &in->in_amn);
         /*
          * If AMRR has chosen a new TX rate we must update
-         * the firwmare's LQ rate table.
+         * the firmware's LQ rate table.
          * ni_txrate may change again before the task runs so
          * cache the chosen rate in the iwm_node structure.
          */
@@ -9350,8 +9355,17 @@ iwm_set_rate_table_vht(struct iwm_node *in, struct iwm_lq_cmd *lqcmd)
                 if (i < 2 && in->in_phyctxt->vht_chan_width >=
                     IEEE80211_VHTOP0_CHAN_WIDTH_80)
                     tab |= IWM_RATE_MCS_CHAN_WIDTH_80;
-                else
+                else if (in->in_phyctxt->sco ==
+                    IEEE80211_HTOP0_SCO_SCA ||
+                    in->in_phyctxt->sco ==
+                    IEEE80211_HTOP0_SCO_SCB)
                     tab |= IWM_RATE_MCS_CHAN_WIDTH_40;
+                else {
+                    /* no 40 MHz, fall back on MCS 8 */
+                    tab &= ~IWM_RATE_VHT_MCS_RATE_CODE_MSK;
+                    tab |= 8;
+                }
+                    
                 tab |= IWM_RATE_MCS_RTS_REQUIRED_MSK;
                 if (i < 4) {
                     if (ieee80211_ra_vht_use_sgi(ni))
@@ -10506,6 +10520,7 @@ iwm_start(struct ifnet *ifp)
         /* need to send management frames even if we're not RUNning */
         m = mq_dequeue(&ic->ic_mgtq);
         if (m) {
+//            ni = m->m_pkthdr.ph_cookie;
             ni = (typeof ni)mbuf_pkthdr_rcvif(m);
             goto sendit;
         }
@@ -10554,6 +10569,49 @@ iwm_start(struct ifnet *ifp)
 }
 
 void
+iwm_mfp_leave_done(struct ieee80211com *ic, struct ieee80211_node *ni)
+{
+    struct iwm_softc *sc = (typeof sc)ic->ic_softc;
+    struct ifnet *ifp = IC2IFP(&sc->sc_ic);
+
+    if ((ifp->if_flags & IFF_RUNNING) &&
+        ic->ic_state == IEEE80211_S_RUN &&
+        (ni->ni_flags & IEEE80211_NODE_MFP)) {
+        sc->deauth_sent = 1;
+        wakeup(&sc->deauth_sent);
+    }
+}
+
+void
+iwm_mfp_leave(struct iwm_softc *sc)
+{
+    struct ieee80211com *ic = &sc->sc_ic;
+    struct ieee80211_node *ni = (typeof ni)ic->ic_bss;
+
+    ic->ic_xflags |= IEEE80211_F_TX_MGMT_ONLY;
+    sc->deauth_sent = 0;
+
+    ni->ni_unref_cb = iwm_mfp_leave_done;
+    ni->ni_unref_arg = NULL;
+    ni->ni_unref_arg_size = 0;
+
+    /*
+     * Send an authenticated deauth frame in order to let our AP know we
+     * are leaving. This allows our AP to tear down MFP state cleanly.
+     * Otherwise we would remain locked out of this AP until a timeout
+     * of stale MFP state occurs at the AP, which might take a while.
+     */
+    if (IEEE80211_SEND_MGMT(ic, ni, IEEE80211_FC0_SUBTYPE_DEAUTH,
+        IEEE80211_REASON_AUTH_LEAVE) != 0) {
+        ni->ni_unref_cb = NULL;
+        return;
+    }
+
+    if (tsleep_nsec(&sc->deauth_sent, 0, "iwmlv", MSEC_TO_NSEC(500)) != 0)
+        ni->ni_unref_cb = NULL;
+}
+
+void
 iwm_stop(struct ifnet *ifp)
 {
     struct iwm_softc *sc = (typeof sc)ifp->if_softc;
@@ -10574,6 +10632,11 @@ iwm_stop(struct ifnet *ifp)
     iwm_del_task(sc, systq, &sc->bgscan_done_task);
     KASSERT(sc->task_refs.r_refs >= 1);
     refcnt_finalize(&sc->task_refs, "iwmstop");
+
+    if (ic->ic_opmode == IEEE80211_M_STA &&
+        ic->ic_state == IEEE80211_S_RUN &&
+        (ic->ic_bss->ni_flags & IEEE80211_NODE_MFP))
+        iwm_mfp_leave(sc);
 
     iwm_stop_device(sc);
 
@@ -11687,7 +11750,7 @@ iwm_preinit(struct iwm_softc *sc)
     printf("%s: hw rev 0x%x, fw ver %s, address %s\n",
         DEVNAME(sc), sc->sc_hw_rev & IWM_CSR_HW_REV_TYPE_MSK,
         sc->sc_fwver, ether_sprintf(sc->sc_nvm.hw_addr));
-    
+
     snprintf(ifp->fwver, sizeof(ifp->fwver), "hw rev 0x%x, %s ver %s",
         sc->sc_hw_rev & IWM_CSR_HW_REV_TYPE_MSK, sc->sc_fwname,
         sc->sc_fwver);
@@ -12027,7 +12090,8 @@ iwm_attach(struct device *parent, struct device *self, void *aux)
         IEEE80211_C_SCANALLBAND |    /* device scans all bands at once */
         IEEE80211_C_MONITOR |    /* monitor mode supported */
         IEEE80211_C_SHSLOT |    /* short slot time supported */
-        IEEE80211_C_SHPREAMBLE;    /* short preamble supported */
+        IEEE80211_C_SHPREAMBLE |    /* short preamble supported */
+        IEEE80211_C_MFP;        /* management frame protection */
 
     ic->ic_htcaps = IEEE80211_HTCAP_SGI20 | IEEE80211_HTCAP_SGI40;
     ic->ic_htcaps |= IEEE80211_HTCAP_CBW20_40;

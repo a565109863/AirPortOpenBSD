@@ -1,4 +1,4 @@
-/*    $OpenBSD: ieee80211_node.h,v 1.94 2022/03/20 12:01:58 stsp Exp $    */
+/*    $OpenBSD: ieee80211_node.h,v 1.98 2026/02/06 16:27:46 stsp Exp $    */
 /*    $NetBSD: ieee80211_node.h,v 1.9 2004/04/30 22:57:32 dyoung Exp $    */
 
 /*-
@@ -33,6 +33,9 @@
 #ifndef _NET80211_IEEE80211_NODE_H_
 #define _NET80211_IEEE80211_NODE_H_
 
+#ifdef __cplusplus
+enum ieee80211_phymode : int;
+#endif
 #include <sys/tree.h>
 
 #define    IEEE80211_PSCAN_WAIT    5        /* passive scan wait */
@@ -52,7 +55,7 @@ extern const struct ieee80211_rateset ieee80211_std_rateset_11a;
 extern const struct ieee80211_rateset ieee80211_std_rateset_11b;
 extern const struct ieee80211_rateset ieee80211_std_rateset_11g;
 
-/* Index into ieee80211_std_rateset_11n[] array. */
+/* Index into ieee80211_std_ratesets_11n[] array. */
 #define IEEE80211_HT_RATESET_SISO    0
 #define IEEE80211_HT_RATESET_SISO_SGI    1
 #define IEEE80211_HT_RATESET_MIMO2    2
@@ -98,7 +101,7 @@ struct ieee80211_ht_rateset {
 
 extern const struct ieee80211_ht_rateset ieee80211_std_ratesets_11n[];
 
-/* Index into ieee80211_std_rateset_11ac[] array. */
+/* Index into ieee80211_std_ratesets_11ac[] array. */
 #define IEEE80211_VHT_RATESET_SISO        0
 #define IEEE80211_VHT_RATESET_SISO_SGI        1
 #define IEEE80211_VHT_RATESET_MIMO2        2
@@ -117,7 +120,7 @@ extern const struct ieee80211_ht_rateset ieee80211_std_ratesets_11n[];
 #define IEEE80211_VHT_RATESET_MAX_NRATES    10
 
 struct ieee80211_vht_rateset {
-    int idx; /* This rateset's index in ieee80211_std_rateset_11ac[]. */
+    int idx; /* This rateset's index in ieee80211_std_ratesets_11ac[]. */
 
     uint32_t nrates;
     uint32_t rates[IEEE80211_VHT_RATESET_MAX_NRATES]; /* 500 kbit/s units */
@@ -648,8 +651,9 @@ int ieee80211_setup_vhtop(struct ieee80211_node *, const uint8_t *,
     uint8_t, int);
 int ieee80211_setup_rates(struct ieee80211com *,
         struct ieee80211_node *, const u_int8_t *, const u_int8_t *, int);
+enum ieee80211_phymode ieee80211_node_abg_mode(struct ieee80211com *,
+        struct ieee80211_node *);
 void ieee80211_node_trigger_addba_req(struct ieee80211_node *, int);
-int ieee80211_iserp_sta(const struct ieee80211_node *);
 void ieee80211_count_longslotsta(void *, struct ieee80211_node *);
 void ieee80211_count_nonerpsta(void *, struct ieee80211_node *);
 void ieee80211_count_pssta(void *, struct ieee80211_node *);
@@ -659,6 +663,7 @@ void ieee80211_node_join(struct ieee80211com *,
 void ieee80211_node_leave(struct ieee80211com *,
         struct ieee80211_node *);
 int ieee80211_match_bss(struct ieee80211com *, struct ieee80211_node *, int);
+void ieee80211_node_switch_bss(struct ieee80211com *, struct ieee80211_node *);
 void ieee80211_node_tx_stopped(struct ieee80211com *, struct ieee80211_node *);
 struct ieee80211_node *ieee80211_node_choose_bss(struct ieee80211com *, int,
         struct ieee80211_node **);

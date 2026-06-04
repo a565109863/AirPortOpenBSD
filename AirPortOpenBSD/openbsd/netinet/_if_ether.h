@@ -146,7 +146,7 @@ struct ifnet {                /* and the entries */
     int if_ibytes;
     int if_hdrlen;
     
-    AirPortOpenBSD_EthernetInterface *iface;
+    AirPortOpenBSDWLANEthernetInterface *iface;
     int if_capabilities;
     int if_baudrate;
     int if_link_state;
@@ -251,6 +251,15 @@ static inline void
 ifq_restart(struct mbuf_queue *ifq)
 {
 //    ifq_serialize(ifq, &ifq->ifq_restart);
+}
+
+
+static inline void
+ifq_init_maxlen(struct mbuf_queue *mq, u_int maxlen) {
+    
+    mq_init(mq, maxlen, IPL_NET);
+    
+    ifq_set_maxlen(mq, maxlen);
 }
 
 

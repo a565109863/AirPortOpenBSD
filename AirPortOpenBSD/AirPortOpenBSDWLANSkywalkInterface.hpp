@@ -1,20 +1,19 @@
 //
-//  AirPortOpenBSD_SkywalkInterface.hpp
+//  AirPortOpenBSDWLANSkywalkInterface.hpp
 //  AirPortOpenBSD
 //
-//  Created by qcwap on 2023/6/27.
-//  Copyright © 2023 钟先耀. All rights reserved.
+//  Created by Mac-PC on 2022/11/5.
 //
 
-#ifndef AirPortOpenBSD_SkywalkInterface_hpp
-#define AirPortOpenBSD_SkywalkInterface_hpp
+#ifndef AirPortOpenBSDWLANSkywalkInterface_hpp
+#define AirPortOpenBSDWLANSkywalkInterface_hpp
 
 #include "apple80211.h"
 
 class AirPortOpenBSD;
 
-class AirPortOpenBSD_SkywalkInterface : public IO80211InfraProtocol {
-    OSDeclareDefaultStructors(AirPortOpenBSD_SkywalkInterface)
+class AirPortOpenBSDWLANSkywalkInterface : public IO80211InfraProtocol {
+    OSDeclareDefaultStructors(AirPortOpenBSDWLANSkywalkInterface)
     
 public:
     virtual bool init(IOService *) override;
@@ -263,4 +262,4 @@ public:
 };
 
 
-#endif /* AirPortOpenBSD_SkywalkInterface_hpp */
+#endif /* AirPortOpenBSDWLANSkywalkInterface_hpp */

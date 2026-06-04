@@ -1,4 +1,4 @@
-/*    $OpenBSD: ieee80211_var.h,v 1.111 2022/03/14 15:07:24 stsp Exp $    */
+/*    $OpenBSD: ieee80211_var.h,v 1.113 2026/01/05 12:04:45 stsp Exp $    */
 /*    $NetBSD: ieee80211_var.h,v 1.7 2004/05/06 03:07:10 dyoung Exp $    */
 
 /*-
@@ -85,7 +85,7 @@ enum ieee80211_phytype {
 #define    IEEE80211_T_CCK    IEEE80211_T_DS    /* more common nomenclature */
 
 /* XXX not really a mode; there are really multiple PHY's */
-enum ieee80211_phymode {
+enum ieee80211_phymode : int {
     IEEE80211_MODE_AUTO    = 0,    /* autoselect */
     IEEE80211_MODE_11A    = 1,    /* 5GHz, OFDM */
     IEEE80211_MODE_11B    = 2,    /* 2GHz, CCK */
@@ -347,6 +347,8 @@ struct ieee80211com {
                              */
     struct ieee80211_edca_ac_params ic_edca_ac[EDCA_NUM_AC];
     u_int            ic_edca_updtcount;
+    u_int            ic_edca_txop_count[EDCA_NUM_AC];
+    struct timeval        ic_edca_txop_time[EDCA_NUM_AC];
     u_int16_t        ic_tid_noack;
     u_int8_t        ic_globalcnt[EAPOL_KEY_NONCE_LEN];
     u_int8_t        ic_nonce[EAPOL_KEY_NONCE_LEN];
@@ -506,8 +508,6 @@ int    ieee80211_min_basic_rate(struct ieee80211com *);
 int    ieee80211_max_basic_rate(struct ieee80211com *);
 int    ieee80211_setmode(struct ieee80211com *, enum ieee80211_phymode);
 enum ieee80211_phymode ieee80211_next_mode(struct ifnet *);
-enum ieee80211_phymode ieee80211_chan2mode(struct ieee80211com *,
-        const struct ieee80211_channel *);
 void    ieee80211_disable_wep(struct ieee80211com *);
 void    ieee80211_disable_rsn(struct ieee80211com *);
 int    ieee80211_add_ess(struct ieee80211com *, struct ieee80211_join *);

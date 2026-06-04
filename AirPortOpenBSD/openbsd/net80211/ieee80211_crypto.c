@@ -1,4 +1,4 @@
-/*    $OpenBSD: ieee80211_crypto.c,v 1.78 2021/05/11 08:46:31 stsp Exp $    */
+/*    $OpenBSD: ieee80211_crypto.c,v 1.81 2025/12/03 10:21:12 stsp Exp $    */
 
 /*-
  * Copyright (c) 2008 Damien Bergamini <damien.bergamini@free.fr>
@@ -62,6 +62,8 @@ ieee80211_crypto_attach(struct ifnet *ifp)
     if (ic->ic_caps & IEEE80211_C_RSN) {
         ic->ic_rsnprotos = IEEE80211_PROTO_RSN;
         ic->ic_rsnakms = IEEE80211_AKM_PSK;
+        if (ic->ic_caps & IEEE80211_C_MFP)
+            ic->ic_rsnakms |= IEEE80211_AKM_SHA256_PSK;
         ic->ic_rsnciphers = IEEE80211_CIPHER_CCMP;
         ic->ic_rsngroupcipher = IEEE80211_CIPHER_CCMP;
         ic->ic_rsngroupmgmtcipher = IEEE80211_CIPHER_BIP;
@@ -386,8 +388,6 @@ ieee80211_derive_ptk(enum ieee80211_akm akm, const u_int8_t *pmk,
     const u_int8_t *aa, const u_int8_t *spa, const u_int8_t *anonce,
     const u_int8_t *snonce, struct ieee80211_ptk *ptk)
 {
-    void (*kdf)(const u_int8_t *, size_t, const u_int8_t *, size_t,
-        const u_int8_t *, size_t, u_int8_t *, size_t);
     u_int8_t buf[2 * IEEE80211_ADDR_LEN + 2 * EAPOL_KEY_NONCE_LEN];
     int ret;
 
@@ -401,9 +401,17 @@ ieee80211_derive_ptk(enum ieee80211_akm akm, const u_int8_t *pmk,
     memcpy(&buf[12], ret ? anonce : snonce, EAPOL_KEY_NONCE_LEN);
     memcpy(&buf[44], ret ? snonce : anonce, EAPOL_KEY_NONCE_LEN);
 
-    kdf = ieee80211_is_sha256_akm(akm) ? ieee80211_kdf : ieee80211_prf;
-    (*kdf)(pmk, IEEE80211_PMK_LEN, (const u_int8_t *)"Pairwise key expansion", 23,
-        buf, sizeof buf, (u_int8_t *)ptk, sizeof(*ptk));
+    if (ieee80211_is_sha256_akm(akm)) {
+        ieee80211_kdf(pmk, IEEE80211_PMK_LEN, (const u_int8_t *)"Pairwise key expansion",
+            22 /* KDF omits \0 */, buf, sizeof buf, (u_int8_t *)ptk,
+            /* expected output size of 48 is mixed into hash */
+            MIN(48, sizeof(*ptk)));
+        CTASSERT(sizeof(struct ieee80211_ptk) >= 48);
+    } else {
+        ieee80211_prf(pmk, IEEE80211_PMK_LEN, (const u_int8_t *)"Pairwise key expansion",
+            23 /* PRF uses \0 */, buf, sizeof buf, (u_int8_t *)ptk,
+            sizeof(*ptk));
+    }
 }
 
 static void
@@ -538,7 +546,8 @@ ieee80211_eapol_key_encrypt(struct ieee80211com *ic,
         /* set IV to the lower 16 octets of our global key counter */
         memcpy(key->iv, ic->ic_globalcnt + 16, 16);
         /* increment our global key counter (256-bit, big-endian) */
-        for (n = 31; n >= 0 && ++ic->ic_globalcnt[n] == 0; n--);
+        for (n = 31; n >= 0 && ++ic->ic_globalcnt[n] == 0; n--)
+            ;
 
         /* concatenate the EAPOL-Key IV field and the KEK */
         memcpy(keybuf, key->iv, EAPOL_KEY_IV_LEN);
@@ -632,7 +641,7 @@ ieee80211_pmksa_add(struct ieee80211com *ic, enum ieee80211_akm akm,
     }
     if (pmk == NULL) {
         /* allocate a new PMKSA entry */
-        if ((pmk = (struct ieee80211_pmk *)malloc(sizeof(*pmk), M_DEVBUF, M_NOWAIT)) == NULL)
+        if ((pmk = (typeof pmk)malloc(sizeof(*pmk), M_DEVBUF, M_NOWAIT)) == NULL)
             return NULL;
         pmk->pmk_akm = akm;
         IEEE80211_ADDR_COPY(pmk->pmk_macaddr, macaddr);

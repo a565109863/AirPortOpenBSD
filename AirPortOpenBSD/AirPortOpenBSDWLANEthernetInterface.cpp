@@ -1,16 +1,16 @@
 //
-//  AirPortOpenBSD_EthernetInterface.cpp
+//  AirPortOpenBSDWLANEthernetInterface.cpp
 //  AirPortOpenBSD
 //
 //  Created by Mac-PC on 2022/11/5.
 //
 #include "AirPortOpenBSD.hpp"
-#include "AirPortOpenBSD_EthernetInterface.hpp"
+#include "AirPortOpenBSDWLANEthernetInterface.hpp"
 
 #define super IOEthernetInterface
-OSDefineMetaClassAndStructors(AirPortOpenBSD_EthernetInterface, IOEthernetInterface);
+OSDefineMetaClassAndStructors(AirPortOpenBSDWLANEthernetInterface, IOEthernetInterface);
 
-bool AirPortOpenBSD_EthernetInterface::
+bool AirPortOpenBSDWLANEthernetInterface::
 initWithSkywalkInterfaceAndProvider(IONetworkController *controller, IO80211SkywalkInterface *interface)
 {
     bool ret = super::init(controller);
@@ -19,7 +19,7 @@ initWithSkywalkInterfaceAndProvider(IONetworkController *controller, IO80211Skyw
     return ret;
 }
 
-IOReturn AirPortOpenBSD_EthernetInterface::
+IOReturn AirPortOpenBSDWLANEthernetInterface::
 attachToDataLinkLayer( IOOptionBits options, void *parameter )
 {
     char infName[IFNAMSIZ];
@@ -37,27 +37,27 @@ attachToDataLinkLayer( IOOptionBits options, void *parameter )
                         kIOEthernetAddressSize);
         interface->registerService();
         interface->prepareBSDInterface(getIfnet(), 0);
-//        ret = bpf_attach(getIfnet(), DLT_RAW, 0x48, &AirPortOpenBSD_EthernetInterface::bpfOutputPacket, &AirPortOpenBSD_EthernetInterface::bpfTap);
+//        ret = bpf_attach(getIfnet(), DLT_RAW, 0x48, &AirPortOpenBSDWLANEthernetInterface::bpfOutputPacket, &AirPortOpenBSDWLANEthernetInterface::bpfTap);
     }
     return ret;
 }
 
-errno_t AirPortOpenBSD_EthernetInterface::
+errno_t AirPortOpenBSDWLANEthernetInterface::
 bpfOutputPacket(ifnet_t interface, u_int32_t data_link_type, mbuf_t packet)
 {
     DebugLog("%s data_link_type: %d\n", __FUNCTION__, data_link_type);
-    AirPortOpenBSD_EthernetInterface *networkInterface = (AirPortOpenBSD_EthernetInterface *)ifnet_softc(interface);
+    AirPortOpenBSDWLANEthernetInterface *networkInterface = (AirPortOpenBSDWLANEthernetInterface *)ifnet_softc(interface);
     return networkInterface->enqueueOutputPacket(packet);
 }
 
-errno_t AirPortOpenBSD_EthernetInterface::
+errno_t AirPortOpenBSDWLANEthernetInterface::
 bpfTap(ifnet_t interface, u_int32_t data_link_type, bpf_tap_mode direction)
 {
     DebugLog("%s data_link_type: %d direction: %d\n", __FUNCTION__, data_link_type, direction);
     return 0;
 }
 
-bool AirPortOpenBSD_EthernetInterface::
+bool AirPortOpenBSDWLANEthernetInterface::
 setLinkState(IO80211LinkState state)
 {
     if (state == kIO80211NetworkLinkUp) {
@@ -68,7 +68,7 @@ setLinkState(IO80211LinkState state)
     return true;
 }
 
-UInt32 AirPortOpenBSD_EthernetInterface::
+UInt32 AirPortOpenBSDWLANEthernetInterface::
 inputPacket(mbuf_t packet, UInt32 length, IOOptionBits options, void *param)
 {
     ether_header_t *eh;

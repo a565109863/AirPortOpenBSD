@@ -1,4 +1,4 @@
-/*    $OpenBSD: ieee80211_proto.h,v 1.48 2022/03/14 15:07:24 stsp Exp $    */
+/*    $OpenBSD: ieee80211_proto.h,v 1.50 2025/06/14 08:46:34 jsg Exp $    */
 /*    $NetBSD: ieee80211_proto.h,v 1.3 2003/10/13 04:23:56 dyoung Exp $    */
 
 /*-
@@ -120,8 +120,6 @@ extern    u_int8_t *ieee80211_add_capinfo(u_int8_t *, struct ieee80211com *,
 extern    u_int8_t *ieee80211_add_ssid(u_int8_t *, const u_int8_t *, u_int);
 extern    u_int8_t *ieee80211_add_rates(u_int8_t *,
         const struct ieee80211_rateset *);
-extern    u_int8_t *ieee80211_add_fh_params(u_int8_t *, struct ieee80211com *,
-        const struct ieee80211_node *);
 extern    u_int8_t *ieee80211_add_ds_params(u_int8_t *, struct ieee80211com *,
         const struct ieee80211_node *);
 extern    u_int8_t *ieee80211_add_tim(u_int8_t *, struct ieee80211com *);
@@ -187,10 +185,6 @@ extern    void ieee80211_addba_resp_accept(struct ieee80211com *,
 extern    void ieee80211_addba_resp_refuse(struct ieee80211com *,
         struct ieee80211_node *, uint8_t, uint16_t);
 extern    void ieee80211_output_ba_move_window(struct ieee80211com *,
-        struct ieee80211_node *, uint8_t, uint16_t);
-extern    void ieee80211_output_ba_move_window_to_first_unacked(
-        struct ieee80211com *, struct ieee80211_node *, uint8_t, uint16_t);
-extern    void ieee80211_output_ba_record_ack(struct ieee80211com *,
         struct ieee80211_node *, uint8_t, uint16_t);
 
 #endif /* _NET80211_IEEE80211_PROTO_H_ */

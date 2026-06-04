@@ -5,11 +5,9 @@
 //  Created by Mac-PC on 2022/11/7.
 //
 
-#include <Availability.h>
-
 #include "apple80211.h"
 
-#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Sonoma
+#if __MAC_X_VERSION >= __MAC_14_0
 #include "AirPortOpenBSD.hpp"
 #else
 #include "AirPortOpenBSDLegacy.hpp"
@@ -76,7 +74,7 @@ IOReturn AirPortOpenBSD::scanConvertResult(struct ieee80211_node *ni, struct app
     oneResult->asr_ie_len = 0;
     if (ni->ni_ie != NULL && ni->ni_ie_len > 0) {
         oneResult->asr_ie_len = ni->ni_ie_len;
-#if MAC_VERSION_MAJOR < MAC_VERSION_MAJOR_Monterey
+#if __MAC_X_VERSION < __MAC_12_0
         oneResult->asr_ie_data = IOMalloc(oneResult->asr_ie_len);
         if (oneResult->asr_ie_data != NULL) {
             memcpy(oneResult->asr_ie_data, ni->ni_ie, oneResult->asr_ie_len);

@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "3F8F2F332AE5245E000AF582"
-               BuildableName = "AirPortOpenBSD_Sonoma.kext"
-               BlueprintName = "AirPortOpenBSD_Sonoma"
+               BuildableName = "AirPortOpenBSD_Sonoma14_0.kext"
+               BlueprintName = "AirPortOpenBSD_Sonoma14_0"
                ReferencedContainer = "container:AirPortOpenBSD.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -118,6 +118,20 @@
                ReferencedContainer = "container:AirPortOpenBSD.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9833878C2FD0405700222A32"
+               BuildableName = "AirPortOpenBSD_Sonoma14_4.kext"
+               BlueprintName = "AirPortOpenBSD_Sonoma14_4"
+               ReferencedContainer = "container:AirPortOpenBSD.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -148,8 +162,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "3F8F2F332AE5245E000AF582"
-            BuildableName = "AirPortOpenBSD_Sonoma.kext"
-            BlueprintName = "AirPortOpenBSD_Sonoma"
+            BuildableName = "AirPortOpenBSD_Sonoma14_0.kext"
+            BlueprintName = "AirPortOpenBSD_Sonoma14_0"
             ReferencedContainer = "container:AirPortOpenBSD.xcodeproj">
          </BuildableReference>
       </MacroExpansion>

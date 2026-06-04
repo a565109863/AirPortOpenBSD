@@ -40,7 +40,7 @@ struct apple80211req
     void        *req_data;                // 4 bytes
 };
 
-#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Catalina
+#if __MAC_X_VERSION >= __MAC_10_15
 #define SIOCSA80211 2150656456
 #define SIOCGA80211 3224398281
 #else
@@ -425,7 +425,7 @@ struct apple80211_bssid_data
     struct ether_addr    bssid;
 };
 
-#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Sonoma
+#if __MAC_X_VERSION >= __MAC_14_0
 struct apple80211_capability_data
 {
     u_int32_t    version;
@@ -728,7 +728,7 @@ struct apple80211_ap_ie_data
 {
     u_int32_t    version;
     u_int32_t    len;
-#if MAC_VERSION_MAJOR < MAC_VERSION_MAJOR_Ventura
+#if __MAC_X_VERSION < __MAC_13_0
     u_int8_t     *ie_data;
 #else
     u_int8_t     ie_data[APPLE80211_NETWORK_DATA_MAX_IE_LEN];

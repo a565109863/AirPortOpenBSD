@@ -39,20 +39,21 @@ extern int debug_log;
 #define BPF_DIRECTION_IN    1
 #define BPF_DIRECTION_OUT   (1<<1)
 
-#define IEEE80211_DEBUG     1
-#define IWM_DEBUG           1
+//#define IEEE80211_DEBUG     1
+//#define IWM_DEBUG           1
+//#define IWX_DEBUG           1
 //#undef DEBUG
 
 #ifdef DEBUG
 
-//    #if MAC_VERSION_MAJOR < MAC_VERSION_MAJOR_BigSur
+//    #if __MAC_X_VERSION < __MAC_11_0
         #define DebugLog(args...) \
         if(debug_log) { \
             uint64_t new_thread_id = thread_tid(current_thread()); \
             int argsStrSize = 1024; \
             char *argsStr = (typeof argsStr)IOMalloc(argsStrSize); \
             snprintf(argsStr, argsStrSize, args); \
-            kprintf("AirPortOpenBSD:i=%d: %s: line = %d tid = %llu sysuptime = %llu %s\n", logStr_i++, __FUNCTION__, __LINE__, new_thread_id, sysuptime(), argsStr); \
+            kprintf("AirPortOpenBSD:i=%d: %s: line = %d tid = %llu st = %llu %s\n", logStr_i++, __FUNCTION__, __LINE__, new_thread_id, sysuptime(), argsStr); \
             IOFree(argsStr, argsStrSize); \
         }
         #define DebugLogClean()
@@ -63,11 +64,11 @@ extern int debug_log;
 //            int argsStrSize = 1024; \
 //            char *argsStr = (typeof argsStr)IOMalloc(argsStrSize); \
 //            snprintf(argsStr, argsStrSize, args); \
-//            kprintf("AirPortOpenBSD:i=%d: %s: line = %d tid = %llu sysuptime = %llu %s\n", logStr_i++, __FUNCTION__, __LINE__, new_thread_id, sysuptime(), argsStr); \
+//            kprintf("AirPortOpenBSD:i=%d: %s: line = %d tid = %llu st = %llu %s\n", logStr_i++, __FUNCTION__, __LINE__, new_thread_id, sysuptime(), argsStr); \
 //            if (_ifp != NULL && _ifp->if_softc != NULL) { \
 //                int logStrSize = 2048; \
 //                char *logStr = (typeof logStr)IOMalloc(logStrSize); \
-//                snprintf(logStr, logStrSize, "%s: line = %d tid = %llu sysuptime = %llu %s", __FUNCTION__, __LINE__, new_thread_id, sysuptime(), argsStr); \
+//                snprintf(logStr, logStrSize, "%s: line = %d tid = %llu st = %llu %s", __FUNCTION__, __LINE__, new_thread_id, sysuptime(), argsStr); \
 //                OSString *log = OSString::withCString(logStr); \
 //                int logKeySize = 256; \
 //                char *logKey = (typeof logKey)IOMalloc(logKeySize); \
@@ -101,12 +102,12 @@ extern int debug_log;
 #define DebugLogClean()
 #endif
 
-#define DPRINTF(X) do {                \
-if (IEEE80211_DEBUG) {            \
-printf("%s: ", __func__);    \
-printf X;            \
-}                    \
-} while(0)
+//#define DPRINTF(X) do {                \
+//if (IEEE80211_DEBUG) {            \
+//printf("%s: ", __func__);    \
+//printf X;            \
+//}                    \
+//} while(0)
 
 
 #define err(x, arg...)      kprintf(arg)
@@ -133,6 +134,7 @@ printf X;            \
 
 #define splassert(x)
 #define DEF_STRONG(x)
+#define CTASSERT(x)
 
 #define hz 1000
 

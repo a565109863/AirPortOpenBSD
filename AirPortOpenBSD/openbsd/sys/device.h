@@ -15,7 +15,9 @@
 
 #define PCI_MSIX_QUEUES    16
 
-#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Sonoma
+#include "apple80211.h"
+
+#if __MAC_X_VERSION >= __MAC_14_0
 #include "AirPortOpenBSD.hpp"
 #else
 #include "AirPortOpenBSDLegacy.hpp"

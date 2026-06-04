@@ -29,7 +29,7 @@
 //    DebugLog("%s interface=%s role=%d\n", __FUNCTION__, interface->getBSDName(), interface->getInterfaceRole());
 //    SInt32 ret = super::enableVirtualInterface(interface);
 //    if (!ret) {
-//#if MAC_VERSION_MAJOR >= MAC_VERSION_MAJOR_Ventura
+//#if __MAC_X_VERSION >= __MAC_13_0
 //        interface->setEnabledBySystem(true);
 //#endif
 //        interface->setLinkState(kIO80211NetworkLinkUp, 0);
